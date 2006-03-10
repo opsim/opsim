@@ -1,0 +1,35 @@
+object PfdWorkSpaceForm: TPfdWorkSpaceForm
+  Caption = 'PFD WorkSpace'
+  ClientHeight = 509
+  ClientWidth = 725
+  PixelsPerInch = 96
+  Position = poDefaultPosOnly
+  HorzScrollBar.Page = 724
+  VertScrollBar.Page = 508
+  Left = 46
+  Height = 509
+  Top = 132
+  Width = 725
+  object Panel1: TPanel
+    Align = alClient
+    BevelInner = bvLowered
+    BorderWidth = 5
+    ClientHeight = 509
+    ClientWidth = 725
+    TabOrder = 0
+    Height = 509
+    Width = 725
+    object ScrollBox1: TScrollBox
+      Align = alClient
+      Color = clTeal
+      ParentColor = False
+      TabOrder = 0
+      HorzScrollBar.Page = 706
+      VertScrollBar.Page = 490
+      Left = 7
+      Height = 495
+      Top = 7
+      Width = 711
+    end
+  end
+end
