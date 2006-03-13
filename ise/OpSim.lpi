@@ -1,0 +1,316 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <PathDelim Value="\"/>
+    <Version Value="5"/>
+    <General>
+      <MainUnit Value="0"/>
+      <IconPath Value="./"/>
+      <TargetFileExt Value=".exe"/>
+      <ActiveEditorIndexAtStart Value="1"/>
+    </General>
+    <LazDoc Paths=""/>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <CommandLineParams Value="--debug-log=dbglog.txt"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="13">
+      <Unit0>
+        <Filename Value="OpSim.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OpSim"/>
+        <CursorPos X="1" Y="17"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="unit1.pas"/>
+        <ComponentName Value="Form1"/>
+        <ResourceFilename Value="unit1.lrs"/>
+        <UnitName Value="Unit1"/>
+        <CursorPos X="16" Y="24"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="20"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="UnitopPalletU.pas"/>
+        <ComponentName Value="UnitopPallet"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="UnitopPalletU.lrs"/>
+        <UnitName Value="UnitopPalletU"/>
+        <CursorPos X="35" Y="12"/>
+        <TopLine Value="34"/>
+        <EditorIndex Value="5"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="AboutU.pas"/>
+        <ComponentName Value="AboutForm"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="AboutU.lrs"/>
+        <UnitName Value="AboutU"/>
+        <CursorPos X="17" Y="42"/>
+        <TopLine Value="18"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="MainU.pas"/>
+        <ComponentName Value="Main"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="MainU.lrs"/>
+        <UnitName Value="MainU"/>
+        <CursorPos X="1" Y="77"/>
+        <TopLine Value="65"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="aboutformu.lfm"/>
+        <UsageCount Value="20"/>
+        <SyntaxHighlighter Value="Text"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="unit1.lrs"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="PfdDesignerU.pas"/>
+        <ComponentName Value="PfdDesigner"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="PfdDesignerU.lrs"/>
+        <UnitName Value="PfdDesignerU"/>
+        <CursorPos X="14" Y="38"/>
+        <TopLine Value="36"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="C:\lazarus\components\zeosdbo\packages\lazarus\zcomponent.pas"/>
+        <UnitName Value="zcomponent"/>
+        <CursorPos X="1" Y="24"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
+        <CursorPos X="1" Y="326"/>
+        <TopLine Value="314"/>
+        <EditorIndex Value="7"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="PFDCtrls.pas"/>
+        <UnitName Value="PFDCtrls"/>
+        <CursorPos X="26" Y="366"/>
+        <TopLine Value="353"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <UnitName Value="Graphics"/>
+        <CursorPos X="24" Y="985"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="C:\lazarus\fpcsrc\rtl\win32\wininc\func.inc"/>
+        <CursorPos X="10" Y="695"/>
+        <TopLine Value="683"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <Caret Line="892" Column="26" TopLine="880"/>
+      </Position1>
+      <Position2>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <Caret Line="893" Column="26" TopLine="881"/>
+      </Position2>
+      <Position3>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <Caret Line="7" Column="80" TopLine="6"/>
+      </Position3>
+      <Position4>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <Caret Line="78" Column="50" TopLine="66"/>
+      </Position4>
+      <Position5>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <Caret Line="89" Column="77" TopLine="77"/>
+      </Position5>
+      <Position6>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <Caret Line="892" Column="26" TopLine="880"/>
+      </Position6>
+      <Position7>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <Caret Line="893" Column="26" TopLine="881"/>
+      </Position7>
+      <Position8>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <Caret Line="894" Column="26" TopLine="882"/>
+      </Position8>
+      <Position9>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <Caret Line="984" Column="24" TopLine="974"/>
+      </Position9>
+      <Position10>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <Caret Line="979" Column="53" TopLine="973"/>
+      </Position10>
+      <Position11>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <Caret Line="984" Column="24" TopLine="972"/>
+      </Position11>
+      <Position12>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="303" Column="42" TopLine="291"/>
+      </Position12>
+      <Position13>
+        <Filename Value="PfdDesignerU.pas"/>
+        <Caret Line="48" Column="27" TopLine="31"/>
+      </Position13>
+      <Position14>
+        <Filename Value="PfdDesignerU.pas"/>
+        <Caret Line="47" Column="5" TopLine="33"/>
+      </Position14>
+      <Position15>
+        <Filename Value="PfdDesignerU.pas"/>
+        <Caret Line="56" Column="1" TopLine="33"/>
+      </Position15>
+      <Position16>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="305" Column="35" TopLine="289"/>
+      </Position16>
+      <Position17>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="356" Column="1" TopLine="362"/>
+      </Position17>
+      <Position18>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="357" Column="1" TopLine="345"/>
+      </Position18>
+      <Position19>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="358" Column="1" TopLine="346"/>
+      </Position19>
+      <Position20>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="359" Column="1" TopLine="347"/>
+      </Position20>
+      <Position21>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="360" Column="1" TopLine="348"/>
+      </Position21>
+      <Position22>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="362" Column="1" TopLine="350"/>
+      </Position22>
+      <Position23>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="363" Column="1" TopLine="351"/>
+      </Position23>
+      <Position24>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="364" Column="1" TopLine="352"/>
+      </Position24>
+      <Position25>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="365" Column="1" TopLine="353"/>
+      </Position25>
+      <Position26>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="366" Column="1" TopLine="354"/>
+      </Position26>
+      <Position27>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="367" Column="1" TopLine="355"/>
+      </Position27>
+      <Position28>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="370" Column="1" TopLine="358"/>
+      </Position28>
+      <Position29>
+        <Filename Value="PFDCtrls.pas"/>
+        <Caret Line="385" Column="1" TopLine="364"/>
+      </Position29>
+      <Position30>
+        <Filename Value="PfdDesignerU.pas"/>
+        <Caret Line="47" Column="25" TopLine="37"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="5"/>
+    <PathDelim Value="\"/>
+    <SearchPaths>
+      <SrcPath Value="$(LazarusDir)\lcl\;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)\"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <DelphiCompat Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Generate Value="Faster"/>
+    </CodeGeneration>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Watches Count="1">
+      <Item1>
+        <Expression Value="GetWidth"/>
+      </Item1>
+    </Watches>
+    <Exceptions Count="2">
+      <Item1>
+        <Name Value="ECodetoolError"/>
+      </Item1>
+      <Item2>
+        <Name Value="EFOpenError"/>
+      </Item2>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

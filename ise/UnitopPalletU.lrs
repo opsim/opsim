@@ -1,0 +1,35 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TUnitopPallet','FORMDATA',[
+  'TPF0'#13'TUnitopPallet'#12'UnitopPallet'#7'Caption'#6#6'Unitop'#12'ClientHei'
+  +'ght'#3#207#1#11'ClientWidth'#2's'#8'OnCreate'#7#10'FormCreate'#13'PixelsPer'
+  +'Inch'#2'`'#18'HorzScrollBar.Page'#2'r'#18'VertScrollBar.Page'#3#206#1#4'Lef'
+  +'t'#3'6'#3#6'Height'#3#207#1#3'Top'#3#148#0#5'Width'#2's'#0#6'TPanel'#6'Pane'
+  +'l1'#5'Align'#7#6'alLeft'#12'ClientHeight'#3#207#1#11'ClientWidth'#2':'#8'Ta'
+  +'bOrder'#2#0#6'Height'#3#207#1#5'Width'#2':'#0#12'TSpeedButton'#12'SpeedButt'
+  +'on1'#9'NumGlyphs'#2#0#4'Left'#2#4#6'Height'#2'.'#3'Top'#2#4#5'Width'#2'/'#0
+  +#0#12'TSpeedButton'#12'SpeedButton2'#9'NumGlyphs'#2#0#4'Left'#2#4#6'Height'#2
+  +'.'#3'Top'#2'4'#5'Width'#2'/'#0#0#12'TSpeedButton'#12'SpeedButton3'#9'NumGly'
+  +'phs'#2#0#4'Left'#2#4#6'Height'#2'.'#3'Top'#2'd'#5'Width'#2'/'#0#0#12'TSpeed'
+  +'Button'#12'SpeedButton4'#9'NumGlyphs'#2#0#4'Left'#2#4#6'Height'#2'.'#3'Top'
+  +#3#148#0#5'Width'#2'/'#0#0#12'TSpeedButton'#12'SpeedButton9'#9'NumGlyphs'#2#0
+  +#4'Left'#2#4#6'Height'#2'.'#3'Top'#3'T'#1#5'Width'#2'/'#0#0#12'TSpeedButton'
+  +#13'SpeedButton10'#9'NumGlyphs'#2#0#4'Left'#2#4#6'Height'#2'.'#3'Top'#3'$'#1
+  +#5'Width'#2'/'#0#0#12'TSpeedButton'#13'SpeedButton11'#9'NumGlyphs'#2#0#4'Lef'
+  +'t'#2#4#6'Height'#2'.'#3'Top'#3#244#0#5'Width'#2'/'#0#0#12'TSpeedButton'#13
+  +'SpeedButton12'#9'NumGlyphs'#2#0#4'Left'#2#4#6'Height'#2'.'#3'Top'#3#196#0#5
+  +'Width'#2'/'#0#0#0#6'TPanel'#6'Panel2'#5'Align'#7#8'alClient'#12'ClientHeigh'
+  +'t'#3#207#1#11'ClientWidth'#2'9'#8'TabOrder'#2#1#4'Left'#2':'#6'Height'#3#207
+  +#1#5'Width'#2'9'#0#12'TSpeedButton'#12'SpeedButton5'#9'NumGlyphs'#2#0#4'Left'
+  +#2#4#6'Height'#2'.'#3'Top'#3#148#0#5'Width'#2'/'#0#0#12'TSpeedButton'#12'Spe'
+  +'edButton6'#9'NumGlyphs'#2#0#4'Left'#2#4#6'Height'#2'.'#3'Top'#2'd'#5'Width'
+  +#2'/'#0#0#12'TSpeedButton'#12'SpeedButton7'#9'NumGlyphs'#2#0#4'Left'#2#4#6'H'
+  +'eight'#2'.'#3'Top'#2'4'#5'Width'#2'/'#0#0#12'TSpeedButton'#12'SpeedButton8'
+  +#9'NumGlyphs'#2#0#4'Left'#2#4#6'Height'#2'.'#3'Top'#2#4#5'Width'#2'/'#0#0#12
+  +'TSpeedButton'#13'SpeedButton13'#9'NumGlyphs'#2#0#4'Left'#2#4#6'Height'#2'.'
+  +#3'Top'#3'T'#1#5'Width'#2'/'#0#0#12'TSpeedButton'#13'SpeedButton14'#9'NumGly'
+  +'phs'#2#0#4'Left'#2#4#6'Height'#2'.'#3'Top'#3'$'#1#5'Width'#2'/'#0#0#12'TSpe'
+  +'edButton'#13'SpeedButton15'#9'NumGlyphs'#2#0#4'Left'#2#4#6'Height'#2'.'#3'T'
+  +'op'#3#244#0#5'Width'#2'/'#0#0#12'TSpeedButton'#13'SpeedButton16'#9'NumGlyph'
+  +'s'#2#0#4'Left'#2#4#6'Height'#2'.'#3'Top'#3#196#0#5'Width'#2'/'#0#0#0#0
+]);

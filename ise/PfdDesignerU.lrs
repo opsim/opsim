@@ -1,0 +1,20 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TPfdDesigner','FORMDATA',[
+  'TPF0'#12'TPfdDesigner'#11'PfdDesigner'#7'Caption'#6#12'PFD Designer'#12'Clie'
+  +'ntHeight'#3#253#1#11'ClientWidth'#3#213#2#8'OnCreate'#7#10'FormCreate'#13'P'
+  +'ixelsPerInch'#2'`'#8'Position'#7#16'poDefaultPosOnly'#18'HorzScrollBar.Page'
+  +#3#212#2#18'VertScrollBar.Page'#3#252#1#4'Left'#3#247#0#6'Height'#3#253#1#3
+  +'Top'#3#142#0#5'Width'#3#213#2#0#6'TPanel'#12'pnlWorkplace'#5'Align'#7#8'alC'
+  +'lient'#10'BevelOuter'#7#6'bvNone'#11'BorderWidth'#2#2#7'Caption'#6')PFD Wor'
+  +'kplace is create dynamically here.'#12'ClientHeight'#3#204#1#11'ClientWidth'
+  +#3#213#2#8'TabOrder'#2#0#6'Height'#3#204#1#3'Top'#2' '#5'Width'#3#213#2#0#0#6
+  +'TPanel'#10'pnlToolbar'#5'Align'#7#5'alTop'#10'BevelOuter'#7#6'bvNone'#12'Cl'
+  +'ientHeight'#2' '#11'ClientWidth'#3#213#2#8'TabOrder'#2#1#6'Height'#2' '#5'W'
+  +'idth'#3#213#2#0#12'TSpeedButton'#12'SpeedButton1'#9'NumGlyphs'#2#0#4'Left'#2
+  +#8#6'Height'#2#22#3'Top'#2#4#5'Width'#2#23#0#0#12'TSpeedButton'#12'SpeedButt'
+  +'on2'#9'NumGlyphs'#2#0#4'Left'#2' '#6'Height'#2#22#3'Top'#2#4#5'Width'#2#23#0
+  +#0#0#6'TPanel'#12'pnlStatusBar'#5'Align'#7#8'alBottom'#10'BevelOuter'#7#6'bv'
+  +'None'#12'ClientHeight'#2#17#11'ClientWidth'#3#213#2#8'TabOrder'#2#2#6'Heigh'
+  +'t'#2#17#3'Top'#3#236#1#5'Width'#3#213#2#0#0#0
+]);
