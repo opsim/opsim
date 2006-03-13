@@ -7,7 +7,7 @@
       <MainUnit Value="0"/>
       <IconPath Value="./"/>
       <TargetFileExt Value=".exe"/>
-      <ActiveEditorIndexAtStart Value="1"/>
+      <ActiveEditorIndexAtStart Value="6"/>
     </General>
     <LazDoc Paths=""/>
     <PublishOptions>
@@ -33,10 +33,10 @@
         <Filename Value="OpSim.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSim"/>
-        <CursorPos X="1" Y="17"/>
+        <CursorPos X="43" Y="25"/>
         <TopLine Value="1"/>
         <EditorIndex Value="0"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -55,10 +55,10 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="UnitopPalletU.lrs"/>
         <UnitName Value="UnitopPalletU"/>
-        <CursorPos X="35" Y="12"/>
-        <TopLine Value="34"/>
+        <CursorPos X="2" Y="14"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="5"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -68,10 +68,10 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="AboutU.lrs"/>
         <UnitName Value="AboutU"/>
-        <CursorPos X="17" Y="42"/>
-        <TopLine Value="18"/>
+        <CursorPos X="2" Y="14"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="6"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -81,10 +81,10 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="MainU.lrs"/>
         <UnitName Value="MainU"/>
-        <CursorPos X="1" Y="77"/>
-        <TopLine Value="65"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="4"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -104,10 +104,10 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="PfdDesignerU.lrs"/>
         <UnitName Value="PfdDesignerU"/>
-        <CursorPos X="14" Y="38"/>
-        <TopLine Value="36"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
@@ -119,17 +119,15 @@
       </Unit8>
       <Unit9>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
-        <CursorPos X="1" Y="326"/>
-        <TopLine Value="314"/>
-        <EditorIndex Value="7"/>
+        <CursorPos X="1" Y="14"/>
+        <TopLine Value="1"/>
         <UsageCount Value="12"/>
-        <Loaded Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="PFDCtrls.pas"/>
         <UnitName Value="PFDCtrls"/>
-        <CursorPos X="26" Y="366"/>
-        <TopLine Value="353"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="12"/>
         <Loaded Value="True"/>
@@ -137,7 +135,7 @@
       <Unit11>
         <Filename Value="C:\lazarus\lcl\graphics.pp"/>
         <UnitName Value="Graphics"/>
-        <CursorPos X="24" Y="985"/>
+        <CursorPos X="13" Y="23"/>
         <TopLine Value="1"/>
         <EditorIndex Value="3"/>
         <UsageCount Value="11"/>
@@ -150,7 +148,7 @@
         <UsageCount Value="10"/>
       </Unit12>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="12" HistoryIndex="11">
       <Position1>
         <Filename Value="C:\lazarus\lcl\graphics.pp"/>
         <Caret Line="892" Column="26" TopLine="880"/>
@@ -197,80 +195,8 @@
       </Position11>
       <Position12>
         <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="303" Column="42" TopLine="291"/>
+        <Caret Line="14" Column="2" TopLine="1"/>
       </Position12>
-      <Position13>
-        <Filename Value="PfdDesignerU.pas"/>
-        <Caret Line="48" Column="27" TopLine="31"/>
-      </Position13>
-      <Position14>
-        <Filename Value="PfdDesignerU.pas"/>
-        <Caret Line="47" Column="5" TopLine="33"/>
-      </Position14>
-      <Position15>
-        <Filename Value="PfdDesignerU.pas"/>
-        <Caret Line="56" Column="1" TopLine="33"/>
-      </Position15>
-      <Position16>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="305" Column="35" TopLine="289"/>
-      </Position16>
-      <Position17>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="356" Column="1" TopLine="362"/>
-      </Position17>
-      <Position18>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="357" Column="1" TopLine="345"/>
-      </Position18>
-      <Position19>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="358" Column="1" TopLine="346"/>
-      </Position19>
-      <Position20>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="359" Column="1" TopLine="347"/>
-      </Position20>
-      <Position21>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="360" Column="1" TopLine="348"/>
-      </Position21>
-      <Position22>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="362" Column="1" TopLine="350"/>
-      </Position22>
-      <Position23>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="363" Column="1" TopLine="351"/>
-      </Position23>
-      <Position24>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="364" Column="1" TopLine="352"/>
-      </Position24>
-      <Position25>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="365" Column="1" TopLine="353"/>
-      </Position25>
-      <Position26>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="366" Column="1" TopLine="354"/>
-      </Position26>
-      <Position27>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="367" Column="1" TopLine="355"/>
-      </Position27>
-      <Position28>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="370" Column="1" TopLine="358"/>
-      </Position28>
-      <Position29>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="385" Column="1" TopLine="364"/>
-      </Position29>
-      <Position30>
-        <Filename Value="PfdDesignerU.pas"/>
-        <Caret Line="47" Column="25" TopLine="37"/>
-      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
