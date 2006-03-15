@@ -23,20 +23,24 @@
         <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="2">
       <Item1>
         <PackageName Value="LCL"/>
       </Item1>
+      <Item2>
+        <PackageName Value="FCL"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item2>
     </RequiredPackages>
-    <Units Count="13">
+    <Units Count="16">
       <Unit0>
         <Filename Value="OpSim.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSim"/>
-        <CursorPos X="43" Y="25"/>
-        <TopLine Value="1"/>
+        <CursorPos X="79" Y="25"/>
+        <TopLine Value="10"/>
         <EditorIndex Value="0"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -57,8 +61,8 @@
         <UnitName Value="UnitopPalletU"/>
         <CursorPos X="2" Y="14"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="5"/>
-        <UsageCount Value="26"/>
+        <EditorIndex Value="7"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -70,8 +74,8 @@
         <UnitName Value="AboutU"/>
         <CursorPos X="2" Y="14"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="6"/>
-        <UsageCount Value="26"/>
+        <EditorIndex Value="8"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -83,8 +87,8 @@
         <UnitName Value="MainU"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="4"/>
-        <UsageCount Value="26"/>
+        <EditorIndex Value="5"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -106,8 +110,8 @@
         <UnitName Value="PfdDesignerU"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="1"/>
-        <UsageCount Value="26"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
@@ -128,8 +132,8 @@
         <UnitName Value="PFDCtrls"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="2"/>
-        <UsageCount Value="12"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit10>
       <Unit11>
@@ -137,8 +141,8 @@
         <UnitName Value="Graphics"/>
         <CursorPos X="13" Y="23"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="11"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit11>
       <Unit12>
@@ -147,8 +151,39 @@
         <TopLine Value="683"/>
         <UsageCount Value="10"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="DMBaseU.pas"/>
+        <ComponentName Value="DMBase"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="DMBaseU.lrs"/>
+        <UnitName Value="DMBaseU"/>
+        <CursorPos X="34" Y="14"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="MixerSpecU.pas"/>
+        <ComponentName Value="MixerSpec"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="MixerSpecU.lrs"/>
+        <UnitName Value="MixerSpecU"/>
+        <CursorPos X="10" Y="9"/>
+        <TopLine Value="5"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="DMBaseU.lfm"/>
+        <CursorPos X="32" Y="6"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="LFM"/>
+      </Unit15>
     </Units>
-    <JumpHistory Count="12" HistoryIndex="11">
+    <JumpHistory Count="11" HistoryIndex="10">
       <Position1>
         <Filename Value="C:\lazarus\lcl\graphics.pp"/>
         <Caret Line="892" Column="26" TopLine="880"/>
@@ -193,10 +228,6 @@
         <Filename Value="C:\lazarus\lcl\graphics.pp"/>
         <Caret Line="984" Column="24" TopLine="972"/>
       </Position11>
-      <Position12>
-        <Filename Value="PFDCtrls.pas"/>
-        <Caret Line="14" Column="2" TopLine="1"/>
-      </Position12>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
