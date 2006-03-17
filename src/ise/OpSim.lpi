@@ -4,6 +4,9 @@
     <PathDelim Value="\"/>
     <Version Value="5"/>
     <General>
+      <Flags>
+        <AlwaysBuild Value="False"/>
+      </Flags>
       <MainUnit Value="0"/>
       <IconPath Value="./"/>
       <TargetFileExt Value=".exe"/>
