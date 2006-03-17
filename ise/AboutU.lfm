@@ -1,64 +1,64 @@
 object AboutForm: TAboutForm
+  Left = 379
+  Height = 315
+  Top = 247
+  Width = 530
+  HorzScrollBar.Page = 529
+  VertScrollBar.Page = 314
   ActiveControl = Memo1
   Caption = 'About OpSim'
   ClientHeight = 315
   ClientWidth = 530
   PixelsPerInch = 96
-  HorzScrollBar.Page = 529
-  VertScrollBar.Page = 314
-  Left = 284
-  Height = 315
-  Top = 169
-  Width = 530
   object Image1: TImage
-    Transparent = True
     Left = 16
     Height = 197
     Top = 56
     Width = 229
+    Transparent = True
   end
   object Label1: TLabel
-    Caption = 'Version 0.0.1 (far of alpha yet)'
-    Color = clNone
-    ParentColor = False
     Left = 20
     Height = 14
     Top = 11
     Width = 151
-  end
-  object Label2: TLabel
-    Caption = 'Date: 09/03/2006'
+    Caption = 'Version 0.0.1 (far of alpha yet)'
     Color = clNone
     ParentColor = False
+  end
+  object Label2: TLabel
     Left = 20
     Height = 14
     Top = 32
     Width = 87
-  end
-  object Label3: TLabel
-    Caption = 'please, a nice logo image here!'
+    Caption = 'Date: 09/03/2006'
     Color = clNone
     ParentColor = False
+  end
+  object Label3: TLabel
     Left = 60
     Height = 14
     Top = 120
     Width = 150
+    Caption = 'please, a nice logo image here!'
+    Color = clNone
+    ParentColor = False
   end
   object PageControl1: TPageControl
+    Left = 260
+    Height = 256
+    Width = 270
     ActivePage = tbshAbout
     Align = alRight
     TabIndex = 0
     TabOrder = 0
-    Left = 260
-    Height = 256
-    Width = 270
     object tbshAbout: TTabSheet
       Caption = 'About'
       ClientHeight = 230
       ClientWidth = 262
-      Height = 230
-      Width = 262
       object Memo1: TMemo
+        Height = 230
+        Width = 262
         Align = alClient
         Color = clForeground
         Font.CharSet = ANSI_CHARSET
@@ -80,17 +80,15 @@ object AboutForm: TAboutForm
         )
         ReadOnly = True
         TabOrder = 0
-        Height = 230
-        Width = 262
       end
     end
     object tbshContributors: TTabSheet
       Caption = 'Contributors'
       ClientHeight = 230
       ClientWidth = 262
-      Height = 230
-      Width = 262
       object Memo2: TMemo
+        Height = 230
+        Width = 262
         Align = alClient
         Color = clForeground
         Font.Style = [fsBold]
@@ -100,59 +98,53 @@ object AboutForm: TAboutForm
         )
         ReadOnly = True
         TabOrder = 0
-        Height = 230
-        Width = 262
       end
     end
   end
   object Panel1: TPanel
+    Height = 59
+    Top = 256
+    Width = 530
     Align = alBottom
     BevelOuter = bvNone
     ClientHeight = 59
     ClientWidth = 530
     TabOrder = 1
-    Height = 59
-    Top = 256
-    Width = 530
     object Bevel1: TBevel
-      Height = 10
-      Left = 8
       Name = 'Bevel1'
-      Shape = bsTopLine
-      Top = 8
-      Width = 518
       Left = 8
       Height = 10
       Top = 8
       Width = 518
+      Shape = bsTopLine
     end
     object Label4: TLabel
-      Caption = 'Copyright (c) 2006 OpSim Project '
-      Color = clNone
-      ParentColor = False
       Left = 16
       Height = 14
       Top = 20
       Width = 164
-    end
-    object Label5: TLabel
-      Caption = 'All rights reserved.'
+      Caption = 'Copyright (c) 2006 OpSim Project '
       Color = clNone
       ParentColor = False
+    end
+    object Label5: TLabel
       Left = 16
       Height = 14
       Top = 39
       Width = 92
+      Caption = 'All rights reserved.'
+      Color = clNone
+      ParentColor = False
     end
     object btnOk: TButton
-      BorderSpacing.InnerBorder = 2
-      Caption = 'OK'
-      ModalResult = 1
-      TabOrder = 0
       Left = 440
       Height = 25
       Top = 24
       Width = 75
+      BorderSpacing.InnerBorder = 2
+      Caption = 'OK'
+      ModalResult = 1
+      TabOrder = 0
     end
   end
 end

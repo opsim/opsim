@@ -1,44 +1,45 @@
+{ This is an automatically generated lazarus resource file }
+
 LazarusResources.Add('TAboutForm','FORMDATA',[
-  'TPF0'#10'TAboutForm'#9'AboutForm'#13'ActiveControl'#7#5'Memo1'#7'Caption'#6
-  +#11'About OpSim'#12'ClientHeight'#3';'#1#11'ClientWidth'#3#18#2#13'PixelsPer'
-  +'Inch'#2'`'#18'HorzScrollBar.Page'#3#17#2#18'VertScrollBar.Page'#3':'#1#4'Le'
-  +'ft'#3#28#1#6'Height'#3';'#1#3'Top'#3#169#0#5'Width'#3#18#2#0#6'TImage'#6'Im'
-  +'age1'#11'Transparent'#9#4'Left'#2#16#6'Height'#3#197#0#3'Top'#2'8'#5'Width'
-  +#3#229#0#0#0#6'TLabel'#6'Label1'#7'Caption'#6' Version 0.0.1 (far of alpha y'
-  +'et)'#5'Color'#7#6'clNone'#11'ParentColor'#8#4'Left'#2#20#6'Height'#2#14#3'T'
-  +'op'#2#11#5'Width'#3#151#0#0#0#6'TLabel'#6'Label2'#7'Caption'#6#16'Date: 09/'
-  +'03/2006'#5'Color'#7#6'clNone'#11'ParentColor'#8#4'Left'#2#20#6'Height'#2#14
-  +#3'Top'#2' '#5'Width'#2'W'#0#0#6'TLabel'#6'Label3'#7'Caption'#6#31'please, a'
-  +' nice logo image here!'#5'Color'#7#6'clNone'#11'ParentColor'#8#4'Left'#2'<'
-  +#6'Height'#2#14#3'Top'#2'x'#5'Width'#3#150#0#0#0#12'TPageControl'#12'PageCon'
-  +'trol1'#10'ActivePage'#7#9'tbshAbout'#5'Align'#7#7'alRight'#8'TabIndex'#2#0#8
-  +'TabOrder'#2#0#4'Left'#3#4#1#6'Height'#3#0#1#5'Width'#3#14#1#0#9'TTabSheet'#9
-  +'tbshAbout'#7'Caption'#6#5'About'#12'ClientHeight'#3#230#0#11'ClientWidth'#3
-  +#6#1#6'Height'#3#230#0#5'Width'#3#6#1#0#5'TMemo'#5'Memo1'#5'Align'#7#8'alCli'
-  +'ent'#5'Color'#7#12'clForeground'#12'Font.CharSet'#7#12'ANSI_CHARSET'#10'Fon'
-  +'t.Color'#7#7'clBlack'#11'Font.Height'#2#244#9'Font.Name'#6#5'Arial'#10'Font'
-  +'.Pitch'#7#10'fpVariable'#10'Font.Style'#11#6'fsBold'#0#13'Lines.Strings'#1#6
-  +'&This is an open source based Chemical '#6'+Engineering Process Simulator w'
-  +'ith an user '#6',friendly drag-drop graphical user interface '#6')(GUI) and'
-  +' an underlying high performance '#6#18'simulation engine.'#6'.It intends to'
-  +' be a valuable tool in teaching, '#6'#learning and consulting activities '#6
-  +'"concerning the knowledge field of '#6#29'Chemical/Process Engineering.'#0#8
-  +'ReadOnly'#9#8'TabOrder'#2#0#6'Height'#3#230#0#5'Width'#3#6#1#0#0#0#9'TTabSh'
-  +'eet'#16'tbshContributors'#7'Caption'#6#12'Contributors'#12'ClientHeight'#3
-  +#230#0#11'ClientWidth'#3#6#1#6'Height'#3#230#0#5'Width'#3#6#1#0#5'TMemo'#5'M'
-  +'emo2'#5'Align'#7#8'alClient'#5'Color'#7#12'clForeground'#10'Font.Style'#11#6
-  +'fsBold'#0#13'Lines.Strings'#1#6'!Soon will have our names here....'#6'!Plea'
-  +'se, help us to get in to!!!!!'#0#8'ReadOnly'#9#8'TabOrder'#2#0#6'Height'#3
-  +#230#0#5'Width'#3#6#1#0#0#0#0#6'TPanel'#6'Panel1'#5'Align'#7#8'alBottom'#10
-  +'BevelOuter'#7#6'bvNone'#12'ClientHeight'#2';'#11'ClientWidth'#3#18#2#8'TabO'
-  +'rder'#2#1#6'Height'#2';'#3'Top'#3#0#1#5'Width'#3#18#2#0#6'TBevel'#6'Bevel1'
-  +#6'Height'#2#10#4'Left'#2#8#4'Name'#6#6'Bevel1'#5'Shape'#7#9'bsTopLine'#3'To'
-  +'p'#2#8#5'Width'#3#6#2#4'Left'#2#8#6'Height'#2#10#3'Top'#2#8#5'Width'#3#6#2#0
-  +#0#6'TLabel'#6'Label4'#7'Caption'#6'!Copyright (c) 2006 OpSim Project '#5'Co'
-  +'lor'#7#6'clNone'#11'ParentColor'#8#4'Left'#2#16#6'Height'#2#14#3'Top'#2#20#5
-  +'Width'#3#164#0#0#0#6'TLabel'#6'Label5'#7'Caption'#6#20'All rights reserved.'
-  +#5'Color'#7#6'clNone'#11'ParentColor'#8#4'Left'#2#16#6'Height'#2#14#3'Top'#2
-  +''''#5'Width'#2'\'#0#0#7'TButton'#5'btnOk'#25'BorderSpacing.InnerBorder'#2#2
-  +#7'Caption'#6#2'OK'#11'ModalResult'#2#1#8'TabOrder'#2#0#4'Left'#3#184#1#6'He'
-  +'ight'#2#25#3'Top'#2#24#5'Width'#2'K'#0#0#0#0
+  'TPF0'#10'TAboutForm'#9'AboutForm'#4'Left'#3'{'#1#6'Height'#3';'#1#3'Top'#3
+  +#247#0#5'Width'#3#18#2#18'HorzScrollBar.Page'#3#17#2#18'VertScrollBar.Page'#3
+  +':'#1#13'ActiveControl'#7#5'Memo1'#7'Caption'#6#11'About OpSim'#12'ClientHei'
+  +'ght'#3';'#1#11'ClientWidth'#3#18#2#13'PixelsPerInch'#2'`'#0#6'TImage'#6'Ima'
+  +'ge1'#4'Left'#2#16#6'Height'#3#197#0#3'Top'#2'8'#5'Width'#3#229#0#11'Transpa'
+  +'rent'#9#0#0#6'TLabel'#6'Label1'#4'Left'#2#20#6'Height'#2#14#3'Top'#2#11#5'W'
+  +'idth'#3#151#0#7'Caption'#6' Version 0.0.1 (far of alpha yet)'#5'Color'#7#6
+  +'clNone'#11'ParentColor'#8#0#0#6'TLabel'#6'Label2'#4'Left'#2#20#6'Height'#2
+  +#14#3'Top'#2' '#5'Width'#2'W'#7'Caption'#6#16'Date: 09/03/2006'#5'Color'#7#6
+  +'clNone'#11'ParentColor'#8#0#0#6'TLabel'#6'Label3'#4'Left'#2'<'#6'Height'#2
+  +#14#3'Top'#2'x'#5'Width'#3#150#0#7'Caption'#6#31'please, a nice logo image h'
+  +'ere!'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#12'TPageControl'#12'PageCo'
+  +'ntrol1'#4'Left'#3#4#1#6'Height'#3#0#1#5'Width'#3#14#1#10'ActivePage'#7#9'tb'
+  +'shAbout'#5'Align'#7#7'alRight'#8'TabIndex'#2#0#8'TabOrder'#2#0#0#9'TTabShee'
+  +'t'#9'tbshAbout'#7'Caption'#6#5'About'#12'ClientHeight'#3#230#0#11'ClientWid'
+  +'th'#3#6#1#0#5'TMemo'#5'Memo1'#6'Height'#3#230#0#5'Width'#3#6#1#5'Align'#7#8
+  +'alClient'#5'Color'#7#12'clForeground'#12'Font.CharSet'#7#12'ANSI_CHARSET'#10
+  +'Font.Color'#7#7'clBlack'#11'Font.Height'#2#244#9'Font.Name'#6#5'Arial'#10'F'
+  +'ont.Pitch'#7#10'fpVariable'#10'Font.Style'#11#6'fsBold'#0#13'Lines.Strings'
+  +#1#6'&This is an open source based Chemical '#6'+Engineering Process Simulat'
+  +'or with an user '#6',friendly drag-drop graphical user interface '#6')(GUI)'
+  +' and an underlying high performance '#6#18'simulation engine.'#6'.It intend'
+  +'s to be a valuable tool in teaching, '#6'#learning and consulting activitie'
+  +'s '#6'"concerning the knowledge field of '#6#29'Chemical/Process Engineerin'
+  +'g.'#0#8'ReadOnly'#9#8'TabOrder'#2#0#0#0#0#9'TTabSheet'#16'tbshContributors'
+  +#7'Caption'#6#12'Contributors'#12'ClientHeight'#3#230#0#11'ClientWidth'#3#6#1
+  +#0#5'TMemo'#5'Memo2'#6'Height'#3#230#0#5'Width'#3#6#1#5'Align'#7#8'alClient'
+  +#5'Color'#7#12'clForeground'#10'Font.Style'#11#6'fsBold'#0#13'Lines.Strings'
+  +#1#6'!Soon will have our names here....'#6'!Please, help us to get in to!!!!'
+  +'!'#0#8'ReadOnly'#9#8'TabOrder'#2#0#0#0#0#0#6'TPanel'#6'Panel1'#6'Height'#2
+  +';'#3'Top'#3#0#1#5'Width'#3#18#2#5'Align'#7#8'alBottom'#10'BevelOuter'#7#6'b'
+  +'vNone'#12'ClientHeight'#2';'#11'ClientWidth'#3#18#2#8'TabOrder'#2#1#0#6'TBe'
+  +'vel'#6'Bevel1'#4'Name'#6#6'Bevel1'#4'Left'#2#8#6'Height'#2#10#3'Top'#2#8#5
+  +'Width'#3#6#2#5'Shape'#7#9'bsTopLine'#0#0#6'TLabel'#6'Label4'#4'Left'#2#16#6
+  +'Height'#2#14#3'Top'#2#20#5'Width'#3#164#0#7'Caption'#6'!Copyright (c) 2006 '
+  +'OpSim Project '#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#6'TLabel'#6'Labe'
+  +'l5'#4'Left'#2#16#6'Height'#2#14#3'Top'#2''''#5'Width'#2'\'#7'Caption'#6#20
+  +'All rights reserved.'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#7'TButton'
+  +#5'btnOk'#4'Left'#3#184#1#6'Height'#2#25#3'Top'#2#24#5'Width'#2'K'#25'Border'
+  +'Spacing.InnerBorder'#2#2#7'Caption'#6#2'OK'#11'ModalResult'#2#1#8'TabOrder'
+  +#2#0#0#0#0#0
 ]);
