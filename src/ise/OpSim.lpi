@@ -7,10 +7,10 @@
       <Flags>
         <AlwaysBuild Value="False"/>
       </Flags>
+      <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
       <IconPath Value="./"/>
       <TargetFileExt Value=".exe"/>
-      <ActiveEditorIndexAtStart Value="0"/>
     </General>
     <LazDoc Paths=""/>
     <PublishOptions>
@@ -35,203 +35,58 @@
         <MinVersion Major="1" Valid="True"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="16">
+    <Units Count="7">
       <Unit0>
         <Filename Value="OpSim.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSim"/>
-        <CursorPos X="79" Y="25"/>
-        <TopLine Value="10"/>
-        <EditorIndex Value="0"/>
-        <UsageCount Value="29"/>
-        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="unit1.pas"/>
-        <ComponentName Value="Form1"/>
-        <ResourceFilename Value="unit1.lrs"/>
-        <UnitName Value="Unit1"/>
-        <CursorPos X="16" Y="24"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="20"/>
-      </Unit1>
-      <Unit2>
         <Filename Value="UnitopPalletU.pas"/>
         <ComponentName Value="UnitopPallet"/>
         <HasResources Value="True"/>
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="UnitopPalletU.lrs"/>
         <UnitName Value="UnitopPalletU"/>
-        <CursorPos X="2" Y="14"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="7"/>
-        <UsageCount Value="29"/>
-        <Loaded Value="True"/>
-      </Unit2>
-      <Unit3>
+      </Unit1>
+      <Unit2>
         <Filename Value="AboutU.pas"/>
         <ComponentName Value="AboutForm"/>
         <HasResources Value="True"/>
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="AboutU.lrs"/>
         <UnitName Value="AboutU"/>
-        <CursorPos X="2" Y="14"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="8"/>
-        <UsageCount Value="29"/>
-        <Loaded Value="True"/>
-      </Unit3>
-      <Unit4>
+      </Unit2>
+      <Unit3>
         <Filename Value="MainU.pas"/>
         <ComponentName Value="Main"/>
         <HasResources Value="True"/>
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="MainU.lrs"/>
         <UnitName Value="MainU"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="5"/>
-        <UsageCount Value="29"/>
-        <Loaded Value="True"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="aboutformu.lfm"/>
-        <UsageCount Value="20"/>
-        <SyntaxHighlighter Value="Text"/>
-      </Unit5>
-      <Unit6>
-        <Filename Value="unit1.lrs"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="10"/>
-      </Unit6>
-      <Unit7>
+      </Unit3>
+      <Unit4>
         <Filename Value="PfdDesignerU.pas"/>
         <ComponentName Value="PfdDesigner"/>
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="PfdDesignerU.lrs"/>
         <UnitName Value="PfdDesignerU"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="2"/>
-        <UsageCount Value="29"/>
-        <Loaded Value="True"/>
-      </Unit7>
-      <Unit8>
-        <Filename Value="C:\lazarus\components\zeosdbo\packages\lazarus\zcomponent.pas"/>
-        <UnitName Value="zcomponent"/>
-        <CursorPos X="1" Y="24"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="10"/>
-      </Unit8>
-      <Unit9>
-        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
-        <CursorPos X="1" Y="14"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="12"/>
-      </Unit9>
-      <Unit10>
-        <Filename Value="PFDCtrls.pas"/>
-        <UnitName Value="PFDCtrls"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="14"/>
-        <Loaded Value="True"/>
-      </Unit10>
-      <Unit11>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <UnitName Value="Graphics"/>
-        <CursorPos X="13" Y="23"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="4"/>
-        <UsageCount Value="13"/>
-        <Loaded Value="True"/>
-      </Unit11>
-      <Unit12>
-        <Filename Value="C:\lazarus\fpcsrc\rtl\win32\wininc\func.inc"/>
-        <CursorPos X="10" Y="695"/>
-        <TopLine Value="683"/>
-        <UsageCount Value="10"/>
-      </Unit12>
-      <Unit13>
+      </Unit4>
+      <Unit5>
         <Filename Value="DMBaseU.pas"/>
         <ComponentName Value="DMBase"/>
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="DMBaseU.lrs"/>
         <UnitName Value="DMBaseU"/>
-        <CursorPos X="34" Y="14"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="6"/>
-        <UsageCount Value="23"/>
-        <Loaded Value="True"/>
-      </Unit13>
-      <Unit14>
+      </Unit5>
+      <Unit6>
         <Filename Value="MixerSpecU.pas"/>
         <ComponentName Value="MixerSpec"/>
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="MixerSpecU.lrs"/>
         <UnitName Value="MixerSpecU"/>
-        <CursorPos X="10" Y="9"/>
-        <TopLine Value="5"/>
-        <EditorIndex Value="1"/>
-        <UsageCount Value="22"/>
-        <Loaded Value="True"/>
-      </Unit14>
-      <Unit15>
-        <Filename Value="DMBaseU.lfm"/>
-        <CursorPos X="32" Y="6"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="10"/>
-        <SyntaxHighlighter Value="LFM"/>
-      </Unit15>
+      </Unit6>
     </Units>
-    <JumpHistory Count="11" HistoryIndex="10">
-      <Position1>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <Caret Line="892" Column="26" TopLine="880"/>
-      </Position1>
-      <Position2>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <Caret Line="893" Column="26" TopLine="881"/>
-      </Position2>
-      <Position3>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <Caret Line="7" Column="80" TopLine="6"/>
-      </Position3>
-      <Position4>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <Caret Line="78" Column="50" TopLine="66"/>
-      </Position4>
-      <Position5>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <Caret Line="89" Column="77" TopLine="77"/>
-      </Position5>
-      <Position6>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <Caret Line="892" Column="26" TopLine="880"/>
-      </Position6>
-      <Position7>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <Caret Line="893" Column="26" TopLine="881"/>
-      </Position7>
-      <Position8>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <Caret Line="894" Column="26" TopLine="882"/>
-      </Position8>
-      <Position9>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <Caret Line="984" Column="24" TopLine="974"/>
-      </Position9>
-      <Position10>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <Caret Line="979" Column="53" TopLine="973"/>
-      </Position10>
-      <Position11>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <Caret Line="984" Column="24" TopLine="972"/>
-      </Position11>
-    </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
@@ -240,6 +95,7 @@
       <Filename Value="..\..\app\OpSim"/>
     </Target>
     <SearchPaths>
+      <UnitOutputDirectory Value="..\build"/>
       <SrcPath Value="$(LazarusDir)\lcl\;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)\"/>
     </SearchPaths>
     <Parsing>
@@ -261,19 +117,4 @@
       <CompilerPath Value="$(CompPath)"/>
     </Other>
   </CompilerOptions>
-  <Debugging>
-    <Watches Count="1">
-      <Item1>
-        <Expression Value="GetWidth"/>
-      </Item1>
-    </Watches>
-    <Exceptions Count="2">
-      <Item1>
-        <Name Value="ECodetoolError"/>
-      </Item1>
-      <Item2>
-        <Name Value="EFOpenError"/>
-      </Item2>
-    </Exceptions>
-  </Debugging>
 </CONFIG>
