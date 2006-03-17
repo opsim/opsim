@@ -1,0 +1,6 @@
+object DMBase: TDMBase
+  Height = 300
+  HorizontalOffset = 370
+  VerticalOffset = 174
+  Width = 400
+end
