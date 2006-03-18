@@ -1,32 +1,82 @@
+{ This is an automatically generated lazarus resource file }
+
 LazarusResources.Add('TMain','FORMDATA',[
-  'TPF0'#5'TMain'#4'Main'#7'Caption'#6'&OpSim - [open case will apper hear...]'
-  +#12'ClientHeight'#2#28#11'ClientWidth'#3#228#2#4'Menu'#7#14'mmStandardMenu'#8
-  +'OnCreate'#7#10'FormCreate'#6'OnShow'#7#8'FormShow'#13'PixelsPerInch'#2'`'#18
-  +'HorzScrollBar.Page'#3#227#2#18'VertScrollBar.Page'#2#27#4'Left'#3#1#1#6'Hei'
-  +'ght'#2'/'#3'Top'#3#137#0#5'Width'#3#228#2#0#6'TPanel'#10'pnlToolbar'#5'Alig'
-  +'n'#7#5'alTop'#12'ClientHeight'#2#26#11'ClientWidth'#3#228#2#8'TabOrder'#2#0
-  +#6'Height'#2#26#5'Width'#3#228#2#0#12'TSpeedButton'#12'SpeedButton1'#5'Align'
-  +#7#6'alLeft'#9'NumGlyphs'#2#0#4'Left'#2#1#6'Height'#2#24#3'Top'#2#1#5'Width'
-  +#2#23#0#0#12'TSpeedButton'#12'SpeedButton2'#5'Align'#7#6'alLeft'#9'NumGlyphs'
-  +#2#0#4'Left'#2#24#6'Height'#2#24#3'Top'#2#1#5'Width'#2#23#0#0#12'TSpeedButto'
-  +'n'#12'SpeedButton3'#5'Align'#7#6'alLeft'#9'NumGlyphs'#2#0#4'Left'#2'/'#6'He'
-  +'ight'#2#24#3'Top'#2#1#5'Width'#2#23#0#0#12'TSpeedButton'#12'SpeedButton4'#5
-  +'Align'#7#6'alLeft'#9'NumGlyphs'#2#0#4'Left'#2'F'#6'Height'#2#24#3'Top'#2#1#5
-  +'Width'#2#23#0#0#6'TLabel'#6'Label1'#7'Caption'#6'1<<< our toolbar needs nic'
-  +'e icons! can you draw???'#5'Color'#7#6'clNone'#11'ParentColor'#8#4'Left'#3
-  +'('#1#6'Height'#2#14#3'Top'#2#5#5'Width'#3#249#0#0#0#0#11'TActionList'#20'ac'
-  +'tnlStandardActions'#4'left'#2#1#3'top'#3#184#2#0#9'TFileOpen'#12'actnFileOp'
-  +'en'#7'Caption'#6#8'&Open...'#4'Hint'#6#4'Open'#8'ShortCut'#3'O@'#8'Category'
-  +#6#4'File'#0#0#9'TFileExit'#12'actnFileExit'#7'Caption'#6#5'E&xit'#4'Hint'#6
-  +#4'Exit'#8'Category'#6#4'File'#0#0#0#9'TMainMenu'#14'mmStandardMenu'#4'left'
-  +#2#1#3'top'#3#144#2#0#9'TMenuItem'#6'miFile'#7'Caption'#6#4'File'#4'Hint'#6#4
-  +'Open'#0#9'TMenuItem'#6'miOpen'#6'Action'#7#12'actnFileOpen'#7'OnClick'#7#11
-  +'miOpenClick'#0#0#9'TMenuItem'#9'MenuItem2'#7'Caption'#6#1'-'#0#0#9'TMenuIte'
-  +'m'#6'miExit'#6'Action'#7#12'actnFileExit'#7'OnClick'#7#11'miExitClick'#0#0#0
-  +#9'TMenuItem'#6'miView'#7'Caption'#6#4'View'#0#9'TMenuItem'#18'miViewUnitopP'
-  +'allet'#7'Caption'#6#13'Unitop Pallet'#7'OnClick'#7#23'miViewUnitopPalletCli'
-  +'ck'#0#0#9'TMenuItem'#18'miViewPfdWorkspace'#7'Caption'#6#13'PFD Workspace'#7
-  +'OnClick'#7#23'miViewPfdWorkspaceClick'#0#0#0#9'TMenuItem'#6'miHelp'#7'Capti'
-  +'on'#6#4'Help'#0#9'TMenuItem'#7'miAbout'#7'Caption'#6#14'About OpSim...'#7'O'
-  +'nClick'#7#12'miAboutClick'#0#0#0#0#0
+  'TPF0'#5'TMain'#4'Main'#4'Left'#3#255#0#6'Height'#2'/'#3'Top'#2'\'#5'Width'#3
+  +#228#2#18'HorzScrollBar.Page'#3#227#2#18'VertScrollBar.Page'#2#27#7'Caption'
+  +#6'&OpSim - [open case will apper hear...]'#12'ClientHeight'#2#28#11'ClientW'
+  +'idth'#3#228#2#4'Menu'#7#14'mmStandardMenu'#8'OnCreate'#7#10'FormCreate'#6'O'
+  +'nShow'#7#8'FormShow'#13'PixelsPerInch'#2'`'#0#6'TPanel'#10'pnlToolbar'#6'He'
+  +'ight'#2#26#5'Width'#3#228#2#5'Align'#7#5'alTop'#12'ClientHeight'#2#26#11'Cl'
+  +'ientWidth'#3#228#2#8'TabOrder'#2#0#0#12'TSpeedButton'#6'sbOpen'#4'Left'#2#24
+  +#6'Height'#2#24#3'Top'#2#1#5'Width'#2#23#5'Align'#7#6'alLeft'#10'Glyph.Data'
+  +#10#250#0#0#0#246#0#0#0'BM'#246#0#0#0#0#0#0#0'v'#0#0#0'('#0#0#0#16#0#0#0#16#0
+  +#0#0#1#0#4#0#0#0#0#0#128#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0
+  +#128#0#0#128#0#0#0#128#128#0#128#0#0#0#128#0#128#0#128#128#0#0#128#128#128#0
+  +#192#192#192#0#0#0#255#0#0#255#0#0#0#255#255#0#255#0#0#0#255#0#255#0#255#255
+  +#0#0#255#255#255#0#136#136#136#136#136#136#136#136#136#136#136#136#136#136
+  +#136#136#0#0#0#0#0#8#136#136#0'33330'#136#136#11#3'3333'#8#136#15#176'33330'
+  +#136#11#251#3'3333'#8#15#191#176#0#0#0#0#0#11#251#251#251#251#8#136#136#15
+  +#191#191#191#191#8#136#136#11#251#0#0#0#8#136#136#128#0#136#136#136#136#0#8
+  +#136#136#136#136#136#136#128#8#136#136#136#136#8#136#8#8#136#136#136#136#128
+  +#0#136#136#136#136#136#136#136#136#136#136#9'NumGlyphs'#2#0#0#0#12'TSpeedBut'
+  +'ton'#6'sbSave'#4'Left'#2'/'#6'Height'#2#24#3'Top'#2#1#5'Width'#2#23#5'Align'
+  +#7#6'alLeft'#10'Glyph.Data'#10#250#0#0#0#246#0#0#0'BM'#246#0#0#0#0#0#0#0'v'#0
+  +#0#0'('#0#0#0#16#0#0#0#16#0#0#0#1#0#4#0#0#0#0#0#128#0#0#0#0#0#0#0#0#0#0#0#0#0
+  +#0#0#0#0#0#0#0#0#0#0#0#0#128#0#0#128#0#0#0#128#128#0#128#0#0#0#128#0#128#0
+  +#128#128#0#0#128#128#128#0#192#192#192#0#0#0#255#0#0#255#0#0#0#255#255#0#255
+  +#0#0#0#255#0#255#0#255#255#0#0#255#255#255#0#136#136#136#136#136#136#136#136
+  +#136#0#0#0#0#0#0#8#128'3'#0#0#0#136#3#8#128'3'#0#0#0#136#3#8#128'3'#0#0#0#136
+  +#3#8#128'3'#0#0#0#0#3#8#128'333333'#8#128'3'#0#0#0#0'3'#8#128'0'#136#136#136
+  +#136#3#8#128'0'#136#136#136#136#3#8#128'0'#136#136#136#136#3#8#128'0'#136#136
+  +#136#136#3#8#128'0'#136#136#136#136#0#8#128'0'#136#136#136#136#8#8#128#0#0#0
+  +#0#0#0#8#136#136#136#136#136#136#136#136#9'NumGlyphs'#2#0#0#0#12'TSpeedButto'
+  +'n'#5'sbNew'#4'Left'#2#1#6'Height'#2#24#3'Top'#2#1#5'Width'#2#23#5'Align'#7#6
+  +'alLeft'#10'Glyph.Data'#10#242#0#0#0#238#0#0#0'BM'#238#0#0#0#0#0#0#0'v'#0#0#0
+  +'('#0#0#0#16#0#0#0#15#0#0#0#1#0#4#0#0#0#0#0'x'#0#0#0#0#0#0#0#0#0#0#0#16#0#0#0
+  +#16#0#0#0#0#0#0#0#0#0#128#0#0#128#0#0#0#128#128#0#128#0#0#0#128#0#128#0#128
+  +#128#0#0#192#192#192#0#128#128#128#0#0#0#255#0#0#255#0#0#0#255#255#0#255#0#0
+  +#0#255#0#255#0#255#255#0#0#255#255#255#0#204#204#204#204#204#204#204#204#0#0
+  +#0#0#0#0#204#204#15#255#255#255#255#240#204#204#15#255#255#255#255#240#204
+  +#204#15#255#255#255#255#240#204#204#15#255#255#255#255#240#204#204#15#255#255
+  +#255#255#240#204#204#15#255#255#255#255#240#204#204#15#255#255#255#255#240
+  +#204#204#15#255#255#255#255#240#204#204#15#255#255#255#0#0#204#204#15#255#255
+  +#255#7#12#204#204#15#255#255#255#0#204#204#204#0#0#0#0#12#204#204#204#204#204
+  +#204#204#204#204#204#204#9'NumGlyphs'#2#0#0#0#12'TSpeedButton'#6'sbExit'#4'L'
+  +'eft'#2'F'#6'Height'#2#24#3'Top'#2#1#5'Width'#2#23#5'Align'#7#6'alLeft'#10'G'
+  +'lyph.Data'#10#226#1#0#0#222#1#0#0'BM'#222#1#0#0#0#0#0#0'v'#0#0#0'('#0#0#0'$'
+  +#0#0#0#18#0#0#0#1#0#4#0#0#0#0#0'h'#1#0#0#0#0#0#0#0#0#0#0#16#0#0#0#0#0#0#0#0#0
+  +#0#0#0#0#128#0#0#128#0#0#0#128#128#0#128#0#0#0#128#0#128#0#128#128#0#0#192
+  +#192#192#0#128#128#128#0#0#0#255#0#0#255#0#0#0#255#255#0#255#0#0#0#255#0#255
+  +#0#255#255#0#0#255#255#255#0'8'#136#136#136#136'w'#247#247#135#248#136#136
+  +#136#136#131'33?'#0#0'DD@'#8#136#255#244'DD'#136#136#136#136#136#243'3'#255
+  +#143#0#0'33MP'#7#255#244'33'#136#136#136#136#136'38'#136#143#0#0'33E'#213#15
+  +#255#244'3333'#143#136#143'38'#243'?'#0#0'33M]'#15#255#244'3333'#136'x'#143
+  +'38'#243'?'#0#0'33E'#213#15#239#228'3333'#143#135#143'38'#243'?'#0#0'33M]'#15
+  +#255#244'3333'#136'x'#143'38'#243'?'#0#0'33E'#213#15#239#228'3333'#143#135
+  +#143'38'#243'?'#0#0'33M]'#15#255#244'3333'#136'x'#143'38'#243'?'#0#0'33E'#213
+  +#15#239#228'3333'#143#135#143'38'#243'?'#0#0'33M]'#14#254#244'3333'#136'x'
+  +#143'38'#243'?'#0#0'33E'#213#15#239#228'3333'#143#135#143'38'#243'?'#0#0'33M'
+  +']'#14#254#244'3333'#136'x'#143'38'#243'?'#0#0'33DDDDD3333'#143#143#143#255
+  +#248#243'?'#0#0'33333333333'#136#136#136#136#136'3?'#0#0'333'#0#0#0'333333?'
+  +#255#255#243'3?'#0#0'333'#10#170#160'333333'#136#136#136#243'3?'#0#0'333'#0#0
+  +#0'333333'#143#255#248#243'3?'#0#0#9'NumGlyphs'#2#2#7'OnClick'#7#11'sbExitCl'
+  +'ick'#0#0#6'TLabel'#6'Label1'#4'Left'#3'('#1#6'Height'#2#14#3'Top'#2#5#5'Wid'
+  +'th'#3#249#0#7'Caption'#6'1<<< our toolbar needs nice icons! can you draw???'
+  +#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#0#11'TActionList'#20'actnlStanda'
+  +'rdActions'#4'left'#2#1#3'top'#3#184#2#0#9'TFileOpen'#12'actnFileOpen'#8'Cat'
+  +'egory'#6#4'File'#7'Caption'#6#8'&Open...'#4'Hint'#6#4'Open'#8'ShortCut'#3'O'
+  ,'@'#0#0#9'TFileExit'#12'actnFileExit'#8'Category'#6#4'File'#7'Caption'#6#5'E'
+  +'&xit'#4'Hint'#6#4'Exit'#0#0#0#9'TMainMenu'#14'mmStandardMenu'#4'left'#2#1#3
+  +'top'#3#144#2#0#9'TMenuItem'#6'miFile'#7'Caption'#6#4'File'#4'Hint'#6#4'Open'
+  +#0#9'TMenuItem'#5'miNew'#7'Caption'#6#3'New'#7'OnClick'#7#10'miNewClick'#0#0
+  +#9'TMenuItem'#7'miClose'#7'Caption'#6#5'Close'#7'OnClick'#7#12'miCloseClick'
+  +#0#0#9'TMenuItem'#6'miOpen'#6'Action'#7#12'actnFileOpen'#7'OnClick'#7#11'miO'
+  +'penClick'#0#0#9'TMenuItem'#9'MenuItem2'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#6
+  +'miExit'#6'Action'#7#12'actnFileExit'#7'OnClick'#7#11'miExitClick'#0#0#0#9'T'
+  +'MenuItem'#6'miView'#7'Caption'#6#4'View'#0#9'TMenuItem'#18'miViewUnitopPall'
+  +'et'#7'Caption'#6#13'Unitop Pallet'#7'OnClick'#7#23'miViewUnitopPalletClick'
+  +#0#0#9'TMenuItem'#18'miViewPfdWorkspace'#7'Caption'#6#13'PFD Workspace'#7'On'
+  +'Click'#7#23'miViewPfdWorkspaceClick'#0#0#0#9'TMenuItem'#6'miHelp'#7'Caption'
+  +#6#4'Help'#0#9'TMenuItem'#7'miAbout'#7'Caption'#6#14'About OpSim...'#7'OnCli'
+  +'ck'#7#12'miAboutClick'#0#0#0#0#0
 ]);

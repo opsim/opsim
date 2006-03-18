@@ -1,4 +1,10 @@
 object Main: TMain
+  Left = 255
+  Height = 47
+  Top = 92
+  Width = 740
+  HorzScrollBar.Page = 739
+  VertScrollBar.Page = 27
   Caption = 'OpSim - [open case will apper hear...]'
   ClientHeight = 28
   ClientWidth = 740
@@ -6,74 +12,117 @@ object Main: TMain
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
-  HorzScrollBar.Page = 739
-  VertScrollBar.Page = 27
-  Left = 257
-  Height = 47
-  Top = 137
-  Width = 740
   object pnlToolbar: TPanel
+    Height = 26
+    Width = 740
     Align = alTop
     ClientHeight = 26
     ClientWidth = 740
     TabOrder = 0
-    Height = 26
-    Width = 740
-    object SpeedButton1: TSpeedButton
-      Align = alLeft
-      NumGlyphs = 0
-      Left = 1
-      Height = 24
-      Top = 1
-      Width = 23
-    end
-    object SpeedButton2: TSpeedButton
-      Align = alLeft
-      NumGlyphs = 0
+    object sbOpen: TSpeedButton
       Left = 24
       Height = 24
       Top = 1
       Width = 23
-    end
-    object SpeedButton3: TSpeedButton
       Align = alLeft
+      Glyph.Data = {
+        F6000000424DF600000000000000760000002800000010000000100000000100
+        0400000000008000000000000000000000000000000000000000000000000000
+        8000008000000080800080000000800080008080000080808000C0C0C0000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00888888888888
+        88888888888888888888000000000008888800333333333088880B0333333333
+        08880FB03333333330880BFB0333333333080FBFB000000000000BFBFBFBFB08
+        88880FBFBFBFBF0888880BFB0000000888888000888888880008888888888888
+        8008888888880888080888888888800088888888888888888888
+      }
       NumGlyphs = 0
+    end
+    object sbSave: TSpeedButton
       Left = 47
       Height = 24
       Top = 1
       Width = 23
-    end
-    object SpeedButton4: TSpeedButton
       Align = alLeft
+      Glyph.Data = {
+        F6000000424DF600000000000000760000002800000010000000100000000100
+        0400000000008000000000000000000000000000000000000000000000000000
+        8000008000000080800080000000800080008080000080808000C0C0C0000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00888888888888
+        8888880000000000000880330000008803088033000000880308803300000088
+        0308803300000000030880333333333333088033000000003308803088888888
+        0308803088888888030880308888888803088030888888880308803088888888
+        0008803088888888080880000000000000088888888888888888
+      }
       NumGlyphs = 0
+    end
+    object sbNew: TSpeedButton
+      Left = 1
+      Height = 24
+      Top = 1
+      Width = 23
+      Align = alLeft
+      Glyph.Data = {
+        EE000000424DEE000000000000007600000028000000100000000F0000000100
+        0400000000007800000000000000000000001000000010000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00CCCCCCCCCCCC
+        CCCC000000000000CCCC0FFFFFFFFFF0CCCC0FFFFFFFFFF0CCCC0FFFFFFFFFF0
+        CCCC0FFFFFFFFFF0CCCC0FFFFFFFFFF0CCCC0FFFFFFFFFF0CCCC0FFFFFFFFFF0
+        CCCC0FFFFFFFFFF0CCCC0FFFFFFF0000CCCC0FFFFFFF070CCCCC0FFFFFFF00CC
+        CCCC000000000CCCCCCCCCCCCCCCCCCCCCCC
+      }
+      NumGlyphs = 0
+    end
+    object sbExit: TSpeedButton
       Left = 70
       Height = 24
       Top = 1
       Width = 23
+      Align = alLeft
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00388888888877
+        F7F787F8888888888333333F00004444400888FFF444448888888888F333FF8F
+        000033334D5007FFF4333388888888883338888F0000333345D50FFFF4333333
+        338F888F3338F33F000033334D5D0FFFF43333333388788F3338F33F00003333
+        45D50FEFE4333333338F878F3338F33F000033334D5D0FFFF43333333388788F
+        3338F33F0000333345D50FEFE4333333338F878F3338F33F000033334D5D0FFF
+        F43333333388788F3338F33F0000333345D50FEFE4333333338F878F3338F33F
+        000033334D5D0EFEF43333333388788F3338F33F0000333345D50FEFE4333333
+        338F878F3338F33F000033334D5D0EFEF43333333388788F3338F33F00003333
+        4444444444333333338F8F8FFFF8F33F00003333333333333333333333888888
+        8888333F00003333330000003333333333333FFFFFF3333F00003333330AAAA0
+        333333333333888888F3333F00003333330000003333333333338FFFF8F3333F
+        0000
+      }
+      NumGlyphs = 2
+      OnClick = sbExitClick
     end
     object Label1: TLabel
-      Caption = '<<< our toolbar needs nice icons! can you draw???'
-      Color = clNone
-      ParentColor = False
       Left = 296
       Height = 14
       Top = 5
       Width = 249
+      Caption = '<<< our toolbar needs nice icons! can you draw???'
+      Color = clNone
+      ParentColor = False
     end
   end
   object actnlStandardActions: TActionList
     left = 1
     top = 696
     object actnFileOpen: TFileOpen
+      Category = 'File'
       Caption = '&Open...'
       Hint = 'Open'
       ShortCut = 16463
-      Category = 'File'
     end
     object actnFileExit: TFileExit
+      Category = 'File'
       Caption = 'E&xit'
       Hint = 'Exit'
-      Category = 'File'
     end
   end
   object mmStandardMenu: TMainMenu
@@ -82,6 +131,14 @@ object Main: TMain
     object miFile: TMenuItem
       Caption = 'File'
       Hint = 'Open'
+      object miNew: TMenuItem
+        Caption = 'New'
+        OnClick = miNewClick
+      end
+      object miClose: TMenuItem
+        Caption = 'Close'
+        OnClick = miCloseClick
+      end
       object miOpen: TMenuItem
         Action = actnFileOpen
         OnClick = miOpenClick

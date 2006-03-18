@@ -12,14 +12,10 @@ type
 
   { TMixerSpec }
 
-  TMixerSpec = class(TForm)
+  TMixerSpec = class (TForm)
     dbGrid1: TdbGrid;
-  private
-    { private declarations }
-  public
-    { public declarations }
-  end; 
-
+  end;
+  
 var
   MixerSpec: TMixerSpec;
 
@@ -29,6 +25,7 @@ uses
   DMBaseU;
 
 initialization
+
   {$I MixerSpecU.lrs}
 
 end.

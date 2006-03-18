@@ -11,19 +11,16 @@ type
 
   { TDMBase }
 
-  TDMBase = class(TDataModule)
-  private
-    { private declarations }
-  public
-    { public declarations }
-  end; 
-
+  TDMBase = class (TDataModule)
+  end;
+  
 var
   DMBase: TDMBase;
 
 implementation
 
 initialization
+
   {$I DMBaseU.lrs}
 
 end.

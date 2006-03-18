@@ -26,7 +26,7 @@ type
 
   { TAboutForm }
 
-  TAboutForm = class(TForm)
+  TAboutForm = class (TForm)
     Bevel1: TBevel;
     btnOk: TButton;
     Image1: TImage;
@@ -41,18 +41,15 @@ type
     Panel1: TPanel;
     tbshAbout: TTabSheet;
     tbshContributors: TTabSheet;
-  private
-    { private declarations }
-  public
-    { public declarations }
-  end; 
-
+  end;
+  
 var
   AboutForm: TAboutForm;
 
 implementation
 
 initialization
+
   {$I AboutU.lrs}
 
 end.

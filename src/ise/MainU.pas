@@ -26,39 +26,42 @@ type
 
   { TMain }
 
-  TMain = class(TForm)
-    actnlStandardActions: TActionList;
+  TMain = class (TForm)
     actnFileExit: TFileExit;
     actnFileOpen: TFileOpen;
+    actnlStandardActions: TActionList;
     Label1: TLabel;
-    miViewPfdWorkspace: TMenuItem;
-    miViewUnitopPallet: TMenuItem;
-    miView: TMenuItem;
-    miAbout: TMenuItem;
-    miHelp: TMenuItem;
-    mmStandardMenu: TMainMenu;
-    miOpen: TMenuItem;
     MenuItem2: TMenuItem;
+    miAbout: TMenuItem;
+    miClose: TMenuItem;
     miExit: TMenuItem;
     miFile: TMenuItem;
+    miHelp: TMenuItem;
+    miNew: TMenuItem;
+    miOpen: TMenuItem;
+    miView: TMenuItem;
+    miViewPfdWorkspace: TMenuItem;
+    miViewUnitopPallet: TMenuItem;
+    mmStandardMenu: TMainMenu;
     pnlToolbar: TPanel;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
-    SpeedButton3: TSpeedButton;
-    SpeedButton4: TSpeedButton;
+    sbExit: TSpeedButton;
+    sbNew: TSpeedButton;
+    sbOpen: TSpeedButton;
+    sbSave: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure miAboutClick(Sender: TObject);
+    procedure miCloseClick(Sender: TObject);
     procedure miExitClick(Sender: TObject);
+    procedure miNewClick(Sender: TObject);
     procedure miOpenClick(Sender: TObject);
     procedure miViewPfdWorkspaceClick(Sender: TObject);
     procedure miViewUnitopPalletClick(Sender: TObject);
-  private
-    { private declarations }
+    procedure sbExitClick(Sender: TObject);
   public
-    { public declarations }
-  end; 
-
+    procedure NewSimulationCase;
+  end;
+  
 var
   Main: TMain;
 
@@ -69,16 +72,9 @@ uses
 
 { TMain }
 
-procedure TMain.miAboutClick(Sender: TObject);
-begin
-  with TAboutForm.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;//try
-end;
-
+{
+************************************ TMain *************************************
+}
 procedure TMain.FormCreate(Sender: TObject);
 begin
   Left := 0;
@@ -92,9 +88,29 @@ begin
   miViewPfdWorkspaceClick(Self);
 end;
 
+procedure TMain.miAboutClick(Sender: TObject);
+begin
+  with TAboutForm.Create(Self) do
+  try
+    ShowModal;
+  finally
+    Free;
+  end;//try
+end;
+
+procedure TMain.miCloseClick(Sender: TObject);
+begin
+  //Close opened case.
+end;
+
 procedure TMain.miExitClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TMain.miNewClick(Sender: TObject);
+begin
+  NewSimulationCase;
 end;
 
 procedure TMain.miOpenClick(Sender: TObject);
@@ -110,6 +126,15 @@ end;
 procedure TMain.miViewUnitopPalletClick(Sender: TObject);
 begin
   UnitopPallet.Show;
+end;
+
+procedure TMain.NewSimulationCase;
+begin
+end;
+
+procedure TMain.sbExitClick(Sender: TObject);
+begin
+  Close;
 end;
 
 initialization

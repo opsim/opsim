@@ -12,21 +12,21 @@ type
 
   { TMainForm }
 
-  TMainForm = class(TForm)
-    actnlStandardActions: TActionList;
+  TMainForm = class (TForm)
     actnFileExit: TFileExit;
     actnFileOpen: TFileOpen;
+    actnlStandardActions: TActionList;
     Label1: TLabel;
-    miViewPfdWorkspace: TMenuItem;
-    miViewUnitopPallet: TMenuItem;
-    miView: TMenuItem;
-    miAbout: TMenuItem;
-    miHelp: TMenuItem;
-    mmStandardMenu: TMainMenu;
-    miOpen: TMenuItem;
     MenuItem2: TMenuItem;
+    miAbout: TMenuItem;
     miExit: TMenuItem;
     miFile: TMenuItem;
+    miHelp: TMenuItem;
+    miOpen: TMenuItem;
+    miView: TMenuItem;
+    miViewPfdWorkspace: TMenuItem;
+    miViewUnitopPallet: TMenuItem;
+    mmStandardMenu: TMainMenu;
     pnlToolbar: TPanel;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
@@ -39,12 +39,10 @@ type
     procedure miOpenClick(Sender: TObject);
     procedure miViewPfdWorkspaceClick(Sender: TObject);
     procedure miViewUnitopPalletClick(Sender: TObject);
-  private
-    { private declarations }
   public
-    { public declarations }
-  end; 
-
+    procedure NewSimulationCase1;
+  end;
+  
 var
   MainForm: TMainForm;
 
@@ -55,16 +53,9 @@ uses
 
 { TMainForm }
 
-procedure TMainForm.miAboutClick(Sender: TObject);
-begin
-  with TAboutForm.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;//try
-end;
-
+{
+********************************** TMainForm ***********************************
+}
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
   Left := 0;
@@ -76,6 +67,16 @@ procedure TMainForm.FormShow(Sender: TObject);
 begin
   miViewUnitopPalletClick(Self);
   miViewPfdWorkspaceClick(Self);
+end;
+
+procedure TMainForm.miAboutClick(Sender: TObject);
+begin
+  with TAboutForm.Create(Self) do
+  try
+    ShowModal;
+  finally
+    Free;
+  end;//try
 end;
 
 procedure TMainForm.miExitClick(Sender: TObject);
@@ -96,6 +97,10 @@ end;
 procedure TMainForm.miViewUnitopPalletClick(Sender: TObject);
 begin
   UnitopPalletForm.Show;
+end;
+
+procedure TMainForm.NewSimulationCase1;
+begin
 end;
 
 initialization

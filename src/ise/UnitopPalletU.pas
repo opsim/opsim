@@ -26,7 +26,7 @@ type
 
   { TUnitopPallet }
 
-  TUnitopPallet = class(TForm)
+  TUnitopPallet = class (TForm)
     Panel1: TPanel;
     Panel2: TPanel;
     SpeedButton1: TSpeedButton;
@@ -46,12 +46,8 @@ type
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
     procedure FormCreate(Sender: TObject);
-  private
-    { private declarations }
-  public
-    { public declarations }
-  end; 
-
+  end;
+  
 var
   UnitopPallet: TUnitopPallet;
 
@@ -59,6 +55,9 @@ implementation
 
 { TUnitopPallet }
 
+{
+******************************** TUnitopPallet *********************************
+}
 procedure TUnitopPallet.FormCreate(Sender: TObject);
 begin
   Left := Screen.Width - Width;
