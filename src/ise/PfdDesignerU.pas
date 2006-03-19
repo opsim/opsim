@@ -30,9 +30,12 @@ type
     pnlStatusBar: TPanel;
     pnlToolbar: TPanel;
     pnlWorkplace: TPanel;
+    ScrollBox1: TScrollBox;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     procedure FormCreate(Sender: TObject);
+    procedure pnlWorkplaceMouseMove(Sender: TObject; Shift: TShiftState; X, Y: 
+            Integer);
   private
     PFDWorkplace: TPFDWorkplace;
   end;
@@ -71,6 +74,12 @@ begin
     Left := 100;
     Scale := 1;
   end;//with
+end;
+
+procedure TPfdDesigner.pnlWorkplaceMouseMove(Sender: TObject; Shift: 
+        TShiftState; X, Y: Integer);
+begin
+  
 end;
 
 initialization

@@ -93,11 +93,18 @@ type
   end;
   
   TPFDWorkplace = class (TScrollBox)
+  private
+    Active: Boolean;
+    PriorGuideLinesCenter: TPoint;
   protected
+    procedure DoEnter(Sender: TObject);
+    procedure DoExit(Sender: TObject);
     procedure DoMouseDown(Sender: TObject; Button: TMouseButton ; Shift: 
             TShiftState; X, Y: Integer);
+    procedure DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
   public
     constructor Create(AOwner: TComponent); override;
+    procedure PaintGuideLines(Center: TPoint);
   end;
   
 implementation
@@ -405,11 +412,29 @@ constructor TPFDWorkplace.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   {OnMouseDown := DoMouseDown;
-  OnMouseMove := DoMouseMove;
   OnMouseUp := DoMouseUp;}
   Color := $00808040;
   Align := alClient;
   OnMouseDown := DoMouseDown;
+  OnMouseMove := DoMouseMove;
+  OnEnter := DoEnter;
+  OnExit := DoExit;
+end;
+
+procedure TPFDWorkplace.DoEnter(Sender: TObject);
+begin
+  //Draw the first lines after receiving focus.
+  PaintGuideLines(ScreenToClient(Mouse.CursorPos));
+  PriorGuideLinesCenter := ScreenToClient(Mouse.CursorPos);
+  Active := True;
+end;
+
+procedure TPFDWorkplace.DoExit(Sender: TObject);
+begin
+  //We need erase the last drawn line when losing the input focus. Otherwise
+  //the canvas will be stained.
+  PaintGuideLines(PriorGuideLinesCenter);
+  Active := False;
 end;
 
 procedure TPFDWorkplace.DoMouseDown(Sender: TObject; Button: TMouseButton ; 
@@ -420,6 +445,32 @@ begin
   for I := 0 to ControlCount - 1 do
     if Controls[I] is TPFDControl then
       TPFDControl(Controls[I]).Selected := False;
+end;
+
+procedure TPFDWorkplace.DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: 
+        Integer);
+begin
+  if Active then begin
+    //Erase the prior line.
+    PaintGuideLines(PriorGuideLinesCenter);
+    //Draw a new one.
+    PaintGuideLines(Point(X,Y));
+    //Stores the last lines center position.
+    PriorGuideLinesCenter := Point(X,Y);
+  end;//if
+end;
+
+procedure TPFDWorkplace.PaintGuideLines(Center: TPoint);
+begin
+  //Paint the guidelines. Draw=False erases the previous lines.
+  with Canvas do begin
+    Pen.Color := clRed;
+    Pen.Mode := pmXor;
+    Pen.Style := psSolid;
+    //Draw the horizontal guideline.
+    PenPos := Point(0, Center.Y);
+    LineTo(Self.Width, Center.Y);
+  end;//with
 end;
 
 end.
