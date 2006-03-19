@@ -326,7 +326,7 @@ end;
 
 procedure TPFDControl.DoClick(Sender: TObject);
 begin
-  Invalidate;
+  
 end;
 
 procedure TPFDControl.DoMouseDown(Sender: TObject; Button: TMouseButton ; 
@@ -505,8 +505,7 @@ end;
 
 procedure TPFDWorkplace.DoEnter(Sender: TObject);
 begin
-  //Draw the first lines after receiving focus.
-  //DrawGuideLines;
+  //Set flag to indicate that PFDWorkplace has input focus.
   Active := True;
 end;
 
@@ -523,6 +522,8 @@ procedure TPFDWorkplace.DoMouseDown(Sender: TObject; Button: TMouseButton ;
 var
   I: Integer;
 begin
+  //It is needed to erase the lines to avoid interference with repainting of
+  //the controls under the lines.
   EraseGuideLines;
   //Deselect other controls if Shift key is not pressed.
   if (Shift <> [ssShift, ssLeft]) then
@@ -578,7 +579,7 @@ end;
 
 procedure TPFDWorkplace.NotifyRepaint(APFDControl: TPFDControl);
 begin
-  //ShowMessage('repaint');
+  
 end;
 
 procedure TPFDWorkplace.ResetGuideLines;
