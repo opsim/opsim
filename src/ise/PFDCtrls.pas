@@ -42,6 +42,7 @@ type
     procedure SetSelected(Value: Boolean);
   protected
     procedure ChangeScale(M, D: Integer); override;
+    procedure DoClick(Sender: TObject);
     procedure DoMouseDown(Sender: TObject; Button: TMouseButton ; Shift: 
             TShiftState; X, Y: Integer); virtual;
     procedure DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer); 
@@ -104,7 +105,6 @@ type
     procedure DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
   public
     constructor Create(AOwner: TComponent); override;
-    procedure PaintGuideLines(Center: TPoint);
   end;
   
 implementation
@@ -231,16 +231,38 @@ begin
   V2.Y := V2.Y/DV2;}
 end;
 
+procedure PaintGuideLines(ACanvas: TCanvas; ARect: TRect;
+        ACenter: TPoint);
+begin
+  //Paint the guidelines.
+  with ACanvas, ARect do begin
+    Pen.Color := clRed;
+    Pen.Mode := pmNot;
+    Pen.Style := psSolid;
+    //Draw the horizontal guideline.
+    PenPos := Point(0, ACenter.Y);
+    LineTo(Right-Left, ACenter.Y);
+    //Draw the vertical guideline.
+    PenPos := Point(ACenter.X, 0);
+    LineTo(ACenter.X, Bottom-Top);
+  end;//with
+end;
+
 {
 ********************************** TPFDFrame ***********************************
 }
 procedure TPFDFrame.Paint;
+var
+  P1, P2: TPoint;
 begin
-  Canvas.Pen.Style := psSolid;
-  Canvas.Pen.Mode := pmCopy;
-  Canvas.Pen.Color := clRed;
-  Canvas.Brush.Style := bsClear;
-  Canvas.Rectangle(Rect(0,0,Width-1,Height-1));
+  with Canvas do begin
+    Pen.Color := clRed;
+    Pen.Mode := pmXor;
+    Pen.Style := psSolid;
+    Brush.Style := bsClear;
+    Rectangle(Rect(0,0,Self.Width-1,Self.Height-1));
+  end;//with
+  PaintGuideLines(Canvas, ClientRect, ScreenToClient(Mouse.CursorPos));
 end;
 
 {
@@ -263,12 +285,19 @@ begin
   OnMouseDown := DoMouseDown;
   OnMouseMove := DoMouseMove;
   OnMouseUp := DoMouseUp;
+  OnMouseMove := DoMouseMove;
+  OnClick := DoClick;
 end;
 
 procedure TPFDControl.ChangeScale(M, D: Integer);
 begin
   inherited ChangeScale(M, D);
   //Reserved to scale other associated controls, e.g. label tags.
+end;
+
+procedure TPFDControl.DoClick(Sender: TObject);
+begin
+  Invalidate;
 end;
 
 procedure TPFDControl.DoMouseDown(Sender: TObject; Button: TMouseButton ; 
@@ -280,6 +309,8 @@ end;
 
 procedure TPFDControl.DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: 
         Integer);
+var
+  P: TPoint;
 begin
   if MouseCapture then begin
     //Create drag border.
@@ -295,6 +326,11 @@ begin
       StartPoint := Point(X,Y);
     end;//with
   end;//if
+  
+  //Needs to notify mouse movements over the control in order the PFDWorkplace
+  //update drawings on its canvas.
+  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
+  PFDWorkplace.DoMouseMove(Sender, Shift, P.X, P.Y);
 end;
 
 procedure TPFDControl.DoMouseUp(Sender: TObject; Button: TMouseButton ; Shift: 
@@ -424,7 +460,7 @@ end;
 procedure TPFDWorkplace.DoEnter(Sender: TObject);
 begin
   //Draw the first lines after receiving focus.
-  PaintGuideLines(ScreenToClient(Mouse.CursorPos));
+  PaintGuideLines(Canvas, ClientRect, ScreenToClient(Mouse.CursorPos));
   PriorGuideLinesCenter := ScreenToClient(Mouse.CursorPos);
   Active := True;
 end;
@@ -433,7 +469,7 @@ procedure TPFDWorkplace.DoExit(Sender: TObject);
 begin
   //We need erase the last drawn line when losing the input focus. Otherwise
   //the canvas will be stained.
-  PaintGuideLines(PriorGuideLinesCenter);
+  PaintGuideLines(Canvas, ClientRect, PriorGuideLinesCenter);
   Active := False;
 end;
 
@@ -452,28 +488,20 @@ procedure TPFDWorkplace.DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y:
 begin
   if Active then begin
     //Erase the prior line.
-    PaintGuideLines(PriorGuideLinesCenter);
+    PaintGuideLines(Canvas, ClientRect, PriorGuideLinesCenter);
     //Draw a new one.
-    PaintGuideLines(Point(X,Y));
+    PaintGuideLines(Canvas, ClientRect, Point(X,Y));
     //Stores the last lines center position.
     PriorGuideLinesCenter := Point(X,Y);
+  
+    //Draws the background.
+    //with Canvas, Pen do begin
+      //Pen.Style := psClear;
+      //Brush.Style := bsSolid;
+      //Brush.Color := Self.Color;
+      //Rectangle(Self.ClientRect);
+    //end;//with
   end;//if
-end;
-
-procedure TPFDWorkplace.PaintGuideLines(Center: TPoint);
-begin
-  //Paint the guidelines.
-  with Canvas do begin
-    Pen.Color := clRed;
-    Pen.Mode := pmXor;
-    Pen.Style := psSolid;
-    //Draw the horizontal guideline.
-    PenPos := Point(0, Center.Y);
-    LineTo(Self.Width, Center.Y);
-    //Draw the vertical guideline.
-    PenPos := Point(Center.X, 0);
-    LineTo(Center.X, Self.Height);
-  end;//with
 end;
 
 end.
