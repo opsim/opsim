@@ -34,7 +34,7 @@
         <MinVersion Major="1" Valid="True"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="7">
+    <Units Count="8">
       <Unit0>
         <Filename Value="OpSim.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -85,6 +85,11 @@
         <ResourceFilename Value="MixerSpecU.lrs"/>
         <UnitName Value="MixerSpecU"/>
       </Unit6>
+      <Unit7>
+        <Filename Value="Utils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Utils"/>
+      </Unit7>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -104,6 +109,9 @@
     </Parsing>
     <CodeGeneration>
       <Generate Value="Faster"/>
+      <Optimizations>
+        <OptimizationLevel Value="0"/>
+      </Optimizations>
     </CodeGeneration>
     <Linking>
       <Options>

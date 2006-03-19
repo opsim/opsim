@@ -97,19 +97,26 @@ type
   private
     Active: Boolean;
     CurrentGuideLinesCenter: TPoint;
+    procedure DrawGuideLines;
+    procedure EraseGuideLines;
   protected
     procedure DoEnter(Sender: TObject);
     procedure DoExit(Sender: TObject);
     procedure DoMouseDown(Sender: TObject; Button: TMouseButton ; Shift: 
             TShiftState; X, Y: Integer);
     procedure DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure DoMouseUp(Sender: TObject; Button: TMouseButton ; Shift: 
+            TShiftState; X, Y: Integer);
+    procedure DoResize(Sender: TObject);
   public
     constructor Create(AOwner: TComponent); override;
-    procedure DrawGuideLines;
-    procedure EraseGuideLines;
+    procedure ResetGuideLines;
   end;
   
 implementation
+
+uses
+  Utils;
 
 type
   TGradientStyles = (gsCenter, gsHorizontal, gsVertical, gsTopToBottom, gsBottomToTop, gsLeftToRight, gsRightToLeft);
@@ -348,8 +355,6 @@ begin
     end;//with
   end;//if
   
-  //PaintGuideLines(Canvas, ClientRect, Point(X,Y));
-  
   //Needs to notify mouse movements over the control in order the PFDWorkplace
   //update drawings on its canvas.
   P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
@@ -470,20 +475,20 @@ end;
 constructor TPFDWorkplace.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  {OnMouseDown := DoMouseDown;
-  OnMouseUp := DoMouseUp;}
   Color := $00808040;
   Align := alClient;
   OnMouseDown := DoMouseDown;
+  OnMouseUp := DoMouseUp;
   OnMouseMove := DoMouseMove;
   OnEnter := DoEnter;
   OnExit := DoExit;
+  OnResize := DoResize;
 end;
 
 procedure TPFDWorkplace.DoEnter(Sender: TObject);
 begin
   //Draw the first lines after receiving focus.
-  DrawGuideLines;
+  //DrawGuideLines;
   Active := True;
 end;
 
@@ -500,6 +505,7 @@ procedure TPFDWorkplace.DoMouseDown(Sender: TObject; Button: TMouseButton ;
 var
   I: Integer;
 begin
+  EraseGuideLines;
   for I := 0 to ControlCount - 1 do
     if Controls[I] is TPFDControl then
       TPFDControl(Controls[I]).Selected := False;
@@ -509,26 +515,49 @@ procedure TPFDWorkplace.DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y:
         Integer);
 begin
   if Active then begin
-    EraseGuideLines;
-    DrawGuideLines;
+    ResetGuideLines;
   end;//if
 end;
 
+procedure TPFDWorkplace.DoMouseUp(Sender: TObject; Button: TMouseButton ; 
+        Shift: TShiftState; X, Y: Integer);
+var
+  I: Integer;
+begin
+  DrawGuideLines;
+end;
+
+procedure TPFDWorkplace.DoResize(Sender: TObject);
+begin
+  SetInvalidPoint(CurrentGuideLinesCenter);
+end;
+
 procedure TPFDWorkplace.DrawGuideLines;
+var
+  P: TPoint;
 begin
   //Draw the new line only if the last one was erased.
-  if (CurrentGuideLinesCenter.X = 0) and
-     (CurrentGuideLinesCenter.Y = 0) then begin
-    PaintGuideLines(Canvas, ClientRect, ScreenToClient(Mouse.CursorPos));
-    CurrentGuideLinesCenter := ScreenToClient(Mouse.CursorPos);
+  P := ScreenToClient(Mouse.CursorPos);
+  if IsInvalidPoint(CurrentGuideLinesCenter) and
+     PtInRect(ClientRect, P) then begin
+    PaintGuideLines(Canvas, ClientRect, P);
+    CurrentGuideLinesCenter := P;
   end;//if
 end;
 
 procedure TPFDWorkplace.EraseGuideLines;
 begin
-  PaintGuideLines(Canvas, ClientRect, CurrentGuideLinesCenter);
-  //Indicate that there is no drawn line now.
-  CurrentGuideLinesCenter := Point(0,0);
+  if not IsInvalidPoint(CurrentGuideLinesCenter) then begin
+    PaintGuideLines(Canvas, ClientRect, CurrentGuideLinesCenter);
+    //Sets an invalid coordinate to indicate that there is no drawn line now.
+    SetInvalidPoint(CurrentGuideLinesCenter);
+  end;//if
+end;
+
+procedure TPFDWorkplace.ResetGuideLines;
+begin
+  EraseGuideLines;
+  DrawGuideLines;
 end;
 
 end.

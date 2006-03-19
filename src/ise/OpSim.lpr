@@ -22,7 +22,8 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms
-  { add your units here }, MainU, AboutU, PfdDesignerU, UnitopPalletU, DMBaseU, MixerSpecU;
+  { add your units here }, MainU, AboutU, PfdDesignerU, UnitopPalletU, DMBaseU, MixerSpecU,
+  Utils;
 
 begin
   Application.Initialize;

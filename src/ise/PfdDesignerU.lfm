@@ -9,6 +9,7 @@ object PfdDesigner: TPfdDesigner
   ClientHeight = 509
   ClientWidth = 725
   OnCreate = FormCreate
+  OnResize = FormResize
   PixelsPerInch = 96
   Position = poDefaultPosOnly
   object pnlWorkplace: TPanel

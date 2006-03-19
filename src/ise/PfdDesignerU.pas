@@ -34,6 +34,7 @@ type
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     procedure FormCreate(Sender: TObject);
+    procedure FormResize(Sender: TObject);
     procedure pnlWorkplaceMouseMove(Sender: TObject; Shift: TShiftState; X, Y: 
             Integer);
   private
@@ -74,6 +75,11 @@ begin
     Left := 100;
     Scale := 1;
   end;//with
+end;
+
+procedure TPfdDesigner.FormResize(Sender: TObject);
+begin
+  
 end;
 
 procedure TPfdDesigner.pnlWorkplaceMouseMove(Sender: TObject; Shift: 
