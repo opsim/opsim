@@ -1,4 +1,14 @@
 {
+ /***************************************************************************
+                               PfdDesignerU.pas
+                               ----------------
+                  Abstract: Module for visually building the PFD diagram.
+                  Initial Revision : 09/03/2006
+                  Author: Samuel Jorge Marques Cartaxo
+
+
+ ***************************************************************************/
+
  *****************************************************************************
  *                                                                           *
  *  This file is part of the OpSim - OPEN SOURCE PROCESS SIMULATOR           *

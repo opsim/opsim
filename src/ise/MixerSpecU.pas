@@ -1,3 +1,28 @@
+{
+ /***************************************************************************
+                               MixerSpecU.pas
+                               --------------
+                  Abstract: This is the specs form for the Mixer
+                            unit operation.
+                  Initial Revision : 09/03/2006
+                  Author: Samuel Jorge Marques Cartaxo
+
+
+ ***************************************************************************/
+
+ *****************************************************************************
+ *                                                                           *
+ *  This file is part of the OpSim - OPEN SOURCE PROCESS SIMULATOR           *
+ *                                                                           *
+ *  See the file COPYING.GPL, included in this distribution,                 *
+ *  for details about the copyright.                                         *
+ *                                                                           *
+ *  This program is distributed in the hope that it will be useful,          *
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of           *
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                     *
+ *                                                                           *
+ *****************************************************************************
+}
 unit MixerSpecU;
 
 {$mode objfpc}{$H+}

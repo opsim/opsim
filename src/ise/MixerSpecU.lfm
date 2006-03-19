@@ -1,16 +1,19 @@
 object MixerSpec: TMixerSpec
+  Left = 337
+  Height = 300
+  Top = 164
+  Width = 400
+  HorzScrollBar.Page = 399
+  VertScrollBar.Page = 299
   ActiveControl = dbGrid1
   Caption = 'MixerSpec'
   ClientHeight = 300
   ClientWidth = 400
   PixelsPerInch = 96
-  HorzScrollBar.Page = 399
-  VertScrollBar.Page = 299
-  Left = 337
-  Height = 300
-  Top = 164
-  Width = 400
   object dbGrid1: TdbGrid
+    Height = 204
+    Top = 96
+    Width = 400
     Align = alBottom
     FixedColor = clBtnFace
     Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
@@ -18,8 +21,5 @@ object MixerSpec: TMixerSpec
     ParentColor = False
     TabOrder = 0
     TabStop = True
-    Height = 204
-    Top = 96
-    Width = 400
   end
 end

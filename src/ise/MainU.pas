@@ -1,4 +1,15 @@
 {
+ /***************************************************************************
+                               MainU.pas
+                               ---------
+                  Abstract: The main for of the Integrated Simulation
+                            Environment (ISE).
+                  Initial Revision : 09/03/2006
+                  Author: Samuel Jorge Marques Cartaxo
+
+
+ ***************************************************************************/
+
  *****************************************************************************
  *                                                                           *
  *  This file is part of the OpSim - OPEN SOURCE PROCESS SIMULATOR           *

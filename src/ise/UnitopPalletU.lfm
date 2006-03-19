@@ -1,142 +1,142 @@
 object UnitopPallet: TUnitopPallet
+  Left = 822
+  Height = 463
+  Top = 148
+  Width = 115
+  HorzScrollBar.Page = 114
+  VertScrollBar.Page = 462
   Caption = 'Unitop'
   ClientHeight = 463
   ClientWidth = 115
   OnCreate = FormCreate
   PixelsPerInch = 96
-  HorzScrollBar.Page = 114
-  VertScrollBar.Page = 462
-  Left = 822
-  Height = 463
-  Top = 148
-  Width = 115
   object Panel1: TPanel
+    Height = 463
+    Width = 58
     Align = alLeft
     ClientHeight = 463
     ClientWidth = 58
     TabOrder = 0
-    Height = 463
-    Width = 58
     object SpeedButton1: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 4
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton2: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 52
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton3: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 100
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton4: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 148
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton9: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 340
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton10: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 292
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton11: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 244
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton12: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 196
       Width = 47
+      NumGlyphs = 0
     end
   end
   object Panel2: TPanel
+    Left = 58
+    Height = 463
+    Width = 57
     Align = alClient
     ClientHeight = 463
     ClientWidth = 57
     TabOrder = 1
-    Left = 58
-    Height = 463
-    Width = 57
     object SpeedButton5: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 148
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton6: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 100
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton7: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 52
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton8: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 4
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton13: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 340
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton14: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 292
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton15: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 244
       Width = 47
+      NumGlyphs = 0
     end
     object SpeedButton16: TSpeedButton
-      NumGlyphs = 0
       Left = 4
       Height = 46
       Top = 196
       Width = 47
+      NumGlyphs = 0
     end
   end
 end

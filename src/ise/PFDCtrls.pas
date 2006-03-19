@@ -1,4 +1,15 @@
 {
+ /***************************************************************************
+                               PFDCtrls.pas
+                               ------------
+                  Abstract: Implements the building blocks elements
+                            for the PFD diagram.
+                  Initial Revision : 09/03/2006
+                  Author: Samuel Jorge Marques Cartaxo
+
+
+ ***************************************************************************/
+
  *****************************************************************************
  *                                                                           *
  *  This file is part of the OpSim - OPEN SOURCE PROCESS SIMULATOR           *
@@ -34,6 +45,7 @@ type
     DefaultHeight: Integer;
     DefaultWidth: Integer;
     FDragFrame: TPFDFrame;
+    FDrawWireFrame: Boolean;
     FScale: Double;
     FSelected: Boolean;
     StartPoint: TPoint;
@@ -53,6 +65,7 @@ type
   public
     constructor Create(AOwner: TPFDWorkplace); reintroduce; virtual;
     property Canvas;
+    property DrawWireFrame: Boolean read FDrawWireFrame write FDrawWireFrame;
     property PFDWorkplace: TPFDWorkplace read GetPFDWorkplace;
     property Scale: Double read FScale write SetScale;
     property Selected: Boolean read FSelected write SetSelected;
@@ -579,7 +592,7 @@ end;
 
 procedure TPFDWorkplace.NotifyRepaint(APFDControl: TPFDControl);
 begin
-  
+  //Reserved for processing after controls repainting.
 end;
 
 procedure TPFDWorkplace.ResetGuideLines;
