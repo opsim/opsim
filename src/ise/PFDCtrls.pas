@@ -17,7 +17,7 @@ unit PFDCtrls;
 interface
 
 uses
-  SysUtils, Windows, Forms, Classes, Graphics, Controls, ExtCtrls, StdCtrls,
+  SysUtils, Windows, Forms, Classes, Dialogs, Graphics, Controls, ExtCtrls, StdCtrls,
   Types, Math, extgraphics, LCLProc;
 
 type
@@ -110,6 +110,7 @@ type
     procedure DoResize(Sender: TObject);
   public
     constructor Create(AOwner: TComponent); override;
+    procedure NotifyRepaint(APFDControl: TPFDControl);
     procedure ResetGuideLines;
   end;
   
@@ -330,9 +331,16 @@ end;
 
 procedure TPFDControl.DoMouseDown(Sender: TObject; Button: TMouseButton ; 
         Shift: TShiftState; X, Y: Integer);
+var
+  P: TPoint;
 begin
   Selected := True;
   StartPoint := Point(X,Y);
+  
+  //Needs to notify the mouse event over the control in order the PFDWorkplace
+  //update drawings on its canvas.
+  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
+  PFDWorkplace.DoMouseDown(Sender, Button, Shift, P.X, P.Y);
 end;
 
 procedure TPFDControl.DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: 
@@ -363,12 +371,19 @@ end;
 
 procedure TPFDControl.DoMouseUp(Sender: TObject; Button: TMouseButton ; Shift: 
         TShiftState; X, Y: Integer);
+var
+  P: TPoint;
 begin
   if Assigned(FDragFrame) then begin
     Left := FDragFrame.Left;
     Top := FDragFrame.Top;
     FreeAndNil(FDragFrame);
   end;//if
+  
+  //Needs to notify the mouse event over the control in order the PFDWorkplace
+  //update drawings on its canvas.
+  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
+  PFDWorkplace.DoMouseUp(Sender, Button, Shift, P.X, P.Y);
 end;
 
 function TPFDControl.GetPFDWorkplace: TPFDWorkplace;
@@ -406,6 +421,9 @@ begin
       Brush.Style := bsClear;
       Rectangle(0, 0, Width, Height);
     end;}
+  
+  //Notify workplace to allow canvas update.
+  PFDWorkplace.NotifyRepaint(Self);
 end;
 
 procedure TPFDControl.SetScale(Value: Double);
@@ -506,9 +524,12 @@ var
   I: Integer;
 begin
   EraseGuideLines;
-  for I := 0 to ControlCount - 1 do
-    if Controls[I] is TPFDControl then
-      TPFDControl(Controls[I]).Selected := False;
+  //Deselect other controls if Shift key is not pressed.
+  if (Shift <> [ssShift, ssLeft]) then
+    for I := 0 to ControlCount - 1 do
+      if  (Controls[I] <> Sender) and
+          (Controls[I] is TPFDControl) then
+        TPFDControl(Controls[I]).Selected := False;
 end;
 
 procedure TPFDWorkplace.DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: 
@@ -536,7 +557,8 @@ procedure TPFDWorkplace.DrawGuideLines;
 var
   P: TPoint;
 begin
-  //Draw the new line only if the last one was erased.
+  //Draw the new line only if the last one was erased and if mouse pointer
+  //is over the control.
   P := ScreenToClient(Mouse.CursorPos);
   if IsInvalidPoint(CurrentGuideLinesCenter) and
      PtInRect(ClientRect, P) then begin
@@ -552,6 +574,11 @@ begin
     //Sets an invalid coordinate to indicate that there is no drawn line now.
     SetInvalidPoint(CurrentGuideLinesCenter);
   end;//if
+end;
+
+procedure TPFDWorkplace.NotifyRepaint(APFDControl: TPFDControl);
+begin
+  //ShowMessage('repaint');
 end;
 
 procedure TPFDWorkplace.ResetGuideLines;
