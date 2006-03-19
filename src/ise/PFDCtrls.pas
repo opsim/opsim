@@ -462,7 +462,7 @@ end;
 
 procedure TPFDWorkplace.PaintGuideLines(Center: TPoint);
 begin
-  //Paint the guidelines. Draw=False erases the previous lines.
+  //Paint the guidelines.
   with Canvas do begin
     Pen.Color := clRed;
     Pen.Mode := pmXor;
@@ -470,6 +470,9 @@ begin
     //Draw the horizontal guideline.
     PenPos := Point(0, Center.Y);
     LineTo(Self.Width, Center.Y);
+    //Draw the vertical guideline.
+    PenPos := Point(Center.X, 0);
+    LineTo(Center.X, Self.Height);
   end;//with
 end;
 
