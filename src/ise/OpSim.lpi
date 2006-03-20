@@ -34,7 +34,7 @@
         <MinVersion Major="1" Valid="True"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="9">
       <Unit0>
         <Filename Value="OpSim.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -90,6 +90,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utils"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="PFDGraph.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PFDGraph"/>
+      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

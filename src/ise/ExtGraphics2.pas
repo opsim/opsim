@@ -45,6 +45,26 @@ type
 
   TInitShapeProc = procedure(var P: array of TPoint; const R:TRect; var NumPts: Integer);
 
+//General routines.
+Procedure InitPolygon(Canvas: TCanvas; PaintRect : TRect; RadAngle :Extended; Ptype:integer ); overload;
+  var PR,vPR:TRect;
+procedure InitPolygon(Canvas: TCanvas; PaintRect: TRect; RadAngle: Extended;
+  InitShapeProc: TInitShapeProc); overload;
+procedure PaintPolycon(Canvas: TCanvas;PR : TRect; fii :Extended;
+  P:array of TPoint; CountPts:Integer;cntPoint:TPoint); var N:array[0..3] of TPoint;
+procedure PolycFixCenterpoint(var N:array Of TPoint; cP:TPoint; var P:array Of
+        TPoint; CountPts:Integer);
+procedure PolycMinMax(var N:array of TPoint; const P:array of TPoint;
+        lkmPts:Integer);
+procedure PolycNewPaintRect(var PR:TRect; cP:TPoint; wv,hv:Integer);
+procedure PolycRotate(var Pts:array of TPoint; lkmPts:Integer; cntPoint:TPoint;
+        fii:Extended);
+procedure PolycScale(var P:array of TPoint; CountPts:Integer; const
+        PaintRect:TRect; cntPoint:TPoint; N:array of TPoint);
+procedure PolycSetHalfWidthAndHeight(const PR:TRect;var hv,wv:Integer;
+        fii:Extended);
+
+//Painting routines.
 procedure Paint2HeadArrow(Canvas: TCanvas; const PaintRect: TRect;RadAngle :Extended=0.0);
 procedure PaintBarbadosTrident(Canvas: TCanvas; const PaintRect: TRect;RadAngle :Extended=0.0);
 procedure PaintBigI(Canvas: TCanvas; const PaintRect: TRect;RadAngle :Extended=0.0);
@@ -64,7 +84,6 @@ procedure PaintTriangle(Canvas: TCanvas; const PaintRect: TRect;RadAngle :Extend
 procedure PaintTriangular(Canvas: TCanvas; const PaintRect: TRect;
   RadAngle :Extended=0.0; RightLeftFactor:extended=0.5);
 procedure PaintValve(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);
-procedure PaintValve2(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);
 procedure PaintVArrow(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);
 
 
@@ -75,8 +94,6 @@ procedure PaintHalfEllipse(Canvas: TCanvas; Const PaintRect: TRect;
   AHalfEllipseDirection: TShapeDirection);
 procedure PaintFivePointLineStar(Canvas: TCanvas; const PaintRect: TRect);
 procedure PaintStarN(Canvas: TCanvas;cx,cy,r,n,a:Integer);
-
-
 
 implementation
 
@@ -358,11 +375,6 @@ end;
 procedure PaintValve(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);
 begin
   InitPolygon(Canvas,PaintRect,RadAngle,17);
-end;
-
-procedure PaintValve2(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);
-begin
-  InitPolygon(Canvas, PaintRect, RadAngle, @InitValve);
 end;
 
 Procedure PaintVArrow(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);

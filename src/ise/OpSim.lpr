@@ -35,7 +35,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms
   { add your units here }, MainU, AboutU, PfdDesignerU, UnitopPalletU, DMBaseU, MixerSpecU,
-  Utils;
+  Utils, PFDGraph;
 
 begin
   Application.Initialize;

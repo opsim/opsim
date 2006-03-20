@@ -30,7 +30,7 @@ interface
 
 uses
   SysUtils, Windows, Forms, Classes, Dialogs, Graphics, Controls, ExtCtrls, StdCtrls,
-  Types, Math, extgraphics, LCLProc;
+  Types, Math, PFDGraph, LCLProc;
 
 type
 
@@ -142,7 +142,7 @@ type
 implementation
 
 uses
-  Utils, ExtGraphics2;
+  Utils;
 
 type
   TGradientStyles = (gsCenter, gsHorizontal, gsVertical, gsTopToBottom, gsBottomToTop, gsLeftToRight, gsRightToLeft);
