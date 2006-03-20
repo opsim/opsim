@@ -84,7 +84,7 @@ begin
   with TPFDValve.Create(PFDWorkplace) do begin
     Top := 200;
     Left := 300;
-    Scale := 1;
+    Scale := 2;
   end;//with
 end;
 

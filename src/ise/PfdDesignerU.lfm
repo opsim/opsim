@@ -1,27 +1,27 @@
 object PfdDesigner: TPfdDesigner
-  Left = 247
-  Height = 509
-  Top = 142
-  Width = 725
-  HorzScrollBar.Page = 724
-  VertScrollBar.Page = 508
+  Left = 153
+  Height = 442
+  Top = 125
+  Width = 610
+  HorzScrollBar.Page = 609
+  VertScrollBar.Page = 441
   Caption = 'PFD Designer'
-  ClientHeight = 509
-  ClientWidth = 725
+  ClientHeight = 442
+  ClientWidth = 610
   OnCreate = FormCreate
   OnResize = FormResize
   PixelsPerInch = 96
   Position = poDefaultPosOnly
   object pnlWorkplace: TPanel
-    Height = 460
+    Height = 393
     Top = 32
-    Width = 725
+    Width = 610
     Align = alClient
     BevelOuter = bvNone
     BorderWidth = 2
     Caption = 'PFD Workplace is create dynamically here.'
-    ClientHeight = 460
-    ClientWidth = 725
+    ClientHeight = 393
+    ClientWidth = 610
     TabOrder = 0
     object ScrollBox1: TScrollBox
       Left = 133
@@ -35,11 +35,11 @@ object PfdDesigner: TPfdDesigner
   end
   object pnlToolbar: TPanel
     Height = 32
-    Width = 725
+    Width = 610
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 32
-    ClientWidth = 725
+    ClientWidth = 610
     TabOrder = 1
     object SpeedButton1: TSpeedButton
       Left = 8
@@ -58,12 +58,12 @@ object PfdDesigner: TPfdDesigner
   end
   object pnlStatusBar: TPanel
     Height = 17
-    Top = 492
-    Width = 725
+    Top = 425
+    Width = 610
     Align = alBottom
     BevelOuter = bvNone
     ClientHeight = 17
-    ClientWidth = 725
+    ClientWidth = 610
     TabOrder = 2
   end
 end

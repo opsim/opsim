@@ -413,12 +413,12 @@ end;
 
 function TPFDControl.GetOffsetX: Integer;
 begin
-  Result := Width div 5;
+  Result := Width div 7;
 end;
 
 function TPFDControl.GetOffsetY: Integer;
 begin
-  Result := Height div 5;
+  Result := Height div 7;
 end;
 
 function TPFDControl.GetPFDWorkplace: TPFDWorkplace;
@@ -512,7 +512,7 @@ var
   R: TRect;
 begin
   inherited Paint;
-  R := Rect(ClientRect.Left+2, 2, ClientRect.Right-2, ClientRect.Bottom-2);
+  R := Rect(ClientRect.Left+OffsetX, OffsetY, ClientRect.Right-OffsetX, ClientRect.Bottom-OffsetY);
   PaintValve(Canvas,R,0.0);
 end;
 

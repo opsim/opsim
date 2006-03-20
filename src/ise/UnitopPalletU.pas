@@ -39,8 +39,10 @@ type
   { TUnitopPallet }
 
   TUnitopPallet = class (TForm)
-    Panel1: TPanel;
-    Panel2: TPanel;
+    pnlToolbar2: TPanel;
+    pnlToolbar3: TPanel;
+    pnlToolbar1: TPanel;
+    pnlBase: TPanel;
     SpeedButton1: TSpeedButton;
     SpeedButton10: TSpeedButton;
     SpeedButton11: TSpeedButton;
@@ -49,7 +51,15 @@ type
     SpeedButton14: TSpeedButton;
     SpeedButton15: TSpeedButton;
     SpeedButton16: TSpeedButton;
+    SpeedButton17: TSpeedButton;
+    SpeedButton18: TSpeedButton;
+    SpeedButton19: TSpeedButton;
     SpeedButton2: TSpeedButton;
+    SpeedButton20: TSpeedButton;
+    SpeedButton21: TSpeedButton;
+    SpeedButton22: TSpeedButton;
+    SpeedButton23: TSpeedButton;
+    SpeedButton24: TSpeedButton;
     SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
     SpeedButton5: TSpeedButton;
