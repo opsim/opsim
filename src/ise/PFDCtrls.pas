@@ -50,6 +50,8 @@ type
     FScale: Double;
     FSelected: Boolean;
     StartPoint: TPoint;
+    function GetOffsetX: Integer;
+    function GetOffsetY: Integer;
     function GetPFDWorkplace: TPFDWorkplace;
     procedure SetScale(Value: Double);
     procedure SetSelected(Value: Boolean);
@@ -67,6 +69,8 @@ type
     constructor Create(AOwner: TPFDWorkplace); reintroduce; virtual;
     property Canvas;
     property DrawWireFrame: Boolean read FDrawWireFrame write FDrawWireFrame;
+    property OffsetX: Integer read GetOffsetX;
+    property OffsetY: Integer read GetOffsetY;
     property PFDWorkplace: TPFDWorkplace read GetPFDWorkplace;
     property Scale: Double read FScale write SetScale;
     property Selected: Boolean read FSelected write SetSelected;
@@ -407,6 +411,16 @@ begin
   PFDWorkplace.DoMouseUp(Sender, Button, Shift, P.X, P.Y);
 end;
 
+function TPFDControl.GetOffsetX: Integer;
+begin
+  Result := Width div 5;
+end;
+
+function TPFDControl.GetOffsetY: Integer;
+begin
+  Result := Height div 5;
+end;
+
 function TPFDControl.GetPFDWorkplace: TPFDWorkplace;
 begin
   Result := TPFDWorkplace(Owner);
@@ -428,23 +442,18 @@ begin
     end;//with
   end;//if
   
-  //if MouseCapture then
-    //Canvas.DrawFocusRect(Rect(0,0,Width,Height));
-  //  Canvas.Rectangle(Rect(0,0,Width,Height));
-    //Canvas.DrawFocusRect(BoundsRect);
-  
-  {Canvas.Font := Font;
-  Canvas.Brush.Color := Color;
-  if csDesigning in ComponentState then
-    with Canvas do
-    begin
-      Pen.Style := psDash;
-      Brush.Style := bsClear;
-      Rectangle(0, 0, Width, Height);
-    end;}
-  
   //Notify workplace to allow canvas update.
   PFDWorkplace.NotifyRepaint(Self);
+  
+  //Defines a standard canvas to be used by the descendents. The canvas will be
+  //automatica defined when descendents controls invoke the inherited Paint
+  //method.
+  with Canvas do begin
+    Pen.color := clBlack;
+    Pen.Width := 1;
+    Brush.Style := bsSolid;
+    Brush.Color := clWhite;
+  end;//with
 end;
 
 procedure TPFDControl.SetScale(Value: Double);
@@ -482,29 +491,8 @@ begin
   OffsetX := LX div 5;
   OffsetY := LX div 5;
   with Canvas do begin
-    //Pen.Width := Round(Max(1, Width/50));
-    Pen.Width := 1;
-    Pen.Color := clBlack;
-    //Pen.Style := psSolid;
-    //Pen.Mode := pmBlack;
-    Brush.Color := clBlue;
-    Brush.Style := bsSolid;
-  
     //For testing.
     Ellipse(Rect(1,1,Self.Width-1,Self.Height-1));
-  
-    //Draw the contour lines.
-    {P1 := Point(OffsetX, OffsetY);
-    P2 := Point(Round(P1.X+LX/5), P1.Y);
-    P3 := Point(Round(P2.X+2*LX/5), Round(LY/2));
-    P4 := Point(P2.X,	Round(LY-OffsetY));
-    P5 := Point(P1.X,	P4.Y);
-    Polyline([P1, P2, P3, P4, P5, P1]);
-    Polyline([P2, P4 ]);}
-  
-    //Paint the gradient.
-  
-  
   end;//with
 end;
 
@@ -524,10 +512,6 @@ var
   R: TRect;
 begin
   inherited Paint;
-  Canvas.Pen.color := clBlack;
-  Canvas.Pen.Width := 1;
-  Canvas.Brush.Style := bsSolid;
-  Canvas.Brush.color := clWhite;
   R := Rect(ClientRect.Left+2, 2, ClientRect.Right-2, ClientRect.Bottom-2);
   PaintValve(Canvas,R,0.0);
 end;
