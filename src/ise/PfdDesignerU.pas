@@ -81,9 +81,9 @@ begin
       //Debugln(Format('Height: %s', [IntToStr(Height)]));
     end;//with
   end;//for
-  with TPFDMixer.Create(PFDWorkplace) do begin
-    Top := 30;
-    Left := 100;
+  with TPFDValve.Create(PFDWorkplace) do begin
+    Top := 200;
+    Left := 300;
     Scale := 1;
   end;//with
 end;

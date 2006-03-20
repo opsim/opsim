@@ -515,45 +515,21 @@ constructor TPFDValve.Create(AOwner: TPFDWorkplace);
 begin
   inherited Create(AOwner);
   DefaultWidth := 30;
-  DefaultHeight := 45;
+  DefaultHeight := 20;
   Scale := 1;
 end;
 
 procedure TPFDValve.Paint;
 var
-  LX, LY, OffsetX, OffsetY: Integer;
-  P1, P2, P3, P4, P5: TPoint;
+  R: TRect;
 begin
   inherited Paint;
-  LX := Width;
-  LY := Height;
-  OffsetX := LX div 5;
-  OffsetY := LX div 5;
-  with Canvas do begin
-    //Pen.Width := Round(Max(1, Width/50));
-    Pen.Width := 1;
-    Pen.Color := clBlack;
-    //Pen.Style := psSolid;
-    //Pen.Mode := pmBlack;
-    Brush.Color := clBlue;
-    Brush.Style := bsSolid;
-  
-    //For testing.
-    Ellipse(Rect(1,1,Self.Width-1,Self.Height-1));
-  
-    //Draw the contour lines.
-    {P1 := Point(OffsetX, OffsetY);
-    P2 := Point(Round(P1.X+LX/5), P1.Y);
-    P3 := Point(Round(P2.X+2*LX/5), Round(LY/2));
-    P4 := Point(P2.X,	Round(LY-OffsetY));
-    P5 := Point(P1.X,	P4.Y);
-    Polyline([P1, P2, P3, P4, P5, P1]);
-    Polyline([P2, P4 ]);}
-  
-    //Paint the gradient.
-  
-  
-  end;//with
+  Canvas.Pen.color := clBlack;
+  Canvas.Pen.Width := 1;
+  Canvas.Brush.Style := bsSolid;
+  Canvas.Brush.color := clWhite;
+  R := Rect(ClientRect.Left+2, 2, ClientRect.Right-2, ClientRect.Bottom-2);
+  PaintValve(Canvas,R,0.0);
 end;
 
 {
