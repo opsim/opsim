@@ -37,9 +37,13 @@ unit ExtGraphics2;
 
 interface
 
-uses Classes, LCLProc, Graphics, math, GraphMath, ExtShapes, ExtGraphProc;
+uses
+  Classes, LCLProc, Graphics, math, GraphMath, ExtShapes, ExtGraphProc;
 
-type  TShapeDirection = (atUp, atDown, atLeft, atRight);
+type
+  TShapeDirection = (atUp, atDown, atLeft, atRight);
+
+  TInitShapeProc = procedure(var P: array of TPoint; const R:TRect; var NumPts: Integer);
 
 procedure Paint2HeadArrow(Canvas: TCanvas; const PaintRect: TRect;RadAngle :Extended=0.0);
 procedure PaintBarbadosTrident(Canvas: TCanvas; const PaintRect: TRect;RadAngle :Extended=0.0);
@@ -60,6 +64,7 @@ procedure PaintTriangle(Canvas: TCanvas; const PaintRect: TRect;RadAngle :Extend
 procedure PaintTriangular(Canvas: TCanvas; const PaintRect: TRect;
   RadAngle :Extended=0.0; RightLeftFactor:extended=0.5);
 procedure PaintValve(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);
+procedure PaintValve2(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);
 procedure PaintVArrow(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);
 
 
@@ -74,8 +79,6 @@ procedure PaintStarN(Canvas: TCanvas;cx,cy,r,n,a:Integer);
 
 
 implementation
-
-
 
 procedure PaintCross(Canvas: TCanvas; XLeft,YUp,XRight,YLow,
           CrossX1,CrossX2,CrossY1,CrossY2:integer);
@@ -224,7 +227,7 @@ begin
   end;
 end;
 
-Procedure InitPolygon(Canvas: TCanvas; PaintRect : TRect; RadAngle :Extended; Ptype:integer );
+Procedure InitPolygon(Canvas: TCanvas; PaintRect : TRect; RadAngle :Extended; Ptype:integer ); overload;
 var PR,vPR:TRect;
     P:array[0..35] of TPoint;
     CountPts,hv,wv:Integer;
@@ -254,6 +257,21 @@ begin
     17:InitValve(P,vPR,CountPts);
     18:InitVArrow(P,vPR,CountPts);
     end;
+  PaintPolycon(Canvas,PR,RadAngle,P,CountPts,cntPoint);
+end;
+
+procedure InitPolygon(Canvas: TCanvas; PaintRect: TRect; RadAngle: Extended;
+  InitShapeProc: TInitShapeProc); overload;
+var PR,vPR:TRect;
+    P:array[0..35] of TPoint;
+    CountPts,hv,wv:Integer;
+    cntPoint:TPoint;
+begin
+  PR:=PaintRect;
+  cntPoint:=CenterPoint(PR);
+  PolycSetHalfWidthAndHeight(PR,hv,wv,RadAngle);
+  PolycNewPaintRect(vPR,cntPoint,wv,hv);
+  InitShapeProc(P,vPR,CountPts);
   PaintPolycon(Canvas,PR,RadAngle,P,CountPts,cntPoint);
 end;
 
@@ -340,6 +358,11 @@ end;
 procedure PaintValve(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);
 begin
   InitPolygon(Canvas,PaintRect,RadAngle,17);
+end;
+
+procedure PaintValve2(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);
+begin
+  InitPolygon(Canvas, PaintRect, RadAngle, @InitValve);
 end;
 
 Procedure PaintVArrow(Canvas: TCanvas; const PaintRect : TRect; RadAngle :Extended=0.0);
