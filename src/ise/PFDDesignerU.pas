@@ -22,7 +22,7 @@
  *                                                                           *
  *****************************************************************************
 }
-unit PfdDesignerU;
+unit PFDDesignerU;
 
 {$mode objfpc}{$H+}
 
@@ -36,7 +36,7 @@ type
 
   { TPFDDesigner }
 
-  TPfdDesigner = class (TForm)
+  TPFDDesigner = class (TForm)
     pnlStatusBar: TPanel;
     pnlToolbar: TPanel;
     pnlWorkplace: TPanel;
@@ -59,9 +59,9 @@ implementation
 { TPFDDesigner }
 
 {
-********************************* TPfdDesigner *********************************
+********************************* TPFDDesigner *********************************
 }
-procedure TPfdDesigner.FormCreate(Sender: TObject);
+procedure TPFDDesigner.FormCreate(Sender: TObject);
 var
   I: Integer;
 begin
@@ -83,16 +83,16 @@ begin
   with TPFDValve.Create(PFDWorkplace) do begin
     Top := 200;
     Left := 300;
-    Scale := 2;
+    Scale := 1;
   end;//with
 end;
 
-procedure TPfdDesigner.FormResize(Sender: TObject);
+procedure TPFDDesigner.FormResize(Sender: TObject);
 begin
   
 end;
 
-procedure TPfdDesigner.pnlWorkplaceMouseMove(Sender: TObject; Shift: 
+procedure TPFDDesigner.pnlWorkplaceMouseMove(Sender: TObject; Shift: 
         TShiftState; X, Y: Integer);
 begin
   

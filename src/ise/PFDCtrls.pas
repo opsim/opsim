@@ -475,24 +475,17 @@ constructor TPFDMixer.Create(AOwner: TPFDWorkplace);
 begin
   inherited Create(AOwner);
   DefaultWidth := 30;
-  DefaultHeight := 45;
+  DefaultHeight := 44;
   Scale := 1;
 end;
 
 procedure TPFDMixer.Paint;
 var
-  LX, LY, OffsetX, OffsetY: Integer;
-  P1, P2, P3, P4, P5: TPoint;
+  R: TRect;
 begin
   inherited Paint;
-  LX := Width;
-  LY := Height;
-  OffsetX := LX div 5;
-  OffsetY := LX div 5;
-  with Canvas do begin
-    //For testing.
-    Ellipse(Rect(1,1,Self.Width-1,Self.Height-1));
-  end;//with
+  R := Rect(ClientRect.Left+OffsetX, OffsetY, ClientRect.Right-OffsetX, ClientRect.Bottom-OffsetY);
+  PaintMixer(Canvas, R, 0);
 end;
 
 {
@@ -512,7 +505,7 @@ var
 begin
   inherited Paint;
   R := Rect(ClientRect.Left+OffsetX, OffsetY, ClientRect.Right-OffsetX, ClientRect.Bottom-OffsetY);
-  PaintValve(Canvas,R,0.0);
+  PaintValve(Canvas, R, 0);
 end;
 
 {
