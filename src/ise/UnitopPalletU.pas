@@ -82,7 +82,15 @@ implementation
 }
 procedure TUnitopPallet.FormCreate(Sender: TObject);
 begin
+  //Positon on the left of the screen.
   Left := Screen.Width - Width;
+  //Define size constraints based on design time dimensions.
+  with Constraints do begin
+    MinHeight := Height;
+    MaxHeight := Height;
+    MinWidth := Width;
+    MaxWidth := Width;
+  end;//with
 end;
 
 initialization

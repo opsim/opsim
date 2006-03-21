@@ -65,7 +65,7 @@
         <UnitName Value="MainU"/>
       </Unit3>
       <Unit4>
-        <Filename Value="PfdDesignerU.pas"/>
+        <Filename Value="PFDDesignerU.pas"/>
         <ComponentName Value="PFDDesigner"/>
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="PfdDesignerU.lrs"/>

@@ -8,10 +8,6 @@ object UnitopPallet: TUnitopPallet
   Caption = 'Unitop'
   ClientHeight = 280
   ClientWidth = 117
-  Constraints.MaxHeight = 280
-  Constraints.MaxWidth = 117
-  Constraints.MinHeight = 280
-  Constraints.MinWidth = 117
   OnCreate = FormCreate
   PixelsPerInch = 96
   ShowHint = True
