@@ -25,6 +25,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Separator'
       Top = 8
       Width = 32
+      AllowAllUp = True
       Glyph.Data = {
         060900002F2A2058504D202A2F0A7374617469632063686172202A6772617068
         69635B5D203D207B0A2233322033322037342031222C0A222E2063204E6F6E65
@@ -109,6 +110,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Tank'
       Top = 40
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -118,6 +120,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Heat Exchanger'
       Top = 72
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -127,6 +130,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Tee'
       Top = 104
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -135,6 +139,7 @@ object UnitopPallet: TUnitopPallet
       Height = 32
       Top = 200
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -144,6 +149,7 @@ object UnitopPallet: TUnitopPallet
       Hint = '3-Phase Separator'
       Top = 40
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -153,6 +159,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Expander'
       Top = 104
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -161,6 +168,7 @@ object UnitopPallet: TUnitopPallet
       Height = 32
       Top = 168
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -169,6 +177,7 @@ object UnitopPallet: TUnitopPallet
       Height = 32
       Top = 232
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -178,6 +187,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Pipe Segment'
       Top = 136
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -187,6 +197,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Cooler'
       Top = 72
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -196,6 +207,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Valve'
       Top = 8
       Width = 32
+      AllowAllUp = True
       Glyph.Data = {
         F80700002F2A2058504D202A2F0A7374617469632063686172202A6772617068
         69635B5D203D207B0A2233322033322035362031222C0A222E2063204E6F6E65
@@ -271,6 +283,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Mixer'
       Top = 8
       Width = 32
+      AllowAllUp = True
       Glyph.Data = {
         400E00002F2A2058504D202A2F0A7374617469632063686172202A6772617068
         69635B5D203D207B0A2233322033322038392032222C0A222E2E2063204E6F6E
@@ -396,6 +409,7 @@ object UnitopPallet: TUnitopPallet
       Height = 32
       Top = 168
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -404,6 +418,7 @@ object UnitopPallet: TUnitopPallet
       Height = 32
       Top = 200
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -412,6 +427,7 @@ object UnitopPallet: TUnitopPallet
       Height = 32
       Top = 232
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -421,6 +437,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Pump'
       Top = 40
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -430,6 +447,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Heater'
       Top = 72
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -439,6 +457,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'Compressor'
       Top = 104
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -448,6 +467,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'CSTR'
       Top = 136
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -456,6 +476,7 @@ object UnitopPallet: TUnitopPallet
       Height = 32
       Top = 168
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -464,6 +485,7 @@ object UnitopPallet: TUnitopPallet
       Height = 32
       Top = 200
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -472,6 +494,7 @@ object UnitopPallet: TUnitopPallet
       Height = 32
       Top = 232
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
@@ -481,6 +504,7 @@ object UnitopPallet: TUnitopPallet
       Hint = 'PFR'
       Top = 136
       Width = 32
+      AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
     end
