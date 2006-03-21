@@ -1,7 +1,7 @@
 object UnitopPallet: TUnitopPallet
-  Left = 820
+  Left = 848
   Height = 280
-  Top = 148
+  Top = 151
   Width = 117
   HorzScrollBar.Page = 116
   VertScrollBar.Page = 279
@@ -30,36 +30,40 @@ object UnitopPallet: TUnitopPallet
       ClientHeight = 264
       ClientWidth = 34
       TabOrder = 0
-      object SpeedButton1: TSpeedButton
+      object sbCSTR: TSpeedButton
         Left = 1
         Height = 32
+        Hint = 'CSTR'
         Top = 129
         Width = 32
         Align = alTop
         Flat = True
         NumGlyphs = 0
       end
-      object SpeedButton2: TSpeedButton
+      object sbCompressor: TSpeedButton
         Left = 1
         Height = 32
+        Hint = 'Compressor'
         Top = 97
         Width = 32
         Align = alTop
         Flat = True
         NumGlyphs = 0
       end
-      object SpeedButton3: TSpeedButton
+      object sbHeater: TSpeedButton
         Left = 1
         Height = 32
+        Hint = 'Heater'
         Top = 65
         Width = 32
         Align = alTop
         Flat = True
         NumGlyphs = 0
       end
-      object SpeedButton4: TSpeedButton
+      object sbPump: TSpeedButton
         Left = 1
         Height = 32
+        Hint = 'Pump'
         Top = 33
         Width = 32
         Align = alTop
@@ -93,7 +97,7 @@ object UnitopPallet: TUnitopPallet
         Flat = True
         NumGlyphs = 0
       end
-      object SpeedButton8: TSpeedButton
+      object sbMixer: TSpeedButton
         Left = 1
         Height = 32
         Hint = 'Mixer'
@@ -230,36 +234,40 @@ object UnitopPallet: TUnitopPallet
       ClientHeight = 264
       ClientWidth = 32
       TabOrder = 1
-      object SpeedButton9: TSpeedButton
+      object sbPFR: TSpeedButton
         Left = 1
         Height = 32
+        Hint = 'PFR'
         Top = 129
         Width = 30
         Align = alTop
         Flat = True
         NumGlyphs = 0
       end
-      object SpeedButton10: TSpeedButton
+      object sbTee: TSpeedButton
         Left = 1
         Height = 32
+        Hint = 'Tee'
         Top = 97
         Width = 30
         Align = alTop
         Flat = True
         NumGlyphs = 0
       end
-      object SpeedButton11: TSpeedButton
+      object sbHeatExchanger: TSpeedButton
         Left = 1
         Height = 32
+        Hint = 'Heat Exchanger'
         Top = 65
         Width = 30
         Align = alTop
         Flat = True
         NumGlyphs = 0
       end
-      object SpeedButton12: TSpeedButton
+      object sbTank: TSpeedButton
         Left = 1
         Height = 32
+        Hint = 'Tank'
         Top = 33
         Width = 30
         Align = alTop
@@ -293,7 +301,7 @@ object UnitopPallet: TUnitopPallet
         Flat = True
         NumGlyphs = 0
       end
-      object SpeedButton16: TSpeedButton
+      object sbSeparator: TSpeedButton
         Left = 1
         Height = 32
         Hint = 'Separator'
@@ -388,7 +396,7 @@ object UnitopPallet: TUnitopPallet
       ClientHeight = 264
       ClientWidth = 34
       TabOrder = 2
-      object SpeedButton17: TSpeedButton
+      object sbValve: TSpeedButton
         Left = 1
         Height = 32
         Hint = 'Valve'
@@ -464,18 +472,20 @@ object UnitopPallet: TUnitopPallet
         }
         NumGlyphs = 0
       end
-      object SpeedButton18: TSpeedButton
+      object sbCooler: TSpeedButton
         Left = 1
         Height = 32
+        Hint = 'Cooler'
         Top = 65
         Width = 32
         Align = alTop
         Flat = True
         NumGlyphs = 0
       end
-      object SpeedButton19: TSpeedButton
+      object sbPipeSegment: TSpeedButton
         Left = 1
         Height = 32
+        Hint = 'Pipe Segment'
         Top = 129
         Width = 32
         Align = alTop
@@ -500,18 +510,20 @@ object UnitopPallet: TUnitopPallet
         Flat = True
         NumGlyphs = 0
       end
-      object SpeedButton22: TSpeedButton
+      object sbExpander: TSpeedButton
         Left = 1
         Height = 32
+        Hint = 'Expander'
         Top = 97
         Width = 32
         Align = alTop
         Flat = True
         NumGlyphs = 0
       end
-      object SpeedButton23: TSpeedButton
+      object sb3PhaseSeparator: TSpeedButton
         Left = 1
         Height = 32
+        Hint = '3-Phase Separator'
         Top = 33
         Width = 32
         Align = alTop
