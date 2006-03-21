@@ -34,7 +34,7 @@
         <MinVersion Major="1" Valid="True"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="9">
+    <Units Count="12">
       <Unit0>
         <Filename Value="OpSim.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -95,6 +95,21 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="PFDGraph"/>
       </Unit8>
+      <Unit9>
+        <Filename Value="PFDCtrls.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PFDCtrls"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="ExtShapes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ExtShapes"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="ExtGraphics2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ExtGraphics2"/>
+      </Unit11>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
