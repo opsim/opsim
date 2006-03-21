@@ -66,10 +66,10 @@
       </Unit3>
       <Unit4>
         <Filename Value="PfdDesignerU.pas"/>
-        <ComponentName Value="PfdDesigner"/>
+        <ComponentName Value="PFDDesigner"/>
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="PfdDesignerU.lrs"/>
-        <UnitName Value="PfdDesignerU"/>
+        <UnitName Value="PFDDesignerU"/>
       </Unit4>
       <Unit5>
         <Filename Value="DMBaseU.pas"/>

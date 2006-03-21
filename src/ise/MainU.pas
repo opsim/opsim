@@ -80,7 +80,7 @@ var
 implementation
 
 uses
-  AboutU, UnitopPalletU, PfdDesignerU;
+  AboutU, UnitopPalletU, PFDDesignerU;
 
 { TMain }
 

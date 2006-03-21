@@ -14,6 +14,7 @@ object UnitopPallet: TUnitopPallet
   Constraints.MinWidth = 117
   OnCreate = FormCreate
   PixelsPerInch = 96
+  ShowHint = True
   object pnlBase: TPanel
     Left = 1
     Height = 280

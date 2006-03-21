@@ -34,14 +34,14 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms
-  { add your units here }, MainU, AboutU, PfdDesignerU, UnitopPalletU, DMBaseU, MixerSpecU,
+  { add your units here }, MainU, AboutU, PFDDesignerU, UnitopPalletU, DMBaseU, MixerSpecU,
   Utils, PFDGraph;
 
 begin
   Application.Initialize;
   Application.CreateForm(TMain, Main);
   Application.CreateForm(TUnitopPallet, UnitopPallet);
-  Application.CreateForm(TPfdDesigner, PfdDesigner);
+  Application.CreateForm(TPFDDesigner, PFDDesigner);
   Application.CreateForm(TDMBase, DMBase);
   Application.CreateForm(TMixerSpec, MixerSpec);
   Application.Run;

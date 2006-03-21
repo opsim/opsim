@@ -1,7 +1,7 @@
 { $Id$ }
 {
  /***************************************************************************
-                               PfdDesignerU.pas
+                               PFDDesignerU.pas
                                ----------------
                   Abstract: Module for visually building the PFD diagram.
                   Initial Revision : 09/03/2006
@@ -23,7 +23,7 @@
  *                                                                           *
  *****************************************************************************
 }
-unit PfdDesignerU;
+unit PFDDesignerU;
 
 {$mode objfpc}{$H+}
 
@@ -35,9 +35,9 @@ uses
 
 type
 
-  { TPfdDesigner }
+  { TPFDDesigner }
 
-  TPfdDesigner = class (TForm)
+  TPFDDesigner = class (TForm)
     pnlStatusBar: TPanel;
     pnlToolbar: TPanel;
     pnlWorkplace: TPanel;
@@ -53,16 +53,16 @@ type
   end;
   
 var
-  PfdDesigner: TPfdDesigner;
+  PFDDesigner: TPFDDesigner;
 
 implementation
 
-{ TPfdDesigner }
+{ TPFDDesigner }
 
 {
-********************************* TPfdDesigner *********************************
+********************************* TPFDDesigner *********************************
 }
-procedure TPfdDesigner.FormCreate(Sender: TObject);
+procedure TPFDDesigner.FormCreate(Sender: TObject);
 var
   I: Integer;
 begin
@@ -88,19 +88,19 @@ begin
   end;//with
 end;
 
-procedure TPfdDesigner.FormResize(Sender: TObject);
+procedure TPFDDesigner.FormResize(Sender: TObject);
 begin
   
 end;
 
-procedure TPfdDesigner.pnlWorkplaceMouseMove(Sender: TObject; Shift: 
+procedure TPFDDesigner.pnlWorkplaceMouseMove(Sender: TObject; Shift:
         TShiftState; X, Y: Integer);
 begin
   
 end;
 
 initialization
-  {$I PfdDesignerU.lrs}
+  {$I PFDDesignerU.lrs}
 
 end.
 
