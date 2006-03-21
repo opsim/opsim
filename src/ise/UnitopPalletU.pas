@@ -8,7 +8,6 @@
                   Initial Revision : 09/03/2006
                   Author: Samuel Jorge Marques Cartaxo
 
-
  ***************************************************************************/
 
  *****************************************************************************
@@ -93,7 +92,7 @@ end;
 
 procedure TUnitopPallet.XMLPropStorage1SavingProperties(Sender: TObject);
 begin
-
+  
 end;
 
 initialization

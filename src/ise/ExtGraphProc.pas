@@ -7,7 +7,6 @@
                   Initial Revision : 19/03/2006
                   Author: Seppo
 
-
  ***************************************************************************/
 
  *****************************************************************************
@@ -32,7 +31,7 @@ interface
 uses Classes, lclproc, math;
 
 procedure CalculatePentagonPoints(const PentagonRect: TRect;var P1, P2, P3, P4, P5: TPoint);
-function LinesPointOfIntersection(const Line1a, Line1b, Line2a, line2b: TPoint): TPoint; 
+function LinesPointOfIntersection(const Line1a, Line1b, Line2a, line2b: TPoint): TPoint;
 
 implementation
 
@@ -56,7 +55,7 @@ begin
   dx := RoundToInt(r * sin(Pi / 5));
   P3.x := cx - dx;
   P4.x := cx + dx;
-end;               
+end;
 
 function LinesPointOfIntersection(const Line1a, Line1b, Line2a, line2b: TPoint): TPoint;
 var

@@ -7,7 +7,6 @@
                   Initial Revision : 09/03/2006
                   Author: Samuel Jorge Marques Cartaxo
 
-
  ***************************************************************************/
 
  *****************************************************************************
@@ -23,7 +22,7 @@
  *                                                                           *
  *****************************************************************************
 }
-unit PFDDesignerU;
+unit PfdDesignerU;
 
 {$mode objfpc}{$H+}
 
@@ -37,7 +36,7 @@ type
 
   { TPFDDesigner }
 
-  TPFDDesigner = class (TForm)
+  TPfdDesigner = class (TForm)
     pnlStatusBar: TPanel;
     pnlToolbar: TPanel;
     pnlWorkplace: TPanel;
@@ -60,9 +59,9 @@ implementation
 { TPFDDesigner }
 
 {
-********************************* TPFDDesigner *********************************
+********************************* TPfdDesigner *********************************
 }
-procedure TPFDDesigner.FormCreate(Sender: TObject);
+procedure TPfdDesigner.FormCreate(Sender: TObject);
 var
   I: Integer;
 begin
@@ -88,12 +87,12 @@ begin
   end;//with
 end;
 
-procedure TPFDDesigner.FormResize(Sender: TObject);
+procedure TPfdDesigner.FormResize(Sender: TObject);
 begin
   
 end;
 
-procedure TPFDDesigner.pnlWorkplaceMouseMove(Sender: TObject; Shift:
+procedure TPfdDesigner.pnlWorkplaceMouseMove(Sender: TObject; Shift: 
         TShiftState; X, Y: Integer);
 begin
   
