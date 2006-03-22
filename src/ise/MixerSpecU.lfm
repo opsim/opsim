@@ -1,7 +1,7 @@
 object MixerSpec: TMixerSpec
-  Left = 337
+  Left = 405
   Height = 300
-  Top = 164
+  Top = 171
   Width = 400
   HorzScrollBar.Page = 399
   VertScrollBar.Page = 299
