@@ -1,11 +1,12 @@
 { $Id$ }
 {
  /***************************************************************************
-                               Utils.pas
-                               ---------
+
                   Abstract: Contains general utilities.
                   Initial Revision : 19/03/2006
-                  Author: Samuel Jorge Marques Cartaxo
+                  Authors:
+                    - Samuel Jorge Marques Cartaxo
+                    - Additional contributors...
 
  ***************************************************************************/
 

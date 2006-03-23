@@ -1,12 +1,13 @@
 { $Id$ }
 {
  /***************************************************************************
-                               MixerSpecU.pas
-                               --------------
+
                   Abstract: This is the specs form for the Mixer
                             unit operation.
                   Initial Revision : 09/03/2006
-                  Author: Samuel Jorge Marques Cartaxo
+                  Authors:
+                    - Samuel Jorge Marques Cartaxo
+                    - Additional contributors...
 
  ***************************************************************************/
 

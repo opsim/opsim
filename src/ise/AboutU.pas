@@ -1,11 +1,12 @@
 { $Id$ }
 {
  /***************************************************************************
-                               AboutU.pas
-                               ----------
+
                   Abstract: The about box.
                   Initial Revision : 09/03/2006
-                  Author: Samuel Jorge Marques Cartaxo
+                  Authors:
+                    - Samuel Jorge Marques Cartaxo
+                    - Additional contributors...
 
  ***************************************************************************/
 

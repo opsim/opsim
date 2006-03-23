@@ -1,12 +1,13 @@
 { $Id$ }
 {
  /***************************************************************************
-                               MainU.pas
-                               ---------
+
                   Abstract: The main for of the Integrated Simulation
                             Environment (ISE).
                   Initial Revision : 09/03/2006
-                  Author: Samuel Jorge Marques Cartaxo
+                  Authors:
+                    - Samuel Jorge Marques Cartaxo
+                    - Additional contributors...
 
  ***************************************************************************/
 

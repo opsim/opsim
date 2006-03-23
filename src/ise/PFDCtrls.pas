@@ -1,12 +1,13 @@
 { $Id$ }
 {
  /***************************************************************************
-                               PFDCtrls.pas
-                               ------------
+
                   Abstract: Implements the building blocks elements
                             for the PFD diagram.
                   Initial Revision : 09/03/2006
-                  Author: Samuel Jorge Marques Cartaxo
+                  Authors:
+                    - Samuel Jorge Marques Cartaxo
+                    - Additional contributors...
 
  ***************************************************************************/
 

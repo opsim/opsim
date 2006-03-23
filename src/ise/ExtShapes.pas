@@ -1,11 +1,12 @@
 { $Id$ }
 {
  /***************************************************************************
-                               ExtShapes.pas
-                               -------------
+
                   Abstract: Implements special shapes.
                   Initial Revision : 19/03/2006
-                  Author: Seppo
+                  Authors:
+                    - Seppo
+                    - Additional contributors...
 
  ***************************************************************************/
 

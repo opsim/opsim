@@ -1,11 +1,13 @@
 { $Id$ }
 {
  /***************************************************************************
-                              ExtGraphics2.pas
-                              ----------------
+
                   Abstract: Painting routines for special objects.
                   Initial Revision : 19/03/2006
-                  Author: Seppo
+                  Authors:
+                    - Seppo
+                    - Samuel Jorge Marques Cartaxo
+                    - Additional contributors...
 
                   ** Some routines here are from the Lazarus Component
                      Library (unit ExtGraphics.pas).

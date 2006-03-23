@@ -1,13 +1,14 @@
 { $Id$ }
 {
  /***************************************************************************
-                               DMBaseU.pas
-                               -----------
+
                   Abstract: The is the main data module for accessing the
                             database. Should centralize the data manipulation
                             whenever appropriate.
                   Initial Revision : 09/03/2006
-                  Author: Samuel Jorge Marques Cartaxo
+                  Authors:
+                    - Samuel Jorge Marques Cartaxo
+                    - Additional contributors...
 
  ***************************************************************************/
 
