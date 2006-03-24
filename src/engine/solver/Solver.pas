@@ -1,7 +1,7 @@
 { $Id$ }
 {
  /***************************************************************************
- 
+
                   Abstract: Implementation of the global solver.
                   Initial Revision : 22/03/2006
                   Authors:

@@ -1,8 +1,8 @@
 { $Id$ }
 {
  /***************************************************************************
- 
-                  Abstract: Defines the basic exposed elements for 
+
+                  Abstract: Defines the basic exposed elements for
                             constructiong the solver. Such as variables that
                             build equations that build unit operations.
                   Initial Revision : 22/03/2006
