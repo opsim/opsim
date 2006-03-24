@@ -32,7 +32,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  Buttons, XMLPropStorage, IniPropStorage;
+  Buttons, PFDCtrls;
 
 type
 
@@ -65,7 +65,13 @@ type
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
     procedure FormCreate(Sender: TObject);
-    procedure XMLPropStorage1SavingProperties(Sender: TObject);
+    procedure UnitOperationClick(Sender: TObject);
+  private
+    FActivePFDClass: TPFDControlClass;
+    procedure SetActivePFDClass(Value: TPFDControlClass);
+  public
+    property ActivePFDClass: TPFDControlClass read FActivePFDClass write 
+            SetActivePFDClass;
   end;
   
 var
@@ -91,9 +97,28 @@ begin
   end;//with
 end;
 
-procedure TUnitopPallet.XMLPropStorage1SavingProperties(Sender: TObject);
+procedure TUnitopPallet.SetActivePFDClass(Value: TPFDControlClass);
+var
+  I: Integer;
 begin
-  
+  FActivePFDClass := Value;
+  //Reset all buttons to normal state (not down).
+  if FActivePFDClass = nil then
+    for I := 0 to ComponentCount - 1 do
+      if Components[I] is TSpeedButton then
+        TSpeedButton(Components[I]).Down := False;
+end;
+
+procedure TUnitopPallet.UnitOperationClick(Sender: TObject);
+begin
+  FActivePFDClass := nil;
+  if (Sender as TSpeedButton).Down then begin
+    if Sender = sbMixer then
+      FActivePFDClass := TPFDMixer
+    else
+    if Sender = sbValve then
+      FActivePFDClass := TPFDValve;
+  end;//if
 end;
 
 initialization

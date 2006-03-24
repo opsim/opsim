@@ -103,6 +103,7 @@ object UnitopPallet: TUnitopPallet
       }
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbTank: TSpeedButton
       Left = 72
@@ -113,6 +114,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbHeatExchanger: TSpeedButton
       Left = 72
@@ -123,6 +125,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbTee: TSpeedButton
       Left = 72
@@ -133,6 +136,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object SpeedButton1: TSpeedButton
       Left = 40
@@ -142,6 +146,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sb3PhaseSeparator: TSpeedButton
       Left = 40
@@ -152,6 +157,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbExpander: TSpeedButton
       Left = 40
@@ -162,6 +168,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object SpeedButton2: TSpeedButton
       Left = 40
@@ -171,6 +178,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object SpeedButton3: TSpeedButton
       Left = 40
@@ -180,6 +188,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbPipeSegment: TSpeedButton
       Left = 40
@@ -190,6 +199,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbCooler: TSpeedButton
       Left = 40
@@ -200,6 +210,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbValve: TSpeedButton
       Left = 40
@@ -276,6 +287,7 @@ object UnitopPallet: TUnitopPallet
       }
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbMixer: TSpeedButton
       Left = 8
@@ -403,6 +415,7 @@ object UnitopPallet: TUnitopPallet
       }
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object SpeedButton4: TSpeedButton
       Left = 8
@@ -412,6 +425,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object SpeedButton5: TSpeedButton
       Left = 8
@@ -421,6 +435,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object SpeedButton6: TSpeedButton
       Left = 8
@@ -430,6 +445,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbPump: TSpeedButton
       Left = 8
@@ -440,6 +456,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbHeater: TSpeedButton
       Left = 8
@@ -450,6 +467,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbCompressor: TSpeedButton
       Left = 8
@@ -460,6 +478,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbCSTR: TSpeedButton
       Left = 8
@@ -470,6 +489,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object SpeedButton7: TSpeedButton
       Left = 72
@@ -479,6 +499,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object SpeedButton8: TSpeedButton
       Left = 72
@@ -488,6 +509,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object SpeedButton9: TSpeedButton
       Left = 72
@@ -497,6 +519,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
     object sbPFR: TSpeedButton
       Left = 72
@@ -507,6 +530,7 @@ object UnitopPallet: TUnitopPallet
       AllowAllUp = True
       GroupIndex = 1
       NumGlyphs = 0
+      OnClick = UnitOperationClick
     end
   end
 end

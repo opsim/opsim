@@ -72,7 +72,7 @@ begin
   end;//with
   
   //Mixer example.
-  for I := 1 to 10 do begin
+  (*for I := 1 to 10 do begin
     with TPFDMixer.Create(PFDWorkplace) do begin
       Top := Random(300);
       Left := Random(300);
@@ -85,7 +85,7 @@ begin
     Top := 200;
     Left := 300;
     Scale := 1;
-  end;//with
+  end;//with*)
 end;
 
 procedure TPFDDesigner.FormResize(Sender: TObject);

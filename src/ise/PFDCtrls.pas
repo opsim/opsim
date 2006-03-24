@@ -34,6 +34,8 @@ uses
 
 type
 
+  TPFDControlClass = class of TPFDControl;
+
   TPFDWorkplace = class;
 
   TPFDFrame = class (TGraphicControl)
@@ -142,7 +144,7 @@ type
 implementation
 
 uses
-  Utils;
+  Utils, UnitopPalletU;
 
 type
   TGradientStyles = (gsCenter, gsHorizontal, gsVertical, gsTopToBottom, gsBottomToTop, gsLeftToRight, gsRightToLeft);
@@ -547,19 +549,40 @@ begin
   //It is needed to erase the lines to avoid interference with repainting of
   //the controls under the lines.
   EraseGuideLines;
+  
   //Deselect other controls if Shift key is not pressed.
   if (Shift <> [ssShift, ssLeft]) then
     for I := 0 to ControlCount - 1 do
       if  (Controls[I] <> Sender) and
           (Controls[I] is TPFDControl) then
         TPFDControl(Controls[I]).Selected := False;
+  
+  //If dropping a new control, it creates a new one at the mouse position
+  //and disable drop new control mode.
+  if UnitopPallet.ActivePFDClass <> nil then begin
+    with UnitopPallet.ActivePFDClass.Create(Self) do begin
+      Left := X - Width;
+      Top := Y - Height;
+      Scale := 1;
+    end;//with
+    UnitopPallet.ActivePFDClass := nil;
+  end;//if
 end;
 
 procedure TPFDWorkplace.DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: 
         Integer);
 begin
-  if Active then begin
-    ResetGuideLines;
+  //Changes the cursor to indicate a PFD control can be dropped.
+  //Guidelines should not show while in dropping mode for a new control.
+  if UnitopPallet.ActivePFDClass <> nil then begin
+    Cursor := crDrag;
+    EraseGuideLines;
+  end
+  else begin
+    Cursor := crDefault;
+    if Active then begin
+      ResetGuideLines;
+    end;//if
   end;//if
 end;
 
