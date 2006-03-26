@@ -41,7 +41,6 @@ type
     pnlStatusBar: TPanel;
     pnlToolbar: TPanel;
     pnlWorkplace: TPanel;
-    ScrollBox1: TScrollBox;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     procedure FormCreate(Sender: TObject);

@@ -566,6 +566,8 @@ begin
       Scale := 1;
     end;//with
     UnitopPallet.ActivePFDClass := nil;
+    //Return cursor to default state.
+    Cursor := crDefault;
   end;//if
 end;
 
@@ -575,11 +577,11 @@ begin
   //Changes the cursor to indicate a PFD control can be dropped.
   //Guidelines should not show while in dropping mode for a new control.
   if UnitopPallet.ActivePFDClass <> nil then begin
-    Cursor := crDrag;
+    if Cursor <> crCross then
+      Cursor := crCross;
     EraseGuideLines;
   end
   else begin
-    Cursor := crDefault;
     if Active then begin
       ResetGuideLines;
     end;//if
