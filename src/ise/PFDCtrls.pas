@@ -51,7 +51,9 @@ type
     FDrawWireFrame: Boolean;
     FScale: Double;
     FSelected: Boolean;
+    StartDragPoint: TPoint;
     StartPoint: TPoint;
+    function GetDragging: Boolean;
     function GetOffsetX: Integer;
     function GetOffsetY: Integer;
     function GetPFDWorkplace: TPFDWorkplace;
@@ -70,6 +72,7 @@ type
   public
     constructor Create(AOwner: TPFDWorkplace); reintroduce; virtual;
     property Canvas;
+    property Dragging: Boolean read GetDragging;
     property DrawWireFrame: Boolean read FDrawWireFrame write FDrawWireFrame;
     property OffsetX: Integer read GetOffsetX;
     property OffsetY: Integer read GetOffsetY;
@@ -135,6 +138,8 @@ type
     procedure DoMouseUp(Sender: TObject; Button: TMouseButton ; Shift: 
             TShiftState; X, Y: Integer);
     procedure DoResize(Sender: TObject);
+    procedure MouseEnter; override;
+    procedure MouseLeave; override;
   public
     constructor Create(AOwner: TComponent); override;
     procedure NotifyRepaint(APFDControl: TPFDControl);
@@ -160,7 +165,7 @@ begin
   Result := ARect.Right - ARect.Left;
 end;
 
-procedure GradientFillRect(Canvas: TCanvas; ARect: TRect; Origin: TPoint; StartColor,
+(*procedure GradientFillRect(Canvas: TCanvas; ARect: TRect; Origin: TPoint; StartColor,
   EndColor: TColor; Style: TGradientStyles; Colors: Byte);
 var
   StartRGB: array [0..2] of Byte; { Start RGB values }
@@ -266,7 +271,7 @@ begin
   V1.Y := V1.Y/DV1;
   V2.X := V2.X/DV2;
   V2.Y := V2.Y/DV2;}
-end;
+end;*)
 
 procedure PaintGuideLines(ACanvas: TCanvas; ARect: TRect;
         ACenter: TPoint); overload;
@@ -363,6 +368,7 @@ var
 begin
   Selected := True;
   StartPoint := Point(X,Y);
+  StartDragPoint := Point(X,Y);
   
   //Needs to notify the mouse event over the control in order the PFDWorkplace
   //update drawings on its canvas.
@@ -411,6 +417,11 @@ begin
   //update drawings on its canvas.
   P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
   PFDWorkplace.DoMouseUp(Sender, Button, Shift, P.X, P.Y);
+end;
+
+function TPFDControl.GetDragging: Boolean;
+begin
+  Result := MouseCapture;
 end;
 
 function TPFDControl.GetOffsetX: Integer;
@@ -535,9 +546,6 @@ end;
 
 procedure TPFDWorkplace.DoExit(Sender: TObject);
 begin
-  //We need erase the last drawn line when losing the input focus. Otherwise
-  //the canvas will be stained.
-  EraseGuideLines;
   Active := False;
 end;
 
@@ -633,6 +641,17 @@ procedure TPFDWorkplace.ResetGuideLines;
 begin
   EraseGuideLines;
   DrawGuideLines;
+end;
+
+procedure TPFDWorkplace.MouseEnter;
+begin
+  inherited MouseEnter;
+end;
+
+procedure TPFDWorkplace.MouseLeave;
+begin
+  inherited MouseLeave;
+  EraseGuideLines;
 end;
 
 end.
