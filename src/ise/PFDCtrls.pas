@@ -61,13 +61,12 @@ type
     procedure SetSelected(Value: Boolean);
   protected
     procedure ChangeScale(M, D: Integer); override;
-    procedure DoClick(Sender: TObject);
-    procedure DoMouseDown(Sender: TObject; Button: TMouseButton ; Shift: 
-            TShiftState; X, Y: Integer); virtual;
-    procedure DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer); 
-            virtual;
-    procedure DoMouseUp(Sender: TObject; Button: TMouseButton ; Shift: 
-            TShiftState; X, Y: Integer); virtual;
+    procedure Click; override;
+    procedure MouseDown(Button: TMouseButton ; Shift: TShiftState; X, Y: 
+            Integer); override;
+    procedure MouseMove(Shift: TShiftState; X, Y: Integer); override;
+    procedure MouseUp(Button: TMouseButton ; Shift: TShiftState; X, Y: Integer);
+            override;
     procedure Paint; override;
   public
     constructor Create(AOwner: TPFDWorkplace); reintroduce; virtual;
@@ -342,12 +341,6 @@ begin
   
   //Initializes size.
   Scale := 1;
-  
-  OnMouseDown := DoMouseDown;
-  OnMouseMove := DoMouseMove;
-  OnMouseUp := DoMouseUp;
-  OnMouseMove := DoMouseMove;
-  OnClick := DoClick;
 end;
 
 procedure TPFDControl.ChangeScale(M, D: Integer);
@@ -356,67 +349,9 @@ begin
   //Reserved to scale other associated controls, e.g. label tags.
 end;
 
-procedure TPFDControl.DoClick(Sender: TObject);
+procedure TPFDControl.Click;
 begin
-  
-end;
-
-procedure TPFDControl.DoMouseDown(Sender: TObject; Button: TMouseButton ; 
-        Shift: TShiftState; X, Y: Integer);
-var
-  P: TPoint;
-begin
-  Selected := True;
-  StartPoint := Point(X,Y);
-  StartDragPoint := Point(X,Y);
-  
-  //Needs to notify the mouse event over the control in order the PFDWorkplace
-  //update drawings on its canvas.
-  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
-  PFDWorkplace.DoMouseDown(Sender, Button, Shift, P.X, P.Y);
-end;
-
-procedure TPFDControl.DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: 
-        Integer);
-var
-  P: TPoint;
-begin
-  if MouseCapture then begin
-    //Create drag border.
-    if not Assigned(FDragFrame) then begin
-      FDragFrame := TPFDFrame.Create(Self);
-      FDragFrame.Parent := Parent;
-      FDragFrame.SetBounds(Left, Top, Width, Height);
-    end;//if
-    //Move the border frame.
-    with FDragFrame do begin
-      Left := Left + X - StartPoint.X;
-      Top := Top + Y - StartPoint.Y;
-      StartPoint := Point(X,Y);
-    end;//with
-  end;//if
-  
-  //Needs to notify mouse movements over the control in order the PFDWorkplace
-  //update drawings on its canvas.
-  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
-  PFDWorkplace.DoMouseMove(Sender, Shift, P.X, P.Y);
-end;
-
-procedure TPFDControl.DoMouseUp(Sender: TObject; Button: TMouseButton ; Shift: 
-        TShiftState; X, Y: Integer);
-var
-  P: TPoint;
-begin
-  if Assigned(FDragFrame) then begin
-    Left := FDragFrame.Left;
-    Top := FDragFrame.Top;
-    FreeAndNil(FDragFrame);
-  end;//if
-  
-  //Needs to notify the mouse event over the control in order the PFDWorkplace
-  //update drawings on its canvas.
-  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
-  PFDWorkplace.DoMouseUp(Sender, Button, Shift, P.X, P.Y);
+  inherited Click;
 end;
 
 function TPFDControl.GetDragging: Boolean;
@@ -437,6 +372,66 @@ end;
 function TPFDControl.GetPFDWorkplace: TPFDWorkplace;
 begin
   Result := TPFDWorkplace(Owner);
+end;
+
+procedure TPFDControl.MouseDown(Button: TMouseButton ; Shift: TShiftState; X, 
+        Y: Integer);
+var
+  P: TPoint;
+begin
+  inherited MouseDown(Button, Shift, X, Y);
+  Selected := True;
+  StartPoint := Point(X,Y);
+  StartDragPoint := Point(X,Y);
+  
+  //Needs to notify the mouse event over the control in order the PFDWorkplace
+  //update drawings on its canvas.
+  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
+  PFDWorkplace.DoMouseDown(Self, Button, Shift, P.X, P.Y);
+end;
+
+procedure TPFDControl.MouseMove(Shift: TShiftState; X, Y: Integer);
+var
+  P: TPoint;
+begin
+  inherited MouseMove(Shift, X, Y);
+  if MouseCapture then begin
+    //Create drag border.
+    if not Assigned(FDragFrame) then begin
+      FDragFrame := TPFDFrame.Create(Self);
+      FDragFrame.Parent := Parent;
+      FDragFrame.SetBounds(Left, Top, Width, Height);
+    end;//if
+    //Move the border frame.
+    with FDragFrame do begin
+      Left := Left + X - StartPoint.X;
+      Top := Top + Y - StartPoint.Y;
+      StartPoint := Point(X,Y);
+    end;//with
+  end;//if
+  
+  //Needs to notify mouse movements over the control in order the PFDWorkplace
+  //update drawings on its canvas.
+  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
+  PFDWorkplace.DoMouseMove(nil, Shift, P.X, P.Y);
+end;
+
+procedure TPFDControl.MouseUp(Button: TMouseButton ; Shift: TShiftState; X, Y: 
+        Integer);
+var
+  P: TPoint;
+begin
+  inherited MouseUp(Button, Shift, X, Y);
+  if Assigned(FDragFrame) then begin
+    Left := FDragFrame.Left;
+    Top := FDragFrame.Top;
+    FreeAndNil(FDragFrame);
+  end;//if
+  
+  //Needs to notify the mouse event over the control in order the PFDWorkplace
+  //update drawings on its canvas.
+  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
+  PFDWorkplace.DoMouseUp(nil, Button, Shift, P.X, P.Y);
 end;
 
 procedure TPFDControl.Paint;
@@ -632,17 +627,6 @@ begin
   end;//if
 end;
 
-procedure TPFDWorkplace.NotifyRepaint(APFDControl: TPFDControl);
-begin
-  //Reserved for processing after controls repainting.
-end;
-
-procedure TPFDWorkplace.ResetGuideLines;
-begin
-  EraseGuideLines;
-  DrawGuideLines;
-end;
-
 procedure TPFDWorkplace.MouseEnter;
 begin
   inherited MouseEnter;
@@ -652,6 +636,17 @@ procedure TPFDWorkplace.MouseLeave;
 begin
   inherited MouseLeave;
   EraseGuideLines;
+end;
+
+procedure TPFDWorkplace.NotifyRepaint(APFDControl: TPFDControl);
+begin
+  //Reserved for processing after controls repainting.
+end;
+
+procedure TPFDWorkplace.ResetGuideLines;
+begin
+  EraseGuideLines;
+  DrawGuideLines;
 end;
 
 end.
