@@ -78,34 +78,6 @@ type
     property PFDWorkplace: TPFDWorkplace read GetPFDWorkplace;
     property Scale: Double read FScale write SetScale;
     property Selected: Boolean read FSelected write SetSelected;
-  published
-    property Align;
-    property Anchors;
-    property Color;
-    property Constraints;
-    property DragCursor;
-    property DragKind;
-    property DragMode;
-    property Enabled;
-    property Font;
-    property OnClick;
-    property OnContextPopup;
-    property OnDblClick;
-    property OnDragDrop;
-    property OnDragOver;
-    property OnEndDock;
-    property OnEndDrag;
-    property OnMouseDown;
-    property OnMouseMove;
-    property OnMouseUp;
-    property OnStartDock;
-    property OnStartDrag;
-    property ParentColor;
-    property ParentFont;
-    property ParentShowHint;
-    property PopupMenu;
-    property ShowHint;
-    property Visible;
   end;
   
   TPFDMixer = class (TPFDControl)
@@ -129,14 +101,14 @@ type
     procedure DrawGuideLines;
     procedure EraseGuideLines;
   protected
-    procedure DoEnter(Sender: TObject);
-    procedure DoExit(Sender: TObject);
-    procedure DoMouseDown(Sender: TObject; Button: TMouseButton ; Shift: 
-            TShiftState; X, Y: Integer);
-    procedure DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
-    procedure DoMouseUp(Sender: TObject; Button: TMouseButton ; Shift: 
-            TShiftState; X, Y: Integer);
-    procedure DoResize(Sender: TObject);
+    procedure DoEnter; override;
+    procedure DoExit; override;
+    procedure MouseDown(Button: TMouseButton ; Shift:
+            TShiftState; X, Y: Integer); override;
+    procedure MouseMove(Shift: TShiftState; X, Y: Integer); override;
+    procedure MouseUp(Button: TMouseButton ; Shift:
+            TShiftState; X, Y: Integer); override;
+    procedure Resize; override;
     procedure MouseEnter; override;
     procedure MouseLeave; override;
   public
@@ -387,7 +359,7 @@ begin
   //Needs to notify the mouse event over the control in order the PFDWorkplace
   //update drawings on its canvas.
   P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
-  PFDWorkplace.DoMouseDown(Self, Button, Shift, P.X, P.Y);
+  PFDWorkplace.MouseDown(Button, Shift, P.X, P.Y);
 end;
 
 procedure TPFDControl.MouseMove(Shift: TShiftState; X, Y: Integer);
@@ -413,7 +385,7 @@ begin
   //Needs to notify mouse movements over the control in order the PFDWorkplace
   //update drawings on its canvas.
   P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
-  PFDWorkplace.DoMouseMove(nil, Shift, P.X, P.Y);
+  PFDWorkplace.MouseMove(Shift, P.X, P.Y);
 end;
 
 procedure TPFDControl.MouseUp(Button: TMouseButton ; Shift: TShiftState; X, Y: 
@@ -431,7 +403,7 @@ begin
   //Needs to notify the mouse event over the control in order the PFDWorkplace
   //update drawings on its canvas.
   P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
-  PFDWorkplace.DoMouseUp(nil, Button, Shift, P.X, P.Y);
+  PFDWorkplace.MouseUp(Button, Shift, P.X, P.Y);
 end;
 
 procedure TPFDControl.Paint;
@@ -525,30 +497,27 @@ begin
   inherited Create(AOwner);
   Color := $00808040;
   Align := alClient;
-  OnMouseDown := DoMouseDown;
-  OnMouseUp := DoMouseUp;
-  OnMouseMove := DoMouseMove;
-  OnEnter := DoEnter;
-  OnExit := DoExit;
-  OnResize := DoResize;
 end;
 
-procedure TPFDWorkplace.DoEnter(Sender: TObject);
+procedure TPFDWorkplace.DoEnter;
 begin
+  inherited DoEnter;
   //Set flag to indicate that PFDWorkplace has input focus.
   Active := True;
 end;
 
-procedure TPFDWorkplace.DoExit(Sender: TObject);
+procedure TPFDWorkplace.DoExit;
 begin
+  inherited DoExit;
   Active := False;
 end;
 
-procedure TPFDWorkplace.DoMouseDown(Sender: TObject; Button: TMouseButton ; 
+procedure TPFDWorkplace.MouseDown(Button: TMouseButton ;
         Shift: TShiftState; X, Y: Integer);
 var
   I: Integer;
 begin
+  inherited MouseDown(Button, Shift, X, Y);
   //It is needed to erase the lines to avoid interference with repainting of
   //the controls under the lines.
   EraseGuideLines;
@@ -556,7 +525,7 @@ begin
   //Deselect other controls if Shift key is not pressed.
   if (Shift <> [ssShift, ssLeft]) then
     for I := 0 to ControlCount - 1 do
-      if  (Controls[I] <> Sender) and
+      if  (Controls[I] <> GetCaptureControl) and
           (Controls[I] is TPFDControl) then
         TPFDControl(Controls[I]).Selected := False;
   
@@ -574,9 +543,10 @@ begin
   end;//if
 end;
 
-procedure TPFDWorkplace.DoMouseMove(Sender: TObject; Shift: TShiftState; X, Y: 
+procedure TPFDWorkplace.MouseMove(Shift: TShiftState; X, Y:
         Integer);
 begin
+  inherited MouseMove(Shift, X, Y);
   //Changes the cursor to indicate a PFD control can be dropped.
   //Guidelines should not show while in dropping mode for a new control.
   if UnitopPallet.ActivePFDClass <> nil then begin
@@ -591,16 +561,16 @@ begin
   end;//if
 end;
 
-procedure TPFDWorkplace.DoMouseUp(Sender: TObject; Button: TMouseButton ; 
+procedure TPFDWorkplace.MouseUp(Button: TMouseButton ;
         Shift: TShiftState; X, Y: Integer);
-var
-  I: Integer;
 begin
+  inherited MouseUp(Button, Shift, X, Y);
   DrawGuideLines;
 end;
 
-procedure TPFDWorkplace.DoResize(Sender: TObject);
+procedure TPFDWorkplace.Resize;
 begin
+  inherited Resize;
   SetInvalidPoint(CurrentGuideLinesCenter);
 end;
 
