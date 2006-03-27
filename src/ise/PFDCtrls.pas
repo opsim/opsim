@@ -529,12 +529,12 @@ begin
     PaintGuideLines(Canvas, ClientRect, P);
   
     //Draw frames for each selected control while dragging.
-    if DragControl <> nil then begin
-      with TPFDControl(DragControl) do begin
-        Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
-        PaintDragFrames(Origin, P);
-      end;//with
-    end;//if
+    //if DragControl <> nil then begin
+      //with TPFDControl(DragControl) do begin
+        //Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
+        //PaintDragFrames(Origin, P);
+      //end;//with
+    //end;//if
   
     CurrentGuideLinesCenter := P;
   
@@ -551,12 +551,12 @@ begin
     PaintGuideLines(Canvas, ClientRect, CurrentGuideLinesCenter);
   
     //Erase frames for each selected control while dragging.
-    if DragControl <> nil then begin
-      with TPFDControl(DragControl) do begin
-        Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
-        PaintDragFrames(Origin, CurrentGuideLinesCenter);
-      end;//with
-    end;//if
+    //if DragControl <> nil then begin
+      //with TPFDControl(DragControl) do begin
+        //Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
+        //PaintDragFrames(Origin, CurrentGuideLinesCenter);
+      //end;//with
+    //end;//if
   
     //Sets an invalid coordinate to indicate that there is no drawn line now.
     SetInvalidPoint(CurrentGuideLinesCenter);
@@ -641,7 +641,7 @@ var
 begin
   inherited MouseUp(Button, Shift, X, Y);
   
-  //EraseGuideLines;
+  EraseGuideLines;
   
   //If finishing a dragging operation, move the selected controls for the new position.
   if (DragControl <> nil) and
@@ -660,14 +660,13 @@ begin
             Left := Left + Delta.X;
             Top := Top + Delta.Y;
             Visible := True;
+            //Invalidate;
           end;//if
 
     //Set nil to indicate there is no dragged control anymore.
     DragControl := nil;
   
   end;//if
-
-  DrawGuideLines;
 end;
 
 procedure TPFDWorkplace.NotifyRepaint(APFDControl: TPFDControl);
