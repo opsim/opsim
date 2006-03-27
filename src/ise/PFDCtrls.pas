@@ -601,12 +601,13 @@ begin
         TPFDControl(Controls[I]).Selected := False;
   
   //If dropping a new control, it creates a new one at the mouse position
-  //and disable drop new control mode.
+  //and disable drop new control mode. The new control should be in selected state.
   if UnitopPallet.ActivePFDClass <> nil then begin
     with UnitopPallet.ActivePFDClass.Create(Self) do begin
       Left := X - Width;
       Top := Y - Height;
       Scale := 1;
+      Selected := True;
     end;//with
     UnitopPallet.ActivePFDClass := nil;
     //Return cursor to default state.
