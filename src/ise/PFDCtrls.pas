@@ -52,7 +52,6 @@ type
     FScale: Double;
     FSelected: Boolean;
     StartDragPoint: TPoint;
-    StartPoint: TPoint;
     function GetDragging: Boolean;
     function GetOffsetX: Integer;
     function GetOffsetY: Integer;
@@ -374,8 +373,7 @@ begin
     //The control becomes the only selected one.
     Selected := True;
   end;//if
-    
-  StartPoint := Point(X,Y);
+  
   StartDragPoint := Point(X,Y);
   
   //Needs to notify the mouse event over the control in order the PFDWorkplace
@@ -389,21 +387,6 @@ var
   P: TPoint;
 begin
   inherited MouseMove(Shift, X, Y);
-  if MouseCapture then begin
-    //Create drag border.
-    (*if not Assigned(FDragFrame) then begin
-      FDragFrame := TPFDFrame.Create(Self);
-      FDragFrame.Parent := Parent;
-      FDragFrame.SetBounds(Left, Top, Width, Height);
-    end;//if
-    //Move the border frame.
-    with FDragFrame do begin
-      Left := Left + X - StartPoint.X;
-      Top := Top + Y - StartPoint.Y;
-      StartPoint := Point(X,Y);
-    end;//with*)
-  end;//if
-  
   //Needs to notify mouse movements over the control in order the PFDWorkplace
   //update drawings on its canvas.
   P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
@@ -416,12 +399,6 @@ var
   P: TPoint;
 begin
   inherited MouseUp(Button, Shift, X, Y);
-  if Assigned(FDragFrame) then begin
-    Left := FDragFrame.Left;
-    Top := FDragFrame.Top;
-    FreeAndNil(FDragFrame);
-  end;//if
-  
   //Needs to notify the mouse event over the control in order the PFDWorkplace
   //update drawings on its canvas.
   P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
@@ -593,7 +570,7 @@ begin
   //It is needed to erase the lines to avoid interference with repainting of
   //the controls under the lines.
   EraseGuideLines;
-
+  
   //Deselects all controls if a empty workplace are is clicked.
   if not (GetCaptureControl is TPFDControl) then
     for I := 0 to ControlCount - 1 do
@@ -630,12 +607,12 @@ end;
 procedure TPFDWorkplace.MouseMove(Shift: TShiftState; X, Y: Integer);
 begin
   inherited MouseMove(Shift, X, Y);
-
+  
   //Reference the dragged control for later manipulation.
   DragControl := nil;
   if (GetCaptureControl is TPFDControl) then
     DragControl := GetCaptureControl;
-    
+  
   //Changes the cursor to indicate a PFD control can be dropped.
   //Guidelines should not show while in dropping mode for a new control.
   if UnitopPallet.ActivePFDClass <> nil then begin
@@ -665,10 +642,10 @@ begin
   //If finishing a dragging operation, move the selected controls for the new position.
   if (DragControl <> nil) and
      (DragControl is TPFDControl) then begin
-     
+  
     with TPFDControl(DragControl) do
       Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
-      
+  
     Delta.X := Self.ScreenToClient(Mouse.CursorPos).X - Origin.X;
     Delta.Y := Self.ScreenToClient(Mouse.CursorPos).Y - Origin.Y;
     for I := 0 to ControlCount - 1 do
@@ -680,7 +657,7 @@ begin
             Top := Top + Delta.Y;
             Visible := True;
           end;//if
-
+  
     //Set nil to indicate there is no dragged control anymore.
     DragControl := nil;
   
