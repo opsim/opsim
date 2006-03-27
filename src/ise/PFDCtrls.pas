@@ -29,7 +29,7 @@ unit PFDCtrls;
 interface
 
 uses
-  SysUtils, Windows, Forms, Classes, Dialogs, Graphics, Controls, ExtCtrls, StdCtrls,
+  SysUtils, Forms, Classes, Dialogs, Graphics, Controls, ExtCtrls, StdCtrls,
   Types, Math, PFDGraph, LCLProc;
 
 type
