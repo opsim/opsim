@@ -34,6 +34,8 @@ uses
 
   function IsInvalidPoint(P: TPoint): Boolean;
   procedure SetInvalidPoint(var P: TPoint);
+  function ComponentToString(Component: TComponent): string;
+  function StringToComponent(Value: string): TComponent;
 
 implementation
 
@@ -45,6 +47,49 @@ end;
 procedure SetInvalidPoint(var P: TPoint);
 begin
   P := Point(-1,-1);
+end;
+
+function ComponentToString(Component: TComponent): string;
+var
+  BinStream:TMemoryStream;
+  StrStream: TStringStream;
+  s: string;
+begin
+  BinStream := TMemoryStream.Create;
+  try
+    StrStream := TStringStream.Create(s);
+    try
+      BinStream.WriteComponent(Component);
+      BinStream.Seek(0, soFromBeginning);
+      ObjectBinaryToText(BinStream, StrStream);
+      StrStream.Seek(0, soFromBeginning);
+      Result:= StrStream.DataString;
+    finally
+      StrStream.Free;
+    end;//try
+  finally
+    BinStream.Free
+  end;//try
+end;
+
+function StringToComponent(Value: string): TComponent;
+var
+  StrStream:TStringStream;
+  BinStream: TMemoryStream;
+begin
+  StrStream := TStringStream.Create(Value);
+  try
+    BinStream := TMemoryStream.Create;
+    try
+      ObjectTextToBinary(StrStream, BinStream);
+      BinStream.Seek(0, soFromBeginning);
+      Result := BinStream.ReadComponent(nil);
+    finally
+      BinStream.Free;
+    end;//try
+  finally
+    StrStream.Free;
+  end;//try
 end;
 
 end.
