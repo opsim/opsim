@@ -38,21 +38,14 @@ type
 
   TPFDWorkplace = class;
 
-  TPFDFrame = class (TGraphicControl)
-  protected
-    procedure Paint; override;
-  end;
-  
   TPFDControl = class (TGraphicControl)
   private
     DefaultHeight: Integer;
     DefaultWidth: Integer;
-    FDragFrame: TPFDFrame;
     FDrawWireFrame: Boolean;
     FScale: Double;
     FSelected: Boolean;
     StartDragPoint: TPoint;
-    function GetDragging: Boolean;
     function GetOffsetX: Integer;
     function GetOffsetY: Integer;
     function GetPFDWorkplace: TPFDWorkplace;
@@ -70,7 +63,6 @@ type
   public
     constructor Create(AOwner: TPFDWorkplace); reintroduce; virtual;
     property Canvas;
-    property Dragging: Boolean read GetDragging;
     property DrawWireFrame: Boolean read FDrawWireFrame write FDrawWireFrame;
     property OffsetX: Integer read GetOffsetX;
     property OffsetY: Integer read GetOffsetY;
@@ -283,23 +275,6 @@ begin
 end;
 
 {
-********************************** TPFDFrame ***********************************
-}
-procedure TPFDFrame.Paint;
-var
-  P1, P2: TPoint;
-begin
-  with Canvas do begin
-    Pen.Color := clRed;
-    Pen.Mode := pmXor;
-    Pen.Style := psSolid;
-    Brush.Style := bsClear;
-    Rectangle(Rect(0,0,Self.Width-1,Self.Height-1));
-  end;//with
-  PaintGuideLines(Canvas, ClientRect, ScreenToClient(Mouse.CursorPos));
-end;
-
-{
 ********************************* TPFDControl **********************************
 }
 constructor TPFDControl.Create(AOwner: TPFDWorkplace);
@@ -326,11 +301,6 @@ end;
 procedure TPFDControl.Click;
 begin
   inherited Click;
-end;
-
-function TPFDControl.GetDragging: Boolean;
-begin
-  Result := MouseCapture;
 end;
 
 function TPFDControl.GetOffsetX: Integer;
