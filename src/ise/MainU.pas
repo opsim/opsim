@@ -52,11 +52,12 @@ type
     miNew: TMenuItem;
     miOpen: TMenuItem;
     miView: TMenuItem;
-    miViewPfdWorkspace: TMenuItem;
+    miViewPFDDesigner: TMenuItem;
     miViewUnitopPallet: TMenuItem;
     mmStandardMenu: TMainMenu;
     pnlToolbar: TPanel;
     sbExit: TSpeedButton;
+    sbExit1: TSpeedButton;
     sbNew: TSpeedButton;
     sbOpen: TSpeedButton;
     sbSave: TSpeedButton;
