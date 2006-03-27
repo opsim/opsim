@@ -355,7 +355,14 @@ var
   P: TPoint;
 begin
   inherited MouseDown(Button, Shift, X, Y);
-  Selected := True;
+  
+  //If Shift is pressed while clicking, then negate the selection state of the
+  //control. Otherwise, always select it.
+  if (Shift = [ssShift, ssLeft]) then
+    Selected := not Selected
+  else
+    Selected := True;
+    
   StartPoint := Point(X,Y);
   StartDragPoint := Point(X,Y);
   
@@ -529,12 +536,12 @@ begin
     PaintGuideLines(Canvas, ClientRect, P);
   
     //Draw frames for each selected control while dragging.
-    //if DragControl <> nil then begin
-      //with TPFDControl(DragControl) do begin
-        //Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
-        //PaintDragFrames(Origin, P);
-      //end;//with
-    //end;//if
+    if DragControl <> nil then begin
+      with TPFDControl(DragControl) do begin
+        Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
+        PaintDragFrames(Origin, P);
+      end;//with
+    end;//if
   
     CurrentGuideLinesCenter := P;
   
@@ -551,12 +558,12 @@ begin
     PaintGuideLines(Canvas, ClientRect, CurrentGuideLinesCenter);
   
     //Erase frames for each selected control while dragging.
-    //if DragControl <> nil then begin
-      //with TPFDControl(DragControl) do begin
-        //Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
-        //PaintDragFrames(Origin, CurrentGuideLinesCenter);
-      //end;//with
-    //end;//if
+    if DragControl <> nil then begin
+      with TPFDControl(DragControl) do begin
+        Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
+        PaintDragFrames(Origin, CurrentGuideLinesCenter);
+      end;//with
+    end;//if
   
     //Sets an invalid coordinate to indicate that there is no drawn line now.
     SetInvalidPoint(CurrentGuideLinesCenter);
@@ -660,7 +667,6 @@ begin
             Left := Left + Delta.X;
             Top := Top + Delta.Y;
             Visible := True;
-            //Invalidate;
           end;//if
 
     //Set nil to indicate there is no dragged control anymore.
