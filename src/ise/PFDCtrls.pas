@@ -594,16 +594,11 @@ begin
   //the controls under the lines.
   EraseGuideLines;
 
-  ////Clicking a deselected control, without the Shift key pressed, causes the
-  ////selection of the clicked control and deselects all the others. If the clicked
-  ////control is already selected, then the selection state remains the same.
-  //if (Shift <> [ssShift, ssLeft]) and
-     //(GetCaptureControl is TPFDControl) and
-     //(not TPFDControl(GetCaptureControl).Selected) then
-    //for I := 0 to ControlCount - 1 do
-      //if  (Controls[I] <> GetCaptureControl) and
-          //(Controls[I] is TPFDControl) then
-        //TPFDControl(Controls[I]).Selected := False;
+  //Deselects all controls if a empty workplace are is clicked.
+  if not (GetCaptureControl is TPFDControl) then
+    for I := 0 to ControlCount - 1 do
+      if  (Controls[I] is TPFDControl) then
+        TPFDControl(Controls[I]).Selected := False;
   
   //If dropping a new control, it creates a new one at the mouse position
   //and disable drop new control mode.
