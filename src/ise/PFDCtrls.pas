@@ -353,15 +353,27 @@ procedure TPFDControl.MouseDown(Button: TMouseButton ; Shift: TShiftState; X,
         Y: Integer);
 var
   P: TPoint;
+  I: Integer;
 begin
   inherited MouseDown(Button, Shift, X, Y);
-  
   //If Shift is pressed while clicking, then negate the selection state of the
   //control. Otherwise, always select it.
-  if (Shift = [ssShift, ssLeft]) then
-    Selected := not Selected
-  else
+  if (Shift = [ssShift, ssLeft]) then begin
+    Selected := not Selected;
+  end
+  else begin
+    //Clicking a deselected control, without the Shift key pressed, causes the
+    //selection of the clicked control and deselects all the others. If the clicked
+    //control is already selected, then the selection state remains the same.
+    if not Selected then
+      with PFDWorkplace do
+        for I := 0 to ControlCount - 1 do
+          if  (Controls[I] <> Self) and
+              (Controls[I] is TPFDControl) then
+            TPFDControl(Controls[I]).Selected := False;
+    //The control becomes the only selected one.
     Selected := True;
+  end;//if
     
   StartPoint := Point(X,Y);
   StartDragPoint := Point(X,Y);
@@ -581,13 +593,17 @@ begin
   //It is needed to erase the lines to avoid interference with repainting of
   //the controls under the lines.
   EraseGuideLines;
-  
-  //Deselect other controls if Shift key is not pressed.
-  if (Shift <> [ssShift, ssLeft]) then
-    for I := 0 to ControlCount - 1 do
-      if  (Controls[I] <> GetCaptureControl) and
-          (Controls[I] is TPFDControl) then
-        TPFDControl(Controls[I]).Selected := False;
+
+  ////Clicking a deselected control, without the Shift key pressed, causes the
+  ////selection of the clicked control and deselects all the others. If the clicked
+  ////control is already selected, then the selection state remains the same.
+  //if (Shift <> [ssShift, ssLeft]) and
+     //(GetCaptureControl is TPFDControl) and
+     //(not TPFDControl(GetCaptureControl).Selected) then
+    //for I := 0 to ControlCount - 1 do
+      //if  (Controls[I] <> GetCaptureControl) and
+          //(Controls[I] is TPFDControl) then
+        //TPFDControl(Controls[I]).Selected := False;
   
   //If dropping a new control, it creates a new one at the mouse position
   //and disable drop new control mode.
