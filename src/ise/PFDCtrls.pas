@@ -98,23 +98,26 @@ type
   private
     Active: Boolean;
     CurrentGuideLinesCenter: TPoint;
+    FDragControl: TControl;
     procedure DrawGuideLines;
     procedure EraseGuideLines;
   protected
     procedure DoEnter; override;
     procedure DoExit; override;
-    procedure MouseDown(Button: TMouseButton ; Shift:
-            TShiftState; X, Y: Integer); override;
-    procedure MouseMove(Shift: TShiftState; X, Y: Integer); override;
-    procedure MouseUp(Button: TMouseButton ; Shift:
-            TShiftState; X, Y: Integer); override;
-    procedure Resize; override;
+    procedure MouseDown(Button: TMouseButton ; Shift: TShiftState; X, Y: 
+            Integer); override;
     procedure MouseEnter; override;
     procedure MouseLeave; override;
+    procedure MouseMove(Shift: TShiftState; X, Y: Integer); override;
+    procedure MouseUp(Button: TMouseButton ; Shift: TShiftState; X, Y: Integer);
+            override;
+    procedure PaintDragFrames(Origin, Dest: TPoint); overload;
+    procedure Resize; override;
   public
     constructor Create(AOwner: TComponent); override;
     procedure NotifyRepaint(APFDControl: TPFDControl);
     procedure ResetGuideLines;
+    property DragControl: TControl read FDragControl write FDragControl;
   end;
   
 implementation
@@ -369,7 +372,7 @@ begin
   inherited MouseMove(Shift, X, Y);
   if MouseCapture then begin
     //Create drag border.
-    if not Assigned(FDragFrame) then begin
+    (*if not Assigned(FDragFrame) then begin
       FDragFrame := TPFDFrame.Create(Self);
       FDragFrame.Parent := Parent;
       FDragFrame.SetBounds(Left, Top, Width, Height);
@@ -379,7 +382,7 @@ begin
       Left := Left + X - StartPoint.X;
       Top := Top + Y - StartPoint.Y;
       StartPoint := Point(X,Y);
-    end;//with
+    end;//with*)
   end;//if
   
   //Needs to notify mouse movements over the control in order the PFDWorkplace
@@ -512,12 +515,62 @@ begin
   Active := False;
 end;
 
-procedure TPFDWorkplace.MouseDown(Button: TMouseButton ;
-        Shift: TShiftState; X, Y: Integer);
+procedure TPFDWorkplace.DrawGuideLines;
+var
+  P, Origin: TPoint;
+begin
+  //Draw the new line only if the last one was erased and if mouse pointer
+  //is over the control.
+  P := ScreenToClient(Mouse.CursorPos);
+  if IsInvalidPoint(CurrentGuideLinesCenter) and
+     PtInRect(ClientRect, P) then begin
+  
+    //Draw the lines.
+    PaintGuideLines(Canvas, ClientRect, P);
+  
+    //Draw frames for each selected control while dragging.
+    if DragControl <> nil then begin
+      with TPFDControl(DragControl) do begin
+        Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
+        PaintDragFrames(Origin, P);
+      end;//with
+    end;//if
+  
+    CurrentGuideLinesCenter := P;
+  
+  end;//if
+end;
+
+procedure TPFDWorkplace.EraseGuideLines;
+var
+  Origin: TPoint;
+begin
+  if not IsInvalidPoint(CurrentGuideLinesCenter) then begin
+  
+    //Erase guidelines.
+    PaintGuideLines(Canvas, ClientRect, CurrentGuideLinesCenter);
+  
+    //Erase frames for each selected control while dragging.
+    if DragControl <> nil then begin
+      with TPFDControl(DragControl) do begin
+        Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
+        PaintDragFrames(Origin, CurrentGuideLinesCenter);
+      end;//with
+    end;//if
+  
+    //Sets an invalid coordinate to indicate that there is no drawn line now.
+    SetInvalidPoint(CurrentGuideLinesCenter);
+  
+  end;//if
+end;
+
+procedure TPFDWorkplace.MouseDown(Button: TMouseButton ; Shift: TShiftState; X, 
+        Y: Integer);
 var
   I: Integer;
 begin
   inherited MouseDown(Button, Shift, X, Y);
+  
   //It is needed to erase the lines to avoid interference with repainting of
   //the controls under the lines.
   EraseGuideLines;
@@ -541,60 +594,7 @@ begin
     //Return cursor to default state.
     Cursor := crDefault;
   end;//if
-end;
-
-procedure TPFDWorkplace.MouseMove(Shift: TShiftState; X, Y:
-        Integer);
-begin
-  inherited MouseMove(Shift, X, Y);
-  //Changes the cursor to indicate a PFD control can be dropped.
-  //Guidelines should not show while in dropping mode for a new control.
-  if UnitopPallet.ActivePFDClass <> nil then begin
-    if Cursor <> crCross then
-      Cursor := crCross;
-    EraseGuideLines;
-  end
-  else begin
-    if Active then begin
-      ResetGuideLines;
-    end;//if
-  end;//if
-end;
-
-procedure TPFDWorkplace.MouseUp(Button: TMouseButton ;
-        Shift: TShiftState; X, Y: Integer);
-begin
-  inherited MouseUp(Button, Shift, X, Y);
-  DrawGuideLines;
-end;
-
-procedure TPFDWorkplace.Resize;
-begin
-  inherited Resize;
-  SetInvalidPoint(CurrentGuideLinesCenter);
-end;
-
-procedure TPFDWorkplace.DrawGuideLines;
-var
-  P: TPoint;
-begin
-  //Draw the new line only if the last one was erased and if mouse pointer
-  //is over the control.
-  P := ScreenToClient(Mouse.CursorPos);
-  if IsInvalidPoint(CurrentGuideLinesCenter) and
-     PtInRect(ClientRect, P) then begin
-    PaintGuideLines(Canvas, ClientRect, P);
-    CurrentGuideLinesCenter := P;
-  end;//if
-end;
-
-procedure TPFDWorkplace.EraseGuideLines;
-begin
-  if not IsInvalidPoint(CurrentGuideLinesCenter) then begin
-    PaintGuideLines(Canvas, ClientRect, CurrentGuideLinesCenter);
-    //Sets an invalid coordinate to indicate that there is no drawn line now.
-    SetInvalidPoint(CurrentGuideLinesCenter);
-  end;//if
+  
 end;
 
 procedure TPFDWorkplace.MouseEnter;
@@ -608,15 +608,105 @@ begin
   EraseGuideLines;
 end;
 
+procedure TPFDWorkplace.MouseMove(Shift: TShiftState; X, Y: Integer);
+begin
+  inherited MouseMove(Shift, X, Y);
+
+  //Reference the dragged control for later manipulation.
+  DragControl := nil;
+  if (GetCaptureControl is TPFDControl) then
+    DragControl := GetCaptureControl;
+    
+  //Changes the cursor to indicate a PFD control can be dropped.
+  //Guidelines should not show while in dropping mode for a new control.
+  if UnitopPallet.ActivePFDClass <> nil then begin
+    if Cursor <> crCross then
+      Cursor := crCross;
+    EraseGuideLines;
+  end
+  else begin
+    if Active then begin
+      ResetGuideLines;
+    end;//if
+  end;//if
+  
+end;
+
+procedure TPFDWorkplace.MouseUp(Button: TMouseButton ; Shift: TShiftState; X, 
+        Y: Integer);
+var
+  I: Integer;
+  Delta, Origin: TPoint;
+  R: TRect;
+begin
+  inherited MouseUp(Button, Shift, X, Y);
+  
+  //EraseGuideLines;
+  
+  //If finishing a dragging operation, move the selected controls for the new position.
+  if (DragControl <> nil) and
+     (DragControl is TPFDControl) then begin
+     
+    with TPFDControl(DragControl) do
+      Origin := Self.ScreenToClient(ClientToScreen(StartDragPoint));
+      
+    Delta.X := Self.ScreenToClient(Mouse.CursorPos).X - Origin.X;
+    Delta.Y := Self.ScreenToClient(Mouse.CursorPos).Y - Origin.Y;
+    for I := 0 to ControlCount - 1 do
+      if  (Controls[I] is TPFDControl) then
+        with TPFDControl(Controls[I]) do
+          if Selected then begin
+            Visible := False;
+            Left := Left + Delta.X;
+            Top := Top + Delta.Y;
+            Visible := True;
+          end;//if
+
+    //Set nil to indicate there is no dragged control anymore.
+    DragControl := nil;
+  
+  end;//if
+
+  DrawGuideLines;
+end;
+
 procedure TPFDWorkplace.NotifyRepaint(APFDControl: TPFDControl);
 begin
   //Reserved for processing after controls repainting.
+end;
+
+procedure TPFDWorkplace.PaintDragFrames(Origin, Dest: TPoint);
+var
+  I: Integer;
+  Delta: TPoint;
+  R: TRect;
+begin
+  Delta.X := Dest.X - Origin.X;
+  Delta.Y := Dest.Y - Origin.Y;
+  for I := 0 to ControlCount - 1 do
+    if  (Controls[I] is TPFDControl) and
+        (TPFDControl(Controls[I]).Selected) then begin
+      R := TPFDControl(Controls[I]).BoundsRect;
+      with Canvas do begin
+        Pen.Color := clRed;
+        Pen.Mode := pmNot;
+        Pen.Style := psSolid;
+        Brush.Style := bsClear;
+        Rectangle(Rect(R.Left+Delta.X, R.Top+Delta.Y, R.Right+Delta.X-1, R.Bottom+Delta.Y-1));
+      end;//with
+    end;//if
 end;
 
 procedure TPFDWorkplace.ResetGuideLines;
 begin
   EraseGuideLines;
   DrawGuideLines;
+end;
+
+procedure TPFDWorkplace.Resize;
+begin
+  inherited Resize;
+  SetInvalidPoint(CurrentGuideLinesCenter);
 end;
 
 end.
