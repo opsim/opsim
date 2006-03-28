@@ -92,6 +92,7 @@ type
     Active: Boolean;
     CurrentGuideLinesCenter: TPoint;
     FDragControl: TControl;
+    Resized: Boolean;
     procedure DrawGuideLines;
     procedure EraseGuideLines;
   protected
@@ -486,6 +487,8 @@ begin
   inherited Create(AOwner);
   Color := $00808040;
   Align := alClient;
+  SetInvalidPoint(CurrentGuideLinesCenter);
+  Resized := False;
 end;
 
 procedure TPFDWorkplace.DoEnter;
@@ -594,14 +597,19 @@ end;
 procedure TPFDWorkplace.MouseLeave;
 begin
   inherited MouseLeave;
-  //if (not Active) or
-  //   (not PtInRect(ClientRect, ScreenToClient(Mouse.CursorPos))) then
-    EraseGuideLines;
+  EraseGuideLines;
 end;
 
 procedure TPFDWorkplace.MouseMove(Shift: TShiftState; X, Y: Integer);
 begin
   inherited MouseMove(Shift, X, Y);
+  
+  //These mouse move event can be triggered after a window maximization.
+  //In this case, the event should be ignored to avoid staining the canvas.
+  if Resized then begin
+    Resized := False;
+    Exit;
+  end;//if
   
   //Reference the dragged control for later manipulation.
   DragControl := nil;
@@ -703,7 +711,8 @@ end;
 procedure TPFDWorkplace.Resize;
 begin
   inherited Resize;
-  SetInvalidPoint(CurrentGuideLinesCenter);
+  //Set the flag to indicate that a resize operation occured.
+  Resized := True;
 end;
 
 end.
