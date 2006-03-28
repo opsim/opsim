@@ -30,7 +30,7 @@ interface
 
 uses
   SysUtils, Forms, Classes, Dialogs, Graphics, Controls, ExtCtrls, StdCtrls,
-  Types, Math, PFDGraph, LCLProc;
+  Types, Math, PFDGraph, LCLProc, GraphMath;
 
 type
 
@@ -56,6 +56,8 @@ type
     procedure Click; override;
     procedure MouseDown(Button: TMouseButton ; Shift: TShiftState; X, Y: 
             Integer); override;
+    procedure MouseEnter; override;
+    procedure MouseLeave; override;
     procedure MouseMove(Shift: TShiftState; X, Y: Integer); override;
     procedure MouseUp(Button: TMouseButton ; Shift: TShiftState; X, Y: Integer);
             override;
@@ -352,6 +354,24 @@ begin
   PFDWorkplace.MouseDown(Button, Shift, P.X, P.Y);
 end;
 
+procedure TPFDControl.MouseEnter;
+begin
+  inherited MouseEnter;
+  //Necessary to notify PFDWorkplace because if user alternate applications
+  //using Alt+Tab and the application get focus with the mouse pointer over
+  //a PFD control, then MouseEnter will not triggers on PFDWorkplace.
+  PFDWorkplace.MouseEnter;
+end;
+
+procedure TPFDControl.MouseLeave;
+begin
+  inherited MouseLeave;
+  //Necessary to notify PFDWorkplace because if user alternate applications
+  //using Alt+Tab and the application lose focus with the mouse pointer over
+  //a PFD control, then MouseLeave will not triggers on PFDWorkplace.
+  PFDWorkplace.MouseLeave;
+end;
+
 procedure TPFDControl.MouseMove(Shift: TShiftState; X, Y: Integer);
 var
   P: TPoint;
@@ -504,6 +524,8 @@ begin
   
     CurrentGuideLinesCenter := P;
   
+    Application.ProcessMessages;
+  
   end;//if
 end;
 
@@ -526,6 +548,8 @@ begin
   
     //Sets an invalid coordinate to indicate that there is no drawn line now.
     SetInvalidPoint(CurrentGuideLinesCenter);
+  
+    Application.ProcessMessages;
   
   end;//if
 end;
@@ -560,7 +584,6 @@ begin
     //Return cursor to default state.
     Cursor := crDefault;
   end;//if
-  
 end;
 
 procedure TPFDWorkplace.MouseEnter;
@@ -571,7 +594,9 @@ end;
 procedure TPFDWorkplace.MouseLeave;
 begin
   inherited MouseLeave;
-  EraseGuideLines;
+  //if (not Active) or
+  //   (not PtInRect(ClientRect, ScreenToClient(Mouse.CursorPos))) then
+    EraseGuideLines;
 end;
 
 procedure TPFDWorkplace.MouseMove(Shift: TShiftState; X, Y: Integer);
@@ -607,6 +632,8 @@ var
 begin
   inherited MouseUp(Button, Shift, X, Y);
   
+  //We need to remove the guidelines to prevent interference with the control
+  //repaint, which could cause staining on the canvas.
   EraseGuideLines;
   
   //If finishing a dragging operation, move the selected controls for the new position.
@@ -626,12 +653,18 @@ begin
             Left := Left + Delta.X;
             Top := Top + Delta.Y;
             Visible := True;
+            //We must allow application to process paint messages so the
+            //repaiting is finished before the guidelines are drawn again.
+            Application.ProcessMessages;
           end;//if
   
     //Set nil to indicate there is no dragged control anymore.
     DragControl := nil;
   
   end;//if
+  
+  //Redraw the lines.
+  DrawGuideLines;
 end;
 
 procedure TPFDWorkplace.NotifyRepaint(APFDControl: TPFDControl);
