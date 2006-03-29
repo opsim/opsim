@@ -1,0 +1,996 @@
+unit 	SI-unit 	remarks 	factor unit -> SI-unit (only for information) 
+		no dimension 	1. 
+rad 			0.15915475 
+(BTU.ft3)^(1/2) 	(J.m3)^(1/2) 		5.4658892 
+(kJ.m3)^(1/2) 	(J.m3)^(1/2) 		31.6227766 
+(J/cm3)^(1/2) 	(J/c3)^(1/2) 		31.6227766 
+(BTU/ft3)^(1/2) 	(J/m3)^(1/2) 		1.9302605E2 
+(cal/cm3)^(1/2) 	(J/m3)^(1/2) 		2046.1671 
+(J/m3)^(1/2) 	(J/m3)^(1/2) 		1. 
+(kcal/m3)^(1/2) 	(J/m3)^(1/2) 		64.70548 
+(g.l)^(1/2)/min 	(kg.m3)^(1/2)/s 		1.6666667E-5 
+(kg.m3)^(1/2)/s 	(kg.m3)^(1/2)/s 		1. 
+(lb.ft3)^(1/2)/hr 	(kg.m3)^(1/2)/s 		3.1481311E-5 
+(lb.gal)^(1/2)/min 	(kg.m3)^(1/2)/s 		6.9061846E-4 
+bar.m6/mol2 	Pa.m6/mol2 		1.E5 
+bar.m9.K2/mol3 	Pa.m9.K2/mol3 		1.E5 
+bar.m9/mol3 	Pa.m9/mol3 		1.E5 
+A 	A 	Ampere 	1. 
+mA 	A 		1.E-3 
+A/cm2 	A/m2 		10000. 
+A/m2 	A/m2 		1. 
+mA/cm2 	A/m2 		10. 
+mA/m2 	A/m2 		0.001 
+amagat 	amagat 		1. 
+atomic % 	atomic fraction 		0.01 
+atomic fraction 	atomic fraction 		1. 
+Debye 	Coul.m 		3.33564E-30 
+Coul 	Coul 		1. 
+Coul.m 	Coul.m 		1. 
+Coul/mol 	Coul/mol 		1. 
+Farad 	Farad 		1. 
+mFarad 	Farad 		0.001 
+nFarad 	Farad 		1.E-9 
+pFarad 	Farad 		1.E-12 
+Farad/m 	Farad/m 		1. 
+oz 	g 		28.349523 
+H 	H 		1. 
+H/m 	H/m 		1. 
+hr-1 	Hz 		2.7777778E-4 
+Hz 	Hz 		1. 
+min-1 	Hz 		1.6666667E-2 
+s-1 	Hz 		1. 
+BTU 	J 	Britsh thermal unit 	1055.0559 
+cal 	J 		4.1868 
+erg 	J 		1.E-7 
+eV 	J 		1.6021892E-19 
+GJ 	J 		1.00E9 
+J 	J 		1. 
+kcal 	J 		4.1868E3 
+kJ 	J 		1.E3 
+kp.m 	J 		9.80665 
+kW.hr 	J 		3.6E6 
+mJ 	J 		0.001 
+MMBTU 	J 	million BTUs 	1.0550559E9 
+MMkcal 	J 	million kilocalories 	4.1868E9 
+erg.mK/cm3 	J.K/m3 		0.1 
+J.K/m3 	J.K/m3 		1. 
+kJ/kg.degC 	J.kg.K 		1.0E3 
+J.s 	J.s 		1. 
+J/Hz 	J.s 		1. 
+J.s/mol 	J.s/mol 		1. 
+BTU/cycle 	J/cycle 		1054.35 
+cal/cycle 	J/cycle 		4.1868 
+GJ/cycle 	J/cycle 		1.0E9 
+J/cycle 	J/cycle 		1. 
+kcal/cycle 	J/cycle 		1000. 
+MMBTU/cycle 	J/cycle 		1.0550559E9 
+MMkcal/cycle 	J/cycle 		4.1868E9 
+J/kg.degC 	J/g.K 		1.E-3 
+J/kg.K 	J/g.K 		1.E-3 
+kcal/g.degC 	J/g.K 		4.1868E3 
+BTU/degF 	J/K 	British thermal unit per degrees Fahrenheit 	1.899101E3 
+cal/K 	J/K 		4.1868 
+J/K 	J/K 		1. 
+kcal/K 	J/K 		4.1868E3 
+kJ/K 	J/K 		1.E3 
+kcal/degC.hr 	J/K.s 		1.163 
+BTU/lb 	J/kg 	Britsh thermal unit per pound avdp. 	2.32600E3 
+cal/g 	J/kg 		4.1868E3 
+cal/g 	J/kg 		4186.8 
+cal/kg 	J/kg 		4.1868 
+J/g 	J/kg 		1.E3 
+J/kg 	J/kg 		1. 
+kcal(th)/kg 	J/kg 		4184. 
+kcal/g 	J/kg 		4186.8E3 
+kcal/kg 	J/kg 		4186.8 
+kJ/g 	J/kg 		1.E6 
+kJ/g 	J/kg 		1.E6 
+kJ/kg 	J/kg 		1.0E3 
+kW.hr/ton 	J/kg 		3600. 
+mJ/kg 	J/kg 		0.001 
+MJ/kg 	J/kg 		1.E6 
+MMBTU/lb 	J/kg 	million BTU per pound (avdp) 	2.32444E9 
+MMkcal/kg 	J/kg 		4.1868E9 
+BTU/lb.degF 	J/kg.K 		4.1868E3 
+BTU/lb.Rnk 	J/kg.K 		4.1868E3 
+cal(th)/g.K 	J/kg.K 		4148. 
+cal/g.degC 	J/kg.K 		4.1868E3 
+cal/g.K 	J/kg.K 		4186.8 
+cal/kg.degC 	J/kg.K 		4.1868 
+cal/kg.K 	J/kg.K 		4.1868 
+J/g.degC 	J/kg.K 		1.E3 
+J/g.K 	J/kg.K 		1.E3 
+J/kg.K 	J/kg.K 		1. 
+kcal/g.K 	J/kg.K 		4186.8E3 
+kcal/kg.degC 	J/kg.K 		4186.8 
+kcal/kg.K 	J/kg.K 		4.1868E3 
+kcal/kg.K 	J/kg.K 		4186.8 
+kJ/g.degC 	J/kg.K 		1.E6 
+kJ/g.K 	J/kg.K 		1.E6 
+kJ/kg.K 	J/kg.K 		1000. 
+BTU/lb.Rnk2 	J/kg.K2 		7536.2403 
+J/kg.K2 	J/kg.K2 		1. 
+kcal/kg.K2 	J/kg.K2 		4186.8 
+kJ/g.K2 	J/kg.K2 		1.E6 
+kJ/kg.K2 	J/kg.K2 		1000. 
+BTU/lb.Rnk3 	J/kg.K3 		13565.2326 
+kcal/kg.K3 	J/kg.K3 		4186.8 
+kJ/g.K3 	J/kg.K3 		1.E6 
+kJ/kg.K3 	J/kg.K3 		1000. 
+BTU/lb.Rnk4 	J/kg.K4 		24417.4187 
+kcal/kg.K4 	J/kg.K4 		4186.8 
+kJ/g.K4 	J/kg.K4 		1.E6 
+kJ/kg.K4 	J/kg.K4 		1000. 
+BTU/lb.Rnk5 	J/kg.K5 		43951.3537 
+kcal/kg.K5 	J/kg.K5 		4186.8 
+kJ/g.K5 	J/kg.K5 		1.E6 
+kJ/kg.K5 	J/kg.K5 		1000. 
+J/g.bar 	J/kg.Pa 		0.01 
+J/kg.Pa 	J/kg.Pa 		1. 
+J/g.bar.K 	J/kg.Pa.K 		0.01 
+J/kg.Pa.K 	J/kg.Pa.K 		1. 
+J/g.bar2.K 	J/kg.Pa2.K 		1.E-7 
+J/kg.Pa2.K 	J/kg.Pa2.K 		1. 
+BTU/ft.hr 	J/m.s 		0.96150757 
+cal/m.s 	J/m.s 		4.1868 
+J/m.s 	J/m.s 		1. 
+MMBTU/hr.ft 	J/m.s 		0.96150757E6 
+BTU.ft/ft2.hr.Rnk 	J/m.s.K 		0.09495505 
+BTU/ft.hr.degF 	J/m.s.K 		1.730734744 
+cal.cm/s.cm2.K 	J/m.s.K 		418.68 
+kcal/m.hr.degC 	J/m.s.K 		1.163 
+MMBTU/hr.ft2.Rnk 	J/m.s.K 		5.6782633E6 
+cal/cm2 	J/m2 		4.1868E4 
+erg/cm2 	J/m2 		1.E-3 
+J/cm2 	J/m2 		1.E4 
+J/m2 	J/m2 		1. 
+kcal/m2 	J/m2 		4.1868E3 
+kJ/m2 	J/m2 		1.E3 
+BTU/ft2.hr.Rnk 	J/m2.K 		5.6782636 
+cal/cm2.K 	J/m2.K 		4.1868E4 
+cal/m2.K 	J/m2.K 		4.1868 
+J/cm2.K 	J/m2.K 		1.E4 
+J/m2.K 	J/m2.K 		1. 
+kcal/m2.K 	J/m2.K 		4.1868E3 
+kJ/m2.K 	J/m2.K 		1.E3 
+BTU/ft2.hr 	J/m2.s 		3.1545909 
+BTU/ft2.hr.degF 	J/m2.s.K 		5.6782636 
+J/m2.s.K 	J/m2.s.K 		1.0 
+BTU/ft3 	J/m3 		29.875856 
+cal/cm3 	J/m3 		4.1868E6 
+J/m3 	J/m3 		1. 
+kcal/m3 	J/m3 		4.1868E3 
+kJ/cm3 	J/m3 		1000. 
+kJ/m3 	J/m3 		1.0E3 
+BTU/ft3.Rnk 	J/m3.K 		53.776541 
+cal/cm3.K 	J/m3.K 		4.1868E6 
+J/cm3.K 	J/m3.K 		1000000. 
+J/m3.K 	J/m3.K 		1. 
+kcal/m3.K 	J/m3.K 		4.1868E3 
+kJ/m3.K 	J/m3.K 		1000. 
+BTU/lbmol 	J/mol 	British thermal units per pound-moles 	2.326E3 
+BTU/mol 	J/mol 		1055.056 
+cal(th)/mol 	J/mol 		4.184 
+cal/kmol 	J/mol 		4.1868E3 
+cal/mol 	J/mol 		4.1868 
+GJ/kmol 	J/mol 		1.0E12 
+J/kmol 	J/mol 		0.001 
+J/mol 	J/mol 		1. 
+kcal(th)/mol 	J/mol 		4.184E3 
+kcal/kmol 	J/mol 		4.1868 
+kcal/mol 	J/mol 		4.1868E3 
+kJ/kmol 	J/mol 		1.0 
+kJ/mol 	J/mol 		1000. 
+MJ/kmol 	J/mol 		1000. 
+MMBTU/lbmol 	J/mol 		2.32444E6 
+MMkcal/mol 	J/mol 		4.1868E9 
+BTU/lbmol.degF 	J/mol.K 		4.1868 
+BTU/lbmol.Rnk 	J/mol.K 		4.1868 
+BTU/mol.F 	J/mol.K 		1.8991006E3 
+BTU/mol.Rnk 	J/mol.K 		1.8991006E3 
+cal(th)/mol.K 	J/mol.K 		4.184 
+cal/kmol.degC 	J/mol.K 		4.1868E3 
+cal/kmol.K 	J/mol.K 		4.1868E3 
+cal/mol.degC 	J/mol.K 		4.1868 
+cal/mol.K 	J/mol.K 		4.1868 
+cal/mol.K 	J/mol.K 		4.1868 
+J/kmol.degC 	J/mol.K 		0.001 
+J/kmol.K 	J/mol.K 		0.001 
+J/mol.degC 	J/mol.K 		1. 
+J/mol.K 	J/mol.K 		1 
+kcal/kmol.degC 	J/mol.K 		4.1868 
+kcal/kmol.K 	J/mol.K 		4.1868 
+kcal/mol.degC 	J/mol.K 		4.1868E3 
+kcal/mol.K 	J/mol.K 		4.1868E3 
+kJ/kmol.degC 	J/mol.K 		1. 
+kJ/kmol.K 	J/mol.K 		1. 
+kJ/mol.degC 	J/mol.K 		1000. 
+kJ/mol.K 	J/mol.K 		1.E3 
+BTU/lbmol.Rnk2 	J/mol.K2 		7.53624 
+cal(th)/mol.K2 	J/mol.K2 		4.184 
+cal/mol.K2 	J/mol.K2 		4.1868 
+J/mol.K2 	J/mol.K2 		1. 
+kcal/kmol.K2 	J/mol.K2 		4.1868 
+kJ/kmol.K2 	J/mol.K2 		1. 
+kJ/mol.K2 	J/mol.K2 		1000. 
+cal(th)/mol.K3 	J/mol.K3 		4.184 
+cal/mol.K3 	J/mol.K3 		4.1868 
+J/mol.K3 	J/mol.K3 		1. 
+kJ/mol.K3 	J/mol.K3 		1000. 
+cal(th)/mol.K4 	J/mol.K4 		4.184 
+J/mol.K4 	J/mol.K4 		1. 
+cal/mol.atm 	J/mol.Pa 		4.13205E-5 
+J/mol.Pa 	J/mol.Pa 		1. 
+cal/mol.Torr.K 	J/mol.Pa.K 		0.0314035751 
+J/mol.Pa.K 	J/mol.Pa.K 		1. 
+BTU/hr 	J/s 		0.29307107 
+cal/hr 	J/s 		1.163E-3 
+cal/s 	J/s 		4.1868 
+GJ/hr 	J/s 		2.7777778E5 
+J/s 	J/s 		1. 
+kcal/hr 	J/s 		1.1629833 
+kJ/hr 	J/s 		0.2777777778 
+kJ/min 	J/s 		16.666667 
+kJ/s 	J/s 		1.0E3 
+MJ/hr 	J/s 		277.77778 
+MMBTU/day 	J/s 		1.221129458E4 
+MMBTU/hr 	J/s 		0.29307107E6 
+MMkcal/day 	J/s 		4.84576375E4 
+MMkcal/hr 	J/s 		1.1629833E6 
+BTU/hr.degF 	J/s.K 		0.52753056 
+BTU/hr.Rnk 	J/s.K 		.527527926 
+cal/s.K 	J/s.K 		4.1868 
+J/s.K 	J/s.K 		1. 
+kcal/hr.K 	J/s.K 		1.1629833 
+kcal/s.K 	J/s.K 		4186.8 
+kJ/hr.degC 	J/s.K 		0.27777778 
+kJ/s.degC 	J/s.K 		1.0E3 
+kJ/s.K 	J/s.K 		1.0E3 
+kcal/hr.m2 	J/s.m2 		1.1629833 
+kJ/hr.m2 	J/s.m2 		0.2777777778 
+kJ/s.m2 	J/s.m2 		1000. 
+kJ/s.m2.K 	J/s.m2 		1.0E3 
+kcal/hr.m2.degC 	J/s.m2.K 		1.1629833 
+kcal/hr.m2.K 	J/s.m2.K 		1.1629833 
+kcal/s.m2.K 	J/s.m2.K 		4186.8 
+kJ/hr.m2.degC 	J/s.m2.K 		0.2777777778 
+kJ/s.m2.degC 	J/s.m2.K 		1000. 
+degC 	K 	degrees centigrade 	1. (+273.15) 
+degF 	K 		0.55555556 (+255.37222) 
+K 	K 		1. 
+kK 	K 		1000. 
+mK 	K 		0.001 
+Reamur 	K 		1.25 (+273.15) 
+Rnk 	K 		0.55555556 
+degF/psia 	K/Pa 		8.05764E-5 
+K/atm 	K/Pa 		9.86923E-6 
+K/bar 	K/Pa 		1.E-5 
+K/MPa 	K/Pa 		1.E-6 
+K/Pa 	K/Pa 		1. 
+degC-1 	K-1 		1. 
+degF-1 	K-1 		1.8 
+K-1 	K-1 		1. 
+Rnk-1 	K-1 		1.8 
+K2 	K2 		1. 
+degF2/lbmol2 	K2/mol2 		1.500111E-6 
+degF2/lbmol3 	K2/mol3 		3.3071795E-9 
+K2/Pa 	K2/Pa 		1. 
+K2/Torr 	K2/Pa 		7.500615E-3 
+K3 	K3 		1. 
+g 	kg 		0.001 
+kg 	kg 		1. 
+lb 	kg 	pound avdp. 	0.45359237 
+Mlb 	kg 	1000 pounds (avdp) 	453.59237 
+ton 	kg 		1000. 
+ton(long) 	kg 		1016.0469 
+ton(short) 	kg 		907.18474 
+kg.m2 	kg.m2 		1. 
+lb.in2 	kg.m2 		2.9263961E-4 
+g/cycle 	kg/cycle 		0.001 
+kg/cycle 	kg/cycle 		1. 
+lb/cycle 	kg/cycle 		0.45359237 
+Mlb/cycle 	kg/cycle 		453.59237 
+ton(short)/cycle 	kg/cycle 		907.18474 
+ton/cycle 	kg/cycle 		1000. 
+kg/J 	kg/J 		1. 
+g/100g solvent 	kg/kg solvent 		0.01 
+g/kg solvent 	kg/kg solvent 		0.001 
+kg/kg solvent 	kg/kg solvent 	kg solute per kg solvent 	1. 
+mg/kg solvent 	kg/kg solvent 		1.E-6 
+kg/m 	kg/m 		1. 
+lb/ft 	kg/m 		1.4881639 
+kg/m.hr 	kg/m.s 		2.7777778E-4 
+slug/hr.ft 	kg/m.s 		0.013268619 
+kg/m.hr2 	kg/m.s2 		7.7160494E-8 
+kg/m.s2 	kg/m.s2 		1. 
+lb/in.s2 	kg/m.s2 		17.857967 
+lb/m.s2 	kg/m.s2 		0.45359237 
+g.cm2 	kg/m2 		10. 
+kg/cm2 	kg/m2 		1.E-4 
+kg/m2 	kg/m2 		1. 
+lb.ft2 	kg/m2 		0.04214 
+poundals/ft2 	kg/m2 		0.15175047 
+kg/m2.atm.hr 	kg/m2.Pa.s 		2.7414535E-9 
+lb/ft2.atm.hr 	kg/m2.Pa.s 		1.3384948E-8 
+g/cm2.s 	kg/m2.s 		10. 
+kg/m2.hr 	kg/m2.s 		2.7777778E-4 
+kg/m2.s 	kg/m2.s 		1. 
+lb/ft2.hr 	kg/m2.s 		1.3562298E-3 
+lb/ft2.s 	kg/m2.s 		4.8824276 
+g/cm2.s.atm 	kg/m2.s.Pa 		9.8692326E-5 
+g/cm2.s.Pa 	kg/m2.s.Pa 		10. 
+kg/m2.s.Pa 	kg/m2.s.Pa 		1. 
+g/100ml 	kg/m3 		10. 
+g/cm3 	kg/m3 		1000. 
+g/dm3 	kg/m3 		1. 
+g/l 	kg/m3 		1. 
+g/m3 	kg/m3 		1.E-3 
+g/ml 	kg/m3 		1.E3 
+kg/cm3 	kg/m3 		1.E6 
+kg/dm3 	kg/m3 		1.E3 
+kg/l 	kg/m3 		1.E3 
+kg/m3 	kg/m3 		1. 
+lb/ft3 	kg/m3 		16.018463 
+lb/gal 	kg/m3 		119.82643 
+lb/in3 	kg/m3 		27.6799E3 
+mg/cm3 	kg/m3 		1. 
+mg/l 	kg/m3 		1.E-3 
+mg/m3 	kg/m3 		1.E-6 
+g/100cm3 solvent 	kg/m3 solvent 		10. 
+g/l solvent 	kg/m3 solvent 		1. 
+kg/m3 solvent 	kg/m3 solvent 	kg solute per m3 solvent 	1. 
+kg/m3(0 C, 1 atm) 	kg/m3(0 C, 1 atm) 	kg per norm cubic m 	1. 
+g/cm3.K 	kg/m3.K 		1.E3 
+kg/m3.K 	kg/m3.K 		1. 
+g/mol 	kg/mol 		0.001 
+kg/mol 	kg/mol 		1. 
+lb/lb(force).hr.ft2 	kg/N.s.m2 		3.0489259E-4 
+g/atm.hr 	kg/Pa.s 		2.7414535E-6 
+g/bar.hr 	kg/Pa.s 		2.7777778E-6 
+g/kPa.hr 	kg/Pa.s 		2.7777778E-4 
+g/kPa.min 	kg/Pa.s 		1.6666667E-8 
+g/kPa.s 	kg/Pa.s 		1.E-6 
+g/mmHg.hr 	kg/Pa.s 		2.0835042E-3 
+kg/atm.hr 	kg/Pa.s 		2.7414535E-9 
+kg/atm.s 	kg/Pa.s 		9.8692327E-6 
+kg/bar.hr 	kg/Pa.s 		2.77777778E-9 
+kg/bar.s 	kg/Pa.s 		1.E-5 
+kg/cmH2O.hr 	kg/Pa.s 		2.8326244E-6 
+kg/kPa.hr 	kg/Pa.s 		2.77777778E-7 
+kg/kPa.min 	kg/Pa.s 		1.66666667E-5 
+kg/kPa.s 	kg/Pa.s 		1.E-3 
+kg/mmH2O.hr 	kg/Pa.s 		2.8326244E-7 
+kg/mmHg.hr 	kg/Pa.s 		2-0835042E-6 
+kg/Pa.hr 	kg/Pa.s 		2.77777778E-4 
+lb/atm.hr 	kg/Pa.s 		1.2435024E-9 
+lb/atm.s 	kg/Pa.s 		4.4766086E-6 
+lb/inH2O.hr 	kg/Pa.s 		5.0585892E-7 
+lb/inHg(32F).hr 	kg/Pa.s 		3.7207138E-8 
+lb/psi.hr 	kg/Pa.s 		1.827444E-8 
+lb/psi.min 	kg/Pa.s 		1.0964664E-6 
+lb/psi.s 	kg/Pa.s 		6.5787985E-5 
+g/s 	kg/s 		1.E-3 
+kg/day 	kg/s 		1.157407417E-5 
+kg/hr 	kg/s 		0.27777778E-3 
+kg/min 	kg/s 		0.0166666667 
+kg/s 	kg/s 		1. 
+lb/day 	kg/s 		5.249911667E-6 
+lb/hr 	kg/s 		0.12599788E-3 
+lb/s 	kg/s 		453.59237E-3 
+Mlb/hr 	kg/s 	1000 pounds (avdp) per hour 	0.12599788 
+ton/day 	kg/s 		0.0115741 
+ton/hr 	kg/s 		0.27777778 
+ton/year 	kg/s 		3.1709792E-5 
+kg/kW.hr 	kg/W.hr 		2.777778E-7 
+lb/hp.hr 	kg/W.s 		1.689659E-7 
+kg-1.m-1.s-1 	kg-1.m-1.s-1 		1. 
+kJ/cycle 	kJ/cycle 		1000. 
+l/Val 	l/Val 		1. 
+Ang 	m 	Angstrøm 	1.E-10 
+cm 	m 		0.01 
+dm 	m 		0.1 
+ft 	m 		0.3048 
+in 	m 		0.0254 
+km 	m 		1000. 
+m 	m 		1. 
+micron 	m 		1.E-6 
+mile 	m 		1609.344 
+mm 	m 		1.E-3 
+nm 	m 		1.E-9 
+um 	m 	mikro-meter 	1.E-6 
+yd 	m 		0.9144 
+m/K 	m/K 		1. 
+ft/lb 	m/kg 		6.719690E-1 
+m/kg 	m/kg 		1. 
+bbl/ft2.hr 	m/s 	barrel per square foot and hour 	4.7535474E-4 
+cm/hr 	m/s 		2.7777778E-6 
+cm/s 	m/s 		0.01 
+cm2/cm.s 	m/s 		0.01 
+ft/hr 	m/s 		8.46666667E-5 
+ft/min 	m/s 		5.08E-3 
+ft/s 	m/s 		0.3048 
+ft2/ft.hr 	m/s 		8.4666667E-5 
+ft2/ft.s 	m/s 		0.3048 
+ft3/ft2.s 	m/s 		0.3048 
+ft3/ft2.hr 	m/s 		8.46666667E-5 
+gal/ft2.min 	m/s 		6.79097E-4 
+km/hr 	m/s 		0.27777778 
+km/s 	m/s 		1000. 
+l/m2.hr 	m/s 		2.7778E-7 
+l/m2.s 	m/s 		1.E-3 
+m/hr 	m/s 		2.77777778E-4 
+m/min 	m/s 		0.0166666667 
+m/s 	m/s 		1. 
+m/s 	m/s 		1. 
+m2/m.hr 	m/s 		2.7777778E-4 
+m2/m.s 	m/s 		1. 
+m3/m2.s 	m/s 		1. 
+m3/m2.min 	m/s 		1.6666667E-2 
+mile/hr 	m/s 		0.44704 
+l/hr.rpm 	m/s.rpm 		2.7777778E-7 
+m3/min.rpm 	m/s.rpm 		1.6666667E-2 
+cm-1 	m-1 		100. 
+cm2/cm3 	m-1 		100. 
+ft-1 	m-1 		3.280840 
+ft2/ft3 	m-1 		3.2808 
+in-1 	m-1 		39.370079 
+in2/in3 	m-1 		0.39370079 
+m-1 	m-1 		1. 
+m2/m3 	m-1 		1. 
+mm-1 	m-1 		1000.0 
+mm2/mm3 	m-1 		1000. 
+m-1.s-2 	m-1.s-2 		1. 
+cm12/mol4 	m12/mol4 		1.E-24 
+l4/mol4 	m12/mol4 		1.E-12 
+m12/mol4 	m12/mol4 		1. 
+cm15/mol5 	m15/mol5 		1.E-30 
+m15/mol5 	m15/mol5 		1. 
+ft-2 	m-2 		10.76364864 
+cm2 	m2 		1.E-4 
+dm2 	m2 		0.01 
+ft2 	m2 		0.09290304 
+in2 	m2 		0.00064516 
+m2 	m2 		1. 
+mm2 	m2 		1.E-6 
+nm2 	m2 		1.E-18 
+m2.K/kW 	m2.K/W 		1.0E-3 
+m2.K/W 	m2.K/W 		1. 
+m2/g 	m2/kg 		0.001 
+m2/kg 	m2/kg 		1. 
+ft2/lb(force) 	m2/N 		2.0885434E-2 
+m2/Ohm 	m2/Ohm 		1. 
+cm2/Ohm.mol 	m2/Ohm.mol 		1.E-4 
+m2/Ohm.mol 	m2/Ohm.mol 		1. 
+Sie.cm2/mol 	m2/Ohm.mol 		0.01 
+cm2/Ohm.val 	m2/Ohm.val 		1.E-4 
+m2/Ohm.val 	m2/Ohm.val 		1. 
+bbl/ft.hr 	m2/s 	barrel/(foot and hour) 	9.1134442E-4 
+cm2/s 	m2/s 		1.E-4 
+cSt 	m2/s 	centistokes 	1.E-6 
+ft2/hr 	m2/s 		2.58064E-5 
+ft2/min 	m2/s 		1.548385E-3 
+ft3/ft.hr 	m2/s 		2.58064E-5 
+l/hr.m 	m2/s 		2.7777778E-7 
+m2/day 	m2/s 		1.1574074E-5 
+m2/hr 	m2/s 		2.7777778E-4 
+m2/s 	m2/s 		1. 
+m2/year 	m2/s 		3.1688087E-8 
+m3/m.min 	m2/s 		1.6666667E-2 
+m3/m.s 	m2/s 		1. 
+mm2/s 	m2/s 		1.E-6 
+mSt 	m2/s 		1.E-7 
+St 	m2/s 		1.E-4 
+cm2/s.mol fraction 	m2/s.mol fraction 		1. 
+m2/s.mol fraction 	m2/s.mol fraction 		1. 
+m2/s2 	m2/s2 		1. 
+cm2/V.s 	m2/V.s 		1.E-4 
+m2/V.s 	m2/V.s 		1. 
+bbl 	m3 	barrel 	0.15898729 
+cm3 	m3 		1.0E-6 
+dm3 	m3 		1.E-3 
+ft3 	m3 		2.8316847E-2 
+gal 	m3 		3.7854118E-3 
+in3 	m3 		1.6387064E-5 
+l 	m3 	liters 	1.E-3 
+m3 	m3 		1. 
+ml 	m3 		1.E-6 
+cm3.K/mol 	m3.K/mol 		1.E-6 
+ft3.Rnk/lbmol 	m3.K/mol 		3.468220043E-5 
+m3.K/kmol 	m3.K/mol 		1.E-3 
+bbl/cyle 	m3/cycle 	barrel/cycle 	0. 15898729 
+ft3/cycle 	m3/cycle 		2.8316847E-2 
+gal/cycle 	m3/cycle 		3.7854118E-3 
+kbbl/cycle 	m3/cycle 	1000 barrels per cycle 	0.15898729 
+l/cycle 	m3/cycle 		0.001 
+m3/cycle 	m3/cycle 		1. 
+MMft3/cycle 	m3/cycle 	million cubic feet per cycle 	2.8316847E4 
+kbbl/day 	m3/day 		1.840131E-6 
+cm3/kg 	M3/g 		1.E-3 
+m3/K 	m3/K 		1. 
+cm3/100g 	m3/kg 		1.E-5 
+cm3/g 	m3/kg 		1.E-3 
+dm3/g 	m3/kg 		1. 
+dm3/kg 	m3/kg 		1.E-3 
+ft3/lb 	m3/kg 		0.062427962 
+l/g 	m3/kg 		1. 
+l/kg 	m3/kg 		1.E-3 
+m3/kg 	m3/kg 		1. 
+ml/g 	m3/kg 		1.E-3 
+cm3/g solvent 	m3/kg solvent 		1.E-3 
+m3/kg solvent 	m3/kg solvent 		1. 
+m3/kg.s 	m3/kg.s 		1. 
+m3/kg.s2 	m3/kg.s2 		1. 
+cm3/cm3 solvent 	m3/m3 solvent 		1. 
+cm3/l solvent 	m3/m3 solvent 		1.E-3 
+l/l solvent 	m3/m3 solvent 		1. 
+m3/m3 solvent 	m3/m3 solvent 		1. 
+ml/ml solvent 	m3/m3 solvent 		1. 
+cm3/cm3(sat.solut.) 	m3/m3(sat.solution) 		1. 
+cm3/l.atm 	m3/m3.Pa 		0.0098692327E-6 
+m3/m3.Pa 	m3/m3.Pa 		1. 
+dm3/mol 	m3/mol 		1.E-3 
+ft3/lbmol 	m3/mol 		6.242796029E-5 
+l/mol 	m3/mol 		1.E-3 
+m3/kmol 	m3/mol 		0.001 
+m3/mol 	m3/mol 		1. 
+ml/mol 	m3/mol 		1.E-6 
+cm3/mol2 	m3/mol2 		1.E-6 
+cm3/bar.g 	m3/Pa.kg 		1.E-8 
+m3/Pa.kg 	m3/Pa.kg 		1. 
+bbl/psi.hr 	m3/Pa.s 	barrel/(pounds per square inch and hour) 	6.4053188E-9 
+ft3/psia.min 	m3/Pa.s 		6.8450163E-8 
+ft3/psia.s 	m3/Pa.s 		4.107010E-6 
+l/atm.hr 	m3/Pa.s 		2.7414535E-12 
+l/kPa.hr 	m3/Pa.s 		2.7777778E-10 
+l/mmHg.hr 	m3/Pa.s 		2.0835042E-9 
+m3/kPa.hr 	m3/Pa.s 		2.7777778E-7 
+m3/kPa.min 	m3/Pa.s 		1.6666667E-5 
+m3/kPa.s 	m3/Pa.s 		1.E-3 
+ml/atm.hr 	m3/Pa.s 		2.7414535E-15 
+ml/kPa.hr 	m3/Pa.s 		2.7777778E-13 
+bbl/day 	m3/s 	barrel/day 	1.8401307E-6 
+bbl/hr 	m3/s 	barrel/hour 	0.04415E-3 
+ft3/day 	m3/s 		3.2774128E-7 
+ft3/hr 	m3/s 		7.8657907E-6 
+ft3/min 	m3/s 		4.7194744E-4 
+ft3/s 	m3/s 		0.028316846 
+gal/hr 	m3/s 		1.0515033E-6 
+gal/min 	m3/s 		6.3090196E-5 
+l/day 	m3/s 		1.157407E-8 
+l/hr 	m3/s 		2.7777778E-7 
+l/min 	m3/s 		1.6666667E-5 
+l/s 	m3/s 		0.001 
+l/year 	m3/s 		3.1688087E-11 
+m3/day 	m3/s 		1.1574074E-5 
+m3/hr 	m3/s 		2.7777778E-4 
+m3/min 	m3/s 		1.6666667E-2 
+m3/s 	m3/s 		1. 
+m3/year 	m3/s 		3.1688087E-8 
+Mft3/day 	m3/s 	1000 cubic feet per day 	0.327741279E-3 
+MMft3/day 	m3/s 	million cubic feet per day 	0.327741279 
+MMft3/hr 	m3/s 	million cubic feet per hour 	7.8657907 
+cm3/hr.K 	m3/s.K 		2.7777778E-10 
+l/min.m 	m3/s.m 		1.6666667E-5 
+l/s.m 	m3/s.m 		0.001 
+m3/hr.m 	m3/s.m 		2.7777778E-4 
+l/min.m2 	m3/s.m2 		1.6666667E-5 
+l/s.m2 	m3/s.m2 		0.001 
+m3/hr.m2 	m3/s.m2 		2.7777778E-4 
+ft3/hr.psi 	m3/s.Pa 		1.140836E-9 
+ft3/min.rpm 	m3/s.rpm 		4.7194744E-4 
+ft3/s.rpm 	m3/s.rpm 		0.028316846 
+gal/hr.rpm 	m3/s.rpm 		1.0515033E-6 
+gal/min.rpm 	m3/s.rpm 		6.3090196E-5 
+l/day.rpm 	m3/s.rpm 		1.157407E-8 
+l/min.rpm 	m3/s.rpm 		1.6666667E-5 
+l/s.rpm 	m3/s.rpm 		0.001 
+m3/day.rpm 	m3/s.rpm 		1.1574074E-5 
+m3/hr.rpm 	m3/s.rpm 		0.2777778E-3 
+m3/s.rpm 	m3/s.rpm 		1. 
+m3/year.rpm 	m3/s.rpm 		3.1688087E-8 
+ft3/s2 	m3/s2 		0.028316846 
+m3/s2 	m3/s2 		1. 
+cm2.l/Ohm.mol2 	m5/Ohm.mol2 	square cm*liters per Ohm and mole squared 	1.E-7 
+m5/Ohm.mol2 	m5/Ohm.mol2 		1. 
+cm2.l/s.mol 	m5/s.mol 		1.E-7 
+m5/s.mol 	m5/s.mol 		1. 
+cm6/mol2 	m6/mol2 		1.E-12 
+dm6/mol2 	m6/mol2 		1.E-6 
+ft6/lbmol2 	m6/mol2 		3.8972502E-9 
+l2/mol2 	m6/mol2 		1.E-6 
+m6/mol2 	m6/mol2 		1. 
+cm9/mol3 	m9/mol3 		1.E-18 
+dm9/mol3 	m9/mol3 		1.E-9 
+ft9/lbmol3 	m9/mol3 		2.4329738E-13 
+l3/mol3 	m9/mol3 		1.E-9 
+m9/mol3 	m9/mol3 		1. 
+mass fraction 	mass fraction 		1. 
+kmol 	mol 		1000. 
+lbmol 	mol 	pound-mole 	453.592368 
+mol 	mol 		1. 
+mol % 	mol fraction 		1.E-2 
+mol fraction 	mol fraction 		1. 
+mol/mol 	mol fraction 		1. 
+kmol/cycle 	mol/cycle 		1000. 
+lbmol/cycle 	mol/cycle 		453.59237 
+mol/cycle 	mol/cycle 		1.E-3 
+lbmol/day 	mol/day 		5.249911667E-3 
+lbmol/day.ft 	mol/day.m 		1.722412E-2 
+mol/100g 	mol/kg 		10. 
+mol/kg 	mol/kg 		1. 
+molon 	mol/kg 		1. 
+umol/100 g 	mol/kg 	micro-mol per 100 grams 	1.E-5 
+mol/m.min 	mol/m.s 		1.6666667E-2 
+mol/m.s 	mol/m.s 		1. 
+dmol/m3 	mol/m3 		0.1 
+kmol/m3 	mol/m3 		1.E3 
+lbmol/ft3 	mol/m3 		1.6018463E4 
+lbmol/gal 	mol/m3 		1.1982643E5 
+mmol/cm3 	mol/m3 		0.001 
+mmol/l 	mol/m3 		1. 
+mol/cm3 	mol/m3 		1.E6 
+mol/dm3 	mol/m3 		1.E3 
+mol/l 	mol/m3 		1.E3 
+mol/m3 	mol/m3 		1. 
+mol/l solvent 	mol/m3 solvent 		1000. 
+mol/m3 solvent 	mol/m3 solvent 		1. 
+mol/m3.K 	mol/m3.K 		1. 
+kmol/m3.atm 	mol/m3.Pa 		9.86923E-3 
+mol/m3.atm 	mol/m3.Pa 		9.86923E-6 
+mol/m3.Pa 	mol/m3.Pa 		1. 
+lbmol/ft3.hr 	mol/m3.s 		4.4495732 
+lbmol/ft3.min 	mol/m3.s 		2.6697439E2 
+lbmol/ft3.s 	mol/m3.s 		1.6018563E4 
+mol/cm3.hr 	mol/m3.s 		3.6E9 
+mol/cm3.s 	mol/m3.s 		1.E6 
+mol/l.hr 	mol/m3.s 		0.277777778 
+mol/l.s 	mol/m3.s 		1.E3 
+mol/mol solvent 	mol/mol solvent 		1. 
+lbmol/atm.s 	mol/Pa.s 		0.0044766086 
+lbmol/psi.min 	mol/Pa.s 		1.0964664E-3 
+lbmol/psi.s 	mol/Pa.s 		6.5787985E-2 
+mol/atm.hr 	mol/Pa.s 		2.7414535E-9 
+mol/bar.hr 	mol/Pa.s 		2.7777778E-9 
+mol/kPa.hr 	mol/Pa.s 		2.7777778E-7 
+mol/kPa.min 	mol/Pa.s 		1.66666667E-5 
+mol/kPa.s 	mol/Pa.s 		1.E-3 
+kmol/day 	mol/s 		1.157407417E-5 
+kmol/hr 	mol/s 		0.27777778 
+kmol/s 	mol/s 		0.001 
+lbmol/hr 	mol/s 		0.12599788 
+lbmol/s 	mol/s 		0.45359237E3 
+mol/min 	mol/s 		1.6666667E-2 
+mol/s 	mol/s 		1.E-3 
+kmol/day.m 	mol/s.m 		1.157407417E-5 
+kmol/hr.m 	mol/s.m 		0.27777778E-6 
+kmol/s.m 	mol/s.m 		0.001 
+lbmol/hr.ft 	mol/s.m 		0.41337887 
+lbmol/s.ft 	mol/s.m 		1.4881639E3 
+kmol/hr.m3 	mol/s.m3 		0.27777778E-6 
+kmol/s.m3 	mol/s.m3 		0.001 
+kmol/hr.atm 	mol/s.Pa 		2.7414535E-6 
+kmol/hr.bar 	mol/s.Pa 		2.77777778E-6 
+kmol/hr.kPa 	mol/s.Pa 		2.77777778E-4 
+kmol/hr.mmH2O 	mol/s.Pa 		0.0283262437 
+kmol/hr.Pa 	mol/s.Pa 		0.27777778 
+kmol/min.kPa 	mol/s.Pa 		0.0166666667 
+kmol/s.atm 	mol/s.Pa 		9.8692327E-9 
+kmol/s.bar 	mol/s.Pa 		1.E-8 
+kmol/s.kPa 	mol/s.Pa 		1.E-6 
+mol-1 	mol-1 		1. 
+mol2/l2 	mol2/m6 		1.E6 
+mol2/m6 	mol2/m6 		1. 
+mol/100g solvent 	molal 		10. 
+mol/g solvent 	molal 		1000. 
+mol/kg solvent 	molal 		1. 
+molal 	molal 		1. 
+molal-1 	molal-1 		1. 
+molar 	molar 		1. 
+dyn 	N 		1.0E-5 
+lb(force) 	N 		4.4482216 
+N 	N 		1. 
+dyn^(1/4).cm^(11/4)/ml 	N^(1/4).m^(11/4)/mol 		1.7782794E-7 
+N^(1/4).m^(11/4)/mol 	N^(1/4).m^(11/4)/mol 		1. 
+lb(force).ft 	N.m 		1.3558179 
+lb(force).ft/lb 	N.m/kg 		2.989067 
+lb(force).ft/s 	N.m/s 		1.3558179 
+mN.s/m2 	N.s/m2 		0.001 
+dyn/cm 	N/m 		1.E-3 
+lb(force)/ft 	N/m 		14.593903 
+mN/m 	N/m 		1.E-3 
+N/m 	N/m 		1. 
+N/m2.m 	N/m 		1. 
+lb(force)/ft2 	N/m2 		47.880259 
+lb(force)/ft3 	N/m3 		157.08747 
+mmH2O/m 	N/m3 		9.806348 
+N/m3 	N/m3 		1. 
+Ohm 	Ohm 		1. 
+Ohm.cm 	Ohm.m 		0.01 
+Ohm.m 	Ohm.m 		1. 
+Ohm-1 	Ohm-1 		1. 
+Ohm-1.cm-1 	Ohm-1.m-1 		100. 
+Ohm-1.m-1 	Ohm-1.m-1 		1. 
+Sie/cm 	Ohm-1.m-1 		100. 
+Sie/m 	Ohm-1.m-1 		1. 
+Ohm-1.m-3 	Ohm-1.m-3 		1. 
+Sie/ml 	Ohm-1.m-3 		1.E6 
+ata 	Pa 	absolute atmospheres 	98066.5 
+atm 	Pa 		101325. 
+bar 	Pa 		1.E5 
+cmH2O 	Pa 	cm of water column (pressure) 	98.063754 
+Gpa 	Pa 		1.E9 
+Hpa 	Pa 		100. 
+inH2O 	Pa 	inches of water columns (pressure) 	249.0889 
+inHg(32F) 	Pa 		3386.39 
+inHg(60F) 	Pa 		3332.69 
+kbar 	Pa 		1.E8 
+kg(force)/cm2 	Pa 		98066.5 
+kN/m2 	Pa 		1000. 
+kp/cm2 	Pa 		98066.5 
+kp/m2 	Pa 		9.80665 
+kPa 	Pa 		1.E3 
+lb(force)/in2 	Pa 		6.89476E3 
+lb/in2 	Pa 		6.89476E3 
+mbar 	Pa 		100. 
+mmH2O 	Pa 	mm of water column 	9.806348 
+mmHg 	Pa 	mm of Hg column (Torr) 	133.3223684 
+MN/m2 	Pa 		1.E6 
+mPa 	Pa 		1.E-3 
+MPa 	Pa 		1.E6 
+mTorr 	Pa 		0.1333224 
+N/m2 	Pa 		1. 
+Pa 	Pa 		1. 
+psi 	Pa 	pounds per square inch 	6894.7573 
+Torr 	Pa 		133.3224 
+ata.K 	Pa.K 		98066.5 
+atm.K 	Pa.K 		101325. 
+kPa.K 	Pa.K 		1000. 
+Pa.K 	Pa.K 		1. 
+kg(force).m/kg 	Pa.m/kg 		9.80665 
+bar.m/s 	Pa.m/s 		1.E5 
+Pa.m/s 	Pa.m/s 		1. 
+atm.ft3/lbmol 	Pa.m3/mol 		6.3255133 
+Pa.cm3/mol 	Pa.m3/mol 		1.E6 
+Pa.dm3/mol 	Pa.m3/mol 		1.E3 
+Pa.m3/mol 	Pa.m3/mol 		1. 
+psi.ft6 	Pa.m6 		5.5285184 
+atm.dm6.K/mol2 	Pa.m6.K/mol2 		0.101325 
+Pa.m6.K/mol2 	Pa.m6.K/mol2 		1. 
+atm.l2.K2/mol2 	Pa.m6.K2/mol2 		0.101325 
+bar.m6.K2/mol2 	Pa.m6.K2/mol2 		1.E5 
+kPa.m6.K2/mol2 	Pa.m6.K2/mol2 		1000. 
+Pa.m6.K2/mol2 	Pa.m6.K2/mol2 		1. 
+bar.cm6/g.K 	Pa.m6/kg.K 		1.E2 
+Pa.m6/kg.K 	Pa.m6/kg.K 		1. 
+atm.l2/mol2 	Pa.m6/mol2 		0.101325 
+kPa.m6/mol2 	Pa.m6/mol2 		1000. 
+Pa.m6/mol2 	Pa.m6/mol2 		1. 
+psi.ft6/lbmol2 	Pa.m6/mol2 		2.68706E-5 
+psi.ft9 	Pa.m9 		0.15655021 
+kPa.m9.K2/mol3 	Pa.m9.K2/mol3 		1000. 
+kPa.m9/mol3 	Pa.m9/mol3 		1000. 
+Pa.m9/mol3 	Pa.m9/mol3 		1. 
+psi.ft9/lbmol3 	Pa.m9/mol3 		1.6774764E-9 
+kbar.mol.K/cm3 	Pa.mol.K/m3 		1.E14 
+Pa.mol.k/m3 	Pa.mol.K/m3 		1. 
+cP 	Pa.s 	centipoise 	0.001 
+g/cm.s 	Pa.s 		0.1 
+kg(force).s/m2 	Pa.s 		9.80665 
+kg/m.s 	Pa.s 		1. 
+kp.s/m2 	Pa.s 		9.807 
+lb(force).s/ft2 	Pa.s 		47.880262 
+lb/ft.hr 	Pa.s 		4.1337887E-4 
+lb/ft.s 	Pa.s 		1.48816 
+mP 	Pa.s 		1.E-4 
+mPa.s 	Pa.s 		1.E-3 
+N.s/m2 	Pa.s 		1. 
+P 	Pa.s 		0.1 
+Pa.s 	Pa.s 		1. 
+psi.hr 	Pa.s 		2.4821136E7 
+ug/cm.s 	Pa.s 	mico-gram per cm and s 	1.E-7 
+uP 	Pa.s 	micropoise 	1.E-7 
+uPa.s 	Pa.s 	micro-Pascal-seconds 	1.E-6 
+mPa.s.cm3/g 	Pa.s.m3/kg 		1.E-6 
+Pa.s.m3/kg 	Pa.s.m3/kg 		1. 
+uPa.s.cm3/g 	Pa.s.m3/kg 	micro-Pascal.s.cm3/g 	1.E3 
+Pa.s/K 	Pa.s/K 		1. 
+Pa.s/K2 	Pa.s/K2 		1. 
+Pa.s/K3 	Pa.s/K3 		1. 
+cP/mol % 	Pa.s/mol fraction 		0.1 
+cP/mol fraction 	Pa.s/mol fraction 		0.001 
+Pa.s/mol fraction 	Pa.s/mol fraction 		1. 
+lb/ft.hr2 	Pa.s2 		1.1482746E-7 
+lb/ft.s2 	Pa.s2 		1.4881662 
+ata/K 	Pa/K 		98066.5 
+atm/K 	Pa/K 		101325. 
+bar/K 	Pa/K 		1.E5 
+kbar/K 	Pa/K 		1.E8 
+kPa/K 	Pa/K 		1.E3 
+mbar/K 	Pa/K 		1.E2 
+mPa/K 	Pa/K 		1.E-3 
+MPa/K 	Pa/K 		1.E6 
+Pa/K 	Pa/K 		1. 
+psi/F 	Pa/K 		12410.568 
+Torr/K 	Pa/K 		133.3224 
+ata/m 	Pa/m 		98066.5 
+atm/m 	Pa/m 		101325. 
+bar/km 	Pa/m 		100. 
+bar/m 	Pa/m 		1.E5 
+cmH2O/m 	Pa/m 		98.063754 
+inH2O/ft 	Pa/m 		817.2208 
+inHg(32F)/ft 	Pa/m 		11110.203 
+kPa/km 	Pa/m 		1.E6 
+kPa/mm 	Pa/m 		1. 
+mbar/m 	Pa/m 		1.E2 
+mH2O/m 	Pa/m 		98.063754 
+mmHg/ft 	Pa/m 		437.4094 
+Pa/m 	Pa/m 		1. 
+psi/100ft 	Pa/m 		2.2620595E2 
+psi/ft 	Pa/m 		2.2620595E4 
+Torr/ft 	Pa/m 		437.40945 
+kbar/cm3.mol 	Pa/m3.mol 		1.E14 
+Pa/m3.mol 	Pa/m3.mol 		1. 
+ata/mol fraction 	Pa/mol fraction 		98066.5 
+atm/mol fraction 	Pa/mol fraction 		101325. 
+bar/mol fraction 	Pa/mol fraction 		1.E5 
+kPa/mol fraction 	Pa/mol fraction 		1.E3 
+MPa/mol fraction 	Pa/mol fraction 		1.E6 
+Pa/(mol/mol) 	Pa/mol fraction 		1. 
+Pa/mol fraction 	Pa/mol fraction 		1. 
+psi/mol fraction 	Pa/mol fraction 		6894.76 
+Torr/mol fraction 	Pa/mol fraction 		133.3224 
+ata/s 	Pa/s 		98066.5 
+atm/s 	Pa/s 		101325. 
+bar/s 	Pa/s 		1.E5 
+Pa/s 	Pa/s 		1. 
+atm/weight fraction 	Pa/weight fraction 		101325. 
+Pa/weight fraction 	Pa/weight fraction 		1. 
+MPa^0.5 	Pa^0.5 		1.E3 
+Pa^0.5 	Pa^0.5 		1. 
+ata-1 	Pa-1 		1.01972E-5 
+atm-1 	Pa-1 		9.86923E-6 
+bar-1 	Pa-1 		1.E-5 
+cm2/dyn 	Pa-1 		10. 
+cm2/kg(force) 	Pa-1 		1.0197162E-5 
+cm2/kp 	Pa-1 		1.01972E-5 
+Gpa-1 	Pa-1 		1.E-9 
+inH2O-1 	Pa-1 		4.0146309E-3 
+kbar-1 	Pa-1 		1.E-8 
+kPa-1 	Pa-1 		1.E-3 
+m2/kp 	Pa-1 		0.101972 
+m2/N 	Pa-1 		1. 
+mbar-1 	Pa-1 		1.E-2 
+mmH2O-1 	Pa-1 		0.1019748 
+mPa-1 	Pa-1 		1.E3 
+MPa-1 	Pa-1 		1.E-6 
+Pa-1 	Pa-1 		1. 
+psi-1 	Pa-1 		1.4503774E-4 
+Torr-1 	Pa-1 		7.500615E-3 
+TPa-1 	Pa-1 		1.E-12 
+atm-1.K-1 	Pa-1.K-1 		9.86923E-6 
+Pa-1.K-1 	Pa-1.K-1 		1. 
+P-1 	Pa-1.s-1 		10. 
+Pa-1.s-1 	Pa-1.s-1 		1. 
+ata-2 	Pa-2 		1.0398289E-10 
+atm-2 	Pa-2 		9.7401753E-11 
+bar-2 	Pa-2 		1.E-10 
+kPa-2 	Pa-2 		1.E-6 
+mbar-2 	Pa-2 		1.E-4 
+Pa-2 	Pa-2 		1. 
+Torr-2 	Pa-2 		5.6259226E-5 
+ata-3 	Pa-3 		1.0603225E-15 
+atm-3 	Pa-3 		9.6128057E-16 
+bar-3 	Pa-3 		1.E-15 
+kPa-3 	Pa-3 		1.E-9 
+mbar-3 	Pa-3 		1.E-6 
+Pa-3 	Pa-3 		1. 
+Torr-3 	Pa-3 		4.219788E-7 
+ata-4 	Pa-4 		1.081228E-20 
+atm-4 	Pa-4 		9.4871016E-21 
+bar-4 	Pa-4 		1.E-20 
+kPa-4 	Pa-4 		1.E-12 
+mbar-4 	Pa-4 		1.E-8 
+Pa-4 	Pa-4 		1. 
+Torr-4 	Pa-4 		3.1651005E-9 
+day 	s 		86400. 
+hr 	s 		3600. 
+min 	s 		60. 
+ms 	s 		0.001 
+ns 	s 		1.E-9 
+ps 	s 		1.E-12 
+s 	s 		1. 
+us 	s 	microseconds 	0.000001 
+year 	s 		31536000. 
+hr.ft2.Rnk/BTU 	s.m2.K/J 		1.7611019E-1 
+hr.m2.K/kcal 	s.m2.K/J 		8.5984523E-1 
+s.cm2.K/cal 	s.m2.K/J 		2.3884590E-5 
+s.m2.K/J 	s.m2.K/J 		1.0 
+s.m2.K/kcal 	s.m2.K/J 		2.3884590E-4 
+s.m2.K/kJ 	s.m2.K/J 		1.0E-3 
+day-1 	s-1 		1.1574074E-5 
+GHz 	s-1 		1.E9 
+kHz 	s-1 		1000. 
+MHz 	s-1 		1000000. 
+rad/s 	s-1 		0.15915475 
+year-1 	s-1 		3.1688088E-8 
+kV 	V 		1.E3 
+mV 	V 		1.E-3 
+V 	V 		1. 
+V/cm 	V/m 		100. 
+V/m 	V/m 		1. 
+val/kg 	val/kg 		1. 
+val/l 	val/m3 		1.E3 
+val/m3 	val/m3 		1. 
+cm3/100cm3 	volume fraction 		0.01 
+cm3/cm3 	volume fraction 		1. 
+cm3/l 	volume fraction 		1.E-3 
+l/m3 	volume fraction 		1.E-3 
+m3/m3 	volume fraction 		1. 
+ml/m3 	volume fraction 		1.E-6 
+volume % 	volume fraction 		0.01 
+volume fraction 	volume fraction 		1. 
+BTU/s 	W 		1.0550559E3 
+erg/s 	W 		1.E-7 
+hp 	W 	hourse power 	745.69987 
+kcal/s 	W 		4.1868E3 
+kp.m/s 	W 		9.80665 
+kW 	W 		1000. 
+PS 	W 		745.700 
+W 	W 		1. 
+hp.hr 	W.s 		2.6845195E6 
+kW/cycle 	W/cycle 		1000. 
+W/cycle 	W/cycle 		1. 
+W/degC 	W/K 		1 
+W/K 	W/K 		1. 
+W/kg 	W/kg 		1. 
+W/m 	W/m 		1. 
+BTU.in/ft2.hr.degF 	W/m.K 		0.14422789 
+BTU.in/ft2.hr.Rnk 	W/m.K 		0.14422789 
+BTU/ft.hr.degF 	W/m.K 		1.7307347 
+BTU/ft.s.degF 	W/m.K 		6230.6449 
+BTU/in.hr.degF 	W/m.K 		20.768816 
+BTU/in.s.degF 	W/m.K 		7.4767738E4 
+cal/cm.s.K 	W/m.K 		4.1868E2 
+cal/km.s.K 	W/m.K 		4.1868E-3 
+cal/m.hr.K 	W/m.K 		1.163E-3 
+cal/m.s.K 	W/m.K 		4.1868 
+erg/cm.s.K 	W/m.K 		1.E-5 
+J/cm.s.K 	W/m.K 		1.E2 
+J/m.s.K 	W/m.K 		1. 
+kcal.m/hr.m2.K 	W/m.K 		1.163 
+kcal/m.hr.K 	W/m.K 		1.163 
+kcal/m.s.K 	W/m.K 		4.1868E3 
+kW/m.K 	W/m.K 		1.0E3 
+mW/cm.degC 	W/m.K 		0.1 
+mW/cm.K 	W/m.K 		0.1 
+mW/m.K 	W/m.K 		0.001 
+uW/cm.K 	W/m.K 	micro-Watt per cm and K 	0.0001 
+W/cm.K 	W/m.K 		1.E2 
+W/m.K 	W/m.K 		1. 
+W/m.K2 	W/m.K2 		1. 
+W/m.K3 	W/m.K3 		1. 
+W/m.K4 	W/m.K4 		1. 
+W/m2 	W/m2 		1 
+cal/cm2.s.K 	W/m2.K 		4.1868E4 
+kW/m2.K 	W/m2.K 		1.0E3 
+W/m2.degC 	W/m2.K 		1. 
+W/m2.K 	W/m2.K 		1. 
+W/m2.s.K 	W/m2.s.K 		1. 
+hp/ft3 	W/m3 		2.6334143E4 
+kW/l 	W/m3 		1.E6 
+kW/m3 	W/m3 		1.E3 
+W/m3 	W/m3 		1. 
+W/mol 	W/mol 		1. 
+hp/lbmol.hr 	W/mol.s 		4.566631E-4 
+hp/lbmol.s 	W/mol.s 		1.64398709 
+kW/kmol.hr 	W/mol.s 		2.7777778E-4 
+kW/kmol.s 	W/mol.s 		1. 
+g/100g 	weight fraction 		1.E-2 
+g/g 	weight fraction 		1. 
+g/kg 	weight fraction 		0.001 
+kg/kg 	weight fraction 		1. 
+mg/kg 	weight fraction 		1.E-6 
+ppm 	weight fraction 		1.E-6 
+weight % 	weight fraction 		1.E-2 
+weight fraction 	weight fraction 		1. 
