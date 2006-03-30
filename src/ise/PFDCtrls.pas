@@ -632,8 +632,8 @@ begin
   //Changes the cursor to indicate a PFD control can be dropped.
   //Guidelines should not show while in dropping mode for a new control.
   if UnitopPallet.NewPFDControl <> nil then begin
-    if Cursor <> crCross then
-      Cursor := crCross;
+    //if Cursor <> crCross then
+    // Cursor := crCross;
     EraseGuideLines;
     //Positions the new control at the mouse pointer.
     with UnitopPallet.NewPFDControl do begin
