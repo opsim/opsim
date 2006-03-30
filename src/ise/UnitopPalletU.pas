@@ -131,6 +131,7 @@ begin
       Selected := True;
       Left := P.X - Width;
       Top := P.Y - Height;
+      DrawWireFrame := True;
     end;//with
   end;//if
 end;
