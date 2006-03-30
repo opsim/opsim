@@ -47,7 +47,7 @@ type
     procedure FormResize(Sender: TObject);
     procedure pnlWorkplaceMouseMove(Sender: TObject; Shift: TShiftState; X, Y: 
             Integer);
-  private
+  public
     PFDWorkplace: TPFDWorkplace;
   end;
   

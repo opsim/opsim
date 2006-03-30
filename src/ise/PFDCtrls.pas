@@ -574,16 +574,16 @@ begin
       if  (Controls[I] is TPFDControl) then
         TPFDControl(Controls[I]).Selected := False;
   
-  //If dropping a new control, it creates a new one at the mouse position
+  //If dropping a new control, it positions the new one at the mouse position
   //and disable drop new control mode. The new control should be in selected state.
-  if UnitopPallet.ActivePFDClass <> nil then begin
-    with UnitopPallet.ActivePFDClass.Create(Self) do begin
+  if UnitopPallet.NewPFDControl <> nil then begin
+    with UnitopPallet.NewPFDControl do begin
       Left := X - Width;
       Top := Y - Height;
       Scale := 1;
       Selected := True;
     end;//with
-    UnitopPallet.ActivePFDClass := nil;
+    UnitopPallet.NewPFDControl := nil;
     //Return cursor to default state.
     Cursor := crDefault;
   end;//if
@@ -592,12 +592,16 @@ end;
 procedure TPFDWorkplace.MouseEnter;
 begin
   inherited MouseEnter;
+  if UnitopPallet.NewPFDControl <> nil then
+    UnitopPallet.NewPFDControl.Visible := True;
 end;
 
 procedure TPFDWorkplace.MouseLeave;
 begin
   inherited MouseLeave;
   EraseGuideLines;
+  if UnitopPallet.NewPFDControl <> nil then
+    UnitopPallet.NewPFDControl.Visible := False;
 end;
 
 procedure TPFDWorkplace.MouseMove(Shift: TShiftState; X, Y: Integer);
@@ -618,10 +622,15 @@ begin
   
   //Changes the cursor to indicate a PFD control can be dropped.
   //Guidelines should not show while in dropping mode for a new control.
-  if UnitopPallet.ActivePFDClass <> nil then begin
+  if UnitopPallet.NewPFDControl <> nil then begin
     if Cursor <> crCross then
       Cursor := crCross;
     EraseGuideLines;
+    //Positions the new control at the mouse pointer.
+    with UnitopPallet.NewPFDControl do begin
+      Left := X - Width;
+      Top := Y - Height;
+    end;//with
   end
   else begin
     if Active then begin

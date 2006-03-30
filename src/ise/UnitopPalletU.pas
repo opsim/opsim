@@ -67,17 +67,20 @@ type
     procedure FormCreate(Sender: TObject);
     procedure UnitOperationClick(Sender: TObject);
   private
-    FActivePFDClass: TPFDControlClass;
-    procedure SetActivePFDClass(Value: TPFDControlClass);
+    FNewPFDControl: TPFDControl;
+    procedure SetNewPFDControl(Value: TPFDControl);
   public
-    property ActivePFDClass: TPFDControlClass read FActivePFDClass write 
-            SetActivePFDClass;
+    property NewPFDControl: TPFDControl read FNewPFDControl write 
+            SetNewPFDControl;
   end;
   
 var
   UnitopPallet: TUnitopPallet;
 
 implementation
+
+uses
+  PFDDesignerU;
 
 { TUnitopPallet }
 
@@ -97,27 +100,38 @@ begin
   end;//with
 end;
 
-procedure TUnitopPallet.SetActivePFDClass(Value: TPFDControlClass);
+procedure TUnitopPallet.SetNewPFDControl(Value: TPFDControl);
 var
   I: Integer;
 begin
-  FActivePFDClass := Value;
+  FNewPFDControl := Value;
   //Reset all buttons to normal state (not down).
-  if FActivePFDClass = nil then
+  if FNewPFDControl = nil then
     for I := 0 to ComponentCount - 1 do
       if Components[I] is TSpeedButton then
         TSpeedButton(Components[I]).Down := False;
 end;
 
 procedure TUnitopPallet.UnitOperationClick(Sender: TObject);
+var
+  P: TPoint;
 begin
-  FActivePFDClass := nil;
+  if FNewPFDControl <> nil then
+    FreeAndNil(FNewPFDControl);
   if (Sender as TSpeedButton).Down then begin
     if Sender = sbMixer then
-      FActivePFDClass := TPFDMixer
+      FNewPFDControl := TPFDMixer.Create(PFDDesigner.PFDWorkplace)
     else
     if Sender = sbValve then
-      FActivePFDClass := TPFDValve;
+      FNewPFDControl := TPFDValve.Create(PFDDesigner.PFDWorkplace);
+    //Prepares the new PFD control.
+    with FNewPFDControl do begin
+      P := PFDDesigner.PFDWorkplace.ScreenToClient(Mouse.CursorPos);
+      Selected := True;
+      Left := P.X - Width;
+      Top := P.Y - Height;
+      Visible := False;
+    end;//with
   end;//if
 end;
 
