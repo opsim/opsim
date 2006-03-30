@@ -1,0 +1,35 @@
+[FIRST_STEP]
+ImportType=0
+FileName=C:\Samuel\Dev\OpSim\docs\DBDesign.xls
+[XLS_MAP]
+SHORT_NAME=[MODELS OR EQUATIONS]A-COLFINISH;
+FULL_NAME=[MODELS OR EQUATIONS]B-COLFINISH;
+EQUATION=[MODELS OR EQUATIONS]C-COLFINISH;
+PARAMETERS=[MODELS OR EQUATIONS]D-COLFINISH;
+[XLS_OPTIONS]
+SkipCols=0
+SkipRows=1
+[BASE_FORMATS]
+DecimalSeparator=.
+ThousandSeparator=,
+ShortDateFormat=dd/MM/yyyy
+LongDateFormat=dddd, d' de 'MMMM' de 'yyyy
+DateSeparator=/
+ShortTimeFormat=hh:mm
+LongTimeFormat=hh:mm
+TimeSeparator=:
+[BOOLEAN_TRUE]
+true=
+[BOOLEAN_FALSE]
+false=
+[LAST_STEP]
+CommitAfterDone=1
+CommitRecCount=100
+ImportRecCount=0
+EnableErrorLog=1
+ShowErrorLog=1
+ErrorLogFileName=C:\Dev\Utilidades\IBManager\import_errors.log
+RewriteErrorLogFile=1
+EnableSQLLog=C:\Dev\Utilidades\IBManager\importlog.sql
+ImportMode=0
+AddType=1
