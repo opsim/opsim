@@ -127,10 +127,10 @@ begin
     //Prepares the new PFD control.
     with FNewPFDControl do begin
       P := PFDDesigner.PFDWorkplace.ScreenToClient(Mouse.CursorPos);
+      Visible := False;
       Selected := True;
       Left := P.X - Width;
       Top := P.Y - Height;
-      Visible := False;
     end;//with
   end;//if
 end;

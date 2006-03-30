@@ -293,6 +293,8 @@ begin
   
   //Initializes size.
   Scale := 1;
+  
+  DrawWireFrame := False;
 end;
 
 procedure TPFDControl.ChangeScale(M, D: Integer);
@@ -419,10 +421,16 @@ begin
   //automatica defined when descendents controls invoke the inherited Paint
   //method.
   with Canvas do begin
-    Pen.color := clBlack;
     Pen.Width := 1;
-    Brush.Style := bsSolid;
     Brush.Color := clWhite;
+    if DrawWireFrame then begin
+      Pen.color := clWhite;
+      Brush.Style := bsClear;
+    end
+    else begin
+      Pen.color := clBlack;
+      Brush.Style := bsSolid;
+    end;//if
   end;//with
 end;
 
@@ -581,6 +589,7 @@ begin
       Left := X - Width;
       Top := Y - Height;
       Scale := 1;
+      DrawWireFrame := False;
       Selected := True;
     end;//with
     UnitopPallet.NewPFDControl := nil;
