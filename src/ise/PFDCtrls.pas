@@ -591,6 +591,9 @@ begin
   
     CurrentGuideLinesCenter := P;
   
+    //Needed to allow application to process message queue. For some
+    //reason, calling Invalidate or Repaint does not paint the canvas
+    //correctly.
     Application.ProcessMessages;
   
   end;//if
@@ -615,7 +618,10 @@ begin
   
     //Sets an invalid coordinate to indicate that there is no drawn line now.
     SetInvalidPoint(CurrentGuideLinesCenter);
-  
+
+    //Needed to allow application to process message queue. For some
+    //reason, calling Invalidate or Repaint does not paint the canvas
+    //correctly.
     Application.ProcessMessages;
   
   end;//if
@@ -737,6 +743,7 @@ begin
             Visible := True;
             //We must allow application to process paint messages so the
             //repaiting is finished before the guidelines are drawn again.
+            //Tried to use Invalidate method, but causes staining.
             Application.ProcessMessages;
           end;//if
   
