@@ -30,7 +30,7 @@ interface
 
 uses
   SysUtils, Forms, Classes, Dialogs, Graphics, Controls, ExtCtrls, StdCtrls,
-  Types, Math, PFDGraph, LCLProc, GraphMath;
+  Types, Math, PFDGraph, LCLProc, LMessages, GraphMath;
 
 type
 
@@ -107,6 +107,8 @@ type
             override;
     procedure PaintDragFrames(Origin, Dest: TPoint); overload;
     procedure Resize; override;
+    procedure CMMouseEnter(var Message :TLMessage); message CM_MouseEnter;
+    procedure CMMouseLeave(var Message :TLMessage); message CM_MouseLeave;
   public
     constructor Create(AOwner: TComponent); override;
     procedure NotifyRepaint(APFDControl: TPFDControl);
@@ -363,7 +365,10 @@ begin
   //Necessary to notify PFDWorkplace because if user alternate applications
   //using Alt+Tab and the application get focus with the mouse pointer over
   //a PFD control, then MouseEnter will not triggers on PFDWorkplace.
-  PFDWorkplace.MouseEnter;
+  //PFDWorkplace.MouseEnter;
+
+  //PFDWorkplace.MouseCapture := True;
+  //SetCaptureControl(Parent);
 end;
 
 procedure TPFDControl.MouseLeave;
@@ -372,7 +377,8 @@ begin
   //Necessary to notify PFDWorkplace because if user alternate applications
   //using Alt+Tab and the application lose focus with the mouse pointer over
   //a PFD control, then MouseLeave will not triggers on PFDWorkplace.
-  PFDWorkplace.MouseLeave;
+  //PFDWorkplace.MouseLeave;
+  //PFDWorkplace.MouseCapture := False;
 end;
 
 procedure TPFDControl.MouseMove(Shift: TShiftState; X, Y: Integer);
@@ -731,6 +737,28 @@ begin
   inherited Resize;
   //Set the flag to indicate that a resize operation occured.
   Resized := True;
+end;
+
+procedure TPFDWorkplace.CMMouseEnter(var Message: TLMessage);
+begin
+  //It is necessary to overide this custom message handler, in order the
+  //PFD workplace be notified about the mouse enter event when the
+  //user switch to the simulator using alt+tab and the mouse pointer
+  //falls over a PFD control. Overriding the MouseEnter method is not
+  //sufficient (Lazarus bug?).
+  inherited CMMouseEnter(Message);
+  MouseEnter;
+end;
+
+procedure TPFDWorkplace.CMMouseLeave(var Message: TLMessage);
+begin
+  //It is necessary to overide this custom message handler, in order the
+  //PFD workplace be notified about the mouse leave event when the
+  //user switch from the simulator using alt+tab and the mouse pointer
+  //is over a PFD control. Overriding the MouseLeave method is not
+  //sufficient (Lazarus bug?).
+  inherited CMMouseLeave(Message);
+  MouseLeave;
 end;
 
 end.
