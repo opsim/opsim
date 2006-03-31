@@ -62,6 +62,9 @@ type
     procedure MouseUp(Button: TMouseButton ; Shift: TShiftState; X, Y: Integer);
             override;
     procedure Paint; override;
+    procedure WMLButtonDown(Var Message: TLMLButtonDown); message LM_LBUTTONDOWN;
+    procedure WMRButtonDown(Var Message: TLMRButtonDown); message LM_RBUTTONDOWN;
+
   public
     constructor Create(AOwner: TPFDWorkplace); reintroduce; virtual;
     property Canvas;
@@ -401,6 +404,47 @@ begin
   //update drawings on its canvas.
   P := Parent.ScreenToClient(ClientToScreen(Point(X,Y)));
   Parent.MouseUp(Button, Shift, P.X, P.Y);
+end;
+
+procedure TPFDControl.WMLButtonDown(var Message: TLMLButtonDown);
+//var
+  //Shift: TShiftState;
+  //I: Integer;
+begin
+  inherited WMLButtonDown(Message);
+  
+  //with Message do begin
+    //StartDragPoint := Point(XPos,YPos);
+    //Shift := KeysToShiftState(Keys);
+  //end;//with
+
+  ////If Shift is pressed while clicking, then negate the selection state of the
+  ////control. Otherwise, always select it.
+  //if (ssShift in Shift) then begin
+    //Selected := not Selected;
+  //end
+  //else begin
+    ////Clicking a deselected control, without the Shift key pressed, causes the
+    ////selection of the clicked control and deselects all the others. If the clicked
+    ////control is already selected, then the selection state remains the same.
+    //if not Selected then
+      //with PFDWorkplace do
+        //for I := 0 to ControlCount - 1 do
+          //if  (Controls[I] <> Self) and
+              //(Controls[I] is TPFDControl) then
+            //TPFDControl(Controls[I]).Selected := False;
+    ////The control becomes the only selected one.
+    //Selected := True;
+  //end;//if
+
+  ////Pass mouse processing to the parent.
+  //Parent.MouseCapture := True;
+end;
+
+procedure TPFDControl.WMRButtonDown(var Message: TLMRButtonDown);
+begin
+  //DoBeforeMouseMessage;
+  //DoMouseDown(Message, mbRight, []);
 end;
 
 procedure TPFDControl.Paint;
