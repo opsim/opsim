@@ -64,7 +64,8 @@ type
     procedure Paint; override;
     procedure WMLButtonDown(Var Message: TLMLButtonDown); message LM_LBUTTONDOWN;
     procedure WMRButtonDown(Var Message: TLMRButtonDown); message LM_RBUTTONDOWN;
-
+    procedure WMLButtonUp(var Message: TLMLButtonUp); message LM_LBUTTONUP;
+    procedure WMRButtonUp(var Message: TLMRButtonUp); message LM_RBUTTONUP;
   public
     constructor Create(AOwner: TPFDWorkplace); reintroduce; virtual;
     property Canvas;
@@ -444,6 +445,16 @@ end;
 procedure TPFDControl.WMRButtonDown(var Message: TLMRButtonDown);
 begin
   inherited WMRButtonDown(Message);
+end;
+
+procedure TPFDControl.WMLButtonUp(var Message: TLMLButtonUp);
+begin
+  inherited WMLButtonUp(Message);
+end;
+
+procedure TPFDControl.WMRButtonUp(var Message: TLMRButtonUp);
+begin
+  inherited WMRButtonUp(Message);
 end;
 
 procedure TPFDControl.Paint;
