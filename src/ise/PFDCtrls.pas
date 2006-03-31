@@ -111,7 +111,6 @@ type
     procedure CMMouseLeave(var Message :TLMessage); message CM_MouseLeave;
   public
     constructor Create(AOwner: TComponent); override;
-    procedure NotifyRepaint(APFDControl: TPFDControl);
     procedure ResetGuideLines;
     property DragControl: TControl read FDragControl write FDragControl;
   end;
@@ -355,8 +354,8 @@ begin
   
   //Needs to notify the mouse event over the control in order the PFDWorkplace
   //update drawings on its canvas.
-  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
-  PFDWorkplace.MouseDown(Button, Shift, P.X, P.Y);
+  P := Parent.ScreenToClient(ClientToScreen(Point(X,Y)));
+  Parent.MouseDown(Button, Shift, P.X, P.Y);
 end;
 
 procedure TPFDControl.MouseEnter;
@@ -388,8 +387,8 @@ begin
   inherited MouseMove(Shift, X, Y);
   //Needs to notify mouse movements over the control in order the PFDWorkplace
   //update drawings on its canvas.
-  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
-  PFDWorkplace.MouseMove(Shift, P.X, P.Y);
+  P := Parent.ScreenToClient(ClientToScreen(Point(X,Y)));
+  Parent.MouseMove(Shift, P.X, P.Y);
 end;
 
 procedure TPFDControl.MouseUp(Button: TMouseButton ; Shift: TShiftState; X, Y: 
@@ -400,8 +399,8 @@ begin
   inherited MouseUp(Button, Shift, X, Y);
   //Needs to notify the mouse event over the control in order the PFDWorkplace
   //update drawings on its canvas.
-  P := PFDWorkplace.ScreenToClient(ClientToScreen(Point(X,Y)));
-  PFDWorkplace.MouseUp(Button, Shift, P.X, P.Y);
+  P := Parent.ScreenToClient(ClientToScreen(Point(X,Y)));
+  Parent.MouseUp(Button, Shift, P.X, P.Y);
 end;
 
 procedure TPFDControl.Paint;
@@ -419,9 +418,6 @@ begin
       //Debugln(Format('TPFDControl Height: %s', [IntToStr(Self.Height)]));
     end;//with
   end;//if
-  
-  //Notify workplace to allow canvas update.
-  PFDWorkplace.NotifyRepaint(Self);
   
   //Defines a standard canvas to be used by the descendents. The canvas will be
   //automatica defined when descendents controls invoke the inherited Paint
@@ -697,11 +693,6 @@ begin
   
   //Redraw the lines.
   DrawGuideLines;
-end;
-
-procedure TPFDWorkplace.NotifyRepaint(APFDControl: TPFDControl);
-begin
-  //Reserved for processing after controls repainting.
 end;
 
 procedure TPFDWorkplace.PaintDragFrames(Origin, Dest: TPoint);
