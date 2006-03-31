@@ -62,9 +62,11 @@ type
     procedure MouseUp(Button: TMouseButton ; Shift: TShiftState; X, Y: Integer);
             override;
     procedure Paint; override;
-    procedure WMLButtonDown(Var Message: TLMLButtonDown); message LM_LBUTTONDOWN;
-    procedure WMRButtonDown(Var Message: TLMRButtonDown); message LM_RBUTTONDOWN;
+    procedure WMLButtonDown(Var Message: TLMLButtonDown); message 
+            LM_LBUTTONDOWN;
     procedure WMLButtonUp(var Message: TLMLButtonUp); message LM_LBUTTONUP;
+    procedure WMRButtonDown(Var Message: TLMRButtonDown); message 
+            LM_RBUTTONDOWN;
     procedure WMRButtonUp(var Message: TLMRButtonUp); message LM_RBUTTONUP;
   public
     constructor Create(AOwner: TPFDWorkplace); reintroduce; virtual;
@@ -100,6 +102,8 @@ type
     procedure DrawGuideLines;
     procedure EraseGuideLines;
   protected
+    procedure CMMouseEnter(var Message :TLMessage); message CM_MouseEnter;
+    procedure CMMouseLeave(var Message :TLMessage); message CM_MouseLeave;
     procedure DoEnter; override;
     procedure DoExit; override;
     procedure MouseDown(Button: TMouseButton ; Shift: TShiftState; X, Y: 
@@ -111,8 +115,6 @@ type
             override;
     procedure PaintDragFrames(Origin, Dest: TPoint); overload;
     procedure Resize; override;
-    procedure CMMouseEnter(var Message :TLMessage); message CM_MouseEnter;
-    procedure CMMouseLeave(var Message :TLMessage); message CM_MouseLeave;
   public
     constructor Create(AOwner: TComponent); override;
     procedure ResetGuideLines;
@@ -369,7 +371,7 @@ begin
   //using Alt+Tab and the application get focus with the mouse pointer over
   //a PFD control, then MouseEnter will not triggers on PFDWorkplace.
   //PFDWorkplace.MouseEnter;
-
+  
   //PFDWorkplace.MouseCapture := True;
   //SetCaptureControl(Parent);
 end;
@@ -405,56 +407,6 @@ begin
   //update drawings on its canvas.
   P := Parent.ScreenToClient(ClientToScreen(Point(X,Y)));
   Parent.MouseUp(Button, Shift, P.X, P.Y);
-end;
-
-procedure TPFDControl.WMLButtonDown(var Message: TLMLButtonDown);
-//var
-  //Shift: TShiftState;
-  //I: Integer;
-begin
-  inherited WMLButtonDown(Message);
-  
-  //with Message do begin
-    //StartDragPoint := Point(XPos,YPos);
-    //Shift := KeysToShiftState(Keys);
-  //end;//with
-
-  ////If Shift is pressed while clicking, then negate the selection state of the
-  ////control. Otherwise, always select it.
-  //if (ssShift in Shift) then begin
-    //Selected := not Selected;
-  //end
-  //else begin
-    ////Clicking a deselected control, without the Shift key pressed, causes the
-    ////selection of the clicked control and deselects all the others. If the clicked
-    ////control is already selected, then the selection state remains the same.
-    //if not Selected then
-      //with PFDWorkplace do
-        //for I := 0 to ControlCount - 1 do
-          //if  (Controls[I] <> Self) and
-              //(Controls[I] is TPFDControl) then
-            //TPFDControl(Controls[I]).Selected := False;
-    ////The control becomes the only selected one.
-    //Selected := True;
-  //end;//if
-
-  ////Pass mouse processing to the parent.
-  //Parent.MouseCapture := True;
-end;
-
-procedure TPFDControl.WMRButtonDown(var Message: TLMRButtonDown);
-begin
-  inherited WMRButtonDown(Message);
-end;
-
-procedure TPFDControl.WMLButtonUp(var Message: TLMLButtonUp);
-begin
-  inherited WMLButtonUp(Message);
-end;
-
-procedure TPFDControl.WMRButtonUp(var Message: TLMRButtonUp);
-begin
-  inherited WMRButtonUp(Message);
 end;
 
 procedure TPFDControl.Paint;
@@ -501,6 +453,58 @@ procedure TPFDControl.SetSelected(Value: Boolean);
 begin
   FSelected := Value;
   Invalidate;
+end;
+
+procedure TPFDControl.WMLButtonDown(Var Message: TLMLButtonDown);
+  
+  //var
+    //Shift: TShiftState;
+    //I: Integer;
+  
+begin
+  inherited WMLButtonDown(Message);
+  
+  //with Message do begin
+    //StartDragPoint := Point(XPos,YPos);
+    //Shift := KeysToShiftState(Keys);
+  //end;//with
+  
+  ////If Shift is pressed while clicking, then negate the selection state of the
+  ////control. Otherwise, always select it.
+  //if (ssShift in Shift) then begin
+    //Selected := not Selected;
+  //end
+  //else begin
+    ////Clicking a deselected control, without the Shift key pressed, causes the
+    ////selection of the clicked control and deselects all the others. If the clicked
+    ////control is already selected, then the selection state remains the same.
+    //if not Selected then
+      //with PFDWorkplace do
+        //for I := 0 to ControlCount - 1 do
+          //if  (Controls[I] <> Self) and
+              //(Controls[I] is TPFDControl) then
+            //TPFDControl(Controls[I]).Selected := False;
+    ////The control becomes the only selected one.
+    //Selected := True;
+  //end;//if
+  
+  ////Pass mouse processing to the parent.
+  //Parent.MouseCapture := True;
+end;
+
+procedure TPFDControl.WMLButtonUp(var Message: TLMLButtonUp);
+begin
+  inherited WMLButtonUp(Message);
+end;
+
+procedure TPFDControl.WMRButtonDown(Var Message: TLMRButtonDown);
+begin
+  inherited WMRButtonDown(Message);
+end;
+
+procedure TPFDControl.WMRButtonUp(var Message: TLMRButtonUp);
+begin
+  inherited WMRButtonUp(Message);
 end;
 
 {
@@ -553,6 +557,28 @@ begin
   Align := alClient;
   SetInvalidPoint(CurrentGuideLinesCenter);
   Resized := False;
+end;
+
+procedure TPFDWorkplace.CMMouseEnter(var Message :TLMessage);
+begin
+  //It is necessary to overide this custom message handler, in order the
+  //PFD workplace be notified about the mouse enter event when the
+  //user switch to the simulator using alt+tab and the mouse pointer
+  //falls over a PFD control. Overriding the MouseEnter method is not
+  //sufficient (Lazarus bug?).
+  inherited CMMouseEnter(Message);
+  MouseEnter;
+end;
+
+procedure TPFDWorkplace.CMMouseLeave(var Message :TLMessage);
+begin
+  //It is necessary to overide this custom message handler, in order the
+  //PFD workplace be notified about the mouse leave event when the
+  //user switch from the simulator using alt+tab and the mouse pointer
+  //is over a PFD control. Overriding the MouseLeave method is not
+  //sufficient (Lazarus bug?).
+  inherited CMMouseLeave(Message);
+  MouseLeave;
 end;
 
 procedure TPFDWorkplace.DoEnter;
@@ -618,7 +644,7 @@ begin
   
     //Sets an invalid coordinate to indicate that there is no drawn line now.
     SetInvalidPoint(CurrentGuideLinesCenter);
-
+  
     //Needed to allow application to process message queue. For some
     //reason, calling Invalidate or Repaint does not paint the canvas
     //correctly.
@@ -787,28 +813,6 @@ begin
   inherited Resize;
   //Set the flag to indicate that a resize operation occured.
   Resized := True;
-end;
-
-procedure TPFDWorkplace.CMMouseEnter(var Message: TLMessage);
-begin
-  //It is necessary to overide this custom message handler, in order the
-  //PFD workplace be notified about the mouse enter event when the
-  //user switch to the simulator using alt+tab and the mouse pointer
-  //falls over a PFD control. Overriding the MouseEnter method is not
-  //sufficient (Lazarus bug?).
-  inherited CMMouseEnter(Message);
-  MouseEnter;
-end;
-
-procedure TPFDWorkplace.CMMouseLeave(var Message: TLMessage);
-begin
-  //It is necessary to overide this custom message handler, in order the
-  //PFD workplace be notified about the mouse leave event when the
-  //user switch from the simulator using alt+tab and the mouse pointer
-  //is over a PFD control. Overriding the MouseLeave method is not
-  //sufficient (Lazarus bug?).
-  inherited CMMouseLeave(Message);
-  MouseLeave;
 end;
 
 end.
