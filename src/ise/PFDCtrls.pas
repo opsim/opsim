@@ -443,8 +443,7 @@ end;
 
 procedure TPFDControl.WMRButtonDown(var Message: TLMRButtonDown);
 begin
-  //DoBeforeMouseMessage;
-  //DoMouseDown(Message, mbRight, []);
+  inherited WMRButtonDown(Message);
 end;
 
 procedure TPFDControl.Paint;
