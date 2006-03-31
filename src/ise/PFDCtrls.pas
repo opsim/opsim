@@ -737,10 +737,8 @@ begin
       if  (Controls[I] is TPFDControl) then
         with TPFDControl(Controls[I]) do
           if Selected then begin
-            Visible := False;
-            Left := Left + Delta.X;
-            Top := Top + Delta.Y;
-            Visible := True;
+            //Place the control on the new position at once.
+            SetBounds(Left + Delta.X, Top + Delta.Y, Width, Height);
             //We must allow application to process paint messages so the
             //repaiting is finished before the guidelines are drawn again.
             //Tried to use Invalidate method, but causes staining.
