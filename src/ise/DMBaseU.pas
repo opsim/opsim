@@ -32,19 +32,36 @@ unit DMBaseU;
 interface
 
 uses
-  Classes, SysUtils, LResources, Forms, Controls, Dialogs;
+  Classes, SysUtils, LResources, Forms, Controls, Dialogs, ZConnection,
+  ZDataset;
 
 type
 
   { TDMBase }
 
   TDMBase = class (TDataModule)
+    DbConnectionMaster: TZConnection;
+    ZTable1: TZTable;
+    procedure DataModuleCreate(Sender: TObject);
   end;
   
 var
   DMBase: TDMBase;
 
 implementation
+
+{ TDMBase }
+
+procedure TDMBase.DataModuleCreate(Sender: TObject);
+begin
+  with DbConnectionMaster do begin
+    Connected := False;
+    Database := ExtractFilePath(Application.ExeName) + 'SYSDATA.ODB';
+    User := 'sysdba';
+    Password := 'masterkey';
+    Connected := True;
+  end;//with
+end;
 
 initialization
 

@@ -1,6 +1,24 @@
 object DMBase: TDMBase
+  OnCreate = DataModuleCreate
   Height = 300
   HorizontalOffset = 370
   VerticalOffset = 174
   Width = 400
+  object DbConnectionMaster: TZConnection
+    Protocol = 'firebird-2.0'
+    Database = 'C:\Samuel\Dev\OpSim\app\SYSDATA.ODB'
+    User = 'sysdba'
+    Password = 'masterkey'
+    TransactIsolationLevel = tiReadCommitted
+    Connected = True
+    left = 16
+    top = 24
+  end
+  object ZTable1: TZTable
+    Connection = DbConnectionMaster
+    Active = True
+    TableName = 'PROPS_PURE_SUBST_RAW'
+    left = 16
+    top = 64
+  end
 end
