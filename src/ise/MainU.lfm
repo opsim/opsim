@@ -80,7 +80,7 @@ object Main: TMain
       }
       NumGlyphs = 0
     end
-    object sbExit: TSpeedButton
+    object sbAbout: TSpeedButton
       Left = 85
       Height = 28
       Hint = 'Exit'
@@ -110,7 +110,7 @@ object Main: TMain
       Color = clNone
       ParentColor = False
     end
-    object sbExit1: TSpeedButton
+    object sbExit: TSpeedButton
       Left = 113
       Height = 28
       Hint = 'Exit'
@@ -176,7 +176,7 @@ object Main: TMain
       object MenuItem2: TMenuItem
         Caption = '-'
       end
-      object MenuItem3: TMenuItem
+      object miDatabaseConnection: TMenuItem
         Caption = 'Database'
         object miDatabaseConnect: TMenuItem
           Caption = 'Connect'

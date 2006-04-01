@@ -43,21 +43,21 @@ LazarusResources.Add('TMain','FORMDATA',[
   +#255#255#255#255#240#204#204#15#255#255#255#255#240#204#204#15#255#255#255#0
   +#0#204#204#15#255#255#255#7#12#204#204#15#255#255#255#0#204#204#204#0#0#0#0
   +#12#204#204#204#204#204#204#204#204#204#204#204#9'NumGlyphs'#2#0#0#0#12'TSpe'
-  +'edButton'#6'sbExit'#4'Left'#2'U'#6'Height'#2#28#4'Hint'#6#4'Exit'#3'Top'#2#1
-  +#5'Width'#2#28#5'Align'#7#6'alLeft'#4'Flat'#9#10'Glyph.Data'#10#250#0#0#0#246
-  +#0#0#0'BM'#246#0#0#0#0#0#0#0'v'#0#0#0'('#0#0#0#16#0#0#0#16#0#0#0#1#0#4#0#0#0
-  +#0#0#128#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#128#0#0#128#0#0#0
-  +#128#128#0#128#0#0#0#128#0#128#0#128#128#0#0#128#128#128#0#192#192#192#0#0#0
-  +#255#0#0#255#0#0#0#255#255#0#255#0#0#0#255#0#255#0#255#255#0#0#255#255#255#0
-  +#204#204#204#204#204#204#204#204#204#204'tDD|'#204#204#204'tDDDD|'#204#199'D'
-  +'DDDDG'#204#196'DO'#255#255#244'D'#204'tDD'#255'DD|DDD'#255'DDLDDD'#255'D'
-  +'DLDDO'#255#255'DDLDDDDDDDLtDD'#247'DD|'#196'DD'#255#255'DD'#204#199'DD'
-  +#247'DG'#204#204'tDDDD|'#204#204#204'tDD|'#204#204#204#204#204#204#204#204
-  +#204#204#9'NumGlyphs'#2#0#7'OnClick'#7#12'miAboutClick'#0#0#6'TLabel'#6'Labe'
-  +'l1'#4'Left'#3'('#1#6'Height'#2#14#3'Top'#2#8#5'Width'#3#249#0#7'Caption'#6
-  +'1<<< our toolbar needs nice icons! can you draw???'#5'Color'#7#6'clNone'#11
-  +'ParentColor'#8#0#0#12'TSpeedButton'#7'sbExit1'#4'Left'#2'q'#6'Height'#2#28#4
-  +'Hint'#6#4'Exit'#3'Top'#2#1#5'Width'#2#28#5'Align'#7#6'alLeft'#4'Flat'#9#10
+  +'edButton'#7'sbAbout'#4'Left'#2'U'#6'Height'#2#28#4'Hint'#6#4'Exit'#3'Top'#2
+  +#1#5'Width'#2#28#5'Align'#7#6'alLeft'#4'Flat'#9#10'Glyph.Data'#10#250#0#0#0
+  +#246#0#0#0'BM'#246#0#0#0#0#0#0#0'v'#0#0#0'('#0#0#0#16#0#0#0#16#0#0#0#1#0#4#0
+  +#0#0#0#0#128#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#128#0#0#128#0
+  +#0#0#128#128#0#128#0#0#0#128#0#128#0#128#128#0#0#128#128#128#0#192#192#192#0
+  +#0#0#255#0#0#255#0#0#0#255#255#0#255#0#0#0#255#0#255#0#255#255#0#0#255#255
+  +#255#0#204#204#204#204#204#204#204#204#204#204'tDD|'#204#204#204'tDDDD|'#204
+  +#199'DDDDDG'#204#196'DO'#255#255#244'D'#204'tDD'#255'DD|DDD'#255'DDLDDD'
+  +#255'DDLDDO'#255#255'DDLDDDDDDDLtDD'#247'DD|'#196'DD'#255#255'DD'#204#199'D'
+  +'D'#247'DG'#204#204'tDDDD|'#204#204#204'tDD|'#204#204#204#204#204#204#204
+  +#204#204#204#9'NumGlyphs'#2#0#7'OnClick'#7#12'miAboutClick'#0#0#6'TLabel'#6
+  +'Label1'#4'Left'#3'('#1#6'Height'#2#14#3'Top'#2#8#5'Width'#3#249#0#7'Caption'
+  +#6'1<<< our toolbar needs nice icons! can you draw???'#5'Color'#7#6'clNone'
+  +#11'ParentColor'#8#0#0#12'TSpeedButton'#6'sbExit'#4'Left'#2'q'#6'Height'#2#28
+  +#4'Hint'#6#4'Exit'#3'Top'#2#1#5'Width'#2#28#5'Align'#7#6'alLeft'#4'Flat'#9#10
   +'Glyph.Data'#10#226#1#0#0#222#1#0#0'BM'#222#1#0#0#0#0#0#0'v'#0#0#0'('#0#0#0
   +'$'#0#0#0#18#0#0#0#1#0#4#0#0#0#0#0'h'#1#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0
   +#0#0#0#0#0#128#0#0#128#0#0#0#128#128#0#128#0#0#0#128#0#128#0#128#128#0#0#192
@@ -84,16 +84,16 @@ LazarusResources.Add('TMain','FORMDATA',[
   +#3'New'#7'OnClick'#7#10'miNewClick'#0#0#9'TMenuItem'#7'miClose'#7'Caption'#6
   +#5'Close'#7'OnClick'#7#12'miCloseClick'#0#0#9'TMenuItem'#6'miOpen'#6'Action'
   +#7#12'actnFileOpen'#7'OnClick'#7#11'miOpenClick'#0#0#9'TMenuItem'#9'MenuItem'
-  +'2'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#9'MenuItem3'#7'Caption'#6#8'Database'
-  +#0#9'TMenuItem'#17'miDatabaseConnect'#7'Caption'#6#7'Connect'#7'OnClick'#7#22
-  +'miDatabaseConnectClick'#0#0#9'TMenuItem'#20'miDatabaseDisconnect'#7'Caption'
-  +#6#10'Disconnect'#7'OnClick'#7#25'miDatabaseDisconnectClick'#0#0#0#9'TMenuIt'
-  +'em'#9'MenuItem1'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#6'miExit'#6'Action'#7#12
-  +'actnFileExit'#7'OnClick'#7#11'miExitClick'#0#0#0#9'TMenuItem'#6'miView'#7'C'
-  +'aption'#6#4'View'#0#9'TMenuItem'#18'miViewUnitopPallet'#7'Caption'#6#22'Uni'
-  +'t Operations Pallet'#7'OnClick'#7#23'miViewUnitopPalletClick'#0#0#9'TMenuIt'
-  +'em'#17'miViewPFDDesigner'#7'Caption'#6#12'PFD Designer'#7'OnClick'#7#23'miV'
-  +'iewPfdWorkspaceClick'#0#0#0#9'TMenuItem'#6'miHelp'#7'Caption'#6#4'Help'#0#9
-  +'TMenuItem'#7'miAbout'#7'Caption'#6#14'About OpSim...'#7'OnClick'#7#12'miAbo'
-  +'utClick'#0#0#0#0#0
+  +'2'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#20'miDatabaseConnection'#7'Caption'#6
+  +#8'Database'#0#9'TMenuItem'#17'miDatabaseConnect'#7'Caption'#6#7'Connect'#7
+  +'OnClick'#7#22'miDatabaseConnectClick'#0#0#9'TMenuItem'#20'miDatabaseDisconn'
+  +'ect'#7'Caption'#6#10'Disconnect'#7'OnClick'#7#25'miDatabaseDisconnectClick'
+  +#0#0#0#9'TMenuItem'#9'MenuItem1'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#6'miExit'
+  +#6'Action'#7#12'actnFileExit'#7'OnClick'#7#11'miExitClick'#0#0#0#9'TMenuItem'
+  +#6'miView'#7'Caption'#6#4'View'#0#9'TMenuItem'#18'miViewUnitopPallet'#7'Capt'
+  +'ion'#6#22'Unit Operations Pallet'#7'OnClick'#7#23'miViewUnitopPalletClick'#0
+  +#0#9'TMenuItem'#17'miViewPFDDesigner'#7'Caption'#6#12'PFD Designer'#7'OnClic'
+  +'k'#7#23'miViewPfdWorkspaceClick'#0#0#0#9'TMenuItem'#6'miHelp'#7'Caption'#6#4
+  +'Help'#0#9'TMenuItem'#7'miAbout'#7'Caption'#6#14'About OpSim...'#7'OnClick'#7
+  +#12'miAboutClick'#0#0#0#0#0
 ]);

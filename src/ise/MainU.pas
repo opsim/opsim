@@ -45,10 +45,10 @@ type
     Label1: TLabel;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
-    MenuItem3: TMenuItem;
     miAbout: TMenuItem;
     miClose: TMenuItem;
     miDatabaseConnect: TMenuItem;
+    miDatabaseConnection: TMenuItem;
     miDatabaseDisconnect: TMenuItem;
     miExit: TMenuItem;
     miFile: TMenuItem;
@@ -60,8 +60,8 @@ type
     miViewUnitopPallet: TMenuItem;
     mmStandardMenu: TMainMenu;
     pnlToolbar: TPanel;
+    sbAbout: TSpeedButton;
     sbExit: TSpeedButton;
-    sbExit1: TSpeedButton;
     sbNew: TSpeedButton;
     sbOpen: TSpeedButton;
     sbSave: TSpeedButton;
@@ -79,6 +79,7 @@ type
     procedure sbExitClick(Sender: TObject);
   public
     procedure NewSimulationCase;
+    procedure UpdateInterface;
   end;
   
 var
@@ -105,6 +106,7 @@ procedure TMain.FormShow(Sender: TObject);
 begin
   miViewUnitopPalletClick(Self);
   miViewPfdWorkspaceClick(Self);
+  UpdateInterface;
 end;
 
 procedure TMain.miAboutClick(Sender: TObject);
@@ -125,11 +127,13 @@ end;
 procedure TMain.miDatabaseConnectClick(Sender: TObject);
 begin
   DMBase.Connected := True;
+  UpdateInterface;
 end;
 
 procedure TMain.miDatabaseDisconnectClick(Sender: TObject);
 begin
   DMBase.Connected := False;
+  UpdateInterface;
 end;
 
 procedure TMain.miExitClick(Sender: TObject);
@@ -164,6 +168,12 @@ end;
 procedure TMain.sbExitClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TMain.UpdateInterface;
+begin
+  miDatabaseConnect.Enabled := not DMBase.Connected;
+  miDatabaseDisconnect.Enabled := DMBase.Connected;
 end;
 
 initialization
