@@ -1,16 +1,89 @@
 object PhysicalPropertyExplorer: TPhysicalPropertyExplorer
-  Left = 290
-  Height = 300
-  Top = 149
-  Width = 400
-  HorzScrollBar.Page = 399
-  VertScrollBar.Page = 299
-  Caption = 'PhysicalPropertyExplorer'
-  ClientHeight = 300
-  ClientWidth = 400
+  Left = 244
+  Height = 482
+  Top = 122
+  Width = 663
+  HorzScrollBar.Page = 662
+  VertScrollBar.Page = 481
+  Caption = 'Physical Property Explorer'
+  ClientHeight = 482
+  ClientWidth = 663
+  OnCreate = FormCreate
   PixelsPerInch = 96
-  object ZTable1: TZTable
-    left = 14
-    top = 43
+  Position = poDefaultPosOnly
+  object Panel1: TPanel
+    Height = 36
+    Top = 446
+    Width = 663
+    Align = alBottom
+    ClientHeight = 36
+    ClientWidth = 663
+    TabOrder = 0
+    object btnClose: TButton
+      Left = 578
+      Height = 25
+      Top = 6
+      Width = 75
+      Anchors = [akTop, akRight]
+      BorderSpacing.InnerBorder = 2
+      Caption = 'Close'
+      TabOrder = 0
+    end
+  end
+  object Panel2: TPanel
+    Height = 34
+    Width = 663
+    Align = alTop
+    ClientHeight = 34
+    ClientWidth = 663
+    TabOrder = 1
+    object DBNavigator1: TDBNavigator
+      Left = 400
+      Height = 25
+      Top = 3
+      Width = 253
+      Anchors = [akTop, akRight]
+      BevelOuter = bvNone
+      ClientHeight = 25
+      ClientWidth = 253
+      DataSource = dsPureComps
+    end
+  end
+  object dbGrid1: TdbGrid
+    Height = 412
+    Top = 34
+    Width = 663
+    Align = alClient
+    Color = 13828095
+    DataSource = dsPureComps
+    FixedColor = clBtnFace
+    Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    OptionsExtra = [dgeAutoColumns, dgeCheckboxColumn]
+    ParentColor = False
+    ReadOnly = True
+    TabOrder = 2
+    TabStop = True
+  end
+  object tblPureComps: TZTable
+    Connection = DbConnectionMaster
+    TableName = 'PROPS_PURE_SUBST_RAW'
+    left = 96
+    top = 32
+  end
+  object dsPureComps: TDatasource
+    DataSet = tblPureComps
+    left = 96
+    top = 64
+  end
+  object DbConnectionMaster: TZConnection
+    Protocol = 'firebird-2.0'
+    Database = 'C:\Samuel\Dev\OpSim\app\SYSDATA.ODB'
+    User = 'sysdba'
+    Password = 'masterkey'
+    TransactIsolationLevel = tiReadCommitted
+    Connected = True
+    BeforeConnect = DbConnectionMasterBeforeConnect
+    left = 72
+    top = 32
   end
 end

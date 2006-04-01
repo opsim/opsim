@@ -205,6 +205,10 @@ object Main: TMain
         Caption = 'PFD Designer'
         OnClick = miViewPfdWorkspaceClick
       end
+      object miPhysicalPropertyExplorer: TMenuItem
+        Caption = 'Physical Property Explorer'
+        OnClick = miPhysicalPropertyExplorerClick
+      end
     end
     object miHelp: TMenuItem
       Caption = 'Help'

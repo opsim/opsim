@@ -93,7 +93,9 @@ LazarusResources.Add('TMain','FORMDATA',[
   +#6'miView'#7'Caption'#6#4'View'#0#9'TMenuItem'#18'miViewUnitopPallet'#7'Capt'
   +'ion'#6#22'Unit Operations Pallet'#7'OnClick'#7#23'miViewUnitopPalletClick'#0
   +#0#9'TMenuItem'#17'miViewPFDDesigner'#7'Caption'#6#12'PFD Designer'#7'OnClic'
-  +'k'#7#23'miViewPfdWorkspaceClick'#0#0#0#9'TMenuItem'#6'miHelp'#7'Caption'#6#4
-  +'Help'#0#9'TMenuItem'#7'miAbout'#7'Caption'#6#14'About OpSim...'#7'OnClick'#7
-  +#12'miAboutClick'#0#0#0#0#0
+  +'k'#7#23'miViewPfdWorkspaceClick'#0#0#9'TMenuItem'#26'miPhysicalPropertyExpl'
+  +'orer'#7'Caption'#6#26'Physical Property Explorer'#7'OnClick'#7#31'miPhysica'
+  +'lPropertyExplorerClick'#0#0#0#9'TMenuItem'#6'miHelp'#7'Caption'#6#4'Help'#0
+  +#9'TMenuItem'#7'miAbout'#7'Caption'#6#14'About OpSim...'#7'OnClick'#7#12'miA'
+  +'boutClick'#0#0#0#0#0
 ]);

@@ -45,7 +45,6 @@ begin
   Application.CreateForm(TPFDDesigner, PFDDesigner);
   Application.CreateForm(TDMBase, DMBase);
   Application.CreateForm(TMixerSpec, MixerSpec);
-  Application.CreateForm(TPhysicalPropertyExplorer, PhysicalPropertyExplorer);
   Application.Run;
 end.
 

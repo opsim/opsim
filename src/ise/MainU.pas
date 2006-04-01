@@ -55,6 +55,7 @@ type
     miHelp: TMenuItem;
     miNew: TMenuItem;
     miOpen: TMenuItem;
+    miPhysicalPropertyExplorer: TMenuItem;
     miView: TMenuItem;
     miViewPFDDesigner: TMenuItem;
     miViewUnitopPallet: TMenuItem;
@@ -74,6 +75,7 @@ type
     procedure miExitClick(Sender: TObject);
     procedure miNewClick(Sender: TObject);
     procedure miOpenClick(Sender: TObject);
+    procedure miPhysicalPropertyExplorerClick(Sender: TObject);
     procedure miViewPfdWorkspaceClick(Sender: TObject);
     procedure miViewUnitopPalletClick(Sender: TObject);
     procedure sbExitClick(Sender: TObject);
@@ -88,7 +90,7 @@ var
 implementation
 
 uses
-  AboutU, UnitopPalletU, PFDDesignerU, DMBaseU;
+  AboutU, UnitopPalletU, PFDDesignerU, DMBaseU, PhysicalPropertyExplorerU;
 
 { TMain }
 
@@ -149,6 +151,13 @@ end;
 procedure TMain.miOpenClick(Sender: TObject);
 begin
   ShowMessage('Nothing yet!');
+end;
+
+procedure TMain.miPhysicalPropertyExplorerClick(Sender: TObject);
+begin
+  if PhysicalPropertyExplorer = nil then
+    PhysicalPropertyExplorer := TPhysicalPropertyExplorer.Create(Self);
+  PhysicalPropertyExplorer.Show;
 end;
 
 procedure TMain.miViewPfdWorkspaceClick(Sender: TObject);
