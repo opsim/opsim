@@ -25,13 +25,17 @@
         <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="2">
       <Item1>
+        <PackageName Value="zcomponent"/>
+        <MinVersion Major="6" Minor="5" Release="1" Valid="True"/>
+      </Item1>
+      <Item2>
         <PackageName Value="LCL"/>
         <MinVersion Major="1" Valid="True"/>
-      </Item1>
+      </Item2>
     </RequiredPackages>
-    <Units Count="15">
+    <Units Count="17">
       <Unit0>
         <Filename Value="OpSim.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -122,6 +126,18 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Solver"/>
       </Unit14>
+      <Unit15>
+        <Filename Value="..\engine\thermo\ThermoProvider.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ThermoProvider"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="PhysicalPropertyExplorerU.pas"/>
+        <ComponentName Value="PhysicalPropertyExplorer"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="PhysicalPropertyExplorerU.lrs"/>
+        <UnitName Value="PhysicalPropertyExplorerU"/>
+      </Unit16>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -131,7 +147,7 @@
       <Filename Value="..\..\app\OpSim"/>
     </Target>
     <SearchPaths>
-      <OtherUnitFiles Value="..\engine\solver\;..\engine\unitop\"/>
+      <OtherUnitFiles Value="..\engine\solver\;..\engine\unitop\;..\engine\thermo\"/>
       <UnitOutputDirectory Value="..\build"/>
       <SrcPath Value="$(LazarusDir)\lcl\;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)\"/>
     </SearchPaths>

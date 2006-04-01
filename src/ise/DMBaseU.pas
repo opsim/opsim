@@ -41,8 +41,10 @@ type
 
   TDMBase = class (TDataModule)
     DbConnectionMaster: TZConnection;
-    ZTable1: TZTable;
     procedure DataModuleCreate(Sender: TObject);
+  public
+    procedure Connect;
+    procedure Disconnect;
   end;
   
 var
@@ -52,7 +54,10 @@ implementation
 
 { TDMBase }
 
-procedure TDMBase.DataModuleCreate(Sender: TObject);
+{
+*********************************** TDMBase ************************************
+}
+procedure TDMBase.Connect;
 begin
   with DbConnectionMaster do begin
     Connected := False;
@@ -60,6 +65,17 @@ begin
     User := 'sysdba';
     Password := 'masterkey';
     Connected := True;
+  end;//with
+end;
+
+procedure TDMBase.DataModuleCreate(Sender: TObject);
+begin
+end;
+
+procedure TDMBase.Disconnect;
+begin
+  with DbConnectionMaster do begin
+    Connected := False;
   end;//with
 end;
 

@@ -35,7 +35,8 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms
   { add your units here }, MainU, AboutU, PFDDesignerU, UnitopPalletU, DMBaseU, MixerSpecU,
-  Utils, PFDGraph, ExtGraphics2, ExtShapes, PFDCtrls, Solver, Entities, Mixer;
+  Utils, PFDGraph, ExtGraphics2, ExtShapes, PFDCtrls, Solver, Entities, Mixer,
+  ThermoProvider, zcomponent, PhysicalPropertyExplorerU;
 
 begin
   Application.Initialize;
@@ -44,6 +45,7 @@ begin
   Application.CreateForm(TPFDDesigner, PFDDesigner);
   Application.CreateForm(TDMBase, DMBase);
   Application.CreateForm(TMixerSpec, MixerSpec);
+  Application.CreateForm(TPhysicalPropertyExplorer, PhysicalPropertyExplorer);
   Application.Run;
 end.
 
