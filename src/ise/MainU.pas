@@ -43,9 +43,13 @@ type
     actnFileOpen: TFileOpen;
     actnlStandardActions: TActionList;
     Label1: TLabel;
+    MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
     miAbout: TMenuItem;
     miClose: TMenuItem;
+    miDatabaseConnect: TMenuItem;
+    miDatabaseDisconnect: TMenuItem;
     miExit: TMenuItem;
     miFile: TMenuItem;
     miHelp: TMenuItem;
@@ -65,6 +69,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure miAboutClick(Sender: TObject);
     procedure miCloseClick(Sender: TObject);
+    procedure miDatabaseConnectClick(Sender: TObject);
+    procedure miDatabaseDisconnectClick(Sender: TObject);
     procedure miExitClick(Sender: TObject);
     procedure miNewClick(Sender: TObject);
     procedure miOpenClick(Sender: TObject);
@@ -81,7 +87,7 @@ var
 implementation
 
 uses
-  AboutU, UnitopPalletU, PFDDesignerU;
+  AboutU, UnitopPalletU, PFDDesignerU, DMBaseU;
 
 { TMain }
 
@@ -114,6 +120,16 @@ end;
 procedure TMain.miCloseClick(Sender: TObject);
 begin
   //Close opened case.
+end;
+
+procedure TMain.miDatabaseConnectClick(Sender: TObject);
+begin
+  DMBase.Connected := True;
+end;
+
+procedure TMain.miDatabaseDisconnectClick(Sender: TObject);
+begin
+  DMBase.Connected := False;
 end;
 
 procedure TMain.miExitClick(Sender: TObject);

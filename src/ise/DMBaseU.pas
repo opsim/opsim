@@ -42,9 +42,13 @@ type
   TDMBase = class (TDataModule)
     DbConnectionMaster: TZConnection;
     procedure DataModuleCreate(Sender: TObject);
+  private
+    function GetConnected: Boolean;
+    procedure SetConnected(Value: Boolean);
   public
     procedure Connect;
     procedure Disconnect;
+    property Connected: Boolean read GetConnected write SetConnected;
   end;
   
 var
@@ -77,6 +81,17 @@ begin
   with DbConnectionMaster do begin
     Connected := False;
   end;//with
+end;
+
+function TDMBase.GetConnected: Boolean;
+begin
+  Result := DbConnectionMaster.Connected;
+end;
+
+procedure TDMBase.SetConnected(Value: Boolean);
+begin
+  if Value then Connect
+           else Disconnect;
 end;
 
 initialization

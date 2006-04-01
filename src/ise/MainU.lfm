@@ -98,6 +98,7 @@ object Main: TMain
         444C444444444444444C7444447FF744447CC44444FFFF4444CCC744447FF744
         47CCCC74444444447CCCCCCC7444447CCCCCCCCCCCCCCCCCCCCC
       }
+      NumGlyphs = 0
       OnClick = miAboutClick
     end
     object Label1: TLabel
@@ -173,6 +174,20 @@ object Main: TMain
         OnClick = miOpenClick
       end
       object MenuItem2: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem3: TMenuItem
+        Caption = 'Database'
+        object miDatabaseConnect: TMenuItem
+          Caption = 'Connect'
+          OnClick = miDatabaseConnectClick
+        end
+        object miDatabaseDisconnect: TMenuItem
+          Caption = 'Disconnect'
+          OnClick = miDatabaseDisconnectClick
+        end
+      end
+      object MenuItem1: TMenuItem
         Caption = '-'
       end
       object miExit: TMenuItem
