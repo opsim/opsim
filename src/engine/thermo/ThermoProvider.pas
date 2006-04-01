@@ -7,6 +7,7 @@
                   Initial Revision : 01/04/2006
                   Authors:
                     - Samuel Jorge Marques Cartaxo
+                    - Hazem Haddad
                     - Additional contributors...
 
  ***************************************************************************/
@@ -33,6 +34,13 @@ uses
 
 type
 
+  //Describes a dimensional value. UnitID is the ID code defined by the
+  //standardized units table.
+  TDimensionalValue = record
+    Value: Real;
+    UnitID: Integer;
+  end;
+  
   TPropertyProvider= class;
 
   TCompound = class (TCollectionItem)
@@ -40,6 +48,37 @@ type
     function GetDisplayName: string; override;
     procedure SetIndex(Value: Integer); override;
   public
+    CNUM: TDimensionalValue;
+    CompName: TDimensionalValue;
+    CPA: TDimensionalValue;
+    CPB: TDimensionalValue;
+    CPC: TDimensionalValue;
+    CPD: TDimensionalValue;
+    DELGF: TDimensionalValue;
+    DELHF: TDimensionalValue;
+    DIPM: TDimensionalValue;
+    Formula: TDimensionalValue;
+    LDEN: TDimensionalValue;
+    MW: TDimensionalValue;
+    NEQ: TDimensionalValue;
+    PC: TDimensionalValue;
+    TB: TDimensionalValue;
+    TC: TDimensionalValue;
+    TCPHIL: TDimensionalValue;
+    TDEN: TDimensionalValue;
+    TFP: TDimensionalValue;
+    TMAX: TDimensionalValue;
+    TMIN: TDimensionalValue;
+    VC: TDimensionalValue;
+    VPA: TDimensionalValue;
+    VPB: TDimensionalValue;
+    VPC: TDimensionalValue;
+    VPD: TDimensionalValue;
+    VSTAR: TDimensionalValue;
+    W: TDimensionalValue;
+    WSRK: TDimensionalValue;
+    ZC: TDimensionalValue;
+    Zra: TDimensionalValue;
     constructor Create(ACollection: TCollection); override;
     destructor Destroy; override;
   end;
