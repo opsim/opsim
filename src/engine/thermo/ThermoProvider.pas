@@ -99,7 +99,7 @@ type
             FPropertyProvider;
   end;
   
-  TPropertyProvider = class (TObject)
+  TPropertyProvider = class (TPersistent)
   private
     DataSet: TZReadOnlyQuery;
     FCompounds: TCompounds;
@@ -112,7 +112,6 @@ type
     procedure AddCompound(ID: Variant);
     function DeleteCompound(ID: Variant): TCompound;
     function FindCompound(ID: Variant): TCompound;
-    procedure ListAvailableCompounds(AList: TStrings);
     property Compounds: TCompounds read FCompounds write FCompounds;
     property DBConnection: TZConnection read FDBConnection write FDBConnection;
   end;
@@ -276,10 +275,6 @@ begin
         Result := Items[I];
         Break;
       end;//if
-end;
-
-procedure TPropertyProvider.ListAvailableCompounds(AList: TStrings);
-begin
 end;
 
 end.
