@@ -1,12 +1,106 @@
 object fmTPropertyProviderTest: TfmTPropertyProviderTest
   Left = 290
-  Height = 300
+  Height = 347
   Top = 149
-  Width = 400
-  HorzScrollBar.Page = 399
-  VertScrollBar.Page = 299
+  Width = 412
+  HorzScrollBar.Page = 411
+  VertScrollBar.Page = 346
+  ActiveControl = Button2
   Caption = 'fmTPropertyProviderTest'
-  ClientHeight = 300
-  ClientWidth = 400
+  ClientHeight = 347
+  ClientWidth = 412
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   PixelsPerInch = 96
+  object Panel1: TPanel
+    Height = 36
+    Top = 311
+    Width = 412
+    Align = alBottom
+    ClientHeight = 36
+    ClientWidth = 412
+    TabOrder = 0
+    object Button2: TButton
+      Left = 316
+      Height = 25
+      Top = 4
+      Width = 75
+      BorderSpacing.InnerBorder = 2
+      Caption = 'Close'
+      OnClick = Button2Click
+      TabOrder = 0
+    end
+  end
+  object PageControl1: TPageControl
+    Height = 311
+    Width = 412
+    ActivePage = TabSheet1
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 1
+    object TabSheet1: TTabSheet
+      Caption = 'TabSheet1'
+      ClientHeight = 285
+      ClientWidth = 404
+      object Label1: TLabel
+        Left = 11
+        Height = 14
+        Top = 14
+        Width = 46
+        Caption = 'Comp. ID'
+        Color = clNone
+        ParentColor = False
+      end
+      object edCompID: TEdit
+        Left = 68
+        Height = 23
+        Top = 10
+        Width = 80
+        TabOrder = 0
+      end
+      object btnAdd: TButton
+        Left = 160
+        Height = 25
+        Top = 10
+        Width = 75
+        BorderSpacing.InnerBorder = 2
+        Caption = 'Add'
+        OnClick = btnAddClick
+        TabOrder = 1
+      end
+      object GroupBox1: TGroupBox
+        Left = 11
+        Height = 188
+        Top = 54
+        Width = 385
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        Caption = 'Compounds List'
+        ClientHeight = 170
+        ClientWidth = 381
+        TabOrder = 2
+        object lstbxComps: TListBox
+          Height = 170
+          Width = 381
+          Align = alClient
+          TabOrder = 0
+        end
+      end
+      object btnClearCompsList: TButton
+        Left = 12
+        Height = 25
+        Top = 250
+        Width = 182
+        Anchors = [akLeft, akBottom]
+        BorderSpacing.InnerBorder = 2
+        Caption = 'Clear compounds list'
+        OnClick = btnClearCompsListClick
+        TabOrder = 3
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'TabSheet2'
+      ClientHeight = 285
+      ClientWidth = 404
+    end
+  end
 end
