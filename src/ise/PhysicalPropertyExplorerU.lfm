@@ -1,10 +1,11 @@
 object PhysicalPropertyExplorer: TPhysicalPropertyExplorer
-  Left = 244
+  Left = 266
   Height = 482
-  Top = 122
+  Top = 178
   Width = 663
   HorzScrollBar.Page = 662
   VertScrollBar.Page = 481
+  ActiveControl = btnClose
   Caption = 'Physical Property Explorer'
   ClientHeight = 482
   ClientWidth = 663
@@ -81,7 +82,6 @@ object PhysicalPropertyExplorer: TPhysicalPropertyExplorer
     User = 'sysdba'
     Password = 'masterkey'
     TransactIsolationLevel = tiReadCommitted
-    Connected = True
     BeforeConnect = DbConnectionMasterBeforeConnect
     left = 72
     top = 32
