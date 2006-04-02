@@ -70,31 +70,41 @@ object fmTPropertyProviderTest: TfmTPropertyProviderTest
       end
       object GroupBox1: TGroupBox
         Left = 11
-        Height = 188
+        Height = 224
         Top = 54
-        Width = 385
+        Width = 305
         Anchors = [akTop, akLeft, akRight, akBottom]
         Caption = 'Compounds List'
-        ClientHeight = 170
-        ClientWidth = 381
+        ClientHeight = 206
+        ClientWidth = 301
         TabOrder = 2
         object lstbxComps: TListBox
-          Height = 170
-          Width = 381
+          Height = 206
+          Width = 301
           Align = alClient
           TabOrder = 0
         end
       end
       object btnClearCompsList: TButton
-        Left = 12
+        Left = 324
         Height = 25
-        Top = 250
-        Width = 182
+        Top = 94
+        Width = 74
         Anchors = [akLeft, akBottom]
         BorderSpacing.InnerBorder = 2
-        Caption = 'Clear compounds list'
+        Caption = 'Clear'
         OnClick = btnClearCompsListClick
         TabOrder = 3
+      end
+      object btnDelete: TButton
+        Left = 324
+        Height = 25
+        Top = 62
+        Width = 75
+        BorderSpacing.InnerBorder = 2
+        Caption = 'Delete'
+        OnClick = btnDeleteClick
+        TabOrder = 4
       end
     end
     object TabSheet2: TTabSheet

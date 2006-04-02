@@ -40,6 +40,7 @@ type
   TfmTPropertyProviderTest = class (TForm)
     btnAdd: TButton;
     btnClearCompsList: TButton;
+    btnDelete: TButton;
     Button2: TButton;
     edCompID: TEdit;
     GroupBox1: TGroupBox;
@@ -51,6 +52,7 @@ type
     TabSheet2: TTabSheet;
     procedure btnAddClick(Sender: TObject);
     procedure btnClearCompsListClick(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -86,6 +88,14 @@ begin
   with PropertyProvider do begin
     Compounds.Clear;
   end;//with
+  UpdateList;
+end;
+
+procedure TfmTPropertyProviderTest.btnDeleteClick(Sender: TObject);
+begin
+  with lstbxComps do
+    if ItemIndex >= 0 then
+      PropertyProvider.DeleteCompound(TCompound(Items.Objects[ItemIndex]).CompID);
   UpdateList;
 end;
 
