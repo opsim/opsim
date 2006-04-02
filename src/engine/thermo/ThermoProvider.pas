@@ -48,8 +48,7 @@ type
     function GetDisplayName: string; override;
     procedure SetIndex(Value: Integer); override;
   public
-    CNUM: TDimensionalValue;
-    CompName: TDimensionalValue;
+    CompName: string;
     CPA: TDimensionalValue;
     CPB: TDimensionalValue;
     CPC: TDimensionalValue;
@@ -57,7 +56,8 @@ type
     DELGF: TDimensionalValue;
     DELHF: TDimensionalValue;
     DIPM: TDimensionalValue;
-    Formula: TDimensionalValue;
+    Formula: string;
+    ID: Integer;
     LDEN: TDimensionalValue;
     MW: TDimensionalValue;
     NEQ: TDimensionalValue;
@@ -192,12 +192,12 @@ begin
     //For now, the compound ID is then Number field.
     Sql.Text := Format('SELECT * FROM PROPS_PURE_SUBST_RAW WHERE NUMBER = %s', [VarToStr(ID)]);
     Open;
-    
+  
     //If the compund is found, then reads its properties.
     if RecordCount > 0 then begin
       with FCompounds.Add do begin
-        //CNUM := FieldValues['CNUM'];
-        CompName.Value := FieldValues['COMPONENT'];
+        ID := FieldValues['NUMBER'];
+        CompName := FieldValues['COMPONENT'];
         CPA.Value := FieldValues['CP_A'];
         CPB.Value := FieldValues['CP_B'];
         CPC.Value := FieldValues['CP_C'];
@@ -229,7 +229,7 @@ begin
         //Zra.Value := FieldValues['Zra'];
       end;//with
     end;//if
-    
+  
     Close;
   end;//with
 end;
