@@ -45,6 +45,8 @@ type
     Label1: TLabel;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    miTPropertyProviderTest: TMenuItem;
+    miTest: TMenuItem;
     miAbout: TMenuItem;
     miClose: TMenuItem;
     miDatabaseConnect: TMenuItem;
@@ -76,6 +78,7 @@ type
     procedure miNewClick(Sender: TObject);
     procedure miOpenClick(Sender: TObject);
     procedure miPhysicalPropertyExplorerClick(Sender: TObject);
+    procedure miTPropertyProviderTestClick(Sender: TObject);
     procedure miViewPfdWorkspaceClick(Sender: TObject);
     procedure miViewUnitopPalletClick(Sender: TObject);
     procedure sbExitClick(Sender: TObject);
@@ -159,6 +162,11 @@ begin
     PhysicalPropertyExplorer := TPhysicalPropertyExplorer.Create(Self);
   PhysicalPropertyExplorer.Show;
   UpdateInterface;
+end;
+
+procedure TMain.miTPropertyProviderTestClick(Sender: TObject);
+begin
+  //
 end;
 
 procedure TMain.miViewPfdWorkspaceClick(Sender: TObject);
