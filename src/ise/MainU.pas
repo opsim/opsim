@@ -2,7 +2,7 @@
 {
  /***************************************************************************
 
-                  Abstract: The main for of the Integrated Simulation
+                  Abstract: The main form of the Integrated Simulation
                             Environment (ISE).
                   Initial Revision : 09/03/2006
                   Authors:
@@ -158,6 +158,7 @@ begin
   if PhysicalPropertyExplorer = nil then
     PhysicalPropertyExplorer := TPhysicalPropertyExplorer.Create(Self);
   PhysicalPropertyExplorer.Show;
+  UpdateInterface;
 end;
 
 procedure TMain.miViewPfdWorkspaceClick(Sender: TObject);
