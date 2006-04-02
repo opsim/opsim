@@ -30,7 +30,7 @@ unit ThermoProvider;
 interface
 
 uses
-  SysUtils, Classes;
+  SysUtils, Classes, Variants, ZConnection, ZDataset;
 
 type
 
@@ -101,7 +101,9 @@ type
   
   TPropertyProvider = class (TObject)
   private
+    DataSet: TZReadOnlyQuery;
     FCompounds: TCompounds;
+    FConnection: TZConnection;
     procedure Connect;
     procedure Disconnect;
   public
@@ -110,6 +112,7 @@ type
     procedure AddCompound(ID: Variant);
     procedure ListAvailableCompounds(AList: TStrings);
     property Compounds: TCompounds read FCompounds write FCompounds;
+    property Connection: TZConnection read FConnection write FConnection;
   end;
   
 implementation
@@ -173,24 +176,74 @@ constructor TPropertyProvider.Create;
 begin
   inherited Create;
   FCompounds := TCompounds.Create(Self);
+  DataSet := TZReadOnlyQuery.Create(nil);
 end;
 
 destructor TPropertyProvider.Destroy;
 begin
   FCompounds.Free;
+  DataSet.Free;
   inherited Destroy;
 end;
 
 procedure TPropertyProvider.AddCompound(ID: Variant);
 begin
+  with DataSet do begin
+    //For now, the compound ID is then Number field.
+    Sql.Text := Format('SELECT * FROM PROPS_PURE_SUBST_RAW WHERE NUMBER = %s', [VarToStr(ID)]);
+    Open;
+    
+    //If the compund is found, then reads its properties.
+    if RecordCount > 0 then begin
+      with FCompounds.Add do begin
+        //CNUM := FieldValues['CNUM'];
+        CompName.Value := FieldValues['COMPONENT'];
+        CPA.Value := FieldValues['CP_A'];
+        CPB.Value := FieldValues['CP_B'];
+        CPC.Value := FieldValues['CP_C'];
+        CPD.Value := FieldValues['CP_D'];
+        DELGF.Value := FieldValues['DELGF'];
+        DELHF.Value := FieldValues['DELHF'];
+        //DIPM.Value := FieldValues['DIPM'];
+        //Formula.Value := FieldValues['Formula'];
+        LDEN.Value := FieldValues['LIQDEN'];
+        MW.Value := FieldValues['MOLE_WT'];
+        //NEQ.Value := FieldValues['NEQ'];
+        PC.Value := FieldValues['PC'];
+        TB.Value := FieldValues['TB'];
+        TC.Value := FieldValues['TC'];
+        //TCPHIL.Value := FieldValues['TCPHIL'];
+        TDEN.Value := FieldValues['TDEN'];
+        TFP.Value := FieldValues['TFP'];
+        //TMAX.Value := FieldValues['TMAX'];
+        //TMIN.Value := FieldValues['TMIN'];
+        VC.Value := FieldValues['VC'];
+        VPA.Value := FieldValues['HARLACHER_VP_A'];
+        VPB.Value := FieldValues['HARLACHER_VP_B'];
+        VPC.Value := FieldValues['HARLACHER_VP_C'];
+        VPD.Value := FieldValues['HARLACHER_VP_D'];
+        //VSTAR.Value := FieldValues['VSTAR'];
+        //W.Value := FieldValues['W'];
+        //WSRK.Value := FieldValues['WSRK'];
+        ZC.Value := FieldValues['ZC'];
+        //Zra.Value := FieldValues['Zra'];
+      end;//with
+    end;//if
+    
+    Close;
+  end;//with
 end;
 
 procedure TPropertyProvider.Connect;
 begin
+  with Connection do
+    if not Connected then Connected := True;
 end;
 
 procedure TPropertyProvider.Disconnect;
 begin
+  with Connection do
+    Connected := False;
 end;
 
 procedure TPropertyProvider.ListAvailableCompounds(AList: TStrings);
