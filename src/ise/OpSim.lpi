@@ -39,7 +39,7 @@
         <MinVersion Major="1" Valid="True"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="17">
+    <Units Count="18">
       <Unit0>
         <Filename Value="OpSim.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -142,6 +142,13 @@
         <ResourceFilename Value="PhysicalPropertyExplorerU.lrs"/>
         <UnitName Value="PhysicalPropertyExplorerU"/>
       </Unit16>
+      <Unit17>
+        <Filename Value="..\test\TPropertyProviderTestU.pas"/>
+        <ComponentName Value="fmTPropertyProviderTest"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="..\test\TPropertyProviderTestU.lrs"/>
+        <UnitName Value="TPropertyProviderTestU"/>
+      </Unit17>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -151,7 +158,7 @@
       <Filename Value="..\..\app\OpSim"/>
     </Target>
     <SearchPaths>
-      <OtherUnitFiles Value="..\engine\solver\;..\engine\unitop\;..\engine\thermo\"/>
+      <OtherUnitFiles Value="..\engine\solver\;..\engine\unitop\;..\engine\thermo\;..\test\"/>
       <UnitOutputDirectory Value="..\build"/>
       <SrcPath Value="$(LazarusDir)\lcl\;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)\"/>
     </SearchPaths>

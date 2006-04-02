@@ -1,0 +1,12 @@
+object fmTPropertyProviderTest: TfmTPropertyProviderTest
+  Left = 290
+  Height = 300
+  Top = 149
+  Width = 400
+  HorzScrollBar.Page = 399
+  VertScrollBar.Page = 299
+  Caption = 'fmTPropertyProviderTest'
+  ClientHeight = 300
+  ClientWidth = 400
+  PixelsPerInch = 96
+end

@@ -45,8 +45,6 @@ type
     Label1: TLabel;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
-    miTPropertyProviderTest: TMenuItem;
-    miTest: TMenuItem;
     miAbout: TMenuItem;
     miClose: TMenuItem;
     miDatabaseConnect: TMenuItem;
@@ -58,6 +56,8 @@ type
     miNew: TMenuItem;
     miOpen: TMenuItem;
     miPhysicalPropertyExplorer: TMenuItem;
+    miTest: TMenuItem;
+    miTPropertyProviderTest: TMenuItem;
     miView: TMenuItem;
     miViewPFDDesigner: TMenuItem;
     miViewUnitopPallet: TMenuItem;
@@ -93,7 +93,8 @@ var
 implementation
 
 uses
-  AboutU, UnitopPalletU, PFDDesignerU, DMBaseU, PhysicalPropertyExplorerU;
+  AboutU, UnitopPalletU, PFDDesignerU, DMBaseU, PhysicalPropertyExplorerU,
+  TPropertyProviderTestU;
 
 { TMain }
 
@@ -166,7 +167,9 @@ end;
 
 procedure TMain.miTPropertyProviderTestClick(Sender: TObject);
 begin
-  //
+  if fmTPropertyProviderTest = nil then
+    fmTPropertyProviderTest := TfmTPropertyProviderTest.Create(Self);
+  fmTPropertyProviderTest.Show;
 end;
 
 procedure TMain.miViewPfdWorkspaceClick(Sender: TObject);
