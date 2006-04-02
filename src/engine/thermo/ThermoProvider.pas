@@ -48,16 +48,16 @@ type
     function GetDisplayName: string; override;
     procedure SetIndex(Value: Integer); override;
   public
+    CompID: Integer;
     CompName: string;
     CPA: TDimensionalValue;
     CPB: TDimensionalValue;
     CPC: TDimensionalValue;
     CPD: TDimensionalValue;
     DELGF: TDimensionalValue;
-    DELHF: TDimensionalValue;
+    DELHG: TDimensionalValue;
     DIPM: TDimensionalValue;
     Formula: string;
-    ID: Integer;
     LDEN: TDimensionalValue;
     MW: TDimensionalValue;
     NEQ: TDimensionalValue;
@@ -103,16 +103,18 @@ type
   private
     DataSet: TZReadOnlyQuery;
     FCompounds: TCompounds;
-    FConnection: TZConnection;
+    FDBConnection: TZConnection;
     procedure Connect;
     procedure Disconnect;
   public
     constructor Create;
     destructor Destroy; override;
     procedure AddCompound(ID: Variant);
+    function DeleteCompound(ID: Variant): TCompound;
+    function FindCompound(ID: Variant): TCompound;
     procedure ListAvailableCompounds(AList: TStrings);
     property Compounds: TCompounds read FCompounds write FCompounds;
-    property Connection: TZConnection read FConnection write FConnection;
+    property DBConnection: TZConnection read FDBConnection write FDBConnection;
   end;
   
 implementation
@@ -188,7 +190,15 @@ end;
 
 procedure TPropertyProvider.AddCompound(ID: Variant);
 begin
+  //Exit if the compound is already in the list.
+  if FindCompound(ID) <> nil then
+    Exit;
+  
   with DataSet do begin
+  
+    //Sets the current connection.
+    Connection := DBConnection;
+  
     //For now, the compound ID is then Number field.
     Sql.Text := Format('SELECT * FROM PROPS_PURE_SUBST_RAW WHERE NUMBER = %s', [VarToStr(ID)]);
     Open;
@@ -196,14 +206,14 @@ begin
     //If the compund is found, then reads its properties.
     if RecordCount > 0 then begin
       with FCompounds.Add do begin
-        ID := FieldValues['NUMBER'];
+        CompID := FieldValues['NUMBER'];
         CompName := FieldValues['COMPONENT'];
         CPA.Value := FieldValues['CP_A'];
         CPB.Value := FieldValues['CP_B'];
         CPC.Value := FieldValues['CP_C'];
         CPD.Value := FieldValues['CP_D'];
         DELGF.Value := FieldValues['DELGF'];
-        DELHF.Value := FieldValues['DELHF'];
+        DELHG.Value := FieldValues['DELHG'];
         //DIPM.Value := FieldValues['DIPM'];
         //Formula.Value := FieldValues['Formula'];
         LDEN.Value := FieldValues['LIQDEN'];
@@ -236,14 +246,36 @@ end;
 
 procedure TPropertyProvider.Connect;
 begin
-  with Connection do
+  with DBConnection do
     if not Connected then Connected := True;
+end;
+
+function TPropertyProvider.DeleteCompound(ID: Variant): TCompound;
+var
+  C: TCompound;
+begin
+  C := FindCompound(ID);
+  if C <> nil then
+    FCompounds.Delete(C.Index);
 end;
 
 procedure TPropertyProvider.Disconnect;
 begin
-  with Connection do
+  with DBConnection do
     Connected := False;
+end;
+
+function TPropertyProvider.FindCompound(ID: Variant): TCompound;
+var
+  I: Integer;
+begin
+  Result := nil;
+  with FCompounds do
+    for I := 0 to Count - 1 do
+      if Items[I].CompID = ID then begin
+        Result := Items[I];
+        Break;
+      end;//if
 end;
 
 procedure TPropertyProvider.ListAvailableCompounds(AList: TStrings);
