@@ -47,6 +47,7 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     tblPureComps: TZTable;
+    procedure btnCloseClick(Sender: TObject);
     procedure DbConnectionMasterBeforeConnect(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   end;
@@ -69,6 +70,11 @@ procedure TPhysicalPropertyExplorer.DbConnectionMasterBeforeConnect(Sender:
         TObject);
 begin
   
+end;
+
+procedure TPhysicalPropertyExplorer.btnCloseClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TPhysicalPropertyExplorer.FormCreate(Sender: TObject);

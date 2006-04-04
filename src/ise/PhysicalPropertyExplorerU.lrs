@@ -10,24 +10,24 @@ LazarusResources.Add('TPhysicalPropertyExplorer','FORMDATA',[
   +'Width'#3#151#2#5'Align'#7#8'alBottom'#12'ClientHeight'#2'$'#11'ClientWidth'
   +#3#151#2#8'TabOrder'#2#0#0#7'TButton'#8'btnClose'#4'Left'#3'B'#2#6'Height'#2
   +#25#3'Top'#2#6#5'Width'#2'K'#7'Anchors'#11#5'akTop'#7'akRight'#0#25'BorderSp'
-  +'acing.InnerBorder'#2#2#7'Caption'#6#5'Close'#8'TabOrder'#2#0#0#0#0#6'TPanel'
-  +#6'Panel2'#6'Height'#2'"'#5'Width'#3#151#2#5'Align'#7#5'alTop'#12'ClientHeig'
-  +'ht'#2'"'#11'ClientWidth'#3#151#2#8'TabOrder'#2#1#0#12'TDBNavigator'#12'DBNa'
-  +'vigator1'#4'Left'#3#144#1#6'Height'#2#25#3'Top'#2#3#5'Width'#3#253#0#7'Anch'
-  +'ors'#11#5'akTop'#7'akRight'#0#10'BevelOuter'#7#6'bvNone'#12'ClientHeight'#2
-  +#25#11'ClientWidth'#3#253#0#10'DataSource'#7#11'dsPureComps'#0#0#0#7'TdbGrid'
-  +#7'dbGrid1'#6'Height'#3#156#1#3'Top'#2'"'#5'Width'#3#151#2#5'Align'#7#8'alCl'
-  +'ient'#5'Color'#4#255#255#210#0#10'DataSource'#7#11'dsPureComps'#10'FixedCol'
-  +'or'#7#9'clBtnFace'#7'Options'#11#9'dgEditing'#8'dgTitles'#11'dgIndicator'#14
-  +'dgColumnResize'#12'dgColumnMove'#10'dgColLines'#10'dgRowLines'#6'dgTabs'#21
-  +'dgAlwaysShowSelection'#15'dgConfirmDelete'#14'dgCancelOnExit'#0#12'OptionsE'
-  +'xtra'#11#14'dgeAutoColumns'#17'dgeCheckboxColumn'#0#11'ParentColor'#8#8'Rea'
-  +'dOnly'#9#8'TabOrder'#2#2#7'TabStop'#9#0#0#7'TZTable'#12'tblPureComps'#10'Co'
-  +'nnection'#7#18'DbConnectionMaster'#9'TableName'#6#20'PROPS_PURE_SUBST_RAW'#4
-  +'left'#2'`'#3'top'#2' '#0#0#11'TDatasource'#11'dsPureComps'#7'DataSet'#7#12
-  +'tblPureComps'#4'left'#2'`'#3'top'#2'@'#0#0#12'TZConnection'#18'DbConnection'
-  +'Master'#8'Protocol'#6#12'firebird-2.0'#8'Database'#6'#C:\Samuel\Dev\OpSim\a'
-  +'pp\SYSDATA.ODB'#4'User'#6#6'sysdba'#8'Password'#6#9'masterkey'#22'TransactI'
-  +'solationLevel'#7#15'tiReadCommitted'#13'BeforeConnect'#7#31'DbConnectionMas'
-  +'terBeforeConnect'#4'left'#2'H'#3'top'#2' '#0#0#0
+  +'acing.InnerBorder'#2#2#7'Caption'#6#5'Close'#7'OnClick'#7#13'btnCloseClick'
+  +#8'TabOrder'#2#0#0#0#0#6'TPanel'#6'Panel2'#6'Height'#2'"'#5'Width'#3#151#2#5
+  +'Align'#7#5'alTop'#12'ClientHeight'#2'"'#11'ClientWidth'#3#151#2#8'TabOrder'
+  +#2#1#0#12'TDBNavigator'#12'DBNavigator1'#4'Left'#3#144#1#6'Height'#2#25#3'To'
+  +'p'#2#3#5'Width'#3#253#0#7'Anchors'#11#5'akTop'#7'akRight'#0#10'BevelOuter'#7
+  +#6'bvNone'#12'ClientHeight'#2#25#11'ClientWidth'#3#253#0#10'DataSource'#7#11
+  +'dsPureComps'#0#0#0#7'TdbGrid'#7'dbGrid1'#6'Height'#3#156#1#3'Top'#2'"'#5'Wi'
+  +'dth'#3#151#2#5'Align'#7#8'alClient'#5'Color'#4#255#255#210#0#10'DataSource'
+  +#7#11'dsPureComps'#10'FixedColor'#7#9'clBtnFace'#7'Options'#11#9'dgEditing'#8
+  +'dgTitles'#11'dgIndicator'#14'dgColumnResize'#12'dgColumnMove'#10'dgColLines'
+  +#10'dgRowLines'#6'dgTabs'#21'dgAlwaysShowSelection'#15'dgConfirmDelete'#14'd'
+  +'gCancelOnExit'#0#12'OptionsExtra'#11#14'dgeAutoColumns'#17'dgeCheckboxColum'
+  +'n'#0#11'ParentColor'#8#8'ReadOnly'#9#8'TabOrder'#2#2#7'TabStop'#9#0#0#7'TZT'
+  +'able'#12'tblPureComps'#10'Connection'#7#18'DbConnectionMaster'#9'TableName'
+  +#6#20'PROPS_PURE_SUBST_RAW'#4'left'#2'`'#3'top'#2' '#0#0#11'TDatasource'#11
+  +'dsPureComps'#7'DataSet'#7#12'tblPureComps'#4'left'#2'`'#3'top'#2'@'#0#0#12
+  +'TZConnection'#18'DbConnectionMaster'#8'Protocol'#6#12'firebird-2.0'#8'Datab'
+  +'ase'#6'#C:\Samuel\Dev\OpSim\app\SYSDATA.ODB'#4'User'#6#6'sysdba'#8'Password'
+  +#6#9'masterkey'#22'TransactIsolationLevel'#7#15'tiReadCommitted'#13'BeforeCo'
+  +'nnect'#7#31'DbConnectionMasterBeforeConnect'#4'left'#2'H'#3'top'#2' '#0#0#0
 ]);

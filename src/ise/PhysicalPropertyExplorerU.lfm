@@ -28,6 +28,7 @@ object PhysicalPropertyExplorer: TPhysicalPropertyExplorer
       Anchors = [akTop, akRight]
       BorderSpacing.InnerBorder = 2
       Caption = 'Close'
+      OnClick = btnCloseClick
       TabOrder = 0
     end
   end
