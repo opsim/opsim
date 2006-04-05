@@ -114,7 +114,6 @@ type
     FVolumeFlow: TValue;
     function GetMaterial: TMaterial;
     function GetMolarFractions(Index: Integer): TValue;
-    function GetOwner: TPhases;
     procedure SetMolarFractions(Index: Integer; Value: TValue);
   public
     property AggregationState: TAggregationState read FAggregationState write 
@@ -128,7 +127,6 @@ type
     property MoleFlow: TValue read FMoleFlow write FMoleFlow;
     property OverallFraction: TValue read FOverallFraction write 
             FOverallFraction;
-    property Owner: TPhases read GetOwner;
     property StdLiqVolumeFlow: TValue read FStdLiqVolumeFlow write 
             FStdLiqVolumeFlow;
     property VolumeFlow: TValue read FVolumeFlow write FVolumeFlow;
@@ -248,16 +246,11 @@ end;
 }
 function TPhase.GetMaterial: TMaterial;
 begin
-  Result := Owner.Owner;
+  Result := (Collection as TPhases).Owner;
 end;
 
 function TPhase.GetMolarFractions(Index: Integer): TValue;
 begin
-end;
-
-function TPhase.GetOwner: TPhases;
-begin
-  Result := Collection as TPhases;
 end;
 
 procedure TPhase.SetMolarFractions(Index: Integer; Value: TValue);
