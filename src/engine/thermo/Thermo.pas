@@ -88,7 +88,7 @@ type
             default;
   end;
   
-  TPhase = class (TObject)
+  TPhase = class (TCollectionItem)
   private
     FAggregationState: TAggregationState;
     FOverallFraction: TValue;
@@ -101,6 +101,16 @@ type
             write SetMolarFractions; default;
     property OverallFraction: TValue read FOverallFraction write 
             FOverallFraction;
+  end;
+  
+  TPhases = class (TCollection)
+  private
+    function GetItem(Index: Integer): TPhase;
+    procedure SetItem(Index: Integer; Value: TPhase);
+  public
+    constructor Create;
+    function Add: TPhase;
+    property Items[Index: Integer]: TPhase read GetItem write SetItem; default;
   end;
   
   TMaterial = class (TObject)
@@ -179,6 +189,29 @@ end;
 
 procedure TPhase.SetMolarFractions(Index: Integer; Value: TValue);
 begin
+end;
+
+{
+*********************************** TPhases ************************************
+}
+constructor TPhases.Create;
+begin
+  inherited Create(TPhase);
+end;
+
+function TPhases.Add: TPhase;
+begin
+  Result := TPhase(inherited Add);
+end;
+
+function TPhases.GetItem(Index: Integer): TPhase;
+begin
+  Result := TPhase(inherited GetItem(Index));
+end;
+
+procedure TPhases.SetItem(Index: Integer; Value: TPhase);
+begin
+  inherited SetItem(Index, Value);
 end;
 
 {
