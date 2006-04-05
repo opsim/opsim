@@ -35,7 +35,9 @@ type
 
   TAggregationState = (asUndefined, asSolid, asLiquid, asVapor);
 
+  { Forward declarations }
   TMaterial = class;
+  TPhases = class;
 
   TCompound = class (TCollectionItem)
   protected
@@ -95,7 +97,7 @@ type
   amount of substance and a homogeneous composition. It has an associated state 
   of aggregation, e.g. liquid. A given phase can be distinguished from others 
   through the presence of physical interfaces that separate states of matter 
-  with different characteristics, such as density.
+  with different characteristics, such as density (according to CAPE-OPEN).
   - In a material, each phase is given a unique identifier. In order to 
   distinguish multiple instances of similar phases, such as liquids, the phase 
   can be associated with a number of attributes such as a ‘key compound’.
@@ -110,7 +112,9 @@ type
     FOverallFraction: TValue;
     FStdLiqVolumeFlow: TValue;
     FVolumeFlow: TValue;
+    function GetMaterial: TMaterial;
     function GetMolarFractions(Index: Integer): TValue;
+    function GetOwner: TPhases;
     procedure SetMolarFractions(Index: Integer; Value: TValue);
   public
     property AggregationState: TAggregationState read FAggregationState write 
@@ -118,11 +122,13 @@ type
     property CompressFactor: TValue read FCompressFactor write FCompressFactor;
     property Enthalpy: TValue read FEnthalpy write FEnthalpy;
     property MassFlow: TValue read FMassFlow write FMassFlow;
+    property Material: TMaterial read GetMaterial;
     property MolarFractions[Index: Integer]: TValue read GetMolarFractions 
             write SetMolarFractions; default;
     property MoleFlow: TValue read FMoleFlow write FMoleFlow;
     property OverallFraction: TValue read FOverallFraction write 
             FOverallFraction;
+    property Owner: TPhases read GetOwner;
     property StdLiqVolumeFlow: TValue read FStdLiqVolumeFlow write 
             FStdLiqVolumeFlow;
     property VolumeFlow: TValue read FVolumeFlow write FVolumeFlow;
@@ -130,12 +136,14 @@ type
   
   TPhases = class (TCollection)
   private
+    FOwner: TMaterial;
     function GetItem(Index: Integer): TPhase;
     procedure SetItem(Index: Integer; Value: TPhase);
   public
     constructor Create(AMaterial: TMaterial);
     function Add: TPhase;
     property Items[Index: Integer]: TPhase read GetItem write SetItem; default;
+    property Owner: TMaterial read FOwner write FOwner;
   end;
   
   {{
@@ -143,7 +151,7 @@ type
   phases. A material is characterised by the values of physical properties, 
   which can describe the overall material or the compounds within particular 
   phases. A material often corresponds to a stream in a conventional process 
-  simulation package.
+  simulation package  (according to CAPE-OPEN).
   - It is assumed that all phases in a TMaterial have the same temperature and 
   pressure.
   - It is expected to be most common that a TMaterial has one or two phases.
@@ -238,8 +246,18 @@ end;
 {
 ************************************ TPhase ************************************
 }
+function TPhase.GetMaterial: TMaterial;
+begin
+  Result := Owner.Owner;
+end;
+
 function TPhase.GetMolarFractions(Index: Integer): TValue;
 begin
+end;
+
+function TPhase.GetOwner: TPhases;
+begin
+  Result := Collection as TPhases;
 end;
 
 procedure TPhase.SetMolarFractions(Index: Integer; Value: TValue);
@@ -252,6 +270,7 @@ end;
 constructor TPhases.Create(AMaterial: TMaterial);
 begin
   inherited Create(TPhase);
+  FOwner := AMaterial;
 end;
 
 function TPhases.Add: TPhase;
