@@ -108,22 +108,22 @@ type
     FCompressFactor: TValue;
     FEnthalpy: TValue;
     FMassFlow: TValue;
+    FMolarFractions: TValueArray;
     FMoleFlow: TValue;
     FOverallFraction: TValue;
     FStdLiqVolumeFlow: TValue;
     FVolumeFlow: TValue;
     function GetMaterial: TMaterial;
-    function GetMolarFractions(Index: Integer): TValue;
-    procedure SetMolarFractions(Index: Integer; Value: TValue);
   public
+    constructor Create(Collection: TCollection); override;
+    destructor Destroy; override;
     property AggregationState: TAggregationState read FAggregationState write 
             FAggregationState;
     property CompressFactor: TValue read FCompressFactor write FCompressFactor;
     property Enthalpy: TValue read FEnthalpy write FEnthalpy;
     property MassFlow: TValue read FMassFlow write FMassFlow;
     property Material: TMaterial read GetMaterial;
-    property MolarFractions[Index: Integer]: TValue read GetMolarFractions 
-            write SetMolarFractions; default;
+    property MolarFractions: TValueArray read FMolarFractions;
     property MoleFlow: TValue read FMoleFlow write FMoleFlow;
     property OverallFraction: TValue read FOverallFraction write 
             FOverallFraction;
@@ -244,17 +244,21 @@ end;
 {
 ************************************ TPhase ************************************
 }
+constructor TPhase.Create(Collection: TCollection);
+begin
+  inherited Create(Collection);
+  FMolarFractions := TValueArray.Create;
+end;
+
+destructor TPhase.Destroy;
+begin
+  FMolarFractions.Free;
+  inherited Destroy;
+end;
+
 function TPhase.GetMaterial: TMaterial;
 begin
   Result := (Collection as TPhases).Owner;
-end;
-
-function TPhase.GetMolarFractions(Index: Integer): TValue;
-begin
-end;
-
-procedure TPhase.SetMolarFractions(Index: Integer; Value: TValue);
-begin
 end;
 
 {
