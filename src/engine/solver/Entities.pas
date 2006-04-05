@@ -33,6 +33,16 @@ uses
   SysUtils, Classes;
 
 type
+
+  //Describes a dimensional value. UnitID is the ID code defined by the
+  //standardized units table.
+  TValue = record
+    Value: Variant;
+    UnitID: Integer;
+    Calculated: Boolean;
+    UserDefined: Boolean;
+  end;
+  
   TVariable = class (TObject)
   private
     FName: string;

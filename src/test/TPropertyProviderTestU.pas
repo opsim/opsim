@@ -31,7 +31,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  ComCtrls, StdCtrls, Buttons, ThermoProvider;
+  ComCtrls, StdCtrls, Buttons, Thermo, ThermoProvider;
 
 type
 

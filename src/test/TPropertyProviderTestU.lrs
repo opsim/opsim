@@ -1,5 +1,3 @@
-{ This is an automatically generated lazarus resource file }
-
 LazarusResources.Add('TfmTPropertyProviderTest','FORMDATA',[
   'TPF0'#24'TfmTPropertyProviderTest'#23'fmTPropertyProviderTest'#4'Left'#3'"'#1
   +#6'Height'#3'['#1#3'Top'#3#149#0#5'Width'#3#156#1#18'HorzScrollBar.Page'#3

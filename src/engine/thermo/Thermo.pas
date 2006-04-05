@@ -116,7 +116,7 @@ type
     property Pressure: TValue read FPressure write FPressure;
     property Temperature: TValue read FTemperature write FTemperature;
   end;
-
+  
 implementation
 
 {
