@@ -56,6 +56,7 @@ type
   public
     constructor Create;
     destructor Destroy; override;
+    procedure Clear;
     property Count: Integer read GetCount write SetCount;
     property Items[Index: Integer]: TValue read GetItems write SetItems; 
             default;
@@ -117,8 +118,13 @@ end;
 destructor TValueArray.Destroy;
 begin
   //Frees the allocated memory.
-  FValues := nil;
+  Clear;
   inherited Destroy;
+end;
+
+procedure TValueArray.Clear;
+begin
+  FValues := nil;
 end;
 
 function TValueArray.GetCount: Integer;
