@@ -43,6 +43,24 @@ type
     UserDefined: Boolean;
   end;
   
+  {{
+  Implements a dynamic array of TValues.
+  }
+  TValueArray = class (TObject)
+  private
+    FValues: array of TValue;
+    function GetCount: Integer;
+    function GetItems(Index: Integer): TValue;
+    procedure SetCount(Value: Integer);
+    procedure SetItems(Index: Integer; Value: TValue);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property Count: Integer read GetCount write SetCount;
+    property Items[Index: Integer]: TValue read GetItems write SetItems; 
+            default;
+  end;
+  
   TVariable = class (TObject)
   private
     FName: string;
@@ -87,6 +105,41 @@ type
   
 
 implementation
+
+{
+********************************* TValueArray **********************************
+}
+constructor TValueArray.Create;
+begin
+  inherited Create;
+end;
+
+destructor TValueArray.Destroy;
+begin
+  //Frees the allocated memory.
+  FValues := nil;
+  inherited Destroy;
+end;
+
+function TValueArray.GetCount: Integer;
+begin
+  Result := High(FValues);
+end;
+
+function TValueArray.GetItems(Index: Integer): TValue;
+begin
+  Result := FValues[Index];
+end;
+
+procedure TValueArray.SetCount(Value: Integer);
+begin
+  SetLength(FValues, Value);
+end;
+
+procedure TValueArray.SetItems(Index: Integer; Value: TValue);
+begin
+  FValues[Index] := Value;
+end;
 
 {
 ********************************** TEquation ***********************************
