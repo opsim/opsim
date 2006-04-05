@@ -35,6 +35,8 @@ type
 
   TAggregationState = (asUndefined, asSolid, asLiquid, asVapor);
 
+  TMaterial = class;
+
   TCompound = class (TCollectionItem)
   protected
     function GetDisplayName: string; override;
@@ -88,19 +90,42 @@ type
             default;
   end;
   
+  {{
+  - A phase is a stable or metastable collection of compounds with a defined 
+  amount of substance and a homogeneous composition. It has an associated state 
+  of aggregation, e.g. liquid. A given phase can be distinguished from others 
+  through the presence of physical interfaces that separate states of matter 
+  with different characteristics, such as density.
+  - In a material, each phase is given a unique identifier. In order to 
+  distinguish multiple instances of similar phases, such as liquids, the phase 
+  can be associated with a number of attributes such as a ‘key compound’.
+  }
   TPhase = class (TCollectionItem)
   private
     FAggregationState: TAggregationState;
+    FCompressFactor: TValue;
+    FEnthalpy: TValue;
+    FMassFlow: TValue;
+    FMoleFlow: TValue;
     FOverallFraction: TValue;
+    FStdLiqVolumeFlow: TValue;
+    FVolumeFlow: TValue;
     function GetMolarFractions(Index: Integer): TValue;
     procedure SetMolarFractions(Index: Integer; Value: TValue);
   public
     property AggregationState: TAggregationState read FAggregationState write 
             FAggregationState;
+    property CompressFactor: TValue read FCompressFactor write FCompressFactor;
+    property Enthalpy: TValue read FEnthalpy write FEnthalpy;
+    property MassFlow: TValue read FMassFlow write FMassFlow;
     property MolarFractions[Index: Integer]: TValue read GetMolarFractions 
             write SetMolarFractions; default;
+    property MoleFlow: TValue read FMoleFlow write FMoleFlow;
     property OverallFraction: TValue read FOverallFraction write 
             FOverallFraction;
+    property StdLiqVolumeFlow: TValue read FStdLiqVolumeFlow write 
+            FStdLiqVolumeFlow;
+    property VolumeFlow: TValue read FVolumeFlow write FVolumeFlow;
   end;
   
   TPhases = class (TCollection)
@@ -108,23 +133,53 @@ type
     function GetItem(Index: Integer): TPhase;
     procedure SetItem(Index: Integer; Value: TPhase);
   public
-    constructor Create;
+    constructor Create(AMaterial: TMaterial);
     function Add: TPhase;
     property Items[Index: Integer]: TPhase read GetItem write SetItem; default;
   end;
   
+  {{
+  - A material is a mixture of one or more compounds occurring in one or more 
+  phases. A material is characterised by the values of physical properties, 
+  which can describe the overall material or the compounds within particular 
+  phases. A material often corresponds to a stream in a conventional process 
+  simulation package.
+  - It is assumed that all phases in a TMaterial have the same temperature and 
+  pressure.
+  - It is expected to be most common that a TMaterial has one or two phases.
+  }
   TMaterial = class (TObject)
   private
     FCompounds: TCompounds;
+    FPhases: TPhases;
     FPressure: TValue;
     FTemperature: TValue;
-    function GetPhases(Index: Integer): TPhase;
-    procedure SetPhases(Index: Integer; const Value: TPhase);
+    function GetMassFlow: TValue;
+    function GetMoleFlow: TValue;
+    function GetStdLiqVolumeFlow: TValue;
+    function GetVolumeFlow: TValue;
   public
+    constructor Create;
+    destructor Destroy; override;
+    {{
+    This is the list of compounds found in the material object.
+    }
     property Compounds: TCompounds read FCompounds write FCompounds;
-    property Phases[Index: Integer]: TPhase read GetPhases write SetPhases;
+    property MassFlow: TValue read GetMassFlow;
+    property MoleFlow: TValue read GetMoleFlow;
+    {{
+    The list of phases present in the material object. Most commonly, there 
+    will be only one phase.
+    }
+    property Phases: TPhases read FPhases write FPhases;
     property Pressure: TValue read FPressure write FPressure;
+    {{
+    This property will combine the standard volume flow rate of all liquid 
+    phases in the material object.
+    }
+    property StdLiqVolumeFlow: TValue read GetStdLiqVolumeFlow;
     property Temperature: TValue read FTemperature write FTemperature;
+    property VolumeFlow: TValue read GetVolumeFlow;
   end;
   
 implementation
@@ -194,7 +249,7 @@ end;
 {
 *********************************** TPhases ************************************
 }
-constructor TPhases.Create;
+constructor TPhases.Create(AMaterial: TMaterial);
 begin
   inherited Create(TPhase);
 end;
@@ -217,14 +272,34 @@ end;
 {
 ********************************** TMaterial ***********************************
 }
-function TMaterial.GetPhases(Index: Integer): TPhase;
+constructor TMaterial.Create;
+begin
+  inherited Create;
+  FCompounds := TCompounds.Create;
+  FPhases := TPhases.Create(Self);
+end;
+
+destructor TMaterial.Destroy;
+begin
+  FCompounds.Free;
+  FPhases.Free;
+  inherited Destroy;
+end;
+
+function TMaterial.GetMassFlow: TValue;
 begin
 end;
 
-procedure TMaterial.SetPhases(Index: Integer; const Value: TPhase);
+function TMaterial.GetMoleFlow: TValue;
 begin
 end;
 
+function TMaterial.GetStdLiqVolumeFlow: TValue;
+begin
+end;
 
+function TMaterial.GetVolumeFlow: TValue;
+begin
+end;
 
 end.

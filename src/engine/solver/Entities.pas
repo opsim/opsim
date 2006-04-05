@@ -52,6 +52,18 @@ type
     property Value: Variant read FValue write FValue;
   end;
   
+  {{
+  - Model equations should be in the form:
+  
+  RESIDUE = F(X1,...,Xn)
+  
+  - A model equation in the form LEFT = RIGHT
+  may be rewritten like:
+  
+  RESIDUE = RIGHT - LEFT
+  
+  - A model can contain several equations.
+  }
   TEquation = class (TObject)
   private
     FVariables: TList;
