@@ -39,7 +39,7 @@
         <MinVersion Major="1" Valid="True"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="18">
+    <Units Count="19">
       <Unit0>
         <Filename Value="OpSim.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -149,6 +149,11 @@
         <ResourceFilename Value="..\test\TPropertyProviderTestU.lrs"/>
         <UnitName Value="TPropertyProviderTestU"/>
       </Unit17>
+      <Unit18>
+        <Filename Value="..\engine\thermo\Thermo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Thermo"/>
+      </Unit18>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

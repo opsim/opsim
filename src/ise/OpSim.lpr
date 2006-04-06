@@ -36,7 +36,8 @@ uses
   Forms
   { add your units here }, MainU, AboutU, PFDDesignerU, UnitopPalletU, DMBaseU, MixerSpecU,
   Utils, PFDGraph, ExtGraphics2, ExtShapes, PFDCtrls, Solver, Entities, Mixer,
-  ThermoProvider, zcomponent, PhysicalPropertyExplorerU, TPropertyProviderTestU;
+  ThermoProvider, zcomponent, PhysicalPropertyExplorerU, TPropertyProviderTestU,
+  Thermo;
 
 begin
   Application.Initialize;
