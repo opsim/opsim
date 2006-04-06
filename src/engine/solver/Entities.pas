@@ -57,6 +57,7 @@ type
     constructor Create;
     destructor Destroy; override;
     procedure Clear;
+    procedure Delete(Index: Integer);
     property Count: Integer read GetCount write SetCount;
     property Items[Index: Integer]: TValue read GetItems write SetItems; 
             default;
@@ -125,6 +126,28 @@ end;
 procedure TValueArray.Clear;
 begin
   FValues := nil;
+end;
+
+procedure TValueArray.Delete(Index: Integer);
+var
+  I: Integer;
+  NewValues: array of TValue;
+begin
+  //** This is a time consuming routine, so use it with care! To delete all
+  //elements, call Clear method.
+  
+  //Copy all elements, except the deleted one.
+  for I := Low(FValues) to High(FValues) do
+    if I <> Index then begin
+      //Creates room for the new value.
+      SetLength(NewValues, Length(NewValues) + 1);
+      //Copy the element.
+      NewValues[High(NewValues)] := FValues[I];
+    end;//if
+  //Clear the old array.
+  FValues := nil;
+  //Reference the new one.
+  FValues := NewValues;
 end;
 
 function TValueArray.GetCount: Integer;
