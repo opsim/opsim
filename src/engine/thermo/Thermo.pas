@@ -108,7 +108,7 @@ type
     FCompressFactor: TValueRec;
     FEnthalpy: TValueRec;
     FMassFlow: TValueRec;
-    FMolarFractions: TValueArray;
+    FMolarFractions: TValues;
     FMoleFlow: TValueRec;
     FOverallFraction: TValueRec;
     FStdLiqVolumeFlow: TValueRec;
@@ -124,7 +124,7 @@ type
     property Enthalpy: TValueRec read FEnthalpy write FEnthalpy;
     property MassFlow: TValueRec read FMassFlow write FMassFlow;
     property Material: TMaterial read GetMaterial;
-    property MolarFractions: TValueArray read FMolarFractions;
+    property MolarFractions: TValues read FMolarFractions;
     property MoleFlow: TValueRec read FMoleFlow write FMoleFlow;
     property OverallFraction: TValueRec read FOverallFraction write 
             FOverallFraction;
@@ -248,7 +248,7 @@ end;
 constructor TPhase.Create(Collection: TCollection);
 begin
   inherited Create(Collection);
-  FMolarFractions := TValueArray.Create;
+  FMolarFractions := TValues.Create;
 end;
 
 destructor TPhase.Destroy;
