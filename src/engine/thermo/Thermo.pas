@@ -338,7 +338,6 @@ var
   I: Integer;
   C: TCompound;
 begin
-  FCompounds.DeleteCompound(ID);
   //Find the compound index about to deletion.
   C := FindCompound(ID);
   if C = nil then Exit;
@@ -346,7 +345,7 @@ begin
   with FPhases do
     for I := 0 to Count - 1 do
       Phases[I].MolarFractions.Delete(C.Index);
-  FCompounds.Delete(C.Index);
+  FCompounds.DeleteCompound(ID);
 end;
 
 function TMaterial.FindCompound(ID: Variant): TCompound;
