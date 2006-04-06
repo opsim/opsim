@@ -86,7 +86,7 @@ type
   public
     constructor Create;
     function AddCompound: TCompound;
-    function DeleteCompound(ID: Variant): TCompound;
+    procedure DeleteCompound(ID: Variant);
     function FindCompound(ID: Variant): TCompound;
     property Compounds[Index: Integer]: TCompound read GetItem write SetItem; 
             default;
@@ -171,7 +171,7 @@ type
     constructor Create;
     destructor Destroy; override;
     function AddCompound: TCompound;
-    function DeleteCompound(ID: Variant): TCompound;
+    procedure DeleteCompound(ID: Variant);
     function FindCompound(ID: Variant): TCompound;
     property Compounds[Index: Integer]: TCompound read GetCompounds write 
             SetCompounds;
@@ -230,7 +230,7 @@ begin
   Result := TCompound(inherited Add);
 end;
 
-function TCompounds.DeleteCompound(ID: Variant): TCompound;
+procedure TCompounds.DeleteCompound(ID: Variant);
 var
   C: TCompound;
 begin
@@ -325,11 +325,13 @@ end;
 function TMaterial.AddCompound: TCompound;
 begin
   Result := FCompounds.AddCompound;
+  //
 end;
 
-function TMaterial.DeleteCompound(ID: Variant): TCompound;
+procedure TMaterial.DeleteCompound(ID: Variant);
 begin
-  Result := FCompounds.DeleteCompound(ID);
+  FCompounds.DeleteCompound(ID);
+  //
 end;
 
 function TMaterial.FindCompound(ID: Variant): TCompound;
