@@ -154,8 +154,8 @@ begin
   Result := nil;
   with FCompounds do
     for I := 0 to Count - 1 do
-      if Items[I].CompID = ID then begin
-        Result := Items[I];
+      if Compounds[I].CompID = ID then begin
+        Result := Compounds[I];
         Break;
       end;//if
 end;

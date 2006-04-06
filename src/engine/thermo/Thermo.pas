@@ -83,14 +83,12 @@ type
   private
     function GetItem(Index: Integer): TCompound;
     procedure SetItem(Index: Integer; Value: TCompound);
-  protected
-    function Add: TCompound;
   public
     constructor Create;
     function AddCompound: TCompound;
     function DeleteCompound(ID: Variant): TCompound;
     function FindCompound(ID: Variant): TCompound;
-    property Items[Index: Integer]: TCompound read GetItem write SetItem; 
+    property Compounds[Index: Integer]: TCompound read GetItem write SetItem; 
             default;
   end;
   
@@ -142,9 +140,9 @@ type
     procedure SetItem(Index: Integer; Value: TPhase);
   public
     constructor Create(AMaterial: TMaterial);
-    function Add: TPhase;
-    property Items[Index: Integer]: TPhase read GetItem write SetItem; default;
+    function AddPhase: TPhase;
     property Owner: TMaterial read FOwner write FOwner;
+    property Phases[Index: Integer]: TPhase read GetItem write SetItem; default;
   end;
   
   {{
@@ -163,17 +161,20 @@ type
     FPhases: TPhases;
     FPressure: TValueRec;
     FTemperature: TValueRec;
+    function GetCompounds(Index: Integer): TCompound;
     function GetMassFlow: TValueRec;
     function GetMoleFlow: TValueRec;
     function GetStdLiqVolumeFlow: TValueRec;
     function GetVolumeFlow: TValueRec;
+    procedure SetCompounds(Index: Integer; Value: TCompound);
   public
     constructor Create;
     destructor Destroy; override;
-    {{
-    This is the list of compounds found in the material object.
-    }
-    property Compounds: TCompounds read FCompounds write FCompounds;
+    function AddCompound: TCompound;
+    function DeleteCompound(ID: Variant): TCompound;
+    function FindCompound(ID: Variant): TCompound;
+    property Compounds[Index: Integer]: TCompound read GetCompounds write 
+            SetCompounds;
     property MassFlow: TValueRec read GetMassFlow;
     property MoleFlow: TValueRec read GetMoleFlow;
     {{
@@ -224,14 +225,9 @@ begin
   inherited Create(TCompound);
 end;
 
-function TCompounds.Add: TCompound;
-begin
-  Result := TCompound(inherited Add);
-end;
-
 function TCompounds.AddCompound: TCompound;
 begin
-  Result := Add;
+  Result := TCompound(inherited Add);
 end;
 
 function TCompounds.DeleteCompound(ID: Variant): TCompound;
@@ -249,8 +245,8 @@ var
 begin
   Result := nil;
   for I := 0 to Count - 1 do
-    if Items[I].CompID = ID then begin
-      Result := Items[I];
+    if Compounds[I].CompID = ID then begin
+      Result := Compounds[I];
       Break;
     end;//if
 end;
@@ -294,7 +290,7 @@ begin
   FOwner := AMaterial;
 end;
 
-function TPhases.Add: TPhase;
+function TPhases.AddPhase: TPhase;
 begin
   Result := TPhase(inherited Add);
 end;
@@ -326,6 +322,26 @@ begin
   inherited Destroy;
 end;
 
+function TMaterial.AddCompound: TCompound;
+begin
+  Result := FCompounds.AddCompound;
+end;
+
+function TMaterial.DeleteCompound(ID: Variant): TCompound;
+begin
+  Result := FCompounds.DeleteCompound(ID);
+end;
+
+function TMaterial.FindCompound(ID: Variant): TCompound;
+begin
+  Result := FCompounds.FindCompound(ID);
+end;
+
+function TMaterial.GetCompounds(Index: Integer): TCompound;
+begin
+  Result := FCompounds.Compounds[Index];
+end;
+
 function TMaterial.GetMassFlow: TValueRec;
 begin
 end;
@@ -340,6 +356,11 @@ end;
 
 function TMaterial.GetVolumeFlow: TValueRec;
 begin
+end;
+
+procedure TMaterial.SetCompounds(Index: Integer; Value: TCompound);
+begin
+  FCompounds.Compounds[Index] := Value;
 end;
 
 end.
