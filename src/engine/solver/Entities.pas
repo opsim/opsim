@@ -162,7 +162,7 @@ end;
 
 function TValueArray.GetCount: Integer;
 begin
-  Result := High(FValues);
+  Result := Length(FValues);
 end;
 
 function TValueArray.GetItems(Index: Integer): TValue;
