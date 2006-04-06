@@ -88,6 +88,7 @@ type
   public
     constructor Create;
     function Add: TCompound;
+    function FindCompound(ID: Variant): TCompound;
     property Items[Index: Integer]: TCompound read GetItem write SetItem; 
             default;
   end;
@@ -225,6 +226,18 @@ end;
 function TCompounds.Add: TCompound;
 begin
   Result := TCompound(inherited Add);
+end;
+
+function TCompounds.FindCompound(ID: Variant): TCompound;
+var
+  I: Integer;
+begin
+  Result := nil;
+  for I := 0 to Count - 1 do
+    if Items[I].CompID = ID then begin
+      Result := Items[I];
+      Break;
+    end;//if
 end;
 
 function TCompounds.GetItem(Index: Integer): TCompound;
