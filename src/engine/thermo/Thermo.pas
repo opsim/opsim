@@ -171,6 +171,14 @@ type
     constructor Create;
     destructor Destroy; override;
     function AddCompound: TCompound;
+    {{
+    This method is responsible for delegating flash calculations to the 
+    associated Property Package or Equilibrium Server. It must set the amounts, 
+    compositions, temperature and pressure for all phases present at 
+    equilibrium, as well as the temperature and pressure for the overall 
+    mixture, if not set as part of the calculation specifications.
+    }
+    procedure CalcEquilibrium;
     procedure DeleteCompound(ID: Variant);
     function FindCompound(ID: Variant): TCompound;
     property Compounds[Index: Integer]: TCompound read GetCompounds write 
@@ -331,6 +339,10 @@ begin
   with FPhases do
     for I := 0 to Count - 1 do
       Phases[I].MolarFractions.Add;
+end;
+
+procedure TMaterial.CalcEquilibrium;
+begin
 end;
 
 procedure TMaterial.DeleteCompound(ID: Variant);
