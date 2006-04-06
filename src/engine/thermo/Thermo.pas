@@ -46,35 +46,35 @@ type
   public
     CompID: Integer;
     CompName: string;
-    CPA: TValue;
-    CPB: TValue;
-    CPC: TValue;
-    CPD: TValue;
-    DELGF: TValue;
-    DELHG: TValue;
-    DIPM: TValue;
+    CPA: TValueRec;
+    CPB: TValueRec;
+    CPC: TValueRec;
+    CPD: TValueRec;
+    DELGF: TValueRec;
+    DELHG: TValueRec;
+    DIPM: TValueRec;
     Formula: string;
-    LDEN: TValue;
-    MW: TValue;
-    NEQ: TValue;
-    PC: TValue;
-    TB: TValue;
-    TC: TValue;
-    TCPHIL: TValue;
-    TDEN: TValue;
-    TFP: TValue;
-    TMAX: TValue;
-    TMIN: TValue;
-    VC: TValue;
-    VPA: TValue;
-    VPB: TValue;
-    VPC: TValue;
-    VPD: TValue;
-    VSTAR: TValue;
-    W: TValue;
-    WSRK: TValue;
-    ZC: TValue;
-    Zra: TValue;
+    LDEN: TValueRec;
+    MW: TValueRec;
+    NEQ: TValueRec;
+    PC: TValueRec;
+    TB: TValueRec;
+    TC: TValueRec;
+    TCPHIL: TValueRec;
+    TDEN: TValueRec;
+    TFP: TValueRec;
+    TMAX: TValueRec;
+    TMIN: TValueRec;
+    VC: TValueRec;
+    VPA: TValueRec;
+    VPB: TValueRec;
+    VPC: TValueRec;
+    VPD: TValueRec;
+    VSTAR: TValueRec;
+    W: TValueRec;
+    WSRK: TValueRec;
+    ZC: TValueRec;
+    Zra: TValueRec;
     constructor Create(ACollection: TCollection); override;
     destructor Destroy; override;
   end;
@@ -105,31 +105,32 @@ type
   TPhase = class (TCollectionItem)
   private
     FAggregationState: TAggregationState;
-    FCompressFactor: TValue;
-    FEnthalpy: TValue;
-    FMassFlow: TValue;
+    FCompressFactor: TValueRec;
+    FEnthalpy: TValueRec;
+    FMassFlow: TValueRec;
     FMolarFractions: TValueArray;
-    FMoleFlow: TValue;
-    FOverallFraction: TValue;
-    FStdLiqVolumeFlow: TValue;
-    FVolumeFlow: TValue;
+    FMoleFlow: TValueRec;
+    FOverallFraction: TValueRec;
+    FStdLiqVolumeFlow: TValueRec;
+    FVolumeFlow: TValueRec;
     function GetMaterial: TMaterial;
   public
     constructor Create(Collection: TCollection); override;
     destructor Destroy; override;
     property AggregationState: TAggregationState read FAggregationState write 
             FAggregationState;
-    property CompressFactor: TValue read FCompressFactor write FCompressFactor;
-    property Enthalpy: TValue read FEnthalpy write FEnthalpy;
-    property MassFlow: TValue read FMassFlow write FMassFlow;
+    property CompressFactor: TValueRec read FCompressFactor write 
+            FCompressFactor;
+    property Enthalpy: TValueRec read FEnthalpy write FEnthalpy;
+    property MassFlow: TValueRec read FMassFlow write FMassFlow;
     property Material: TMaterial read GetMaterial;
     property MolarFractions: TValueArray read FMolarFractions;
-    property MoleFlow: TValue read FMoleFlow write FMoleFlow;
-    property OverallFraction: TValue read FOverallFraction write 
+    property MoleFlow: TValueRec read FMoleFlow write FMoleFlow;
+    property OverallFraction: TValueRec read FOverallFraction write 
             FOverallFraction;
-    property StdLiqVolumeFlow: TValue read FStdLiqVolumeFlow write 
+    property StdLiqVolumeFlow: TValueRec read FStdLiqVolumeFlow write 
             FStdLiqVolumeFlow;
-    property VolumeFlow: TValue read FVolumeFlow write FVolumeFlow;
+    property VolumeFlow: TValueRec read FVolumeFlow write FVolumeFlow;
   end;
   
   TPhases = class (TCollection)
@@ -158,12 +159,12 @@ type
   private
     FCompounds: TCompounds;
     FPhases: TPhases;
-    FPressure: TValue;
-    FTemperature: TValue;
-    function GetMassFlow: TValue;
-    function GetMoleFlow: TValue;
-    function GetStdLiqVolumeFlow: TValue;
-    function GetVolumeFlow: TValue;
+    FPressure: TValueRec;
+    FTemperature: TValueRec;
+    function GetMassFlow: TValueRec;
+    function GetMoleFlow: TValueRec;
+    function GetStdLiqVolumeFlow: TValueRec;
+    function GetVolumeFlow: TValueRec;
   public
     constructor Create;
     destructor Destroy; override;
@@ -171,21 +172,21 @@ type
     This is the list of compounds found in the material object.
     }
     property Compounds: TCompounds read FCompounds write FCompounds;
-    property MassFlow: TValue read GetMassFlow;
-    property MoleFlow: TValue read GetMoleFlow;
+    property MassFlow: TValueRec read GetMassFlow;
+    property MoleFlow: TValueRec read GetMoleFlow;
     {{
     The list of phases present in the material object. Most commonly, there 
     will be only one phase.
     }
     property Phases: TPhases read FPhases write FPhases;
-    property Pressure: TValue read FPressure write FPressure;
+    property Pressure: TValueRec read FPressure write FPressure;
     {{
     This property will combine the standard volume flow rate of all liquid 
     phases in the material object.
     }
-    property StdLiqVolumeFlow: TValue read GetStdLiqVolumeFlow;
-    property Temperature: TValue read FTemperature write FTemperature;
-    property VolumeFlow: TValue read GetVolumeFlow;
+    property StdLiqVolumeFlow: TValueRec read GetStdLiqVolumeFlow;
+    property Temperature: TValueRec read FTemperature write FTemperature;
+    property VolumeFlow: TValueRec read GetVolumeFlow;
   end;
   
 implementation
@@ -302,19 +303,19 @@ begin
   inherited Destroy;
 end;
 
-function TMaterial.GetMassFlow: TValue;
+function TMaterial.GetMassFlow: TValueRec;
 begin
 end;
 
-function TMaterial.GetMoleFlow: TValue;
+function TMaterial.GetMoleFlow: TValueRec;
 begin
 end;
 
-function TMaterial.GetStdLiqVolumeFlow: TValue;
+function TMaterial.GetStdLiqVolumeFlow: TValueRec;
 begin
 end;
 
-function TMaterial.GetVolumeFlow: TValue;
+function TMaterial.GetVolumeFlow: TValueRec;
 begin
 end;
 

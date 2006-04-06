@@ -36,7 +36,7 @@ type
 
   //Describes a dimensional value. UnitID is the ID code defined by the
   //standardized units table.
-  TValue = record
+  TValueRec = record
     Value: Variant;
     UnitID: Integer;
     Calculated: Boolean;
@@ -48,20 +48,37 @@ type
   }
   TValueArray = class (TObject)
   private
-    FValues: array of TValue;
+    FValues: array of TValueRec;
     function GetCount: Integer;
-    function GetItems(Index: Integer): TValue;
+    function GetItems(Index: Integer): TValueRec;
     procedure SetCount(Value: Integer);
-    procedure SetItems(Index: Integer; Value: TValue);
+    procedure SetItems(Index: Integer; Value: TValueRec);
   public
     constructor Create;
     destructor Destroy; override;
-    function Add(const Item: TValue): Integer;
+    function Add(const Item: TValueRec): Integer;
     procedure Clear;
     procedure Delete(Index: Integer);
     property Count: Integer read GetCount write SetCount;
-    property Items[Index: Integer]: TValue read GetItems write SetItems; 
+    property Items[Index: Integer]: TValueRec read GetItems write SetItems; 
             default;
+  end;
+  
+  TValue = class (TCollectionItem)
+  private
+    FData: TValueRec;
+  public
+    property Data: TValueRec read FData write FData;
+  end;
+  
+  TValues = class (TCollection)
+  private
+    function GetItem(Index: Integer): TValue;
+    procedure SetItem(Index: Integer; Value: TValue);
+  public
+    constructor Create;
+    function Add: TValue;
+    property Items[Index: Integer]: TValue read GetItem write SetItem; default;
   end;
   
   TVariable = class (TObject)
@@ -124,7 +141,7 @@ begin
   inherited Destroy;
 end;
 
-function TValueArray.Add(const Item: TValue): Integer;
+function TValueArray.Add(const Item: TValueRec): Integer;
 begin
   //Create room for new element.
   SetLength(FValues, Length(FValues) + 1);
@@ -141,7 +158,7 @@ end;
 procedure TValueArray.Delete(Index: Integer);
 var
   I: Integer;
-  NewValues: array of TValue;
+  NewValues: array of TValueRec;
 begin
   //** This is a time consuming routine, so use it with care! To delete all
   //elements, call Clear method.
@@ -165,7 +182,7 @@ begin
   Result := Length(FValues);
 end;
 
-function TValueArray.GetItems(Index: Integer): TValue;
+function TValueArray.GetItems(Index: Integer): TValueRec;
 begin
   Result := FValues[Index];
 end;
@@ -175,9 +192,32 @@ begin
   SetLength(FValues, Value);
 end;
 
-procedure TValueArray.SetItems(Index: Integer; Value: TValue);
+procedure TValueArray.SetItems(Index: Integer; Value: TValueRec);
 begin
   FValues[Index] := Value;
+end;
+
+{
+*********************************** TValues ************************************
+}
+constructor TValues.Create;
+begin
+  inherited Create(TValue);
+end;
+
+function TValues.Add: TValue;
+begin
+  Result := TValue(inherited Add);
+end;
+
+function TValues.GetItem(Index: Integer): TValue;
+begin
+  Result := TValue(inherited GetItem(Index));
+end;
+
+procedure TValues.SetItem(Index: Integer; Value: TValue);
+begin
+  inherited SetItem(Index, Value);
 end;
 
 {
