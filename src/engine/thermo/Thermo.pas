@@ -323,15 +323,27 @@ begin
 end;
 
 function TMaterial.AddCompound: TCompound;
+var
+  I: Integer;
 begin
   Result := FCompounds.AddCompound;
-  //
+  //Open room for auxiliary information on the phases.
+  with FPhases do
+    for I := 0 to Count - 1 do
+      Phases[I].MolarFractions.Add;
 end;
 
 procedure TMaterial.DeleteCompound(ID: Variant);
+var
+  I, Index: Integer;
 begin
+  //Find the compound index about to deletion.
+  Index := FindCompound(ID).Index;
+  //Free auxiliary information on the phases.
+  with FPhases do
+    for I := 0 to Count - 1 do
+      Phases[I].MolarFractions.Delete(Index);
   FCompounds.DeleteCompound(ID);
-  //
 end;
 
 function TMaterial.FindCompound(ID: Variant): TCompound;
