@@ -56,6 +56,7 @@ type
   public
     constructor Create;
     destructor Destroy; override;
+    function Add(const Item: TValue): Integer;
     procedure Clear;
     procedure Delete(Index: Integer);
     property Count: Integer read GetCount write SetCount;
@@ -121,6 +122,15 @@ begin
   //Frees the allocated memory.
   Clear;
   inherited Destroy;
+end;
+
+function TValueArray.Add(const Item: TValue): Integer;
+begin
+  //Create room for new element.
+  SetLength(FValues, Length(FValues) + 1);
+  //Copy the new item and return the index.
+  FValues[High(FValues)] := Item;
+  Result := High(FValues);
 end;
 
 procedure TValueArray.Clear;
