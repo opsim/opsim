@@ -87,7 +87,7 @@ begin
   
     //If the compund is found, then reads its properties.
     if RecordCount > 0 then begin
-      with FCompounds.Add do begin
+      with FCompounds.AddCompound do begin
         CompID := FieldValues['NUMBER'];
         CompName := FieldValues['COMPONENT'];
         CPA.Value := FieldValues['CP_A'];

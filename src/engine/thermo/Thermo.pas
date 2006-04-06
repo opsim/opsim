@@ -84,10 +84,10 @@ type
     function GetItem(Index: Integer): TCompound;
     procedure SetItem(Index: Integer; Value: TCompound);
   protected
-    procedure Update(Item: TCollectionItem); override;
+    function Add: TCompound;
   public
     constructor Create;
-    function Add: TCompound;
+    function AddCompound: TCompound;
     function DeleteCompound(ID: Variant): TCompound;
     function FindCompound(ID: Variant): TCompound;
     property Items[Index: Integer]: TCompound read GetItem write SetItem; 
@@ -229,6 +229,11 @@ begin
   Result := TCompound(inherited Add);
 end;
 
+function TCompounds.AddCompound: TCompound;
+begin
+  Result := Add;
+end;
+
 function TCompounds.DeleteCompound(ID: Variant): TCompound;
 var
   C: TCompound;
@@ -258,11 +263,6 @@ end;
 procedure TCompounds.SetItem(Index: Integer; Value: TCompound);
 begin
   inherited SetItem(Index, Value);
-end;
-
-procedure TCompounds.Update(Item: TCollectionItem);
-begin
-  //Refresh data from the database.
 end;
 
 {
