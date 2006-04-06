@@ -155,7 +155,7 @@ type
   pressure.
   - It is expected to be most common that a TMaterial has one or two phases.
   }
-  TMaterial = class (TObject)
+  TMaterial = class (TPersistent)
   private
     FCompounds: TCompounds;
     FPhases: TPhases;

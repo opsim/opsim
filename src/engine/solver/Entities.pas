@@ -81,7 +81,7 @@ type
     property Items[Index: Integer]: TValue read GetItem write SetItem; default;
   end;
   
-  TVariable = class (TObject)
+  TVariable = class (TPersistent)
   private
     FName: string;
     FValue: Variant;
@@ -102,7 +102,7 @@ type
   
   - A model can contain several equations.
   }
-  TEquation = class (TObject)
+  TEquation = class (TPersistent)
   private
     FVariables: TList;
     function GetResidue: Real; virtual;
@@ -111,7 +111,7 @@ type
     property Variables: TList read FVariables write FVariables;
   end;
   
-  TUnitOperation = class (TObject)
+  TUnitOperation = class (TPersistent)
   private
     FEquations: TList;
     FName: string;
