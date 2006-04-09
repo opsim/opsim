@@ -81,6 +81,7 @@ type
   
   TCompounds = class (TCollection)
   private
+    FOnNotify: TCollectionNotifyEvent;
     function GetItem(Index: Integer): TCompound;
     procedure SetItem(Index: Integer; Value: TCompound);
   public
@@ -90,6 +91,8 @@ type
     function FindCompound(ID: Variant): TCompound;
     property Compounds[Index: Integer]: TCompound read GetItem write SetItem; 
             default;
+  published
+    property OnNotify: TCollectionNotifyEvent read FOnNotify write FOnNotify;
   end;
   
   {{
@@ -164,9 +167,9 @@ type
     procedure SetItem(Index: Integer; Value: TPhase);
   public
     constructor Create(AMaterial: TMaterial);
-    function AddPhase: TPhase;
+    function Add: TPhase;
+    property Items[Index: Integer]: TPhase read GetItem write SetItem; default;
     property Owner: TMaterial read FOwner write FOwner;
-    property Phases[Index: Integer]: TPhase read GetItem write SetItem; default;
   end;
   
   {{
@@ -188,7 +191,7 @@ type
     function GetCompounds(Index: Integer): TCompound;
     function GetMassFlow: TValueRec;
     function GetMoleFlow: TValueRec;
-    function GetStdLiqVolumeFlow: TValueRec;
+    function GetStdLiqVolFlow: TValueRec;
     function GetVolumeFlow: TValueRec;
     procedure SetCompounds(Index: Integer; Value: TCompound);
   public
@@ -219,7 +222,7 @@ type
     This property will combine the standard volume flow rate of all liquid 
     phases in the material object.
     }
-    property StdLiqVolumeFlow: TValueRec read GetStdLiqVolumeFlow;
+    property StdLiqVolFlow: TValueRec read GetStdLiqVolFlow;
     property Temperature: TValueRec read FTemperature write FTemperature;
     property VolumeFlow: TValueRec read GetVolumeFlow;
   end;
@@ -378,7 +381,7 @@ begin
   FOwner := AMaterial;
 end;
 
-function TPhases.AddPhase: TPhase;
+function TPhases.Add: TPhase;
 begin
   Result := TPhase(inherited Add);
 end;
@@ -451,15 +454,36 @@ begin
 end;
 
 function TMaterial.GetMassFlow: TValueRec;
+var
+  I: Integer;
 begin
+  //The mass flow rate for the material is the summation over all phases.
+  Result.Value := 0;
+  with FPhases do
+    for I := 0 to Count - 1 do
+      Result.Value := Result.Value + Items[I].MassFlow.Value;
 end;
 
 function TMaterial.GetMoleFlow: TValueRec;
+var
+  I: Integer;
 begin
+  //The mole flow rate for the material is the summation over all phases.
+  Result.Value := 0;
+  with FPhases do
+    for I := 0 to Count - 1 do
+      Result.Value := Result.Value + Items[I].MoleFlow.Value;
 end;
 
-function TMaterial.GetStdLiqVolumeFlow: TValueRec;
+function TMaterial.GetStdLiqVolFlow: TValueRec;
+var
+  I: Integer;
 begin
+  //The StdLiqVolFlow for the material is the summation over all phases.
+  Result.Value := 0;
+  with FPhases do
+    for I := 0 to Count - 1 do
+      Result.Value := Result.Value + Items[I].StdLiqVolFlow.Value;
 end;
 
 function TMaterial.GetVolumeFlow: TValueRec;

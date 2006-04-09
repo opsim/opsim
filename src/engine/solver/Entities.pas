@@ -34,6 +34,9 @@ uses
 
 type
 
+  TCollectionNotifyEvent = procedure (Item: TCollectionItem;  Action: 
+          TCollectionNotification) of object;
+
   //Describes a dimensional value. UnitID is the ID code defined by the
   //standardized units table.
   TValueRec = record
