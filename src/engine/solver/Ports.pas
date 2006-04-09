@@ -1,16 +1,15 @@
 { $Id$ }
 {
  /***************************************************************************
- 
-                  Abstract: The main Integrated Simulation
-                            Environment (ISE) module.
-                  Initial Revision : 09/03/2006
+
+                  Abstract: Ports definition classes.
+                  Initial Revision : 09/04/2006
                   Authors:
                     - Samuel Jorge Marques Cartaxo
                     - Additional contributors...
 
  ***************************************************************************/
- 
+
  *****************************************************************************
  *                                                                           *
  *  This file is part of the OpSim - OPEN SOURCE PROCESS SIMULATOR           *
@@ -24,28 +23,42 @@
  *                                                                           *
  *****************************************************************************
 }
-program OpSim;
+unit Ports;
 
-{$mode objfpc}{$H+}
+interface
 
 uses
-  {$IFDEF UNIX}{$IFDEF UseCThreads}
-  cthreads,
-  {$ENDIF}{$ENDIF}
-  Interfaces, // this includes the LCL widgetset
-  Forms
-  { add your units here }, MainU, AboutU, PFDDesignerU, UnitopPalletU, DMBaseU, MixerSpecU,
-  Utils, PFDGraph, ExtGraphics2, ExtShapes, PFDCtrls, Solver, Entities, Mixer,
-  ThermoProvider, zcomponent, PhysicalPropertyExplorerU, TPropertyProviderTestU,
-  Thermo, Ports;
+  SysUtils, Classes, Entities, Thermo;
 
-begin
-  Application.Initialize;
-  Application.CreateForm(TMain, Main);
-  Application.CreateForm(TUnitopPallet, UnitopPallet);
-  Application.CreateForm(TPFDDesigner, PFDDesigner);
-  Application.CreateForm(TDMBase, DMBase);
-  Application.CreateForm(TMixerSpec, MixerSpec);
-  Application.Run;
+type
+  TPort = class (TPersistent)
+  private
+    FDirection: Integer;
+    FName: Integer;
+  public
+    property Direction: Integer read FDirection write FDirection;
+    property Name: Integer read FName write FName;
+  end;
+  
+  TMaterialPort = class (TPort)
+  private
+    FMaterial: TMaterial;
+  public
+    property Material: TMaterial read FMaterial write FMaterial;
+  end;
+  
+  TEnergyPort = class (TPort)
+  private
+    FFlux: Integer;
+  public
+    property Flux: Integer read FFlux write FFlux;
+  end;
+  
+  TInformationPort = class (TPort)
+  end;
+  
+
+implementation
+
+
 end.
-
