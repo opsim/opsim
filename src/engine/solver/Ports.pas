@@ -31,13 +31,16 @@ uses
   SysUtils, Classes, Entities, Thermo;
 
 type
+
+  TPortDirection = (pdUndefined, pdInput, pdOutput);
+
   TPort = class (TPersistent)
   private
-    FDirection: Integer;
-    FName: Integer;
+    FDirection: TPortDirection;
+    FName: string;
   public
-    property Direction: Integer read FDirection write FDirection;
-    property Name: Integer read FName write FName;
+    property Direction: TPortDirection read FDirection write FDirection;
+    property Name: string read FName write FName;
   end;
   
   TMaterialPort = class (TPort)
@@ -49,9 +52,9 @@ type
   
   TEnergyPort = class (TPort)
   private
-    FFlux: Integer;
+    FFlux: TValueRec;
   public
-    property Flux: Integer read FFlux write FFlux;
+    property Flux: TValueRec read FFlux write FFlux;
   end;
   
   TInformationPort = class (TPort)
