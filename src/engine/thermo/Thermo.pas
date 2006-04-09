@@ -55,15 +55,9 @@ type
     DIPM: TValueRec;
     Formula: string;
     LDEN: TValueRec;
-    MassFlow: TValueRec;
-    MassFraction: TValueRec;
-    MoleFlow: TValueRec;
-    MoleFraction: TValueRec;
     MW: TValueRec;
     NEQ: TValueRec;
     PC: TValueRec;
-    StdLiqVolumeFlow: TValueRec;
-    StdLiqVolumeFraction: TValueRec;
     TB: TValueRec;
     TC: TValueRec;
     TCPHIL: TValueRec;
@@ -112,13 +106,14 @@ type
   private
     FAggregationState: TAggregationState;
     FCompressFactor: TValueRec;
+    FEnthalpy: TValueRec;
+    FMassFlow: TValueRec;
+    FMolarFractions: TValues;
+    FMoleFlow: TValueRec;
     FOverallFraction: TValueRec;
-    function GetEnthalpy: TValueRec;
-    function GetMassFlow: TValueRec;
+    FStdLiqVolumeFlow: TValueRec;
+    FVolumeFlow: TValueRec;
     function GetMaterial: TMaterial;
-    function GetMoleFlow: TValueRec;
-    function GetStdLiqVolumeFlow: TValueRec;
-    function GetVolumeFlow: TValueRec;
   public
     constructor Create(Collection: TCollection); override;
     destructor Destroy; override;
@@ -126,14 +121,16 @@ type
             FAggregationState;
     property CompressFactor: TValueRec read FCompressFactor write 
             FCompressFactor;
-    property Enthalpy: TValueRec read GetEnthalpy;
-    property MassFlow: TValueRec read GetMassFlow;
+    property Enthalpy: TValueRec read FEnthalpy write FEnthalpy;
+    property MassFlow: TValueRec read FMassFlow write FMassFlow;
     property Material: TMaterial read GetMaterial;
-    property MoleFlow: TValueRec read GetMoleFlow;
+    property MolarFractions: TValues read FMolarFractions;
+    property MoleFlow: TValueRec read FMoleFlow write FMoleFlow;
     property OverallFraction: TValueRec read FOverallFraction write 
             FOverallFraction;
-    property StdLiqVolumeFlow: TValueRec read GetStdLiqVolumeFlow;
-    property VolumeFlow: TValueRec read GetVolumeFlow;
+    property StdLiqVolumeFlow: TValueRec read FStdLiqVolumeFlow write 
+            FStdLiqVolumeFlow;
+    property VolumeFlow: TValueRec read FVolumeFlow write FVolumeFlow;
   end;
   
   TPhases = class (TCollection)
@@ -278,36 +275,18 @@ end;
 constructor TPhase.Create(Collection: TCollection);
 begin
   inherited Create(Collection);
+  FMolarFractions := TValues.Create;
 end;
 
 destructor TPhase.Destroy;
 begin
+  FMolarFractions.Free;
   inherited Destroy;
-end;
-
-function TPhase.GetEnthalpy: TValueRec;
-begin
-end;
-
-function TPhase.GetMassFlow: TValueRec;
-begin
 end;
 
 function TPhase.GetMaterial: TMaterial;
 begin
   Result := (Collection as TPhases).Owner;
-end;
-
-function TPhase.GetMoleFlow: TValueRec;
-begin
-end;
-
-function TPhase.GetStdLiqVolumeFlow: TValueRec;
-begin
-end;
-
-function TPhase.GetVolumeFlow: TValueRec;
-begin
 end;
 
 {
@@ -356,6 +335,10 @@ var
   I: Integer;
 begin
   Result := FCompounds.AddCompound;
+  //Open room for auxiliary information on the phases.
+  with FPhases do
+    for I := 0 to Count - 1 do
+      Phases[I].MolarFractions.Add;
 end;
 
 procedure TMaterial.CalcEquilibrium;
@@ -363,7 +346,17 @@ begin
 end;
 
 procedure TMaterial.DeleteCompound(ID: Variant);
+var
+  I: Integer;
+  C: TCompound;
 begin
+  //Find the compound index about to deletion.
+  C := FindCompound(ID);
+  if C = nil then Exit;
+  //Free auxiliary information on the phases.
+  with FPhases do
+    for I := 0 to Count - 1 do
+      Phases[I].MolarFractions.Delete(C.Index);
   FCompounds.DeleteCompound(ID);
 end;
 
