@@ -93,6 +93,31 @@ type
   end;
   
   {{
+  Holds compound information that is specific for a phase.
+  }
+  TComposition = class (TCollectionItem)
+  public
+    Compound: TCompound;
+    MassFlow: TValueRec;
+    MassFraction: TValueRec;
+    MoleFlow: TValueRec;
+    MoleFraction: TValueRec;
+    StdLiqVolFlow: TValueRec;
+    StdLiqVolFraction: TValueRec;
+  end;
+  
+  TCompositions = class (TCollection)
+  private
+    function GetItem(Index: Integer): TComposition;
+    procedure SetItem(Index: Integer; Value: TComposition);
+  public
+    constructor Create;
+    function Add: TComposition;
+    property Items[Index: Integer]: TComposition read GetItem write SetItem; 
+            default;
+  end;
+  
+  {{
   - A phase is a stable or metastable collection of compounds with a defined 
   amount of substance and a homogeneous composition. It has an associated state 
   of aggregation, e.g. liquid. A given phase can be distinguished from others 
@@ -105,10 +130,10 @@ type
   TPhase = class (TCollectionItem)
   private
     FAggregationState: TAggregationState;
+    FCompositions: TCompositions;
     FCompressFactor: TValueRec;
     FEnthalpy: TValueRec;
     FMassFlow: TValueRec;
-    FMolarFractions: TValues;
     FMoleFlow: TValueRec;
     FOverallFraction: TValueRec;
     FStdLiqVolumeFlow: TValueRec;
@@ -119,12 +144,12 @@ type
     destructor Destroy; override;
     property AggregationState: TAggregationState read FAggregationState write 
             FAggregationState;
+    property Compositions: TCompositions read FCompositions write FCompositions;
     property CompressFactor: TValueRec read FCompressFactor write 
             FCompressFactor;
     property Enthalpy: TValueRec read FEnthalpy write FEnthalpy;
     property MassFlow: TValueRec read FMassFlow write FMassFlow;
     property Material: TMaterial read GetMaterial;
-    property MolarFractions: TValues read FMolarFractions;
     property MoleFlow: TValueRec read FMoleFlow write FMoleFlow;
     property OverallFraction: TValueRec read FOverallFraction write 
             FOverallFraction;
@@ -270,17 +295,40 @@ begin
 end;
 
 {
+******************************** TCompositions *********************************
+}
+constructor TCompositions.Create;
+begin
+  inherited Create(TComposition);
+end;
+
+function TCompositions.Add: TComposition;
+begin
+  Result := TComposition(inherited Add);
+end;
+
+function TCompositions.GetItem(Index: Integer): TComposition;
+begin
+  Result := TComposition(inherited GetItem(Index));
+end;
+
+procedure TCompositions.SetItem(Index: Integer; Value: TComposition);
+begin
+  inherited SetItem(Index, Value);
+end;
+
+{
 ************************************ TPhase ************************************
 }
 constructor TPhase.Create(Collection: TCollection);
 begin
   inherited Create(Collection);
-  FMolarFractions := TValues.Create;
+  FCompositions := TCompositions.Create;
 end;
 
 destructor TPhase.Destroy;
 begin
-  FMolarFractions.Free;
+  FCompositions.Free;
   inherited Destroy;
 end;
 
@@ -338,7 +386,7 @@ begin
   //Open room for auxiliary information on the phases.
   with FPhases do
     for I := 0 to Count - 1 do
-      Phases[I].MolarFractions.Add;
+      Phases[I].Compositions.Add;
 end;
 
 procedure TMaterial.CalcEquilibrium;
@@ -356,7 +404,7 @@ begin
   //Free auxiliary information on the phases.
   with FPhases do
     for I := 0 to Count - 1 do
-      Phases[I].MolarFractions.Delete(C.Index);
+      Phases[I].Compositions.Delete(C.Index);
   FCompounds.DeleteCompound(ID);
 end;
 
