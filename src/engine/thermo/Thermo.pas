@@ -133,12 +133,12 @@ type
     FCompositions: TCompositions;
     FCompressFactor: TValueRec;
     FEnthalpy: TValueRec;
-    FMoleFlow: TValueRec;
     FOverallFraction: TValueRec;
-    FStdLiqVolumeFlow: TValueRec;
     FVolumeFlow: TValueRec;
     function GetMassFlow: TValueRec;
     function GetMaterial: TMaterial;
+    function GetMoleFlow: TValueRec;
+    function GetStdLiqVolFlow: TValueRec;
   public
     constructor Create(Collection: TCollection); override;
     destructor Destroy; override;
@@ -150,11 +150,10 @@ type
     property Enthalpy: TValueRec read FEnthalpy write FEnthalpy;
     property MassFlow: TValueRec read GetMassFlow;
     property Material: TMaterial read GetMaterial;
-    property MoleFlow: TValueRec read FMoleFlow write FMoleFlow;
+    property MoleFlow: TValueRec read GetMoleFlow;
     property OverallFraction: TValueRec read FOverallFraction write 
             FOverallFraction;
-    property StdLiqVolumeFlow: TValueRec read FStdLiqVolumeFlow write 
-            FStdLiqVolumeFlow;
+    property StdLiqVolFlow: TValueRec read GetStdLiqVolFlow;
     property VolumeFlow: TValueRec read FVolumeFlow write FVolumeFlow;
   end;
   
@@ -346,6 +345,28 @@ end;
 function TPhase.GetMaterial: TMaterial;
 begin
   Result := (Collection as TPhases).Owner;
+end;
+
+function TPhase.GetMoleFlow: TValueRec;
+var
+  I: Integer;
+begin
+  //The mole flow rate for the phase is the summation over all compounds.
+  Result.Value := 0;
+  with FCompositions do
+    for I := 0 to Count - 1 do
+      Result.Value := Result.Value + Items[I].MoleFlow.Value;
+end;
+
+function TPhase.GetStdLiqVolFlow: TValueRec;
+var
+  I: Integer;
+begin
+  //The StdLiqVolFlow for the phase is the summation over all compounds.
+  Result.Value := 0;
+  with FCompositions do
+    for I := 0 to Count - 1 do
+      Result.Value := Result.Value + Items[I].StdLiqVolFlow.Value;
 end;
 
 {
