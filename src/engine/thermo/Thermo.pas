@@ -86,7 +86,7 @@ type
     procedure SetItem(Index: Integer; Value: TCompound);
   public
     constructor Create;
-    function AddCompound: TCompound;
+    function Add: TCompound;
     procedure DeleteCompound(ID: Variant);
     function FindCompound(ID: Variant): TCompound;
     procedure Notify(Item: TCollectionItem;  Action: TCollectionNotification); 
@@ -205,16 +205,13 @@ type
     FPhases: TPhases;
     FPressure: TValueRec;
     FTemperature: TValueRec;
-    function GetCompounds(Index: Integer): TCompound;
     function GetMassFlow: TValueRec;
     function GetMoleFlow: TValueRec;
     function GetStdLiqVolFlow: TValueRec;
     function GetVolumeFlow: TValueRec;
-    procedure SetCompounds(Index: Integer; Value: TCompound);
   public
     constructor Create;
     destructor Destroy; override;
-    function AddCompound: TCompound;
     {{
     This method is responsible for delegating flash calculations to the 
     associated Property Package or Equilibrium Server. It must set the amounts, 
@@ -223,10 +220,10 @@ type
     mixture, if not set as part of the calculation specifications.
     }
     procedure CalcEquilibrium;
-    procedure DeleteCompound(ID: Variant);
-    function FindCompound(ID: Variant): TCompound;
-    property Compounds[Index: Integer]: TCompound read GetCompounds write 
-            SetCompounds;
+    {{
+    This is the list of compounds found in the material object.
+    }
+    property Compounds: TCompounds read FCompounds write FCompounds;
     property MassFlow: TValueRec read GetMassFlow;
     property MoleFlow: TValueRec read GetMoleFlow;
     {{
@@ -277,7 +274,7 @@ begin
   inherited Create(TCompound);
 end;
 
-function TCompounds.AddCompound: TCompound;
+function TCompounds.Add: TCompound;
 begin
   Result := TCompound(inherited Add);
 end;
@@ -439,17 +436,6 @@ begin
   inherited Destroy;
 end;
 
-function TMaterial.AddCompound: TCompound;
-var
-  I: Integer;
-begin
-  Result := FCompounds.AddCompound;
-  //Open room for auxiliary information on the phases.
-  with FPhases do
-    for I := 0 to Count - 1 do
-      Phases[I].Compositions.Add;
-end;
-
 procedure TMaterial.CalcEquilibrium;
 begin
 end;
@@ -476,31 +462,6 @@ begin
     end;//cnDeleting
   
   end;//case
-end;
-
-procedure TMaterial.DeleteCompound(ID: Variant);
-var
-  I: Integer;
-  C: TCompound;
-begin
-  //Find the compound index about to deletion.
-  C := FindCompound(ID);
-  if C = nil then Exit;
-  //Free auxiliary information on the phases.
-  with FPhases do
-    for I := 0 to Count - 1 do
-      Phases[I].Compositions.Delete(C.Index);
-  FCompounds.DeleteCompound(ID);
-end;
-
-function TMaterial.FindCompound(ID: Variant): TCompound;
-begin
-  Result := FCompounds.FindCompound(ID);
-end;
-
-function TMaterial.GetCompounds(Index: Integer): TCompound;
-begin
-  Result := FCompounds.Compounds[Index];
 end;
 
 function TMaterial.GetMassFlow: TValueRec;
@@ -538,11 +499,6 @@ end;
 
 function TMaterial.GetVolumeFlow: TValueRec;
 begin
-end;
-
-procedure TMaterial.SetCompounds(Index: Integer; Value: TCompound);
-begin
-  FCompounds.Compounds[Index] := Value;
 end;
 
 end.
