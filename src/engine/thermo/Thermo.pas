@@ -133,11 +133,11 @@ type
     FCompositions: TCompositions;
     FCompressFactor: TValueRec;
     FEnthalpy: TValueRec;
-    FMassFlow: TValueRec;
     FMoleFlow: TValueRec;
     FOverallFraction: TValueRec;
     FStdLiqVolumeFlow: TValueRec;
     FVolumeFlow: TValueRec;
+    function GetMassFlow: TValueRec;
     function GetMaterial: TMaterial;
   public
     constructor Create(Collection: TCollection); override;
@@ -148,7 +148,7 @@ type
     property CompressFactor: TValueRec read FCompressFactor write 
             FCompressFactor;
     property Enthalpy: TValueRec read FEnthalpy write FEnthalpy;
-    property MassFlow: TValueRec read FMassFlow write FMassFlow;
+    property MassFlow: TValueRec read GetMassFlow;
     property Material: TMaterial read GetMaterial;
     property MoleFlow: TValueRec read FMoleFlow write FMoleFlow;
     property OverallFraction: TValueRec read FOverallFraction write 
@@ -330,6 +330,17 @@ destructor TPhase.Destroy;
 begin
   FCompositions.Free;
   inherited Destroy;
+end;
+
+function TPhase.GetMassFlow: TValueRec;
+var
+  I: Integer;
+begin
+  //The mass flow for the phase is the summation over all compounds.
+  Result.Value := 0;
+  with FCompositions do
+    for I := 0 to Count - 1 do
+      Result.Value := Result.Value + Items[I].MassFlow.Value;
 end;
 
 function TPhase.GetMaterial: TMaterial;
