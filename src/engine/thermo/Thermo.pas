@@ -89,6 +89,8 @@ type
     function AddCompound: TCompound;
     procedure DeleteCompound(ID: Variant);
     function FindCompound(ID: Variant): TCompound;
+    procedure Notify(Item: TCollectionItem;  Action: TCollectionNotification); 
+            override;
     property Compounds[Index: Integer]: TCompound read GetItem write SetItem; 
             default;
   published
@@ -173,6 +175,19 @@ type
   end;
   
   {{
+  - A material is a mixture of one or more compounds occurring in one or more
+  phases. A material is characterised by the values of physical properties,
+  which can describe the overall material or the compounds within particular
+  phases. A material often corresponds to a stream in a conventional process
+  simulation package  (according to CAPE-OPEN).
+  - It is assumed that all phases in a TMaterial have the same temperature and
+  pressure.
+  - It is expected to be most common that a TMaterial has one or two phases.
+  }
+
+  { TMaterial }
+
+  {{
   - A material is a mixture of one or more compounds occurring in one or more 
   phases. A material is characterised by the values of physical properties, 
   which can describe the overall material or the compounds within particular 
@@ -183,6 +198,8 @@ type
   - It is expected to be most common that a TMaterial has one or two phases.
   }
   TMaterial = class (TPersistent)
+    procedure CompoundsNotify(Item: TCollectionItem; Action: 
+            TCollectionNotification);
   private
     FCompounds: TCompounds;
     FPhases: TPhases;
@@ -289,6 +306,14 @@ end;
 function TCompounds.GetItem(Index: Integer): TCompound;
 begin
   Result := TCompound(inherited GetItem(Index));
+end;
+
+procedure TCompounds.Notify(Item: TCollectionItem;  Action: 
+        TCollectionNotification);
+begin
+  inherited Notify(Item, Action);
+  if Assigned(FOnNotify) then
+    FOnNotify(Item, Action);
 end;
 
 procedure TCompounds.SetItem(Index: Integer; Value: TCompound);
@@ -403,6 +428,7 @@ constructor TMaterial.Create;
 begin
   inherited Create;
   FCompounds := TCompounds.Create;
+  FCompounds.OnNotify := CompoundsNotify;
   FPhases := TPhases.Create(Self);
 end;
 
@@ -426,6 +452,30 @@ end;
 
 procedure TMaterial.CalcEquilibrium;
 begin
+end;
+
+procedure TMaterial.CompoundsNotify(Item: TCollectionItem; Action: 
+        TCollectionNotification);
+var
+  I: Integer;
+begin
+  case Action of
+  
+    cnAdded: begin
+      //Open room for auxiliary information on the phases.
+      with FPhases do
+        for I := 0 to Count - 1 do
+          Phases[I].Compositions.Add;
+    end;//cnAdded
+  
+    cnDeleting: begin
+      //Free auxiliary information on the phases.
+      with FPhases do
+        for I := 0 to Count - 1 do
+          Phases[I].Compositions.Delete(Item.Index);
+    end;//cnDeleting
+  
+  end;//case
 end;
 
 procedure TMaterial.DeleteCompound(ID: Variant);
