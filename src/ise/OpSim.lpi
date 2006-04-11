@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <CONFIG>
   <ProjectOptions>
-    <PathDelim Value="\"/>
+    <PathDelim Value="/"/>
     <Version Value="5"/>
     <General>
       <Flags>
@@ -116,22 +116,22 @@
         <UnitName Value="ExtGraphics2"/>
       </Unit11>
       <Unit12>
-        <Filename Value="..\engine\unitop\Mixer.pas"/>
+        <Filename Value="../engine/unitop/Mixer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Mixer"/>
       </Unit12>
       <Unit13>
-        <Filename Value="..\engine\solver\Entities.pas"/>
+        <Filename Value="../engine/solver/Entities.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Entities"/>
       </Unit13>
       <Unit14>
-        <Filename Value="..\engine\solver\Solver.pas"/>
+        <Filename Value="../engine/solver/Solver.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Solver"/>
       </Unit14>
       <Unit15>
-        <Filename Value="..\engine\thermo\ThermoProvider.pas"/>
+        <Filename Value="../engine/thermo/ThermoProvider.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ThermoProvider"/>
       </Unit15>
@@ -143,19 +143,19 @@
         <UnitName Value="PhysicalPropertyExplorerU"/>
       </Unit16>
       <Unit17>
-        <Filename Value="..\test\TPropertyProviderTestU.pas"/>
+        <Filename Value="../test/TPropertyProviderTestU.pas"/>
         <ComponentName Value="fmTPropertyProviderTest"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="..\test\TPropertyProviderTestU.lrs"/>
+        <ResourceFilename Value="../test/TPropertyProviderTestU.lrs"/>
         <UnitName Value="TPropertyProviderTestU"/>
       </Unit17>
       <Unit18>
-        <Filename Value="..\engine\thermo\Thermo.pas"/>
+        <Filename Value="../engine/thermo/Thermo.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Thermo"/>
       </Unit18>
       <Unit19>
-        <Filename Value="..\engine\solver\Ports.pas"/>
+        <Filename Value="../engine/solver/Ports.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Ports"/>
       </Unit19>
@@ -163,14 +163,13 @@
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
-    <PathDelim Value="\"/>
     <Target>
-      <Filename Value="..\..\app\OpSim"/>
+      <Filename Value="../../app/OpSim"/>
     </Target>
     <SearchPaths>
-      <OtherUnitFiles Value="..\engine\solver\;..\engine\unitop\;..\engine\thermo\;..\test\"/>
-      <UnitOutputDirectory Value="..\build"/>
-      <SrcPath Value="$(LazarusDir)\lcl\;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)\"/>
+      <OtherUnitFiles Value="../engine/solver/;../engine/unitop/;../engine/thermo/;../test/"/>
+      <UnitOutputDirectory Value="../build"/>
+      <SrcPath Value="$(LazarusDir)/lcl/;$(LazarusDir)/lcl/interfaces/$(LCLWidgetType)/"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
