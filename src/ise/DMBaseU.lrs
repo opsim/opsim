@@ -1,6 +1,8 @@
+{ This is an automatically generated lazarus resource file }
+
 LazarusResources.Add('TDMBase','FORMDATA',[
   'TPF0'#7'TDMBase'#6'DMBase'#8'OnCreate'#7#16'DataModuleCreate'#6'Height'#2't'
-  +#16'HorizontalOffset'#3#13#1#14'VerticalOffset'#3#177#0#5'Width'#3#192#0#0#12
+  +#16'HorizontalOffset'#3#18#1#14'VerticalOffset'#3#198#0#5'Width'#3#192#0#0#12
   +'TZConnection'#18'DbConnectionMaster'#8'Protocol'#6#12'firebird-2.0'#8'Datab'
   +'ase'#6'#C:\Samuel\Dev\OpSim\app\SYSDATA.ODB'#4'User'#6#6'sysdba'#8'Password'
   +#6#9'masterkey'#22'TransactIsolationLevel'#7#15'tiReadCommitted'#4'left'#2#16

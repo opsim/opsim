@@ -1,17 +1,17 @@
 object Main: TMain
-  Left = 227
-  Height = 50
-  Top = 104
+  Left = 232
+  Height = 61
+  Top = 125
   Width = 740
   HorzScrollBar.Page = 739
-  VertScrollBar.Page = 30
+  VertScrollBar.Page = 32
   Caption = 'OpSim - [open case will apper hear...]'
-  ClientHeight = 31
+  ClientHeight = 33
   ClientWidth = 740
   Menu = mmStandardMenu
   OnCreate = FormCreate
   OnShow = FormShow
-  PixelsPerInch = 96
+  PixelsPerInch = 75
   ShowHint = True
   object pnlToolbar: TPanel
     Height = 30
@@ -103,9 +103,9 @@ object Main: TMain
     end
     object Label1: TLabel
       Left = 296
-      Height = 14
+      Height = 17
       Top = 8
-      Width = 249
+      Width = 372
       Caption = '<<< our toolbar needs nice icons! can you draw???'
       Color = clNone
       ParentColor = False

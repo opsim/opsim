@@ -1,7 +1,7 @@
 object PhysicalPropertyExplorer: TPhysicalPropertyExplorer
-  Left = 266
+  Left = 270
   Height = 482
-  Top = 178
+  Top = 205
   Width = 663
   HorzScrollBar.Page = 662
   VertScrollBar.Page = 481
@@ -10,7 +10,7 @@ object PhysicalPropertyExplorer: TPhysicalPropertyExplorer
   ClientHeight = 482
   ClientWidth = 663
   OnCreate = FormCreate
-  PixelsPerInch = 96
+  PixelsPerInch = 75
   Position = poDefaultPosOnly
   object Panel1: TPanel
     Height = 36

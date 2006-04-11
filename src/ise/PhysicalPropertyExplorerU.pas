@@ -81,6 +81,7 @@ procedure TPhysicalPropertyExplorer.FormCreate(Sender: TObject);
 begin
   with tblPureComps do begin
     Connection := DMBase.DbConnectionMaster;
+    DMBase.Connect;
     Open;
   end;//with
 end;

@@ -1,11 +1,11 @@
 { This is an automatically generated lazarus resource file }
 
 LazarusResources.Add('TPhysicalPropertyExplorer','FORMDATA',[
-  'TPF0'#25'TPhysicalPropertyExplorer'#24'PhysicalPropertyExplorer'#4'Left'#3#10
-  +#1#6'Height'#3#226#1#3'Top'#3#178#0#5'Width'#3#151#2#18'HorzScrollBar.Page'#3
+  'TPF0'#25'TPhysicalPropertyExplorer'#24'PhysicalPropertyExplorer'#4'Left'#3#14
+  +#1#6'Height'#3#226#1#3'Top'#3#205#0#5'Width'#3#151#2#18'HorzScrollBar.Page'#3
   +#150#2#18'VertScrollBar.Page'#3#225#1#13'ActiveControl'#7#8'btnClose'#7'Capt'
   +'ion'#6#26'Physical Property Explorer'#12'ClientHeight'#3#226#1#11'ClientWid'
-  +'th'#3#151#2#8'OnCreate'#7#10'FormCreate'#13'PixelsPerInch'#2'`'#8'Position'
+  +'th'#3#151#2#8'OnCreate'#7#10'FormCreate'#13'PixelsPerInch'#2'K'#8'Position'
   +#7#16'poDefaultPosOnly'#0#6'TPanel'#6'Panel1'#6'Height'#2'$'#3'Top'#3#190#1#5
   +'Width'#3#151#2#5'Align'#7#8'alBottom'#12'ClientHeight'#2'$'#11'ClientWidth'
   +#3#151#2#8'TabOrder'#2#0#0#7'TButton'#8'btnClose'#4'Left'#3'B'#2#6'Height'#2

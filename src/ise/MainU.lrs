@@ -1,9 +1,11 @@
+{ This is an automatically generated lazarus resource file }
+
 LazarusResources.Add('TMain','FORMDATA',[
-  'TPF0'#5'TMain'#4'Main'#4'Left'#3#227#0#6'Height'#2'2'#3'Top'#2'h'#5'Width'#3
-  +#228#2#18'HorzScrollBar.Page'#3#227#2#18'VertScrollBar.Page'#2#30#7'Caption'
-  +#6'&OpSim - [open case will apper hear...]'#12'ClientHeight'#2#31#11'ClientW'
+  'TPF0'#5'TMain'#4'Main'#4'Left'#3#232#0#6'Height'#2'='#3'Top'#2'}'#5'Width'#3
+  +#228#2#18'HorzScrollBar.Page'#3#227#2#18'VertScrollBar.Page'#2' '#7'Caption'
+  +#6'&OpSim - [open case will apper hear...]'#12'ClientHeight'#2'!'#11'ClientW'
   +'idth'#3#228#2#4'Menu'#7#14'mmStandardMenu'#8'OnCreate'#7#10'FormCreate'#6'O'
-  +'nShow'#7#8'FormShow'#13'PixelsPerInch'#2'`'#8'ShowHint'#9#0#6'TPanel'#10'pn'
+  +'nShow'#7#8'FormShow'#13'PixelsPerInch'#2'K'#8'ShowHint'#9#0#6'TPanel'#10'pn'
   +'lToolbar'#6'Height'#2#30#5'Width'#3#228#2#5'Align'#7#5'alTop'#12'ClientHeig'
   +'ht'#2#30#11'ClientWidth'#3#228#2#8'TabOrder'#2#0#0#12'TSpeedButton'#6'sbOpe'
   +'n'#4'Left'#2#29#6'Height'#2#28#4'Hint'#6#4'Open'#3'Top'#2#1#5'Width'#2#28#5
@@ -52,7 +54,7 @@ LazarusResources.Add('TMain','FORMDATA',[
   +#255'DDLDDO'#255#255'DDLDDDDDDDLtDD'#247'DD|'#196'DD'#255#255'DD'#204#199'D'
   +'D'#247'DG'#204#204'tDDDD|'#204#204#204'tDD|'#204#204#204#204#204#204#204
   +#204#204#204#9'NumGlyphs'#2#0#7'OnClick'#7#12'miAboutClick'#0#0#6'TLabel'#6
-  +'Label1'#4'Left'#3'('#1#6'Height'#2#14#3'Top'#2#8#5'Width'#3#249#0#7'Caption'
+  +'Label1'#4'Left'#3'('#1#6'Height'#2#17#3'Top'#2#8#5'Width'#3't'#1#7'Caption'
   +#6'1<<< our toolbar needs nice icons! can you draw???'#5'Color'#7#6'clNone'
   +#11'ParentColor'#8#0#0#12'TSpeedButton'#6'sbExit'#4'Left'#2'q'#6'Height'#2#28
   +#4'Hint'#6#4'Exit'#3'Top'#2#1#5'Width'#2#28#5'Align'#7#6'alLeft'#4'Flat'#9#10

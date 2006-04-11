@@ -1,7 +1,7 @@
 object fmTPropertyProviderTest: TfmTPropertyProviderTest
-  Left = 290
+  Left = 295
   Height = 347
-  Top = 149
+  Top = 170
   Width = 412
   HorzScrollBar.Page = 411
   VertScrollBar.Page = 346
@@ -11,7 +11,7 @@ object fmTPropertyProviderTest: TfmTPropertyProviderTest
   ClientWidth = 412
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  PixelsPerInch = 96
+  PixelsPerInch = 75
   object Panel1: TPanel
     Height = 36
     Top = 311
@@ -40,13 +40,13 @@ object fmTPropertyProviderTest: TfmTPropertyProviderTest
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'TabSheet1'
-      ClientHeight = 285
-      ClientWidth = 404
+      ClientHeight = 277
+      ClientWidth = 408
       object Label1: TLabel
         Left = 11
-        Height = 14
+        Height = 17
         Top = 14
-        Width = 46
+        Width = 70
         Caption = 'Comp. ID'
         Color = clNone
         ParentColor = False
@@ -70,25 +70,26 @@ object fmTPropertyProviderTest: TfmTPropertyProviderTest
       end
       object GroupBox1: TGroupBox
         Left = 11
-        Height = 224
+        Height = 216
         Top = 54
-        Width = 305
+        Width = 309
         Anchors = [akTop, akLeft, akRight, akBottom]
         Caption = 'Compounds List'
-        ClientHeight = 206
-        ClientWidth = 301
+        ClientHeight = 195
+        ClientWidth = 305
         TabOrder = 2
         object lstbxComps: TListBox
-          Height = 206
-          Width = 301
+          Height = 195
+          Width = 305
           Align = alClient
           TabOrder = 0
+          TopIndex = -1
         end
       end
       object btnClearCompsList: TButton
         Left = 324
         Height = 25
-        Top = 94
+        Top = 86
         Width = 74
         Anchors = [akLeft, akBottom]
         BorderSpacing.InnerBorder = 2
@@ -109,8 +110,8 @@ object fmTPropertyProviderTest: TfmTPropertyProviderTest
     end
     object TabSheet2: TTabSheet
       Caption = 'TabSheet2'
-      ClientHeight = 285
-      ClientWidth = 404
+      ClientHeight = 277
+      ClientWidth = 408
     end
   end
 end
