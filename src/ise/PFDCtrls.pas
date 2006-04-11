@@ -102,6 +102,7 @@ type
     procedure DrawGuideLines;
     procedure EraseGuideLines;
   protected
+    procedure Paint; override;
     procedure CMMouseEnter(var Message :TLMessage); message CM_MouseEnter;
     procedure CMMouseLeave(var Message :TLMessage); message CM_MouseLeave;
     procedure DoEnter; override;
@@ -553,10 +554,24 @@ end;
 constructor TPFDWorkplace.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Color := $00808040;
+  //Color := $00808040;
+  Color := clBlue;//clAppWorkspace;
   Align := alClient;
   SetInvalidPoint(CurrentGuideLinesCenter);
   Resized := False;
+end;
+
+procedure TPFDWorkplace.Paint;
+begin
+  //inherited Paint;
+  //It is necessary to draw the background on Linux, because TScrollbox is
+  //not painted with the correct color.
+  with Canvas do begin
+    Pen.Style := psClear;
+    Brush.Style := bsSolid;
+    Brush.Color := $00808040;
+    Rectangle(ClientRect);
+  end;//with
 end;
 
 procedure TPFDWorkplace.CMMouseEnter(var Message :TLMessage);

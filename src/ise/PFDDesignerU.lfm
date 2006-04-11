@@ -10,7 +10,7 @@ object PFDDesigner: TPFDDesigner
   ClientWidth = 610
   OnCreate = FormCreate
   OnResize = FormResize
-  PixelsPerInch = 96
+  PixelsPerInch = 75
   Position = poDefaultPosOnly
   object pnlWorkplace: TPanel
     Height = 393
@@ -22,6 +22,8 @@ object PFDDesigner: TPFDDesigner
     Caption = 'PFD Workplace is create dynamically here.'
     ClientHeight = 393
     ClientWidth = 610
+    Color = clAppWorkspace
+    ParentColor = False
     TabOrder = 0
   end
   object pnlToolbar: TPanel
