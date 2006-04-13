@@ -9,7 +9,7 @@ object UnitopPallet: TUnitopPallet
   ClientHeight = 273
   ClientWidth = 113
   OnCreate = FormCreate
-  PixelsPerInch = 96
+  PixelsPerInch = 75
   ShowHint = True
   object pnlBase: TPanel
     Height = 273

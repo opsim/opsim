@@ -123,7 +123,9 @@ begin
       FNewPFDControl := TPFDMixer.Create(PFDDesigner.PFDWorkplace)
     else
     if Sender = sbValve then
-      FNewPFDControl := TPFDValve.Create(PFDDesigner.PFDWorkplace);
+      FNewPFDControl := TPFDValve.Create(PFDDesigner.PFDWorkplace)
+    else
+      Exit;
     //Prepares the new PFD control.
     with FNewPFDControl do begin
       P := PFDDesigner.PFDWorkplace.ScreenToClient(Mouse.CursorPos);
