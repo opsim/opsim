@@ -66,15 +66,15 @@ uses
 {
 ************************** TPhysicalPropertyExplorer ***************************
 }
+procedure TPhysicalPropertyExplorer.btnCloseClick(Sender: TObject);
+begin
+  Close;
+end;
+
 procedure TPhysicalPropertyExplorer.DbConnectionMasterBeforeConnect(Sender: 
         TObject);
 begin
   
-end;
-
-procedure TPhysicalPropertyExplorer.btnCloseClick(Sender: TObject);
-begin
-  Close;
 end;
 
 procedure TPhysicalPropertyExplorer.FormCreate(Sender: TObject);

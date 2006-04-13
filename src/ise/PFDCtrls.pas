@@ -93,7 +93,7 @@ type
     constructor Create(AOwner: TPFDWorkplace); override;
   end;
   
-  TPFDWorkplace = class (TScrollBox)
+  TPFDWorkplace = class (TPanel)
   private
     Active: Boolean;
     CurrentGuideLinesCenter: TPoint;
@@ -102,7 +102,6 @@ type
     procedure DrawGuideLines;
     procedure EraseGuideLines;
   protected
-    procedure Paint; override;
     procedure CMMouseEnter(var Message :TLMessage); message CM_MouseEnter;
     procedure CMMouseLeave(var Message :TLMessage); message CM_MouseLeave;
     procedure DoEnter; override;
@@ -114,6 +113,7 @@ type
     procedure MouseMove(Shift: TShiftState; X, Y: Integer); override;
     procedure MouseUp(Button: TMouseButton ; Shift: TShiftState; X, Y: Integer);
             override;
+    procedure Paint; override;
     procedure PaintDragFrames(Origin, Dest: TPoint); overload;
     procedure Resize; override;
   public
@@ -554,24 +554,11 @@ end;
 constructor TPFDWorkplace.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  //Color := $00808040;
-  Color := clBlue;//clAppWorkspace;
-  Align := alClient;
+  Color := $00808040;
+  //Align := alClient;
+  SetBounds(0, 0, 2 * Screen.Width, 2 * Screen.Height);
   SetInvalidPoint(CurrentGuideLinesCenter);
   Resized := False;
-end;
-
-procedure TPFDWorkplace.Paint;
-begin
-  //inherited Paint;
-  //It is necessary to draw the background on Linux, because TScrollbox is
-  //not painted with the correct color.
-  with Canvas do begin
-    Pen.Style := psClear;
-    Brush.Style := bsSolid;
-    Brush.Color := $00808040;
-    Rectangle(ClientRect);
-  end;//with
 end;
 
 procedure TPFDWorkplace.CMMouseEnter(var Message :TLMessage);
@@ -793,6 +780,19 @@ begin
   
   //Redraw the lines.
   DrawGuideLines;
+end;
+
+procedure TPFDWorkplace.Paint;
+begin
+  inherited Paint;
+  //It is necessary to draw the background on Linux, because TScrollbox is
+  //not painted with the correct color.
+  //with Canvas do begin
+    //Pen.Style := psClear;
+    //Brush.Style := bsSolid;
+    //Brush.Color := $00808040;
+    //Rectangle(ClientRect);
+  //end;//with
 end;
 
 procedure TPFDWorkplace.PaintDragFrames(Origin, Dest: TPoint);

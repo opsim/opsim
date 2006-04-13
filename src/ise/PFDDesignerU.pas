@@ -40,7 +40,7 @@ type
   TPFDDesigner = class (TForm)
     pnlStatusBar: TPanel;
     pnlToolbar: TPanel;
-    pnlWorkplace: TPanel;
+    sbxPFDWorkplace: TScrollBox;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     procedure FormCreate(Sender: TObject);
@@ -67,7 +67,7 @@ var
 begin
   PFDWorkplace := TPFDWorkplace.Create(Self);
   with PFDWorkplace do begin
-    Parent := pnlWorkplace;
+    Parent := sbxPFDWorkplace;
   end;//with
   
   //Mixer example.
