@@ -49,8 +49,7 @@ object PFDDesigner: TPFDDesigner
     Height = 393
     Top = 32
     Width = 610
-    HorzScrollBar.Page = 605
-    VertScrollBar.Page = 388
+    AutoScroll = True
     Align = alClient
     TabOrder = 2
   end
