@@ -131,8 +131,7 @@ begin
       P := PFDDesigner.PFDWorkplace.ScreenToClient(Mouse.CursorPos);
       Visible := False;
       Selected := True;
-      Left := P.X - Width;
-      Top := P.Y - Height;
+      SetBounds(P.X - Width, P.Y - Height, Width, Height);
       DrawWireFrame := True;
     end;//with
   end;//if
