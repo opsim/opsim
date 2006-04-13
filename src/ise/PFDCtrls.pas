@@ -749,8 +749,7 @@ begin
     EraseGuideLines;
     //Positions the new control at the mouse pointer.
     with UnitopPallet.NewPFDControl do begin
-      Left := X - Width;
-      Top := Y - Height;
+      SetBounds(X - Width, Y - Height, Width, Height);
     end;//with
   end
   else begin
