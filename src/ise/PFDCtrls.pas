@@ -104,6 +104,8 @@ type
   protected
     procedure CMMouseEnter(var Message :TLMessage); message CM_MouseEnter;
     procedure CMMouseLeave(var Message :TLMessage); message CM_MouseLeave;
+    procedure WMSetFocus(var Message: TLMSetFocus); message LM_SETFOCUS;
+    procedure WMKillFocus(var Message: TLMKillFocus); message LM_KILLFOCUS;
     procedure DoEnter; override;
     procedure DoExit; override;
     procedure MouseDown(Button: TMouseButton ; Shift: TShiftState; X, Y: 
@@ -569,7 +571,7 @@ begin
   //falls over a PFD control. Overriding the MouseEnter method is not
   //sufficient (Lazarus bug?).
   inherited CMMouseEnter(Message);
-  MouseEnter;
+  //MouseEnter;
 end;
 
 procedure TPFDWorkplace.CMMouseLeave(var Message :TLMessage);
@@ -580,7 +582,19 @@ begin
   //is over a PFD control. Overriding the MouseLeave method is not
   //sufficient (Lazarus bug?).
   inherited CMMouseLeave(Message);
-  MouseLeave;
+  //MouseLeave;
+end;
+
+Procedure TPFDWorkplace.WMSetFocus(var Message: TLMSetFocus);
+Begin
+  inherited WMSetFocus(Message);
+  //DebugLn('TWinControl.WMSetFocus A ',Name,':',ClassName);
+end;
+
+procedure TPFDWorkplace.WMKillFocus(var Message: TLMKillFocus);
+begin
+  inherited WMKillFocus(Message);
+  //DebugLn('TWinControl.WMKillFocus A ',Name,':',ClassName);
 end;
 
 procedure TPFDWorkplace.DoEnter;
@@ -691,6 +705,7 @@ end;
 procedure TPFDWorkplace.MouseEnter;
 begin
   inherited MouseEnter;
+  Debugln('TPFDWorkplace.MouseEnter');
   if UnitopPallet.NewPFDControl <> nil then
     UnitopPallet.NewPFDControl.Visible := True;
 end;
@@ -698,6 +713,7 @@ end;
 procedure TPFDWorkplace.MouseLeave;
 begin
   inherited MouseLeave;
+  Debugln('TPFDWorkplace.MouseLeave');
   EraseGuideLines;
   if UnitopPallet.NewPFDControl <> nil then
     UnitopPallet.NewPFDControl.Visible := False;
@@ -748,6 +764,8 @@ var
 begin
   inherited MouseUp(Button, Shift, X, Y);
   
+  Debugln('TPFDWorkplace.MouseUp(Button: %s ; Shift: %s; X, Y: %s, %s', ['0', '0', IntToStr(X), IntToStr(Y)]);
+
   //We need to remove the guidelines to prevent interference with the control
   //repaint, which could cause staining on the canvas.
   EraseGuideLines;

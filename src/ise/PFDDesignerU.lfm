@@ -10,7 +10,7 @@ object PFDDesigner: TPFDDesigner
   ClientWidth = 610
   OnCreate = FormCreate
   OnResize = FormResize
-  PixelsPerInch = 96
+  PixelsPerInch = 75
   Position = poDefaultPosOnly
   object pnlToolbar: TPanel
     Height = 32
