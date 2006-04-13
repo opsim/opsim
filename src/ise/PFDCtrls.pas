@@ -394,6 +394,9 @@ var
   P: TPoint;
 begin
   inherited MouseMove(Shift, X, Y);
+
+  Debugln(ClassName,': MouseMove');
+  
   //Needs to notify mouse movements over the control in order the PFDWorkplace
   //update drawings on its canvas.
   P := Parent.ScreenToClient(ClientToScreen(Point(X,Y)));
@@ -556,7 +559,8 @@ end;
 constructor TPFDWorkplace.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Color := $00808040;
+  //Color := $00808040;
+  //Color := clGreen;
   //Align := alClient;
   SetBounds(0, 0, 2 * Screen.Width, 2 * Screen.Height);
   SetInvalidPoint(CurrentGuideLinesCenter);
@@ -687,10 +691,10 @@ begin
   EraseGuideLines;
   
   //Deselects all controls if a empty workplace are is clicked.
-  if not (GetCaptureControl is TPFDControl) then
-    for I := 0 to ControlCount - 1 do
-      if  (Controls[I] is TPFDControl) then
-        TPFDControl(Controls[I]).Selected := False;
+  //if not (GetCaptureControl is TPFDControl) then
+    //for I := 0 to ControlCount - 1 do
+      //if  (Controls[I] is TPFDControl) then
+        //TPFDControl(Controls[I]).Selected := False;
   
   //If dropping a new control, it positions the new one at the mouse position
   //and disable drop new control mode. The new control should be in selected state.
@@ -728,6 +732,8 @@ end;
 procedure TPFDWorkplace.MouseMove(Shift: TShiftState; X, Y: Integer);
 begin
   inherited MouseMove(Shift, X, Y);
+  
+  Debugln(ClassName,': MouseMove');
   
   //These mouse move event can be triggered after a window maximization.
   //In this case, the event should be ignored to avoid staining the canvas.
