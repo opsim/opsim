@@ -600,6 +600,9 @@ end;
 procedure TPFDWorkplace.DoEnter;
 begin
   inherited DoEnter;
+  //For some reason, this overriden method does not trigger on Linux,
+  //therefore we have to abandon the Active flag.
+  
   //Set flag to indicate that PFDWorkplace has input focus.
   Active := True;
 end;
@@ -607,6 +610,9 @@ end;
 procedure TPFDWorkplace.DoExit;
 begin
   inherited DoExit;
+  //For some reason, this overriden method does not trigger on Linux,
+  //therefore we have to abandon the Active flag.
+  
   Active := False;
 end;
 
@@ -748,9 +754,7 @@ begin
     end;//with
   end
   else begin
-    if Active then begin
-      ResetGuideLines;
-    end;//if
+    ResetGuideLines;
   end;//if
   
 end;
