@@ -254,7 +254,7 @@ begin
     //The actual enthalpy.
     Result.Value := CPA.Value * T.Value + CPB.Value * (T.Value ** 2) / 2 +
       CPC.Value * (T.Value ** 3) / 3 + CPD.Value * (T.Value ** 4) / 4 - HREF;
-  end; //with
+  end;//with
 end;
 
 function HVMXID(APhase: TPhase): TValueRec;
@@ -262,15 +262,15 @@ var
   I: Integer;
   Temp: TValueRec;
 begin
-	//Initializes the functon return.
+  //Initializes the functon return.
   Result.Value := 0;
   with APhase do begin
-  	//Gets phase's temperature.
-  	Temp.Value := Temperature.Value;
+    //Gets phase's temperature.
+    Temp.Value := Temperature.Value;
     //Sum ideal gas enthalpy for all compounds in the phase.
     for I := 0 to Compounds.Count - 1 do
       Result.Value := Result.Value + Compositions[I].MoleFraction.Value * HVIG(Compounds[I], Temp).Value;
-  end; //with
+  end;//with
 end;
 
 {
@@ -329,7 +329,7 @@ begin
     if Compounds[I].CompID = ID then begin
       Result := Compounds[I];
       Break;
-    end; //if
+    end;//if
 end;
 
 function TCompounds.GetItem(Index: Integer): TCompound;
@@ -515,19 +515,19 @@ begin
 
     cnAdded: begin
       //Open room for auxiliary information on the phases.
-        with FPhases do
-          for I := 0 to Count - 1 do
-            Phases[I].Compositions.Add;
-      end; //cnAdded
+      with FPhases do
+        for I := 0 to Count - 1 do
+          Phases[I].Compositions.Add;
+    end;//cnAdded
 
     cnDeleting: begin
       //Free auxiliary information on the phases.
-        with FPhases do
-          for I := 0 to Count - 1 do
-            Phases[I].Compositions.Delete(Item.Index);
-      end; //cnDeleting
+      with FPhases do
+        for I := 0 to Count - 1 do
+          Phases[I].Compositions.Delete(Item.Index);
+    end;//cnDeleting
 
-  end; //case
+  end;//case
 end;
 
 function TMaterial.GetMassFlow: TValueRec;
@@ -568,4 +568,3 @@ begin
 end;
 
 end.
-
