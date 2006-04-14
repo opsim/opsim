@@ -174,17 +174,6 @@ type
     property Owner: TMaterial read FOwner write FOwner;
   end;
   
-  {{
-  - A material is a mixture of one or more compounds occurring in one or more
-  phases. A material is characterised by the values of physical properties,
-  which can describe the overall material or the compounds within particular
-  phases. A material often corresponds to a stream in a conventional process
-  simulation package  (according to CAPE-OPEN).
-  - It is assumed that all phases in a TMaterial have the same temperature and
-  pressure.
-  - It is expected to be most common that a TMaterial has one or two phases.
-  }
-
   { TMaterial }
 
   {{
@@ -242,6 +231,19 @@ type
   end;
   
 implementation
+
+function HVIG(Compounds: TCompounds; T: Double; I: Integer) : TValueRec;
+var
+  TREF: Double;  // Reference Temperature
+  HREF: Double;  // Ideal Has Enthalpy at the reference Temperature
+begin
+  TREF := 298.15;
+  //The calculation.
+  HREF := Compounds[I].CPA.Value * TREF + Compounds[I].CPB.Value * (TREF ** 2) / 2 +
+          Compounds[I].CPC.Value * (TREF ** 3) / 3 + Compounds[I].CPD.Value * (TREF ** 4) / 4;
+  //The return of the function. Ignore the units for now.
+  Result.Value := HREF;
+end;
 
 {
 ********************************** TCompound ***********************************
