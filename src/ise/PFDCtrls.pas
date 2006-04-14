@@ -373,10 +373,7 @@ begin
   //Necessary to notify PFDWorkplace because if user alternate applications
   //using Alt+Tab and the application get focus with the mouse pointer over
   //a PFD control, then MouseEnter will not triggers on PFDWorkplace.
-  //PFDWorkplace.MouseEnter;
-  
-  //PFDWorkplace.MouseCapture := True;
-  //SetCaptureControl(Parent);
+  PFDWorkplace.MouseEnter;
 end;
 
 procedure TPFDControl.MouseLeave;
@@ -385,8 +382,7 @@ begin
   //Necessary to notify PFDWorkplace because if user alternate applications
   //using Alt+Tab and the application lose focus with the mouse pointer over
   //a PFD control, then MouseLeave will not triggers on PFDWorkplace.
-  //PFDWorkplace.MouseLeave;
-  //PFDWorkplace.MouseCapture := False;
+  PFDWorkplace.MouseLeave;
 end;
 
 procedure TPFDControl.MouseMove(Shift: TShiftState; X, Y: Integer);
