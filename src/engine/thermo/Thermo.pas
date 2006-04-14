@@ -140,16 +140,23 @@ type
     FEnthalpy: TValueRec;
     FOverallFraction: TValueRec;
     FVolumeFlow: TValueRec;
+    function GetCompounds: TCompounds;
     function GetMassFlow: TValueRec;
     function GetMaterial: TMaterial;
     function GetMoleFlow: TValueRec;
+    function GetPressure: TValueRec;
     function GetStdLiqVolFlow: TValueRec;
+    function GetTemperature: TValueRec;
+    procedure SetCompounds(Value: TCompounds);
+    procedure SetPressure(Value: TValueRec);
+    procedure SetTemperature(Value: TValueRec);
   public
     constructor Create(Collection: TCollection); override;
     destructor Destroy; override;
     property AggregationState: TAggregationState read FAggregationState write 
             FAggregationState;
     property Compositions: TCompositions read FCompositions write FCompositions;
+    property Compounds: TCompounds read GetCompounds write SetCompounds;
     property CompressFactor: TValueRec read FCompressFactor write 
             FCompressFactor;
     property Enthalpy: TValueRec read FEnthalpy write FEnthalpy;
@@ -158,7 +165,9 @@ type
     property MoleFlow: TValueRec read GetMoleFlow;
     property OverallFraction: TValueRec read FOverallFraction write 
             FOverallFraction;
+    property Pressure: TValueRec read GetPressure write SetPressure;
     property StdLiqVolFlow: TValueRec read GetStdLiqVolFlow;
+    property Temperature: TValueRec read GetTemperature write SetTemperature;
     property VolumeFlow: TValueRec read FVolumeFlow write FVolumeFlow;
   end;
   
@@ -174,8 +183,6 @@ type
     property Owner: TMaterial read FOwner write FOwner;
   end;
   
-  { TMaterial }
-
   {{
   - A material is a mixture of one or more compounds occurring in one or more 
   phases. A material is characterised by the values of physical properties, 
@@ -358,6 +365,11 @@ begin
   inherited Destroy;
 end;
 
+function TPhase.GetCompounds: TCompounds;
+begin
+  Result := Material.Compounds;
+end;
+
 function TPhase.GetMassFlow: TValueRec;
 var
   I: Integer;
@@ -385,6 +397,11 @@ begin
       Result.Value := Result.Value + Items[I].MoleFlow.Value;
 end;
 
+function TPhase.GetPressure: TValueRec;
+begin
+  Result := Material.Pressure;
+end;
+
 function TPhase.GetStdLiqVolFlow: TValueRec;
 var
   I: Integer;
@@ -394,6 +411,26 @@ begin
   with FCompositions do
     for I := 0 to Count - 1 do
       Result.Value := Result.Value + Items[I].StdLiqVolFlow.Value;
+end;
+
+function TPhase.GetTemperature: TValueRec;
+begin
+  Result := Material.Temperature;
+end;
+
+procedure TPhase.SetCompounds(Value: TCompounds);
+begin
+  Material.Compounds := Value;
+end;
+
+procedure TPhase.SetPressure(Value: TValueRec);
+begin
+  Material.Pressure := Value;
+end;
+
+procedure TPhase.SetTemperature(Value: TValueRec);
+begin
+  Material.Temperature := Value;
 end;
 
 {

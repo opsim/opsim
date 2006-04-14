@@ -669,7 +669,7 @@ var
   I: Integer;
 begin
   inherited MouseDown(Button, Shift, X, Y);
-
+  
   //Reference the dragged control for later manipulation.
   //It seems that GetCaptureControl does not work properly on Linux,
   //therefore we have to find the clicked control manualy.
