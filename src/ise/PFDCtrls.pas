@@ -686,10 +686,10 @@ begin
   EraseGuideLines;
   
   //Deselects all controls if a empty workplace are is clicked.
-  //if not (GetCaptureControl is TPFDControl) then
-    //for I := 0 to ControlCount - 1 do
-      //if  (Controls[I] is TPFDControl) then
-        //TPFDControl(Controls[I]).Selected := False;
+  if not (DragControl is TPFDControl) then
+    for I := 0 to ControlCount - 1 do
+      if  (Controls[I] is TPFDControl) then
+        TPFDControl(Controls[I]).Selected := False;
   
   //If dropping a new control, it positions the new one at the mouse position
   //and disable drop new control mode. The new control should be in selected state.
