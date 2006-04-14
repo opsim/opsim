@@ -39,7 +39,7 @@ type
   TMaterial = class;
   TPhases = class;
 
-  TCompound = class (TCollectionItem)
+  TCompound = class(TCollectionItem)
   protected
     function GetDisplayName: string; override;
     procedure SetIndex(Value: Integer); override;
@@ -78,29 +78,29 @@ type
     constructor Create(ACollection: TCollection); override;
     destructor Destroy; override;
   end;
-  
-  TCompounds = class (TCollection)
+
+  TCompounds = class(TCollection)
   private
     FOnNotify: TCollectionNotifyEvent;
     function GetItem(Index: Integer): TCompound;
-    procedure SetItem(Index: Integer; Value: TCompound);
+    procedure SetItem(Index: Integer;Value: TCompound);
   public
     constructor Create;
     function Add: TCompound;
     procedure DeleteCompound(ID: Variant);
     function FindCompound(ID: Variant): TCompound;
-    procedure Notify(Item: TCollectionItem;  Action: TCollectionNotification); 
-            override;
-    property Compounds[Index: Integer]: TCompound read GetItem write SetItem; 
-            default;
+    procedure Notify(Item: TCollectionItem;Action: TCollectionNotification);
+      override;
+    property Compounds[Index: Integer]: TCompound read GetItem write SetItem;
+    default;
   published
     property OnNotify: TCollectionNotifyEvent read FOnNotify write FOnNotify;
   end;
-  
+
   {{
   Holds compound information that is specific for a phase.
   }
-  TComposition = class (TCollectionItem)
+  TComposition = class(TCollectionItem)
   public
     Compound: TCompound;
     MassFlow: TValueRec;
@@ -110,29 +110,29 @@ type
     StdLiqVolFlow: TValueRec;
     StdLiqVolFraction: TValueRec;
   end;
-  
-  TCompositions = class (TCollection)
+
+  TCompositions = class(TCollection)
   private
     function GetItem(Index: Integer): TComposition;
-    procedure SetItem(Index: Integer; Value: TComposition);
+    procedure SetItem(Index: Integer;Value: TComposition);
   public
     constructor Create;
     function Add: TComposition;
-    property Items[Index: Integer]: TComposition read GetItem write SetItem; 
-            default;
+    property Items[Index: Integer]: TComposition read GetItem write SetItem;
+    default;
   end;
-  
+
   {{
-  - A phase is a stable or metastable collection of compounds with a defined 
-  amount of substance and a homogeneous composition. It has an associated state 
-  of aggregation, e.g. liquid. A given phase can be distinguished from others 
-  through the presence of physical interfaces that separate states of matter 
+  - A phase is a stable or metastable collection of compounds with a defined
+  amount of substance and a homogeneous composition. It has an associated state
+  of aggregation, e.g. liquid. A given phase can be distinguished from others
+  through the presence of physical interfaces that separate states of matter
   with different characteristics, such as density (according to CAPE-OPEN).
-  - In a material, each phase is given a unique identifier. In order to 
-  distinguish multiple instances of similar phases, such as liquids, the phase 
+  - In a material, each phase is given a unique identifier. In order to
+  distinguish multiple instances of similar phases, such as liquids, the phase
   can be associated with a number of attributes such as a ‘key compound’.
   }
-  TPhase = class (TCollectionItem)
+  TPhase = class(TCollectionItem)
   private
     FAggregationState: TAggregationState;
     FCompositions: TCompositions;
@@ -153,49 +153,49 @@ type
   public
     constructor Create(Collection: TCollection); override;
     destructor Destroy; override;
-    property AggregationState: TAggregationState read FAggregationState write 
-            FAggregationState;
+    property AggregationState: TAggregationState read FAggregationState write
+      FAggregationState;
     property Compositions: TCompositions read FCompositions write FCompositions;
     property Compounds: TCompounds read GetCompounds write SetCompounds;
-    property CompressFactor: TValueRec read FCompressFactor write 
-            FCompressFactor;
+    property CompressFactor: TValueRec read FCompressFactor write
+      FCompressFactor;
     property Enthalpy: TValueRec read FEnthalpy write FEnthalpy;
     property MassFlow: TValueRec read GetMassFlow;
     property Material: TMaterial read GetMaterial;
     property MoleFlow: TValueRec read GetMoleFlow;
-    property OverallFraction: TValueRec read FOverallFraction write 
-            FOverallFraction;
+    property OverallFraction: TValueRec read FOverallFraction write
+      FOverallFraction;
     property Pressure: TValueRec read GetPressure write SetPressure;
     property StdLiqVolFlow: TValueRec read GetStdLiqVolFlow;
     property Temperature: TValueRec read GetTemperature write SetTemperature;
     property VolumeFlow: TValueRec read FVolumeFlow write FVolumeFlow;
   end;
-  
-  TPhases = class (TCollection)
+
+  TPhases = class(TCollection)
   private
     FOwner: TMaterial;
     function GetItem(Index: Integer): TPhase;
-    procedure SetItem(Index: Integer; Value: TPhase);
+    procedure SetItem(Index: Integer;Value: TPhase);
   public
     constructor Create(AMaterial: TMaterial);
     function Add: TPhase;
-    property Items[Index: Integer]: TPhase read GetItem write SetItem; default;
+    property Items[Index: Integer]: TPhase read GetItem write SetItem;default;
     property Owner: TMaterial read FOwner write FOwner;
   end;
-  
+
   {{
-  - A material is a mixture of one or more compounds occurring in one or more 
-  phases. A material is characterised by the values of physical properties, 
-  which can describe the overall material or the compounds within particular 
-  phases. A material often corresponds to a stream in a conventional process 
+  - A material is a mixture of one or more compounds occurring in one or more
+  phases. A material is characterised by the values of physical properties,
+  which can describe the overall material or the compounds within particular
+  phases. A material often corresponds to a stream in a conventional process
   simulation package  (according to CAPE-OPEN).
-  - It is assumed that all phases in a TMaterial have the same temperature and 
+  - It is assumed that all phases in a TMaterial have the same temperature and
   pressure.
   - It is expected to be most common that a TMaterial has one or two phases.
   }
-  TMaterial = class (TPersistent)
-    procedure CompoundsNotify(Item: TCollectionItem; Action: 
-            TCollectionNotification);
+  TMaterial = class(TPersistent)
+    procedure CompoundsNotify(Item: TCollectionItem;Action:
+      TCollectionNotification);
   private
     FCompounds: TCompounds;
     FPhases: TPhases;
@@ -209,10 +209,10 @@ type
     constructor Create;
     destructor Destroy; override;
     {{
-    This method is responsible for delegating flash calculations to the 
-    associated Property Package or Equilibrium Server. It must set the amounts, 
-    compositions, temperature and pressure for all phases present at 
-    equilibrium, as well as the temperature and pressure for the overall 
+    This method is responsible for delegating flash calculations to the
+    associated Property Package or Equilibrium Server. It must set the amounts,
+    compositions, temperature and pressure for all phases present at
+    equilibrium, as well as the temperature and pressure for the overall
     mixture, if not set as part of the calculation specifications.
     }
     procedure CalcEquilibrium;
@@ -223,38 +223,60 @@ type
     property MassFlow: TValueRec read GetMassFlow;
     property MoleFlow: TValueRec read GetMoleFlow;
     {{
-    The list of phases present in the material object. Most commonly, there 
+    The list of phases present in the material object. Most commonly, there
     will be only one phase.
     }
     property Phases: TPhases read FPhases write FPhases;
     property Pressure: TValueRec read FPressure write FPressure;
     {{
-    This property will combine the standard volume flow rate of all liquid 
+    This property will combine the standard volume flow rate of all liquid
     phases in the material object.
     }
     property StdLiqVolFlow: TValueRec read GetStdLiqVolFlow;
     property Temperature: TValueRec read FTemperature write FTemperature;
     property VolumeFlow: TValueRec read GetVolumeFlow;
   end;
-  
+
 implementation
 
-function HVIG(Compounds: TCompounds; T: Double; I: Integer) : TValueRec;
+function HVIG(ACompound: TCompound;T: TValueRec): TValueRec;
 var
-  TREF: Double;  // Reference Temperature
-  HREF: Double;  // Ideal Has Enthalpy at the reference Temperature
+  TREF: Double; // Reference Temperature
+  HREF: Double; // Ideal Has Enthalpy at the reference Temperature
 begin
+  //Defines the reference temperature.
   TREF := 298.15;
-  //The calculation.
-  HREF := Compounds[I].CPA.Value * TREF + Compounds[I].CPB.Value * (TREF ** 2) / 2 +
-          Compounds[I].CPC.Value * (TREF ** 3) / 3 + Compounds[I].CPD.Value * (TREF ** 4) / 4;
-  //The return of the function. Ignore the units for now.
-  Result.Value := HREF;
+
+  with ACompound do begin
+    //The reference enthalpy.
+    HREF := CPA.Value * TREF + CPB.Value * (TREF ** 2) / 2 +
+      CPC.Value * (TREF ** 3) / 3 + CPD.Value * (TREF ** 4) / 4;
+    //The actual enthalpy.
+    Result.Value := CPA.Value * T.Value + CPB.Value * (T.Value ** 2) / 2 +
+      CPC.Value * (T.Value ** 3) / 3 + CPD.Value * (T.Value ** 4) / 4 - HREF;
+  end; //with
+end;
+
+function HVMXID(APhase: TPhase): TValueRec;
+var
+  I: Integer;
+  Temp: TValueRec;
+begin
+	//Initializes the functon return.
+  Result.Value := 0;
+  with APhase do begin
+  	//Gets phase's temperature.
+  	Temp.Value := Temperature.Value;
+    //Sum ideal gas enthalpy for all compounds in the phase.
+    for I := 0 to Compounds.Count - 1 do
+      Result.Value := Result.Value + Compositions[I].MoleFraction.Value * HVIG(Compounds[I], Temp).Value;
+  end; //with
 end;
 
 {
 ********************************** TCompound ***********************************
 }
+
 constructor TCompound.Create(ACollection: TCollection);
 begin
   inherited Create(ACollection);
@@ -278,6 +300,7 @@ end;
 {
 ********************************** TCompounds **********************************
 }
+
 constructor TCompounds.Create;
 begin
   inherited Create(TCompound);
@@ -306,7 +329,7 @@ begin
     if Compounds[I].CompID = ID then begin
       Result := Compounds[I];
       Break;
-    end;//if
+    end; //if
 end;
 
 function TCompounds.GetItem(Index: Integer): TCompound;
@@ -314,15 +337,15 @@ begin
   Result := TCompound(inherited GetItem(Index));
 end;
 
-procedure TCompounds.Notify(Item: TCollectionItem;  Action: 
-        TCollectionNotification);
+procedure TCompounds.Notify(Item: TCollectionItem;Action:
+  TCollectionNotification);
 begin
   inherited Notify(Item, Action);
   if Assigned(FOnNotify) then
     FOnNotify(Item, Action);
 end;
 
-procedure TCompounds.SetItem(Index: Integer; Value: TCompound);
+procedure TCompounds.SetItem(Index: Integer;Value: TCompound);
 begin
   inherited SetItem(Index, Value);
 end;
@@ -330,6 +353,7 @@ end;
 {
 ******************************** TCompositions *********************************
 }
+
 constructor TCompositions.Create;
 begin
   inherited Create(TComposition);
@@ -345,7 +369,7 @@ begin
   Result := TComposition(inherited GetItem(Index));
 end;
 
-procedure TCompositions.SetItem(Index: Integer; Value: TComposition);
+procedure TCompositions.SetItem(Index: Integer;Value: TComposition);
 begin
   inherited SetItem(Index, Value);
 end;
@@ -353,6 +377,7 @@ end;
 {
 ************************************ TPhase ************************************
 }
+
 constructor TPhase.Create(Collection: TCollection);
 begin
   inherited Create(Collection);
@@ -436,6 +461,7 @@ end;
 {
 *********************************** TPhases ************************************
 }
+
 constructor TPhases.Create(AMaterial: TMaterial);
 begin
   inherited Create(TPhase);
@@ -452,7 +478,7 @@ begin
   Result := TPhase(inherited GetItem(Index));
 end;
 
-procedure TPhases.SetItem(Index: Integer; Value: TPhase);
+procedure TPhases.SetItem(Index: Integer;Value: TPhase);
 begin
   inherited SetItem(Index, Value);
 end;
@@ -460,6 +486,7 @@ end;
 {
 ********************************** TMaterial ***********************************
 }
+
 constructor TMaterial.Create;
 begin
   inherited Create;
@@ -479,28 +506,28 @@ procedure TMaterial.CalcEquilibrium;
 begin
 end;
 
-procedure TMaterial.CompoundsNotify(Item: TCollectionItem; Action: 
-        TCollectionNotification);
+procedure TMaterial.CompoundsNotify(Item: TCollectionItem;Action:
+  TCollectionNotification);
 var
   I: Integer;
 begin
   case Action of
-  
+
     cnAdded: begin
       //Open room for auxiliary information on the phases.
-      with FPhases do
-        for I := 0 to Count - 1 do
-          Phases[I].Compositions.Add;
-    end;//cnAdded
-  
+        with FPhases do
+          for I := 0 to Count - 1 do
+            Phases[I].Compositions.Add;
+      end; //cnAdded
+
     cnDeleting: begin
       //Free auxiliary information on the phases.
-      with FPhases do
-        for I := 0 to Count - 1 do
-          Phases[I].Compositions.Delete(Item.Index);
-    end;//cnDeleting
-  
-  end;//case
+        with FPhases do
+          for I := 0 to Count - 1 do
+            Phases[I].Compositions.Delete(Item.Index);
+      end; //cnDeleting
+
+  end; //case
 end;
 
 function TMaterial.GetMassFlow: TValueRec;
@@ -541,3 +568,4 @@ begin
 end;
 
 end.
+
