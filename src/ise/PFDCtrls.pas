@@ -104,8 +104,6 @@ type
   protected
     procedure CMMouseEnter(var Message :TLMessage); message CM_MouseEnter;
     procedure CMMouseLeave(var Message :TLMessage); message CM_MouseLeave;
-    procedure WMSetFocus(var Message: TLMSetFocus); message LM_SETFOCUS;
-    procedure WMKillFocus(var Message: TLMKillFocus); message LM_KILLFOCUS;
     procedure DoEnter; override;
     procedure DoExit; override;
     procedure MouseDown(Button: TMouseButton ; Shift: TShiftState; X, Y: 
@@ -118,6 +116,8 @@ type
     procedure Paint; override;
     procedure PaintDragFrames(Origin, Dest: TPoint); overload;
     procedure Resize; override;
+    procedure WMKillFocus(var Message: TLMKillFocus); message LM_KILLFOCUS;
+    procedure WMSetFocus(var Message: TLMSetFocus); message LM_SETFOCUS;
   public
     constructor Create(AOwner: TComponent); override;
     procedure ResetGuideLines;
@@ -394,7 +394,7 @@ var
   P: TPoint;
 begin
   inherited MouseMove(Shift, X, Y);
-
+  
   Debugln(ClassName,': MouseMove');
   
   //Needs to notify mouse movements over the control in order the PFDWorkplace
@@ -589,18 +589,6 @@ begin
   //MouseLeave;
 end;
 
-Procedure TPFDWorkplace.WMSetFocus(var Message: TLMSetFocus);
-Begin
-  inherited WMSetFocus(Message);
-  //DebugLn('TWinControl.WMSetFocus A ',Name,':',ClassName);
-end;
-
-procedure TPFDWorkplace.WMKillFocus(var Message: TLMKillFocus);
-begin
-  inherited WMKillFocus(Message);
-  //DebugLn('TWinControl.WMKillFocus A ',Name,':',ClassName);
-end;
-
 procedure TPFDWorkplace.DoEnter;
 begin
   inherited DoEnter;
@@ -685,6 +673,13 @@ var
   I: Integer;
 begin
   inherited MouseDown(Button, Shift, X, Y);
+
+  //Reference the dragged control for later manipulation.
+  //It seems that GetCaptureControl does not work properly on Linux,
+  //therefore we have to find the clicked control manualy.
+  DragControl := nil;
+  if (ControlAtPos(Point(X,Y), False) is TPFDControl) then
+    DragControl := ControlAtPos(Point(X,Y), False);
   
   //It is needed to erase the lines to avoid interference with repainting of
   //the controls under the lines.
@@ -742,11 +737,6 @@ begin
     Exit;
   end;//if
   
-  //Reference the dragged control for later manipulation.
-  DragControl := nil;
-  if (GetCaptureControl is TPFDControl) then
-    DragControl := GetCaptureControl;
-  
   //Changes the cursor to indicate a PFD control can be dropped.
   //Guidelines should not show while in dropping mode for a new control.
   if UnitopPallet.NewPFDControl <> nil then begin
@@ -774,7 +764,7 @@ begin
   inherited MouseUp(Button, Shift, X, Y);
   
   Debugln('TPFDWorkplace.MouseUp(Button: %s ; Shift: %s; X, Y: %s, %s', ['0', '0', IntToStr(X), IntToStr(Y)]);
-
+  
   //We need to remove the guidelines to prevent interference with the control
   //repaint, which could cause staining on the canvas.
   EraseGuideLines;
@@ -855,6 +845,18 @@ begin
   inherited Resize;
   //Set the flag to indicate that a resize operation occured.
   Resized := True;
+end;
+
+procedure TPFDWorkplace.WMKillFocus(var Message: TLMKillFocus);
+begin
+  inherited WMKillFocus(Message);
+  //DebugLn('TWinControl.WMKillFocus A ',Name,':',ClassName);
+end;
+
+procedure TPFDWorkplace.WMSetFocus(var Message: TLMSetFocus);
+begin
+  inherited WMSetFocus(Message);
+  //DebugLn('TWinControl.WMSetFocus A ',Name,':',ClassName);
 end;
 
 end.
