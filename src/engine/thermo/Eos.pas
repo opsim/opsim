@@ -28,7 +28,7 @@ unit Eos;
 interface
 
 uses
-  SysUtils, Classes, Variants, Entities, Thermo;
+  SysUtils, Classes, Variants, Entities, Thermo, Math;
 
 type
   {{
@@ -53,6 +53,8 @@ type
   end;
   
   TCubicEos = class (TEos)
+  protected
+    function FindCubicRoots(A, B, C: Double): Variant;
   public
     function FindRoots: Variant; override;
   end;
@@ -92,6 +94,37 @@ end;
 {
 ********************************** TCubicEos ***********************************
 }
+function TCubicEos.FindCubicRoots(A, B, C: Double): Variant;
+var
+  Q: Double;
+  R: Double;
+  S: Double;
+  T: Double;
+  theta: Double;
+begin
+  Result := VarArrayOf([0,0,0]);
+  Q := (Sqr(A) - 3.0 * B) / 9.0;
+  R := (2.0 * IntPower(A, 3) - 9.0 * A * B + 27 * C) / 54.0;
+  if (Sqr(R) < IntPower(Q, 3)) then begin
+    theta := ArcCos(R / (Sqrt(IntPower(Q, 3))));
+    Result[0] := -2.0 * Sqrt(Q) * cos(theta / 3.0) - A / 3.0;
+    Result[1] := -2.0 * Sqrt(Q) * cos((theta + 2.0 * pi) / 3.0) - A / 3.0;
+    Result[2] := -2.0 * Sqrt(Q) * cos((theta - 2.0 * pi) / 3.0) - A / 3.0;
+  end
+  else begin
+    S := abs(R) + Sqrt(Sqr(R) - IntPower(Q, 3));
+    S := Power(S, 0.3333333);
+    S := -1.0 * sign(R) * S;
+    if S = 0 then
+      T := 0
+    else
+      T := Q / S;
+    Result[0] := (S + T) - A / 3.0;
+    Result[1] := 0.0;
+    Result[2] := 0.0;
+  end;//if
+end;
+
 function TCubicEos.FindRoots: Variant;
 begin
   Result := inherited FindRoots;
