@@ -36,8 +36,20 @@ type
   }
   TEos = class (TObject)
   public
-    function CalcCompressibilityFactor(APhase: TPhase): TValueRec;
-    function CalcFugacityCoefficient(ACompounds: TCompounds): TValueRec;
+    {{
+    Calculates the enthalpy an entropy residues at once, since the algorithm is 
+    almost the same.
+    }
+    function CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: TValueRec): 
+            TValueRec; virtual;
+    function CompressibilityFactor(APhase: TPhase): TValueRec; virtual;
+    function EnthalpyDeparture(APhase: TPhase): TValueRec; virtual;
+    function EntropyDeparture(APhase: TPhase): TValueRec; virtual;
+    {{
+    Returns the EOS roots as a variant array.
+    }
+    function FindRoots: Variant; virtual;
+    function FugacityCoefficient(ACompounds: TCompounds): TValueRec; virtual;
   end;
   
 
@@ -46,13 +58,29 @@ implementation
 {
 ************************************* TEos *************************************
 }
-function TEos.CalcCompressibilityFactor(APhase: TPhase): TValueRec;
+function TEos.CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: TValueRec): 
+        TValueRec;
 begin
 end;
 
-function TEos.CalcFugacityCoefficient(ACompounds: TCompounds): TValueRec;
+function TEos.CompressibilityFactor(APhase: TPhase): TValueRec;
 begin
 end;
 
+function TEos.EnthalpyDeparture(APhase: TPhase): TValueRec;
+begin
+end;
+
+function TEos.EntropyDeparture(APhase: TPhase): TValueRec;
+begin
+end;
+
+function TEos.FindRoots: Variant;
+begin
+end;
+
+function TEos.FugacityCoefficient(ACompounds: TCompounds): TValueRec;
+begin
+end;
 
 end.
