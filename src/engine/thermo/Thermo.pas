@@ -239,6 +239,7 @@ type
 
 implementation
 
+// Ideal Gas Pure Enthalpy
 function HVIG(ACompound: TCompound;T: TValueRec): TValueRec;
 var
   TREF: Double; // Reference Temperature
@@ -257,6 +258,7 @@ begin
   end;//with
 end;
 
+// Ideal Gas Mixture Enthalpy
 function HVMXID(APhase: TPhase): TValueRec;
 var
   I: Integer;
@@ -271,6 +273,52 @@ begin
     for I := 0 to Compounds.Count - 1 do
       Result.Value := Result.Value + Compositions[I].MoleFraction.Value * HVIG(Compounds[I], Temp).Value;
   end;//with
+end;
+
+// Ideal Gas Pure Entropy
+function SVIG(ACompound: TCompound;T: TValueRec;P: TValueRec): TValueRec;
+const
+  TREF = 298.15; // Reference Temperature
+  PREF = 1; // Reference Pressure - 1 Bar
+var
+  SREF: Double; // Ideal Has Entropy at the reference Temperature and Pressure
+begin
+  //Defines the reference temperature and Pressure
+
+  with ACompound do begin
+    //The reference entropy
+    SREF := CPA.Value * Ln(TREF) + CPB.Value * TREF ** 2 +
+      			0.5 * CPC.Value * TREF ** 3 + (1.0 / 3.0) * CPD.Value * TREF ** 3
+      			- Ln(PREF);
+    //The entropy
+    Result.Value := CPA.Value * Ln(T.Value) + CPB.Value * (T.Value) +
+      							0.5 * CPC.Value * (T.Value ** 2) +
+      							(1.0 / 3.0) * CPD.Value * (T.Value ** 3)
+      							- 8.314 * Ln(P.Value) - SREF;
+  end;//with
+end;
+
+// Ideal Gas Mixture Entropy
+function SVMXID(APhase: TPhase): TValueRec;
+var
+  I: Integer;
+  Temp: TValueRec;
+  Pres: TValueRec;
+begin
+  //Initializes the function return.
+  Result.Value := 0;
+  with APhase do begin
+   //Gets phase's temperature.
+    Temp.Value := Temperature.Value;
+    Pres.Value := Pressure.Value;
+    //Sum ideal gas entropy for all compounds in the phase.
+    for I := 0 to Compounds.Count - 1 do
+      if Compositions[I].MoleFraction.Value > 0 Then
+        Result.Value := Result.Value + Compositions[I].MoleFraction.Value *
+                        SVIG(Compounds[I], Temp, Pres).Value - 8.314 *
+                        Compositions[I].MoleFraction.Value * Ln(Compositions[I].MoleFraction.Value);
+  end;//with
+
 end;
 
 {
