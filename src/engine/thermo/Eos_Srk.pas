@@ -29,14 +29,12 @@ unit Eos_Srk;
 interface
 
 uses
-  SysUtils, Classes, Entities, Thermo;
+  SysUtils, Classes, Entities, Thermo, Eos;
 
 type
   TSrkEos = class (TEos)
   end;
   
-
 implementation
-
 
 end.

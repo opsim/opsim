@@ -39,7 +39,7 @@
         <MinVersion Major="1" Valid="True"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="21">
+    <Units Count="22">
       <Unit0>
         <Filename Value="OpSim.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -164,6 +164,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Eos"/>
       </Unit20>
+      <Unit21>
+        <Filename Value="..\engine\thermo\Eos_Srk.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Eos_Srk"/>
+      </Unit21>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
