@@ -28,7 +28,7 @@ unit Eos;
 interface
 
 uses
-  SysUtils, Classes, Entities, Thermo;
+  SysUtils, Classes, Variants, Entities, Thermo;
 
 type
   {{
@@ -50,6 +50,11 @@ type
     }
     function FindRoots: Variant; virtual;
     function FugacityCoefficient(ACompounds: TCompounds): TValueRec; virtual;
+  end;
+  
+  TCubicEos = class (TEos)
+  public
+    function FindRoots: Variant; override;
   end;
   
 
@@ -77,10 +82,19 @@ end;
 
 function TEos.FindRoots: Variant;
 begin
+  Result := VarArrayOf([]);
 end;
 
 function TEos.FugacityCoefficient(ACompounds: TCompounds): TValueRec;
 begin
+end;
+
+{
+********************************** TCubicEos ***********************************
+}
+function TCubicEos.FindRoots: Variant;
+begin
+  Result := inherited FindRoots;
 end;
 
 end.

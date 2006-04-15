@@ -32,7 +32,7 @@ uses
   SysUtils, Classes, Entities, Thermo, Eos;
 
 type
-  TSrkEos = class (TEos)
+  TSrkEos = class (TCubicEos)
   end;
   
 implementation
