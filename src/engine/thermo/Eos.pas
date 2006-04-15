@@ -28,7 +28,7 @@ unit Eos;
 interface
 
 uses
-  SysUtils, Classes;
+  SysUtils, Classes, Entities, Thermo;
 
 type
   {{

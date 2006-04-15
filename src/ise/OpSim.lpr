@@ -37,7 +37,7 @@ uses
   { add your units here }, MainU, AboutU, PFDDesignerU, UnitopPalletU, DMBaseU, MixerSpecU,
   Utils, PFDGraph, ExtGraphics2, ExtShapes, PFDCtrls, Solver, Entities, Mixer,
   ThermoProvider, zcomponent, PhysicalPropertyExplorerU, TPropertyProviderTestU,
-  Thermo, Ports;
+  Thermo, Ports, Eos;
 
 begin
   Application.Initialize;
