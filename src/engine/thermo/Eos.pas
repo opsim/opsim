@@ -48,7 +48,7 @@ type
     {{
     Returns the EOS roots as a variant array.
     }
-    function FindRoots: Variant; virtual;
+    function FindRoots(APhase: TPhase): Variant; virtual;
     function FugacityCoefficient(ACompounds: TCompounds): TValueRec; virtual;
   end;
   
@@ -56,7 +56,7 @@ type
   protected
     function FindCubicRoots(A, B, C: Double): Variant;
   public
-    function FindRoots: Variant; override;
+    function FindRoots(APhase: TPhase): Variant; override;
   end;
   
 
@@ -82,7 +82,7 @@ function TEos.EntropyDeparture(APhase: TPhase): TValueRec;
 begin
 end;
 
-function TEos.FindRoots: Variant;
+function TEos.FindRoots(APhase: TPhase): Variant;
 begin
   Result := VarArrayOf([]);
 end;
@@ -125,9 +125,11 @@ begin
   end;//if
 end;
 
-function TCubicEos.FindRoots: Variant;
+function TCubicEos.FindRoots(APhase: TPhase): Variant;
 begin
-  Result := inherited FindRoots;
+  Result := inherited FindRoots(APhase);
+  //Initializaes a variant array with three elements.
+  Result := VarArrayOf([0, 0, 0]);
 end;
 
 end.
