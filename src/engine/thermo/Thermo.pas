@@ -137,7 +137,7 @@ type
   private
     FAggregationState: TAggregationState;
     FCompositions: TCompositions;
-    FCompressFactor: TValueRec;
+    FCompressibilityFactor: TValueRec;
     FEnthalpy: TValueRec;
     FOverallFraction: TValueRec;
     FVolumeFlow: TValueRec;
@@ -158,8 +158,8 @@ type
             FAggregationState;
     property Compositions: TCompositions read FCompositions write FCompositions;
     property Compounds: TCompounds read GetCompounds write SetCompounds;
-    property CompressFactor: TValueRec read FCompressFactor write 
-            FCompressFactor;
+    property CompressibilityFactor: TValueRec read FCompressibilityFactor write 
+            FCompressibilityFactor;
     property Enthalpy: TValueRec read FEnthalpy write FEnthalpy;
     property MassFlow: TValueRec read GetMassFlow;
     property Material: TMaterial read GetMaterial;

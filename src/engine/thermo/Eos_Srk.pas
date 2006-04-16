@@ -157,10 +157,10 @@ begin
     bigA := a * Pressure.Value / (R * Temperature.Value)**2;
   
     for i := 0 to Compositions.Count - 1 do begin
-      test := bi[i] / b * (CompressFactor.Value - 1.0) -
-              ln(CompressFactor.Value - bigB) - bigA / bigB *
+      test := bi[i] / b * (CompressibilityFactor.Value - 1.0) -
+              ln(CompressibilityFactor.Value - bigB) - bigA / bigB *
               (2.0 * Sqrt(ai[i] / a) - bi[i] / b) *
-              ln(1 + bigB / CompressFactor.Value);
+              ln(1 + bigB / CompressibilityFactor.Value);
       //Define the fugacity coefficient for each compound in the phase.
       Compositions[i].FugacityCoefficient.Value := exp(test) * Pressure.Value *
                                                    Compositions[i].MoleFraction.Value;
