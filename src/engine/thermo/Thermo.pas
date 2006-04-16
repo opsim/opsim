@@ -103,6 +103,7 @@ type
   TComposition = class (TCollectionItem)
   public
     Compound: TCompound;
+    FugacityCoefficient: TValueRec;
     MassFlow: TValueRec;
     MassFraction: TValueRec;
     MoleFlow: TValueRec;

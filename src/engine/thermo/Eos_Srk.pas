@@ -34,26 +34,52 @@ uses
 type
   TSrkEos = class (TCubicEos)
   public
+    function CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: TValueRec): 
+            TValueRec; override;
+    function CompressibilityFactor(APhase: TPhase): TValueRec; override;
+    function EnthalpyDeparture(APhase: TPhase): TValueRec; override;
+    function EntropyDeparture(APhase: TPhase): TValueRec; override;
     function FindRoots(APhase: TPhase): Variant; override;
+    function FugacityCoefficients(APhase: TPhase): TValueRec; override;
   end;
   
 implementation
 
+const
+  R = 0.08206; {atm*m^3/(kgmol*K)} {temporary}
+
 {
 *********************************** TSrkEos ************************************
 }
+function TSrkEos.CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: 
+        TValueRec): TValueRec;
+begin
+  Result := inherited CalcDepartures(APhase, Enthalpy, Entropy);
+end;
+
+function TSrkEos.CompressibilityFactor(APhase: TPhase): TValueRec;
+begin
+  Result := inherited CompressibilityFactor(APhase);
+end;
+
+function TSrkEos.EnthalpyDeparture(APhase: TPhase): TValueRec;
+begin
+  Result := inherited EnthalpyDeparture(APhase);
+end;
+
+function TSrkEos.EntropyDeparture(APhase: TPhase): TValueRec;
+begin
+  Result := inherited EntropyDeparture(APhase);
+end;
+
 function TSrkEos.FindRoots(APhase: TPhase): Variant;
-  
-  const
-    R = 0.08206; {atm*m^3/(kgmol*K)} {temporary}
-  var
-    MainA: Double;
-    MainB: Double;
-    a: Double;
-    b: Double;
-    i, j: Integer;
-    ai, bi, mi: array of Real;
-  
+var
+  MainA: Double;
+  MainB: Double;
+  a: Double;
+  b: Double;
+  i, j: Integer;
+  ai, bi, mi: array of Real;
 begin
   Result := inherited FindRoots(APhase);
   with APhase do begin
@@ -73,11 +99,13 @@ begin
         b := b + Compositions[i].MoleFraction.Value * bi[i];
       end;//with
     end;//for
+  
     a := 0;
     for i := 0 to Compounds.Count - 1 do
       for j := 0 to Compounds.Count - 1 do
         a := a + Compositions[i].MoleFraction.Value *
              Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j]);
+  
     MainA := a * Pressure.Value / (R * Temperature.Value)**2;
     MainB := b * Pressure.Value / (R * Temperature.Value);
   
@@ -90,6 +118,60 @@ begin
   
   //Return the three roots.
   Result := FindCubicRoots(-1.0, MainA - MainB - Sqr(MainB), -1.0 * MainA * MainB);
+end;
+
+function TSrkEos.FugacityCoefficients(APhase: TPhase): TValueRec;
+var
+  V, test: Double;
+  a, bigA: Double;
+  b, bigB: Double;
+  tempsum: Double;
+  i, j: Integer;
+  ai, bi, mi: array of Real;
+begin
+  Result := inherited FugacityCoefficients(APhase);
+  with APhase do begin
+  
+    //Initializes auxiliar arrays.
+    SetLength(ai, Compounds.Count);
+    SetLength(bi, Compounds.Count);
+    SetLength(mi, Compounds.Count);
+  
+    b := 0.0;
+    for i := 0 to Compounds.Count - 1 do begin
+      with Compounds[i] do begin
+        mi[i] := 0.48 + 1.574 * w.Value - 0.176 * w.Value**2;
+        bi[i] := 0.08664 * R * Tc.Value / Pc.Value;
+        ai[i] := 0.42748 * (R * Tc.Value)**2 / Pc.Value *
+                 Sqr(1 + mi[i] * (1 - Sqrt(Temperature.Value / Tc.Value)));
+        b := b + Compositions[i].MoleFraction.Value * bi[i];
+      end;//with
+    end;//for
+    bigB := b * Pressure.Value / (R * Temperature.Value);
+  
+    a := 0;
+    for i := 0 to Compositions.Count - 1 do
+      for j := 0 to Compositions.Count - 1 do
+        a := a + Compositions[i].MoleFraction.Value *
+             Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j]);
+    bigA := a * Pressure.Value / (R * Temperature.Value)**2;
+  
+    for i := 0 to Compositions.Count - 1 do begin
+      test := bi[i] / b * (CompressFactor.Value - 1.0) -
+              ln(CompressFactor.Value - bigB) - bigA / bigB *
+              (2.0 * Sqrt(ai[i] / a) - bi[i] / b) *
+              ln(1 + bigB / CompressFactor.Value);
+      //Define the fugacity coefficient for each compound in the phase.
+      Compositions[i].FugacityCoefficient.Value := exp(test) * Pressure.Value *
+                                                   Compositions[i].MoleFraction.Value;
+    end;//for
+  
+  end;//with
+  
+  //Deallocate dynamic arrays.
+  ai := nil;
+  bi := nil;
+  mi := nil;
 end;
 
 end.

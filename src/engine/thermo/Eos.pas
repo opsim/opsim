@@ -49,7 +49,10 @@ type
     Returns the EOS roots as a variant array.
     }
     function FindRoots(APhase: TPhase): Variant; virtual;
-    function FugacityCoefficient(ACompounds: TCompounds): TValueRec; virtual;
+    {{
+    Calculates the fugacity coefficients for all compounds in a phase.
+    }
+    function FugacityCoefficients(APhase: TPhase): TValueRec; virtual;
   end;
   
   TCubicEos = class (TEos)
@@ -87,7 +90,7 @@ begin
   Result := VarArrayOf([]);
 end;
 
-function TEos.FugacityCoefficient(ACompounds: TCompounds): TValueRec;
+function TEos.FugacityCoefficients(APhase: TPhase): TValueRec;
 begin
 end;
 
