@@ -139,6 +139,7 @@ type
     FCompositions: TCompositions;
     FCompressibilityFactor: TValueRec;
     FEnthalpy: TValueRec;
+    FMoleVolume: TValueRec;
     FOverallFraction: TValueRec;
     FVolumeFlow: TValueRec;
     function GetCompounds: TCompounds;
@@ -164,6 +165,10 @@ type
     property MassFlow: TValueRec read GetMassFlow;
     property Material: TMaterial read GetMaterial;
     property MoleFlow: TValueRec read GetMoleFlow;
+    {{
+    This is the specific molar volume of the phase.
+    }
+    property MoleVolume: TValueRec read FMoleVolume write FMoleVolume;
     property OverallFraction: TValueRec read FOverallFraction write 
             FOverallFraction;
     property Pressure: TValueRec read GetPressure write SetPressure;

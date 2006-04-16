@@ -53,8 +53,57 @@ const
 }
 function TSrkEos.CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: 
         TValueRec): TValueRec;
+  
+  const
+    P0 = 1; {Reference Pressure... i assume to be 1 atms}
+  var
+    MainA: double;
+    MainB: double;
+    a: double;
+    b: double;
+    i, j: integer;
+    ai, bi, mi: array of Real;
+    dadt: double;
+  
 begin
   Result := inherited CalcDepartures(APhase, Enthalpy, Entropy);
+  with APhase do begin
+  
+    //Initializes auxiliar arrays.
+    SetLength(ai, Compounds.Count);
+    SetLength(bi, Compounds.Count);
+    SetLength(mi, Compounds.Count);
+  
+    b := 0.0;
+    for i := 0 to Compounds.Count - 1 do begin
+      with Compounds[i] do begin
+        mi[i] := 0.48 + 1.574 * w.Value - 0.176 * (w.Value)**2;
+        bi[i] := 0.08664 * R * Tc.Value / Pc.Value;
+        ai[i] := 0.42748 * (R * Tc.Value)**2 / Pc.Value * Sqr(1 + mi[i] *
+                 (1 - Sqrt(Temperature.Value / Tc.Value)));
+        b := b + Compositions[i].MoleFraction.Value * bi[i];
+      end;//with
+    end;//for
+    a := 0;
+    for i := 0 to Compounds.Count - 1 do
+      for j := 0 to Compounds.Count - 1 do
+        a := a + Compositions[i].MoleFraction.Value *
+             Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j]);
+    MainA := a * Pressure.Value / (R * Temperature.Value)**2;
+    MainB := b * Pressure.Value / (R * Temperature.Value);
+    Enthalpy.Value := (CompressibilityFactor.Value - 1.0 - 1.0 / (b * R * Temperature.Value) *
+                (a - Temperature.Value * dadt) * ln(1 + b / MoleVolume.Value)) *
+                R * Temperature.Value;
+    Entropy.Value := (ln(CompressibilityFactor.Value - b) - ln(Pressure.Value / P0) +
+                     MainA / MainB * (Temperature.Value / a * dadt) *
+                     ln(1 + MainB / CompressibilityFactor.Value)) * R * Temperature.Value;
+  
+  end;//with
+  
+  //Deallocate dynamic arrays.
+  ai := nil;
+  bi := nil;
+  mi := nil;
 end;
 
 function TSrkEos.CompressibilityFactor(APhase: TPhase): TValueRec;
