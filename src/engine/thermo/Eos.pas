@@ -122,18 +122,18 @@ begin
   Result := inherited CompressibilityFactor(APhase);
   //Find the minimum root.
   //If second root is 0, there was only one result.
-  if Roots[1] = 0 then
-    ZLiquid := Roots[0]
-  else begin
-    MinimumTemp := MaxDouble;
-    for i := 0 to 2 do
-      if (Roots[i] > 0) and (Roots[i] < MinimumTemp) then
-        MinimumTemp := Roots[i];
-    ZLiquid := MinimumTemp
-  end;
+  //if Roots[1] = 0 then
+    //ZLiquid := Roots[0]
+  //else begin
+    //MinimumTemp := MaxDouble;
+    //for i := 0 to 2 do
+      //if (Roots[i] > 0) and (Roots[i] < MinimumTemp) then
+        //MinimumTemp := Roots[i];
+    //ZLiquid := MinimumTemp
+  //end;
   
   //Get the maximum root.
-  ZVapor := MaxValue([Real(Roots[0]), Real(Roots[1]), Real(Roots[2])]);
+  //ZVapor := MaxValue([Real(Roots[0]), Real(Roots[1]), Real(Roots[2])]);
 end;
 
 function TCubicEos.FindCubicRoots(A, B, C: Double): Variant;

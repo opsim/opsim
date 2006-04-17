@@ -36,7 +36,6 @@ type
   protected
     procedure CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: TValueRec); 
             override;
-    function CompressibilityFactorVapor(APhase: TPhase): Real; override;
     function EnthalpyDeparture(APhase: TPhase): TValueRec; override;
     function EntropyDeparture(APhase: TPhase): TValueRec; override;
     function FindRoots(APhase: TPhase): Variant; override;
@@ -104,11 +103,6 @@ begin
   ai := nil;
   bi := nil;
   mi := nil;
-end;
-
-function TSrkEos.CompressibilityFactorVapor(APhase: TPhase): Real;
-begin
-  Result := inherited CompressibilityFactorVapor(APhase);
 end;
 
 function TSrkEos.EnthalpyDeparture(APhase: TPhase): TValueRec;
