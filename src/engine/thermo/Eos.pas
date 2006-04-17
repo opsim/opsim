@@ -32,35 +32,35 @@ uses
 
 type
   {{
-  Base class for all equations of state.
+  - Base class for all equations of state.
+  - Can solve completely a phase through its static Solve method. It is 
+  designed in order that this is the only method a TFlash class needs to call 
+  to define a phase.
+  - Specialized behavior is delegated to descendant classes through the other 
+  virtual methods.
   }
   TEos = class (TObject)
   protected
-    procedure CalcCompressibilityFactors(APhase: TPhase; var ZVapor, ZLiquid: 
-            Real); virtual;
-    procedure CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: TValueRec); 
-            virtual;
-    function CompressibilityFactor(APhase: TPhase): TValueRec; virtual;
-    function EnthalpyDeparture(APhase: TPhase): TValueRec; virtual;
-    function EntropyDeparture(APhase: TPhase): TValueRec; virtual;
+    function CalcCompressibilityFactor(APhase: TPhase): TValueRec; virtual;
+    procedure CalcDepartures(APhase: TPhase); virtual;
+    function CalcFugacityCoefficients(APhase: TPhase): TValueRec; virtual;
     function FindRoots(APhase: TPhase): Variant; virtual;
-    function FugacityCoefficients(APhase: TPhase): TValueRec; virtual;
   public
     {{
-    Completly solve the phase object with the equation of state. After excuting 
+    - Completly solves the phase object with the equation of state. After 
+    excuting 
     this method, the compressibility factor and fugacity coefficients for the 
     phase should are defined.
+    - Defines completely the APhase parameter using the equation of state, 
+    state 
+    of agrgregation and compositions.  
     }
-    procedure Solve(APhase: TPhase); virtual;
+    procedure Solve(APhase: TPhase);
   end;
   
   TCubicEos = class (TEos)
   protected
-    procedure CalcCompressibilityFactors(APhase: TPhase; var ZVapor, ZLiquid: 
-            Real); override;
-    function CompressibilityFactor(APhase: TPhase): TValueRec; override;
     function FindCubicRoots(A, B, C: Double): Variant;
-    function FindRoots(APhase: TPhase): Variant; override;
   end;
   
 
@@ -69,24 +69,15 @@ implementation
 {
 ************************************* TEos *************************************
 }
-procedure TEos.CalcCompressibilityFactors(APhase: TPhase; var ZVapor, ZLiquid: 
-        Real);
+function TEos.CalcCompressibilityFactor(APhase: TPhase): TValueRec;
 begin
 end;
 
-procedure TEos.CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: TValueRec);
+procedure TEos.CalcDepartures(APhase: TPhase);
 begin
 end;
 
-function TEos.CompressibilityFactor(APhase: TPhase): TValueRec;
-begin
-end;
-
-function TEos.EnthalpyDeparture(APhase: TPhase): TValueRec;
-begin
-end;
-
-function TEos.EntropyDeparture(APhase: TPhase): TValueRec;
+function TEos.CalcFugacityCoefficients(APhase: TPhase): TValueRec;
 begin
 end;
 
@@ -95,47 +86,59 @@ begin
   Result := VarArrayOf([]);
 end;
 
-function TEos.FugacityCoefficients(APhase: TPhase): TValueRec;
-begin
-end;
-
 procedure TEos.Solve(APhase: TPhase);
+var
+  Roots: array of Variant;
+  I: Integer;
 begin
+  //Defines completly the APhase parameter using the equation of state,
+  //state of agrgregation and compositions.
+  
+  //Calculate the roots of the equation.
+  Roots := FindRoots(APhase);
+  with APhase do begin
+    //Calculate the compressibility factor for the phase acording to the physical
+    //state.
+    case AggregationState of
+  
+      asLiquid: begin
+  
+        //Find the smallest root for liquid phase.
+        CompressibilityFactor.Value := MaxDouble;
+        for I := Low(Roots) to High(Roots) do
+          if (Roots[I] > 0) and (Roots[I] < CompressibilityFactor.Value) then
+            CompressibilityFactor.Value := Roots[I];
+  
+      end;//asLiquid
+  
+      asVapor: begin
+  
+        //Find the greatest root for the a vapor phase.
+        CompressibilityFactor.Value := MinDouble;
+        for I := Low(Roots) to High(Roots) do
+          if (Roots[I] > 0) and (Roots[I] > CompressibilityFactor.Value) then
+            CompressibilityFactor.Value := Roots[I];
+  
+      end;//asVapor
+  
+      //Raise an exception if phase state has no meaning.
+      else
+        raise Exception.Create('Cannot calculate compressibility factor because phase''s state is not defined.');
+  
+    end;//case
+  end;//with
+  
+  //Once the compressibility factor is defined, calculates the fugacities
+  //coefficients for all compounds.
+  CalcFugacityCoefficients(APhase);
+  
+  //Now calculates the enthalpy and entropy departures.
+  CalcDepartures(APhase);
 end;
 
 {
 ********************************** TCubicEos ***********************************
 }
-procedure TCubicEos.CalcCompressibilityFactors(APhase: TPhase; var ZVapor, 
-        ZLiquid: Real);
-var
-  Roots: Variant;
-  MinimumTemp: Double;
-  i: Integer;
-begin
-  inherited CalcCompressibilityFactors(APhase, ZVapor, ZLiquid);
-  Roots := FindRoots(APhase);
-end;
-
-function TCubicEos.CompressibilityFactor(APhase: TPhase): TValueRec;
-begin
-  Result := inherited CompressibilityFactor(APhase);
-  //Find the minimum root.
-  //If second root is 0, there was only one result.
-  //if Roots[1] = 0 then
-    //ZLiquid := Roots[0]
-  //else begin
-    //MinimumTemp := MaxDouble;
-    //for i := 0 to 2 do
-      //if (Roots[i] > 0) and (Roots[i] < MinimumTemp) then
-        //MinimumTemp := Roots[i];
-    //ZLiquid := MinimumTemp
-  //end;
-  
-  //Get the maximum root.
-  //ZVapor := MaxValue([Real(Roots[0]), Real(Roots[1]), Real(Roots[2])]);
-end;
-
 function TCubicEos.FindCubicRoots(A, B, C: Double): Variant;
 var
   Q: Double;
@@ -168,13 +171,6 @@ begin
     //Result[1] := 0.0;
     //Result[2] := 0.0;
   end;//if
-end;
-
-function TCubicEos.FindRoots(APhase: TPhase): Variant;
-begin
-  Result := inherited FindRoots(APhase);
-  //Initializaes a variant array with three elements.
-  Result := VarArrayOf([0, 0, 0]);
 end;
 
 end.
