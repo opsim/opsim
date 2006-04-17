@@ -34,9 +34,9 @@ uses
 type
   TSrkEos = class (TCubicEos)
   public
-    function CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: TValueRec): 
-            TValueRec; override;
-    function CompressibilityFactor(APhase: TPhase): TValueRec; override;
+    procedure CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: TValueRec); 
+            override;
+    function CompressibilityFactorVapor(APhase: TPhase): Real; override;
     function EnthalpyDeparture(APhase: TPhase): TValueRec; override;
     function EntropyDeparture(APhase: TPhase): TValueRec; override;
     function FindRoots(APhase: TPhase): Variant; override;
@@ -51,8 +51,8 @@ const
 {
 *********************************** TSrkEos ************************************
 }
-function TSrkEos.CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: 
-        TValueRec): TValueRec;
+procedure TSrkEos.CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: 
+        TValueRec);
   
   const
     P0 = 1; {Reference Pressure... i assume to be 1 atms}
@@ -66,7 +66,7 @@ function TSrkEos.CalcDepartures(APhase: TPhase; var Enthalpy, Entropy:
     dadt: double;
   
 begin
-  Result := inherited CalcDepartures(APhase, Enthalpy, Entropy);
+  inherited CalcDepartures(APhase, Enthalpy, Entropy);
   with APhase do begin
   
     //Initializes auxiliar arrays.
@@ -106,9 +106,9 @@ begin
   mi := nil;
 end;
 
-function TSrkEos.CompressibilityFactor(APhase: TPhase): TValueRec;
+function TSrkEos.CompressibilityFactorVapor(APhase: TPhase): Real;
 begin
-  Result := inherited CompressibilityFactor(APhase);
+  Result := inherited CompressibilityFactorVapor(APhase);
 end;
 
 function TSrkEos.EnthalpyDeparture(APhase: TPhase): TValueRec;
