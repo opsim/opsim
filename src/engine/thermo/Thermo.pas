@@ -139,6 +139,9 @@ type
     FCompositions: TCompositions;
     FCompressibilityFactor: TValueRec;
     FEnthalpy: TValueRec;
+    FEnthalpyDeparture: TValueRec;
+    FEntropy: TValueRec;
+    FEntropyDeparture: TValueRec;
     FMoleVolume: TValueRec;
     FOverallFraction: TValueRec;
     FVolumeFlow: TValueRec;
@@ -162,6 +165,11 @@ type
     property CompressibilityFactor: TValueRec read FCompressibilityFactor write 
             FCompressibilityFactor;
     property Enthalpy: TValueRec read FEnthalpy write FEnthalpy;
+    property EnthalpyDeparture: TValueRec read FEnthalpyDeparture write 
+            FEnthalpyDeparture;
+    property Entropy: TValueRec read FEntropy write FEntropy;
+    property EntropyDeparture: TValueRec read FEntropyDeparture write 
+            FEntropyDeparture;
     property MassFlow: TValueRec read GetMassFlow;
     property Material: TMaterial read GetMaterial;
     property MoleFlow: TValueRec read GetMoleFlow;
