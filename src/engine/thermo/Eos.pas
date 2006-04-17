@@ -35,35 +35,31 @@ type
   Base class for all equations of state.
   }
   TEos = class (TObject)
-  public
+  protected
     procedure CalcCompressibilityFactors(APhase: TPhase; var ZVapor, ZLiquid: 
             Real); virtual;
-    {{
-    Calculates the enthalpy an entropy residues at once, since the algorithm is 
-    almost the same.
-    }
     procedure CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: TValueRec); 
             virtual;
-    function CompressibilityFactorLiquid(APhase: TPhase): Real; virtual;
-    function CompressibilityFactorVapor(APhase: TPhase): Real; virtual;
+    function CompressibilityFactor(APhase: TPhase): TValueRec; virtual;
     function EnthalpyDeparture(APhase: TPhase): TValueRec; virtual;
     function EntropyDeparture(APhase: TPhase): TValueRec; virtual;
-    {{
-    Returns the EOS roots as a variant array.
-    }
     function FindRoots(APhase: TPhase): Variant; virtual;
-    {{
-    Calculates the fugacity coefficients for all compounds in a phase.
-    }
     function FugacityCoefficients(APhase: TPhase): TValueRec; virtual;
+  public
+    {{
+    Completly solve the phase object with the equation of state. After excuting 
+    this method, the compressibility factor and fugacity coefficients for the 
+    phase should are defined.
+    }
+    procedure Solve(APhase: TPhase); virtual;
   end;
   
   TCubicEos = class (TEos)
   protected
-    function FindCubicRoots(A, B, C: Double): Variant;
-  public
     procedure CalcCompressibilityFactors(APhase: TPhase; var ZVapor, ZLiquid: 
             Real); override;
+    function CompressibilityFactor(APhase: TPhase): TValueRec; override;
+    function FindCubicRoots(A, B, C: Double): Variant;
     function FindRoots(APhase: TPhase): Variant; override;
   end;
   
@@ -82,11 +78,7 @@ procedure TEos.CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: TValueRec);
 begin
 end;
 
-function TEos.CompressibilityFactorLiquid(APhase: TPhase): Real;
-begin
-end;
-
-function TEos.CompressibilityFactorVapor(APhase: TPhase): Real;
+function TEos.CompressibilityFactor(APhase: TPhase): TValueRec;
 begin
 end;
 
@@ -107,6 +99,10 @@ function TEos.FugacityCoefficients(APhase: TPhase): TValueRec;
 begin
 end;
 
+procedure TEos.Solve(APhase: TPhase);
+begin
+end;
+
 {
 ********************************** TCubicEos ***********************************
 }
@@ -119,7 +115,11 @@ var
 begin
   inherited CalcCompressibilityFactors(APhase, ZVapor, ZLiquid);
   Roots := FindRoots(APhase);
-  
+end;
+
+function TCubicEos.CompressibilityFactor(APhase: TPhase): TValueRec;
+begin
+  Result := inherited CompressibilityFactor(APhase);
   //Find the minimum root.
   //If second root is 0, there was only one result.
   if Roots[1] = 0 then
@@ -144,11 +144,12 @@ var
   T: Double;
   theta: Double;
 begin
-  Result := VarArrayOf([0,0,0]);
   Q := (Sqr(A) - 3.0 * B) / 9.0;
   R := (2.0 * IntPower(A, 3) - 9.0 * A * B + 27 * C) / 54.0;
   if (Sqr(R) < IntPower(Q, 3)) then begin
     theta := ArcCos(R / (Sqrt(IntPower(Q, 3))));
+    //Make room for the three roots.
+    Result := VarArrayOf([0,0,0]);
     Result[0] := -2.0 * Sqrt(Q) * cos(theta / 3.0) - A / 3.0;
     Result[1] := -2.0 * Sqrt(Q) * cos((theta + 2.0 * pi) / 3.0) - A / 3.0;
     Result[2] := -2.0 * Sqrt(Q) * cos((theta - 2.0 * pi) / 3.0) - A / 3.0;
@@ -161,9 +162,11 @@ begin
       T := 0
     else
       T := Q / S;
+    //If the root is unique, return an array with only one element.
+    Result := VarArrayOf([0]);
     Result[0] := (S + T) - A / 3.0;
-    Result[1] := 0.0;
-    Result[2] := 0.0;
+    //Result[1] := 0.0;
+    //Result[2] := 0.0;
   end;//if
 end;
 

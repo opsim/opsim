@@ -33,7 +33,7 @@ uses
 
 type
   TSrkEos = class (TCubicEos)
-  public
+  protected
     procedure CalcDepartures(APhase: TPhase; var Enthalpy, Entropy: TValueRec); 
             override;
     function CompressibilityFactorVapor(APhase: TPhase): Real; override;
