@@ -35,13 +35,21 @@ uses
 
 type
   TEquilibriumServer = class (TObject)
+  public
+    {{
+    This routine will calculate the equilibrium properties for the given 
+    material object by performing a flash calculation.
+    }
+    procedure CalcEquilibrium(AMaterial: TMaterial); virtual;
   end;
   
-
-type
-
 implementation
 
-
+{
+****************************** TEquilibriumServer ******************************
+}
+procedure TEquilibriumServer.CalcEquilibrium(AMaterial: TMaterial);
+begin
+end;
 
 end.
