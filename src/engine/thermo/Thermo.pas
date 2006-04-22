@@ -216,6 +216,8 @@ type
     FPhases: TPhases;
     FPressure: TValueRec;
     FTemperature: TValueRec;
+    function GetCompositions: TCompositions;
+    procedure SetCompositions(Value: TCompositions);
   public
     constructor Create;
     destructor Destroy; override;
@@ -232,6 +234,11 @@ type
     all phases.
     }
     function CheckBalance: Boolean;
+    {{
+    Compositions and additional information for each component in the material.
+    }
+    property Compositions: TCompositions read GetCompositions write 
+            SetCompositions;
     {{
     This is the list of compounds found in the material object.
     }
@@ -610,6 +617,8 @@ begin
       with FPhases do
         for I := 0 to Count - 1 do
           Phases[I].Compositions.Add;
+      //The same for the overall phase object.
+      FOverallPhase.Compositions.Add;
     end;//cnAdded
   
     cnDeleting: begin
@@ -617,9 +626,21 @@ begin
       with FPhases do
         for I := 0 to Count - 1 do
           Phases[I].Compositions.Delete(Item.Index);
+      //The same for the overall phase object.
+      FOverallPhase.Compositions.Delete(Item.Index);
     end;//cnDeleting
   
   end;//case
+end;
+
+function TMaterial.GetCompositions: TCompositions;
+begin
+  Result := OverallPhase.Compositions;
+end;
+
+procedure TMaterial.SetCompositions(Value: TCompositions);
+begin
+  OverallPhase.Compositions := Value;
 end;
 
 end.
