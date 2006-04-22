@@ -29,7 +29,7 @@ unit Thermo;
 interface
 
 uses
-  SysUtils, Classes, Entities;
+  SysUtils, Classes, Math, Entities;
 
 type
 
@@ -216,10 +216,6 @@ type
     FPhases: TPhases;
     FPressure: TValueRec;
     FTemperature: TValueRec;
-    function GetMassFlow: TValueRec;
-    function GetMoleFlow: TValueRec;
-    function GetStdLiqVolFlow: TValueRec;
-    function GetVolumeFlow: TValueRec;
   public
     constructor Create;
     destructor Destroy; override;
@@ -232,11 +228,14 @@ type
     }
     procedure CalcEquilibrium;
     {{
+    Verify if extensive properties of the material matches the summation over 
+    all phases.
+    }
+    function CheckBalance: Boolean;
+    {{
     This is the list of compounds found in the material object.
     }
     property Compounds: TCompounds read FCompounds write FCompounds;
-    property MassFlow: TValueRec read GetMassFlow;
-    property MoleFlow: TValueRec read GetMoleFlow;
     {{
     - Holds overall properties of the material instance as if it was a single 
     homogeneous phase.
@@ -250,13 +249,7 @@ type
     }
     property Phases: TPhases read FPhases write FPhases;
     property Pressure: TValueRec read FPressure write FPressure;
-    {{
-    This property will combine the standard volume flow rate of all liquid
-    phases in the material object.
-    }
-    property StdLiqVolFlow: TValueRec read GetStdLiqVolFlow;
     property Temperature: TValueRec read FTemperature write FTemperature;
-    property VolumeFlow: TValueRec read GetVolumeFlow;
   end;
   
 implementation
@@ -578,6 +571,33 @@ procedure TMaterial.CalcEquilibrium;
 begin
 end;
 
+function TMaterial.CheckBalance: Boolean;
+var
+  I: Integer;
+  TotalMassFlow, TotalMoleFlow, TotalStdLiqVolFlow: Real;
+begin
+  TotalMassFlow := 0;
+  TotalMoleFlow := 0;
+  TotalStdLiqVolFlow := 0;
+  
+  //Get totals for all phases.
+  with FPhases do
+    for I := 0 to Count - 1 do begin
+      //The mass flow rate for the material is the summation over all phases.
+      TotalMassFlow := TotalMassFlow + Items[I].MassFlow.Value;
+      //The mole flow rate for the material is the summation over all phases.
+      TotalMoleFlow := TotalMoleFlow + Items[I].MoleFlow.Value;
+      //The StdLiqVolFlow for the material is the summation over all phases.
+      TotalStdLiqVolFlow := TotalStdLiqVolFlow + Items[I].StdLiqVolFlow.Value;
+    end;//for
+  
+  //Returns True if everything matches.
+  with OverallPhase do
+    Result := SameValue(MassFlow.Value, TotalMassFlow) and
+              SameValue(MoleFlow.Value, TotalMoleFlow) and
+              SameValue(StdLiqVolFlow.Value, TotalStdLiqVolFlow);
+end;
+
 procedure TMaterial.CompoundsNotify(Item: TCollectionItem;Action: 
         TCollectionNotification);
 var
@@ -600,43 +620,6 @@ begin
     end;//cnDeleting
   
   end;//case
-end;
-
-function TMaterial.GetMassFlow: TValueRec;
-var
-  I: Integer;
-begin
-  //The mass flow rate for the material is the summation over all phases.
-  Result.Value := 0;
-  with FPhases do
-    for I := 0 to Count - 1 do
-      Result.Value := Result.Value + Items[I].MassFlow.Value;
-end;
-
-function TMaterial.GetMoleFlow: TValueRec;
-var
-  I: Integer;
-begin
-  //The mole flow rate for the material is the summation over all phases.
-  Result.Value := 0;
-  with FPhases do
-    for I := 0 to Count - 1 do
-      Result.Value := Result.Value + Items[I].MoleFlow.Value;
-end;
-
-function TMaterial.GetStdLiqVolFlow: TValueRec;
-var
-  I: Integer;
-begin
-  //The StdLiqVolFlow for the material is the summation over all phases.
-  Result.Value := 0;
-  with FPhases do
-    for I := 0 to Count - 1 do
-      Result.Value := Result.Value + Items[I].StdLiqVolFlow.Value;
-end;
-
-function TMaterial.GetVolumeFlow: TValueRec;
-begin
 end;
 
 end.
