@@ -212,6 +212,7 @@ type
             TCollectionNotification);
   private
     FCompounds: TCompounds;
+    FOverallPhase: TPhase;
     FPhases: TPhases;
     FPressure: TValueRec;
     FTemperature: TValueRec;
@@ -236,6 +237,13 @@ type
     property Compounds: TCompounds read FCompounds write FCompounds;
     property MassFlow: TValueRec read GetMassFlow;
     property MoleFlow: TValueRec read GetMoleFlow;
+    {{
+    - Holds overall properties of the material instance as if it was a single 
+    homogeneous phase.
+    - It is actually a TPhase instance, so every property used to define a 
+    phase is also available for this "vistual" material phase.
+    }
+    property OverallPhase: TPhase read FOverallPhase write FOverallPhase;
     {{
     The list of phases present in the material object. Most commonly, there
     will be only one phase.
@@ -552,14 +560,17 @@ constructor TMaterial.Create;
 begin
   inherited Create;
   FCompounds := TCompounds.Create;
-  FCompounds.OnNotify := CompoundsNotify;
   FPhases := TPhases.Create(Self);
+  FOverallPhase := TPhase.Create(nil);
+  
+  FCompounds.OnNotify := CompoundsNotify;
 end;
 
 destructor TMaterial.Destroy;
 begin
   FCompounds.Free;
   FPhases.Free;
+  FOverallPhase.Free;
   inherited Destroy;
 end;
 

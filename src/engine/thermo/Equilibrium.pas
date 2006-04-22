@@ -31,13 +31,17 @@ unit Equilibrium;
 interface
 
 uses
-  SysUtils, Classes, Variants, Entities, Thermo;
+  SysUtils, Classes, Variants, Entities, Thermo, Eos;
 
 type
   TFlash = class (TObject)
     function EstK1Values(ACompounds: TCompounds; P, T: Real): Variant;
     function EstK2Values(ACompounds: TCompounds; P, T: Real): Variant;
     procedure TP(AMaterial: TMaterial);
+  private
+    FEos: TEos;
+  public
+    property Eos: TEos read FEos write FEos;
   end;
   
   TEquilibriumServer = class (TObject)
@@ -82,6 +86,8 @@ begin
 end;
 
 procedure TFlash.TP(AMaterial: TMaterial);
+var
+  K1: array of Real;
   
   (*var
     i, j, numphase: Integer;
@@ -99,7 +105,14 @@ procedure TFlash.TP(AMaterial: TMaterial);
     Err: Double;*)
   
 begin
+  //Sets auxiliar arrays.
+  SetLength(K1, AMaterial.Compounds.Count);
+  
   (*Converged := False;
+  Z := Feed.Comp;
+  K1 := EOS.EstK1Values(t, p);
+  
+  Converged := False;
   Z := Feed.Comp;
   K1 := EOS.EstK1Values(t, p);
   L := GetTwoPhaseL(K1, Z);
@@ -202,7 +215,6 @@ begin
     Feed.Liq2.Z := ZLiq2;
   end
   else Feed.Liq2.clearphase;*)
-  
 end;
 
 {
