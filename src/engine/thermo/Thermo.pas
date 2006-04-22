@@ -211,13 +211,12 @@ type
     procedure CompoundsNotify(Item: TCollectionItem;Action: 
             TCollectionNotification);
   private
+    FCompositions: TCompositions;
     FCompounds: TCompounds;
     FOverallPhase: TPhase;
     FPhases: TPhases;
     FPressure: TValueRec;
     FTemperature: TValueRec;
-    function GetCompositions: TCompositions;
-    procedure SetCompositions(Value: TCompositions);
   public
     constructor Create;
     destructor Destroy; override;
@@ -235,10 +234,12 @@ type
     }
     function CheckBalance: Boolean;
     {{
-    Compositions and additional information for each component in the material.
+    - Compositions and additional information for each component in the 
+    material.
+    - This array holds overall (not for phase) concentrations, flow rates and 
+    possibly other properties.
     }
-    property Compositions: TCompositions read GetCompositions write 
-            SetCompositions;
+    property Compositions: TCompositions read FCompositions write FCompositions;
     {{
     This is the list of compounds found in the material object.
     }
@@ -560,6 +561,8 @@ begin
   FCompounds := TCompounds.Create;
   FCompounds.OnNotify := CompoundsNotify;
   
+  FCompositions := TCompositions.Create;
+  
   FPhases := TPhases.Create(Self);
   
   FOverallPhase := TPhase.Create(nil);
@@ -569,6 +572,7 @@ end;
 destructor TMaterial.Destroy;
 begin
   FCompounds.Free;
+  FCompositions.Free;
   FPhases.Free;
   FOverallPhase.Free;
   inherited Destroy;
@@ -617,8 +621,8 @@ begin
       with FPhases do
         for I := 0 to Count - 1 do
           Phases[I].Compositions.Add;
-      //The same for the overall phase object.
-      FOverallPhase.Compositions.Add;
+      //The same for the material compositions.
+      FCompositions.Add;
     end;//cnAdded
   
     cnDeleting: begin
@@ -626,21 +630,11 @@ begin
       with FPhases do
         for I := 0 to Count - 1 do
           Phases[I].Compositions.Delete(Item.Index);
-      //The same for the overall phase object.
-      FOverallPhase.Compositions.Delete(Item.Index);
+      //The same for the material compositions.
+      FCompositions.Delete(Item.Index);
     end;//cnDeleting
   
   end;//case
-end;
-
-function TMaterial.GetCompositions: TCompositions;
-begin
-  Result := OverallPhase.Compositions;
-end;
-
-procedure TMaterial.SetCompositions(Value: TCompositions);
-begin
-  OverallPhase.Compositions := Value;
 end;
 
 end.
