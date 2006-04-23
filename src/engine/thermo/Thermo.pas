@@ -229,6 +229,7 @@ type
   public
     constructor Create;
     destructor Destroy; override;
+    procedure Assign(Source: TPersistent); override;
     {{
     This method is responsible for delegating flash calculations to the
     associated Property Package or Equilibrium Server. It must set the amounts,
@@ -709,6 +710,26 @@ begin
   FCompositions.Free;
   FPhases.Free;
   inherited Destroy;
+end;
+
+procedure TMaterial.Assign(Source: TPersistent);
+begin
+  if Source is TMaterial then begin
+    with TMaterial(Source) do begin
+      Self.Temperature := Temperature;
+      Self.Pressure := Pressure;
+      Self.MassFlow := MassFlow;
+      Self.MoleFlow := MoleFlow;
+      Self.StdLiqVolFlow := StdLiqVolFlow;
+      Self.VolumeFlow := VolumeFlow;
+      //Copy the lists.
+      Self.Compounds.Assign(Compounds);
+      Self.Compositions.Assign(Compositions);
+      Self.Phases.Assign(Phases);
+    end;//with
+  end
+  else
+    inherited Assign(Source);
 end;
 
 procedure TMaterial.CalcEquilibrium;
