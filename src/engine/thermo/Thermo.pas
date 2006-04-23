@@ -142,12 +142,12 @@ type
     FEnthalpyDeparture: TValueRec;
     FEntropy: TValueRec;
     FEntropyDeparture: TValueRec;
-    FMaterial: TMaterial;
     FMoleVolume: TValueRec;
     FOverallFraction: TValueRec;
     FVolumeFlow: TValueRec;
     function GetCompounds: TCompounds;
     function GetMassFlow: TValueRec;
+    function GetMaterial: TMaterial;
     function GetMoleFlow: TValueRec;
     function GetPressure: TValueRec;
     function GetStdLiqVolFlow: TValueRec;
@@ -171,7 +171,7 @@ type
     property EntropyDeparture: TValueRec read FEntropyDeparture write 
             FEntropyDeparture;
     property MassFlow: TValueRec read GetMassFlow;
-    property Material: TMaterial read FMaterial write FMaterial;
+    property Material: TMaterial read GetMaterial;
     property MoleFlow: TValueRec read GetMoleFlow;
     {{
     This is the specific molar volume of the phase.
@@ -452,9 +452,6 @@ constructor TPhase.Create(Collection: TCollection);
 begin
   inherited Create(Collection);
   FCompositions := TCompositions.Create;
-  //Defines the material object to which the phase belongs.
-  if Assigned(Collection) then
-    FMaterial := (Collection as TPhases).Owner;
 end;
 
 destructor TPhase.Destroy;
@@ -477,6 +474,11 @@ begin
   with FCompositions do
     for I := 0 to Count - 1 do
       Result.Value := Result.Value + Items[I].MassFlow.Value;
+end;
+
+function TPhase.GetMaterial: TMaterial;
+begin
+  Result := (Collection as TPhases).Owner;
 end;
 
 function TPhase.GetMoleFlow: TValueRec;
@@ -559,11 +561,10 @@ constructor TMaterial.Create;
 begin
   inherited Create;
   FCompounds := TCompounds.Create;
-  FCompounds.OnNotify := CompoundsNotify;
-  
   FCompositions := TCompositions.Create;
-  
   FPhases := TPhases.Create(Self);
+  
+  FCompounds.OnNotify := CompoundsNotify;
 end;
 
 destructor TMaterial.Destroy;
