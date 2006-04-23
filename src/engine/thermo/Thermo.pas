@@ -112,6 +112,7 @@ type
     MoleFraction: TValueRec;
     StdLiqVolFlow: TValueRec;
     StdLiqVolFraction: TValueRec;
+    procedure Assign(Source: TPersistent); override;
   end;
   
   TCompositions = class (TCollection)
@@ -477,6 +478,27 @@ end;
 procedure TCompounds.SetItem(Index: Integer; Value: TCompound);
 begin
   inherited SetItem(Index, Value);
+end;
+
+{
+********************************* TComposition *********************************
+}
+procedure TComposition.Assign(Source: TPersistent);
+begin
+  if Source is TComposition then begin
+    with TComposition(Source) do begin
+      Self.Compound := Compound;
+      Self.FugacityCoefficient := FugacityCoefficient;
+      Self.MassFlow := MassFlow;
+      Self.MassFraction := MassFraction;
+      Self.MoleFlow := MoleFlow;
+      Self.MoleFraction := MoleFraction;
+      Self.StdLiqVolFlow := StdLiqVolFlow;
+      Self.StdLiqVolFraction := StdLiqVolFraction;
+    end;//with
+  end
+  else
+    inherited Assign(Source);
 end;
 
 
