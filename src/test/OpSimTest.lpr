@@ -3,7 +3,8 @@ program OpSimTest;
 {$mode objfpc}{$H+}
 
 uses
-  Interfaces, Forms, GuiTestRunner, TCompoundsTestCaseU;
+  Interfaces, Forms, GuiTestRunner, TCompoundsTestCaseU,
+  TPropertyProviderTestCaseU;
 
 begin
   Application.Initialize;

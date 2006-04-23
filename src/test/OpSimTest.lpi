@@ -7,7 +7,7 @@
       <MainUnit Value="0"/>
       <IconPath Value="./"/>
       <TargetFileExt Value=".exe"/>
-      <ActiveEditorIndexAtStart Value="0"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <LazDoc Paths=""/>
     <PublishOptions>
@@ -33,23 +33,33 @@
         <PackageName Value="FCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="2">
+    <Units Count="3">
       <Unit0>
         <Filename Value="OpSimTest.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSimTest"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit0>
       <Unit1>
         <Filename Value="TCompoundsTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TCompoundsTestCaseU"/>
         <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
+        <TopLine Value="43"/>
         <EditorIndex Value="0"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TPropertyProviderTestCaseU"/>
+        <CursorPos X="32" Y="1"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit2>
     </Units>
     <JumpHistory Count="2" HistoryIndex="1">
       <Position1>
