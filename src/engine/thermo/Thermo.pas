@@ -146,12 +146,12 @@ type
     FEnthalpyDeparture: TValueRec;
     FEntropy: TValueRec;
     FEntropyDeparture: TValueRec;
+    FMaterial: TMaterial;
     FMoleVolume: TValueRec;
     FOverallFraction: TValueRec;
     FVolumeFlow: TValueRec;
     function GetCompounds: TCompounds;
     function GetMassFlow: TValueRec;
-    function GetMaterial: TMaterial;
     function GetMoleFlow: TValueRec;
     function GetPressure: TValueRec;
     function GetStdLiqVolFlow: TValueRec;
@@ -162,6 +162,7 @@ type
   public
     constructor Create(Collection: TCollection); override;
     destructor Destroy; override;
+    procedure Assign(Source: TPersistent); override;
     property AggregationState: TAggregationState read FAggregationState write 
             FAggregationState;
     property Compositions: TCompositions read FCompositions write FCompositions;
@@ -175,7 +176,7 @@ type
     property EntropyDeparture: TValueRec read FEntropyDeparture write 
             FEntropyDeparture;
     property MassFlow: TValueRec read GetMassFlow;
-    property Material: TMaterial read GetMaterial;
+    property Material: TMaterial read FMaterial write FMaterial;
     property MoleFlow: TValueRec read GetMoleFlow;
     {{
     This is the specific molar volume of the phase.
@@ -550,12 +551,37 @@ constructor TPhase.Create(Collection: TCollection);
 begin
   inherited Create(Collection);
   FCompositions := TCompositions.Create;
+  //Defines the material to which the phase pertains.
+  if Collection <> nil then
+   FMaterial := (Collection as TPhases).Owner;
 end;
 
 destructor TPhase.Destroy;
 begin
   FCompositions.Free;
   inherited Destroy;
+end;
+
+procedure TPhase.Assign(Source: TPersistent);
+begin
+  if Source is TPhase then begin
+    with TPhase(Source) do begin
+      Self.AggregationState := AggregationState;
+      Self.CompressibilityFactor := CompressibilityFactor;
+      Self.Enthalpy := Enthalpy;
+      Self.EnthalpyDeparture := EnthalpyDeparture;
+      Self.Entropy := Entropy;
+      Self.EntropyDeparture := EntropyDeparture;
+      Self.MoleVolume := MoleVolume;
+      Self.OverallFraction := OverallFraction;
+      Self.VolumeFlow := VolumeFlow;
+      Self.Material := Material;
+      //Copy compositions.
+      Self.Compositions.Assign(Compositions);
+    end;//with
+  end
+  else
+    inherited Assign(Source);
 end;
 
 function TPhase.GetCompounds: TCompounds;
@@ -572,11 +598,6 @@ begin
   with FCompositions do
     for I := 0 to Count - 1 do
       Result.Value := Result.Value + Items[I].MassFlow.Value;
-end;
-
-function TPhase.GetMaterial: TMaterial;
-begin
-  Result := (Collection as TPhases).Owner;
 end;
 
 function TPhase.GetMoleFlow: TValueRec;
