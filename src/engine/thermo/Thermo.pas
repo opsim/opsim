@@ -77,6 +77,7 @@ type
     Zra: TValueRec;
     constructor Create(ACollection: TCollection); override;
     destructor Destroy; override;
+    procedure Assign(Source: TPersistent); override;
   end;
   
   TCompounds = class (TCollection)
@@ -355,6 +356,47 @@ end;
 destructor TCompound.Destroy;
 begin
   inherited Destroy;
+end;
+
+procedure TCompound.Assign(Source: TPersistent);
+begin
+  if Source is TCompound then begin
+    with TCompound(Source) do begin
+      Self.CompID := CompID;
+      Self.CompName := CompName;
+      Self.CPB := CPB;
+      Self.CPA := CPA;
+      Self.CPC := CPC;
+      Self.CPD := CPD;
+      Self.DELGF := DELGF;
+      Self.DELHG := DELHG;
+      Self.DIPM := DIPM;
+      Self.Formula := Formula;
+      Self.LDEN := LDEN;
+      Self.MW := MW;
+      Self.NEQ := NEQ;
+      Self.PC := PC;
+      Self.TB := TB;
+      Self.TC := TC;
+      Self.TCPHIL := TCPHIL;
+      Self.TDEN := TDEN;
+      Self.TFP := TFP;
+      Self.TMAX := TMAX;
+      Self.TMIN := TMIN;
+      Self.VC := VC;
+      Self.VPA := VPA;
+      Self.VPB := VPB;
+      Self.VPC := VPC;
+      Self.VPD := VPD;
+      Self.VSTAR := VSTAR;
+      Self.W := W;
+      Self.WSRK := WSRK;
+      Self.ZC := ZC;
+      Self.Zra := Zra;
+    end;//with
+  end
+  else
+    inherited Assign(Source);
 end;
 
 function TCompound.GetDisplayName: string;
