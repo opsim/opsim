@@ -122,6 +122,7 @@ type
   public
     constructor Create;
     function Add: TComposition;
+    procedure Assign(Source: TPersistent); override;
     property Items[Index: Integer]: TComposition read GetItem write SetItem; 
             default;
   end;
@@ -513,6 +514,22 @@ end;
 function TCompositions.Add: TComposition;
 begin
   Result := TComposition(inherited Add);
+end;
+
+procedure TCompositions.Assign(Source: TPersistent);
+var
+  I: Integer;
+begin
+  if Source is TCompositions then begin
+    //Clear current list.
+    Clear;
+    //Copy all compositions items from Source.
+    with TCompositions(Source) do
+      for I := 0 to Count - 1 do
+        Self.Add.Assign(Items[I]);
+  end
+  else
+    inherited Assign(Source);
 end;
 
 function TCompositions.GetItem(Index: Integer): TComposition;
