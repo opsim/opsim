@@ -34,10 +34,19 @@ uses
   SysUtils, Classes, Variants, Entities, Thermo, Eos;
 
 type
-  TFlash = class (TObject)
+  TThreePhaseFlash = class (TObject)
+{*****************************************************************************
+ * This Class implements a 3 Phase Flash Alogorithym.  This routine is based *
+ * on alogorithms presented in "Rapid Phase Determination in Multiple-Phase  *
+ * Flash Calculations" by P. A. Nelson.  Comput. chem. Engng, Vol 11, No 6,  *
+ * pp. 581-591,1987.  Some notes for this routine reference equations out of *
+ * that paper directly and it is recommended to have a copy available if when*
+ * trying to understand it.                                                  *
+ *****************************************************************************
+}
     function EstK1Values(ACompounds: TCompounds; P, T: Real): Variant;
     function EstK2Values(ACompounds: TCompounds; P, T: Real): Variant;
-    procedure TP(AMaterial: TMaterial);
+    procedure TP(AMaterial: TMaterial; T, P: Real);
   private
     FEos: TEos;
   public
@@ -46,7 +55,7 @@ type
   
   TEquilibriumServer = class (TObject)
   public
-    {{
+    {
     - This routine will calculate the equilibrium properties for the given 
     material object by performing a flash calculation.
     - It may delegate the operation to specialized service flash classes.
@@ -59,58 +68,63 @@ implementation
 {
 ************************************ TFlash ************************************
 }
-function TFlash.EstK1Values(ACompounds: TCompounds; P, T: Real): Variant;
-var
-  i: Integer;
-begin
-  with ACompounds do begin
-    //Makes room for the result according to the number of compounds
-    Result := VarArrayCreate([0, Count - 1], varDouble);
-    for i := 0 to Count - 1 do
-      with Compounds[I] do
-        Result[i] := exp(5.3727 * (1 + W.Value) * (1 - 1 / (t / Tc.Value))) / (p / Pc.Value);
-  end;//with
-end;
 
-function TFlash.EstK2Values(ACompounds: TCompounds; P, T: Real): Variant;
+procedure TThreePhaseFlash.TP(AMaterial: TMaterial; T, P : Real);
+{*****************************************************************************
+ * This routine implements an isothermal, isobaric flash referred to as a    *
+ * Boston and Britt Type VI Flash.  The overall composition, Temperature and *
+ * Pressure are specified returns a amount and composition of each phase     *
+ *****************************************************************************
+ }
 var
-  i: Integer;
-begin
-  with ACompounds do begin
-    //Makes room for the result according to the number of compounds
-    Result := VarArrayCreate([0, Count - 1], varDouble);
-    for i := 0 to Count - 1 do
-      with Compounds[I] do
-        Result[i] := 1000000.0 * (t / Tc.Value) / (p / Pc.Value);
-  end;//with
-end;
+  // Some of these variables will be moved directly to the AMaterial but I am leaving them
+  // separate for the moment so they are scratch variables
 
-procedure TFlash.TP(AMaterial: TMaterial);
-var
-  K1: array of Real;
+  K1, PreviousK1 : array of Real;  // Vapor/Liquid equilibrium for component i in Liquid Phase 1 (Hydrocarbon)
+  K2, PreviousK2 : array of Real;  // Vapor/Liquid equilibrium for component i in Liquid Phase 2 (Immiscible Phase)
+  Phi1,               // Fraction of Overall AMaterial in Liquid Phase 1
+  Phi2:  Real;        // Fraction of Overall AMaterial in Liquid Phase 2
+  i,j;                // temperary counters.. may be deleted later
   
-  (*var
-    i, j, numphase: Integer;
+
+  TotalPhase,          {Use a phase here because it should have all the stuff i need in it}
+  VaporPhase,
+  Liquid1Phase,
+  Liquid2Phase: TPhase;
+  PreviousTotalPhase,
+  PreviousVaporPhase,
+  PreviousLiquid1Phase,
+  PreviousLiquid2Phase : TPhase; // Mol Fractions of each component in the Liquid1 Phase (was OldX1)
+  Err: Real; // Cumulative error
+  Converged : Boolean;
+  
+{    i, j, numphase: Integer;         Am trying to shrink this
     Z, Y, X1, X2: CompArray;
     temp, L: Double;
-    phi1, phi2: Double;
-    FlowV, FlowL1, FlowL2: Double;
-    K1, K2: CompArray;
+
     ZVap, ZLiq1, ZLiq2: Double;
-    OldK1, OldK2: CompArray;
-    OldY, OldX1, OldX2: CompArray;
     PhaseExist: ExistArray;
     Converged: Boolean;
     iter: Integer;
-    Err: Double;*)
+    Err: Double;*)}
   
 begin
-  //Sets auxiliar arrays.
+  {Sets scratch arrays. Samuel, Question.. could we declare these variables in the private section and have
+   Initialize procedure that does this one.. not each time we do a flash? Where do we deallocate them?
+   Or is that not a good way to do this?}
   SetLength(K1, AMaterial.Compounds.Count);
+  SetLength(PreviousK1,AMaterial.Compounds.Count);
+  SetLength(K2, AMaterial.Compounds.Count);
+  SetLength(PreviousK2,AMaterial.Compounds.Count);
+  TotalPhase:=TPhase.Create; {How do I set the number of coponents and zero out }
+  VaporPhase:=TPhase.Create;
+  Liquid1Phase:=TPhase.Create;
+  Liquid2Phase:=TPhase.Create;
+  TotalPhase.
   
-  (*Converged := False;
+  Converged := False;
   Z := Feed.Comp;
-  K1 := EOS.EstK1Values(t, p);
+  K1 := EOS.EstK1Values(T, P);
   
   Converged := False;
   Z := Feed.Comp;
@@ -215,6 +229,42 @@ begin
     Feed.Liq2.Z := ZLiq2;
   end
   else Feed.Liq2.clearphase;*)
+end;
+
+function TThreePhaseFlash.EstK1Values(ACompounds: TCompounds; P, T: Real): Variant;
+{ Estimates K values for a vapor phase and a Hydrocarbon Liquid Phase.
+  According to the paper I found it in, is based on the Wilson Equation but I
+  have not been able to verify.  This should be used if previous set of K values
+  is not available.
+}
+var
+  i: Integer;
+begin
+  with ACompounds do begin
+    //Makes room for the result according to the number of compounds
+    Result := VarArrayCreate([0, Count - 1], varDouble);
+    for i := 0 to Count - 1 do
+      with Compounds[I] do
+        Result[i] := exp(5.3727 * (1 + W.Value) * (1 - 1 / (t / Tc.Value))) / (p / Pc.Value);
+  end;//with
+end;
+
+function TThreePhaseFlash.EstK2Values(ACompounds: TCompounds; P, T: Real): Variant;
+{ Estimates K values for a vapor phase and a Second Liquid Phase.
+  According to the paper I found it in, is based on the Wilson Equation but I
+  have not been able to verify.  This should be used if previous set of K values
+  is not available. Currently not used in this Flash routine
+}
+var
+  i: Integer;
+begin
+  with ACompounds do begin
+    //Makes room for the result according to the number of compounds
+    Result := VarArrayCreate([0, Count - 1], varDouble);
+    for i := 0 to Count - 1 do
+      with Compounds[I] do
+        Result[i] := 1000000.0 * (t / Tc.Value) / (p / Pc.Value);
+  end;//with
 end;
 
 {
