@@ -22,18 +22,21 @@
         <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="3">
+    <RequiredPackages Count="4">
       <Item1>
-        <PackageName Value="LCL"/>
+        <PackageName Value="zcomponent"/>
       </Item1>
       <Item2>
-        <PackageName Value="FPCUnitTestRunner"/>
+        <PackageName Value="LCL"/>
       </Item2>
       <Item3>
-        <PackageName Value="FCL"/>
+        <PackageName Value="FPCUnitTestRunner"/>
       </Item3>
+      <Item4>
+        <PackageName Value="FCL"/>
+      </Item4>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="4">
       <Unit0>
         <Filename Value="OpSimTest.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -54,14 +57,23 @@
         <Filename Value="TPropertyProviderTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TPropertyProviderTestCaseU"/>
-        <CursorPos X="32" Y="1"/>
-        <TopLine Value="1"/>
+        <CursorPos X="23" Y="55"/>
+        <TopLine Value="54"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="..\..\..\..\..\lazarus\components\zeosdbo_rework\src\dbc\ZDbcIntfs.pas"/>
+        <UnitName Value="ZDbcIntfs"/>
+        <CursorPos X="45" Y="928"/>
+        <TopLine Value="922"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit3>
     </Units>
-    <JumpHistory Count="2" HistoryIndex="1">
+    <JumpHistory Count="9" HistoryIndex="8">
       <Position1>
         <Filename Value="TCompoundsTestCaseU.pas"/>
         <Caret Line="21" Column="5" TopLine="18"/>
@@ -70,6 +82,34 @@
         <Filename Value="TCompoundsTestCaseU.pas"/>
         <Caret Line="54" Column="20" TopLine="42"/>
       </Position2>
+      <Position3>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="45" Column="27" TopLine="45"/>
+      </Position3>
+      <Position4>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="33" Column="67" TopLine="26"/>
+      </Position4>
+      <Position5>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="12" Column="32" TopLine="12"/>
+      </Position5>
+      <Position6>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="50" Column="59" TopLine="40"/>
+      </Position6>
+      <Position7>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="53" Column="53" TopLine="43"/>
+      </Position7>
+      <Position8>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="56" Column="30" TopLine="43"/>
+      </Position8>
+      <Position9>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="73" Column="49" TopLine="52"/>
+      </Position9>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

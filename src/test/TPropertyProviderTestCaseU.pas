@@ -30,16 +30,17 @@ unit TPropertyProviderTestCaseU;
 interface
 
 uses
-  Classes, SysUtils, fpcunit, testutils, testregistry;
+  Classes, SysUtils, fpcunit, testutils, testregistry, ZConnection;
 
 type
 
   TPropertyProviderTestCase = class (TTestCase)
   protected
+    DbConnectionMaster: TZConnection;
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure TestHookUp;
+    procedure TestDbConnection;
   end;
   
 implementation
@@ -49,17 +50,27 @@ implementation
 }
 procedure TPropertyProviderTestCase.SetUp;
 begin
-  
+  DbConnectionMaster := TZConnection.Create(nil);
+  with DbConnectionMaster do begin
+    Connected := False;
+    Protocol := 'firebird-2.0';
+    Database := '..\..\app\' + 'SYSDATA.ODB';
+    User := 'sysdba';
+    Password := 'masterkey';
+    Connected := True;
+  end;//with
 end;
 
 procedure TPropertyProviderTestCase.TearDown;
 begin
-  
+  DbConnectionMaster.Free;
 end;
 
-procedure TPropertyProviderTestCase.TestHookUp;
+procedure TPropertyProviderTestCase.TestDbConnection;
 begin
-  Fail('Write your own test');
+  DbConnectionMaster.Connected := False;
+  DbConnectionMaster.Connected := True;
+  AssertEquals(DbConnectionMaster.Connected, True);
 end;
 
 Initialization
