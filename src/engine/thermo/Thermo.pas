@@ -198,6 +198,7 @@ type
   public
     constructor Create(AMaterial: TMaterial);
     function Add: TPhase;
+    procedure Assign(Source: TPersistent); override;
     property Items[Index: Integer]: TPhase read GetItem write SetItem; default;
     property Owner: TMaterial read FOwner write FOwner;
   end;
@@ -660,6 +661,22 @@ end;
 function TPhases.Add: TPhase;
 begin
   Result := TPhase(inherited Add);
+end;
+
+procedure TPhases.Assign(Source: TPersistent);
+var
+  I: Integer;
+begin
+  if Source is TPhases then begin
+    //Clear current list.
+    Clear;
+    //Copy all phase items from Source.
+    with TPhases(Source) do
+      for I := 0 to Count - 1 do
+        Self.Add.Assign(Items[I]);
+  end
+  else
+    inherited Assign(Source);
 end;
 
 function TPhases.GetItem(Index: Integer): TPhase;
