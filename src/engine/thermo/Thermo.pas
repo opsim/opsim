@@ -213,10 +213,13 @@ type
   private
     FCompositions: TCompositions;
     FCompounds: TCompounds;
-    FOverallPhase: TPhase;
+    FMassFlow: TValueRec;
+    FMoleFlow: TValueRec;
     FPhases: TPhases;
     FPressure: TValueRec;
+    FStdLiqVolFlow: TValueRec;
     FTemperature: TValueRec;
+    FVolumeFlow: TValueRec;
   public
     constructor Create;
     destructor Destroy; override;
@@ -244,20 +247,17 @@ type
     This is the list of compounds found in the material object.
     }
     property Compounds: TCompounds read FCompounds write FCompounds;
-    {{
-    - Holds overall properties of the material instance as if it was a single 
-    homogeneous phase.
-    - It is actually a TPhase instance, so every property used to define a 
-    phase is also available for this "vistual" material phase.
-    }
-    property OverallPhase: TPhase read FOverallPhase write FOverallPhase;
+    property MassFlow: TValueRec read FMassFlow write FMassFlow;
+    property MoleFlow: TValueRec read FMoleFlow write FMoleFlow;
     {{
     The list of phases present in the material object. Most commonly, there
     will be only one phase.
     }
     property Phases: TPhases read FPhases write FPhases;
     property Pressure: TValueRec read FPressure write FPressure;
+    property StdLiqVolFlow: TValueRec read FStdLiqVolFlow write FStdLiqVolFlow;
     property Temperature: TValueRec read FTemperature write FTemperature;
+    property VolumeFlow: TValueRec read FVolumeFlow write FVolumeFlow;
   end;
   
 implementation
@@ -564,9 +564,6 @@ begin
   FCompositions := TCompositions.Create;
   
   FPhases := TPhases.Create(Self);
-  
-  FOverallPhase := TPhase.Create(nil);
-  FOverallPhase.Material := Self;
 end;
 
 destructor TMaterial.Destroy;
@@ -574,7 +571,6 @@ begin
   FCompounds.Free;
   FCompositions.Free;
   FPhases.Free;
-  FOverallPhase.Free;
   inherited Destroy;
 end;
 
@@ -603,10 +599,9 @@ begin
     end;//for
   
   //Returns True if everything matches.
-  with OverallPhase do
-    Result := SameValue(MassFlow.Value, TotalMassFlow) and
-              SameValue(MoleFlow.Value, TotalMoleFlow) and
-              SameValue(StdLiqVolFlow.Value, TotalStdLiqVolFlow);
+  Result := SameValue(FMassFlow.Value, TotalMassFlow) and
+            SameValue(FMoleFlow.Value, TotalMoleFlow) and
+            SameValue(FStdLiqVolFlow.Value, TotalStdLiqVolFlow);
 end;
 
 procedure TMaterial.CompoundsNotify(Item: TCollectionItem;Action: 
