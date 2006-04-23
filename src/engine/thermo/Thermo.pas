@@ -88,6 +88,7 @@ type
   public
     constructor Create;
     function Add: TCompound;
+    procedure Assign(Source: TPersistent); override;
     procedure DeleteCompound(ID: Variant);
     function FindCompound(ID: Variant): TCompound;
     procedure Notify(Item: TCollectionItem;  Action: TCollectionNotification); 
@@ -421,6 +422,22 @@ end;
 function TCompounds.Add: TCompound;
 begin
   Result := TCompound(inherited Add);
+end;
+
+procedure TCompounds.Assign(Source: TPersistent);
+var
+  I: Integer;
+begin
+  if Source is TCompounds then begin
+    //Clear current list.
+    Clear;
+    //Copy all compounds from Source.
+    with TCompounds(Source) do
+      for I := 0 to Count - 1 do
+        Self.Add.Assign(Items[I]);
+  end
+  else
+    inherited Assign(Source);
 end;
 
 procedure TCompounds.DeleteCompound(ID: Variant);
