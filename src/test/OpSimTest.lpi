@@ -36,12 +36,12 @@
         <PackageName Value="FCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="7">
       <Unit0>
         <Filename Value="OpSimTest.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSimTest"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="28"/>
       </Unit0>
       <Unit1>
         <Filename Value="TCompoundsTestCaseU.pas"/>
@@ -50,17 +50,17 @@
         <CursorPos X="1" Y="1"/>
         <TopLine Value="43"/>
         <EditorIndex Value="0"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="TPropertyProviderTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TPropertyProviderTestCaseU"/>
-        <CursorPos X="23" Y="55"/>
-        <TopLine Value="54"/>
+        <CursorPos X="22" Y="140"/>
+        <TopLine Value="117"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -68,12 +68,37 @@
         <UnitName Value="ZDbcIntfs"/>
         <CursorPos X="45" Y="928"/>
         <TopLine Value="922"/>
-        <EditorIndex Value="2"/>
-        <UsageCount Value="10"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="..\engine\solver\Entities.pas"/>
+        <UnitName Value="Entities"/>
+        <CursorPos X="1" Y="243"/>
+        <TopLine Value="217"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\engine\thermo\Thermo.pas"/>
+        <UnitName Value="Thermo"/>
+        <CursorPos X="28" Y="32"/>
+        <TopLine Value="19"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\engine\thermo\ThermoProvider.pas"/>
+        <UnitName Value="ThermoProvider"/>
+        <CursorPos X="53" Y="33"/>
+        <TopLine Value="20"/>
+        <UsageCount Value="10"/>
+      </Unit6>
     </Units>
-    <JumpHistory Count="9" HistoryIndex="8">
+    <JumpHistory Count="24" HistoryIndex="23">
       <Position1>
         <Filename Value="TCompoundsTestCaseU.pas"/>
         <Caret Line="21" Column="5" TopLine="18"/>
@@ -110,11 +135,79 @@
         <Filename Value="TPropertyProviderTestCaseU.pas"/>
         <Caret Line="73" Column="49" TopLine="52"/>
       </Position9>
+      <Position10>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="71" Column="25" TopLine="52"/>
+      </Position10>
+      <Position11>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="40" Column="41" TopLine="27"/>
+      </Position11>
+      <Position12>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="33" Column="83" TopLine="27"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\engine\solver\Entities.pas"/>
+        <Caret Line="243" Column="1" TopLine="1"/>
+      </Position13>
+      <Position14>
+        <Filename Value="..\engine\thermo\Thermo.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position14>
+      <Position15>
+        <Filename Value="..\engine\solver\Entities.pas"/>
+        <Caret Line="243" Column="1" TopLine="217"/>
+      </Position15>
+      <Position16>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="38" Column="30" TopLine="20"/>
+      </Position16>
+      <Position17>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="86" Column="26" TopLine="65"/>
+      </Position17>
+      <Position18>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="63" Column="17" TopLine="63"/>
+      </Position18>
+      <Position19>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="88" Column="25" TopLine="75"/>
+      </Position19>
+      <Position20>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="120" Column="36" TopLine="98"/>
+      </Position20>
+      <Position21>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="104" Column="62" TopLine="103"/>
+      </Position21>
+      <Position22>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="121" Column="48" TopLine="103"/>
+      </Position22>
+      <Position23>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="128" Column="54" TopLine="109"/>
+      </Position23>
+      <Position24>
+        <Filename Value="TPropertyProviderTestCaseU.pas"/>
+        <Caret Line="136" Column="53" TopLine="114"/>
+      </Position24>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
     <PathDelim Value="\"/>
+    <SearchPaths>
+      <OtherUnitFiles Value="..\engine\thermo\;..\engine\solver\;..\engine\unitop\"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <DelphiCompat Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
     <CodeGeneration>
       <Generate Value="Faster"/>
     </CodeGeneration>
