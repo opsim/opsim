@@ -65,7 +65,11 @@ begin
   with DbConnectionMaster do begin
     Connected := False;
     Protocol := 'firebird-2.0';
+    {$ifdef unix}
+    Database := '../../app/' + 'SYSDATA.ODB';
+    {$else}
     Database := '..\..\app\' + 'SYSDATA.ODB';
+    {$endif}
     User := 'sysdba';
     Password := 'masterkey';
     Connected := True;
