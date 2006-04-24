@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <CONFIG>
   <ProjectOptions>
-    <PathDelim Value="/"/>
+    <PathDelim Value="\"/>
     <Version Value="5"/>
     <General>
       <MainUnit Value="0"/>
@@ -12,6 +12,7 @@
     <LazDoc Paths=""/>
     <PublishOptions>
       <Version Value="2"/>
+      <DestinationDirectory Value="$(TestDir)\publishedproject\"/>
       <IgnoreBinaries Value="False"/>
       <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
       <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
@@ -19,7 +20,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+        <LaunchingApplication PathPlusParams="\usr\X11R6\bin\xterm -T 'Lazarus Run Output' -e $(LazarusDir)\tools\runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
     <RequiredPackages Count="4">
@@ -64,14 +65,14 @@
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="../../../../../lazarus/components/zeosdbo_rework/src/dbc/ZDbcIntfs.pas"/>
+        <Filename Value="..\..\..\..\..\lazarus\components\zeosdbo_rework\src\dbc\ZDbcIntfs.pas"/>
         <UnitName Value="ZDbcIntfs"/>
         <CursorPos X="45" Y="928"/>
         <TopLine Value="922"/>
         <UsageCount Value="14"/>
       </Unit3>
       <Unit4>
-        <Filename Value="../engine/solver/Entities.pas"/>
+        <Filename Value="..\engine\solver\Entities.pas"/>
         <UnitName Value="Entities"/>
         <CursorPos X="1" Y="243"/>
         <TopLine Value="210"/>
@@ -80,7 +81,7 @@
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="../engine/thermo/Thermo.pas"/>
+        <Filename Value="..\engine\thermo\Thermo.pas"/>
         <UnitName Value="Thermo"/>
         <CursorPos X="28" Y="32"/>
         <TopLine Value="19"/>
@@ -89,24 +90,20 @@
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
-        <Filename Value="../engine/thermo/ThermoProvider.pas"/>
+        <Filename Value="..\engine\thermo\ThermoProvider.pas"/>
         <UnitName Value="ThermoProvider"/>
         <CursorPos X="53" Y="33"/>
         <TopLine Value="20"/>
         <UsageCount Value="10"/>
       </Unit6>
     </Units>
-    <JumpHistory Count="1" HistoryIndex="0">
-      <Position1>
-        <Filename Value="TPropertyProviderTestCaseU.pas"/>
-        <Caret Line="69" Column="1" TopLine="54"/>
-      </Position1>
-    </JumpHistory>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
+    <PathDelim Value="\"/>
     <SearchPaths>
-      <OtherUnitFiles Value="../engine/thermo/;../engine/solver/;../engine/unitop/"/>
+      <OtherUnitFiles Value="..\engine\thermo\;..\engine\solver\;..\engine\unitop\"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
@@ -123,11 +120,11 @@
   <Debugging>
     <BreakPoints Count="2">
       <Item1>
-        <Source Value="../../compnts/diagram/trectbox/RectBox.pas"/>
+        <Source Value="..\..\compnts\diagram\trectbox\RectBox.pas"/>
         <Line Value="290"/>
       </Item1>
       <Item2>
-        <Source Value="../../compnts/diagram/trectbox/RectBox.pas"/>
+        <Source Value="..\..\compnts\diagram\trectbox\RectBox.pas"/>
         <Line Value="303"/>
       </Item2>
     </BreakPoints>

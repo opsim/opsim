@@ -90,8 +90,9 @@ var
   Phi1,                            // Fraction of Overall AMaterial in Liquid Phase 1
   Phi2:  Real;                     // Fraction of Overall AMaterial in Liquid Phase 2
   TotalLiquidFraction: Real;       // Fraction of the overall AMaterial present as any liquid
+  LiquidFraction: Real;
   
-  iter,i,j;                        // temporary counters.. may be used as needed
+  iter,i,j: Integer;                        // temporary counters.. may be used as needed
   
   {...Scratch Variables... }
 
@@ -105,6 +106,7 @@ var
   Err: Real;                       // Cumulative error
   Converged : Boolean;
   PhaseExist:  array of Boolean;   // Element 1-Vapor, 2-Liq1, 3-Liq2
+  OldK1: array of Real;
   
 begin
 
@@ -116,14 +118,14 @@ begin
 
 
   {Create Potential Phases.. remember AMaterial tehnically may not have ANY Phases at this point(first flash)}
-  VaporPhase:=TPhase.Create(Self);
-  PreviousVaporPhase:=TPhase.Create(Self);
+  VaporPhase:=TPhase.Create(nil);
+  PreviousVaporPhase:=TPhase.Create(nil);
   
-  Liquid1Phase:=TPhase.Create(Self);
-  PreviousLiquid1Phase:=TPhase.Create(Self);
+  Liquid1Phase:=TPhase.Create(nil);
+  PreviousLiquid1Phase:=TPhase.Create(nil);
   
-  Liquid2Phase:=TPhase.Create(Self);
-  PreviousLiquid2Phase:=TPhase.Create(Self);
+  Liquid2Phase:=TPhase.Create(nil);
+  PreviousLiquid2Phase:=TPhase.Create(nil);
   
   VaporPhase.Compositions.Assign(AMaterial.Compositions); // Dont care so much about the actual composition as the structure
   VaporPhase.AggregationState := asVapor;
@@ -137,9 +139,9 @@ begin
 
   Converged := False;  // Otherwise why would we be running this :-) .. makes sure things run at least once
 
-  K1 := EstK1Values(AMaterial.Compositions, T, P);  // Come up with an initial Estimate
+  K1 := EstK1Values(AMaterial.Compounds, T, P);  // Come up with an initial Estimate
   
-  TotalLiquidFraction := GetTwoPhaseL(K1, AMaterial.Compositions);  // Generate an inital Liquid Fraction
+  TotalLiquidFraction := GetTwoPhaseLiquidFraction(K1, AMaterial.Compositions);  // Generate an inital Liquid Fraction
   
   // From Liquid Fraction and K values, generate Mole Fractions for the two phase situation
   
