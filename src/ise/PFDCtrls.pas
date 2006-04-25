@@ -393,7 +393,7 @@ var
 begin
   inherited MouseMove(Shift, X, Y);
   
-  Debugln(ClassName,': MouseMove');
+  //Debugln(ClassName,': MouseMove');
   
   //Needs to notify mouse movements over the control in order the PFDWorkplace
   //update drawings on its canvas.
@@ -618,6 +618,7 @@ begin
   
     //Draw the lines.
     PaintGuideLines(Canvas, ClientRect, P);
+    //Debugln('DrawGuideLines:',' X=',IntToStr(P.X), ' Y=', IntToStr(P.X));
   
     //Draw frames for each selected control while dragging.
     if DragControl <> nil then begin
@@ -645,6 +646,7 @@ begin
   
     //Erase guidelines.
     PaintGuideLines(Canvas, ClientRect, CurrentGuideLinesCenter);
+    //Debugln('EraseGuideLines:',' X=',IntToStr(CurrentGuideLinesCenter.X), ' Y=', IntToStr(CurrentGuideLinesCenter.X));
   
     //Erase frames for each selected control while dragging.
     if DragControl <> nil then begin
@@ -708,7 +710,7 @@ end;
 procedure TPFDWorkplace.MouseEnter;
 begin
   inherited MouseEnter;
-  Debugln('TPFDWorkplace.MouseEnter');
+  //Debugln('TPFDWorkplace.MouseEnter');
   if UnitopPallet.NewPFDControl <> nil then
     UnitopPallet.NewPFDControl.Visible := True;
 end;
@@ -716,7 +718,7 @@ end;
 procedure TPFDWorkplace.MouseLeave;
 begin
   inherited MouseLeave;
-  Debugln('TPFDWorkplace.MouseLeave');
+  //Debugln('TPFDWorkplace.MouseLeave');
   EraseGuideLines;
   if UnitopPallet.NewPFDControl <> nil then
     UnitopPallet.NewPFDControl.Visible := False;
@@ -726,7 +728,7 @@ procedure TPFDWorkplace.MouseMove(Shift: TShiftState; X, Y: Integer);
 begin
   inherited MouseMove(Shift, X, Y);
   
-  Debugln(ClassName,': MouseMove');
+  //Debugln(ClassName,': MouseMove');
   
   //These mouse move event can be triggered after a window maximization.
   //In this case, the event should be ignored to avoid staining the canvas.
@@ -761,7 +763,7 @@ var
 begin
   inherited MouseUp(Button, Shift, X, Y);
   
-  Debugln('TPFDWorkplace.MouseUp(Button: %s ; Shift: %s; X, Y: %s, %s', ['0', '0', IntToStr(X), IntToStr(Y)]);
+  //Debugln('TPFDWorkplace.MouseUp(Button: %s ; Shift: %s; X, Y: %s, %s', ['0', '0', IntToStr(X), IntToStr(Y)]);
   
   //We need to remove the guidelines to prevent interference with the control
   //repaint, which could cause staining on the canvas.
