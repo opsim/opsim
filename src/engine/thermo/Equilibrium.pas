@@ -46,12 +46,15 @@ type
 }
     function EstK1Values(ACompounds: TCompounds; P, T: Real): Variant;
     function EstK2Values(ACompounds: TCompounds; P, T: Real): Variant;
+
     procedure TP(AMaterial: TMaterial; T, P: Real);
   private
     FEos: TEos;
     function GetTwoPhaseLiquidFraction (const K: array of Real; const AComposition: TCompositions): Real;
     function TwoPhaseSum(const K: array of Real; const AComposition: TCompositions; LiquidFraction : Real): Real;
     function dTwoPhaseSum(const K: array of Real; const AComposition: TCompositions;LiquidFraction : Real): Real;
+    procedure UpdateKValues(var VaporPhase, LiquidPhase: TPhase; var K:array of Real);
+    procedure Normalize(var AComposition: TCompositions);
 
   public
     property Eos: TEos read FEos write FEos;
@@ -129,22 +132,29 @@ begin
   
   VaporPhase.Compositions.Assign(AMaterial.Compositions); // Dont care so much about the actual composition as the structure
   VaporPhase.AggregationState := asVapor;
+  VaporPhase.Temperature.Value := T;
+  VaporPhase.Temperature.Value := P;
 
   Liquid1Phase.Compositions.Assign(AMaterial.Compositions);
   Liquid1Phase.AggregationState := asLiquid;
+  Liquid1Phase.Temperature.Value := T;
+  Liquid1Phase.Temperature.Value := P;
 
   Liquid2Phase.Compositions.Assign(AMaterial.Compositions);
   Liquid2Phase.AggregationState := asLiquid;
+  Liquid2Phase.Temperature.Value := T;
+  Liquid2Phase.Temperature.Value := P;
 
 
-  Converged := False;  // Otherwise why would we be running this :-) .. makes sure things run at least once
-
-  K1 := EstK1Values(AMaterial.Compounds, T, P);  // Come up with an initial Estimate
+  Converged := False;
   
-  TotalLiquidFraction := GetTwoPhaseLiquidFraction(K1, AMaterial.Compositions);  // Generate an inital Liquid Fraction
+  // Come up with an initial Estimate
+  K1 := EstK1Values(AMaterial.Compounds, T, P);
+  
+  // Generate an inital Liquid Fraction
+  TotalLiquidFraction := GetTwoPhaseLiquidFraction(K1, AMaterial.Compositions);
   
   // From Liquid Fraction and K values, generate Mole Fractions for the two phase situation
-  
   for i := 0 to AMaterial.Compounds.Count - 1  do
       Liquid1Phase.Compositions[i].MoleFraction.Value := AMaterial.Compositions[i].MoleFraction.Value /
                                                          (LiquidFraction + (1 - LiquidFraction) * K1[i]);
@@ -154,9 +164,10 @@ begin
 
   OldK1 := K1;
   
-{Okay.. made it to here}
+   {Calculate New K Values}
   
-  K1 := EOS.GetK(OldK1, Y, X1, ZVap, ZLiq1, t, p);
+  UpdateKValues(VaporPhase, Liquid1Phase, K1);
+
   
  {Need to determine if this little section will be robust enough to use}
   temp := 0.0;
@@ -350,6 +361,37 @@ begin
   for i := 0 to AComposition.Count - 1  do
     Total := Total - (Sqr(1.0-K[i])*AComposition[I].MoleFraction.Value/Sqr((LiquidFraction +(1-LiquidFraction)*K[i])));
   Result := Total;
+end;
+
+procedure ThreePhaseFlash.UpdateKValues(var VaporPhase, LiquidPhase: TPhase; var K:array of Real);
+
+        
+{Updates K Values for a pair of Phases.  Will Fail if K's are 0.0.  Also updates the Compressibiliteis
+and Fugasity Coefficients}
+
+var
+  i: Integer;
+
+begin
+  FEOS.Solve(VaporPhase);
+  FEOS.Solve(LiquidPhase);
+  for i := 0 to VaporPhase.Compounds.Count -1 do
+    K[i] := LiquidPhase.Compositions[i].FugacityCoefficient.Value /
+            VaporPhase.Compositions[i].FugacityCoefficient.Value * K[i];
+end;
+
+procedure ThreePhaseFlash.normalize(var AComposition: TCompositions);
+// Make sure a set of mole fractions add up to 1
+var
+i : integer;
+total: real;
+begin
+total:=0.0;
+for i:= 0 to AComposition.Count - 1  do
+    total := total + AComposition.Items[i].MoleFraction.Value;
+total := 1.0 / total;
+for i:= 0 to AComposition.Count - 1 do
+    AComposition.Items[i].MoleFraction.Value := Total * AComposition.Items[i].MoleFraction.Value;
 end;
 
 {
