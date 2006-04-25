@@ -560,7 +560,7 @@ begin
   //Color := $00808040;
   //Color := clGreen;
   //Align := alClient;
-  SetBounds(0, 0, 2 * Screen.Width, 2 * Screen.Height);
+  SetBounds(0, 0, Screen.Width, Screen.Height);
   SetInvalidPoint(CurrentGuideLinesCenter);
   Resized := False;
 end;

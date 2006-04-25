@@ -5,7 +5,7 @@ LazarusResources.Add('TPFDDesigner','FORMDATA',[
   +'op'#2'}'#5'Width'#3'b'#2#18'HorzScrollBar.Page'#3'a'#2#18'VertScrollBar.Pag'
   +'e'#3#185#1#7'Caption'#6#12'PFD Designer'#12'ClientHeight'#3#186#1#11'Client'
   +'Width'#3'b'#2#8'OnCreate'#7#10'FormCreate'#8'OnResize'#7#10'FormResize'#13
-  +'PixelsPerInch'#2'K'#8'Position'#7#16'poDefaultPosOnly'#0#6'TPanel'#10'pnlTo'
+  +'PixelsPerInch'#2'`'#8'Position'#7#16'poDefaultPosOnly'#0#6'TPanel'#10'pnlTo'
   +'olbar'#6'Height'#2' '#5'Width'#3'b'#2#5'Align'#7#5'alTop'#10'BevelOuter'#7#6
   +'bvNone'#12'ClientHeight'#2' '#11'ClientWidth'#3'b'#2#8'TabOrder'#2#0#0#12'T'
   +'SpeedButton'#12'SpeedButton1'#4'Left'#2#8#6'Height'#2#22#3'Top'#2#4#5'Width'
