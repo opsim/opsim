@@ -256,6 +256,7 @@ procedure PaintGuideLines(ACanvas: TCanvas; ARect: TRect;
 begin
   //Paint the guidelines.
   with ACanvas, ARect do begin
+    Pen.Width := 1;
     Pen.Color := clRed;
     Pen.Mode := pmNot;
     Pen.Style := psSolid;
@@ -273,6 +274,7 @@ procedure PaintGuideLines(ACanvas: TCanvas; ARect, AExcludeRect: TRect;
 begin
   //Paint the guidelines.
   with ACanvas, ARect do begin
+    Pen.Width := 1;
     Pen.Color := clRed;
     Pen.Mode := pmNot;
     Pen.Style := psSolid;
