@@ -46,16 +46,24 @@ type
 }
     function EstK1Values(ACompounds: TCompounds; P, T: Real): Variant;
     function EstK2Values(ACompounds: TCompounds; P, T: Real): Variant;
-
     procedure TP(AMaterial: TMaterial; T, P: Real);
   private
     FEos: TEos;
     function GetTwoPhaseLiquidFraction (const K: array of Real; const AComposition: TCompositions): Real;
     function TwoPhaseSum(const K: array of Real; const AComposition: TCompositions; LiquidFraction : Real): Real;
     function dTwoPhaseSum(const K: array of Real; const AComposition: TCompositions;LiquidFraction : Real): Real;
-    procedure UpdateKValues(var VaporPhase, LiquidPhase: TPhase; var K:array of Real);
-    procedure Normalize(var AComposition: TCompositions);
+    function CalcQ1(const K1,K2: array of Real; const AComposition:TCompositions; Phi1,Phi2:Real): Real;
+    function CalcQ2(const K1,K2: array of Real; const ACompositon: TCompositions; phi1,phi2:Real): Real;
+    function CalcdQ1dphi1(const K1,K2: array of Real; const ACompositon: TCompositions; phi1,phi2:Real): Real;
+    function CalcdQ1dphi2(const K1,K2: array of Real; const ACompositon: TCompositions; phi1,phi2:Real): Real;
+    function CalcdQ2dphi2(const K1,K2: array of Real; const ACompositon: TCompositions; phi1,phi2:Real): Real;
+    function SolveQ1(const K1,K2: array of Real; const ACompositon: TCompositions; Phi2: Real): Real;
+    function SolveQ2(const K1,K2: array of Real; const ACompositon: TCompositions; Phi1: Real): Real;
+    function SolveQ1minusQ2(const K1,K2: array of Real; const ACompositon: TCompositions): Real;
+    
 
+    procedure Normalize(var AComposition: TCompositions);
+    procedure UpdateKValues(var VaporPhase, LiquidPhase: TPhase; var K:array of Real);
   public
     property Eos: TEos read FEos write FEos;
   end;
@@ -83,6 +91,8 @@ procedure TThreePhaseFlash.TP(AMaterial: TMaterial; T, P : Real);
  * Pressure are specified returns a amount and composition of each phase     *
  *****************************************************************************
  }
+const
+  MaxPhases = 3;                  // This Flash solver is currently designed for a Maximum of 3 possible number of Phases
 var
 { Some of these variables will be moved directly to the AMaterial but I am leaving them
   separate for the moment so they are scratch variables
@@ -112,8 +122,8 @@ var
   OldK1: array of Real;
   
 begin
-
-  SetLength(PhaseExist,3);         //This flash routine currently handles a max of three phases
+  //This flash routine currently handles a max of three phases
+  SetLength(PhaseExist,MaxPhases);
   SetLength(K1, AMaterial.Compounds.Count);
   SetLength(PreviousK1,AMaterial.Compounds.Count);
   SetLength(K2, AMaterial.Compounds.Count);
@@ -130,7 +140,8 @@ begin
   Liquid2Phase:=TPhase.Create(nil);
   PreviousLiquid2Phase:=TPhase.Create(nil);
   
-  VaporPhase.Compositions.Assign(AMaterial.Compositions); // Dont care so much about the actual composition as the structure
+  {Dont care so much about the actual composition as the structure}
+  VaporPhase.Compositions.Assign(AMaterial.Compositions);
   VaporPhase.AggregationState := asVapor;
   VaporPhase.Temperature.Value := T;
   VaporPhase.Temperature.Value := P;
@@ -148,7 +159,7 @@ begin
 
   Converged := False;
   
-  // Come up with an initial Estimate
+  {Come up with an initial Estimate}
   K1 := EstK1Values(AMaterial.Compounds, T, P);
   
   // Generate an inital Liquid Fraction
@@ -168,34 +179,37 @@ begin
   
   UpdateKValues(VaporPhase, Liquid1Phase, K1);
 
-  
+ { Create a preliminary guess for liquid phase 2 by taking the predominate Liquid 2 Component (usually water)
+   and putting it in a phase.  Add a tiny bit of the other components }
  {Need to determine if this little section will be robust enough to use}
-  temp := 0.0;
-  for i := 1 to NumComp do begin
-    if (i <> WhichImmisc) then begin
-      X2[i] := Z[i] * 0.001;
-      temp := temp + X2[i];
-    end;
+  With aMaterial do
+  begin
+   temp := 0.0;
+   for i := 0 to Compounds.Count - 1  do begin
+     if (Compounds[i].CompID <> Compounds.ImmiscibleComponent) then
+        begin
+          Liquid2Phase.Compositions[i].MoleFraction.Value := Compositions[i].MoleFraction.Value * 0.001;
+          temp := temp + Liquid2Phase.Compositions[i].MoleFraction.Value;
+        end;
+      else ImmiscibleIndex := i;
+    
+   end;
+   Liquid2Phase.Compositions[ImmiscibleIndex].MoleFraction.Value := 100.0 - temp;
   end;
-  X2[WhichImmisc] := 100.0 - temp;
   
-  for i := 1 to NumComp do OldK2[i] := Y[i] / X2[i];
-  K2 := EOS.GetK(OldK2, Y, X2, ZVap, Zliq2, t, p);
+  for i := 0 to AMaterial.Compounds.Count - 1  do
+  K2[i] := VaporPhase.Compositions[i].MoleFraction.Value / Liquid2Phase.Compositions[i].MoleFraction.Value;
+
+  UpdateKValues(VaporPhase, Liquid2Phase, K2);
+  
   iter := 1;
   Err := 10000;
-  {temporary debug
-  K1[1]:=68.7;
-  K1[2]:=0.341;
-  K1[3]:=163.0;
-  K2[1]:=94200;
-  K2[2]:=100000000000.0;
-  K2[3]:=0.962;
-  {End Debug}
-  
+
   while ((abs(Err) > 0.01) and (Iter < 100)) do begin
-    OldY := Y;
-    OldX1 := X1;
-    OldX2 := X2;
+    OldVaporPhase := VaporPhase;
+    OldLiquid1Phase := Liquid1Phase;
+    OldLiquid2Phase := Liquid2Phase;
+
     PhaseExist := DoesPhaseExist(K1, K2, Z, phi1, phi2);
     numphase := 0;
     for i := 1 to 3 do if PhaseExist[i] then numphase := numphase + 1;
@@ -359,7 +373,7 @@ var
 begin
   Total := 0.0;
   for i := 0 to AComposition.Count - 1  do
-    Total := Total - (Sqr(1.0-K[i])*AComposition[I].MoleFraction.Value/Sqr((LiquidFraction +(1-LiquidFraction)*K[i])));
+    Total := Total - (Sqr(1.0-K[i])*AComposition[i].MoleFraction.Value/Sqr((LiquidFraction +(1-LiquidFraction)*K[i])));
   Result := Total;
 end;
 
@@ -392,6 +406,198 @@ for i:= 0 to AComposition.Count - 1  do
 total := 1.0 / total;
 for i:= 0 to AComposition.Count - 1 do
     AComposition.Items[i].MoleFraction.Value := Total * AComposition.Items[i].MoleFraction.Value;
+end;
+
+function TThreePhaseFlash.CalcQ1(const K1,K2: array of Real; const AComposition:TCompositions; Phi1,Phi2:Real): Real;
+var
+  i: Integer;
+  Q1: Real;
+
+
+  {An implemenation of EQ 7a.  Partial derivative functions are below.
+
+  Essentially this is a mass balance inserted into the component balance and then
+  played around with to produce a form that solves better under Newton-Raphson
+  No variables in the call list are changed.. only a number is returned}
+
+  {EQ 7a}
+
+begin
+
+  Q1:=0.0;
+  for i := 0 to AComposition.Count - 1  do
+    begin
+      Q1:= Q1  + AComposition[i].MoleFraction.Value*K2[i]*(1.0-K1[i])/
+                 (K1[i]*K2[i]+Phi1*K2[i]*(1-K1[i])+Phi2*K1[i]*(1-K2[i]));
+    end;
+  Result:= Q1;
+end;
+
+function TThreePhaseFlash.CalcQ2(const K1,K2: array of Real; const ACompositon: TCompositions; phi1,phi2:Real): Real;
+var
+  i: Integer;
+  Q2: Real;
+
+  {An implemenation of EQ 7b.  Partial derivative functions are below.
+
+  Essentially this is a mass balance inserted into the component balance and then
+  played around with to produce a form that solves better under Newton-Raphson
+  No variables in the call list are changed.. only a number is returned}
+  {EQ 7b}
+
+begin
+  Q2:=0.0;
+  for i := 0 to AComposition.Count - 1  do
+    begin
+      Q2:= Q2  + AComposition[i].MoleFraction.Value*K1[i]*(1.0-K2[i])/
+                 (K1[i]*K2[i]+phi1*K2[i]*(1-K1[i])+phi2*K1[i]*(1-K2[i]));
+    end;
+  Result:= Q2;
+end;
+
+function TThreePhaseFlash.CalcdQ1dphi1(const K1,K2: array of Real; const ACompositon: TCompositions; phi1,phi2:Real): Real;
+var
+  i: Integer;
+  dQ: Double;
+
+  {Partial derivative function of Q1 with respect to phi1 are below. Defined in EQ 10a
+
+  Needed for the Newton-Raphson solutions for both 2 and 3 phase cases}
+
+begin
+  dQ:=0.0;
+  for i := 0 to AComposition.Count - 1  do
+    begin
+      dQ:= dQ  - AComposition[i].MoleFraction.Value*Sqr(K2[i])*Sqr((1.0-K1[i]))/
+           Sqr(K1[i]*K2[i]+phi1*K2[i]*(1-K1[i])+phi2*K1[i]*(1-K2[i]));
+    end;
+  Result:= dQ;
+end;
+
+function TThreePhaseFlash.CalcdQ1dphi2(const K1,K2: array of Real; const ACompositon: TCompositions; phi1,phi2:Real): Real;
+var
+  i: Integer;
+  dQ: Double;
+
+  {Partial derivative function of Q1 with respect to phi2 are below. Defined in EQ 10b
+  Same as dQ2/dphi1
+  Needed for the Newton-Raphson solutions for both 2 and 3 phase cases}
+
+begin
+  dQ:=0.0;
+  for i := 0 to AComposition.Count - 1  do
+    begin
+      dQ:= dQ  - AComposition[i].MoleFraction.Value*K1[i]*K2[i]*(1.0-K1[i])*(1.0-K2[i])/
+           Sqr(K1[i]*K2[i]+phi1*K2[i]*(1-K1[i])+phi2*K1[i]*(1-K2[i]));
+    end;
+  GetdQ1dphi2:=dQ;
+end;
+
+function TThreePhaseFlash.CalcdQ2dphi2(const K1,K2: array of Real; const ACompositon: TCompositions; phi1,phi2:Real): Real;
+var
+  i: Integer;
+  dQ: Double;
+
+  {Partial derivative function of Q2 with respect to phi2 are below. Defined in EQ 10c
+
+  Needed for the Newton-Raphson solutions for both 2 and 3 phase cases}
+
+begin
+  dQ:=0.0;
+  for i := 0 to AComposition.Count - 1  do
+    begin
+      dQ:= dQ  - AComposition[i].MoleFraction.Value*Sqr(K1[i])*Sqr((1.0-K2[i]))/
+           Sqr(K1[i]*K2[i]+phi1*K2[i]*(1-K1[i])+phi2*K1[i]*(1-K2[i]));
+    end;
+  GetdQ2dphi2:=dQ;
+end;
+
+function TThreePhaseFlash.SolveQ1(const K1,K2: array of Real; const ACompositon: TCompositions; Phi2:Real): Real;
+var
+  Err: Real;
+  L, OldL: Real;
+  iter: Integer;
+  F, dFdL: Real;
+
+  {Given a set of K values for both Liquid Phases and the Feed mol Fractions of the Feed
+  Solve Eq 7a for phi1 at fixed phi2 using Newton-Raphson
+  -- so despite its name, it returns a Liquid fraction of Liquid phase 1 at a given
+  liquid phase 2 fraction
+
+  }
+  {Function and derivative of Function, in this case Q1()}
+
+begin
+  L:=0.5;
+  Err:=10000.0;
+  iter:=0;           {Limit the number of iterations}
+  While ((Abs(Err) > 0.00005) and (iter<100)) do
+   begin
+    OldL:= L;
+    F:= CalcQ1(K1,K2,aComposition,L,Phi2);
+    dFdL := CalcdQ1dphi1(K1,K2,aComposition,L,Phi2);
+    L := OldL - F/dFdL;
+    Err := L/OldL -1;
+    iter:=iter+1;
+   end;
+  Result:=L;
+end;
+
+function TThreePhaseFlash.SolveQ1minusQ2(const K1,K2: array of Real; const ACompositon: TCompositions): Real;
+var
+  Err: Double;
+  L, OldL: Double;
+  iter: Integer;
+  F, dFdL: Double;
+
+  {This is the third boundary condition.  Shown graphically as the diagonal line
+  on Fig 2 of Nelson.  Here phi2=1-phi1 .  We are solving for the root of Q1(phi1,1-phi1)-
+  Q2(phi1,1-phi1)=0 which returns phi1 along the diagonal edge}
+
+begin
+  L:=0.5;
+  Err:=10000.0;
+  iter:=0;
+  While ((Abs(Err) > 0.00005) and (iter<100)) do
+   begin
+    OldL:= L;
+    F:= CalcQ1(K1,K2,aComposition,L,1.0-L)-CalcQ2(K1,K2,aComposition,L,1.0-L);
+    dFdL := CalcdQ1dphi1(K1,K2,aComposition,L,1.0-L)-CalcdQ1dphi2(K1,K2,aComposition,L,1.0-L);
+    L := OldL - F/dFdL;
+    Err := L/OldL -1;
+    iter:=iter+1;
+   end;
+  Result:=L;
+end;
+
+function TThreePhaseFlash.SolveQ2(const K1,K2: array of Real; const ACompositon: TCompositions; Phi1: Real): Real;
+var
+  Err: Double;
+  L, OldL: Double;
+  iter: Integer;
+  F, dFdL: Double;
+
+  {Given a set of K values for both Liquid Phases and the Feed mol Fractions of the Feed
+  Solve Eq 7b for phi1 at fixed phi1 using Newton-Raphson
+  -- so despite its name, it returns a Liquid fraction of Liquid phase 2 at a given
+  liquid phase 1 fraction
+
+  }
+
+begin
+  L:=0.5;
+  Err:=10000.0;
+  iter:=0;
+  While ((Abs(Err) > 0.00005) and (iter<100)) do
+   begin
+    OldL:= L;
+    F:= CalcQ2(K1,K2,aComposition,Phi1,L);
+    dFdL := CalcdQ2dphi2(K1,K2,aComposition,Phi1,L);
+    L := OldL - F/dFdL;
+    Err := L/OldL -1;
+    iter:=iter+1;
+   end;
+  Result:=L;
 end;
 
 {

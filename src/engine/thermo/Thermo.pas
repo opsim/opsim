@@ -95,10 +95,11 @@ type
             override;
     property Compounds[Index: Integer]: TCompound read GetItem write SetItem; 
             default;
+    ImmiscibleComponent: Integer;
   published
     property OnNotify: TCollectionNotifyEvent read FOnNotify write FOnNotify;
   end;
-  
+
   {{
   Holds compound information that is specific for a phase.
   }
