@@ -86,6 +86,7 @@ type
     function GetItem(Index: Integer): TCompound;
     procedure SetItem(Index: Integer; Value: TCompound);
   public
+    ImmiscibleComponent: Integer;
     constructor Create;
     function Add: TCompound;
     procedure Assign(Source: TPersistent); override;
@@ -95,11 +96,10 @@ type
             override;
     property Compounds[Index: Integer]: TCompound read GetItem write SetItem; 
             default;
-    ImmiscibleComponent: Integer;
   published
     property OnNotify: TCollectionNotifyEvent read FOnNotify write FOnNotify;
   end;
-
+  
   {{
   Holds compound information that is specific for a phase.
   }
