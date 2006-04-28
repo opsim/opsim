@@ -558,7 +558,7 @@ begin
   FCompositions := TCompositions.Create;
   //Defines the material to which the phase pertains.
   if Collection <> nil then
-   FMaterial := (Collection as TPhases).Owner;
+    FMaterial := (Collection as TPhases).Owner;
 end;
 
 destructor TPhase.Destroy;
