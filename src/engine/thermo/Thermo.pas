@@ -82,11 +82,11 @@ type
   
   TCompounds = class (TCollection)
   private
+    FImmiscibleComponent: Integer;
     FOnNotify: TCollectionNotifyEvent;
     function GetItem(Index: Integer): TCompound;
     procedure SetItem(Index: Integer; Value: TCompound);
   public
-    ImmiscibleComponent: Integer;
     constructor Create;
     function Add: TCompound;
     procedure Assign(Source: TPersistent); override;
@@ -96,6 +96,8 @@ type
             override;
     property Compounds[Index: Integer]: TCompound read GetItem write SetItem; 
             default;
+    property ImmiscibleComponent: Integer read FImmiscibleComponent write 
+            FImmiscibleComponent;
   published
     property OnNotify: TCollectionNotifyEvent read FOnNotify write FOnNotify;
   end;
