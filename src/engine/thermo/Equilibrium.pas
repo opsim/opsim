@@ -571,6 +571,7 @@ procedure TThreePhaseFlash.TP(AMaterial: TMaterial; T, P: Real);
     PhaseExist:  array of Boolean;   // Element 1-Vapor, 2-Liq1, 3-Liq2
     NumPhase: Integer;               // Current Number of Phases Predicted
     OldK1: array of Real;
+    WorkMaterial: TMaterial;         // Material working instance.
   
 begin
   //This flash routine currently handles a max of three phases
@@ -580,53 +581,79 @@ begin
   SetLength(K2, AMaterial.Compounds.Count);
   SetLength(PreviousK2,AMaterial.Compounds.Count);
   
-  AMaterial.Temperature.value :=T;
-  AMaterial.Pressure.Value:= P;
+  //***debug - this is a suggestion, please check if the code is right.
   
+  //Create a material working instance.
+  WorkMaterial := TMaterial.Create;
+  
+  //Create working phases.
+  with WorkMaterial do begin
+  
+    //Copy the original material. Compounds and Compositions are copied at once.
+    Assign(AMaterial);
+  
+    //Makes sure there are no phases and...
+    Phases.Clear;
+  
+    //Creates new working ones and references then to facilitate coding.
+    VaporPhase := Phases.Add;
+    PreviousVaporPhase := Phases.Add;
+    Liquid1Phase := Phases.Add;
+    PreviousLiquid1Phase := Phases.Add;
+    Liquid2Phase := Phases.Add;
+    PreviousLiquid2Phase := Phases.Add;
+  
+    //All phases have same temperature and pressure of the material.
+    Temperature.Value := T;
+    Pressure.Value := P;
+  
+  end;//with
+  
+  //***debug - phases already created above.
   {Create Potential Phases.. remember AMaterial tehnically may not have ANY Phases at this point(first flash)}
-  VaporPhase:=TPhase.Create(nil);
+  {VaporPhase:=TPhase.Create(nil);
   PreviousVaporPhase:=TPhase.Create(nil);
   
   Liquid1Phase:=TPhase.Create(nil);
   PreviousLiquid1Phase:=TPhase.Create(nil);
   
   Liquid2Phase:=TPhase.Create(nil);
-  PreviousLiquid2Phase:=TPhase.Create(nil);
+  PreviousLiquid2Phase:=TPhase.Create(nil);}
   
   {Dont care so much about the actual composition as the structure}
-  VaporPhase.Compositions.Assign(AMaterial.Compositions);
+  VaporPhase.Compositions.Assign(WorkMaterial.Compositions);
   VaporPhase.AggregationState := asVapor;
-  VaporPhase.Material.Temperature.Value := T;
-  VaporPhase.Material.Pressure.Value := P;
+  //VaporPhase.Material.Temperature.Value := T;
+  //VaporPhase.Material.Pressure.Value := P;
   
-  Liquid1Phase.Compositions.Assign(AMaterial.Compositions);
+  Liquid1Phase.Compositions.Assign(WorkMaterial.Compositions);
   Liquid1Phase.AggregationState := asLiquid;
-  //debug - Matt, phases borrow its teperature and pressure from the material.
+  //*** debug - Matt, phases borrow its teperature and pressure from the material.
   //To overcome this problem, you can create all these working phases attached
   //to a material working instance. Thinking better, it should be the right
   //approach.
-  Liquid1Phase.Material.Temperature.Value := T;
-  Liquid1Phase.Material.Pressure.Value := P;
+  //Liquid1Phase.Material.Temperature.Value := T;
+  //Liquid1Phase.Material.Pressure.Value := P;
   
-  Liquid2Phase.Compositions.Assign(AMaterial.Compositions);
+  Liquid2Phase.Compositions.Assign(WorkMaterial.Compositions);
   Liquid2Phase.AggregationState := asLiquid;
-  Liquid2Phase.Material.Temperature.Value := T;
-  Liquid2Phase.Material.Pressure.Value := P;
+  //Liquid2Phase.Material.Temperature.Value := T;
+  //Liquid2Phase.Material.Pressure.Value := P;
   
   Converged := False;
   
   {Come up with an initial Estimate}
-  EstK1Values(K1, AMaterial.Compounds, T, P);
+  EstK1Values(K1, WorkMaterial.Compounds, T, P);
   
   // Generate an inital Liquid Fraction
-  TotalLiquidFraction := GetTwoPhaseLiquidFraction(K1, AMaterial.Compositions);
+  TotalLiquidFraction := GetTwoPhaseLiquidFraction(K1, WorkMaterial.Compositions);
   
   // From Liquid Fraction and K values, generate Mole Fractions for the two phase situation
-  for i := 0 to AMaterial.Compounds.Count - 1  do
-      Liquid1Phase.Compositions[i].MoleFraction.Value := AMaterial.Compositions[i].MoleFraction.Value /
+  for i := 0 to WorkMaterial.Compounds.Count - 1  do
+      Liquid1Phase.Compositions[i].MoleFraction.Value := WorkMaterial.Compositions[i].MoleFraction.Value /
                                                          (TotalLiquidFraction + (1 - TotalLiquidFraction) * K1[i]);
-  for i := 0 to AMaterial.Compounds.Count - 1  do
-      VaporPhase.Compositions[i].MoleFraction.Value := K1[i] * AMaterial.Compositions[i].MoleFraction.Value /
+  for i := 0 to WorkMaterial.Compounds.Count - 1  do
+      VaporPhase.Compositions[i].MoleFraction.Value := K1[i] * WorkMaterial.Compositions[i].MoleFraction.Value /
                                                          (TotalLiquidFraction + (1 - TotalLiquidFraction) * K1[i]);
   
   OldK1 := K1;
@@ -638,7 +665,7 @@ begin
   { Create a preliminary guess for liquid phase 2 by taking the predominate Liquid 2 Component (usually water)
     and putting it in a phase.  Add a tiny bit of the other components }
   {Need to determine if this little section will be robust enough to use}
-  With aMaterial do
+  With WorkMaterial do
   begin
    temp := 0.0;
    for i := 0 to Compounds.Count - 1  do begin
@@ -653,7 +680,7 @@ begin
    Liquid2Phase.Compositions[ImmiscibleIndex].MoleFraction.Value := 100.0 - temp;
   end;
   
-  for i := 0 to AMaterial.Compounds.Count - 1  do
+  for i := 0 to WorkMaterial.Compounds.Count - 1  do
   K2[i] := VaporPhase.Compositions[i].MoleFraction.Value / Liquid2Phase.Compositions[i].MoleFraction.Value;
   
   UpdateKValues(VaporPhase, Liquid2Phase, K2);
@@ -662,6 +689,7 @@ begin
   Err := 10000;
   
   while ((abs(Err) > 0.01) and (Iter < 100)) do begin
+    //***debug - is there a bug here? Do you want to assign or change reference?
     PreviousVaporPhase := VaporPhase;
     PreviousLiquid1Phase := Liquid1Phase;
     PreviousLiquid2Phase := Liquid2Phase;
@@ -676,11 +704,11 @@ begin
       else Liquid2Phase.Compositions := AMaterial.Compositions;
     end
     else if (numphase = 2) then begin
-      //debug - see TPhase.GetMoleFlow. MoleFlow for a phase is read-only.
+      //***debug - see TPhase.GetMoleFlow. MoleFlow for a phase is read-only.
       //Liquid1Phase.MoleFlow.Value:= Phi1 * AMaterial.MoleFlow.Value;
       //Liquid2Phase.MoleFlow.Value:= Phi2 * AMaterial.MoleFlow.Value;
       //VaporPhase.MoleFlow.Value:= AMaterial.MoleFlow.Value-Liquid1Phase.MoleFlow.Value-Liquid2Phase.MoleFlow.Value;
-      for i := 0 to AMaterial.Compounds.Count - 1  do
+      for i := 0 to WorkMaterial.Compounds.Count - 1  do
        begin
         VaporPhase.Compositions[i].MoleFraction.Value:=AMaterial.Compositions[i].MoleFraction.Value*AMaterial.MoleFlow.Value*
                      K1[i]*K2[i] / (VaporPhase.MoleFlow.Value*K1[i]*K2[i]+Liquid1Phase.MoleFlow.Value*K2[i]+
@@ -701,11 +729,11 @@ begin
     end
   
     else begin
-      Solvephi1phi2(K1,K2,AMaterial.Compositions,Phi1,Phi2);
+      Solvephi1phi2(K1,K2,WorkMaterial.Compositions,Phi1,Phi2);
       //Liquid1Phase.MoleFlow.Value:= Phi1 * AMaterial.MoleFlow.Value;
       //Liquid2Phase.MoleFlow.Value:= Phi2 * AMaterial.MoleFlow.Value;
       //VaporPhase.MoleFlow.Value := AMaterial.MoleFlow.Value - Liquid1Phase.MoleFlow.Value - Liquid2Phase.MoleFlow.Value;
-      for i := 0 to AMaterial.Compounds.Count - 1  do
+      for i := 0 to WorkMaterial.Compounds.Count - 1  do
        begin
         VaporPhase.Compositions[i].MoleFraction.Value:=AMaterial.Compositions[i].MoleFraction.Value*AMaterial.MoleFlow.Value*
                      K1[i]*K2[i] / (VaporPhase.MoleFlow.Value*K1[i]*K2[i]+Liquid1Phase.MoleFlow.Value*K2[i]+
@@ -727,7 +755,7 @@ begin
     Err := 0.0;
     UpdateKValues(VaporPhase, Liquid1Phase, K1);
     UpdateKValues(VaporPhase, Liquid2Phase, K2);
-    for i := 0 to AMaterial.Compounds.Count - 1  do
+    for i := 0 to WorkMaterial.Compounds.Count - 1  do
     begin
       Err := Err + abs(Real(VaporPhase.Compositions[i].MoleFraction.Value / PreviousVaporPhase.Compositions[i].MoleFraction.Value - 1.0));
       Err := Err + abs(Real(Liquid1Phase.Compositions[i].MoleFraction.Value / PreviousLiquid1Phase.Compositions[i].MoleFraction.Value - 1.0));
@@ -736,16 +764,20 @@ begin
     iter := iter + 1;
   
   end;
-   {Vapor Phase}
+  
+  {Vapor Phase}
   AMaterial.Phases.Clear;
   
   if PhaseExist[1] then AMaterial.Phases.Add.Assign(VaporPhase);
   if PhaseExist[2] then AMaterial.Phases.Add.Assign(Liquid1Phase);
   if PhaseExist[3] then AMaterial.Phases.Add.Assign(Liquid2Phase);
   
-  VaporPhase.Free;
-  Liquid1Phase.Free;
-  Liquid2Phase.Free;
+  //All inner objects like phases are freed here.
+  WorkMaterial.Free;
+  
+  //VaporPhase.Free;
+  //Liquid1Phase.Free;
+  //Liquid2Phase.Free;
   
 end;
 
