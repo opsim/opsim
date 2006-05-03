@@ -7,7 +7,7 @@
       <MainUnit Value="0"/>
       <IconPath Value="./"/>
       <TargetFileExt Value=".exe"/>
-      <ActiveEditorIndexAtStart Value="1"/>
+      <ActiveEditorIndexAtStart Value="2"/>
     </General>
     <LazDoc Paths=""/>
     <PublishOptions>
@@ -58,8 +58,8 @@
         <Filename Value="TPropertyProviderTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TPropertyProviderTestCaseU"/>
-        <CursorPos X="45" Y="27"/>
-        <TopLine Value="21"/>
+        <CursorPos X="42" Y="69"/>
+        <TopLine Value="61"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
@@ -100,8 +100,8 @@
         <Filename Value="OpSimTestU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSimTestU"/>
-        <CursorPos X="33" Y="35"/>
-        <TopLine Value="26"/>
+        <CursorPos X="37" Y="37"/>
+        <TopLine Value="31"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>

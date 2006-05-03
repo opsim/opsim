@@ -32,11 +32,11 @@ interface
 uses
   Classes, SysUtils, ZConnection;
 
-procedure SetupDBConnection(var AConnection: TZConnection);
+procedure CreateDBConnection(var AConnection: TZConnection);
 
 implementation
 
-procedure SetupDBConnection(var AConnection: TZConnection);
+procedure CreateDBConnection(var AConnection: TZConnection);
 begin
   AConnection := TZConnection.Create(nil);
   with AConnection do begin

@@ -31,7 +31,7 @@ interface
 
 uses
   Classes, SysUtils, fpcunit, testutils, testregistry, ZConnection,
-  ThermoProvider;
+  ThermoProvider, OpSimTestU;
 
 type
 
@@ -61,19 +61,7 @@ const
 }
 procedure TPropertyProviderTestCase.SetUp;
 begin
-  DbConnectionMaster := TZConnection.Create(nil);
-  with DbConnectionMaster do begin
-    Connected := False;
-    Protocol := 'firebird-2.0';
-    {$ifdef unix}
-    Database := '../../app/' + 'SYSDATA.ODB';
-    {$else}
-    Database := '..\..\app\' + 'SYSDATA.ODB';
-    {$endif}
-    User := 'sysdba';
-    Password := 'masterkey';
-    Connected := True;
-  end;//with
+  CreateDBConnection(DbConnectionMaster);
   PropertyProvider := TPropertyProvider.Create;
   with PropertyProvider do begin
     DBConnection := DbConnectionMaster;
