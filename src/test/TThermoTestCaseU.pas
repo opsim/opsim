@@ -112,12 +112,6 @@ begin
 end;
 
 procedure TCompoundsTestCase.TestClear;
-  
-  const
-    N = 5;
-  var
-    I: Integer;
-  
 begin
   TestAdd;
   with CompoundsList do begin

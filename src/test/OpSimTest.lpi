@@ -48,8 +48,8 @@
         <Filename Value="TThermoTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TThermoTestCaseU"/>
-        <CursorPos X="31" Y="112"/>
-        <TopLine Value="95"/>
+        <CursorPos X="44" Y="114"/>
+        <TopLine Value="107"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="33"/>
         <Loaded Value="True"/>
@@ -128,12 +128,7 @@
         <UsageCount Value="10"/>
       </Unit10>
     </Units>
-    <JumpHistory Count="1" HistoryIndex="0">
-      <Position1>
-        <Filename Value="TThermoTestCaseU.pas"/>
-        <Caret Line="133" Column="43" TopLine="126"/>
-      </Position1>
-    </JumpHistory>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
