@@ -30,9 +30,28 @@ unit OpSimTestU;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, ZConnection;
+
+procedure SetupDBConnection(var AConnection: TZConnection);
 
 implementation
+
+procedure SetupDBConnection(var AConnection: TZConnection);
+begin
+  AConnection := TZConnection.Create(nil);
+  with AConnection do begin
+    Connected := False;
+    Protocol := 'firebird-2.0';
+    {$ifdef unix}
+    Database := '../../app/' + 'SYSDATA.ODB';
+    {$else}
+    Database := '..\..\app\' + 'SYSDATA.ODB';
+    {$endif}
+    User := 'sysdba';
+    Password := 'masterkey';
+    Connected := True;
+  end;//with
+end;
 
 end.
 

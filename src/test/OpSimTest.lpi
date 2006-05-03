@@ -48,8 +48,8 @@
         <Filename Value="TCompoundsTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TCompoundsTestCaseU"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
+        <CursorPos X="34" Y="48"/>
+        <TopLine Value="43"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
@@ -58,8 +58,8 @@
         <Filename Value="TPropertyProviderTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TPropertyProviderTestCaseU"/>
-        <CursorPos X="1" Y="71"/>
-        <TopLine Value="58"/>
+        <CursorPos X="45" Y="27"/>
+        <TopLine Value="21"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
@@ -100,14 +100,19 @@
         <Filename Value="OpSimTestU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSimTestU"/>
-        <CursorPos X="55" Y="9"/>
-        <TopLine Value="1"/>
+        <CursorPos X="33" Y="35"/>
+        <TopLine Value="26"/>
         <EditorIndex Value="1"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit7>
     </Units>
-    <JumpHistory Count="0" HistoryIndex="-1"/>
+    <JumpHistory Count="1" HistoryIndex="0">
+      <Position1>
+        <Filename Value="OpSimTestU.pas"/>
+        <Caret Line="33" Column="33" TopLine="31"/>
+      </Position1>
+    </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
