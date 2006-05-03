@@ -2,8 +2,8 @@
 {
  /***************************************************************************
 
-                  Abstract: Unit tests for classes.
-                  Initial Revision : 23/04/2006
+                  Abstract: Unit tests for thermo classes.
+                  Initial Revision : 03/05/2006
                   Authors:
                     - Samuel Jorge Marques Cartaxo
                     - Additional contributors...
@@ -23,7 +23,7 @@
  *                                                                           *
  *****************************************************************************
 }
-unit TCompoundsTestCaseU;
+unit TThermoTestCaseU;
 
 {$mode objfpc}{$H+}
 

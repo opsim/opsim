@@ -7,7 +7,7 @@
       <MainUnit Value="0"/>
       <IconPath Value="./"/>
       <TargetFileExt Value=".exe"/>
-      <ActiveEditorIndexAtStart Value="2"/>
+      <ActiveEditorIndexAtStart Value="0"/>
     </General>
     <LazDoc Paths=""/>
     <PublishOptions>
@@ -42,16 +42,16 @@
         <Filename Value="OpSimTest.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSimTest"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
       </Unit0>
       <Unit1>
-        <Filename Value="TCompoundsTestCaseU.pas"/>
+        <Filename Value="TThermoTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="TCompoundsTestCaseU"/>
-        <CursorPos X="34" Y="48"/>
+        <UnitName Value="TThermoTestCaseU"/>
+        <CursorPos X="25" Y="48"/>
         <TopLine Value="43"/>
         <EditorIndex Value="0"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -59,9 +59,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="TPropertyProviderTestCaseU"/>
         <CursorPos X="42" Y="69"/>
-        <TopLine Value="61"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="2"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -84,7 +84,7 @@
         <Filename Value="..\engine\thermo\Thermo.pas"/>
         <UnitName Value="Thermo"/>
         <CursorPos X="28" Y="32"/>
-        <TopLine Value="19"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="3"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
@@ -101,9 +101,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSimTestU"/>
         <CursorPos X="37" Y="37"/>
-        <TopLine Value="31"/>
+        <TopLine Value="4"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit7>
     </Units>
