@@ -34,6 +34,9 @@ uses
 
 procedure CreateDBConnection(var AConnection: TZConnection);
 
+var
+  GlobalDatabaseConnection: TZConnection;
+
 implementation
 
 procedure CreateDBConnection(var AConnection: TZConnection);
@@ -52,6 +55,14 @@ begin
     Connected := True;
   end;//with
 end;
+
+initialization
+
+  CreateDBConnection(GlobalDatabaseConnection);
+
+finalization
+
+  FreeAndNil(GlobalDatabaseConnection);
 
 end.
 

@@ -37,31 +37,31 @@
         <PackageName Value="FCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="11">
       <Unit0>
         <Filename Value="OpSimTest.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSimTest"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="33"/>
       </Unit0>
       <Unit1>
         <Filename Value="TThermoTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TThermoTestCaseU"/>
-        <CursorPos X="25" Y="48"/>
-        <TopLine Value="43"/>
+        <CursorPos X="43" Y="133"/>
+        <TopLine Value="126"/>
         <EditorIndex Value="0"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="TPropertyProviderTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TPropertyProviderTestCaseU"/>
-        <CursorPos X="42" Y="69"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="2"/>
-        <UsageCount Value="29"/>
+        <CursorPos X="41" Y="75"/>
+        <TopLine Value="24"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -74,19 +74,17 @@
       <Unit4>
         <Filename Value="..\engine\solver\Entities.pas"/>
         <UnitName Value="Entities"/>
-        <CursorPos X="1" Y="243"/>
-        <TopLine Value="210"/>
-        <EditorIndex Value="4"/>
-        <UsageCount Value="11"/>
-        <Loaded Value="True"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="20"/>
       </Unit4>
       <Unit5>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
         <UnitName Value="Thermo"/>
         <CursorPos X="28" Y="32"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="11"/>
+        <TopLine Value="19"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -100,25 +98,101 @@
         <Filename Value="OpSimTestU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSimTestU"/>
-        <CursorPos X="37" Y="37"/>
-        <TopLine Value="4"/>
-        <EditorIndex Value="1"/>
-        <UsageCount Value="21"/>
+        <CursorPos X="40" Y="65"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="..\..\..\..\..\lazarus\fpcsrc\rtl\win32\classes.pp"/>
+        <UnitName Value="Classes"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\..\..\..\..\lazarus\fpcsrc\rtl\objpas\math.pp"/>
+        <UnitName Value="math"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\..\..\..\..\lazarus\components\fpcunit\guitestrunner.pas"/>
+        <ComponentName Value="GUITestRunner"/>
+        <HasResources Value="True"/>
+        <UnitName Value="GuiTestRunner"/>
+        <CursorPos X="41" Y="152"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit10>
     </Units>
-    <JumpHistory Count="1" HistoryIndex="0">
+    <JumpHistory Count="13" HistoryIndex="12">
       <Position1>
-        <Filename Value="OpSimTestU.pas"/>
-        <Caret Line="33" Column="33" TopLine="31"/>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="104" Column="10" TopLine="88"/>
       </Position1>
+      <Position2>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="34" Column="5" TopLine="18"/>
+      </Position2>
+      <Position3>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="107" Column="9" TopLine="98"/>
+      </Position3>
+      <Position4>
+        <Filename Value="..\engine\thermo\Thermo.pas"/>
+        <Caret Line="32" Column="36" TopLine="19"/>
+      </Position4>
+      <Position5>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="104" Column="9" TopLine="98"/>
+      </Position5>
+      <Position6>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="105" Column="1" TopLine="117"/>
+      </Position6>
+      <Position7>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="107" Column="1" TopLine="94"/>
+      </Position7>
+      <Position8>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="101" Column="1" TopLine="88"/>
+      </Position8>
+      <Position9>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="105" Column="1" TopLine="99"/>
+      </Position9>
+      <Position10>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="101" Column="1" TopLine="88"/>
+      </Position10>
+      <Position11>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="114" Column="1" TopLine="101"/>
+      </Position11>
+      <Position12>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="132" Column="3" TopLine="117"/>
+      </Position12>
+      <Position13>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="105" Column="5" TopLine="92"/>
+      </Position13>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
     <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="..\test\OpSimTest"/>
+    </Target>
     <SearchPaths>
-      <OtherUnitFiles Value="..\engine\thermo\;..\engine\solver\;..\engine\unitop\"/>
+      <OtherUnitFiles Value="..\engine\solver\;..\engine\thermo\;..\engine\unitop\"/>
+      <UnitOutputDirectory Value="..\build"/>
+      <SrcPath Value="$(LazarusDir)\lcl\;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)\"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
