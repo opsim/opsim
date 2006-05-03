@@ -105,8 +105,8 @@ begin
     AssertEquals(Count, PropertyProvider.Compounds.Count);
     //Check a few compound properties.
     for I := 0 to PropertyProvider.Compounds.Count - 1 do begin
-      AssertEquals(Compounds[I].CompID, PropertyProvider.Compounds[I].CompID);
-      AssertEquals(Compounds[I].CompName, PropertyProvider.Compounds[I].CompName);
+      AssertEquals(Items[I].CompID, PropertyProvider.Compounds[I].CompID);
+      AssertEquals(Items[I].CompName, PropertyProvider.Compounds[I].CompName);
     end;//for
   end;//with
 end;

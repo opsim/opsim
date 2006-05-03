@@ -94,10 +94,10 @@ type
     function FindCompound(ID: Variant): TCompound;
     procedure Notify(Item: TCollectionItem;  Action: TCollectionNotification); 
             override;
-    property Compounds[Index: Integer]: TCompound read GetItem write SetItem; 
-            default;
     property ImmiscibleComponent: Integer read FImmiscibleComponent write 
             FImmiscibleComponent;
+    property Items[Index: Integer]: TCompound read GetItem write SetItem; 
+            default;
   published
     property OnNotify: TCollectionNotifyEvent read FOnNotify write FOnNotify;
   end;
@@ -463,8 +463,8 @@ var
 begin
   Result := nil;
   for I := 0 to Count - 1 do
-    if Compounds[I].CompID = ID then begin
-      Result := Compounds[I];
+    if Items[I].CompID = ID then begin
+      Result := Items[I];
       Break;
     end;//if
 end;

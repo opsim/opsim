@@ -324,7 +324,7 @@ var
 begin
   with ACompounds do begin
     for i := 0 to Count - 1 do
-      with Compounds[I] do
+      with Items[I] do
         K1[i] := exp(5.3727 * (1 + W.Value) * (1 - 1 / (t / Tc.Value))) / (p / Pc.Value);
   end;//with
 end;
@@ -343,7 +343,7 @@ var
 begin
   with ACompounds do begin
     for i := 0 to Count - 1 do
-      with Compounds[I] do
+      with Items[I] do
         K2[i] := 1000000.0 * (t / Tc.Value) / (p / Pc.Value);
   end;//with
 end;
