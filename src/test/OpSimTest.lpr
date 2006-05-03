@@ -4,7 +4,7 @@ program OpSimTest;
 
 uses
   Interfaces, Forms, GuiTestRunner, TCompoundsTestCaseU,
-  TPropertyProviderTestCaseU, zcomponent;
+  TPropertyProviderTestCaseU, zcomponent, OpSimTestU;
 
 begin
   Application.Initialize;
