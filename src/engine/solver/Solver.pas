@@ -69,6 +69,12 @@ type
   TNLASolver = class (TSolver)
   end;
   
+  TDAESolver = class (TSolver)
+  end;
+  
+  TPDAESolver = class (TSolver)
+  end;
+  
 
 implementation
 
