@@ -55,11 +55,11 @@ type
   TEquations = class (TCollection)
   end;
   
-  TSolver = class (TPersistent)
+  TSolver = class (TObject)
   private
     FEquations: TEquations;
   public
-    procedure Solve;
+    procedure Solve; virtual;
     property Equations: TEquations read FEquations write FEquations;
   end;
   
