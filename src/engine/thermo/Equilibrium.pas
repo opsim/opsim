@@ -42,14 +42,20 @@ type
  * that paper directly and it is recommended to have a copy available if when*
  * trying to understand it.                                                  *
  *****************************************************************************}
-  TThreePhaseFlash = class (TObject)
+  TFlash = class (TObject)
+  private
+    FEos: TEos;
+  public
+    property Eos: TEos read FEos write FEos;
+  end;
+  
+  TThreePhaseFlash = class (TFlash)
     procedure EstK1Values(var K1: array of Real; ACompounds: TCompounds; P, T: 
             Real);
     function EstK2Values(var K2: array of Real; ACompounds: TCompounds; P, T: 
             Real): Variant;
     procedure TP(AMaterial: TMaterial; T, P: Real);
   private
-    FEos: TEos;
     function CalcdQ1dphi1(const K1,K2: array of Real; const AComposition: 
             TCompositions; phi1,phi2:Real): Real;
     function CalcdQ1dphi2(const K1,K2: array of Real; const AComposition: 
@@ -80,8 +86,6 @@ type
             TCompositions; LiquidFraction : Real): Real;
     procedure UpdateKValues(var VaporPhase, LiquidPhase: TPhase; var K:array of 
             Real);
-  public
-    property Eos: TEos read FEos write FEos;
   end;
   
   TEquilibriumServer = class (TObject)
