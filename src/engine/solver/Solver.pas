@@ -43,7 +43,7 @@ type
   
   - A model can contain several equations.
   }
-  TEquation = class (TPersistent)
+  TEquation = class (TCollectionItem)
   private
     FVariables: TList;
     function GetResidue: Real; virtual;
@@ -52,15 +52,15 @@ type
     property Variables: TList read FVariables write FVariables;
   end;
   
-  TEquationSet = class (TPersistent)
+  TEquations = class (TCollection)
   end;
   
   TSolver = class (TPersistent)
   private
-    FEquationSet: TEquationSet;
+    FEquations: TEquations;
   public
     procedure Solve;
-    property EquationSet: TEquationSet read FEquationSet write FEquationSet;
+    property Equations: TEquations read FEquations write FEquations;
   end;
   
   TLASolver = class (TSolver)

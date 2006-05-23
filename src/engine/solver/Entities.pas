@@ -92,27 +92,6 @@ type
     property Value: Variant read FValue write FValue;
   end;
   
-  {{
-  - Model equations should be in the form:
-  
-  RESIDUE = F(X1,...,Xn)
-  
-  - A model equation in the form LEFT = RIGHT
-  may be rewritten like:
-  
-  RESIDUE = RIGHT - LEFT
-  
-  - A model can contain several equations.
-  }
-  TEquation = class (TPersistent)
-  private
-    FVariables: TList;
-    function GetResidue: Real; virtual;
-  public
-    property Residue: Real read GetResidue;
-    property Variables: TList read FVariables write FVariables;
-  end;
-  
   TUnitOperation = class (TPersistent)
   private
     FEquations: TList;
@@ -220,13 +199,6 @@ end;
 procedure TValues.SetItem(Index: Integer; Value: TValue);
 begin
   inherited SetItem(Index, Value);
-end;
-
-{
-********************************** TEquation ***********************************
-}
-function TEquation.GetResidue: Real;
-begin
 end;
 
 {
