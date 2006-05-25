@@ -46,9 +46,11 @@ begin
     Connected := False;
     Protocol := 'firebird-2.0';
     {$ifdef unix}
-    Database := '../../app/' + 'SYSDATA.ODB';
+    //Database := '../../app/' + 'SYSDATA.ODB';
+    Database := 'SYSDATA.ODB';
     {$else}
-    Database := '..\..\app\' + 'SYSDATA.ODB';
+    //Database := '..\..\app\' + 'SYSDATA.ODB';
+    Database := 'SYSDATA.ODB';
     {$endif}
     User := 'sysdba';
     Password := 'masterkey';

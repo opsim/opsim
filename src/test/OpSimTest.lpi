@@ -7,7 +7,7 @@
       <MainUnit Value="0"/>
       <IconPath Value="./"/>
       <TargetFileExt Value=".exe"/>
-      <ActiveEditorIndexAtStart Value="0"/>
+      <ActiveEditorIndexAtStart Value="2"/>
     </General>
     <LazDoc Paths=""/>
     <PublishOptions>
@@ -37,7 +37,7 @@
         <PackageName Value="FCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="11">
+    <Units Count="13">
       <Unit0>
         <Filename Value="OpSimTest.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -49,7 +49,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="TThermoTestCaseU"/>
         <CursorPos X="44" Y="114"/>
-        <TopLine Value="107"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="33"/>
         <Loaded Value="True"/>
@@ -98,8 +98,8 @@
         <Filename Value="OpSimTestU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpSimTestU"/>
-        <CursorPos X="40" Y="65"/>
-        <TopLine Value="1"/>
+        <CursorPos X="7" Y="52"/>
+        <TopLine Value="42"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="25"/>
         <Loaded Value="True"/>
@@ -127,14 +127,33 @@
         <TopLine Value="1"/>
         <UsageCount Value="10"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="..\..\..\..\..\lazarus\components\zeosdbo_rework\src\plain\ZPlainLoader.pas"/>
+        <UnitName Value="ZPlainLoader"/>
+        <CursorPos X="1" Y="171"/>
+        <TopLine Value="158"/>
+        <UsageCount Value="10"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="..\..\..\..\..\lazarus\lcl\interfaces\win32\win32wscontrols.pp"/>
+        <UnitName Value="Win32WSControls"/>
+        <CursorPos X="1" Y="207"/>
+        <TopLine Value="194"/>
+        <UsageCount Value="10"/>
+      </Unit12>
     </Units>
-    <JumpHistory Count="0" HistoryIndex="-1"/>
+    <JumpHistory Count="1" HistoryIndex="0">
+      <Position1>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="114" Column="44" TopLine="107"/>
+      </Position1>
+    </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="..\test\OpSimTest"/>
+      <Filename Value="..\..\app\OpSimTest"/>
     </Target>
     <SearchPaths>
       <OtherUnitFiles Value="..\engine\solver\;..\engine\thermo\;..\engine\unitop\"/>
