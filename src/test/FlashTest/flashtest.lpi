@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <CONFIG>
   <ProjectOptions>
-    <PathDelim Value="/"/>
+    <PathDelim Value="\"/>
     <Version Value="5"/>
     <General>
       <MainUnit Value="0"/>
@@ -10,8 +10,10 @@
       <Title Value="FlashTest"/>
       <ActiveEditorIndexAtStart Value="6"/>
     </General>
+    <LazDoc Paths=""/>
     <PublishOptions>
       <Version Value="2"/>
+      <DestinationDirectory Value="$(TestDir)\publishedproject\"/>
       <IgnoreBinaries Value="False"/>
       <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
       <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
@@ -19,7 +21,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+        <LaunchingApplication PathPlusParams="\usr\X11R6\bin\xterm -T 'Lazarus Run Output' -e $(LazarusDir)\tools\runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
     <RequiredPackages Count="3">
@@ -58,13 +60,13 @@
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
-        <Filename Value="../../engine/thermo/ThermoProvider.pas"/>
+        <Filename Value="..\..\engine\thermo\ThermoProvider.pas"/>
         <UnitName Value="ThermoProvider"/>
         <UsageCount Value="58"/>
         <SyntaxHighlighter Value="Text"/>
       </Unit2>
       <Unit3>
-        <Filename Value="../../engine/thermo/Eos.pas"/>
+        <Filename Value="..\..\engine\thermo\Eos.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Eos"/>
         <CursorPos X="1" Y="1"/>
@@ -74,7 +76,7 @@
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="../../engine/thermo/Eos_Srk.pas"/>
+        <Filename Value="..\..\engine\thermo\Eos_Srk.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Eos_Srk"/>
         <CursorPos X="1" Y="1"/>
@@ -84,7 +86,7 @@
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="../../engine/thermo/Equilibrium.pas"/>
+        <Filename Value="..\..\engine\thermo\Equilibrium.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Equilibrium"/>
         <CursorPos X="30" Y="1"/>
@@ -94,20 +96,20 @@
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
-        <Filename Value="../../engine/thermo/Thermo.pas"/>
+        <Filename Value="..\..\engine\thermo\Thermo.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Thermo"/>
-        <CursorPos X="28" Y="32"/>
-        <TopLine Value="1"/>
+        <CursorPos X="24" Y="166"/>
+        <TopLine Value="770"/>
         <EditorIndex Value="6"/>
         <UsageCount Value="58"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="../../ise/DMBaseU.pas"/>
+        <Filename Value="..\..\ise\DMBaseU.pas"/>
         <ComponentName Value="DMBase"/>
         <HasResources Value="True"/>
-        <ResourceFilename Value="../../ise/DMBaseU.lrs"/>
+        <ResourceFilename Value="..\..\ise\DMBaseU.lrs"/>
         <UnitName Value="DMBaseU"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
@@ -119,7 +121,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="selectcomponents.lrs"/>
         <UnitName Value="SelectComponents"/>
-        <CursorPos X="19" Y="9"/>
+        <CursorPos X="1" Y="64"/>
         <TopLine Value="1"/>
         <EditorIndex Value="5"/>
         <UsageCount Value="58"/>
@@ -144,7 +146,7 @@
         <UsageCount Value="39"/>
       </Unit10>
       <Unit11>
-        <Filename Value="../../engine/solver/Entities.pas"/>
+        <Filename Value="..\..\engine\solver\Entities.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Entities"/>
         <CursorPos X="1" Y="215"/>
@@ -154,30 +156,52 @@
         <Loaded Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="/usr/share/fpcsrc/rtl/unix/classes.pp"/>
+        <Filename Value="\usr\share\fpcsrc\rtl\unix\classes.pp"/>
         <UnitName Value="Classes"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="2"/>
         <UsageCount Value="10"/>
       </Unit12>
     </Units>
-    <JumpHistory Count="1" HistoryIndex="0">
+    <JumpHistory Count="5" HistoryIndex="4">
       <Position1>
         <Filename Value="selectcomponents.pas"/>
-        <Caret Line="9" Column="29" TopLine="1"/>
+        <Caret Line="9" Column="19" TopLine="1"/>
       </Position1>
+      <Position2>
+        <Filename Value="selectcomponents.pas"/>
+        <Caret Line="67" Column="1" TopLine="42"/>
+      </Position2>
+      <Position3>
+        <Filename Value="..\..\engine\thermo\Thermo.pas"/>
+        <Caret Line="32" Column="28" TopLine="1"/>
+      </Position3>
+      <Position4>
+        <Filename Value="..\..\engine\thermo\Thermo.pas"/>
+        <Caret Line="413" Column="3" TopLine="1"/>
+      </Position4>
+      <Position5>
+        <Filename Value="..\..\engine\thermo\Thermo.pas"/>
+        <Caret Line="44" Column="14" TopLine="31"/>
+      </Position5>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
+    <PathDelim Value="\"/>
     <Target>
       <Filename Value="../../../app/FlashTest"/>
     </Target>
     <SearchPaths>
-      <OtherUnitFiles Value="/home/matt/OpSim/trunk/src/ise/;/home/matt/OpSim/trunk/src/;/home/matt/OpSim/trunk/src/engine/;/home/matt/OpSim/trunk/src/engine/solver/;/home/matt/OpSim/trunk/src/engine/thermo/"/>
-      <UnitOutputDirectory Value="/home/matt/OpSim/trunk/src/build"/>
-      <SrcPath Value="$(LazarusDir)/lcl/;$(LazarusDir)/lcl/interfaces/$(LCLWidgetType)/"/>
+      <OtherUnitFiles Value="..\..\ise\;..\..\src\;..\..\src\engine\;..\..\engine\solver\;..\..\engine\thermo\"/>
+      <UnitOutputDirectory Value="..\..\build"/>
+      <SrcPath Value="$(LazarusDir)\lcl\;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)\"/>
     </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <DelphiCompat Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
     <CodeGeneration>
       <Generate Value="Faster"/>
     </CodeGeneration>

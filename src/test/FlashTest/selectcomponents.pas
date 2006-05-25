@@ -61,8 +61,8 @@ begin
 end;
 
 initialization
-  {$I selectcomponents.lrs}
 
+  {$I selectcomponents.lrs}
 
 end.
 
