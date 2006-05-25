@@ -1,5 +1,3 @@
-{ This is an automatically generated lazarus resource file }
-
 LazarusResources.Add('TSelectComponentsForm','FORMDATA',[
   'TPF0'#21'TSelectComponentsForm'#20'SelectComponentsForm'#4'Left'#2'y'#6'Heig'
   +'ht'#3#159#1#3'Top'#3#177#0#5'Width'#3#206#2#18'HorzScrollBar.Page'#3#205#2

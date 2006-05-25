@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Buttons, DBCtrls, DBGrids,FlashTestDM;
+  Buttons, DBCtrls;
 
 type
 

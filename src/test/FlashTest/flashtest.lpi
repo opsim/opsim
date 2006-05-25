@@ -8,7 +8,7 @@
       <IconPath Value="./"/>
       <TargetFileExt Value=""/>
       <Title Value="FlashTest"/>
-      <ActiveEditorIndexAtStart Value="4"/>
+      <ActiveEditorIndexAtStart Value="6"/>
     </General>
     <PublishOptions>
       <Version Value="2"/>
@@ -51,8 +51,8 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="flashtestmainform.lrs"/>
         <UnitName Value="FlashTestMainForm"/>
-        <CursorPos X="1" Y="35"/>
-        <TopLine Value="25"/>
+        <CursorPos X="33" Y="47"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="58"/>
         <Loaded Value="True"/>
@@ -98,7 +98,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Thermo"/>
         <CursorPos X="28" Y="32"/>
-        <TopLine Value="14"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="6"/>
         <UsageCount Value="58"/>
         <Loaded Value="True"/>
@@ -119,7 +119,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="selectcomponents.lrs"/>
         <UnitName Value="SelectComponents"/>
-        <CursorPos X="28" Y="9"/>
+        <CursorPos X="19" Y="9"/>
         <TopLine Value="1"/>
         <EditorIndex Value="5"/>
         <UsageCount Value="58"/>
@@ -132,9 +132,7 @@
         <UnitName Value="FlashTestDataM"/>
         <CursorPos X="25" Y="24"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="8"/>
         <UsageCount Value="39"/>
-        <Loaded Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="flashtestdm.pas"/>
@@ -143,16 +141,14 @@
         <UnitName Value="FlashTestDM"/>
         <CursorPos X="6" Y="1"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="9"/>
         <UsageCount Value="39"/>
-        <Loaded Value="True"/>
       </Unit10>
       <Unit11>
         <Filename Value="../../engine/solver/Entities.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Entities"/>
         <CursorPos X="1" Y="215"/>
-        <TopLine Value="180"/>
+        <TopLine Value="175"/>
         <EditorIndex Value="4"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
@@ -165,43 +161,11 @@
         <UsageCount Value="10"/>
       </Unit12>
     </Units>
-    <JumpHistory Count="9" HistoryIndex="8">
+    <JumpHistory Count="1" HistoryIndex="0">
       <Position1>
-        <Filename Value="../../engine/solver/Entities.pas"/>
-        <Caret Line="215" Column="1" TopLine="175"/>
+        <Filename Value="selectcomponents.pas"/>
+        <Caret Line="9" Column="29" TopLine="1"/>
       </Position1>
-      <Position2>
-        <Filename Value="../../engine/thermo/Thermo.pas"/>
-        <Caret Line="18" Column="37" TopLine="14"/>
-      </Position2>
-      <Position3>
-        <Filename Value="../../engine/thermo/Thermo.pas"/>
-        <Caret Line="32" Column="28" TopLine="14"/>
-      </Position3>
-      <Position4>
-        <Filename Value="../../engine/solver/Entities.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
-      </Position4>
-      <Position5>
-        <Filename Value="../../engine/solver/Entities.pas"/>
-        <Caret Line="215" Column="1" TopLine="180"/>
-      </Position5>
-      <Position6>
-        <Filename Value="selectcomponents.pas"/>
-        <Caret Line="58" Column="16" TopLine="28"/>
-      </Position6>
-      <Position7>
-        <Filename Value="selectcomponents.pas"/>
-        <Caret Line="9" Column="28" TopLine="1"/>
-      </Position7>
-      <Position8>
-        <Filename Value="flashtestmainform.pas"/>
-        <Caret Line="37" Column="5" TopLine="16"/>
-      </Position8>
-      <Position9>
-        <Filename Value="../../engine/solver/Entities.pas"/>
-        <Caret Line="215" Column="1" TopLine="180"/>
-      </Position9>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
