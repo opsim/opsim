@@ -1,0 +1,96 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TSelectComponentsForm','FORMDATA',[
+  'TPF0'#21'TSelectComponentsForm'#20'SelectComponentsForm'#4'Left'#2'y'#6'Heig'
+  +'ht'#3#159#1#3'Top'#3#177#0#5'Width'#3#206#2#18'HorzScrollBar.Page'#3#205#2
+  +#18'VertScrollBar.Page'#3#158#1#13'ActiveControl'#7#19'AvailableComponents'#7
+  +'Caption'#6#17'Select Components'#12'ClientHeight'#3#159#1#11'ClientWidth'#3
+  +#206#2#13'PixelsPerInch'#2'_'#0#6'TLabel'#6'Label1'#4'Left'#2#16#6'Height'#2
+  +#17#3'Top'#2'('#5'Width'#3#161#0#9'Alignment'#7#8'taCenter'#7'Caption'#6#20
+  +'Available Components'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#6'TLabel'#6
+  +'Label2'#4'Left'#3'H'#1#6'Height'#2#17#3'Top'#2'('#5'Width'#3#160#0#9'Alignm'
+  +'ent'#7#8'taCenter'#7'Caption'#6#19'Selected Components'#5'Color'#7#6'clNone'
+  +#11'ParentColor'#8#0#0#8'TListBox'#19'AvailableComponents'#4'Left'#2#16#6'He'
+  +'ight'#3'P'#1#3'Top'#2'@'#5'Width'#3#8#1#8'TabOrder'#2#0#8'TopIndex'#2#255#0
+  +#0#8'TListBox'#18'SelectedComponents'#4'Left'#3'H'#1#6'Height'#3'P'#1#3'Top'
+  +#2'@'#5'Width'#3#8#1#8'TabOrder'#2#1#8'TopIndex'#2#255#0#0#7'TBitBtn'#7'AddC'
+  +'omp'#4'Left'#3' '#1#6'Height'#2#30#4'Hint'#6#13'Add Component'#3'Top'#3#184
+  +#0#5'Width'#2' '#25'BorderSpacing.InnerBorder'#2#2#10'Glyph.Data'#10#181#3#0
+  +#0#177#3#0#0'/* XPM */'#10'static char *graphic[] = {'#10'"24 24 15 1",'#10
+  +'". c None",'#10'", c #FFFFFF",'#10'"- c #EFEFEF",'#10'"* c #2B2B2B",'#10'"a'
+  +' c #C7C7C7",'#10'"b c #212121",'#10'"c c #0C0C0C",'#10'"d c #000000",'#10'"'
+  +'e c #CFCFCF",'#10'"f c #424242",'#10'"g c #080808",'#10'"h c #BFBFBF",'#10
+  +'"i c #040404",'#10'"j c #AFAFAF",'#10'"k c #232323",'#10'".................'
+  +'.......",'#10'"..........,,,...........",'#10'".........,,-,,..........",'
+  +#10'".........,,*a,,.........",'#10'".........,,bca,,........",'#10'".......'
+  +'..,,bdca,,.......",'#10'"...,,,,,,,,bddca,,......",'#10'"..,,,,,,,,,bdddca,'
+  +',.....",'#10'"..,efffffffgddddca,,....",'#10'"..,hdddddddddddddca,,...",'#10
+  +'"..,hddddddddddddddca,,..",'#10'"..,hdddddddddddddddca,..",'#10'"..,hdddddd'
+  +'dddddddddca,..",'#10'"..,hddddddddddddddca,,..",'#10'"..,hdddddddddddddca,,'
+  +'...",'#10'"..,abbbbbbbiddddca,,....",'#10'"..,,,,,,,,,bdddia,,.....",'#10'"'
+  +'...,,,,,,,,bddij,,......",'#10'".........,,bdij,,.......",'#10'".........,,'
+  +'bij,,........",'#10'".........,,kj,,.........",'#10'".........,,e,,........'
+  +'..",'#10'"..........,,,...........",'#10'"........................"}'#10#9
+  +'NumGlyphs'#2#0#7'OnClick'#7#12'AddCompClick'#8'TabOrder'#2#2#0#0#7'TBitBtn'
+  +#10'RemoveComp'#4'Left'#3' '#1#6'Height'#2#30#4'Hint'#6#16'Remove Component'
+  +#3'Top'#3#232#0#5'Width'#2' '#25'BorderSpacing.InnerBorder'#2#2#7'Caption'#6
+  +#7'BitBtn1'#10'Glyph.Data'#10#181#3#0#0#177#3#0#0'/* XPM */'#10'static char '
+  +'*graphic[] = {'#10'"24 24 15 1",'#10'". c None",'#10'", c #FFFFFF",'#10'"- '
+  +'c #EFEFEF",'#10'"* c #E7E7E7",'#10'"a c #292929",'#10'"b c #DFDFDF",'#10'"c'
+  +' c #000000",'#10'"d c #F7F7F7",'#10'"e c #3B3B3B",'#10'"f c #424242",'#10'"'
+  +'g c #A7A7A7",'#10'"h c #848484",'#10'"i c #181818",'#10'"j c #D7D7D7",'#10
+  +'"k c #878787",'#10'"........................",'#10'"...........,,,.........'
+  +'.",'#10'"..........,,-,,.........",'#10'".........,,*ab,.........",'#10'"..'
+  +'......,,*acb,.........",'#10'".......,,*accb,.........",'#10'"......,,*accc'
+  +'d,,,,,,,...",'#10'".....,,*acccc,,,,,,,,,..",'#10'"....,,decccccfffffffg,..'
+  +'",'#10'"...,,deccccccccccccch,..",'#10'"..,,decccccccccccccch,..",'#10'"..,'
+  +'deccccccccccccccch,..",'#10'"..,*iccccccccccccccch,..",'#10'"..,,jicccccccc'
+  +'cccccch,..",'#10'"...,,jiccccccccccccch,..",'#10'"....,,jicccccccccccck,.."'
+  +','#10'".....,,jicccc,,,,,,,,,..",'#10'"......,,jiccc,,,,,,,,...",'#10'"....'
+  +'...,,jicc,,.........",'#10'"........,,jic,,.........",'#10'".........,,ji,,'
+  +'.........",'#10'"..........,,b,,.........",'#10'"...........,,,..........",'
+  +#10'"........................"}'#10#9'NumGlyphs'#2#0#7'OnClick'#7#15'RemoveC'
+  +'ompClick'#8'TabOrder'#2#3#0#0#7'TBitBtn'#10'MoveUpComp'#4'Left'#3'X'#2#6'He'
+  +'ight'#2#30#4'Hint'#6#17'Move Component Up'#3'Top'#3#184#0#5'Width'#2' '#25
+  +'BorderSpacing.InnerBorder'#2#2#10'Glyph.Data'#10#196#3#0#0#192#3#0#0'/* XPM'
+  +' */'#10'static char *graphic[] = {'#10'"24 24 16 1",'#10'". c None",'#10'",'
+  +' c #FFFFFF",'#10'"- c #E7E7E7",'#10'"* c #DFDFDF",'#10'"a c #292929",'#10'"'
+  +'b c #181818",'#10'"c c #D7D7D7",'#10'"d c #000000",'#10'"e c #CFCFCF",'#10
+  +'"f c #F7F7F7",'#10'"g c #0C0C0C",'#10'"h c #424242",'#10'"i c #212121",'#10
+  +'"j c #9F9F9F",'#10'"k c #848484",'#10'"l c #979797",'#10'".................'
+  +'.......",'#10'"........................",'#10'"..........,,,,..........",'
+  +#10'".........,,-*,,.........",'#10'"........,,-abc,,........",'#10'".......'
+  +',,-addbc,,.......",'#10'"......,,-addddbc,,......",'#10'".....,,-addddddbc,'
+  +',.....",'#10'"....,,-addddddddbc,,....",'#10'"...,,-addddddddddbc,,...",'#10
+  +'"..,,-addddddddddddbc,,..",'#10'".,,-addddddddddddddbe,,.",'#10'".,fadddddd'
+  +'ddddddddddge,.",'#10'".,,,,,,,hddddddi,,,**f,.",'#10'"..,,,,,,hddddddi,,,,,'
+  +',,.",'#10'"......,,hddddddi,,......",'#10'"......,,hddddddi,,......",'#10'"'
+  ,'......,,hddddddi,,......",'#10'"......,,hddddddi,,......",'#10'"......,,hdd'
+  +'ddddi,,......",'#10'"......,,jkkkkkkl,,......",'#10'".......,,,,,,,,,,.....'
+  +'..",'#10'"........................",'#10'"........................"}'#10#9
+  +'NumGlyphs'#2#0#8'TabOrder'#2#4#0#0#7'TBitBtn'#12'MoveDownComp'#4'Left'#3'X'
+  +#2#6'Height'#2#30#4'Hint'#6#19'Move Component Down'#3'Top'#3#232#0#5'Width'#2
+  +' '#25'BorderSpacing.InnerBorder'#2#2#7'Caption'#6#7'BitBtn1'#10'Glyph.Data'
+  +#10#196#3#0#0#192#3#0#0'/* XPM */'#10'static char *graphic[] = {'#10'"24 24 '
+  +'16 1",'#10'". c None",'#10'", c #FFFFFF",'#10'"- c #9F9F9F",'#10'"* c #8484'
+  +'84",'#10'"a c #979797",'#10'"b c #424242",'#10'"c c #000000",'#10'"d c #212'
+  +'121",'#10'"e c #DFDFDF",'#10'"f c #F7F7F7",'#10'"g c #292929",'#10'"h c #0C'
+  +'0C0C",'#10'"i c #CFCFCF",'#10'"j c #E7E7E7",'#10'"k c #181818",'#10'"l c #D'
+  +'7D7D7",'#10'"........................",'#10'"........................",'#10
+  +'".......,,,,,,,,,,.......",'#10'"......,,-******a,,......",'#10'"......,,bc'
+  +'cccccd,,......",'#10'"......,,bccccccd,,......",'#10'"......,,bccccccd,,...'
+  +'...",'#10'"......,,bccccccd,,......",'#10'"......,,bccccccd,,......",'#10'"'
+  +'..,,,,,,bccccccd,,,,,,,.",'#10'".,,,,,,,bccccccd,,,eef,.",'#10'".,fgccccccc'
+  +'ccccccccchi,.",'#10'".,,jgccccccccccccccki,,.",'#10'"..,,jgcccccccccccckl,,'
+  +'..",'#10'"...,,jgcccccccccckl,,...",'#10'"....,,jgcccccccckl,,....",'#10'".'
+  +'....,,jgcccccckl,,.....",'#10'"......,,jgcccckl,,......",'#10'".......,,jgc'
+  +'ckl,,.......",'#10'"........,,jgkl,,........",'#10'".........,,je,,........'
+  +'.",'#10'"..........,,,,..........",'#10'"........................",'#10'"..'
+  +'......................"}'#10#9'NumGlyphs'#2#0#8'TabOrder'#2#5#0#0#7'TBitBtn'
+  +#7'BitBtn5'#4'Left'#3'h'#2#6'Height'#2#30#3'Top'#3'H'#1#5'Width'#2'X'#25'Bor'
+  +'derSpacing.InnerBorder'#2#2#7'Caption'#6#3'&OK'#7'Default'#9#4'Kind'#7#4'bk'
+  +'OK'#11'ModalResult'#2#1#9'NumGlyphs'#2#0#8'TabOrder'#2#6#0#0#7'TBitBtn'#7'B'
+  +'itBtn6'#4'Left'#3'h'#2#6'Height'#2#30#3'Top'#3'r'#1#5'Width'#2'X'#25'Border'
+  +'Spacing.InnerBorder'#2#2#7'Caption'#6#6'Cancel'#4'Kind'#7#8'bkCancel'#11'Mo'
+  +'dalResult'#2#2#9'NumGlyphs'#2#0#8'TabOrder'#2#7#0#0#0
+]);

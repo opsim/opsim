@@ -1,0 +1,65 @@
+object MainForm: TMainForm
+  Left = 222
+  Height = 221
+  Top = 228
+  Width = 201
+  HorzScrollBar.Page = 200
+  VertScrollBar.Page = 220
+  ActiveControl = ToggleBox1
+  Caption = 'Flash Test'
+  ClientHeight = 221
+  ClientWidth = 201
+  PixelsPerInch = 95
+  object ToggleBox1: TToggleBox
+    Left = 16
+    Height = 25
+    Top = 24
+    Width = 170
+    Caption = 'Database Connect'
+    OnClick = ToggleBox1Click
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 16
+    Height = 25
+    Top = 64
+    Width = 170
+    BorderSpacing.InnerBorder = 2
+    Caption = 'Select Components'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 16
+    Height = 25
+    Top = 104
+    Width = 170
+    BorderSpacing.InnerBorder = 2
+    Caption = 'Flash Test'
+    TabOrder = 2
+  end
+  object Button3: TButton
+    Left = 16
+    Height = 25
+    Top = 144
+    Width = 170
+    BorderSpacing.InnerBorder = 2
+    Caption = 'Quit'
+    OnClick = Button3Click
+    TabOrder = 3
+  end
+  object DBConnection: TZConnection
+    Protocol = 'firebird-2.0'
+    Database = '/home/matt/OpSim/trunk/app/SYSDATA.ODB'
+    User = 'sysdba'
+    Password = 'masterkey'
+    left = 186
+    top = 42
+  end
+  object DBTable: TZTable
+    Connection = DBConnection
+    TableName = 'PROPS_PURE_SUBST_RAW'
+    left = 186
+    top = 80
+  end
+end

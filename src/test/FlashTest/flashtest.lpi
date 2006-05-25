@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <PathDelim Value="/"/>
+    <Version Value="5"/>
+    <General>
+      <MainUnit Value="0"/>
+      <IconPath Value="./"/>
+      <TargetFileExt Value=""/>
+      <Title Value="FlashTest"/>
+      <ActiveEditorIndexAtStart Value="4"/>
+    </General>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="3">
+      <Item1>
+        <PackageName Value="zcomponent"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="FCL"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item3>
+    </RequiredPackages>
+    <Units Count="13">
+      <Unit0>
+        <Filename Value="flashtest.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="flashtest"/>
+        <CursorPos X="46" Y="12"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="7"/>
+        <UsageCount Value="58"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="flashtestmainform.pas"/>
+        <ComponentName Value="MainForm"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="flashtestmainform.lrs"/>
+        <UnitName Value="FlashTestMainForm"/>
+        <CursorPos X="1" Y="35"/>
+        <TopLine Value="25"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="58"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="../../engine/thermo/ThermoProvider.pas"/>
+        <UnitName Value="ThermoProvider"/>
+        <UsageCount Value="58"/>
+        <SyntaxHighlighter Value="Text"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../../engine/thermo/Eos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Eos"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="58"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="../../engine/thermo/Eos_Srk.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Eos_Srk"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="58"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../../engine/thermo/Equilibrium.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Equilibrium"/>
+        <CursorPos X="30" Y="1"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="58"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="../../engine/thermo/Thermo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Thermo"/>
+        <CursorPos X="28" Y="32"/>
+        <TopLine Value="14"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="58"/>
+        <Loaded Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../../ise/DMBaseU.pas"/>
+        <ComponentName Value="DMBase"/>
+        <HasResources Value="True"/>
+        <ResourceFilename Value="../../ise/DMBaseU.lrs"/>
+        <UnitName Value="DMBaseU"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="16"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="selectcomponents.pas"/>
+        <ComponentName Value="SelectComponentsForm"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="selectcomponents.lrs"/>
+        <UnitName Value="SelectComponents"/>
+        <CursorPos X="28" Y="9"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="5"/>
+        <UsageCount Value="58"/>
+        <Loaded Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="flashtestdatam.pas"/>
+        <ComponentName Value="Form1"/>
+        <ResourceFilename Value="flashtestdatam.lrs"/>
+        <UnitName Value="FlashTestDataM"/>
+        <CursorPos X="25" Y="24"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="8"/>
+        <UsageCount Value="39"/>
+        <Loaded Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="flashtestdm.pas"/>
+        <ComponentName Value="DataModule1"/>
+        <ResourceFilename Value="flashtestdm.lrs"/>
+        <UnitName Value="FlashTestDM"/>
+        <CursorPos X="6" Y="1"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="9"/>
+        <UsageCount Value="39"/>
+        <Loaded Value="True"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../../engine/solver/Entities.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Entities"/>
+        <CursorPos X="1" Y="215"/>
+        <TopLine Value="180"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="/usr/share/fpcsrc/rtl/unix/classes.pp"/>
+        <UnitName Value="Classes"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="2"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+    </Units>
+    <JumpHistory Count="9" HistoryIndex="8">
+      <Position1>
+        <Filename Value="../../engine/solver/Entities.pas"/>
+        <Caret Line="215" Column="1" TopLine="175"/>
+      </Position1>
+      <Position2>
+        <Filename Value="../../engine/thermo/Thermo.pas"/>
+        <Caret Line="18" Column="37" TopLine="14"/>
+      </Position2>
+      <Position3>
+        <Filename Value="../../engine/thermo/Thermo.pas"/>
+        <Caret Line="32" Column="28" TopLine="14"/>
+      </Position3>
+      <Position4>
+        <Filename Value="../../engine/solver/Entities.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position4>
+      <Position5>
+        <Filename Value="../../engine/solver/Entities.pas"/>
+        <Caret Line="215" Column="1" TopLine="180"/>
+      </Position5>
+      <Position6>
+        <Filename Value="selectcomponents.pas"/>
+        <Caret Line="58" Column="16" TopLine="28"/>
+      </Position6>
+      <Position7>
+        <Filename Value="selectcomponents.pas"/>
+        <Caret Line="9" Column="28" TopLine="1"/>
+      </Position7>
+      <Position8>
+        <Filename Value="flashtestmainform.pas"/>
+        <Caret Line="37" Column="5" TopLine="16"/>
+      </Position8>
+      <Position9>
+        <Filename Value="../../engine/solver/Entities.pas"/>
+        <Caret Line="215" Column="1" TopLine="180"/>
+      </Position9>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="5"/>
+    <Target>
+      <Filename Value="../../../app/FlashTest"/>
+    </Target>
+    <SearchPaths>
+      <OtherUnitFiles Value="/home/matt/OpSim/trunk/src/ise/;/home/matt/OpSim/trunk/src/;/home/matt/OpSim/trunk/src/engine/;/home/matt/OpSim/trunk/src/engine/solver/;/home/matt/OpSim/trunk/src/engine/thermo/"/>
+      <UnitOutputDirectory Value="/home/matt/OpSim/trunk/src/build"/>
+      <SrcPath Value="$(LazarusDir)/lcl/;$(LazarusDir)/lcl/interfaces/$(LCLWidgetType)/"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <Generate Value="Faster"/>
+    </CodeGeneration>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+</CONFIG>
