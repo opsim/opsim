@@ -31,7 +31,7 @@ uses
   SysUtils, Classes, Variants, Entities, Thermo, Math;
 
 type
-  {{
+  {:
   - Base class for all equations of state.
   - Can solve completely a phase through its static Solve method. It is 
   designed in order that this is the only method a TFlash class needs to call 
@@ -46,7 +46,7 @@ type
     function CalcFugacityCoefficients(APhase: TPhase): TValueRec; virtual;
     function FindRoots(APhase: TPhase): Variant; virtual;
   public
-    {{
+    {:
     - Completly solves the phase object with the equation of state. After 
     excuting 
     this method, the compressibility factor and fugacity coefficients for the 

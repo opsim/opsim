@@ -102,7 +102,7 @@ type
     property OnNotify: TCollectionNotifyEvent read FOnNotify write FOnNotify;
   end;
   
-  {{
+  {:
   Holds compound information that is specific for a phase.
   }
   TComposition = class (TCollectionItem)
@@ -130,7 +130,7 @@ type
             default;
   end;
   
-  {{
+  {:
   - A phase is a stable or metastable collection of compounds with a defined
   amount of substance and a homogeneous composition. It has an associated state
   of aggregation, e.g. liquid. A given phase can be distinguished from others
@@ -181,7 +181,7 @@ type
     property MassFlow: TValueRec read GetMassFlow;
     property Material: TMaterial read FMaterial write FMaterial;
     property MoleFlow: TValueRec read GetMoleFlow;
-    {{
+    {:
     This is the specific molar volume of the phase.
     }
     property MoleVolume: TValueRec read FMoleVolume write FMoleVolume;
@@ -206,7 +206,7 @@ type
     property Owner: TMaterial read FOwner write FOwner;
   end;
   
-  {{
+  {:
   - A material is a mixture of one or more compounds occurring in one or more
   phases. A material is characterised by the values of physical properties,
   which can describe the overall material or the compounds within particular
@@ -233,7 +233,7 @@ type
     constructor Create;
     destructor Destroy; override;
     procedure Assign(Source: TPersistent); override;
-    {{
+    {:
     This method is responsible for delegating flash calculations to the
     associated Property Package or Equilibrium Server. It must set the amounts,
     compositions, temperature and pressure for all phases present at
@@ -241,25 +241,25 @@ type
     mixture, if not set as part of the calculation specifications.
     }
     procedure CalcEquilibrium;
-    {{
+    {:
     Verify if extensive properties of the material matches the summation over 
     all phases.
     }
     function CheckBalance: Boolean;
-    {{
+    {:
     - Compositions and additional information for each component in the 
     material.
     - This array holds overall (not for phase) concentrations, flow rates and 
     possibly other properties.
     }
     property Compositions: TCompositions read FCompositions write FCompositions;
-    {{
+    {:
     This is the list of compounds found in the material object.
     }
     property Compounds: TCompounds read FCompounds write FCompounds;
     property MassFlow: TValueRec read FMassFlow write FMassFlow;
     property MoleFlow: TValueRec read FMoleFlow write FMoleFlow;
-    {{
+    {:
     The list of phases present in the material object. Most commonly, there
     will be only one phase.
     }

@@ -45,7 +45,7 @@ type
     UserDefined: Boolean;
   end;
   
-  {{
+  {:
   Implements a dynamic array of TValues.
   }
   TValueArray = class (TObject)

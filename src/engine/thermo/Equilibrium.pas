@@ -90,7 +90,7 @@ type
   
   TEquilibriumServer = class (TObject)
   public
-    {{
+    {:
     - This routine will calculate the equilibrium properties for the given 
     material object by performing a flash calculation.
     - It may delegate the operation to specialized service flash classes.

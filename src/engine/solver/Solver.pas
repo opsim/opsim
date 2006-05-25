@@ -31,7 +31,7 @@ uses
   SysUtils, Classes;
 
 type
-  {{
+  {:
   - Model equations should be in the form:
   
   RESIDUE = F(X1,...,Xn)
@@ -52,20 +52,20 @@ type
     property Variables: TList read FVariables write FVariables;
   end;
   
-  {{
+  {:
   - Defines a linear system of equations.
   }
   TAlgebraicEquation = class (TEquation)
   end;
   
-  {{
+  {:
   - Inherits from class TAlgebraicEquation and refines it to define a mixed set 
   of differential and algebraic equations.
   }
   TDifferentialAlgebraicEquation = class (TAlgebraicEquation)
   end;
   
-  {{
+  {:
   - The definition of large sets of nonlinear equations of any kind generally 
   requires a large amount of relatively complex data. This has led us to 
   introduce the concept of an Equation Set Object (ESO) as a means of defining 
