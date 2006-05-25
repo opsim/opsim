@@ -42,6 +42,8 @@ var
 begin
   If ToggleBox1.State = cbChecked then
       begin
+       TempString := ExtractFilePath(Application.ExeName) + 'SYSDATA.ODB';
+       DBConnection.Database:= TempString;
        DBConnection.Connected := True;
        DBTable.Active:=True;
        SelectComponentsForm.AvailableComponents.Clear;

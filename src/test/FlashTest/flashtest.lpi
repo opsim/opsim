@@ -36,14 +36,14 @@
         <MinVersion Major="1" Valid="True"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="13">
+    <Units Count="15">
       <Unit0>
         <Filename Value="flashtest.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="flashtest"/>
         <CursorPos X="46" Y="12"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="58"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -53,8 +53,8 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="flashtestmainform.lrs"/>
         <UnitName Value="FlashTestMainForm"/>
-        <CursorPos X="33" Y="47"/>
-        <TopLine Value="1"/>
+        <CursorPos X="1" Y="45"/>
+        <TopLine Value="31"/>
         <EditorIndex Value="0"/>
         <UsageCount Value="58"/>
         <Loaded Value="True"/>
@@ -100,8 +100,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Thermo"/>
         <CursorPos X="24" Y="166"/>
-        <TopLine Value="770"/>
-        <EditorIndex Value="6"/>
+        <TopLine Value="764"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="58"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -111,8 +111,8 @@
         <HasResources Value="True"/>
         <ResourceFilename Value="..\..\ise\DMBaseU.lrs"/>
         <UnitName Value="DMBaseU"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
+        <CursorPos X="64" Y="56"/>
+        <TopLine Value="53"/>
         <UsageCount Value="16"/>
       </Unit7>
       <Unit8>
@@ -156,34 +156,35 @@
         <Loaded Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="\usr\share\fpcsrc\rtl\unix\classes.pp"/>
+        <Filename Value="usr\share\fpcsrc\rtl\unix\classes.pp"/>
         <UnitName Value="Classes"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="2"/>
         <UsageCount Value="10"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="..\..\..\..\..\lazarus\zeosdbo_rework\src\plain\ZPlainLoader.pas"/>
+        <UnitName Value="ZPlainLoader"/>
+        <CursorPos X="1" Y="171"/>
+        <TopLine Value="155"/>
+        <EditorIndex Value="8"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="..\..\..\..\..\lazarus\lcl\interfaces\win32\win32listsl.inc"/>
+        <CursorPos X="1" Y="184"/>
+        <TopLine Value="168"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit14>
     </Units>
-    <JumpHistory Count="5" HistoryIndex="4">
+    <JumpHistory Count="1" HistoryIndex="0">
       <Position1>
         <Filename Value="selectcomponents.pas"/>
-        <Caret Line="9" Column="19" TopLine="1"/>
+        <Caret Line="64" Column="1" TopLine="1"/>
       </Position1>
-      <Position2>
-        <Filename Value="selectcomponents.pas"/>
-        <Caret Line="67" Column="1" TopLine="42"/>
-      </Position2>
-      <Position3>
-        <Filename Value="..\..\engine\thermo\Thermo.pas"/>
-        <Caret Line="32" Column="28" TopLine="1"/>
-      </Position3>
-      <Position4>
-        <Filename Value="..\..\engine\thermo\Thermo.pas"/>
-        <Caret Line="413" Column="3" TopLine="1"/>
-      </Position4>
-      <Position5>
-        <Filename Value="..\..\engine\thermo\Thermo.pas"/>
-        <Caret Line="44" Column="14" TopLine="31"/>
-      </Position5>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

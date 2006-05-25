@@ -9,7 +9,7 @@ object MainForm: TMainForm
   Caption = 'Flash Test'
   ClientHeight = 221
   ClientWidth = 201
-  PixelsPerInch = 95
+  PixelsPerInch = 96
   object ToggleBox1: TToggleBox
     Left = 16
     Height = 25

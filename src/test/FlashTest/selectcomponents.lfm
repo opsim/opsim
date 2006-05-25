@@ -94,7 +94,6 @@ object SelectComponentsForm: TSelectComponentsForm
     Top = 232
     Width = 32
     BorderSpacing.InnerBorder = 2
-    Caption = 'BitBtn1'
     Glyph.Data = {
       B10300002F2A2058504D202A2F0A7374617469632063686172202A6772617068
       69635B5D203D207B0A2232342032342031352031222C0A222E2063204E6F6E65
@@ -181,7 +180,6 @@ object SelectComponentsForm: TSelectComponentsForm
     Top = 232
     Width = 32
     BorderSpacing.InnerBorder = 2
-    Caption = 'BitBtn1'
     Glyph.Data = {
       C00300002F2A2058504D202A2F0A7374617469632063686172202A6772617068
       69635B5D203D207B0A2232342032342031362031222C0A222E2063204E6F6E65
