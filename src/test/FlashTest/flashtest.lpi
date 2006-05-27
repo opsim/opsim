@@ -4,11 +4,11 @@
     <PathDelim Value="\"/>
     <Version Value="5"/>
     <General>
+      <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
       <IconPath Value="./"/>
       <TargetFileExt Value=""/>
       <Title Value="FlashTest"/>
-      <ActiveEditorIndexAtStart Value="6"/>
     </General>
     <LazDoc Paths=""/>
     <PublishOptions>
@@ -36,16 +36,11 @@
         <MinVersion Major="1" Valid="True"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="15">
+    <Units Count="8">
       <Unit0>
         <Filename Value="flashtest.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="flashtest"/>
-        <CursorPos X="46" Y="12"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="9"/>
-        <UsageCount Value="58"/>
-        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="flashtestmainform.pas"/>
@@ -53,139 +48,40 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="flashtestmainform.lrs"/>
         <UnitName Value="FlashTestMainForm"/>
-        <CursorPos X="1" Y="45"/>
-        <TopLine Value="31"/>
-        <EditorIndex Value="0"/>
-        <UsageCount Value="58"/>
-        <Loaded Value="True"/>
       </Unit1>
       <Unit2>
-        <Filename Value="..\..\engine\thermo\ThermoProvider.pas"/>
-        <UnitName Value="ThermoProvider"/>
-        <UsageCount Value="58"/>
-        <SyntaxHighlighter Value="Text"/>
-      </Unit2>
-      <Unit3>
         <Filename Value="..\..\engine\thermo\Eos.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Eos"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="2"/>
-        <UsageCount Value="58"/>
-        <Loaded Value="True"/>
-      </Unit3>
-      <Unit4>
+      </Unit2>
+      <Unit3>
         <Filename Value="..\..\engine\thermo\Eos_Srk.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Eos_Srk"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="1"/>
-        <UsageCount Value="58"/>
-        <Loaded Value="True"/>
-      </Unit4>
-      <Unit5>
+      </Unit3>
+      <Unit4>
         <Filename Value="..\..\engine\thermo\Equilibrium.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Equilibrium"/>
-        <CursorPos X="30" Y="1"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="58"/>
-        <Loaded Value="True"/>
-      </Unit5>
-      <Unit6>
+      </Unit4>
+      <Unit5>
         <Filename Value="..\..\engine\thermo\Thermo.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Thermo"/>
-        <CursorPos X="24" Y="166"/>
-        <TopLine Value="764"/>
-        <EditorIndex Value="7"/>
-        <UsageCount Value="58"/>
-        <Loaded Value="True"/>
-      </Unit6>
-      <Unit7>
-        <Filename Value="..\..\ise\DMBaseU.pas"/>
-        <ComponentName Value="DMBase"/>
-        <HasResources Value="True"/>
-        <ResourceFilename Value="..\..\ise\DMBaseU.lrs"/>
-        <UnitName Value="DMBaseU"/>
-        <CursorPos X="64" Y="56"/>
-        <TopLine Value="53"/>
-        <UsageCount Value="16"/>
-      </Unit7>
-      <Unit8>
+      </Unit5>
+      <Unit6>
         <Filename Value="selectcomponents.pas"/>
         <ComponentName Value="SelectComponentsForm"/>
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="selectcomponents.lrs"/>
         <UnitName Value="SelectComponents"/>
-        <CursorPos X="1" Y="64"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="5"/>
-        <UsageCount Value="58"/>
-        <Loaded Value="True"/>
-      </Unit8>
-      <Unit9>
-        <Filename Value="flashtestdatam.pas"/>
-        <ComponentName Value="Form1"/>
-        <ResourceFilename Value="flashtestdatam.lrs"/>
-        <UnitName Value="FlashTestDataM"/>
-        <CursorPos X="25" Y="24"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="39"/>
-      </Unit9>
-      <Unit10>
-        <Filename Value="flashtestdm.pas"/>
-        <ComponentName Value="DataModule1"/>
-        <ResourceFilename Value="flashtestdm.lrs"/>
-        <UnitName Value="FlashTestDM"/>
-        <CursorPos X="6" Y="1"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="39"/>
-      </Unit10>
-      <Unit11>
+      </Unit6>
+      <Unit7>
         <Filename Value="..\..\engine\solver\Entities.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Entities"/>
-        <CursorPos X="1" Y="215"/>
-        <TopLine Value="175"/>
-        <EditorIndex Value="4"/>
-        <UsageCount Value="20"/>
-        <Loaded Value="True"/>
-      </Unit11>
-      <Unit12>
-        <Filename Value="usr\share\fpcsrc\rtl\unix\classes.pp"/>
-        <UnitName Value="Classes"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="2"/>
-        <UsageCount Value="10"/>
-      </Unit12>
-      <Unit13>
-        <Filename Value="..\..\..\..\..\lazarus\zeosdbo_rework\src\plain\ZPlainLoader.pas"/>
-        <UnitName Value="ZPlainLoader"/>
-        <CursorPos X="1" Y="171"/>
-        <TopLine Value="155"/>
-        <EditorIndex Value="8"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit13>
-      <Unit14>
-        <Filename Value="..\..\..\..\..\lazarus\lcl\interfaces\win32\win32listsl.inc"/>
-        <CursorPos X="1" Y="184"/>
-        <TopLine Value="168"/>
-        <EditorIndex Value="6"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit14>
+      </Unit7>
     </Units>
-    <JumpHistory Count="1" HistoryIndex="0">
-      <Position1>
-        <Filename Value="selectcomponents.pas"/>
-        <Caret Line="64" Column="1" TopLine="1"/>
-      </Position1>
-    </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
