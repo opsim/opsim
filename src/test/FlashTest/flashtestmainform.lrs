@@ -4,19 +4,20 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   'TPF0'#9'TMainForm'#8'MainForm'#4'Left'#3#222#0#6'Height'#3#221#0#3'Top'#3#228
   +#0#5'Width'#3#201#0#18'HorzScrollBar.Page'#3#200#0#18'VertScrollBar.Page'#3
   +#220#0#13'ActiveControl'#7#10'ToggleBox1'#7'Caption'#6#10'Flash Test'#12'Cli'
-  +'entHeight'#3#221#0#11'ClientWidth'#3#201#0#13'PixelsPerInch'#2'`'#0#10'TTog'
+  +'entHeight'#3#221#0#11'ClientWidth'#3#201#0#13'PixelsPerInch'#2'_'#0#10'TTog'
   +'gleBox'#10'ToggleBox1'#4'Left'#2#16#6'Height'#2#25#3'Top'#2#24#5'Width'#3
   +#170#0#7'Caption'#6#16'Database Connect'#7'OnClick'#7#15'ToggleBox1Click'#8
   +'TabOrder'#2#0#0#0#7'TButton'#7'Button1'#4'Left'#2#16#6'Height'#2#25#3'Top'#2
   +'@'#5'Width'#3#170#0#25'BorderSpacing.InnerBorder'#2#2#7'Caption'#6#17'Selec'
   +'t Components'#7'OnClick'#7#12'Button1Click'#8'TabOrder'#2#1#0#0#7'TButton'#7
   +'Button2'#4'Left'#2#16#6'Height'#2#25#3'Top'#2'h'#5'Width'#3#170#0#25'Border'
-  +'Spacing.InnerBorder'#2#2#7'Caption'#6#10'Flash Test'#8'TabOrder'#2#2#0#0#7
-  +'TButton'#7'Button3'#4'Left'#2#16#6'Height'#2#25#3'Top'#3#144#0#5'Width'#3
-  +#170#0#25'BorderSpacing.InnerBorder'#2#2#7'Caption'#6#4'Quit'#7'OnClick'#7#12
-  +'Button3Click'#8'TabOrder'#2#3#0#0#12'TZConnection'#12'DBConnection'#8'Proto'
-  +'col'#6#12'firebird-2.0'#8'Database'#6'&/home/matt/OpSim/trunk/app/SYSDATA.O'
-  +'DB'#4'User'#6#6'sysdba'#8'Password'#6#9'masterkey'#4'left'#3#186#0#3'top'#2
-  +'*'#0#0#7'TZTable'#7'DBTable'#10'Connection'#7#12'DBConnection'#9'TableName'
-  +#6#20'PROPS_PURE_SUBST_RAW'#4'left'#3#186#0#3'top'#2'P'#0#0#0
+  +'Spacing.InnerBorder'#2#2#7'Caption'#6#10'Flash Test'#7'OnClick'#7#12'Button'
+  +'2Click'#8'TabOrder'#2#2#0#0#7'TButton'#7'Button3'#4'Left'#2#16#6'Height'#2
+  +#25#3'Top'#3#144#0#5'Width'#3#170#0#25'BorderSpacing.InnerBorder'#2#2#7'Capt'
+  +'ion'#6#4'Quit'#7'OnClick'#7#12'Button3Click'#8'TabOrder'#2#3#0#0#12'TZConne'
+  +'ction'#12'DBConnection'#8'Protocol'#6#12'firebird-2.0'#8'Database'#6'&/home'
+  +'/matt/OpSim/trunk/app/SYSDATA.ODB'#4'User'#6#6'sysdba'#8'Password'#6#9'mast'
+  +'erkey'#4'left'#3#186#0#3'top'#2'*'#0#0#7'TZTable'#7'DBTable'#10'Connection'
+  +#7#12'DBConnection'#9'TableName'#6#20'PROPS_PURE_SUBST_RAW'#4'left'#3#186#0#3
+  +'top'#2'P'#0#0#0
 ]);

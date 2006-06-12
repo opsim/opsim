@@ -1,0 +1,107 @@
+object FlashForm: TFlashForm
+  Left = 693
+  Height = 382
+  Top = 175
+  Width = 552
+  HorzScrollBar.Page = 551
+  VertScrollBar.Page = 381
+  Caption = 'Flash Stream'
+  ClientHeight = 382
+  ClientWidth = 552
+  PixelsPerInch = 95
+  object Label1: TLabel
+    Left = 56
+    Height = 17
+    Top = 311
+    Width = 93
+    Caption = 'Temperature'
+    Color = clNone
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 56
+    Height = 17
+    Top = 342
+    Width = 67
+    Caption = 'Pressure'
+    Color = clNone
+    ParentColor = False
+  end
+  object StringGrid1: TStringGrid
+    Left = 48
+    Height = 248
+    Top = 40
+    Width = 472
+    ColCount = 5
+    FixedColor = clBtnFace
+    GridLineWidth = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goSmoothScroll]
+    RowCount = 5
+    ScrollBars = ssBoth
+    TabOrder = 0
+    TabStop = True
+    VisibleColCount = 4
+    VisibleRowCount = 4
+    ColWidths = (
+      129
+      77
+      82
+      76
+      82
+    )
+    Cells = (
+      5
+      0
+      0
+      'Components'
+      1
+      0
+      'Total'
+      2
+      0
+      'Vapor'
+      3
+      0
+      'Liquid'
+      4
+      0
+      'Aqueous'
+    )
+  end
+  object Edit1: TEdit
+    Left = 160
+    Height = 23
+    Top = 304
+    Width = 112
+    TabOrder = 1
+    Text = 'Edit1'
+  end
+  object Edit2: TEdit
+    Left = 160
+    Height = 23
+    Top = 336
+    Width = 112
+    TabOrder = 2
+    Text = 'Edit2'
+  end
+  object BitBtn1: TBitBtn
+    Left = 456
+    Height = 30
+    Top = 336
+    Width = 75
+    BorderSpacing.InnerBorder = 2
+    Caption = '&Close'
+    Kind = bkClose
+    NumGlyphs = 0
+    TabOrder = 3
+  end
+  object Button1: TButton
+    Left = 368
+    Height = 30
+    Top = 336
+    Width = 75
+    BorderSpacing.InnerBorder = 2
+    Caption = 'Flash'
+    TabOrder = 4
+  end
+end

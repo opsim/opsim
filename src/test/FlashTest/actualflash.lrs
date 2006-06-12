@@ -1,0 +1,27 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TFlashForm','FORMDATA',[
+  'TPF0'#10'TFlashForm'#9'FlashForm'#4'Left'#3#181#2#6'Height'#3'~'#1#3'Top'#3
+  +#175#0#5'Width'#3'('#2#18'HorzScrollBar.Page'#3''''#2#18'VertScrollBar.Page'
+  +#3'}'#1#7'Caption'#6#12'Flash Stream'#12'ClientHeight'#3'~'#1#11'ClientWidth'
+  +#3'('#2#13'PixelsPerInch'#2'_'#0#6'TLabel'#6'Label1'#4'Left'#2'8'#6'Height'#2
+  +#17#3'Top'#3'7'#1#5'Width'#2']'#7'Caption'#6#11'Temperature'#5'Color'#7#6'cl'
+  +'None'#11'ParentColor'#8#0#0#6'TLabel'#6'Label2'#4'Left'#2'8'#6'Height'#2#17
+  +#3'Top'#3'V'#1#5'Width'#2'C'#7'Caption'#6#8'Pressure'#5'Color'#7#6'clNone'#11
+  +'ParentColor'#8#0#0#11'TStringGrid'#11'StringGrid1'#4'Left'#2'0'#6'Height'#3
+  +#248#0#3'Top'#2'('#5'Width'#3#216#1#8'ColCount'#2#5#10'FixedColor'#7#9'clBtn'
+  +'Face'#13'GridLineWidth'#2#0#7'Options'#11#15'goFixedVertLine'#15'goFixedHor'
+  +'zLine'#10'goVertLine'#10'goHorzLine'#13'goRangeSelect'#14'goSmoothScroll'#0
+  +#8'RowCount'#2#5#10'ScrollBars'#7#6'ssBoth'#8'TabOrder'#2#0#7'TabStop'#9#15
+  +'VisibleColCount'#2#4#15'VisibleRowCount'#2#4#9'ColWidths'#1#3#129#0#2'M'#2
+  +'R'#2'L'#2'R'#0#5'Cells'#1#2#5#2#0#2#0#6#10'Components'#2#1#2#0#6#5'Total'#2
+  +#2#2#0#6#5'Vapor'#2#3#2#0#6#6'Liquid'#2#4#2#0#6#7'Aqueous'#0#0#0#5'TEdit'#5
+  +'Edit1'#4'Left'#3#160#0#6'Height'#2#23#3'Top'#3'0'#1#5'Width'#2'p'#8'TabOrde'
+  +'r'#2#1#4'Text'#6#5'Edit1'#0#0#5'TEdit'#5'Edit2'#4'Left'#3#160#0#6'Height'#2
+  +#23#3'Top'#3'P'#1#5'Width'#2'p'#8'TabOrder'#2#2#4'Text'#6#5'Edit2'#0#0#7'TBi'
+  +'tBtn'#7'BitBtn1'#4'Left'#3#200#1#6'Height'#2#30#3'Top'#3'P'#1#5'Width'#2'K'
+  +#25'BorderSpacing.InnerBorder'#2#2#7'Caption'#6#6'&Close'#4'Kind'#7#7'bkClos'
+  +'e'#9'NumGlyphs'#2#0#8'TabOrder'#2#3#0#0#7'TButton'#7'Button1'#4'Left'#3'p'#1
+  +#6'Height'#2#30#3'Top'#3'P'#1#5'Width'#2'K'#25'BorderSpacing.InnerBorder'#2#2
+  +#7'Caption'#6#5'Flash'#8'TabOrder'#2#4#0#0#0
+]);

@@ -9,7 +9,7 @@ object MainForm: TMainForm
   Caption = 'Flash Test'
   ClientHeight = 221
   ClientWidth = 201
-  PixelsPerInch = 96
+  PixelsPerInch = 95
   object ToggleBox1: TToggleBox
     Left = 16
     Height = 25
@@ -36,6 +36,7 @@ object MainForm: TMainForm
     Width = 170
     BorderSpacing.InnerBorder = 2
     Caption = 'Flash Test'
+    OnClick = Button2Click
     TabOrder = 2
   end
   object Button3: TButton
