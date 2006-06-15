@@ -1,36 +1,37 @@
 object FlashForm: TFlashForm
-  Left = 693
-  Height = 382
-  Top = 175
-  Width = 552
-  HorzScrollBar.Page = 551
-  VertScrollBar.Page = 381
+  Left = 363
+  Height = 440
+  Top = 463
+  Width = 600
+  HorzScrollBar.Page = 599
+  VertScrollBar.Page = 439
+  ActiveControl = FlashGrid
   Caption = 'Flash Stream'
-  ClientHeight = 382
-  ClientWidth = 552
-  PixelsPerInch = 95
+  ClientHeight = 440
+  ClientWidth = 600
+  PixelsPerInch = 96
   object Label1: TLabel
-    Left = 56
-    Height = 17
-    Top = 311
-    Width = 93
+    Left = 48
+    Height = 14
+    Top = 318
+    Width = 63
     Caption = 'Temperature'
     Color = clNone
     ParentColor = False
   end
   object Label2: TLabel
-    Left = 56
-    Height = 17
-    Top = 342
-    Width = 67
+    Left = 48
+    Height = 14
+    Top = 349
+    Width = 43
     Caption = 'Pressure'
     Color = clNone
     ParentColor = False
   end
-  object StringGrid1: TStringGrid
+  object FlashGrid: TStringGrid
     Left = 48
     Height = 248
-    Top = 40
+    Top = 32
     Width = 472
     ColCount = 5
     FixedColor = clBtnFace
@@ -69,17 +70,17 @@ object FlashForm: TFlashForm
     )
   end
   object Edit1: TEdit
-    Left = 160
+    Left = 152
     Height = 23
-    Top = 304
+    Top = 311
     Width = 112
     TabOrder = 1
     Text = 'Edit1'
   end
   object Edit2: TEdit
-    Left = 160
+    Left = 152
     Height = 23
-    Top = 336
+    Top = 343
     Width = 112
     TabOrder = 2
     Text = 'Edit2'

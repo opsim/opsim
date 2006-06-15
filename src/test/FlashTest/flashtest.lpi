@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <CONFIG>
   <ProjectOptions>
-    <PathDelim Value="/"/>
+    <PathDelim Value="\"/>
     <Version Value="5"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
@@ -10,16 +10,16 @@
       <TargetFileExt Value=""/>
       <Title Value="FlashTest"/>
     </General>
+    <LazDoc Paths=""/>
     <PublishOptions>
       <Version Value="2"/>
-      <IgnoreBinaries Value="False"/>
       <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
       <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
     </PublishOptions>
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+        <LaunchingApplication PathPlusParams="\usr\X11R6\bin\xterm -T 'Lazarus Run Output' -e $(LazarusDir)\tools\runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
     <RequiredPackages Count="3">
@@ -48,22 +48,22 @@
         <UnitName Value="FlashTestMainForm"/>
       </Unit1>
       <Unit2>
-        <Filename Value="../../engine/thermo/Eos.pas"/>
+        <Filename Value="..\..\engine\thermo\Eos.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Eos"/>
       </Unit2>
       <Unit3>
-        <Filename Value="../../engine/thermo/Eos_Srk.pas"/>
+        <Filename Value="..\..\engine\thermo\Eos_Srk.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Eos_Srk"/>
       </Unit3>
       <Unit4>
-        <Filename Value="../../engine/thermo/Equilibrium.pas"/>
+        <Filename Value="..\..\engine\thermo\Equilibrium.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Equilibrium"/>
       </Unit4>
       <Unit5>
-        <Filename Value="../../engine/thermo/Thermo.pas"/>
+        <Filename Value="..\..\engine\thermo\Thermo.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Thermo"/>
       </Unit5>
@@ -75,7 +75,7 @@
         <UnitName Value="SelectComponents"/>
       </Unit6>
       <Unit7>
-        <Filename Value="../../engine/solver/Entities.pas"/>
+        <Filename Value="..\..\engine\solver\Entities.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Entities"/>
       </Unit7>
@@ -90,13 +90,14 @@
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
+    <PathDelim Value="\"/>
     <Target>
       <Filename Value="../../../app/FlashTest"/>
     </Target>
     <SearchPaths>
-      <OtherUnitFiles Value="../../ise/;../../src/;../../src/engine/;../../engine/solver/;../../engine/thermo/"/>
-      <UnitOutputDirectory Value="../../build"/>
-      <SrcPath Value="$(LazarusDir)/lcl/;$(LazarusDir)/lcl/interfaces/$(LCLWidgetType)/"/>
+      <OtherUnitFiles Value="..\..\ise\;..\..\src\;..\..\src\engine\;..\..\engine\solver\;..\..\engine\thermo\"/>
+      <UnitOutputDirectory Value="..\..\build"/>
+      <SrcPath Value="$(LazarusDir)\lcl\;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)\"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>

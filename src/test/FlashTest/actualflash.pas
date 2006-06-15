@@ -19,7 +19,7 @@ type
     Edit2: TEdit;
     Label1: TLabel;
     Label2: TLabel;
-    StringGrid1: TStringGrid;
+    FlashGrid: TStringGrid;
   private
     { private declarations }
   public

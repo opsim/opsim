@@ -1,16 +1,17 @@
 object MainForm: TMainForm
-  Left = 222
+  Left = 312
   Height = 221
-  Top = 228
+  Top = 242
   Width = 201
   HorzScrollBar.Page = 200
   VertScrollBar.Page = 220
-  ActiveControl = ToggleBox1
+  ActiveControl = DatabaseConnectToggle
   Caption = 'Flash Test'
   ClientHeight = 221
   ClientWidth = 201
-  PixelsPerInch = 95
-  object ToggleBox1: TToggleBox
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  object DatabaseConnectToggle: TToggleBox
     Left = 16
     Height = 25
     Top = 24
@@ -19,7 +20,7 @@ object MainForm: TMainForm
     OnClick = ToggleBox1Click
     TabOrder = 0
   end
-  object Button1: TButton
+  object SelectComponentsButton: TButton
     Left = 16
     Height = 25
     Top = 64
@@ -29,7 +30,7 @@ object MainForm: TMainForm
     OnClick = Button1Click
     TabOrder = 1
   end
-  object Button2: TButton
+  object FlashTestButton: TButton
     Left = 16
     Height = 25
     Top = 104

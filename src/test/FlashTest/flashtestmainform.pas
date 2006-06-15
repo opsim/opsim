@@ -13,12 +13,13 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
+    SelectComponentsButton: TButton;
+    FlashTestButton: TButton;
     Button3: TButton;
-    ToggleBox1: TToggleBox;
+    DatabaseConnectToggle: TToggleBox;
     DBConnection: TZConnection;
     DBTable: TZTable;
+    procedure FormCreate(Sender:TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -28,6 +29,7 @@ type
     PropertyProvider:TPropertyProvider;
   public
     { public declarations }
+    FlashStrm:TMaterial;
   end; 
 
 var
@@ -38,11 +40,17 @@ implementation
 
 { TMainForm }
 
+procedure TMainForm.FormCreate(Sender:TObject);
+begin
+  PropertyProvider:=TPropertyProvider.Create;
+  FlashStrm:=TMaterial.Create;
+end;
+
 procedure TMainForm.ToggleBox1Click(Sender: TObject);
 var
   TempString: String;
 begin
-  If ToggleBox1.State = cbChecked then
+  If DatabaseConnectToggle.State = cbChecked then
       begin
        TempString := ExtractFilePath(Application.ExeName) + 'SYSDATA.ODB';
        DBConnection.Database:= TempString;
@@ -76,7 +84,7 @@ var
   CompID: String;
   TempString: String;
 begin
-  PropertyProvider := TPropertyProvider.Create;
+  CompID:='';
   PropertyProvider.Compounds.Clear;
   PropertyProvider.DBConnection:=DBConnection;
   SelectComponentsForm.ShowModal;
@@ -89,10 +97,19 @@ begin
       PropertyProvider.AddCompound(CompID);
     end;
   end;
+  FlashStrm.Compounds.Assign(PropertyProvider.Compounds);
 end;
 
 procedure TMainForm.Button2Click(Sender: TObject);
+var
+  i : integer;
 begin
+  FlashForm.FlashGrid.RowCount:=FlashStrm.Compounds.Count + 2;
+  for i:= 1 to FlashStrm.Compounds.Count do
+  begin
+    FlashForm.FlashGrid.Cells[0,i]:=FlashStrm.Compounds.Items[i-1].CompName;
+  end;
+  FlashForm.FlashGrid.Cells[0,FlashStrm.Compounds.Count+1]:='Total';
   FlashForm.ShowModal;
 end;
 
