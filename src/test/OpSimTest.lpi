@@ -7,7 +7,7 @@
       <MainUnit Value="0"/>
       <IconPath Value="./"/>
       <TargetFileExt Value=".exe"/>
-      <ActiveEditorIndexAtStart Value="0"/>
+      <ActiveEditorIndexAtStart Value="3"/>
     </General>
     <LazDoc Paths=""/>
     <PublishOptions>
@@ -37,7 +37,7 @@
         <PackageName Value="FCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="13">
+    <Units Count="14">
       <Unit0>
         <Filename Value="OpSimTest.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -67,7 +67,7 @@
         <UnitName Value="TPropertyProviderTestCaseU"/>
         <CursorPos X="41" Y="75"/>
         <TopLine Value="47"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="35"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -89,7 +89,7 @@
         <Filename Value="..\engine\thermo\Thermo.pas"/>
         <UnitName Value="Thermo"/>
         <CursorPos X="1" Y="772"/>
-        <TopLine Value="759"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="2"/>
         <UsageCount Value="14"/>
         <Loaded Value="True"/>
@@ -107,7 +107,7 @@
         <UnitName Value="OpSimTestU"/>
         <CursorPos X="7" Y="52"/>
         <TopLine Value="42"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit7>
@@ -148,6 +148,15 @@
         <TopLine Value="194"/>
         <UsageCount Value="10"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="..\engine\thermo\Equilibrium.pas"/>
+        <UnitName Value="Equilibrium"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="77"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit13>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
