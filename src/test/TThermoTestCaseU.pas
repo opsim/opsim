@@ -58,6 +58,7 @@ type
     procedure TearDown; override;
   published
     procedure TestAddCompounds;
+    procedure TestAddPhases;
     procedure TestAssignCompounds;
     procedure TestClearCompounds;
     procedure TestFindCompounds;
@@ -192,6 +193,31 @@ begin
     Clear;
     for I := 1 to 5 do Add;
     AssertEquals(Count, N);
+  end;//with
+end;
+
+procedure TMaterialTestCase.TestAddPhases;
+  
+  const
+    N = 5;
+  var
+    I: Integer;
+  
+begin
+  //Add some compounds to the material object.
+  TestAddCompounds;
+  with Material.Phases do begin
+    Clear;
+    //Add a few phases.
+    for I := 1 to 5 do Add;
+    //Verify count.
+    AssertEquals(Count, N);
+    //Compounds.Count and Compositions.Count should match the same arrays of
+    //the Material object.
+    for I := 0 to Count - 1 do begin
+      AssertEquals(Items[I].Compounds.Count, Material.Compounds.Count);
+      AssertEquals(Items[I].Compositions.Count, Material.Compositions.Count);
+    end;//for
   end;//with
 end;
 
