@@ -45,19 +45,19 @@
         <CursorPos X="1" Y="13"/>
         <TopLine Value="1"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="TThermoTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TThermoTestCaseU"/>
-        <CursorPos X="24" Y="244"/>
-        <TopLine Value="231"/>
+        <CursorPos X="27" Y="208"/>
+        <TopLine Value="206"/>
         <EditorIndex Value="0"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="35"/>
         <Bookmarks Count="1">
-          <Item0 X="1" Y="102" ID="1"/>
+          <Item0 X="51" Y="219" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
       </Unit1>
@@ -68,7 +68,7 @@
         <CursorPos X="41" Y="75"/>
         <TopLine Value="47"/>
         <EditorIndex Value="4"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -108,7 +108,7 @@
         <CursorPos X="7" Y="52"/>
         <TopLine Value="42"/>
         <EditorIndex Value="3"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>

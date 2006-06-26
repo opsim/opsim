@@ -34,14 +34,6 @@ uses
   SysUtils, Classes, Variants, Entities, Thermo, Eos;
 
 type
-{*****************************************************************************
- * This Class implements a 3 Phase Flash Alogorithym.  This routine is based *
- * on alogorithms presented in "Rapid Phase Determination in Multiple-Phase  *
- * Flash Calculations" by P. A. Nelson.  Comput. chem. Engng, Vol 11, No 6,  *
- * pp. 581-591,1987.  Some notes for this routine reference equations out of *
- * that paper directly and it is recommended to have a copy available if when*
- * trying to understand it.                                                  *
- *****************************************************************************}
   TFlash = class (TObject)
   private
     FEos: TEos;
@@ -539,12 +531,6 @@ end;
 
 procedure TThreePhaseFlash.TP(AMaterial: TMaterial; T, P: Real);
   
-  {*****************************************************************************
-   * This routine implements an isothermal, isobaric flash referred to as a    *
-   * Boston and Britt Type VI Flash.  The overall composition, Temperature and *
-   * Pressure are specified returns a amount and composition of each phase     *
-   *****************************************************************************
-   }
   const
     MaxPhases = 3;                  // This Flash solver is currently designed for a Maximum of 3 possible number of Phases
   var
