@@ -195,6 +195,7 @@ type
   
   TPhases = class (TCollection)
   private
+    FOnNotify: TCollectionNotifyEvent;
     FOwner: TMaterial;
     function GetItem(Index: Integer): TPhase;
     procedure SetItem(Index: Integer; Value: TPhase);
@@ -202,8 +203,12 @@ type
     constructor Create(AMaterial: TMaterial);
     function Add: TPhase;
     procedure Assign(Source: TPersistent); override;
+    procedure Notify(Item: TCollectionItem;  Action: TCollectionNotification); 
+            override;
     property Items[Index: Integer]: TPhase read GetItem write SetItem; default;
     property Owner: TMaterial read FOwner write FOwner;
+  published
+    property OnNotify: TCollectionNotifyEvent read FOnNotify write FOnNotify;
   end;
   
   {:
@@ -217,7 +222,7 @@ type
   - It is expected to be most common that a TMaterial has one or two phases.
   }
   TMaterial = class (TPersistent)
-    procedure CompoundsNotify(Item: TCollectionItem;Action: 
+    procedure CompoundsNotify(Item: TCollectionItem; Action: 
             TCollectionNotification);
   private
     FCompositions: TCompositions;
@@ -553,12 +558,19 @@ end;
 ************************************ TPhase ************************************
 }
 constructor TPhase.Create(Collection: TCollection);
+var
+  I: Integer;
 begin
   inherited Create(Collection);
   FCompositions := TCompositions.Create;
   //Defines the material to which the phase pertains.
   if Collection <> nil then
     FMaterial := (Collection as TPhases).Owner;
+  //The size of Compositions array must match the size of the Compounds array in
+  //the owner Material instance.
+  with Compounds do
+    for I := 0 to Count - 1 do
+      FCompositions.Add;
 end;
 
 destructor TPhase.Destroy;
@@ -688,6 +700,14 @@ begin
   Result := TPhase(inherited GetItem(Index));
 end;
 
+procedure TPhases.Notify(Item: TCollectionItem;  Action: 
+        TCollectionNotification);
+begin
+  inherited Notify(Item, Action);
+  if Assigned(FOnNotify) then
+    FOnNotify(Item, Action);
+end;
+
 procedure TPhases.SetItem(Index: Integer; Value: TPhase);
 begin
   inherited SetItem(Index, Value);
@@ -765,7 +785,7 @@ begin
             SameValue(FStdLiqVolFlow.Value, TotalStdLiqVolFlow);
 end;
 
-procedure TMaterial.CompoundsNotify(Item: TCollectionItem;Action: 
+procedure TMaterial.CompoundsNotify(Item: TCollectionItem; Action: 
         TCollectionNotification);
 var
   I: Integer;

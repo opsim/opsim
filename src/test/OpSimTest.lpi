@@ -7,7 +7,7 @@
       <MainUnit Value="0"/>
       <IconPath Value="./"/>
       <TargetFileExt Value=".exe"/>
-      <ActiveEditorIndexAtStart Value="3"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <LazDoc Paths=""/>
     <PublishOptions>
@@ -44,18 +44,16 @@
         <UnitName Value="OpSimTest"/>
         <CursorPos X="1" Y="13"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="1"/>
-        <UsageCount Value="35"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="37"/>
       </Unit0>
       <Unit1>
         <Filename Value="TThermoTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TThermoTestCaseU"/>
-        <CursorPos X="27" Y="208"/>
-        <TopLine Value="206"/>
+        <CursorPos X="45" Y="216"/>
+        <TopLine Value="198"/>
         <EditorIndex Value="0"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="37"/>
         <Bookmarks Count="1">
           <Item0 X="51" Y="219" ID="1"/>
         </Bookmarks>
@@ -67,8 +65,8 @@
         <UnitName Value="TPropertyProviderTestCaseU"/>
         <CursorPos X="41" Y="75"/>
         <TopLine Value="47"/>
-        <EditorIndex Value="5"/>
-        <UsageCount Value="35"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -88,10 +86,10 @@
       <Unit5>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
         <UnitName Value="Thermo"/>
-        <CursorPos X="1" Y="772"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="2"/>
-        <UsageCount Value="14"/>
+        <CursorPos X="37" Y="564"/>
+        <TopLine Value="559"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -107,8 +105,8 @@
         <UnitName Value="OpSimTestU"/>
         <CursorPos X="7" Y="52"/>
         <TopLine Value="42"/>
-        <EditorIndex Value="4"/>
-        <UsageCount Value="27"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
@@ -152,132 +150,132 @@
         <Filename Value="..\engine\thermo\Equilibrium.pas"/>
         <UnitName Value="Equilibrium"/>
         <CursorPos X="1" Y="1"/>
-        <TopLine Value="77"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit13>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="426" Column="1" TopLine="413"/>
+        <Caret Line="483" Column="1" TopLine="470"/>
       </Position1>
       <Position2>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="428" Column="1" TopLine="415"/>
+        <Caret Line="772" Column="1" TopLine="759"/>
       </Position2>
       <Position3>
-        <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="426" Column="1" TopLine="413"/>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="222" Column="20" TopLine="209"/>
       </Position3>
       <Position4>
-        <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="428" Column="1" TopLine="415"/>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="231" Column="19" TopLine="218"/>
       </Position4>
       <Position5>
-        <Filename Value="TThermoTestCaseU.pas"/>
-        <Caret Line="63" Column="1" TopLine="50"/>
+        <Filename Value="..\engine\thermo\Thermo.pas"/>
+        <Caret Line="822" Column="34" TopLine="811"/>
       </Position5>
       <Position6>
-        <Filename Value="TThermoTestCaseU.pas"/>
-        <Caret Line="74" Column="1" TopLine="61"/>
+        <Filename Value="..\engine\thermo\Thermo.pas"/>
+        <Caret Line="818" Column="34" TopLine="792"/>
       </Position6>
       <Position7>
         <Filename Value="TThermoTestCaseU.pas"/>
-        <Caret Line="220" Column="35" TopLine="207"/>
+        <Caret Line="208" Column="1" TopLine="195"/>
       </Position7>
       <Position8>
-        <Filename Value="TThermoTestCaseU.pas"/>
-        <Caret Line="221" Column="34" TopLine="208"/>
+        <Filename Value="..\engine\thermo\Thermo.pas"/>
+        <Caret Line="565" Column="1" TopLine="562"/>
       </Position8>
       <Position9>
         <Filename Value="TThermoTestCaseU.pas"/>
-        <Caret Line="199" Column="16" TopLine="201"/>
+        <Caret Line="208" Column="1" TopLine="195"/>
       </Position9>
       <Position10>
         <Filename Value="TThermoTestCaseU.pas"/>
-        <Caret Line="205" Column="1" TopLine="192"/>
+        <Caret Line="209" Column="1" TopLine="196"/>
       </Position10>
       <Position11>
-        <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="773" Column="1" TopLine="763"/>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="210" Column="1" TopLine="197"/>
       </Position11>
       <Position12>
-        <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="772" Column="1" TopLine="759"/>
+        <Filename Value="TThermoTestCaseU.pas"/>
+        <Caret Line="212" Column="1" TopLine="199"/>
       </Position12>
       <Position13>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="482" Column="1" TopLine="469"/>
+        <Caret Line="565" Column="1" TopLine="552"/>
       </Position13>
       <Position14>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="772" Column="1" TopLine="759"/>
+        <Caret Line="567" Column="1" TopLine="554"/>
       </Position14>
       <Position15>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="773" Column="1" TopLine="760"/>
+        <Caret Line="568" Column="1" TopLine="555"/>
       </Position15>
       <Position16>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="777" Column="1" TopLine="764"/>
+        <Caret Line="571" Column="1" TopLine="558"/>
       </Position16>
       <Position17>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="778" Column="1" TopLine="765"/>
+        <Caret Line="572" Column="1" TopLine="559"/>
       </Position17>
       <Position18>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="781" Column="1" TopLine="768"/>
+        <Caret Line="573" Column="1" TopLine="560"/>
       </Position18>
       <Position19>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="794" Column="1" TopLine="672"/>
+        <Caret Line="574" Column="1" TopLine="561"/>
       </Position19>
       <Position20>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="772" Column="1" TopLine="759"/>
+        <Caret Line="573" Column="1" TopLine="560"/>
       </Position20>
       <Position21>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="773" Column="1" TopLine="760"/>
+        <Caret Line="574" Column="1" TopLine="561"/>
       </Position21>
       <Position22>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="777" Column="1" TopLine="764"/>
+        <Caret Line="573" Column="1" TopLine="560"/>
       </Position22>
       <Position23>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="778" Column="1" TopLine="765"/>
+        <Caret Line="574" Column="1" TopLine="561"/>
       </Position23>
       <Position24>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="781" Column="1" TopLine="768"/>
+        <Caret Line="573" Column="1" TopLine="560"/>
       </Position24>
       <Position25>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="794" Column="1" TopLine="770"/>
+        <Caret Line="574" Column="1" TopLine="561"/>
       </Position25>
       <Position26>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="483" Column="1" TopLine="470"/>
+        <Caret Line="573" Column="1" TopLine="560"/>
       </Position26>
       <Position27>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="772" Column="1" TopLine="759"/>
+        <Caret Line="574" Column="1" TopLine="561"/>
       </Position27>
       <Position28>
-        <Filename Value="TThermoTestCaseU.pas"/>
-        <Caret Line="222" Column="20" TopLine="209"/>
+        <Filename Value="..\engine\thermo\Thermo.pas"/>
+        <Caret Line="573" Column="1" TopLine="560"/>
       </Position28>
       <Position29>
-        <Filename Value="TThermoTestCaseU.pas"/>
-        <Caret Line="231" Column="19" TopLine="218"/>
+        <Filename Value="..\engine\thermo\Thermo.pas"/>
+        <Caret Line="563" Column="1" TopLine="550"/>
       </Position29>
       <Position30>
-        <Filename Value="OpSimTest.lpr"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="..\engine\thermo\Thermo.pas"/>
+        <Caret Line="565" Column="1" TopLine="558"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
