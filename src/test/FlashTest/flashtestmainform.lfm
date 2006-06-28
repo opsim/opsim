@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 312
+  Left = 515
   Height = 221
-  Top = 242
+  Top = 207
   Width = 201
   HorzScrollBar.Page = 200
   VertScrollBar.Page = 220
@@ -10,7 +10,7 @@ object MainForm: TMainForm
   ClientHeight = 221
   ClientWidth = 201
   OnCreate = FormCreate
-  PixelsPerInch = 96
+  PixelsPerInch = 95
   object DatabaseConnectToggle: TToggleBox
     Left = 16
     Height = 25

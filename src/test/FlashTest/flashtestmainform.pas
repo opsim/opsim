@@ -29,7 +29,7 @@ type
     PropertyProvider:TPropertyProvider;
   public
     { public declarations }
-    FlashStrm:TMaterial;
+
   end; 
 
 var
@@ -43,7 +43,6 @@ implementation
 procedure TMainForm.FormCreate(Sender:TObject);
 begin
   PropertyProvider:=TPropertyProvider.Create;
-  FlashStrm:=TMaterial.Create;
 end;
 
 procedure TMainForm.ToggleBox1Click(Sender: TObject);
@@ -80,7 +79,7 @@ end;
 
 procedure TMainForm.Button1Click(Sender: TObject);
 var
-  i : integer;
+  i,test : integer;
   CompID: String;
   TempString: String;
 begin
@@ -88,6 +87,9 @@ begin
   PropertyProvider.Compounds.Clear;
   PropertyProvider.DBConnection:=DBConnection;
   SelectComponentsForm.ShowModal;
+
+  test:= SelectComponentsForm.SelectedComponents.Items.Count;
+  test:=PropertyProvider.Compounds.Count;
   with SelectComponentsForm do
   begin
     for i := 0 to SelectedComponents.Items.Count - 1 do
@@ -95,21 +97,25 @@ begin
       TempString:=SelectedComponents.Items[i];
       CompID:=DBTable.Lookup('COMPONENT',TempString,'NUMBER');
       PropertyProvider.AddCompound(CompID);
+
     end;
   end;
-  FlashStrm.Compounds.Assign(PropertyProvider.Compounds);
+  FlashForm.FlashStrm.Compounds.Assign(PropertyProvider.Compounds);
+  for i:= 0 to FlashForm.FlashStrm.Compositions.Count - 1 do
+  FlashForm.FlashStrm.Compositions[i].MoleFraction.Value:=0.0;
+
 end;
 
 procedure TMainForm.Button2Click(Sender: TObject);
 var
   i : integer;
 begin
-  FlashForm.FlashGrid.RowCount:=FlashStrm.Compounds.Count + 2;
-  for i:= 1 to FlashStrm.Compounds.Count do
+  FlashForm.FlashGrid.RowCount:=FlashForm.FlashStrm.Compounds.Count + 2;
+  for i:= 1 to FlashForm.FlashStrm.Compounds.Count do
   begin
-    FlashForm.FlashGrid.Cells[0,i]:=FlashStrm.Compounds.Items[i-1].CompName;
+    FlashForm.FlashGrid.Cells[0,i]:=FlashForm.FlashStrm.Compounds.Items[i-1].CompName;
   end;
-  FlashForm.FlashGrid.Cells[0,FlashStrm.Compounds.Count+1]:='Total';
+  FlashForm.FlashGrid.Cells[0,FlashForm.FlashStrm.Compounds.Count+1]:='Total';
   FlashForm.ShowModal;
 end;
 
