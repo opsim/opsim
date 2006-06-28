@@ -11,30 +11,30 @@ object FlashForm: TFlashForm
   ClientWidth = 600
   OnCreate = FormCreate
   OnShow = FormShow
-  PixelsPerInch = 95
+  PixelsPerInch = 96
   object Label1: TLabel
     Left = 48
-    Height = 17
+    Height = 14
     Top = 318
-    Width = 93
+    Width = 63
     Caption = 'Temperature'
     Color = clNone
     ParentColor = False
   end
   object Label2: TLabel
     Left = 48
-    Height = 17
+    Height = 14
     Top = 349
-    Width = 67
+    Width = 43
     Caption = 'Pressure'
     Color = clNone
     ParentColor = False
   end
   object Label3: TLabel
     Left = 48
-    Height = 17
+    Height = 14
     Top = 384
-    Width = 72
+    Width = 49
     Caption = 'Flow Rate'
     Color = clNone
     ParentColor = False
@@ -112,10 +112,11 @@ object FlashForm: TFlashForm
   object FlashBtn: TButton
     Left = 368
     Height = 30
-    Top = 369
+    Top = 368
     Width = 80
     BorderSpacing.InnerBorder = 2
     Caption = 'Flash'
+    OnClick = FlashBtnClick
     TabOrder = 4
   end
   object Flowrate: TEdit

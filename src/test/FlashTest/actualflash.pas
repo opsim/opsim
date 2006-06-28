@@ -23,6 +23,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     FlashGrid: TStringGrid;
+    procedure FlashBtnClick(Sender: TObject);
     procedure FlashGridClick(Sender: TObject);
     procedure FlashGridEditingDone(Sender: TObject);
     procedure FlashGridSelectEditor(Sender: TObject; Col, Row: Integer;
@@ -35,7 +36,7 @@ type
   public
     { public declarations }
     FlashStrm:TMaterial;
-    TestFlash:TThreePhaseFlash
+    TestFlash:TThreePhaseFlash;
   end; 
 
 var
@@ -62,6 +63,11 @@ begin
 end;
 
 procedure TFlashForm.FlashGridClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFlashForm.FlashBtnClick(Sender: TObject);
 begin
 
 end;
