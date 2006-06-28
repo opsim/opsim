@@ -1,9 +1,11 @@
+{ This is an automatically generated lazarus resource file }
+
 LazarusResources.Add('TMainForm','FORMDATA',[
   'TPF0'#9'TMainForm'#8'MainForm'#4'Left'#3#3#2#6'Height'#3#221#0#3'Top'#3#207#0
   +#5'Width'#3#201#0#18'HorzScrollBar.Page'#3#200#0#18'VertScrollBar.Page'#3#220
   +#0#13'ActiveControl'#7#21'DatabaseConnectToggle'#7'Caption'#6#10'Flash Test'
   +#12'ClientHeight'#3#221#0#11'ClientWidth'#3#201#0#8'OnCreate'#7#10'FormCreat'
-  +'e'#13'PixelsPerInch'#2'_'#0#10'TToggleBox'#21'DatabaseConnectToggle'#4'Left'
+  +'e'#13'PixelsPerInch'#2'`'#0#10'TToggleBox'#21'DatabaseConnectToggle'#4'Left'
   +#2#16#6'Height'#2#25#3'Top'#2#24#5'Width'#3#170#0#7'Caption'#6#16'Database C'
   +'onnect'#7'OnClick'#7#15'ToggleBox1Click'#8'TabOrder'#2#0#0#0#7'TButton'#22
   +'SelectComponentsButton'#4'Left'#2#16#6'Height'#2#25#3'Top'#2'@'#5'Width'#3

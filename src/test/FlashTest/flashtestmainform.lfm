@@ -10,7 +10,7 @@ object MainForm: TMainForm
   ClientHeight = 221
   ClientWidth = 201
   OnCreate = FormCreate
-  PixelsPerInch = 95
+  PixelsPerInch = 96
   object DatabaseConnectToggle: TToggleBox
     Left = 16
     Height = 25

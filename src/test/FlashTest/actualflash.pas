@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, Grids,
-  StdCtrls, Buttons, Thermo, Equilibrium;
+  StdCtrls, Buttons, Thermo, Equilibrium, Eos_Srk;
 
 type
 
@@ -37,6 +37,7 @@ type
     { public declarations }
     FlashStrm:TMaterial;
     TestFlash:TThreePhaseFlash;
+    TestEOS:TSrkEos;
   end; 
 
 var
@@ -83,6 +84,8 @@ procedure TFlashForm.FormCreate(Sender: TObject);
 begin
   FlashStrm:=TMaterial.Create;
   TestFlash:=TThreePhaseFlash.Create;
+  TestEOS:=TSrkEos.Create;
+  TestFlash.Eos:=TestEOS;
 end;
 
 procedure TFlashForm.FormShow(Sender: TObject);

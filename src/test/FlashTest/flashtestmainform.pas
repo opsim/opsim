@@ -90,6 +90,7 @@ begin
 
   test:= SelectComponentsForm.SelectedComponents.Items.Count;
   test:=PropertyProvider.Compounds.Count;
+  PropertyProvider.Compounds.ImmiscibleComponent:=0;
   with SelectComponentsForm do
   begin
     for i := 0 to SelectedComponents.Items.Count - 1 do
@@ -97,6 +98,7 @@ begin
       TempString:=SelectedComponents.Items[i];
       CompID:=DBTable.Lookup('COMPONENT',TempString,'NUMBER');
       PropertyProvider.AddCompound(CompID);
+      if TempString='WATER' then PropertyProvider.Compounds.ImmiscibleComponent:=StrtoInt(CompID);
 
     end;
   end;
