@@ -39,7 +39,7 @@ type
   //Describes a dimensional value. UnitID is the ID code defined by the
   //standardized units table.
   TValueRec = record
-    Value: Variant;
+    Value: Real;
     UnitID: Integer;
     Calculated: Boolean;
     UserDefined: Boolean;
@@ -86,10 +86,10 @@ type
   TVariable = class (TPersistent)
   private
     FName: string;
-    FValue: Variant;
+    FValue: Real;
   published
     property Name: string read FName write FName;
-    property Value: Variant read FValue write FValue;
+    property Value: Real read FValue write FValue;
   end;
   
   TUnitOperation = class (TPersistent)
@@ -98,7 +98,7 @@ type
     FName: string;
   public
     procedure Solve; virtual;
-    function SolveVariable(AVariable: TVariable): Variant; virtual;
+    function SolveVariable(AVariable: TVariable): Real; virtual;
     property Equations: TList read FEquations write FEquations;
   published
     property Name: string read FName write FName;
@@ -208,7 +208,7 @@ procedure TUnitOperation.Solve;
 begin
 end;
 
-function TUnitOperation.SolveVariable(AVariable: TVariable): Variant;
+function TUnitOperation.SolveVariable(AVariable: TVariable): Real;
 begin
 end;
 

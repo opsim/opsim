@@ -760,9 +760,9 @@ begin
     UpdateKValues(VaporPhase, Liquid2Phase, K2);
     for i := 0 to WorkMaterial.Compounds.Count - 1  do
     begin
-      Err := Err + abs(Real(VaporPhase.Compositions[i].MoleFraction.Value / PreviousVaporPhase.Compositions[i].MoleFraction.Value - 1.0));
-      Err := Err + abs(Real(Liquid1Phase.Compositions[i].MoleFraction.Value / PreviousLiquid1Phase.Compositions[i].MoleFraction.Value - 1.0));
-      Err := Err + abs(Real(Liquid2Phase.Compositions[i].MoleFraction.Value / PreviousLiquid2Phase.Compositions[i].MoleFraction.Value - 1.0));
+      Err := Err + abs(VaporPhase.Compositions[i].MoleFraction.Value / PreviousVaporPhase.Compositions[i].MoleFraction.Value - 1.0);
+      Err := Err + abs(Liquid1Phase.Compositions[i].MoleFraction.Value / PreviousLiquid1Phase.Compositions[i].MoleFraction.Value - 1.0);
+      Err := Err + abs(Liquid2Phase.Compositions[i].MoleFraction.Value / PreviousLiquid2Phase.Compositions[i].MoleFraction.Value - 1.0);
     end;
     iter := iter + 1;
   
