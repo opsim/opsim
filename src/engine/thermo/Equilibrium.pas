@@ -56,8 +56,8 @@ type
             Real);
     function EstK2Values(var K2: array of Real; ACompounds: TCompounds; P, T: 
             Real): Variant;
-    procedure TP(AMaterial: TMaterial; T, P: Real);
     procedure Normalize(var AComposition: TCompositions);
+    procedure TP(AMaterial: TMaterial; T, P: Real);
   private
     function CalcdQ1dphi1(const K1,K2: array of Real; const AComposition: 
             TCompositions; phi1,phi2:Real): Real;
@@ -76,7 +76,6 @@ type
             TCompositions;LiquidFraction : Real): Real;
     function GetTwoPhaseLiquidFraction(const K: array of Real; const 
             AComposition: TCompositions): Real;
-
     procedure Solvephi1phi2(const K1,K2: array of Real; const AComposition: 
             TCompositions; var Phi1,Phi2: Real);
     function SolveQ1(const K1,K2: array of Real; const AComposition: 
@@ -99,7 +98,6 @@ type
     - It may delegate the operation to specialized service flash classes.
     }
     procedure CalcEquilibrium(AMaterial: TMaterial);
-
   end;
   
 implementation
