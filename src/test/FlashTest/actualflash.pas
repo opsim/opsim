@@ -29,6 +29,7 @@ type
     procedure FlashGridSelectEditor(Sender: TObject; Col, Row: Integer;
       var Editor: TWinControl);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure NormalizeBtnClick(Sender: TObject);
   private
@@ -86,6 +87,14 @@ begin
   TestFlash:=TThreePhaseFlash.Create;
   TestEOS:=TSrkEos.Create;
   TestFlash.Eos:=TestEOS;
+end;
+
+procedure TFlashForm.FormDestroy(Sender: TObject);
+begin
+  //Release resources.
+  FlashStrm.Free;
+  TestFlash.Free;
+  TestEOS.Free;
 end;
 
 procedure TFlashForm.FormShow(Sender: TObject);

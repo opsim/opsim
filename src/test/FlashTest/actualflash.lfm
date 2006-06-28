@@ -10,6 +10,7 @@ object FlashForm: TFlashForm
   ClientHeight = 440
   ClientWidth = 600
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
   PixelsPerInch = 96
   object Label1: TLabel
