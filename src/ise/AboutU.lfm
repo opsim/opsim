@@ -21,8 +21,8 @@ object AboutForm: TAboutForm
     Left = 20
     Height = 14
     Top = 11
-    Width = 151
-    Caption = 'Version 0.0.1 (far of alpha yet)'
+    Width = 163
+    Caption = 'Version 0.0.1 (far from alpha yet)'
     Color = clNone
     ParentColor = False
   end

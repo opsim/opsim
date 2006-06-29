@@ -158,24 +158,7 @@
         <Loaded Value="True"/>
       </Unit13>
     </Units>
-    <JumpHistory Count="4" HistoryIndex="3">
-      <Position1>
-        <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="49" Column="16" TopLine="27"/>
-      </Position1>
-      <Position2>
-        <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <Caret Line="32" Column="33" TopLine="19"/>
-      </Position2>
-      <Position3>
-        <Filename Value="..\engine\solver\Entities.pas"/>
-        <Caret Line="89" Column="17" TopLine="73"/>
-      </Position3>
-      <Position4>
-        <Filename Value="..\engine\solver\Entities.pas"/>
-        <Caret Line="101" Column="55" TopLine="93"/>
-      </Position4>
-    </JumpHistory>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
