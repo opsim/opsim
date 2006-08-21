@@ -10,7 +10,7 @@ object PhysicalPropertyExplorer: TPhysicalPropertyExplorer
   ClientHeight = 482
   ClientWidth = 663
   OnCreate = FormCreate
-  PixelsPerInch = 75
+  PixelsPerInch = 96
   Position = poDefaultPosOnly
   object Panel1: TPanel
     Height = 36
@@ -71,6 +71,249 @@ object PhysicalPropertyExplorer: TPhysicalPropertyExplorer
     TableName = 'PROPS_PURE_SUBST_RAW'
     left = 96
     top = 32
+    object tblPureCompsNUMBER1: TLongintField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'NUMBER'
+    end
+    object tblPureCompsCOMPONENT1: TStringField
+      DisplayWidth = 150
+      FieldName = 'COMPONENT'
+      Index = 1
+      Size = 150
+    end
+    object tblPureCompsMOLE_WT1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'MOLE_WT'
+      Index = 2
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsTFP1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'TFP'
+      Index = 3
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsTB1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'TB'
+      Index = 4
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsTC1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'TC'
+      Index = 5
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsPC1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'PC'
+      Index = 6
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsVC1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'VC'
+      Index = 7
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsZC1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'ZC'
+      Index = 8
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsOMEGA1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'OMEGA'
+      Index = 9
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsLIQDEN1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'LIQDEN'
+      Index = 10
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsTDEN1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'TDEN'
+      Index = 11
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsDIPM1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'DIPM'
+      Index = 12
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsCP_A1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'CP_A'
+      Index = 13
+      DisplayFormat = '###0.000###E00'
+      Precision = 0
+    end
+    object tblPureCompsCP_B1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'CP_B'
+      Index = 14
+      DisplayFormat = '###0.000###E00'
+      Precision = 0
+    end
+    object tblPureCompsCP_C1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'CP_C'
+      Index = 15
+      DisplayFormat = '###0.000###E00'
+      Precision = 0
+    end
+    object tblPureCompsCP_D1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'CP_D'
+      Index = 16
+      DisplayFormat = '###0.000###E00'
+      Precision = 0
+    end
+    object tblPureCompsVISC_LIQ_B1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'VISC_LIQ_B'
+      Index = 17
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsVISC_LIQ_C1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'VISC_LIQ_C'
+      Index = 18
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsDELHG1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'DELHG'
+      Index = 19
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsDELGF1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'DELGF'
+      Index = 20
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsANTOINE_VP_A1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'ANTOINE_VP_A'
+      Index = 21
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsANTOINE_VP_B1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'ANTOINE_VP_B'
+      Index = 22
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsANTOINE_VP_C1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'ANTOINE_VP_C'
+      Index = 23
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsTMX1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'TMX'
+      Index = 24
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsTMN1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'TMN'
+      Index = 25
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsHARLACHER_VP_A1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'HARLACHER_VP_A'
+      Index = 26
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsHARLACHER_VP_B1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'HARLACHER_VP_B'
+      Index = 27
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsHARLACHER_VP_C1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'HARLACHER_VP_C'
+      Index = 28
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsHARLACHER_VP_D1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'HARLACHER_VP_D'
+      Index = 29
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
+    object tblPureCompsHV1: TFloatField
+      AlignMent = taRightJustify
+      DisplayWidth = 10
+      FieldName = 'HV'
+      Index = 30
+      DisplayFormat = '###0.000###'
+      Precision = 0
+    end
   end
   object dsPureComps: TDatasource
     DataSet = tblPureComps
