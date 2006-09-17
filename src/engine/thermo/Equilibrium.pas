@@ -644,7 +644,7 @@ begin
   Converged := False;
   
   {Come up with an initial Estimate}
-  EstK1Values(K1, WorkMaterial.Compounds, T, P);
+  EstK1Values(K1, WorkMaterial.Compounds, P, T);
   
   // Generate an inital Liquid Fraction
   TotalLiquidFraction := GetTwoPhaseLiquidFraction(K1, WorkMaterial.Compositions);
