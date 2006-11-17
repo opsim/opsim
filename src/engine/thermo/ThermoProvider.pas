@@ -115,7 +115,7 @@ begin
         VPC.Value := FieldValues['HARLACHER_VP_C'];
         VPD.Value := FieldValues['HARLACHER_VP_D'];
         //VSTAR.Value := FieldValues['VSTAR'];
-        //W.Value := FieldValues['W'];
+        W.Value := FieldValues['OMEGA'];
         //WSRK.Value := FieldValues['WSRK'];
         ZC.Value := FieldValues['ZC'];
         //Zra.Value := FieldValues['Zra'];
