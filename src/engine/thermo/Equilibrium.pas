@@ -44,53 +44,53 @@ type
   * trying to understand it.                                                  * 
   *****************************************************************************
   }
-  TFlash = class (TObject)
+  TFlash = class(TObject)
   private
     FEos: TEos;
   public
     property Eos: TEos read FEos write FEos;
   end;
   
-  TThreePhaseFlash = class (TFlash)
-    procedure EstK1Values(var K1: array of Real; ACompounds: TCompounds; P, T: 
+  TThreePhaseFlash = class(TFlash)
+    procedure EstK1Values(var K1: array of Real; ACompounds: TCompounds; P, T:
             Real);
-    function EstK2Values(var K2: array of Real; ACompounds: TCompounds; P, T: 
+    function EstK2Values(var K2: array of Real; ACompounds: TCompounds; P, T:
             Real): Variant;
     procedure Normalize(var AComposition: TCompositions);
     procedure TP(AMaterial: TMaterial; T, P: Real);
   private
-    function CalcdQ1dphi1(const K1,K2: array of Real; const AComposition: 
+    function CalcdQ1dphi1(const K1,K2: array of Real; const AComposition:
             TCompositions; phi1,phi2:Real): Real;
-    function CalcdQ1dphi2(const K1,K2: array of Real; const AComposition: 
+    function CalcdQ1dphi2(const K1,K2: array of Real; const AComposition:
             TCompositions; phi1,phi2:Real): Real;
-    function CalcdQ2dphi2(const K1,K2: array of Real; const AComposition: 
+    function CalcdQ2dphi2(const K1,K2: array of Real; const AComposition:
             TCompositions; phi1,phi2:Real): Real;
-    function CalcQ1(const K1,K2: array of Real; const 
+    function CalcQ1(const K1,K2: array of Real; const
             AComposition:TCompositions; Phi1,Phi2:Real): Real;
-    function CalcQ2(const K1,K2: array of Real; const AComposition: 
+    function CalcQ2(const K1,K2: array of Real; const AComposition:
             TCompositions; phi1,phi2:Real): Real;
-    procedure DoesPhaseExist(const K1,K2: array of Real; const AComposition: 
-            TCompositions; var PhaseExist: array of Boolean; var phi1,phi2: 
+    procedure DoesPhaseExist(const K1,K2: array of Real; const AComposition:
+            TCompositions; var PhaseExist: array of Boolean; var phi1,phi2:
             Real);
-    function dTwoPhaseSum(const K: array of Real; const AComposition: 
+    function dTwoPhaseSum(const K: array of Real; const AComposition:
             TCompositions;LiquidFraction : Real): Real;
-    function GetTwoPhaseLiquidFraction(const K: array of Real; const 
+    function GetTwoPhaseLiquidFraction(const K: array of Real; const
             AComposition: TCompositions): Real;
-    procedure Solvephi1phi2(const K1,K2: array of Real; const AComposition: 
+    procedure Solvephi1phi2(const K1,K2: array of Real; const AComposition:
             TCompositions; var Phi1,Phi2: Real);
-    function SolveQ1(const K1,K2: array of Real; const AComposition: 
+    function SolveQ1(const K1,K2: array of Real; const AComposition:
             TCompositions; Phi2: Real): Real;
-    function SolveQ1minusQ2(const K1,K2: array of Real; const AComposition: 
+    function SolveQ1minusQ2(const K1,K2: array of Real; const AComposition:
             TCompositions): Real;
-    function SolveQ2(const K1,K2: array of Real; const AComposition: 
+    function SolveQ2(const K1,K2: array of Real; const AComposition:
             TCompositions; Phi1: Real): Real;
-    function TwoPhaseSum(const K: array of Real; const AComposition: 
+    function TwoPhaseSum(const K: array of Real; const AComposition:
             TCompositions; LiquidFraction : Real): Real;
-    procedure UpdateKValues(var VaporPhase, LiquidPhase: TPhase; var K:array of 
+    procedure UpdateKValues(var VaporPhase, LiquidPhase: TPhase; var K:array of
             Real);
   end;
   
-  TEquilibriumServer = class (TObject)
+  TEquilibriumServer = class(TObject)
   public
     {:
     - This routine will calculate the equilibrium properties for the given 
@@ -106,7 +106,7 @@ implementation
 {
 ******************************* TThreePhaseFlash *******************************
 }
-function TThreePhaseFlash.CalcdQ1dphi1(const K1,K2: array of Real; const 
+function TThreePhaseFlash.CalcdQ1dphi1(const K1,K2: array of Real; const
         AComposition: TCompositions; phi1,phi2:Real): Real;
 var
   i: Integer;
@@ -126,7 +126,7 @@ begin
   Result:= dQ;
 end;
 
-function TThreePhaseFlash.CalcdQ1dphi2(const K1,K2: array of Real; const 
+function TThreePhaseFlash.CalcdQ1dphi2(const K1,K2: array of Real; const
         AComposition: TCompositions; phi1,phi2:Real): Real;
 var
   i: Integer;
@@ -146,7 +146,7 @@ begin
   Result:=dQ;
 end;
 
-function TThreePhaseFlash.CalcdQ2dphi2(const K1,K2: array of Real; const 
+function TThreePhaseFlash.CalcdQ2dphi2(const K1,K2: array of Real; const
         AComposition: TCompositions; phi1,phi2:Real): Real;
 var
   i: Integer;
@@ -166,7 +166,7 @@ begin
   Result:=dQ;
 end;
 
-function TThreePhaseFlash.CalcQ1(const K1,K2: array of Real; const 
+function TThreePhaseFlash.CalcQ1(const K1,K2: array of Real; const
         AComposition:TCompositions; Phi1,Phi2:Real): Real;
 var
   i: Integer;
@@ -191,7 +191,7 @@ begin
   Result:= Q1;
 end;
 
-function TThreePhaseFlash.CalcQ2(const K1,K2: array of Real; const 
+function TThreePhaseFlash.CalcQ2(const K1,K2: array of Real; const
         AComposition: TCompositions; phi1,phi2:Real): Real;
 var
   i: Integer;
@@ -214,7 +214,7 @@ begin
   Result:= Q2;
 end;
 
-procedure TThreePhaseFlash.DoesPhaseExist(const K1,K2: array of Real; const 
+procedure TThreePhaseFlash.DoesPhaseExist(const K1,K2: array of Real; const
         AComposition: TCompositions; var PhaseExist: array of Boolean; var phi1,
         phi2: Real);
 var
@@ -301,7 +301,7 @@ begin
   
 end;
 
-function TThreePhaseFlash.dTwoPhaseSum(const K: array of Real; const 
+function TThreePhaseFlash.dTwoPhaseSum(const K: array of Real; const
         AComposition: TCompositions;LiquidFraction : Real): Real;
 var
   i: Integer;
@@ -316,7 +316,7 @@ begin
   Result := Total;
 end;
 
-procedure TThreePhaseFlash.EstK1Values(var K1: array of Real; ACompounds: 
+procedure TThreePhaseFlash.EstK1Values(var K1: array of Real; ACompounds:
         TCompounds; P, T: Real);
 var
   i: Integer;
@@ -335,7 +335,7 @@ begin
   end;//with
 end;
 
-function TThreePhaseFlash.EstK2Values(var K2: array of Real; ACompounds: 
+function TThreePhaseFlash.EstK2Values(var K2: array of Real; ACompounds:
         TCompounds; P, T: Real): Variant;
 var
   i: Integer;
@@ -354,7 +354,7 @@ begin
   end;//with
 end;
 
-function TThreePhaseFlash.GetTwoPhaseLiquidFraction(const K: array of Real; 
+function TThreePhaseFlash.GetTwoPhaseLiquidFraction(const K: array of Real;
         const AComposition: TCompositions): Real;
 var
   Err: Real;
@@ -401,7 +401,7 @@ begin
       AComposition.Items[i].MoleFraction.Value := Total * AComposition.Items[i].MoleFraction.Value;
 end;
 
-procedure TThreePhaseFlash.Solvephi1phi2(const K1,K2: array of Real; const 
+procedure TThreePhaseFlash.Solvephi1phi2(const K1,K2: array of Real; const
         AComposition: TCompositions; var Phi1,Phi2: Real);
 var
   i: Integer;
@@ -449,7 +449,7 @@ begin
   
 end;
 
-function TThreePhaseFlash.SolveQ1(const K1,K2: array of Real; const 
+function TThreePhaseFlash.SolveQ1(const K1,K2: array of Real; const
         AComposition: TCompositions; Phi2: Real): Real;
 var
   Err: Real;
@@ -481,7 +481,7 @@ begin
   Result:=L;
 end;
 
-function TThreePhaseFlash.SolveQ1minusQ2(const K1,K2: array of Real; const 
+function TThreePhaseFlash.SolveQ1minusQ2(const K1,K2: array of Real; const
         AComposition: TCompositions): Real;
 var
   Err: Double;
@@ -509,7 +509,7 @@ begin
   Result:=L;
 end;
 
-function TThreePhaseFlash.SolveQ2(const K1,K2: array of Real; const 
+function TThreePhaseFlash.SolveQ2(const K1,K2: array of Real; const
         AComposition: TCompositions; Phi1: Real): Real;
 var
   Err: Double;
@@ -782,7 +782,7 @@ begin
   
 end;
 
-function TThreePhaseFlash.TwoPhaseSum(const K: array of Real; const 
+function TThreePhaseFlash.TwoPhaseSum(const K: array of Real; const
         AComposition: TCompositions; LiquidFraction : Real): Real;
 var
   i: Integer;
@@ -798,7 +798,7 @@ begin
   
 end;
 
-procedure TThreePhaseFlash.UpdateKValues(var VaporPhase, LiquidPhase: TPhase; 
+procedure TThreePhaseFlash.UpdateKValues(var VaporPhase, LiquidPhase: TPhase;
         var K:array of Real);
 var
   i: Integer;

@@ -39,7 +39,7 @@ type
   TMaterial = class;
   TPhases = class;
 
-  TCompound = class (TCollectionItem)
+  TCompound = class(TCollectionItem)
   protected
     function GetDisplayName: string; override;
     procedure SetIndex(Value: Integer); override;
@@ -80,7 +80,7 @@ type
     procedure Assign(Source: TPersistent); override;
   end;
   
-  TCompounds = class (TCollection)
+  TCompounds = class(TCollection)
   private
     FImmiscibleComponent: Integer;
     FOnNotify: TCollectionNotifyEvent;
@@ -92,11 +92,11 @@ type
     procedure Assign(Source: TPersistent); override;
     procedure DeleteCompound(ID: Variant);
     function FindCompound(ID: Variant): TCompound;
-    procedure Notify(Item: TCollectionItem;  Action: TCollectionNotification); 
+    procedure Notify(Item: TCollectionItem;  Action: TCollectionNotification);
             override;
-    property ImmiscibleComponent: Integer read FImmiscibleComponent write 
+    property ImmiscibleComponent: Integer read FImmiscibleComponent write
             FImmiscibleComponent;
-    property Items[Index: Integer]: TCompound read GetItem write SetItem; 
+    property Items[Index: Integer]: TCompound read GetItem write SetItem;
             default;
   published
     property OnNotify: TCollectionNotifyEvent read FOnNotify write FOnNotify;
@@ -105,7 +105,7 @@ type
   {:
   Holds compound information that is specific for a phase.
   }
-  TComposition = class (TCollectionItem)
+  TComposition = class(TCollectionItem)
   public
     Compound: TCompound;
     FugacityCoefficient: TValueRec;
@@ -118,7 +118,7 @@ type
     procedure Assign(Source: TPersistent); override;
   end;
   
-  TCompositions = class (TCollection)
+  TCompositions = class(TCollection)
   private
     function GetItem(Index: Integer): TComposition;
     procedure SetItem(Index: Integer; Value: TComposition);
@@ -126,7 +126,7 @@ type
     constructor Create;
     function Add: TComposition;
     procedure Assign(Source: TPersistent); override;
-    property Items[Index: Integer]: TComposition read GetItem write SetItem; 
+    property Items[Index: Integer]: TComposition read GetItem write SetItem;
             default;
   end;
   
@@ -140,7 +140,7 @@ type
   distinguish multiple instances of similar phases, such as liquids, the phase
   can be associated with a number of attributes such as a ‘key compound’.
   }
-  TPhase = class (TCollectionItem)
+  TPhase = class(TCollectionItem)
   private
     FAggregationState: TAggregationState;
     FCompositions: TCompositions;
@@ -166,17 +166,17 @@ type
     constructor Create(Collection: TCollection); override;
     destructor Destroy; override;
     procedure Assign(Source: TPersistent); override;
-    property AggregationState: TAggregationState read FAggregationState write 
+    property AggregationState: TAggregationState read FAggregationState write
             FAggregationState;
     property Compositions: TCompositions read FCompositions write FCompositions;
     property Compounds: TCompounds read GetCompounds write SetCompounds;
-    property CompressibilityFactor: TValueRec read FCompressibilityFactor write 
+    property CompressibilityFactor: TValueRec read FCompressibilityFactor write
             FCompressibilityFactor;
     property Enthalpy: TValueRec read FEnthalpy write FEnthalpy;
-    property EnthalpyDeparture: TValueRec read FEnthalpyDeparture write 
+    property EnthalpyDeparture: TValueRec read FEnthalpyDeparture write
             FEnthalpyDeparture;
     property Entropy: TValueRec read FEntropy write FEntropy;
-    property EntropyDeparture: TValueRec read FEntropyDeparture write 
+    property EntropyDeparture: TValueRec read FEntropyDeparture write
             FEntropyDeparture;
     property MassFlow: TValueRec read GetMassFlow;
     property Material: TMaterial read FMaterial write FMaterial;
@@ -185,7 +185,7 @@ type
     This is the specific molar volume of the phase.
     }
     property MoleVolume: TValueRec read FMoleVolume write FMoleVolume;
-    property OverallFraction: TValueRec read FOverallFraction write 
+    property OverallFraction: TValueRec read FOverallFraction write
             FOverallFraction;
     property Pressure: TValueRec read GetPressure write SetPressure;
     property StdLiqVolFlow: TValueRec read GetStdLiqVolFlow;
@@ -193,7 +193,7 @@ type
     property VolumeFlow: TValueRec read FVolumeFlow write FVolumeFlow;
   end;
   
-  TPhases = class (TCollection)
+  TPhases = class(TCollection)
   private
     FOnNotify: TCollectionNotifyEvent;
     FOwner: TMaterial;
@@ -203,7 +203,7 @@ type
     constructor Create(AMaterial: TMaterial);
     function Add: TPhase;
     procedure Assign(Source: TPersistent); override;
-    procedure Notify(Item: TCollectionItem;  Action: TCollectionNotification); 
+    procedure Notify(Item: TCollectionItem;  Action: TCollectionNotification);
             override;
     property Items[Index: Integer]: TPhase read GetItem write SetItem; default;
     property Owner: TMaterial read FOwner write FOwner;
@@ -221,8 +221,8 @@ type
   pressure.
   - It is expected to be most common that a TMaterial has one or two phases.
   }
-  TMaterial = class (TPersistent)
-    procedure CompoundsNotify(Item: TCollectionItem; Action: 
+  TMaterial = class(TPersistent)
+    procedure CompoundsNotify(Item: TCollectionItem; Action:
             TCollectionNotification);
   private
     FCompositions: TCompositions;
@@ -479,7 +479,7 @@ begin
   Result := TCompound(inherited GetItem(Index));
 end;
 
-procedure TCompounds.Notify(Item: TCollectionItem;  Action: 
+procedure TCompounds.Notify(Item: TCollectionItem;  Action:
         TCollectionNotification);
 begin
   inherited Notify(Item, Action);
@@ -700,7 +700,7 @@ begin
   Result := TPhase(inherited GetItem(Index));
 end;
 
-procedure TPhases.Notify(Item: TCollectionItem;  Action: 
+procedure TPhases.Notify(Item: TCollectionItem;  Action:
         TCollectionNotification);
 begin
   inherited Notify(Item, Action);
@@ -785,7 +785,7 @@ begin
             SameValue(FStdLiqVolFlow.Value, TotalStdLiqVolFlow);
 end;
 
-procedure TMaterial.CompoundsNotify(Item: TCollectionItem; Action: 
+procedure TMaterial.CompoundsNotify(Item: TCollectionItem; Action:
         TCollectionNotification);
 var
   I: Integer;
