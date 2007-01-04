@@ -366,8 +366,8 @@ begin
   //Needs to notify the mouse event over the control in order the PFDWorkplace
   //update drawings on its canvas.
   P := Parent.ScreenToClient(ClientToScreen(Point(X,Y)));
-  //Parent.MouseDown(Button, Shift, P.X, P.Y);
-  LCLSendMouseDownMsg(Parent, P.X, P.Y, Button, Shift);
+  (Parent as TPFDWorkplace).MouseDown(Button, Shift, P.X, P.Y);
+  //LCLSendMouseDownMsg(Parent, P.X, P.Y, Button, Shift);
 end;
 
 procedure TPFDControl.MouseEnter;
@@ -399,8 +399,8 @@ begin
   //Needs to notify mouse movements over the control in order the PFDWorkplace
   //update drawings on its canvas.
   P := Parent.ScreenToClient(ClientToScreen(Point(X,Y)));
-  //Parent.MouseMove(Shift, P.X, P.Y);
-  LCLSendMouseMoveMsg(Parent, P.X, P.Y, Shift);
+  (Parent as TPFDWorkplace).MouseMove(Shift, P.X, P.Y);
+  //LCLSendMouseMoveMsg(Parent, P.X, P.Y, Shift);
 end;
 
 procedure TPFDControl.MouseUp(Button: TMouseButton ; Shift: TShiftState; X, Y: 
@@ -412,8 +412,8 @@ begin
   //Needs to notify the mouse event over the control in order the PFDWorkplace
   //update drawings on its canvas.
   P := Parent.ScreenToClient(ClientToScreen(Point(X,Y)));
-  //Parent.MouseUp(Button, Shift, P.X, P.Y);
-  LCLSendMouseUpMsg(Parent, P.X, P.Y, Button, Shift);
+  (Parent as TPFDWorkplace).MouseUp(Button, Shift, P.X, P.Y);
+  //LCLSendMouseUpMsg(Parent, P.X, P.Y, Button, Shift);
 end;
 
 procedure TPFDControl.Paint;
