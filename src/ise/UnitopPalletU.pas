@@ -118,7 +118,7 @@ var
 begin
   if FNewPFDControl <> nil then
     FreeAndNil(FNewPFDControl);
-  if (Sender as TSpeedButton).Down then begin
+  if not (Sender as TSpeedButton).Down then begin
     if Sender = sbMixer then
       FNewPFDControl := TPFDMixer.Create(PFDDesigner.PFDWorkplace)
     else

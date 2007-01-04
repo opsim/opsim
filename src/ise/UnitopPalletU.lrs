@@ -2,196 +2,202 @@
 
 LazarusResources.Add('TUnitopPallet','FORMDATA',[
   'TPF0'#13'TUnitopPallet'#12'UnitopPallet'#4'Left'#3'p'#3#6'Height'#3#17#1#3'T'
-  +'op'#3#159#0#5'Width'#2'q'#18'HorzScrollBar.Page'#2'p'#18'VertScrollBar.Page'
-  +#3#16#1#7'Caption'#6#6'Unitop'#12'ClientHeight'#3#17#1#11'ClientWidth'#2'q'#8
-  +'OnCreate'#7#10'FormCreate'#13'PixelsPerInch'#2'K'#8'ShowHint'#9#0#6'TPanel'
-  +#7'pnlBase'#6'Height'#3#17#1#5'Width'#2'q'#5'Align'#7#8'alClient'#10'BevelWi'
-  +'dth'#2#4#12'ClientHeight'#3#17#1#11'ClientWidth'#2'q'#8'TabOrder'#2#0#0#12
-  +'TSpeedButton'#11'sbSeparator'#4'Left'#2'H'#6'Height'#2' '#4'Hint'#6#9'Separ'
-  +'ator'#3'Top'#2#8#5'Width'#2' '#10'AllowAllUp'#9#10'Glyph.Data'#10#10#9#0#0#6
-  +#9#0#0'/* XPM */'#10'static char *graphic[] = {'#10'"32 32 74 1",'#10'". c N'
-  +'one",'#10'", c #E7E7E7",'#10'"- c #D7D7D7",'#10'"* c #565353",'#10'"a c #39'
-  +'3533",'#10'"b c #AFADAF",'#10'"c c #7B7777",'#10'"d c #3B3733",'#10'"e c #4'
-  +'2423F",'#10'"f c #777373",'#10'"g c #8C8685",'#10'"h c #BDBDBF",'#10'"i c #'
-  +'AFAFAD",'#10'"j c #B5B5B5",'#10'"k c #464646",'#10'"l c #878787",'#10'"m c '
-  +'#FFFFFF",'#10'"n c #9F9D9C",'#10'"o c #777773",'#10'"p c #474642",'#10'"q c'
-  +' #4B4747",'#10'"r c #73736F",'#10'"s c #A5A7A5",'#10'"t c #C7C6C6",'#10'"u '
-  +'c #CFCFCF",'#10'"v c #5A5757",'#10'"w c #96948F",'#10'"x c #BDBDB7",'#10'"y'
-  +' c #979594",'#10'"z c #433F3D",'#10'"A c #5B5A57",'#10'"B c #D7D7D6",'#10'"'
-  +'C c #DFDEDE",'#10'"D c #6B6767",'#10'"E c #858786",'#10'"F c #BFBDBD",'#10
-  +'"G c #86847F",'#10'"H c #6F6F6B",'#10'"I c #5E5B5A",'#10'"J c #EFEFEF",'#10
-  +'"K c #3D3937",'#10'"L c #676763",'#10'"M c #8E8D8D",'#10'"N c #67635F",'#10
-  +'"O c #ADA7A7",'#10'"P c #534E4F",'#10'"Q c #CECECF",'#10'"R c #AFADA7",'#10
-  +'"S c #CECFCF",'#10'"T c #949695",'#10'"U c #8D8C8E",'#10'"V c #4B4646",'#10
-  +'"W c #A5A7A7",'#10'"X c #C7C6C7",'#10'"Y c #63635E",'#10'"Z c #878487",'#10
-  +'"0 c #A59E9D",'#10'"1 c #C6BFBF",'#10'"2 c #9C9E9C",'#10'"3 c #878584",'#10
-  +'"4 c #5F5A5A",'#10'"5 c #6F6B6B",'#10'"6 c #C6C7C6",'#10'"7 c #948F8E",'#10
-  +'"8 c #736F6F",'#10'"9 c #A7A5A5",'#10'"@ c #8C8584",'#10'"# c #4B4743",'#10
-  +'"; c #56534F",'#10'": c #BDBFBF",'#10'"= c #B5AFAF",'#10'"+ c #676767",'#10
-  +'"% c #4B4B4A",'#10'"$ c #6B6B6B",'#10'"................................",'
-  +#10'"........................,-......",'#10'".....................---*ab....'
-  +'.",'#10'"...............caaaadaaaaaae....",'#10'"...............fg,,,hijjka'
-  +'lm....",'#10'"............,nopqrs,....tu......",'#10'"...........*vw-xyc*zA'
-  +'B..........",'#10'".........CdDEnFnGHIqazJ.........",'#10'".........cKvLcMf'
-  +'N*qKaaO.........",'#10'".........bPybB.QRMoIKaS.........",'#10'".........b*'
-  +'ybB.QRMoIKaS.........",'#10'".........b*ybB.QRMoIKaS.........",'#10'"......'
-  +'...b*ybB.QRMoIKaS.........",'#10'"......t-.b*ybB.QRMoIKaS.........",'#10'".'
-  +'..jjjIaTR*ybB.QRMoIKaS.........",'#10'"..jadaaada*ybB.QOMoIKaS.........",'
-  +#10'"..----KKFb*ybB.QRMoIKaS.........",'#10'"......,,.b*ybB.QRMoIKaS........'
+  +'op'#3#159#0#5'Width'#2's'#18'HorzScrollBar.Page'#2'r'#18'VertScrollBar.Page'
+  +#3#16#1#7'Caption'#6#6'Unitop'#8'OnCreate'#7#10'FormCreate'#8'ShowHint'#9#0#6
+  +'TPanel'#7'pnlBase'#6'Height'#3#17#1#5'Width'#2's'#5'Align'#7#8'alClient'#10
+  +'BevelWidth'#2#4#8'TabOrder'#2#0#0#12'TSpeedButton'#11'sbSeparator'#4'Left'#2
+  +'H'#6'Height'#2' '#4'Hint'#6#9'Separator'#3'Top'#2#8#5'Width'#2' '#10'AllowA'
+  +'llUp'#9#5'Color'#7#9'clBtnFace'#10'Glyph.Data'#10#10#9#0#0#6#9#0#0'/* XPM *'
+  +'/'#10'static char *graphic[] = {'#10'"32 32 74 1",'#10'". c None",'#10'", c'
+  +' #E7E7E7",'#10'"- c #D7D7D7",'#10'"* c #565353",'#10'"a c #393533",'#10'"b '
+  +'c #AFADAF",'#10'"c c #7B7777",'#10'"d c #3B3733",'#10'"e c #42423F",'#10'"f'
+  +' c #777373",'#10'"g c #8C8685",'#10'"h c #BDBDBF",'#10'"i c #AFAFAD",'#10'"'
+  +'j c #B5B5B5",'#10'"k c #464646",'#10'"l c #878787",'#10'"m c #FFFFFF",'#10
+  +'"n c #9F9D9C",'#10'"o c #777773",'#10'"p c #474642",'#10'"q c #4B4747",'#10
+  +'"r c #73736F",'#10'"s c #A5A7A5",'#10'"t c #C7C6C6",'#10'"u c #CFCFCF",'#10
+  +'"v c #5A5757",'#10'"w c #96948F",'#10'"x c #BDBDB7",'#10'"y c #979594",'#10
+  +'"z c #433F3D",'#10'"A c #5B5A57",'#10'"B c #D7D7D6",'#10'"C c #DFDEDE",'#10
+  +'"D c #6B6767",'#10'"E c #858786",'#10'"F c #BFBDBD",'#10'"G c #86847F",'#10
+  +'"H c #6F6F6B",'#10'"I c #5E5B5A",'#10'"J c #EFEFEF",'#10'"K c #3D3937",'#10
+  +'"L c #676763",'#10'"M c #8E8D8D",'#10'"N c #67635F",'#10'"O c #ADA7A7",'#10
+  +'"P c #534E4F",'#10'"Q c #CECECF",'#10'"R c #AFADA7",'#10'"S c #CECFCF",'#10
+  +'"T c #949695",'#10'"U c #8D8C8E",'#10'"V c #4B4646",'#10'"W c #A5A7A7",'#10
+  +'"X c #C7C6C7",'#10'"Y c #63635E",'#10'"Z c #878487",'#10'"0 c #A59E9D",'#10
+  +'"1 c #C6BFBF",'#10'"2 c #9C9E9C",'#10'"3 c #878584",'#10'"4 c #5F5A5A",'#10
+  +'"5 c #6F6B6B",'#10'"6 c #C6C7C6",'#10'"7 c #948F8E",'#10'"8 c #736F6F",'#10
+  +'"9 c #A7A5A5",'#10'"@ c #8C8584",'#10'"# c #4B4743",'#10'"; c #56534F",'#10
+  +'": c #BDBFBF",'#10'"= c #B5AFAF",'#10'"+ c #676767",'#10'"% c #4B4B4A",'#10
+  +'"$ c #6B6B6B",'#10'"................................",'#10'"...............'
+  +'.........,-......",'#10'".....................---*ab.....",'#10'"..........'
+  +'.....caaaadaaaaaae....",'#10'"...............fg,,,hijjkalm....",'#10'".....'
+  +'.......,nopqrs,....tu......",'#10'"...........*vw-xyc*zAB..........",'#10'"'
+  +'.........CdDEnFnGHIqazJ.........",'#10'".........cKvLcMfN*qKaaO.........",'
+  +#10'".........bPybB.QRMoIKaS.........",'#10'".........b*ybB.QRMoIKaS........'
   +'.",'#10'".........b*ybB.QRMoIKaS.........",'#10'".........b*ybB.QRMoIKaS...'
-  +'......",'#10'".........b*ybB.QRMoIKaS.........",'#10'".........b*ybB.QRMoIK'
-  +'aS.........",'#10'".........bPybB.QRMoIKaS.........",'#10'".........cK*LoUf'
-  +'N*VKaaW.........",'#10'".........XaYZ0123H4qaKJ.........",'#10'"..........,'
-  +'5NU6b78PKr...........",'#10'"............B9@#;@:m....Jj......",'#10'"......'
-  +'.........8r===y+55%akQ....",'#10'"...............y4444zaaaaaa$....",'#10'".'
-  +'...................mmmm+$J.....",'#10'"................................",'
-  +#10'"................................"}'#10#10'GroupIndex'#2#1#9'NumGlyphs'#2
-  +#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#6'sbTank'#4'Left'
-  +#2'H'#6'Height'#2' '#4'Hint'#6#4'Tank'#3'Top'#2'('#5'Width'#2' '#10'AllowAll'
-  +'Up'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClic'
-  +'k'#0#0#12'TSpeedButton'#15'sbHeatExchanger'#4'Left'#2'H'#6'Height'#2' '#4'H'
-  +'int'#6#14'Heat Exchanger'#3'Top'#2'H'#5'Width'#2' '#10'AllowAllUp'#9#10'Gro'
-  +'upIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TS'
-  +'peedButton'#5'sbTee'#4'Left'#2'H'#6'Height'#2' '#4'Hint'#6#3'Tee'#3'Top'#2
-  +'h'#5'Width'#2' '#10'AllowAllUp'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnC'
-  +'lick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#12'SpeedButton1'#4'Left'
-  +#2'('#6'Height'#2' '#3'Top'#3#200#0#5'Width'#2' '#10'AllowAllUp'#9#10'GroupI'
-  +'ndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpee'
-  +'dButton'#17'sb3PhaseSeparator'#4'Left'#2'('#6'Height'#2' '#4'Hint'#6#17'3-P'
-  +'hase Separator'#3'Top'#2'('#5'Width'#2' '#10'AllowAllUp'#9#10'GroupIndex'#2
-  +#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'
-  +#10'sbExpander'#4'Left'#2'('#6'Height'#2' '#4'Hint'#6#8'Expander'#3'Top'#2'h'
-  +#5'Width'#2' '#10'AllowAllUp'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClic'
-  +'k'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#12'SpeedButton2'#4'Left'#2
-  +'('#6'Height'#2' '#3'Top'#3#168#0#5'Width'#2' '#10'AllowAllUp'#9#10'GroupInd'
-  +'ex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedB'
-  ,'utton'#12'SpeedButton3'#4'Left'#2'('#6'Height'#2' '#3'Top'#3#232#0#5'Width'
-  +#2' '#10'AllowAllUp'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'U'
-  +'nitOperationClick'#0#0#12'TSpeedButton'#13'sbPipeSegment'#4'Left'#2'('#6'He'
-  +'ight'#2' '#4'Hint'#6#12'Pipe Segment'#3'Top'#3#136#0#5'Width'#2' '#10'Allow'
-  +'AllUp'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationC'
-  +'lick'#0#0#12'TSpeedButton'#8'sbCooler'#4'Left'#2'('#6'Height'#2' '#4'Hint'#6
-  +#6'Cooler'#3'Top'#2'H'#5'Width'#2' '#10'AllowAllUp'#9#10'GroupIndex'#2#1#9'N'
+  +'......",'#10'"......t-.b*ybB.QRMoIKaS.........",'#10'"...jjjIaTR*ybB.QRMoIK'
+  +'aS.........",'#10'"..jadaaada*ybB.QOMoIKaS.........",'#10'"..----KKFb*ybB.Q'
+  +'RMoIKaS.........",'#10'"......,,.b*ybB.QRMoIKaS.........",'#10'".........b*'
+  +'ybB.QRMoIKaS.........",'#10'".........b*ybB.QRMoIKaS.........",'#10'"......'
+  +'...b*ybB.QRMoIKaS.........",'#10'".........b*ybB.QRMoIKaS.........",'#10'".'
+  +'........bPybB.QRMoIKaS.........",'#10'".........cK*LoUfN*VKaaW.........",'
+  +#10'".........XaYZ0123H4qaKJ.........",'#10'"..........,5NU6b78PKr..........'
+  +'.",'#10'"............B9@#;@:m....Jj......",'#10'"...............8r===y+55%a'
+  +'kQ....",'#10'"...............y4444zaaaaaa$....",'#10'"....................m'
+  +'mmm+$J.....",'#10'"................................",'#10'"................'
+  +'................"}'#10#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18
+  +'UnitOperationClick'#0#0#12'TSpeedButton'#6'sbTank'#4'Left'#2'H'#6'Height'#2
+  +' '#4'Hint'#6#4'Tank'#3'Top'#2'('#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9
+  +'clBtnFace'#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperatio'
+  +'nClick'#0#0#12'TSpeedButton'#15'sbHeatExchanger'#4'Left'#2'H'#6'Height'#2' '
+  +#4'Hint'#6#14'Heat Exchanger'#3'Top'#2'H'#5'Width'#2' '#10'AllowAllUp'#9#5'C'
+  +'olor'#7#9'clBtnFace'#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'Un'
+  +'itOperationClick'#0#0#12'TSpeedButton'#5'sbTee'#4'Left'#2'H'#6'Height'#2' '
+  +#4'Hint'#6#3'Tee'#3'Top'#2'h'#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'cl'
+  +'BtnFace'#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationC'
+  +'lick'#0#0#12'TSpeedButton'#12'SpeedButton1'#4'Left'#2'('#6'Height'#2' '#3'T'
+  +'op'#3#200#0#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'Group'
+  +'Index'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpe'
+  +'edButton'#17'sb3PhaseSeparator'#4'Left'#2'('#6'Height'#2' '#4'Hint'#6#17'3-'
+  +'Phase Separator'#3'Top'#2'('#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'cl'
+  +'BtnFace'#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationC'
+  +'lick'#0#0#12'TSpeedButton'#10'sbExpander'#4'Left'#2'('#6'Height'#2' '#4'Hin'
+  +'t'#6#8'Expander'#3'Top'#2'h'#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'cl'
+  +'BtnFace'#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationC'
+  +'lick'#0#0#12'TSpeedButton'#12'SpeedButton2'#4'Left'#2'('#6'Height'#2' '#3'T'
+  +'op'#3#168#0#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'Group'
+  ,'Index'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpe'
+  +'edButton'#12'SpeedButton3'#4'Left'#2'('#6'Height'#2' '#3'Top'#3#232#0#5'Wid'
+  +'th'#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'GroupIndex'#2#1#9'NumG'
+  +'lyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#13'sbPi'
+  +'peSegment'#4'Left'#2'('#6'Height'#2' '#4'Hint'#6#12'Pipe Segment'#3'Top'#3
+  +#136#0#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'GroupIndex'
+  +#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButto'
+  +'n'#8'sbCooler'#4'Left'#2'('#6'Height'#2' '#4'Hint'#6#6'Cooler'#3'Top'#2'H'#5
+  +'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'GroupIndex'#2#1#9'N'
   +'umGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#7'sb'
   +'Valve'#4'Left'#2'('#6'Height'#2' '#4'Hint'#6#5'Valve'#3'Top'#2#8#5'Width'#2
-  +' '#10'AllowAllUp'#9#10'Glyph.Data'#10#252#7#0#0#248#7#0#0'/* XPM */'#10'sta'
-  +'tic char *graphic[] = {'#10'"32 32 56 1",'#10'". c None",'#10'", c #6F6F6F"'
-  +','#10'"- c #CFCFCF",'#10'"* c #AFAFAF",'#10'"a c #8D8D8E",'#10'"b c #636363'
-  +'",'#10'"c c #4F4E4F",'#10'"d c #3B3B3B",'#10'"e c #8C8C8C",'#10'"f c #A5A5A'
-  +'5",'#10'"g c #7B7B7B",'#10'"h c #8D8D8D",'#10'"i c #5B5A5B",'#10'"j c #F7F7'
-  +'F7",'#10'"k c #D6D6D6",'#10'"l c #434242",'#10'"m c #8E8E8E",'#10'"n c #676'
-  +'767",'#10'"o c #6B6B6B",'#10'"p c #737373",'#10'"q c #84847F",'#10'"r c #8F'
-  +'8F8F",'#10'"s c #969595",'#10'"t c #5F5E5E",'#10'"u c #A7A7A7",'#10'"v c #8'
-  +'48484",'#10'"w c #6B6B67",'#10'"x c #8F8E8E",'#10'"y c #777777",'#10'"z c #'
-  +'C6C6C6",'#10'"A c #BFBFBF",'#10'"B c #9D9D9D",'#10'"C c #C6C7C7",'#10'"D c '
-  +'#BDBDBD",'#10'"E c #B7B5B5",'#10'"F c #FFFFFF",'#10'"G c #B5B5B5",'#10'"H c'
-  +' #DFDFDF",'#10'"I c #878787",'#10'"J c #ADADAD",'#10'"K c #8C878C",'#10'"L '
-  +'c #9D9D9E",'#10'"M c #E7E7E7",'#10'"N c #C7C7C7",'#10'"O c #DEDEDE",'#10'"P'
-  +' c #9E9D9D",'#10'"Q c #7F7F7F",'#10'"R c #D7D7D7",'#10'"S c #9E9E9E",'#10'"'
-  +'T c #959595",'#10'"U c #868585",'#10'"V c #949494",'#10'"W c #4A4A4A",'#10
-  +'"X c #9F9E9E",'#10'"Y c #8F8C8C",'#10'"Z c #969696",'#10'".................'
-  +'...............",'#10'"................................",'#10'"............'
-  +'....................",'#10'"................................",'#10'".......'
-  +'.........................",'#10'"................................",'#10'"..'
-  +'.......,-..........*a.........",'#10'".........bc..........de.........",'#10
-  +'".........bdf........gdh.........",'#10'".........bidj......klcm.........",'
-  +#10'".........nopc......dqir.........",'#10'".........ngstu....vpswr........'
-  +'.",'#10'".........ox**dj..kc**ye.........",'#10'".....zA..oBCC*i..lDCCvh...'
-  +'EA....",'#10'"..AAAidyF,GHHHIJKfHHHLa***yd,F..",'#10'".Mddldddlp-....cf....'
-  +'*gdldddld..",'#10'".HNNNida.,GOOOOdcOOOOPQRkktdS...",'#10'".....--..oBCCC,E'
-  +'TUCCCvh...k-....",'#10'".........omJJVt..WXJJyY.........",'#10'".........ng'
-  +'ssdF..Mlsswr.........",'#10'".........noUcG....ZiUir.........",'#10'"......'
-  +'...bibi......locm.........",'#10'".........bcdj......Mdlh.........",'#10'".'
-  +'........bdJ........ade.........",'#10'".........tc..........dK.........",'
-  +#10'".........,-..........*m.........",'#10'"...............................'
+  +' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'Glyph.Data'#10#252#7#0#0#248
+  +#7#0#0'/* XPM */'#10'static char *graphic[] = {'#10'"32 32 56 1",'#10'". c N'
+  +'one",'#10'", c #6F6F6F",'#10'"- c #CFCFCF",'#10'"* c #AFAFAF",'#10'"a c #8D'
+  +'8D8E",'#10'"b c #636363",'#10'"c c #4F4E4F",'#10'"d c #3B3B3B",'#10'"e c #8'
+  +'C8C8C",'#10'"f c #A5A5A5",'#10'"g c #7B7B7B",'#10'"h c #8D8D8D",'#10'"i c #'
+  +'5B5A5B",'#10'"j c #F7F7F7",'#10'"k c #D6D6D6",'#10'"l c #434242",'#10'"m c '
+  +'#8E8E8E",'#10'"n c #676767",'#10'"o c #6B6B6B",'#10'"p c #737373",'#10'"q c'
+  +' #84847F",'#10'"r c #8F8F8F",'#10'"s c #969595",'#10'"t c #5F5E5E",'#10'"u '
+  +'c #A7A7A7",'#10'"v c #848484",'#10'"w c #6B6B67",'#10'"x c #8F8E8E",'#10'"y'
+  +' c #777777",'#10'"z c #C6C6C6",'#10'"A c #BFBFBF",'#10'"B c #9D9D9D",'#10'"'
+  +'C c #C6C7C7",'#10'"D c #BDBDBD",'#10'"E c #B7B5B5",'#10'"F c #FFFFFF",'#10
+  +'"G c #B5B5B5",'#10'"H c #DFDFDF",'#10'"I c #878787",'#10'"J c #ADADAD",'#10
+  +'"K c #8C878C",'#10'"L c #9D9D9E",'#10'"M c #E7E7E7",'#10'"N c #C7C7C7",'#10
+  +'"O c #DEDEDE",'#10'"P c #9E9D9D",'#10'"Q c #7F7F7F",'#10'"R c #D7D7D7",'#10
+  +'"S c #9E9E9E",'#10'"T c #959595",'#10'"U c #868585",'#10'"V c #949494",'#10
+  +'"W c #4A4A4A",'#10'"X c #9F9E9E",'#10'"Y c #8F8C8C",'#10'"Z c #969696",'#10
+  +'"................................",'#10'"................................",'
+  +#10'"................................",'#10'"...............................'
   +'.",'#10'"................................",'#10'"..........................'
-  +'......",'#10'"................................",'#10'".....................'
-  +'...........",'#10'"................................"}'#10#10'GroupIndex'#2#1
-  +#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#7
-  +'sbMixer'#4'Left'#2#8#6'Height'#2' '#4'Hint'#6#5'Mixer'#3'Top'#2#8#5'Width'#2
-  +' '#10'AllowAllUp'#9#10'Glyph.Data'#10'D'#14#0#0'@'#14#0#0'/* XPM */'#10'sta'
-  +'tic char *graphic[] = {'#10'"32 32 89 2",'#10'".. c None",'#10'"., c #FFFFF'
-  +'F",'#10'".- c #DFDEDE",'#10'".* c #C7C6BF",'#10'".a c #BFBDBD",'#10'".b c #'
-  +'BFBFBF",'#10'".c c #BDB7B5",'#10'".d c #B5B7B5",'#10'".e c #B7B5B5",'#10'".'
-  +'f c #B5AFAF",'#10'".g c #F7F7F7",'#10'".h c #676767",'#10'".i c #3B3B3B",'
-  +#10'".j c #D6D6D6",'#10'".k c #433F3D",'#10'".l c #5E5B5A",'#10'".m c #5B575'
-  +'3",'#10'".n c #5B5657",'#10'".o c #4F4F4F",'#10'".p c #5F5B57",'#10'".q c #'
-  +'DFDFDE",'#10'".r c #7B7B7B",'#10'".s c #777777",'#10'".t c #424242",'#10'".'
-  +'u c #4A4B4B",'#10'".v c #676763",'#10'".w c #CECFCF",'#10'".x c #EFEFEF",'
-  +#10'".y c #A7A7A7",'#10'".z c #464343",'#10'".A c #777373",'#10'".B c #736F6'
-  +'F",'#10'".C c #4E4B4B",'#10'".D c #867F7F",'#10'".E c #848686",'#10'".F c #'
-  +'949695",'#10'".G c #979594",'#10'".H c #959497",'#10'".I c #A5A7A7",'#10'".'
-  +'J c #A7A7A5",'#10'".K c #777773",'#10'".L c #9E9C9F",'#10'".M c #B5B5B7",'
-  +#10'".N c #BDBDBD",'#10'".O c #C7C7C6",'#10'".P c #CFCFCF",'#10'".Q c #8D8C8'
-  +'6",'#10'".R c #C7C7C7",'#10'".S c #4F4E4A",'#10'".T c #E7E7E7",'#10'".U c #'
-  +'5E5A5A",'#10'".V c #C6C7C7",'#10'".W c #85847F",'#10'".X c #F7EFEF",'#10'".'
-  +'Y c #3D3D3D",'#10'".Z c #53524E",'#10'".0 c #CECECE",'#10'".1 c #BFBFC6",'
-  +#10'".2 c #636363",'#10'".3 c #DEDEDF",'#10'".4 c #5E5A56",'#10'".5 c #CFCEC'
-  +'E",'#10'".6 c #A5A59F",'#10'".7 c #7F7B7B",'#10'".8 c #C7CECE",'#10'".9 c #'
-  +'B5AFAD",'#10'".@ c #B7B7B5",'#10'".# c #A59E9D",'#10'".; c #A7A5A5",'#10'".'
-  ,': c #858786",'#10'".= c #8F8D8C",'#10'".+ c #959494",'#10'".% c #857F7F",'
-  +#10'".$ c #878584",'#10'".( c #6F6F6F",'#10'".) c #73736F",'#10'".[ c #EFE7E'
-  +'7",'#10'".] c #B5B5B5",'#10'",. c #959696",'#10'",, c #5F5F5F",'#10'",- c #'
-  +'63635F",'#10'",* c #575252",'#10'",a c #878787",'#10'",b c #868686",'#10'",'
-  +'c c #6B6B6B",'#10'",d c #423F3D",'#10'",e c #DFDFDF",'#10'",f c #6B6B67",'
-  +#10'",g c #737373",'#10'"...................................................'
-  +'.............",'#10'"......................................................'
-  +'..........",'#10'".........................................................'
-  +'.......",'#10'"............................................................'
-  +'....",'#10'"...........,.-.....*.a.b.a.c.d.e.f.............................'
-  +'.",'#10'"...,.g.g.g.h.i.j...k.i.i.i.i.i.i.i..............................",'
-  +#10'"...f.i.i.i.i.i.i.l.k.m.n.n.n.n.n.o.p............................",'#10
-  +'"...q.r.s.s.t.i.u.j.k.v.h.h.h.h.h.h.u.w..........................",'#10'"..'
-  +'.........x.y.....z.A.A.A.A.A.A.A.B.C..........................",'#10'".....'
-  +'..............z.D.E.E.E.E.E.E.E.p.d........................",'#10'"........'
-  +'...........z.F.G.G.G.G.G.G.G.H.k........................",'#10'"...........'
-  +'........u.I.J.J.J.J.J.J.J.J.K.L......................",'#10'"..............'
-  +'.....C.M.N.N.N.N.N.N.N.N.N.u.,....................",'#10'"...........j.O...'
-  +'..C.P.w.w.w.w.w.w.w.w.w.L.Q.........P.O........",'#10'".....R.R.R.h.i.r...S'
-  +'.T.T.T.T.T.T.T.T.T.T.T.U.x.V.V.V.n.i.W......",'#10'"...X.i.i.Y.i.i.i.Y.Z.,.'
-  +'....................0.A.i.Y.i.i.i.Y.i....",'#10'"...T.1.1.1.2.i.s...S.3.q.q'
-  +'.q.q.q.q.q.q.q.q.4.5.V.V.V.n.i.W......",'#10'"...........0.R.....C.R.O.O.O.'
-  +'O.O.O.O.O.O.6.7.........8.O........",'#10'"...................C.9.@.@.@.@.@'
-  +'.@.@.@.@.Z.x....................",'#10'"...................u.#.;.;.;.;.;.;.'
-  +';.;.:.s......................",'#10'"...................z.=.+.+.+.+.+.+.+.+'
-  +'.C.x......................",'#10'"...................z.%.$.$.$.$.$.$.$.(.A.'
-  +'.......................",'#10'"...................k.(.).).).).).).).z.[....'
-  +'....................",'#10'"...........],......k,,,-,-,-,-,-,-,*.B.........'
-  +'.................",'#10'"...x,a,b,b,c.i.t.q,d.Z,*,*,*,*,*,*,d.T............'
-  +'..............",'#10'"..,e.i.i.i.i.Y.i.o,d.k.k.k.k.k.k.i,f.................'
-  +'...........",'#10'"...,.x.x.x,g.i.N..,d.i.i.i.i.i.i.i......................'
-  +'........",'#10'"...........q.g.....d.9.f.f.f.f.f.9.........................'
-  +'.....",'#10'"..............................................................'
-  +'..",'#10'"................................................................"'
-  +','#10'"................................................................",'
-  +#10'"................................................................"}'#10
-  +#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0
-  +#12'TSpeedButton'#12'SpeedButton4'#4'Left'#2#8#6'Height'#2' '#3'Top'#3#168#0
-  +#5'Width'#2' '#10'AllowAllUp'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClic'
-  +'k'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#12'SpeedButton5'#4'Left'#2
-  +#8#6'Height'#2' '#3'Top'#3#200#0#5'Width'#2' '#10'AllowAllUp'#9#10'GroupInde'
-  +'x'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedBu'
-  +'tton'#12'SpeedButton6'#4'Left'#2#8#6'Height'#2' '#3'Top'#3#232#0#5'Width'#2
-  +' '#10'AllowAllUp'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'Uni'
-  +'tOperationClick'#0#0#12'TSpeedButton'#6'sbPump'#4'Left'#2#8#6'Height'#2' '#4
-  +'Hint'#6#4'Pump'#3'Top'#2'('#5'Width'#2' '#10'AllowAllUp'#9#10'GroupIndex'#2
-  +#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'
-  +#8'sbHeater'#4'Left'#2#8#6'Height'#2' '#4'Hint'#6#6'Heater'#3'Top'#2'H'#5'Wi'
-  +'dth'#2' '#10'AllowAllUp'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7
-  +#18'UnitOperationClick'#0#0#12'TSpeedButton'#12'sbCompressor'#4'Left'#2#8#6
-  +'Height'#2' '#4'Hint'#6#10'Compressor'#3'Top'#2'h'#5'Width'#2' '#10'AllowAll'
-  +'Up'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClic'
-  +'k'#0#0#12'TSpeedButton'#6'sbCSTR'#4'Left'#2#8#6'Height'#2' '#4'Hint'#6#4'CS'
-  +'TR'#3'Top'#3#136#0#5'Width'#2' '#10'AllowAllUp'#9#10'GroupIndex'#2#1#9'NumG'
-  +'lyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#12'Spee'
-  +'dButton7'#4'Left'#2'H'#6'Height'#2' '#3'Top'#3#168#0#5'Width'#2' '#10'Allow'
-  +'AllUp'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationC'
-  +'lick'#0#0#12'TSpeedButton'#12'SpeedButton8'#4'Left'#2'H'#6'Height'#2' '#3'T'
-  +'op'#3#200#0#5'Width'#2' '#10'AllowAllUp'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2
-  +#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#12'SpeedButton9'
-  +#4'Left'#2'H'#6'Height'#2' '#3'Top'#3#232#0#5'Width'#2' '#10'AllowAllUp'#9#10
-  +'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12
-  +'TSpeedButton'#5'sbPFR'#4'Left'#2'H'#6'Height'#2' '#4'Hint'#6#3'PFR'#3'Top'#3
-  +#136#0#5'Width'#2' '#10'AllowAllUp'#9#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7
-  ,'OnClick'#7#18'UnitOperationClick'#0#0#0#0
+  +'......",'#10'".........,-..........*a.........",'#10'".........bc..........'
+  +'de.........",'#10'".........bdf........gdh.........",'#10'".........bidj...'
+  +'...klcm.........",'#10'".........nopc......dqir.........",'#10'".........ng'
+  +'stu....vpswr.........",'#10'".........ox**dj..kc**ye.........",'#10'".....z'
+  +'A..oBCC*i..lDCCvh...EA....",'#10'"..AAAidyF,GHHHIJKfHHHLa***yd,F..",'#10'".'
+  +'Mddldddlp-....cf....*gdldddld..",'#10'".HNNNida.,GOOOOdcOOOOPQRkktdS...",'
+  +#10'".....--..oBCCC,ETUCCCvh...k-....",'#10'".........omJJVt..WXJJyY........'
+  +'.",'#10'".........ngssdF..Mlsswr.........",'#10'".........noUcG....ZiUir...'
+  +'......",'#10'".........bibi......locm.........",'#10'".........bcdj......Md'
+  +'lh.........",'#10'".........bdJ........ade.........",'#10'".........tc.....'
+  +'.....dK.........",'#10'".........,-..........*m.........",'#10'"...........'
+  +'.....................",'#10'"................................",'#10'"......'
+  +'..........................",'#10'"................................",'#10'".'
+  +'...............................",'#10'"................................"}'
+  +#10#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0
+  +#0#12'TSpeedButton'#7'sbMixer'#4'Left'#2#8#6'Height'#2' '#4'Hint'#6#5'Mixer'
+  +#3'Top'#2#8#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'Glyph.'
+  +'Data'#10'D'#14#0#0'@'#14#0#0'/* XPM */'#10'static char *graphic[] = {'#10'"'
+  +'32 32 89 2",'#10'".. c None",'#10'"., c #FFFFFF",'#10'".- c #DFDEDE",'#10'"'
+  +'.* c #C7C6BF",'#10'".a c #BFBDBD",'#10'".b c #BFBFBF",'#10'".c c #BDB7B5",'
+  +#10'".d c #B5B7B5",'#10'".e c #B7B5B5",'#10'".f c #B5AFAF",'#10'".g c #F7F7F'
+  +'7",'#10'".h c #676767",'#10'".i c #3B3B3B",'#10'".j c #D6D6D6",'#10'".k c #'
+  +'433F3D",'#10'".l c #5E5B5A",'#10'".m c #5B5753",'#10'".n c #5B5657",'#10'".'
+  +'o c #4F4F4F",'#10'".p c #5F5B57",'#10'".q c #DFDFDE",'#10'".r c #7B7B7B",'
+  +#10'".s c #777777",'#10'".t c #424242",'#10'".u c #4A4B4B",'#10'".v c #67676'
+  +'3",'#10'".w c #CECFCF",'#10'".x c #EFEFEF",'#10'".y c #A7A7A7",'#10'".z c #'
+  +'464343",'#10'".A c #777373",'#10'".B c #736F6F",'#10'".C c #4E4B4B",'#10'".'
+  +'D c #867F7F",'#10'".E c #848686",'#10'".F c #949695",'#10'".G c #979594",'
+  +#10'".H c #959497",'#10'".I c #A5A7A7",'#10'".J c #A7A7A5",'#10'".K c #77777'
+  +'3",'#10'".L c #9E9C9F",'#10'".M c #B5B5B7",'#10'".N c #BDBDBD",'#10'".O c #'
+  +'C7C7C6",'#10'".P c #CFCFCF",'#10'".Q c #8D8C86",'#10'".R c #C7C7C7",'#10'".'
+  +'S c #4F4E4A",'#10'".T c #E7E7E7",'#10'".U c #5E5A5A",'#10'".V c #C6C7C7",'
+  +#10'".W c #85847F",'#10'".X c #F7EFEF",'#10'".Y c #3D3D3D",'#10'".Z c #53524'
+  +'E",'#10'".0 c #CECECE",'#10'".1 c #BFBFC6",'#10'".2 c #636363",'#10'".3 c #'
+  ,'DEDEDF",'#10'".4 c #5E5A56",'#10'".5 c #CFCECE",'#10'".6 c #A5A59F",'#10'".'
+  +'7 c #7F7B7B",'#10'".8 c #C7CECE",'#10'".9 c #B5AFAD",'#10'".@ c #B7B7B5",'
+  +#10'".# c #A59E9D",'#10'".; c #A7A5A5",'#10'".: c #858786",'#10'".= c #8F8D8'
+  +'C",'#10'".+ c #959494",'#10'".% c #857F7F",'#10'".$ c #878584",'#10'".( c #'
+  +'6F6F6F",'#10'".) c #73736F",'#10'".[ c #EFE7E7",'#10'".] c #B5B5B5",'#10'",'
+  +'. c #959696",'#10'",, c #5F5F5F",'#10'",- c #63635F",'#10'",* c #575252",'
+  +#10'",a c #878787",'#10'",b c #868686",'#10'",c c #6B6B6B",'#10'",d c #423F3'
+  +'D",'#10'",e c #DFDFDF",'#10'",f c #6B6B67",'#10'",g c #737373",'#10'"......'
+  +'..........................................................",'#10'".........'
+  +'.......................................................",'#10'"............'
+  +'....................................................",'#10'"...............'
+  +'.................................................",'#10'"...........,.-....'
+  +'.*.a.b.a.c.d.e.f..............................",'#10'"...,.g.g.g.h.i.j...k.'
+  +'i.i.i.i.i.i.i..............................",'#10'"...f.i.i.i.i.i.i.l.k.m.n'
+  +'.n.n.n.n.o.p............................",'#10'"...q.r.s.s.t.i.u.j.k.v.h.h.'
+  +'h.h.h.h.u.w..........................",'#10'"...........x.y.....z.A.A.A.A.A'
+  +'.A.A.B.C..........................",'#10'"...................z.D.E.E.E.E.E.'
+  +'E.E.p.d........................",'#10'"...................z.F.G.G.G.G.G.G.G'
+  +'.H.k........................",'#10'"...................u.I.J.J.J.J.J.J.J.J.'
+  +'K.L......................",'#10'"...................C.M.N.N.N.N.N.N.N.N.N.u'
+  +'.,....................",'#10'"...........j.O.....C.P.w.w.w.w.w.w.w.w.w.L.Q.'
+  +'........P.O........",'#10'".....R.R.R.h.i.r...S.T.T.T.T.T.T.T.T.T.T.T.U.x.V'
+  +'.V.V.n.i.W......",'#10'"...X.i.i.Y.i.i.i.Y.Z.,.....................0.A.i.Y.'
+  +'i.i.i.Y.i....",'#10'"...T.1.1.1.2.i.s...S.3.q.q.q.q.q.q.q.q.q.q.4.5.V.V.V.n'
+  +'.i.W......",'#10'"...........0.R.....C.R.O.O.O.O.O.O.O.O.O.6.7.........8.O.'
+  +'.......",'#10'"...................C.9.@.@.@.@.@.@.@.@.@.Z.x................'
+  +'....",'#10'"...................u.#.;.;.;.;.;.;.;.;.:.s.....................'
+  +'.",'#10'"...................z.=.+.+.+.+.+.+.+.+.C.x......................",'
+  +#10'"...................z.%.$.$.$.$.$.$.$.(.A........................",'#10
+  +'"...................k.(.).).).).).).).z.[........................",'#10'"..'
+  +'.........],......k,,,-,-,-,-,-,-,*.B..........................",'#10'"...x,'
+  +'a,b,b,c.i.t.q,d.Z,*,*,*,*,*,*,d.T..........................",'#10'"..,e.i.i'
+  +'.i.i.Y.i.o,d.k.k.k.k.k.k.i,f............................",'#10'"...,.x.x.x,'
+  +'g.i.N..,d.i.i.i.i.i.i.i..............................",'#10'"...........q.g'
+  +'.....d.9.f.f.f.f.f.9..............................",'#10'".................'
+  +'...............................................",'#10'"....................'
+  +'............................................",'#10'".......................'
+  +'.........................................",'#10'"..........................'
+  +'......................................"}'#10#10'GroupIndex'#2#1#9'NumGlyphs'
+  +#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#12'SpeedButton'
+  +'4'#4'Left'#2#8#6'Height'#2' '#3'Top'#3#168#0#5'Width'#2' '#10'AllowAllUp'#9
+  +#5'Color'#7#9'clBtnFace'#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18
+  +'UnitOperationClick'#0#0#12'TSpeedButton'#12'SpeedButton5'#4'Left'#2#8#6'Hei'
+  +'ght'#2' '#3'Top'#3#200#0#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnF'
+  +'ace'#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'
+  +#0#0#12'TSpeedButton'#12'SpeedButton6'#4'Left'#2#8#6'Height'#2' '#3'Top'#3
+  +#232#0#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'GroupIndex'
+  +#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButto'
+  +'n'#6'sbPump'#4'Left'#2#8#6'Height'#2' '#4'Hint'#6#4'Pump'#3'Top'#2'('#5'Wid'
+  +'th'#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'GroupIndex'#2#1#9'NumG'
+  +'lyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#8'sbHea'
+  +'ter'#4'Left'#2#8#6'Height'#2' '#4'Hint'#6#6'Heater'#3'Top'#2'H'#5'Width'#2
+  +' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'GroupIndex'#2#1#9'NumGlyphs'
+  +#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#12'sbCompresso'
+  +'r'#4'Left'#2#8#6'Height'#2' '#4'Hint'#6#10'Compressor'#3'Top'#2'h'#5'Width'
+  +#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'GroupIndex'#2#1#9'NumGlyph'
+  +'s'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#6'sbCSTR'#4
+  +'Left'#2#8#6'Height'#2' '#4'Hint'#6#4'CSTR'#3'Top'#3#136#0#5'Width'#2' '#10
+  +'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7
+  +'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#12'SpeedButton7'#4'L'
+  +'eft'#2'H'#6'Height'#2' '#3'Top'#3#168#0#5'Width'#2' '#10'AllowAllUp'#9#5'Co'
+  +'lor'#7#9'clBtnFace'#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'Uni'
+  +'tOperationClick'#0#0#12'TSpeedButton'#12'SpeedButton8'#4'Left'#2'H'#6'Heigh'
+  +'t'#2' '#3'Top'#3#200#0#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFac'
+  ,'e'#10'GroupIndex'#2#1#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0
+  +#0#12'TSpeedButton'#12'SpeedButton9'#4'Left'#2'H'#6'Height'#2' '#3'Top'#3#232
+  +#0#5'Width'#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'GroupIndex'#2#1
+  +#9'NumGlyphs'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#12'TSpeedButton'#5
+  +'sbPFR'#4'Left'#2'H'#6'Height'#2' '#4'Hint'#6#3'PFR'#3'Top'#3#136#0#5'Width'
+  +#2' '#10'AllowAllUp'#9#5'Color'#7#9'clBtnFace'#10'GroupIndex'#2#1#9'NumGlyph'
+  +'s'#2#0#7'OnClick'#7#18'UnitOperationClick'#0#0#0#0
 ]);
