@@ -1,6 +1,6 @@
 { $Id$ }
 {
- /***************************************************************************
+ /****************************************************************************
 
                   Abstract: Implementation of SRK equation of state.
                   Initial Revision : 15/04/2006
@@ -9,7 +9,7 @@
                     - Matt Henley
                     - Additional contributors...
 
- ***************************************************************************/
+ ****************************************************************************/
 
  *****************************************************************************
  *                                                                           *
@@ -29,13 +29,14 @@ unit Eos_Srk;
 interface
 
 uses
-  SysUtils, Classes, Entities, Thermo, Eos;
+  SysUtils, Classes, Entities, Thermo, CubicEos;
 
 type
   TSrkEos = class (TCubicEos)
   protected
     procedure CalcDepartures(APhase: TPhase); override;
-    function CalcFugacityCoefficients(APhase: TPhase): TValueRec; override;
+
+    procedure CalcFugacityCoefficients(APhase: TPhase);override;
     function FindRoots(APhase: TPhase): Variant; override;
   end;
   
@@ -57,13 +58,14 @@ procedure TSrkEos.CalcDepartures(APhase: TPhase);
     a: double;
     b: double;
     i, j: integer;
-    ai, bi, mi: array of Real;
+    ai, bi, mi: array of double;
     dadt: double;
-  
 begin
-  inherited CalcDepartures(APhase);
+// Itinerant:dadt is not initialized !!!
+//  inherited CalcDepartures(APhase);
   with APhase do begin
-  
+    CompressibilityFactor.Value := FindPhaseRoot(APhase);
+
     //Initializes auxiliar arrays.
     SetLength(ai, Compounds.Count);
     SetLength(bi, Compounds.Count);
@@ -83,16 +85,20 @@ begin
     for i := 0 to Compounds.Count - 1 do
       for j := 0 to Compounds.Count - 1 do
         a := a + Compositions[i].MoleFraction.Value *
-             Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j]);
+             Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j]) * (1-KIJ[i,j]);
+             
     MainA := a * Pressure.Value / (R * Temperature.Value)**2;
     MainB := b * Pressure.Value / (R * Temperature.Value);
-    EnthalpyDeparture.Value := (CompressibilityFactor.Value - 1.0 - 1.0 / (b * R * Temperature.Value) *
-                (a - Temperature.Value * dadt) * ln(1 + b / MoleVolume.Value)) *
-                R * Temperature.Value;
-    EntropyDeparture.Value := (ln(CompressibilityFactor.Value - b) - ln(Pressure.Value / P0) +
-                     MainA / MainB * (Temperature.Value / a * dadt) *
-                     ln(1 + MainB / CompressibilityFactor.Value)) * R * Temperature.Value;
-  
+
+//todo initialize dadt and volume
+
+    //EnthalpyDeparture.Value := (CompressibilityFactor.Value - 1.0 - 1.0 / (b * R * Temperature.Value) *
+                //(a - Temperature.Value * dadt) * ln(1 + b / MoleVolume.Value)) *
+                //R * Temperature.Value;
+    //EntropyDeparture.Value := (ln(CompressibilityFactor.Value - b) - ln(Pressure.Value / P0) +
+                     //MainA / MainB * (Temperature.Value / a * dadt) *
+                     //ln(1 + MainB / CompressibilityFactor.Value)) * R * Temperature.Value;
+
   end;//with
   
   //Deallocate dynamic arrays.
@@ -101,18 +107,20 @@ begin
   mi := nil;
 end;
 
-function TSrkEos.CalcFugacityCoefficients(APhase: TPhase): TValueRec;
+procedure TSrkEos.CalcFugacityCoefficients(APhase: TPhase);
 var
   V, test: Double;
   a, bigA: Double;
   b, bigB: Double;
   tempsum: Double;
+  CF: double;
   i, j: Integer;
-  ai, bi, mi: array of Real;
+  ai, bi, mi: array of double;
 begin
-  Result := inherited CalcFugacityCoefficients(APhase);
+  //inherited CalcFugacityCoefficients(APhase);
+
   with APhase do begin
-  
+    CompressibilityFactor.Value := FindPhaseRoot(APhase);
     //Initializes auxiliar arrays.
     SetLength(ai, Compounds.Count);
     SetLength(bi, Compounds.Count);
@@ -134,10 +142,11 @@ begin
     for i := 0 to Compositions.Count - 1 do
       for j := 0 to Compositions.Count - 1 do
         a := a + Compositions[i].MoleFraction.Value *
-             Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j]);
+             Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j])*(1.0 - KIJ[i,j]);
     bigA := a * Pressure.Value / (R * Temperature.Value)**2;
-  
+    
     for i := 0 to Compositions.Count - 1 do begin
+      CF:=CompressibilityFactor.Value;
       test := bi[i] / b * (CompressibilityFactor.Value - 1.0) -
               ln(CompressibilityFactor.Value - bigB) - bigA / bigB *
               (2.0 * Sqrt(ai[i] / a) - bi[i] / b) *
@@ -162,9 +171,9 @@ var
   a: Double;
   b: Double;
   i, j: Integer;
-  ai, bi, mi: array of Real;
+  ai, bi, mi: array of double;
 begin
-  Result := inherited FindRoots(APhase);
+//  Result := inherited FindRoots(APhase);
   with APhase do begin
   
     //Initializes auxiliar arrays.
@@ -187,7 +196,7 @@ begin
     for i := 0 to Compounds.Count - 1 do
       for j := 0 to Compounds.Count - 1 do
         a := a + Compositions[i].MoleFraction.Value *
-             Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j]);
+             Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j])*(1.0 - KIJ[i,j]);
   
     MainA := a * Pressure.Value / (R * Temperature.Value)**2;
     MainB := b * Pressure.Value / (R * Temperature.Value);

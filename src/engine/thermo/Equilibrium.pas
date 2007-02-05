@@ -31,7 +31,7 @@ unit Equilibrium;
 interface
 
 uses
-  SysUtils, Classes, Variants, Entities, Thermo, Eos;
+  SysUtils, Classes, Variants, Entities, Thermo, Eos, Flash;
 
 type
   {:
@@ -44,53 +44,49 @@ type
   * trying to understand it.                                                  * 
   *****************************************************************************
   }
-  TFlash = class(TObject)
-  private
-    FEos: TEos;
-  public
-    property Eos: TEos read FEos write FEos;
-  end;
-  
-  TThreePhaseFlash = class(TFlash)
+  TThreePhaseFlash = class (TFlash)
+    LiqPhi1, LiqPhi2 : Real;
     procedure EstK1Values(var K1: array of Real; ACompounds: TCompounds; P, T:
             Real);
     function EstK2Values(var K2: array of Real; ACompounds: TCompounds; P, T:
             Real): Variant;
     procedure Normalize(var AComposition: TCompositions);
-    procedure TP(AMaterial: TMaterial; T, P: Real);
+    procedure TPNew(AMaterial: TMaterial; T, P: Real);
   private
-    function CalcdQ1dphi1(const K1,K2: array of Real; const AComposition:
+    function CalcdQ1dphi1(const K1,K2: array of Real; const AComposition: 
             TCompositions; phi1,phi2:Real): Real;
-    function CalcdQ1dphi2(const K1,K2: array of Real; const AComposition:
+    function CalcdQ1dphi2(const K1,K2: array of Real; const AComposition: 
             TCompositions; phi1,phi2:Real): Real;
-    function CalcdQ2dphi2(const K1,K2: array of Real; const AComposition:
+    function CalcdQ2dphi2(const K1,K2: array of Real; const AComposition: 
             TCompositions; phi1,phi2:Real): Real;
-    function CalcQ1(const K1,K2: array of Real; const
+    function CalcQ1(const K1,K2: array of Real; const 
             AComposition:TCompositions; Phi1,Phi2:Real): Real;
-    function CalcQ2(const K1,K2: array of Real; const AComposition:
+    function CalcQ2(const K1,K2: array of Real; const AComposition: 
             TCompositions; phi1,phi2:Real): Real;
+    function CalcQ1MinusQ2(const K1,K2: array of Real; const
+        AComposition:TCompositions; Phi1:Real;var dQ1MinusQ2dPhi:Real): Real;
     procedure DoesPhaseExist(const K1,K2: array of Real; const AComposition:
-            TCompositions; var PhaseExist: array of Boolean; var phi1,phi2:
+            TCompositions; var PhaseExist: array of Boolean; var phi1,phi2: 
             Real);
-    function dTwoPhaseSum(const K: array of Real; const AComposition:
+    function dTwoPhaseSum(const K: array of Real; const AComposition: 
             TCompositions;LiquidFraction : Real): Real;
-    function GetTwoPhaseLiquidFraction(const K: array of Real; const
+    function GetTwoPhaseLiquidFraction(const K: array of Real; const 
             AComposition: TCompositions): Real;
-    procedure Solvephi1phi2(const K1,K2: array of Real; const AComposition:
+    procedure Solvephi1phi2(const K1,K2: array of Real; const AComposition: 
             TCompositions; var Phi1,Phi2: Real);
-    function SolveQ1(const K1,K2: array of Real; const AComposition:
+    function SolveQ1(const K1,K2: array of Real; const AComposition: 
             TCompositions; Phi2: Real): Real;
-    function SolveQ1minusQ2(const K1,K2: array of Real; const AComposition:
+    function SolveQ1minusQ2(const K1,K2: array of Real; const AComposition: 
             TCompositions): Real;
-    function SolveQ2(const K1,K2: array of Real; const AComposition:
+    function SolveQ2(const K1,K2: array of Real; const AComposition: 
             TCompositions; Phi1: Real): Real;
-    function TwoPhaseSum(const K: array of Real; const AComposition:
+    function TwoPhaseSum(const K: array of Real; const AComposition: 
             TCompositions; LiquidFraction : Real): Real;
-    procedure UpdateKValues(var VaporPhase, LiquidPhase: TPhase; var K:array of
+    procedure UpdateKValues(var VaporPhase, LiquidPhase: TPhase; var K:array of 
             Real);
   end;
   
-  TEquilibriumServer = class(TObject)
+  TEquilibriumServer = class (TObject)
   public
     {:
     - This routine will calculate the equilibrium properties for the given 
@@ -106,7 +102,7 @@ implementation
 {
 ******************************* TThreePhaseFlash *******************************
 }
-function TThreePhaseFlash.CalcdQ1dphi1(const K1,K2: array of Real; const
+function TThreePhaseFlash.CalcdQ1dphi1(const K1,K2: array of Real; const 
         AComposition: TCompositions; phi1,phi2:Real): Real;
 var
   i: Integer;
@@ -126,7 +122,7 @@ begin
   Result:= dQ;
 end;
 
-function TThreePhaseFlash.CalcdQ1dphi2(const K1,K2: array of Real; const
+function TThreePhaseFlash.CalcdQ1dphi2(const K1,K2: array of Real; const 
         AComposition: TCompositions; phi1,phi2:Real): Real;
 var
   i: Integer;
@@ -146,7 +142,7 @@ begin
   Result:=dQ;
 end;
 
-function TThreePhaseFlash.CalcdQ2dphi2(const K1,K2: array of Real; const
+function TThreePhaseFlash.CalcdQ2dphi2(const K1,K2: array of Real; const 
         AComposition: TCompositions; phi1,phi2:Real): Real;
 var
   i: Integer;
@@ -166,7 +162,7 @@ begin
   Result:=dQ;
 end;
 
-function TThreePhaseFlash.CalcQ1(const K1,K2: array of Real; const
+function TThreePhaseFlash.CalcQ1(const K1,K2: array of Real; const 
         AComposition:TCompositions; Phi1,Phi2:Real): Real;
 var
   i: Integer;
@@ -191,7 +187,7 @@ begin
   Result:= Q1;
 end;
 
-function TThreePhaseFlash.CalcQ2(const K1,K2: array of Real; const
+function TThreePhaseFlash.CalcQ2(const K1,K2: array of Real; const 
         AComposition: TCompositions; phi1,phi2:Real): Real;
 var
   i: Integer;
@@ -214,7 +210,29 @@ begin
   Result:= Q2;
 end;
 
-procedure TThreePhaseFlash.DoesPhaseExist(const K1,K2: array of Real; const
+function TThreePhaseFlash.CalcQ1MinusQ2(const K1,K2: array of Real; const
+        AComposition:TCompositions; Phi1:Real;var dQ1MinusQ2dPhi:Real): Real;
+var
+  i: Integer;
+  Q1MinusQ2,Term,Denom,K2MinusK1,Derivative: Real;
+begin
+
+  Q1MinusQ2:=0.0;
+  Derivative:=0.0;
+  for i := 0 to AComposition.Count - 1  do
+    begin
+      K2MinusK1 := K2[i] - K1[i];
+      Denom := phi1 * K2MinusK1 + K1[i];
+      Term := AComposition[i].MoleFraction.Value * K2MinusK1 / Denom;
+
+      Q1MinusQ2:= Q1MinusQ2  + Term;
+      Derivative := Derivative - Term * K2MinusK1 / Denom
+    end;
+  Result:= Q1MinusQ2;
+  dQ1MinusQ2dPhi := Derivative;
+end;
+
+procedure TThreePhaseFlash.DoesPhaseExist(const K1,K2: array of Real; const 
         AComposition: TCompositions; var PhaseExist: array of Boolean; var phi1,
         phi2: Real);
 var
@@ -241,13 +259,13 @@ begin
   
   for i := 0 to AComposition.Count - 1  do
   begin
-    // Equation 9a from Nelson
+    // Equation 9a from Nelson  --» 9b
     T1:=T1+AComposition[i].MoleFraction.Value/K1[i];
-    // Equation 9b from Nelson
+    // Equation 9b from Nelson  --» 9a
     T2:=T2+AComposition[i].MoleFraction.Value*K1[i];
-    // Equation 9c from Nelson
+    // Equation 9c from Nelson        9d
     T3:=T3+AComposition[i].MoleFraction.Value/K2[i];
-    // Equation 9d from Nelson
+    // Equation 9d from Nelson        9c
     T4:=T4+AComposition[i].MoleFraction.Value*K2[i];
     // Equation 9e from Nelson
     T5:=T5+AComposition[i].MoleFraction.Value*K1[i]/K2[i];
@@ -269,7 +287,7 @@ begin
         phi1 := SolveQ1(K1,K2,AComposition,0.0);
         T7 := CalcQ2(K1,K2,AComposition,phi1,0.0);
         {Find Q1(0,phi2) where phi2 is the root of Q2(0,phi2)=0)}
-        phi2 := SolveQ2(K1,K2,AComposition,0.0);
+        phi2 := SolveQ2(K1,K2,AComposition,0.0);   //something wrong here
         T8 := CalcQ1(K1,K2,AComposition,0.0,phi2);
         {Find Q1(phi1,1-phi1) at the root of Q1(phi1,1-phi1)-Q2(phi1,1-phi1)=0}
         OtherPhi1:=SolveQ1minusQ2(K1,K2,AComposition);
@@ -301,7 +319,7 @@ begin
   
 end;
 
-function TThreePhaseFlash.dTwoPhaseSum(const K: array of Real; const
+function TThreePhaseFlash.dTwoPhaseSum(const K: array of Real; const 
         AComposition: TCompositions;LiquidFraction : Real): Real;
 var
   i: Integer;
@@ -320,22 +338,28 @@ procedure TThreePhaseFlash.EstK1Values(var K1: array of Real; ACompounds:
         TCompounds; P, T: Real);
 var
   i: Integer;
-  
+  tr, pr, omega : double;
+
   { Estimates K values for a vapor phase and a Hydrocarbon Liquid Phase.
     According to the paper I found it in, is based on the Wilson Equation but I
     have not been able to verify.  This should be used if previous set of K values
     is not available.
   }
-  
 begin
   with ACompounds do begin
     for i := 0 to Count - 1 do
       with Items[I] do
-        K1[i] := exp(5.3727 * (1 + W.Value) * (1 - 1 / (t / Tc.Value))) / (p / Pc.Value);
+      begin
+      // TODO Tests
+      tr := t / Tc.Value;
+      pr := p / Pc.Value;
+      omega := W.Value;
+        K1[i]:=exp(5.3727 * (1 + omega) * (1 - 1 / (tr))) / (pr);
+      end;
   end;//with
 end;
 
-function TThreePhaseFlash.EstK2Values(var K2: array of Real; ACompounds:
+function TThreePhaseFlash.EstK2Values(var K2: array of Real; ACompounds: 
         TCompounds; P, T: Real): Variant;
 var
   i: Integer;
@@ -354,7 +378,7 @@ begin
   end;//with
 end;
 
-function TThreePhaseFlash.GetTwoPhaseLiquidFraction(const K: array of Real;
+function TThreePhaseFlash.GetTwoPhaseLiquidFraction(const K: array of Real; 
         const AComposition: TCompositions): Real;
 var
   Err: Real;
@@ -387,7 +411,7 @@ end;
 procedure TThreePhaseFlash.Normalize(var AComposition: TCompositions);
 var
   i: Integer;
-  total: Real;
+  total,PositiveNumber: Real;
   
   // Make sure a set of mole fractions add up to 1
   
@@ -395,13 +419,18 @@ begin
   total:=0.0;
   i:= AComposition.Count;
   for i:= 0 to AComposition.Count - 1  do
-      total := total + AComposition[i].MoleFraction.Value;
+  begin
+      PositiveNumber := AComposition[i].MoleFraction.Value;
+      if (PositiveNumber<0) then
+        PositiveNumber := 0;
+      total := total + PositiveNumber;
+  end;
   total := 1.0 / total;
   for i:= 0 to AComposition.Count - 1 do
       AComposition.Items[i].MoleFraction.Value := Total * AComposition.Items[i].MoleFraction.Value;
 end;
 
-procedure TThreePhaseFlash.Solvephi1phi2(const K1,K2: array of Real; const
+procedure TThreePhaseFlash.Solvephi1phi2(const K1,K2: array of Real; const 
         AComposition: TCompositions; var Phi1,Phi2: Real);
 var
   i: Integer;
@@ -449,7 +478,7 @@ begin
   
 end;
 
-function TThreePhaseFlash.SolveQ1(const K1,K2: array of Real; const
+function TThreePhaseFlash.SolveQ1(const K1,K2: array of Real; const 
         AComposition: TCompositions; Phi2: Real): Real;
 var
   Err: Real;
@@ -481,7 +510,7 @@ begin
   Result:=L;
 end;
 
-function TThreePhaseFlash.SolveQ1minusQ2(const K1,K2: array of Real; const
+function TThreePhaseFlash.SolveQ1minusQ2(const K1,K2: array of Real; const 
         AComposition: TCompositions): Real;
 var
   Err: Double;
@@ -500,8 +529,7 @@ begin
   While ((Abs(Err) > 0.00005) and (iter<100)) do
    begin
     OldL:= L;
-    F:= CalcQ1(K1,K2,aComposition,L,1.0-L)-CalcQ2(K1,K2,aComposition,L,1.0-L);
-    dFdL := CalcdQ1dphi1(K1,K2,aComposition,L,1.0-L)-CalcdQ1dphi2(K1,K2,aComposition,L,1.0-L);
+    F:= CalcQ1MinusQ2(K1,K2,aComposition,L,dFdL);
     L := OldL - F/dFdL;
     Err := L/OldL -1;
     iter:=iter+1;
@@ -509,7 +537,7 @@ begin
   Result:=L;
 end;
 
-function TThreePhaseFlash.SolveQ2(const K1,K2: array of Real; const
+function TThreePhaseFlash.SolveQ2(const K1,K2: array of Real; const 
         AComposition: TCompositions; Phi1: Real): Real;
 var
   Err: Double;
@@ -518,7 +546,7 @@ var
   F, dFdL: Double;
   
   {Given a set of K values for both Liquid Phases and the Feed mol Fractions of the Feed
-  Solve Eq 7b for phi1 at fixed phi1 using Newton-Raphson
+  Solve Eq 7b for phi2 at fixed phi1 using Newton-Raphson
   -- so despite its name, it returns a Liquid fraction of Liquid phase 2 at a given
   liquid phase 1 fraction
   
@@ -540,8 +568,13 @@ begin
   Result:=L;
 end;
 
-procedure TThreePhaseFlash.TP(AMaterial: TMaterial; T, P: Real);
-  
+
+procedure TThreePhaseFlash.TPNew(AMaterial: TMaterial; T, P: Real);
+// todo: Bypass the calculation in case we have a pur component !!
+//       Use CompressibilityFactor (Z) calculation in this case and check
+//       the number of solutions of Z and their values.
+//       One Z solution and Close to 1:Greater than 0.27 >> Vapor phase
+//       One Z solution and Close to 0:Less than 0.27 >> Liquid phase
   const
     MaxPhases = 3;                  // This Flash solver is currently designed for a Maximum of 3 possible number of Phases
   var
@@ -551,15 +584,16 @@ procedure TThreePhaseFlash.TP(AMaterial: TMaterial; T, P: Real);
    }
     K1, PreviousK1 : array of Real;  // Vapor/Liquid equilibrium for component i in Liquid Phase 1 (Hydrocarbon)
     K2, PreviousK2 : array of Real;  // Vapor/Liquid equilibrium for component i in Liquid Phase 2 (Immiscible Phase)
+    KV1, dKv : array of Real;  // debug purpose
     Phi1,                            // Fraction of Overall AMaterial in Liquid Phase 1
     Phi2:  Real;                     // Fraction of Overall AMaterial in Liquid Phase 2
     TotalLiquidFraction: Real;       // Fraction of the overall AMaterial present as any liquid
     LiquidFraction: Real;
-  
-    iter,i,j,ImmiscibleIndex: Integer;                        // temporary counters.. may be used as needed
+
+    NComp,iter,i,j,ImmiscibleIndex: Integer;                        // temporary counters.. may be used as needed
     temp : Real;
     {...Scratch Variables... }
-  
+
     VaporPhase,                      // Vapor Composition (If it exists)
     Liquid1Phase,                    // Liquid1 (Hydrocarbon Liquid) Composition
     Liquid2Phase,                    // Liquid2 (Second Liquid, Usually Water) if it exists
@@ -571,134 +605,132 @@ procedure TThreePhaseFlash.TP(AMaterial: TMaterial; T, P: Real);
     Converged : Boolean;
     PhaseExist:  array of Boolean;   // Element 1-Vapor, 2-Liq1, 3-Liq2
     NumPhase: Integer;               // Current Number of Phases Predicted
-    OldK1: array of Real;
+//    OldK1: array of Real;
     WorkMaterial: TMaterial;         // Material working instance.
-  
+
 begin
   //This flash routine currently handles a max of three phases
   SetLength(PhaseExist,MaxPhases);
-  SetLength(K1, AMaterial.Compounds.Count);
-  SetLength(PreviousK1,AMaterial.Compounds.Count);
-  SetLength(K2, AMaterial.Compounds.Count);
-  SetLength(PreviousK2,AMaterial.Compounds.Count);
+  NComp := AMaterial.Compounds.Count;
   
+  SetLength(K1, NComp);
+  SetLength(KV1, NComp);
+  SetLength(PreviousK1,NComp);
+  SetLength(K2, NComp);
+  SetLength(PreviousK2,NComp);
+
   //***debug - this is a suggestion, please check if the code is right.
-  
+
   //Create a material working instance.
   WorkMaterial := TMaterial.Create;
-  
+
   //Create working phases.
   with WorkMaterial do begin
-  
+
     //Copy the original material. Compounds and Compositions are copied at once.
     Assign(AMaterial);
-  
+
     //Makes sure there are no phases and...
     Phases.Clear;
-  
-    //Creates new working ones and references then to facilitate coding.
+
+    //Creates new working ones and references them to facilitate coding.
     VaporPhase := Phases.Add;
     PreviousVaporPhase := Phases.Add;
     Liquid1Phase := Phases.Add;
     PreviousLiquid1Phase := Phases.Add;
     Liquid2Phase := Phases.Add;
     PreviousLiquid2Phase := Phases.Add;
-  
+
     //All phases have same temperature and pressure of the material.
     Temperature.Value := T;
     Pressure.Value := P;
-  
+
   end;//with
-  
+
   //***debug - phases already created above.
   {Create Potential Phases.. remember AMaterial tehnically may not have ANY Phases at this point(first flash)}
-  {VaporPhase:=TPhase.Create(nil);
-  PreviousVaporPhase:=TPhase.Create(nil);
-  
-  Liquid1Phase:=TPhase.Create(nil);
-  PreviousLiquid1Phase:=TPhase.Create(nil);
-  
-  Liquid2Phase:=TPhase.Create(nil);
-  PreviousLiquid2Phase:=TPhase.Create(nil);}
-  
+
   {Dont care so much about the actual composition as the structure}
   VaporPhase.Compositions.Assign(WorkMaterial.Compositions);
   VaporPhase.AggregationState := asVapor;
-  //VaporPhase.Material.Temperature.Value := T;
-  //VaporPhase.Material.Pressure.Value := P;
-  
+
   Liquid1Phase.Compositions.Assign(WorkMaterial.Compositions);
   Liquid1Phase.AggregationState := asLiquid;
-  //*** debug - Matt, phases borrow its teperature and pressure from the material.
-  //To overcome this problem, you can create all these working phases attached
-  //to a material working instance. Thinking better, it should be the right
-  //approach.
-  //Liquid1Phase.Material.Temperature.Value := T;
-  //Liquid1Phase.Material.Pressure.Value := P;
-  
+
   Liquid2Phase.Compositions.Assign(WorkMaterial.Compositions);
   Liquid2Phase.AggregationState := asLiquid;
-  //Liquid2Phase.Material.Temperature.Value := T;
-  //Liquid2Phase.Material.Pressure.Value := P;
-  
+
   Converged := False;
-  
   {Come up with an initial Estimate}
-  EstK1Values(K1, WorkMaterial.Compounds, P, T);
-  
+  K1[0] := 124;
+  K1[1]:=0.336;
+  K1[2]:=699;
+  EstK1Values(K1, WorkMaterial.Compounds, P, T);   //Bad values
+
+  K2[0] := 4000;
+  K2[1]:=4000;
+  K2[2]:=0.699;
+
   // Generate an inital Liquid Fraction
   TotalLiquidFraction := GetTwoPhaseLiquidFraction(K1, WorkMaterial.Compositions);
-  
+
   // From Liquid Fraction and K values, generate Mole Fractions for the two phase situation
-  for i := 0 to WorkMaterial.Compounds.Count - 1  do
+  for i := 0 to NComp - 1  do
       Liquid1Phase.Compositions[i].MoleFraction.Value := WorkMaterial.Compositions[i].MoleFraction.Value /
                                                          (TotalLiquidFraction + (1 - TotalLiquidFraction) * K1[i]);
   for i := 0 to WorkMaterial.Compounds.Count - 1  do
-      VaporPhase.Compositions[i].MoleFraction.Value := K1[i] * WorkMaterial.Compositions[i].MoleFraction.Value /
-                                                         (TotalLiquidFraction + (1 - TotalLiquidFraction) * K1[i]);
-  
-  OldK1 := K1;
-  
-  {Calculate New K Values}
-  
-  UpdateKValues(VaporPhase, Liquid1Phase, K1);
-  
+      VaporPhase.Compositions[i].MoleFraction.Value := K1[i] * Liquid1Phase.Compositions[i].MoleFraction.Value;
+
+
+  {Calculate New K Values}   // No. Use the initial KValues for the first iteration
+
+//  UpdateKValues(VaporPhase, Liquid1Phase, K1);
+
   { Create a preliminary guess for liquid phase 2 by taking the predominate Liquid 2 Component (usually water)
     and putting it in a phase.  Add a tiny bit of the other components }
   {Need to determine if this little section will be robust enough to use}
+//Itinerant:23/10/2006:What if there is no ImmiscibleComponent (water for instance)
+// in the mixture ?
   With WorkMaterial do
   begin
    temp := 0.0;
    for i := 0 to Compounds.Count - 1  do begin
      if (Compounds[i].CompID <> Compounds.ImmiscibleComponent) then
-        begin
-          Liquid2Phase.Compositions[i].MoleFraction.Value := Compositions[i].MoleFraction.Value * 0.001;
+      begin
+          Liquid2Phase.Compositions[i].MoleFraction.Value:=VaporPhase.Compositions[i].MoleFraction.Value/4000.0;
           temp := temp + Liquid2Phase.Compositions[i].MoleFraction.Value;
-        end
+      end
       else ImmiscibleIndex := i;
-  
    end;
-   Liquid2Phase.Compositions[ImmiscibleIndex].MoleFraction.Value := 100.0 - temp;
+   Liquid2Phase.Compositions[ImmiscibleIndex].MoleFraction.Value := 1.0 - temp;
   end;
-  
-  for i := 0 to WorkMaterial.Compounds.Count - 1  do
-  K2[i] := VaporPhase.Compositions[i].MoleFraction.Value / Liquid2Phase.Compositions[i].MoleFraction.Value;
-  
-  UpdateKValues(VaporPhase, Liquid2Phase, K2);
-  
+
+  for i := 0 to NComp - 1  do
+  begin
+    if(VaporPhase.Compositions[i].MoleFraction.Value<1e-15)then
+      K2[i]:=1e-15
+    else if(Liquid2Phase.Compositions[i].MoleFraction.Value<1e-15)then
+      K2[i]:=1e5
+    else
+      K2[i] := VaporPhase.Compositions[i].MoleFraction.Value / Liquid2Phase.Compositions[i].MoleFraction.Value;
+  end;
+
+//  UpdateKValues(VaporPhase, Liquid2Phase, K2);
+
   iter := 1;
   Err := 10000;
-  
-  while ((abs(Err) > 0.01) and (Iter < 100)) do begin
+
+  while ((abs(Err) > 0.0001) and (Iter < 100)) do begin
     //***debug - is there a bug here? Do you want to assign or change reference?
-    PreviousVaporPhase := VaporPhase;
-    PreviousLiquid1Phase := Liquid1Phase;
-    PreviousLiquid2Phase := Liquid2Phase;
-  
+    PreviousVaporPhase.Assign(VaporPhase);
+    PreviousLiquid1Phase.Assign(Liquid1Phase);
+    PreviousLiquid2Phase.Assign(Liquid2Phase);
+
     DoesPhaseExist(K1,K2,AMaterial.Compositions,PhaseExist,phi1,phi2);
-  
+
     NumPhase := 0;
     for i := 1 to MaxPhases do if PhaseExist[i] then numphase := numphase + 1;
+
     if (NumPhase = 1) then begin
       if PhaseExist[1] then VaporPhase.Compositions:= AMaterial.Compositions
       else if PhaseExist[2] then Liquid1Phase.Compositions:= AMaterial.Compositions
@@ -706,48 +738,26 @@ begin
     end
     else if (numphase = 2) then begin
       //***debug - see TPhase.GetMoleFlow. MoleFlow for a phase is read-only.
-      //Liquid1Phase.MoleFlow.Value:= Phi1 * AMaterial.MoleFlow.Value;
-      //Liquid2Phase.MoleFlow.Value:= Phi2 * AMaterial.MoleFlow.Value;
-      //VaporPhase.MoleFlow.Value:= AMaterial.MoleFlow.Value-Liquid1Phase.MoleFlow.Value-Liquid2Phase.MoleFlow.Value;
       for i := 0 to WorkMaterial.Compounds.Count - 1  do
        begin
-        VaporPhase.Compositions[i].MoleFraction.Value:=AMaterial.Compositions[i].MoleFraction.Value*AMaterial.MoleFlow.Value*
-                     K1[i]*K2[i] / (VaporPhase.MoleFlow.Value*K1[i]*K2[i]+Liquid1Phase.MoleFlow.Value*K2[i]+
-                     Liquid2Phase.MoleFlow.Value*K1[i]);
-  
-        Liquid1Phase.Compositions[i].MoleFraction.Value:=AMaterial.Compositions[i].MoleFraction.Value*AMaterial.MoleFlow.Value*
-                     K2[i] / (VaporPhase.MoleFlow.Value*K1[i]*K2[i]+Liquid1Phase.MoleFlow.Value*K2[i]+
-                     Liquid2Phase.MoleFlow.Value*K1[i]);
-  
-        Liquid2Phase.Compositions[i].MoleFraction.Value:=AMaterial.Compositions[i].MoleFraction.Value*AMaterial.MoleFlow.Value*
-                     K1[i] / (VaporPhase.MoleFlow.Value*K1[i]*K2[i]+Liquid1Phase.MoleFlow.Value*K2[i]+
-                     Liquid2Phase.MoleFlow.Value*K1[i]);
-  
+        VaporPhase.Compositions[i].MoleFraction.Value:=AMaterial.Compositions[i].MoleFraction.Value*
+                     K1[i]*K2[i] / ((1-phi1-phi2)*K1[i]*K2[i]+phi1*K2[i]+phi2*K1[i]);
+        Liquid1Phase.Compositions[i].MoleFraction.Value:=VaporPhase.Compositions[i].MoleFraction.Value/K1[i];
+        Liquid2Phase.Compositions[i].MoleFraction.Value:=VaporPhase.Compositions[i].MoleFraction.Value/K2[i];
        end;
       Normalize(VaporPhase.Compositions);
       Normalize(Liquid1Phase.Compositions);
       Normalize(Liquid2Phase.Compositions);
     end
-  
+
     else begin
       Solvephi1phi2(K1,K2,WorkMaterial.Compositions,Phi1,Phi2);
-      //Liquid1Phase.MoleFlow.Value:= Phi1 * AMaterial.MoleFlow.Value;
-      //Liquid2Phase.MoleFlow.Value:= Phi2 * AMaterial.MoleFlow.Value;
-      //VaporPhase.MoleFlow.Value := AMaterial.MoleFlow.Value - Liquid1Phase.MoleFlow.Value - Liquid2Phase.MoleFlow.Value;
       for i := 0 to WorkMaterial.Compounds.Count - 1  do
        begin
-        VaporPhase.Compositions[i].MoleFraction.Value:=AMaterial.Compositions[i].MoleFraction.Value*AMaterial.MoleFlow.Value*
-                     K1[i]*K2[i] / (VaporPhase.MoleFlow.Value*K1[i]*K2[i]+Liquid1Phase.MoleFlow.Value*K2[i]+
-                     Liquid2Phase.MoleFlow.Value*K1[i]);
-  
-        Liquid1Phase.Compositions[i].MoleFraction.Value:=AMaterial.Compositions[i].MoleFraction.Value*AMaterial.MoleFlow.Value*
-                     K2[i] / (VaporPhase.MoleFlow.Value*K1[i]*K2[i]+Liquid1Phase.MoleFlow.Value*K2[i]+
-                     Liquid2Phase.MoleFlow.Value*K1[i]);
-  
-        Liquid2Phase.Compositions[i].MoleFraction.Value:=AMaterial.Compositions[i].MoleFraction.Value*AMaterial.MoleFlow.Value*
-                     K1[i] / (VaporPhase.MoleFlow.Value*K1[i]*K2[i]+Liquid1Phase.MoleFlow.Value*K2[i]+
-                     Liquid2Phase.MoleFlow.Value*K1[i]);
-  
+        VaporPhase.Compositions[i].MoleFraction.Value:=AMaterial.Compositions[i].MoleFraction.Value*
+                     K1[i]*K2[i] / ((1-phi1-phi2)*K1[i]*K2[i]+phi1*K2[i]+phi2*K1[i]);
+        Liquid1Phase.Compositions[i].MoleFraction.Value:=VaporPhase.Compositions[i].MoleFraction.Value/K1[i];
+        Liquid2Phase.Compositions[i].MoleFraction.Value:=VaporPhase.Compositions[i].MoleFraction.Value/K2[i];
        end;
       Normalize(VaporPhase.Compositions);
       Normalize(Liquid1Phase.Compositions);
@@ -763,23 +773,20 @@ begin
       Err := Err + abs(Liquid2Phase.Compositions[i].MoleFraction.Value / PreviousLiquid2Phase.Compositions[i].MoleFraction.Value - 1.0);
     end;
     iter := iter + 1;
-  
+
   end;
-  
+
   {Vapor Phase}
   AMaterial.Phases.Clear;
-  
+  LiqPhi1:=phi1;
+  LiqPhi2:=phi2;
   if PhaseExist[1] then AMaterial.Phases.Add.Assign(VaporPhase);
   if PhaseExist[2] then AMaterial.Phases.Add.Assign(Liquid1Phase);
   if PhaseExist[3] then AMaterial.Phases.Add.Assign(Liquid2Phase);
-  
+
   //All inner objects like phases are freed here.
   WorkMaterial.Free;
-  
-  //VaporPhase.Free;
-  //Liquid1Phase.Free;
-  //Liquid2Phase.Free;
-  
+
 end;
 
 function TThreePhaseFlash.TwoPhaseSum(const K: array of Real; const
@@ -798,20 +805,26 @@ begin
   
 end;
 
-procedure TThreePhaseFlash.UpdateKValues(var VaporPhase, LiquidPhase: TPhase;
+procedure TThreePhaseFlash.UpdateKValues(var VaporPhase, LiquidPhase: TPhase; 
         var K:array of Real);
 var
   i: Integer;
   
   {Updates K Values for a pair of Phases.  Will Fail if K's are 0.0.  Also updates the Compressibiliteis
   and Fugasity Coefficients}
-  
+  T,P,y1,y2,y3:double;
 begin
-  FEOS.Solve(VaporPhase);
-  FEOS.Solve(LiquidPhase);
+  y1:=VaporPhase.Compositions[0].MoleFraction.Value;
+  y2:=VaporPhase.Compositions[1].MoleFraction.Value;
+  y3:=VaporPhase.Compositions[2].MoleFraction.Value;
+  T:=VaporPhase.Temperature.Value;
+  P:=VaporPhase.Pressure.Value;
+  EOS.CalcFugacityCoefficients(VaporPhase);
+  EOS.CalcFugacityCoefficients(LiquidPhase);
   for i := 0 to VaporPhase.Compounds.Count -1 do
     K[i] := LiquidPhase.Compositions[i].FugacityCoefficient.Value /
-            VaporPhase.Compositions[i].FugacityCoefficient.Value * K[i];
+            VaporPhase.Compositions[i].FugacityCoefficient.Value;
+//            VaporPhase.Compositions[i].FugacityCoefficient.Value * K[i]; ?
 end;
 
 {

@@ -6,6 +6,7 @@
                   Initial Revision : 15/04/2006
                   Authors:
                     - Samuel Jorge Marques Cartaxo
+                    - Khaled Hammadi (Itinerant)
                     - Additional contributors...
 
  ***************************************************************************/
@@ -41,11 +42,11 @@ type
   }
   TEos = class (TObject)
   protected
-    function CalcCompressibilityFactor(APhase: TPhase): TValueRec; virtual;
-    procedure CalcDepartures(APhase: TPhase); virtual;
-    function CalcFugacityCoefficients(APhase: TPhase): TValueRec; virtual;
+    fNComp : integer;
+    function CalcCompressibilityFactor(APhase: TPhase):TValueRec; virtual;
     function FindRoots(APhase: TPhase): Variant; virtual;
   public
+    property NComp : integer read fNComp write fNComp;
     {:
     - Completly solves the phase object with the equation of state. After 
     excuting 
@@ -55,20 +56,39 @@ type
     state 
     of agrgregation and compositions.  
     }
-    procedure Solve(APhase: TPhase);
+    constructor Create; virtual;
+    destructor Destroy; override;
+    procedure UpdateCompounds(APhase: TPhase);virtual;
+    procedure Solve(APhase: TPhase);virtual;
+    procedure CalcDepartures(APhase: TPhase); virtual;
+    procedure CalcFugacityCoefficients(APhase: TPhase); virtual;
+    function FindPhaseRoot(APhase: TPhase):double;
+    procedure SetKij(i,j:integer;aKij:double);virtual;
   end;
   
-  TCubicEos = class (TEos)
-  protected
-    function FindCubicRoots(A, B, C: Double): Variant;
-  end;
-  
+const
 
+  RGAS = 0.08206; {atm*m^3/(kgmol*K)} {temporary}
 implementation
 
 {
 ************************************* TEos *************************************
 }
+constructor TEos.Create;
+begin
+  inherited Create;
+end;
+
+destructor TEos.Destroy;
+begin
+  inherited Destroy;
+end;
+
+procedure TEos.UpdateCompounds(APhase: TPhase);
+begin
+
+end;
+
 function TEos.CalcCompressibilityFactor(APhase: TPhase): TValueRec;
 begin
 end;
@@ -77,7 +97,7 @@ procedure TEos.CalcDepartures(APhase: TPhase);
 begin
 end;
 
-function TEos.CalcFugacityCoefficients(APhase: TPhase): TValueRec;
+procedure TEos.CalcFugacityCoefficients(APhase: TPhase);
 begin
 end;
 
@@ -90,6 +110,7 @@ procedure TEos.Solve(APhase: TPhase);
 var
   Roots: array of Variant;
   I: Integer;
+  r,mv,z,t,p:real;
 begin
   //Defines completly the APhase parameter using the equation of state,
   //state of agrgregation and compositions.
@@ -105,7 +126,7 @@ begin
   
         //Find the smallest root for liquid phase.
         CompressibilityFactor.Value := MaxDouble;
-        for I := Low(Roots) to High(Roots) do
+        for I := 0 to 2 do
           if (Roots[I] > 0) and (Roots[I] < CompressibilityFactor.Value) then
             CompressibilityFactor.Value := Roots[I];
   
@@ -115,7 +136,7 @@ begin
   
         //Find the greatest root for the a vapor phase.
         CompressibilityFactor.Value := MinDouble;
-        for I := Low(Roots) to High(Roots) do
+        for I := 0 to 2 do
           if (Roots[I] > 0) and (Roots[I] > CompressibilityFactor.Value) then
             CompressibilityFactor.Value := Roots[I];
   
@@ -134,43 +155,103 @@ begin
   
   //Now calculates the enthalpy and entropy departures.
   CalcDepartures(APhase);
+  //Update MoleVolume
+  t:=APhase.Temperature.Value;
+  p:=APhase.Pressure.Value;
+  z:=APhase.CompressibilityFactor.Value;
+  r:=rgas;
+  mv:=z*r*t/p;
+  APhase.MoleVolume.Value:=APhase.CompressibilityFactor.Value*RGAS*APhase.Temperature.Value/APhase.Pressure.Value;
+  //Update MassVolume
+//  rho := 0.0;
+//  for i:=0 to NComp-1 do
+//    rho := rho + APhase.Compounds[i].MW.Value*APhase.Compositions[i].MoleFraction.Value;
+//  rho := rho / APhase.MoleVolume.Value;
 end;
 
-{
-********************************** TCubicEos ***********************************
-}
-function TCubicEos.FindCubicRoots(A, B, C: Double): Variant;
+function TEos.FindPhaseRoot(APhase: TPhase):double;
 var
-  Q: Double;
-  R: Double;
-  S: Double;
-  T: Double;
-  theta: Double;
+  zRoots: Variant; // Strange. array of Variant do not work ???
+  I: Integer;
+  ZVGuess, ZLGuess : Double;
 begin
-  Q := (Sqr(A) - 3.0 * B) / 9.0;
-  R := (2.0 * IntPower(A, 3) - 9.0 * A * B + 27 * C) / 54.0;
-  if (Sqr(R) < IntPower(Q, 3)) then begin
-    theta := ArcCos(R / (Sqrt(IntPower(Q, 3))));
-    //Make room for the three roots.
-    Result := VarArrayOf([0,0,0]);
-    Result[0] := -2.0 * Sqrt(Q) * cos(theta / 3.0) - A / 3.0;
-    Result[1] := -2.0 * Sqrt(Q) * cos((theta + 2.0 * pi) / 3.0) - A / 3.0;
-    Result[2] := -2.0 * Sqrt(Q) * cos((theta - 2.0 * pi) / 3.0) - A / 3.0;
-  end
-  else begin
-    S := abs(R) + Sqrt(Sqr(R) - IntPower(Q, 3));
-    S := Power(S, 0.3333333);
-    S := -1.0 * sign(R) * S;
-    if S = 0 then
-      T := 0
-    else
-      T := Q / S;
-    //If the root is unique, return an array with only one element.
-    Result := VarArrayOf([0]);
-    Result[0] := (S + T) - A / 3.0;
-    //Result[1] := 0.0;
-    //Result[2] := 0.0;
-  end;//if
+  //Calculate the roots of the equation.
+  zRoots := FindRoots(APhase);
+  with APhase do begin
+    //Calculate the compressibility factor for the phase acording to the physical
+    //state.
+    case AggregationState of
+
+      asLiquid: begin
+
+        //Find the smallest root for liquid phase.
+        CompressibilityFactor.Value := MaxDouble;
+        for I := 0 to 2 do
+          if (zRoots[I] > 0) and (zRoots[I] < CompressibilityFactor.Value) then
+          begin
+            zVGuess :=zRoots[I];
+            CompressibilityFactor.Value := zRoots[I];
+          end;
+
+      end;//asLiquid
+
+      asVapor: begin
+
+        //Find the greatest root for the a vapor phase.
+        CompressibilityFactor.Value := MinDouble;
+        for I := 0 to 2 do
+          if (zRoots[I] > 0) and (zRoots[I] > CompressibilityFactor.Value) then
+          begin
+            zVGuess :=zRoots[I];
+            CompressibilityFactor.Value := zRoots[I];
+          end
+
+      end;//asVapor
+
+      asUndefined: begin
+//Itinerant. todo return the number of double solution and a way to give them back
+// to the user. Actually (Phase) has no room for that.
+//
+// We return the vapor solution by default
+// Suppose Vapor
+        ZVGuess:= MinDouble;
+        for I := 0 to 2 do   // Low(Roots) does not work ???
+          if (zRoots[I] > 0) and (zRoots[I] > ZVGuess) then
+            ZVGuess := zRoots[I];
+            
+        ZLGuess:= MaxDouble;
+        for I := 0 to 2 do
+          if (zRoots[I] > 0) and (zRoots[I] < ZLGuess) then
+            ZLGuess := zRoots[I];
+
+
+        CompressibilityFactor.Value:=ZVGuess;
+        AggregationState:=asVapor;
+        
+        if (ZVGuess > 1) then
+        begin
+          CompressibilityFactor.Value:=ZLGuess;
+          AggregationState:=asLiquid;
+
+      //Raise an exception if the two solutions has no physical meaning.
+          if (ZLGuess >1) then
+            raise Exception.Create('Calculated compressibility factor has no physical meaning (>1).');
+
+        end;
+      end;//asUndefined
+
+      //Raise an exception if phase state has no meaning.
+      else
+        raise Exception.Create('Cannot calculate compressibility factor because phase''s state is not defined.');
+
+    end;//case
+  Result := CompressibilityFactor.Value;
+  end;//with
+  
 end;
+procedure TEos.SetKij(i,j:integer;aKij:double);
+begin
+end;
+
 
 end.
