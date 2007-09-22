@@ -1,7 +1,7 @@
 object PFDDesigner: TPFDDesigner
-  Left = 153
+  Left = 327
   Height = 442
-  Top = 125
+  Top = 166
   Width = 610
   HorzScrollBar.Page = 609
   VertScrollBar.Page = 441
@@ -10,7 +10,6 @@ object PFDDesigner: TPFDDesigner
   ClientWidth = 610
   OnCreate = FormCreate
   OnResize = FormResize
-  PixelsPerInch = 96
   Position = poDefaultPosOnly
   object pnlToolbar: TPanel
     Height = 32
@@ -25,6 +24,7 @@ object PFDDesigner: TPFDDesigner
       Height = 22
       Top = 4
       Width = 23
+      Color = clBtnFace
       NumGlyphs = 0
     end
     object SpeedButton2: TSpeedButton
@@ -32,6 +32,7 @@ object PFDDesigner: TPFDDesigner
       Height = 22
       Top = 4
       Width = 23
+      Color = clBtnFace
       NumGlyphs = 0
     end
   end
@@ -41,8 +42,6 @@ object PFDDesigner: TPFDDesigner
     Width = 610
     Align = alBottom
     BevelOuter = bvNone
-    ClientHeight = 17
-    ClientWidth = 610
     TabOrder = 1
   end
   object sbxPFDWorkplace: TScrollBox

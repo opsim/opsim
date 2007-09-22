@@ -74,9 +74,9 @@ begin
     b := 0.0;
     for i := 0 to Compounds.Count - 1 do begin
       with Compounds[i] do begin
-        mi[i] := 0.48 + 1.574 * w.Value - 0.176 * (w.Value)**2;
+        mi[i] := 0.48 + 1.574 * w.Value - 0.176 * Sqr(w.Value);
         bi[i] := 0.08664 * R * Tc.Value / Pc.Value;
-        ai[i] := 0.42748 * (R * Tc.Value)**2 / Pc.Value * Sqr(1 + mi[i] *
+        ai[i] := 0.42748 * Sqr(R * Tc.Value) / Pc.Value * Sqr(1 + mi[i] *
                  (1 - Sqrt(Temperature.Value / Tc.Value)));
         b := b + Compositions[i].MoleFraction.Value * bi[i];
       end;//with
@@ -87,7 +87,7 @@ begin
         a := a + Compositions[i].MoleFraction.Value *
              Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j]) * (1-KIJ[i,j]);
              
-    MainA := a * Pressure.Value / (R * Temperature.Value)**2;
+    MainA := a * Pressure.Value / Sqr(R * Temperature.Value);
     MainB := b * Pressure.Value / (R * Temperature.Value);
 
 //todo initialize dadt and volume
@@ -129,9 +129,9 @@ begin
     b := 0.0;
     for i := 0 to Compounds.Count - 1 do begin
       with Compounds[i] do begin
-        mi[i] := 0.48 + 1.574 * w.Value - 0.176 * w.Value**2;
+        mi[i] := 0.48 + 1.574 * w.Value - 0.176 * Sqr(w.Value);
         bi[i] := 0.08664 * R * Tc.Value / Pc.Value;
-        ai[i] := 0.42748 * (R * Tc.Value)**2 / Pc.Value *
+        ai[i] := 0.42748 * Sqr(R * Tc.Value) / Pc.Value *
                  Sqr(1 + mi[i] * (1 - Sqrt(Temperature.Value / Tc.Value)));
         b := b + Compositions[i].MoleFraction.Value * bi[i];
       end;//with
@@ -143,7 +143,7 @@ begin
       for j := 0 to Compositions.Count - 1 do
         a := a + Compositions[i].MoleFraction.Value *
              Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j])*(1.0 - KIJ[i,j]);
-    bigA := a * Pressure.Value / (R * Temperature.Value)**2;
+    bigA := a * Pressure.Value / Sqr(R * Temperature.Value);
     
     for i := 0 to Compositions.Count - 1 do begin
       CF:=CompressibilityFactor.Value;
@@ -184,10 +184,10 @@ begin
     b := 0.0;
     for i := 0 to Compounds.Count - 1 do begin
       with Compounds[i] do begin
-        mi[i] := 0.48 + 1.574 * w.Value - 0.176 * w.Value**2;
+        mi[i] := 0.48 + 1.574 * w.Value - 0.176 * Sqr(w.Value);
         bi[i] := 0.08664 * R * Tc.Value / Pc.Value;
-        ai[i] := 0.42748 * (R * Tc.Value)**2 / Pc.Value * (1 + mi[i] *
-                 (1 - Sqrt(Temperature.Value / Tc.Value)))**2;
+        ai[i] := 0.42748 * Sqr(R * Tc.Value) / Pc.Value * (1 + mi[i] *
+                 Sqr(1 - Sqrt(Temperature.Value / Tc.Value)));
         b := b + Compositions[i].MoleFraction.Value * bi[i];
       end;//with
     end;//for
@@ -198,7 +198,7 @@ begin
         a := a + Compositions[i].MoleFraction.Value *
              Compositions[j].MoleFraction.Value * Sqrt(ai[i] * ai[j])*(1.0 - KIJ[i,j]);
   
-    MainA := a * Pressure.Value / (R * Temperature.Value)**2;
+    MainA := a * Pressure.Value / Sqr(R * Temperature.Value);
     MainB := b * Pressure.Value / (R * Temperature.Value);
   
   end;//with
