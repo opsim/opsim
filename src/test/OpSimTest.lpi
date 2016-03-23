@@ -1,18 +1,20 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
+    <Version Value="9"/>
     <PathDelim Value="\"/>
-    <Version Value="5"/>
     <General>
+      <Flags>
+        <LRSInOutputDirectory Value="False"/>
+      </Flags>
+      <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <IconPath Value="./"/>
-      <TargetFileExt Value=".exe"/>
-      <ActiveEditorIndexAtStart Value="2"/>
     </General>
-    <LazDoc Paths=""/>
+    <BuildModes Count="1">
+      <Item1 Name="default" Default="True"/>
+    </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
-      <DestinationDirectory Value="$(TestDir)\publishedproject\"/>
       <IgnoreBinaries Value="False"/>
       <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
       <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
@@ -37,168 +39,44 @@
         <PackageName Value="FCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="14">
+    <Units Count="4">
       <Unit0>
         <Filename Value="OpSimTest.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="OpSimTest"/>
-        <CursorPos X="1" Y="13"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="37"/>
       </Unit0>
       <Unit1>
         <Filename Value="TThermoTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="TThermoTestCaseU"/>
-        <CursorPos X="45" Y="216"/>
-        <TopLine Value="198"/>
-        <EditorIndex Value="0"/>
-        <UsageCount Value="37"/>
-        <Bookmarks Count="1">
-          <Item0 X="51" Y="219" ID="1"/>
-        </Bookmarks>
-        <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="TPropertyProviderTestCaseU.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="TPropertyProviderTestCaseU"/>
-        <CursorPos X="41" Y="75"/>
-        <TopLine Value="47"/>
-        <EditorIndex Value="5"/>
-        <UsageCount Value="37"/>
-        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="..\..\..\..\..\lazarus\components\zeosdbo_rework\src\dbc\ZDbcIntfs.pas"/>
-        <UnitName Value="ZDbcIntfs"/>
-        <CursorPos X="45" Y="928"/>
-        <TopLine Value="922"/>
-        <UsageCount Value="14"/>
-      </Unit3>
-      <Unit4>
-        <Filename Value="..\engine\solver\Entities.pas"/>
-        <UnitName Value="Entities"/>
-        <CursorPos X="66" Y="211"/>
-        <TopLine Value="189"/>
-        <EditorIndex Value="2"/>
-        <UsageCount Value="20"/>
-        <Loaded Value="True"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="..\engine\thermo\Thermo.pas"/>
-        <UnitName Value="Thermo"/>
-        <CursorPos X="36" Y="32"/>
-        <TopLine Value="19"/>
-        <EditorIndex Value="1"/>
-        <UsageCount Value="15"/>
-        <Loaded Value="True"/>
-      </Unit5>
-      <Unit6>
-        <Filename Value="..\engine\thermo\ThermoProvider.pas"/>
-        <UnitName Value="ThermoProvider"/>
-        <CursorPos X="53" Y="33"/>
-        <TopLine Value="20"/>
-        <UsageCount Value="10"/>
-      </Unit6>
-      <Unit7>
         <Filename Value="OpSimTestU.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="OpSimTestU"/>
-        <CursorPos X="7" Y="52"/>
-        <TopLine Value="42"/>
-        <EditorIndex Value="4"/>
-        <UsageCount Value="29"/>
-        <Loaded Value="True"/>
-      </Unit7>
-      <Unit8>
-        <Filename Value="..\..\..\..\..\lazarus\fpcsrc\rtl\win32\classes.pp"/>
-        <UnitName Value="Classes"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="10"/>
-      </Unit8>
-      <Unit9>
-        <Filename Value="..\..\..\..\..\lazarus\fpcsrc\rtl\objpas\math.pp"/>
-        <UnitName Value="math"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="10"/>
-      </Unit9>
-      <Unit10>
-        <Filename Value="..\..\..\..\..\lazarus\components\fpcunit\guitestrunner.pas"/>
-        <ComponentName Value="GUITestRunner"/>
-        <HasResources Value="True"/>
-        <UnitName Value="GuiTestRunner"/>
-        <CursorPos X="41" Y="152"/>
-        <TopLine Value="1"/>
-        <UsageCount Value="10"/>
-      </Unit10>
-      <Unit11>
-        <Filename Value="..\..\..\..\..\lazarus\components\zeosdbo_rework\src\plain\ZPlainLoader.pas"/>
-        <UnitName Value="ZPlainLoader"/>
-        <CursorPos X="1" Y="171"/>
-        <TopLine Value="158"/>
-        <UsageCount Value="10"/>
-      </Unit11>
-      <Unit12>
-        <Filename Value="..\..\..\..\..\lazarus\lcl\interfaces\win32\win32wscontrols.pp"/>
-        <UnitName Value="Win32WSControls"/>
-        <CursorPos X="1" Y="207"/>
-        <TopLine Value="194"/>
-        <UsageCount Value="10"/>
-      </Unit12>
-      <Unit13>
-        <Filename Value="..\engine\thermo\Equilibrium.pas"/>
-        <UnitName Value="Equilibrium"/>
-        <CursorPos X="1" Y="1"/>
-        <TopLine Value="1"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="11"/>
-        <Loaded Value="True"/>
-      </Unit13>
+      </Unit3>
     </Units>
-    <JumpHistory Count="0" HistoryIndex="-1"/>
   </ProjectOptions>
   <CompilerOptions>
-    <Version Value="5"/>
+    <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
       <Filename Value="..\..\app\OpSimTest"/>
     </Target>
     <SearchPaths>
-      <OtherUnitFiles Value="..\engine\solver\;..\engine\thermo\;..\engine\unitop\"/>
+      <OtherUnitFiles Value="..\engine\solver;..\engine\thermo;..\engine\unitop"/>
       <UnitOutputDirectory Value="..\build"/>
-      <SrcPath Value="$(LazarusDir)\lcl\;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)\"/>
+      <SrcPath Value="$(LazarusDir)\lcl;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
-        <DelphiCompat Value="True"/>
+        <SyntaxMode Value="Delphi"/>
+        <UseAnsiStrings Value="False"/>
       </SyntaxOptions>
     </Parsing>
-    <CodeGeneration>
-      <Generate Value="Faster"/>
-    </CodeGeneration>
-    <Other>
-      <CompilerPath Value="$(CompPath)"/>
-    </Other>
   </CompilerOptions>
   <Debugging>
-    <BreakPoints Count="2">
-      <Item1>
-        <Source Value="..\..\compnts\diagram\trectbox\RectBox.pas"/>
-        <Line Value="290"/>
-      </Item1>
-      <Item2>
-        <Source Value="..\..\compnts\diagram\trectbox\RectBox.pas"/>
-        <Line Value="303"/>
-      </Item2>
-    </BreakPoints>
-    <Watches Count="1">
-      <Item1>
-        <Expression Value="GetWidth"/>
-      </Item1>
-    </Watches>
     <Exceptions Count="2">
       <Item1>
         <Name Value="ECodetoolError"/>

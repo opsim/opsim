@@ -607,7 +607,8 @@ procedure TThreePhaseFlash.TPNew(AMaterial: TMaterial; T, P: Real);
     NumPhase: Integer;               // Current Number of Phases Predicted
 //    OldK1: array of Real;
     WorkMaterial: TMaterial;         // Material working instance.
-
+    temp_value: TValueRec;
+    temp_comp: TCompositions;
 begin
   //This flash routine currently handles a max of three phases
   SetLength(PhaseExist,MaxPhases);
@@ -642,9 +643,13 @@ begin
     PreviousLiquid2Phase := Phases.Add;
 
     //All phases have same temperature and pressure of the material.
-    Temperature.Value := T;
-    Pressure.Value := P;
+    temp_value := Temperature;
+    temp_value.Value := T;
+    Temperature := temp_value;
 
+    temp_value := Pressure;
+    temp_value.Value := P;
+    Pressure := temp_value;
   end;//with
 
   //***debug - phases already created above.
@@ -745,9 +750,18 @@ begin
         Liquid1Phase.Compositions[i].MoleFraction.Value:=VaporPhase.Compositions[i].MoleFraction.Value/K1[i];
         Liquid2Phase.Compositions[i].MoleFraction.Value:=VaporPhase.Compositions[i].MoleFraction.Value/K2[i];
        end;
-      Normalize(VaporPhase.Compositions);
-      Normalize(Liquid1Phase.Compositions);
-      Normalize(Liquid2Phase.Compositions);
+
+      temp_comp := VaporPhase.Compositions;
+      Normalize(temp_comp);
+      VaporPhase.Compositions := temp_comp;
+
+      temp_comp := Liquid1Phase.Compositions;
+      Normalize(temp_comp);
+      Liquid1Phase.Compositions := temp_comp;
+
+      temp_comp := Liquid2Phase.Compositions;
+      Normalize(temp_comp);
+      Liquid2Phase.Compositions := temp_comp;
     end
 
     else begin
@@ -759,9 +773,17 @@ begin
         Liquid1Phase.Compositions[i].MoleFraction.Value:=VaporPhase.Compositions[i].MoleFraction.Value/K1[i];
         Liquid2Phase.Compositions[i].MoleFraction.Value:=VaporPhase.Compositions[i].MoleFraction.Value/K2[i];
        end;
-      Normalize(VaporPhase.Compositions);
-      Normalize(Liquid1Phase.Compositions);
-      Normalize(Liquid2Phase.Compositions);
+      temp_comp := VaporPhase.Compositions;
+      Normalize(temp_comp);
+      VaporPhase.Compositions := temp_comp;
+
+      temp_comp := Liquid1Phase.Compositions;
+      Normalize(temp_comp);
+      Liquid1Phase.Compositions := temp_comp;
+
+      temp_comp := Liquid2Phase.Compositions;
+      Normalize(temp_comp);
+      Liquid2Phase.Compositions := temp_comp;
     end;
     Err := 0.0;
     UpdateKValues(VaporPhase, Liquid1Phase, K1);

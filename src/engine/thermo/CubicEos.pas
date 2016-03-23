@@ -436,7 +436,7 @@ var
   Z : double;
   I, J : byte;
   DELTAH,DHDT,DQ8 : double;
-  PerfectGasEnthalpy:TValueRec;
+  PerfectGasEnthalpy, temp_value:TValueRec;
 begin
 // todo store copies of the results and check if we need to UpDate them
 //  Mixrules;
@@ -465,9 +465,15 @@ begin
   if (CalcdP)then
      DHP := RGAS*T*DZP+DQ1P*Q4/eosBB;
 
-   APhase.EnthalpyDeparture.Value:=DeltaH;
-   PerfectGasEnthalpy := HVMXID(APhase);
-   APhase.Enthalpy.Value := APhase.EnthalpyDeparture.Value + PerfectGasEnthalpy.Value;
+  temp_value := APhase.EnthalpyDeparture;
+  temp_value.Value := DeltaH;
+  APhase.EnthalpyDeparture := temp_value;
+
+  PerfectGasEnthalpy := HVMXID(APhase);
+
+  temp_value := APhase.Enthalpy;
+  temp_value.Value := APhase.EnthalpyDeparture.Value + PerfectGasEnthalpy.Value;
+  APhase.Enthalpy := temp_value;
 end;
 
 procedure TCubicEos.PostProcessCompressibility(T,P,Z:double);
@@ -529,11 +535,15 @@ end;
 
 function TCubicEos.GetEnthalpy(APhase:TPhase):double;
 var
-  temp : TValueRec;
+  temp , temp_value: TValueRec;
 begin
   CalcDepartures(APhase);
   temp := HVMXID(APhase);
-  APhase.Enthalpy.Value := APhase.EnthalpyDeparture.Value + temp.Value;
+
+  temp_value := APhase.Enthalpy;
+  temp_value.Value := APhase.EnthalpyDeparture.Value + temp.Value;
+  APhase.Enthalpy := temp_value;
+
   Result := APhase.Enthalpy.Value;
 end;
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectGroup FileVersion="1">
+    <Targets Count="3">
+      <Target0 FileName="ise/OpSim.lpi"/>
+      <Target1 FileName="test/OpSimTest.lpi"/>
+      <Target2 FileName="test/FlashTest/flashtest.lpi"/>
+    </Targets>
+  </ProjectGroup>
+</CONFIG>

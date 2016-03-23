@@ -122,9 +122,12 @@ procedure TFlashForm.NormalizeBtnClick(Sender: TObject);
 var
   i : integer;
   temp: real;
-
+  temp_comp: TCompositions;
 begin
-  TestFlash.Normalize(FlashStrm.Compositions);
+  temp_comp := FlashStrm.Compositions;
+  TestFlash.Normalize(temp_comp);
+  FlashStrm.Compositions := temp_comp;
+
   Total := 0;
   for i := 1 to FlashStrm.Compounds.Count do
     begin

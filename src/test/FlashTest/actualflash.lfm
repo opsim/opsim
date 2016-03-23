@@ -54,8 +54,6 @@ object FlashForm: TFlashForm
     ScrollBars = ssBoth
     TabOrder = 0
     TabStop = True
-    VisibleColCount = 4
-    VisibleRowCount = 4
     OnClick = FlashGridClick
     OnEditingDone = FlashGridEditingDone
     OnSelectEditor = FlashGridSelectEditor

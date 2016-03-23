@@ -39,6 +39,9 @@ procedure PaintMixer(Canvas: TCanvas; const PaintRect: TRect;
 
 implementation
 
+uses
+  ExtShapes;
+
 //Author: Seppo.
 procedure InitValve(var P: array of TPoint; const R: TRect; var NumPts: Integer);
 var

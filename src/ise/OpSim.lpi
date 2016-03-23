@@ -1,17 +1,18 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
+    <Version Value="9"/>
     <PathDelim Value="\"/>
-    <Version Value="5"/>
     <General>
       <Flags>
-        <AlwaysBuild Value="False"/>
+        <LRSInOutputDirectory Value="False"/>
       </Flags>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <IconPath Value="./"/>
-      <TargetFileExt Value=".exe"/>
     </General>
+    <BuildModes Count="1">
+      <Item1 Name="default" Default="True"/>
+    </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
       <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
@@ -42,157 +43,129 @@
       <Unit0>
         <Filename Value="OpSim.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="OpSim"/>
       </Unit0>
       <Unit1>
         <Filename Value="UnitopPalletU.pas"/>
+        <IsPartOfProject Value="True"/>
         <ComponentName Value="UnitopPallet"/>
         <HasResources Value="True"/>
-        <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="UnitopPalletU.lrs"/>
-        <UnitName Value="UnitopPalletU"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
         <Filename Value="AboutU.pas"/>
+        <IsPartOfProject Value="True"/>
         <ComponentName Value="AboutForm"/>
         <HasResources Value="True"/>
-        <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="AboutU.lrs"/>
-        <UnitName Value="AboutU"/>
       </Unit2>
       <Unit3>
         <Filename Value="MainU.pas"/>
+        <IsPartOfProject Value="True"/>
         <ComponentName Value="Main"/>
         <HasResources Value="True"/>
-        <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="MainU.lrs"/>
-        <UnitName Value="MainU"/>
       </Unit3>
       <Unit4>
         <Filename Value="PFDDesignerU.pas"/>
-        <ComponentName Value="PFDDesigner"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="PFDDesignerU.lrs"/>
-        <UnitName Value="PFDDesignerU"/>
+        <ComponentName Value="PFDDesigner"/>
       </Unit4>
       <Unit5>
         <Filename Value="DMBaseU.pas"/>
-        <ComponentName Value="DMBase"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="DMBaseU.lrs"/>
-        <UnitName Value="DMBaseU"/>
+        <ComponentName Value="DMBase"/>
       </Unit5>
       <Unit6>
         <Filename Value="MixerSpecU.pas"/>
-        <ComponentName Value="MixerSpec"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="MixerSpecU.lrs"/>
-        <UnitName Value="MixerSpecU"/>
+        <ComponentName Value="MixerSpec"/>
       </Unit6>
       <Unit7>
         <Filename Value="Utils.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Utils"/>
       </Unit7>
       <Unit8>
         <Filename Value="PFDGraph.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="PFDGraph"/>
       </Unit8>
       <Unit9>
         <Filename Value="PFDCtrls.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="PFDCtrls"/>
       </Unit9>
       <Unit10>
         <Filename Value="ExtShapes.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ExtShapes"/>
       </Unit10>
       <Unit11>
         <Filename Value="ExtGraphics2.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ExtGraphics2"/>
       </Unit11>
       <Unit12>
         <Filename Value="..\engine\unitop\Mixer.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Mixer"/>
       </Unit12>
       <Unit13>
         <Filename Value="..\engine\solver\Entities.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Entities"/>
       </Unit13>
       <Unit14>
         <Filename Value="..\engine\solver\Solver.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Solver"/>
       </Unit14>
       <Unit15>
         <Filename Value="..\engine\thermo\ThermoProvider.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ThermoProvider"/>
       </Unit15>
       <Unit16>
         <Filename Value="PhysicalPropertyExplorerU.pas"/>
-        <ComponentName Value="PhysicalPropertyExplorer"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="PhysicalPropertyExplorerU.lrs"/>
-        <UnitName Value="PhysicalPropertyExplorerU"/>
+        <ComponentName Value="PhysicalPropertyExplorer"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit16>
       <Unit17>
         <Filename Value="..\test\TPropertyProviderTestU.pas"/>
-        <ComponentName Value="fmTPropertyProviderTest"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="..\test\TPropertyProviderTestU.lrs"/>
-        <UnitName Value="TPropertyProviderTestU"/>
+        <ComponentName Value="fmTPropertyProviderTest"/>
       </Unit17>
       <Unit18>
         <Filename Value="..\engine\thermo\Thermo.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Thermo"/>
       </Unit18>
       <Unit19>
         <Filename Value="..\engine\solver\Ports.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Ports"/>
       </Unit19>
       <Unit20>
         <Filename Value="..\engine\thermo\Eos.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Eos"/>
       </Unit20>
       <Unit21>
         <Filename Value="..\engine\thermo\Eos_Srk.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Eos_Srk"/>
       </Unit21>
       <Unit22>
         <Filename Value="..\engine\thermo\Equilibrium.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Equilibrium"/>
       </Unit22>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
-    <Version Value="5"/>
+    <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="../../app/OpSim"/>
+      <Filename Value="..\..\app\OpSim"/>
     </Target>
     <SearchPaths>
-      <OtherUnitFiles Value="..\engine\solver\;..\engine\unitop\;..\engine\thermo\;..\test\"/>
+      <OtherUnitFiles Value="..\engine\solver;..\engine\unitop;..\engine\thermo;..\test"/>
       <UnitOutputDirectory Value="..\build"/>
-      <SrcPath Value="$(LazarusDir)\lcl\;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)\"/>
+      <SrcPath Value="$(LazarusDir)\lcl;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
-        <DelphiCompat Value="True"/>
+        <SyntaxMode Value="Delphi"/>
+        <UseAnsiStrings Value="False"/>
       </SyntaxOptions>
     </Parsing>
     <CodeGeneration>
-      <Generate Value="Faster"/>
       <Optimizations>
         <OptimizationLevel Value="0"/>
       </Optimizations>
@@ -204,8 +177,5 @@
         </Win32>
       </Options>
     </Linking>
-    <Other>
-      <CompilerPath Value="$(CompPath)"/>
-    </Other>
   </CompilerOptions>
 </CONFIG>

@@ -60,11 +60,14 @@ procedure TSrkEos.CalcDepartures(APhase: TPhase);
     i, j: integer;
     ai, bi, mi: array of double;
     dadt: double;
+    temp_value: TValueRec;
 begin
 // Itinerant:dadt is not initialized !!!
 //  inherited CalcDepartures(APhase);
   with APhase do begin
-    CompressibilityFactor.Value := FindPhaseRoot(APhase);
+    temp_value := CompressibilityFactor;
+    temp_value.Value := FindPhaseRoot(APhase);
+    CompressibilityFactor := temp_value;
 
     //Initializes auxiliar arrays.
     SetLength(ai, Compounds.Count);
@@ -116,11 +119,15 @@ var
   CF: double;
   i, j: Integer;
   ai, bi, mi: array of double;
+  temp_value: TValueRec;
 begin
   //inherited CalcFugacityCoefficients(APhase);
 
   with APhase do begin
-    CompressibilityFactor.Value := FindPhaseRoot(APhase);
+    temp_value := CompressibilityFactor;
+    temp_value.Value := FindPhaseRoot(APhase);
+    CompressibilityFactor := temp_value;
+
     //Initializes auxiliar arrays.
     SetLength(ai, Compounds.Count);
     SetLength(bi, Compounds.Count);

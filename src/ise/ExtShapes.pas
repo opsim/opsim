@@ -51,7 +51,18 @@ procedure InitTriangle(var P: array of TPoint;const R: TRect;var NumPts: Integer
 procedure InitValve(var P: array of TPoint;const R: TRect;var NumPts: Integer);
 procedure InitVArrow(var P: array of TPoint;const R: TRect;var NumPts: Integer);
 
+function CenterPoint(const Rect: TRect): TPoint;
+
 implementation
+
+function CenterPoint(const Rect: TRect): TPoint;
+begin
+  with Rect do
+  begin
+    Result.X := (Right  - Left) div 2 + Left;
+    Result.Y := (Bottom - Top ) div 2 + Top;
+  end;
+end;
 
 procedure Init2HeadArrow(var P: array of TPoint;const R: TRect;var NumPts: Integer);
 var

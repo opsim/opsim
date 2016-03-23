@@ -32,7 +32,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, ZDataset,
-  ExtCtrls, DBGrids, DBCtrls, DB, Buttons, ZConnection;
+  ExtCtrls, DBGrids, DBCtrls, DB, Buttons, StdCtrls, ZConnection;
 
 type
 
