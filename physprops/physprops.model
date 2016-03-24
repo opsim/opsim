@@ -1,0 +1,49 @@
+# this textfile contains all physical property models
+# the format allows for comments, whitelines are discarted
+
+#component name
+Water
+#model name
+Antoine
+# reference
+Wikipedia
+#temp range min
+1
+#temp range max
+100
+#number of coefficients
+3
+#coefficients
+8,07131
+1730,63
+233,426
+
+Water
+Antoine
+Wikipedia
+99
+374
+3
+8,14019
+1810,94
+244,485
+
+Ethanol
+Antoine
+Wikipedia
+-57
+80
+3
+8,20417
+1642,89
+230,300
+
+Ethanol
+Antoine
+Wikipedia
+77
+243
+3
+7,68117
+1332,04
+199,200
