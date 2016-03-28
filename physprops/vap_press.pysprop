@@ -1,5 +1,5 @@
-# this textfile contains all physical property models
-# the format allows for comments, whitelines are discarted
+# this text file contains all physical property models
+# the format allows for comments, white lines are discarded
 
 #component name
 Water

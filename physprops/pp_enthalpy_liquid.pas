@@ -1,4 +1,4 @@
-unit PP_vapor_pressure;
+unit PP_enthalpy_liquid;
 
 {$mode objfpc}{$H+}
 
@@ -9,17 +9,17 @@ uses
   PP_coefficients;
 
 (**
- * Calculate the vapor pressure from temperature for a pure component.
+ * Calculate the liquid enthalpy from temperature for a pure component.
  *
  * \param name: the name of the pure component
  * \param T: the temperature in degrees Celcius
- * \return the calculated vapor pressure in mmHg.
+ * \return the calculated liquid enhtalpy in kj/kg.
  *)
-function PP_vapor_pressure_calculate(name : string;
-                                     T    : double): double;
+function PP_enthalpy_liq_calculate(name : string;
+                                   T    : double): double;
 
 (**
- * Register a new model to calculate the vapor pressure from temperature for a pure component.
+ * Register a new model to calculate the liquid enthalpy from temperature for a pure component.
  *
  * \param name: the name of the pure component
  * \param range: the temperature range the model is valid for in degrees Celcius
@@ -27,24 +27,24 @@ function PP_vapor_pressure_calculate(name : string;
  * \param method: the name of the model, internally the correct callback function is then found
  * \param ref: the reference of the model parameters
  *)
-procedure PP_vapor_pressure_register(name        : string;
-                                     range       : PPRange;
-                                     coeff       : PPCoefficients;
-                                     method, ref : string);
+procedure PP_enthalpy_liq_register(name        : string;
+                                   range       : PPRange;
+                                   coeff       : PPCoefficients;
+                                   method, ref : string);
 
 (**
- * Load a number of vapor pressure models in memory.
+ * Load a number of liquid enthalpy models in memory.
  *
  * \param fname: the filename of the list of models
  *)
-procedure PP_vapor_pressure_load(fname : string);
+procedure PP_enthalpy_liq_load(fname : string);
 
 (**
  * Free all allocated data
  *
- * \param vm: the first vapor pressure model from the list
+ * \param vm: the first liquid enthalpy model from the list
  *)
-procedure PP_vapor_pressure_free(vm : pPPModel);
+procedure PP_enthalpy_liq_free(vm : pPPModel);
 
 implementation
 
@@ -52,70 +52,73 @@ uses
   math, SysUtils;
 
 //different calculation models
-function antoine_vapor_pressure(T     : double;
-                                coeff : PPCoefficients) : double;
-begin
-  exit(power(10, coeff.data[0] - coeff.data[1] / (T + coeff.data[2])));
-end;
-
-function wrede_vapor_pressure(T     : double;
-                              coeff : PPCoefficients) : double;
-begin
-  exit(power(10, coeff.data[0] - coeff.data[1] / T));
-end;
-
-procedure PP_vapor_pressure_register(name        : string;
-                                     range       : PPRange;
-                                     coeff       : PPCoefficients;
-                                     method, ref : string);
+function polynomial_enthalpy_liquid(T     : double;
+                                    coeff : PPCoefficients) : double;
 var
-  pvap : pPPModel;
+  temp : double = 0;
+  i    : integer;
 begin
-  pvap := callocN(sizeof(PPModel), 'vapor pressure callback ');
+  for i := 0 to coeff.totcoeff - 1 do
+  begin
+    temp += coeff.data[i] * power(T, i);
+  end;
 
-  pvap^.name := name;
+  exit(temp);
+end;
+
+procedure PP_enthalpy_liq_register(name        : string;
+                                   range       : PPRange;
+                                   coeff       : PPCoefficients;
+                                   method, ref : string);
+var
+  enth : pPPModel;
+begin
+  enth := callocN(sizeof(PPModel), 'enthalpy liquid callback ');
+
+  enth^.name := name;
 
   //copy the contents from the coefficient record
-  move(coeff, pvap^.coeff, sizeof(coeff));
+  move(coeff, enth^.coeff, sizeof(coeff));
 
-  pvap^.method := method;
-  pvap^.reference := ref;
+  enth^.method := method;
+  enth^.reference := ref;
 
   //determine which callback function to use
   case lowercase(method) of
-    'antoine': pvap^.callback := @antoine_vapor_pressure;
+    'polynomial': enth^.callback := @polynomial_enthalpy_liquid;
+
     else
-      PP_error('unknown vapor pressure method', []);
+      PP_error('unknown liquid enthalpy method', []);
   end;
 
-  pvap^.range := range;
+  enth^.range := range;
 
-  addtail(pp_model^.vapor_pressure, pvap);
+  addtail(pp_model^.enthalpy_liq, enth);
 end;
 
-function PP_vapor_pressure_calculate(name : string;
-                                     T    : double): double;
+function PP_enthalpy_liq_calculate(name : string;
+                                   T    : double): double;
 var
-  pvap : pPPModel;
+  enth : pPPModel;
 begin
-  pvap := pPPModel(pp_model^.vapor_pressure^.first);
+  enth := pPPModel(pp_model^.enthalpy_liq^.first);
 
-  while pvap <> nil do
+  while enth <> nil do
   begin
     //check component name
-    if pvap^.name = name then
+    if enth^.name = name then
 
       //check if temperature within limits
-      if (pvap^.range.min <= T) and (pvap^.range.max >= T) then
-        exit(pp_T_callback(pvap^.callback)(T, pvap^.coeff));
+      if (enth^.range.min <= T) and (enth^.range.max >= T) then
+        exit(pp_T_callback(enth^.callback)(T, enth^.coeff));
 
-    pvap := pvap^.id.next;
+    enth := enth^.id.next;
   end;
 end;
 
 //this procedure expect a simple text file format, later it can be changed
 //for either some sort of python script or a database format
-procedure PP_vapor_pressure_load(fname : string);
+procedure PP_enthalpy_liq_load(fname : string);
 
   function read_line_from_file(var f : Text): string;
   var
@@ -166,7 +169,7 @@ begin
         coeff.data[i] := StrToFloat(read_line_from_file(f));
 
       //register the component
-      PP_vapor_pressure_register(comp_name, range, coeff, model_name, ref);
+      PP_enthalpy_liq_register(comp_name, range, coeff, model_name, ref);
     end;
 
     //close the file
@@ -177,7 +180,7 @@ begin
   end;
 end;
 
-procedure PP_vapor_pressure_free(vm: pPPModel);
+procedure PP_enthalpy_liq_free(vm: pPPModel);
 var
   link : pPPModel;
 begin
