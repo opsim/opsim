@@ -6,44 +6,44 @@ interface
 
 uses
   util,
-  PP_coefficients;
+  PhysProps;
 
-(**
- * Calculate the vapor pressure from temperature for a pure component.
- *
- * \param name: the name of the pure component
- * \param T: the temperature in degrees Celcius
- * \return the calculated vapor pressure in mmHg.
- *)
+{
+  Calculate the vapor pressure from temperature for a pure component.
+
+  @param(name is the name of the pure component)
+  @param(T is the temperature in degrees Celcius)
+  @returns(the calculated vapor pressure in mmHg)
+}
 function PP_vapor_pressure_calculate(name : string;
                                      T    : double): double;
 
-(**
- * Register a new model to calculate the vapor pressure from temperature for a pure component.
- *
- * \param name: the name of the pure component
- * \param range: the temperature range the model is valid for in degrees Celcius
- * \param coeff: the model coefficients
- * \param method: the name of the model, internally the correct callback function is then found
- * \param ref: the reference of the model parameters
- *)
+{
+  Register a new model to calculate the vapor pressure from temperature for a pure component.
+
+  @param(name is the name of the pure component)
+  @param(range is the temperature range the model is valid for in degrees Celcius)
+  @param(coeff is the model coefficients)
+  @param(method is the name of the model, internally the correct callback function is then found)
+  @param(ref is the reference of the model parameters)
+}
 procedure PP_vapor_pressure_register(name        : string;
                                      range       : PPRange;
                                      coeff       : PPCoefficients;
                                      method, ref : string);
 
-(**
- * Load a number of vapor pressure models in memory.
- *
- * \param fname: the filename of the list of models
- *)
+{
+  Load a number of vapor pressure models in memory.
+
+  @param(fname is the filename of the list of models)
+}
 procedure PP_vapor_pressure_load(fname : string);
 
-(**
- * Free all allocated data
- *
- * \param vm: the first vapor pressure model from the list
- *)
+{
+  Free all allocated data
+
+  @param(vm is the first vapor pressure model from the list)
+}
 procedure PP_vapor_pressure_free(vm : pPPModel);
 
 implementation

@@ -3,7 +3,7 @@ program test_physprops;
 {$mode objfpc}{$H+}
 
 uses
-  PP_coefficients,
+  PhysProps,
   PP_vapor_pressure,
   PP_enthalpy_liquid,
   util;

@@ -55,23 +55,23 @@ type
 var
   pp_model: pPPModelData;
 
-(**
- * Display any error from the physical properties library
- *
- * \param fmt: the formatting string for the error
- * \param args: an array of arguments
- *)
+{
+  Display any error from the physical properties library
+
+  @param(fmt is the formatting string for the error)
+  @param(args is an array of arguments)
+}
 procedure PP_error(const fmt  : string;
                    const args : array of Const);
 
-(**
- * Initialize the physical properties library
- *)
+{
+  Initialize the physical properties library
+}
 procedure PP_initialize;
 
-(**
- * Free all data from the physical properties library
- *)
+{
+  Free all data from the physical properties library
+}
 procedure PP_free;
 
 implementation

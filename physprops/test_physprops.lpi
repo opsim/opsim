@@ -3,7 +3,7 @@
   <ProjectOptions>
     <Version Value="9"/>
     <PathDelim Value="\"/>
-    <General>test_physprops
+    <General>
       <Flags>
         <SaveClosedFiles Value="False"/>
         <SaveOnlyProjectUnits Value="True"/>
