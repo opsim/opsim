@@ -23,8 +23,6 @@ type
   end;
   pAtom = ^Atom;
 
-  { ElementSequence }
-
   ChemForm = record
     name    : string;
     formula : string;
@@ -32,13 +30,35 @@ type
   end;
   pChemForm = ^ChemForm;
 
-function CHE_parse(str : string): pChemForm;
+(**
+ * Parse the chemical formula provided.
+ *
+ * \param formula: the chemical formula
+ * \return the calculated the parsed formula data structure
+ *)
+function CHE_parse(formula : string): pChemForm;
 
-function CHE_getweight(seq : pChemForm): double;
+(**
+ * Calculate the molweight from the parsed formula data structure
+ *
+ * \param cf: the parsed formula data structure
+ * \return the calculated molecular weight
+ *)
+function CHE_calculate_mol_weight(cf : pChemForm): double;
 
-procedure CHE_displaysymbols(seq : pChemForm);
+(**
+ * Print the atoms from the formula data structure to stdout
+ *
+ * \param cf: the parsed formula data structure
+ *)
+procedure CHE_print_atoms(cf : pChemForm);
 
-procedure CHE_free(seq : pChemForm);
+(**
+ * Free the formula data structure from memory
+ *
+ * \param cf: the parsed formula data structure
+ *)
+procedure CHE_free(cf : pChemForm);
 
 implementation
 
@@ -175,7 +195,7 @@ begin
 end;
 
 //backwards process the chemical formula
-function CHE_parse(str : string): pChemForm;
+function CHE_parse(formula : string): pChemForm;
 var
   mul    : array[0 .. sizeof(byte) - 1] of integer; //multiplication stack
   idx    : integer = -1;                            //index of stack
@@ -193,9 +213,9 @@ var
   found  : boolean;
 begin
   cf := callocN(sizeof(ChemForm), 'chemform');
-  cf^.formula := str;
+  cf^.formula := formula;
 
-  i := length(str);
+  i := length(formula);
 
   //reset the multiplication stack
   for k := 0 to sizeof(byte) do
@@ -206,20 +226,20 @@ begin
     s := i;
 
     //parse  symbols
-    if str[s] in ['a'..'z'] then
-      while not (str[i] in ['A'..'Z']) do
+    if formula[s] in ['a'..'z'] then
+      while not (formula[i] in ['A'..'Z']) do
         Dec(i)
     else
     //parse numerals
-    if str[s] in ['0'..'9'] then
+    if formula[s] in ['0'..'9'] then
     begin
-      while str[i] in ['0'..'9'] do
+      while formula[i] in ['0'..'9'] do
         Dec(i);
 
       Inc(i);
     end;
 
-    tvalue := copy(str, i, s - i + 1);
+    tvalue := copy(formula, i, s - i + 1);
 
     if tvalue = ')' then
     begin
@@ -292,14 +312,14 @@ begin
   exit(cf);
 end;
 
-function CHE_getweight(seq : pChemForm): double;
+function CHE_calculate_mol_weight(cf : pChemForm): double;
 var
   at : pAtom;
   mw : double = 0;
 begin
-  if seq = nil then exit;
+  if cf = nil then exit;
 
-  at := seq^.atoms.first;
+  at := cf^.atoms.first;
 
   while at <> nil do
   begin
@@ -311,13 +331,13 @@ begin
   exit(mw);
 end;
 
-procedure CHE_displaysymbols(seq : pChemForm);
+procedure CHE_print_atoms(cf : pChemForm);
 var
   at : pAtom;
 begin
-  if seq = nil then exit;
+  if cf = nil then exit;
 
-  at := seq^.atoms.first;
+  at := cf^.atoms.first;
 
   while at <> nil do
   begin
@@ -327,10 +347,10 @@ begin
   end;
 end;
 
-procedure CHE_free(seq: pChemForm);
+procedure CHE_free(cf: pChemForm);
 begin
-  freelistN(@seq^.atoms);
-  freeN(seq);
+  freelistN(@cf^.atoms);
+  freeN(cf);
 end;
 
 end.

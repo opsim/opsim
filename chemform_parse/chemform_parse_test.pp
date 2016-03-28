@@ -9,7 +9,7 @@ var
   fields: TStringList;
   x:      string;
   ok:     integer;
-  seq:    pChemForm;
+  cf:     pChemForm = nil;
   loop:   boolean = True;
 begin
   fields := TStringList.Create;
@@ -38,10 +38,10 @@ begin
       ok := 0;
 
       try
-        if seq <> nil then
-          CHE_free(seq);
+        if cf <> nil then
+          CHE_free(cf);
 
-        seq := CHE_parse(fields[1]);
+        cf := CHE_parse(fields[1]);
         ok  := 1;
       except
         writeln('error parsing formula');
@@ -52,14 +52,14 @@ begin
 
       if fields[0] = 'molw' then
       begin
-        if seq <> nil then
-          writeln('molecular weight ', CHE_getweight(seq): 0: 5);
+        if cf <> nil then
+          writeln('molecular weight ', CHE_calculate_mol_weight(cf): 0: 5);
       end
       else
       if fields[0] = 'syms' then
       begin
-        if seq <> nil then
-          CHE_displaysymbols(seq);
+        if cf <> nil then
+          CHE_print_atoms(cf);
       end
       else
         writeln('unknown action: ', fields[0]);
@@ -68,7 +68,7 @@ begin
 
   fields.Free;
 
-  CHE_free(seq);
+  CHE_free(cf);
   printmemlist;
   readln;
 end.
