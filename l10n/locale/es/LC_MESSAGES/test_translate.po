@@ -1,0 +1,4 @@
+#: test_translate:rsatagivenmoment
+msgid "At a given moment"
+msgstr "En un momento dado"
+
