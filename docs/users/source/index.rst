@@ -9,10 +9,18 @@ Welcome to OpSim users handbook!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+   
+   getting_started/index.rst
+   interface
+   unit_converter
+   physical_properties
+   flowsheet_editor
+   adding_a_model
+   solver
+   user_preferences
 
-
-
+   
 Indices and tables
 ==================
 
