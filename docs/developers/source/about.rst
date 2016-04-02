@@ -1,0 +1,12 @@
+About
+=====
+
+OpSim is community effort licensed under the GNU General License (GPL). Several of the primary authors are members of the academic community where the unwritten rule is "publish or perish."  Designing, writing and maintaining OpSim is a large effort that has consumed time and effort that could have been spent furthering academic careers.  If you use OpSim in research that is to be published, we request that you consider adding one or more of the authors to your team of authors.  In exchange, we will work with you to extend or modify OpSim to achieve your research goals.  In the end, this will allow the academic authors of OpSim to devote more of their working time to the development of OpSim.
+
+OpSim is community effort licensed under the GNU General License (GPL). Several of the primary authors are members of the academic community or are specialized engineering consultants. Academics are continuously under pressure to publish articles as a natural part of their careers and consultants need to publish papers in order to demonstrate expertise and enhance their visibility.
+
+Designing, writing and maintaining OpSim is a large non-paid volunteer effort that has consumed significant time and energy from the main contributors (the Core Development Team). These resources could have been spent furthering positions in our daily jobs. Under this rationale, if you use OpSim in research that is to be published in a scientific magazine or journal, we request that you consider adding one or more of the members of the OpSim Core Development Team to your team of authors. The invited authors will be available to effectively contribute to the article itself either by revising it or even helping the writing effort. As an additional exchange, we will work with you or your team to extend or modify OpSim to achieve your research goals. In the end, this will allow the academic and consultants main contributors of OpSim to devote more of their time to work on the development of OpSim.
+
+Additionally, we wish to make clear that the Core Development Team is not a rigid staff. Anyone can join the core team. The very only requirement is a significant contribution to OpSim; and the community will easily realize when a new core developer has arrived.
+
+Therefore, the present claim is stated in the hope that more and more OpSim contributors arise from the academic and technical consulting arenas, and embrace the OpSim project with the goal of giving the world a full featured and reliable free open source process simulator.
