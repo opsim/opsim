@@ -15,6 +15,8 @@ Contents:
    coding_standard
    installing_dev_environment
    committing_code
+   specifications
+   pp_library
 
 Indices and tables
 ==================
