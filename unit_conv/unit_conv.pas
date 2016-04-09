@@ -3,7 +3,7 @@ unit unit_conv;
 interface
 
 uses
-  util;
+  LinkedList;
 
 const
   UNC_FLAG_METRIC       = 1 shl 0;
@@ -243,7 +243,7 @@ begin
   //add if not found
   if uq = nil then
   begin
-    uq := callocN(sizeof(UnitQuantity), 'unit quantity definition');
+    uq := callocN(sizeof(UnitQuantity));
     uq^.name := quantity_name;
     addtail(@unitcol.quantity, uq);
   end
@@ -253,7 +253,7 @@ begin
   //add new conversion to the unit quantity
   if uc = nil then
   begin
-    uc := callocN(sizeof(UnitConversion), 'unit conversion');
+    uc := callocN(sizeof(UnitConversion));
 
     uc^.name := unit_name;
     uc^.multiplier := multiplier;
@@ -264,5 +264,8 @@ begin
     addtail(@uq^.conversion, uc);
   end;
 end;
+
+initialization
+  {$i convdef.inc}
 
 end.
