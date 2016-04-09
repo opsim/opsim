@@ -34,6 +34,7 @@ type
   end;
 
 procedure calculate_residuals(sc: pSimulationCase);
+procedure SIM_free_simulation_case(sc: pSimulationCase);
 
 implementation
 
@@ -41,7 +42,7 @@ procedure calculate_residuals(sc: pSimulationCase);
 var
   mb       : pModelBlock;
   me       : pModelEquation;
-  r        : float;
+  r        : float = 0;
   mv1, mv2 : pModelVariable;
 begin
   //sum square error
@@ -68,6 +69,33 @@ begin
 
     mb := mb^.next;
   end;
+end;
+
+procedure SIM_free_simulation_case(sc: pSimulationCase);
+var
+  mb       : pModelBlock;
+  me       : pModelEquation;
+begin
+  mb := sc^.blocks.first;
+
+  //for each modelblock
+  while mb <> nil do
+  begin
+    me := mb^.equations.first;
+
+    //for each model equation
+    while me <> nil do
+    begin
+      freelistN(@me^.vstack);
+      dispose(me^.estack);
+
+      me := me^.next;
+    end;
+    freelistN(@mb^.equations);
+
+    mb := mb^.next;
+  end;
+  freelistN(@sc^.blocks);
 end;
 
 end.
