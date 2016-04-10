@@ -1,5 +1,7 @@
 program unit_conv_test;
 
+{$mode objfpc}{$H-}
+
 uses
   LinkedList, unit_conv;
 
@@ -8,6 +10,14 @@ var
   convert_to   : pUnitConversion;
 
 begin
+  writeln('The OpSim unit converter library');
+  writeln('Originally written by Darius Blaszyk. Copyright (c) 2016');
+  writeln;
+
+  writeln('  ', UNC_count_quantities, ' unit quantities');
+  writeln('  ', UNC_count_conversions, ' conversion definitions');
+  writeln;
+
   writeln('10000 kg = ', UNC_convert_unit(10000, 'kg', 'ton', False): 0: 2, ' ton');
   writeln('   1 ton = ', UNC_convert_unit(1, 'ton', 'kg', False): 0: 2, ' kg');
   writeln;
@@ -22,8 +32,15 @@ begin
   //possible we could cache this as well, but we can decide later on for
   //performance issues to do so in the GUI
   convert_from := UNC_find_conversion(nil, 'degC');
-  convert_to := UNC_find_conversion(nil, 'degF');
-  writeln(' 38 degC = ', UNC_convert_unit(38, convert_from, convert_to, False): 0: 2, ' degF');
+  if convert_from = nil then
+    writeln('unit degC not defined!');
+
+  //convert_to := UNC_find_conversion(nil, 'degF');
+  if convert_to = nil then
+    writeln('unit degF not defined!')
+
+  if (convert_from <> nil) and (convert_from <> nil) then
+    writeln(' 38 degC = ', UNC_convert_unit(38, convert_from, convert_to, False): 0: 2, ' degF');
 
   UNC_free;
 end.

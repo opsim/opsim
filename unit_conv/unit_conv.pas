@@ -1,5 +1,7 @@
 unit unit_conv;
 
+{$mode objfpc}{$H-}
+
 interface
 
 uses
@@ -13,8 +15,8 @@ const
 type
   //a collection of unit quantities
   UnitCollection = record
-    first, last : pointer;
     quantity    : ListBase;
+    numconv     : integer;         //total amount of conversions defined
   end;
 
   //a collection of unit quantities
@@ -93,6 +95,18 @@ function UNC_find_conversion(unit_quantity : pUnitQuantity;
  *)
 procedure UNC_free;
 
+(**
+ * Get the number of unit quantities defined in the unit conversion library
+ * \return the number of unit quantities defined
+ *)
+function UNC_count_quantities: integer;
+
+(**
+ * Get the number of unit conversions defined in the unit conversion library
+ * \return the number of unit conversions defined
+ *)
+function UNC_count_conversions: integer;
+
 implementation
 
 uses
@@ -110,12 +124,9 @@ end;
 function UNC_find_conversion(unit_quantity : pUnitQuantity;
                              search_unit   : string): pUnitConversion;
 var
-  uq        : pUnitQuantity = nil;
-  uc        : pUnitConversion = nil;
-  unit_name : string;
+  uq : pUnitQuantity = nil;
+  uc : pUnitConversion = nil;
 begin
-  unit_name := LowerCase(search_unit);
-
   if unit_quantity = nil then
     uq := unitcol.quantity.first
   else
@@ -127,7 +138,7 @@ begin
 
     while uc <> nil do
     begin
-      if uc^.name = unit_name then
+      if uc^.name = search_unit then
         exit(uc);
 
       uc := uc^.next;
@@ -206,6 +217,16 @@ begin
   freelistN(@unitcol.quantity);
 end;
 
+function UNC_count_quantities: integer;
+begin
+  exit(countlist(@unitcol.quantity));
+end;
+
+function UNC_count_conversions: integer;
+begin
+  exit(unitcol.numconv);
+end;
+
 function find_quantity(unit_quantity: string): pUnitQuantity;
 var
   uq            : pUnitQuantity = nil;
@@ -233,10 +254,8 @@ var
   uq            : pUnitQuantity = nil;
   uc            : pUnitConversion = nil;
   quantity_name : string;
-  unit_name     : string;
 begin
   quantity_name := LowerCase(quantity);
-  unit_name := LowerCase(unit_);
 
   uq := find_quantity(quantity_name);
 
@@ -248,24 +267,29 @@ begin
     addtail(@unitcol.quantity, uq);
   end
   else
-    uc := UNC_find_conversion(uq, unit_name);
+    uc := UNC_find_conversion(uq, unit_);
 
   //add new conversion to the unit quantity
   if uc = nil then
   begin
     uc := callocN(sizeof(UnitConversion));
 
-    uc^.name := unit_name;
+    uc^.name := unit_;
     uc^.multiplier := multiplier;
     uc^.bias := bias;
     uc^.flag := flag;
     uc^.parentquant := uq;
 
     addtail(@uq^.conversion, uc);
-  end;
+
+    unitcol.numconv += 1;
+  end
+  else
+    UNC_error('duplicate conversion found %s %s', [quantity, unit_]);
 end;
 
 initialization
+  unitcol.numconv := 0;
   {$i convdef.inc}
 
 end.

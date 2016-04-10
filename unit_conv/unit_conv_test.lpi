@@ -51,6 +51,11 @@
       <OtherUnitFiles Value="..\core"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
     <Linking>
       <Debugging>
         <UseHeaptrc Value="True"/>

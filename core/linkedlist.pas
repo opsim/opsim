@@ -23,7 +23,7 @@
 
 unit LinkedList;
 
-{$mode objfpc}{$H+}
+{$mode objfpc}{$H-}
 
 interface
 
@@ -265,7 +265,7 @@ var
 begin
   ptr := mallocN(len);
   FillChar(ptr^, len, 0);
-  callocN := ptr;
+  exit(ptr);
 end;
 
 function countlist(listbase: pListBase): integer;
@@ -292,7 +292,7 @@ end;
 
 function mallocN(len: PtrUInt): pointer;
 begin
-  mallocN := GetMem(len);
+  exit(GetMem(len));
 end;
 
 end.
