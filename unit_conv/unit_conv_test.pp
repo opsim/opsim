@@ -6,8 +6,8 @@ uses
   LinkedList, unit_conv;
 
 var
-  convert_from : pUnitConversion;
-  convert_to   : pUnitConversion;
+  convert_from : pUnitConversion = nil;
+  convert_to   : pUnitConversion = nil;
 
 begin
   writeln('The OpSim unit converter library');
@@ -35,12 +35,13 @@ begin
   if convert_from = nil then
     writeln('unit degC not defined!');
 
-  //convert_to := UNC_find_conversion(nil, 'degF');
+  convert_to := UNC_find_conversion(nil, 'degF');
   if convert_to = nil then
-    writeln('unit degF not defined!')
+    writeln('unit degF not defined!');
 
-  if (convert_from <> nil) and (convert_from <> nil) then
+  if (convert_to <> nil) and (convert_from <> nil) then
     writeln(' 38 degC = ', UNC_convert_unit(38, convert_from, convert_to, False): 0: 2, ' degF');
 
+  writeln;
   UNC_free;
 end.
