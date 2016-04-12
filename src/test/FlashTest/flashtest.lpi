@@ -70,6 +70,8 @@
         <Filename Value="selectcomponents.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SelectComponentsForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="SelectComponents"/>
       </Unit6>
       <Unit7>
@@ -80,6 +82,8 @@
         <Filename Value="actualflash.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FlashForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="ActualFlash"/>
       </Unit8>
     </Units>
@@ -88,11 +92,11 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="..\..\..\app\FlashTest"/>
+      <Filename Value="..\..\..\bin\$(TargetCPU)-$(TargetOS)\FlashTest"/>
     </Target>
     <SearchPaths>
       <OtherUnitFiles Value="..\..\ise;..\..\src;..\..\src\engine;..\..\engine\solver;..\..\engine\thermo"/>
-      <UnitOutputDirectory Value="..\..\build"/>
+      <UnitOutputDirectory Value="..\..\lib\$(TargetCPU)-$(TargetOS)"/>
       <SrcPath Value="$(LazarusDir)\lcl;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)"/>
     </SearchPaths>
     <Parsing>

@@ -62,11 +62,11 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="..\..\app\OpSimTest"/>
+      <Filename Value="..\..\bin\$(TargetCPU)-$(TargetOS)\OpSimTest"/>
     </Target>
     <SearchPaths>
       <OtherUnitFiles Value="..\engine\solver;..\engine\thermo;..\engine\unitop"/>
-      <UnitOutputDirectory Value="..\build"/>
+      <UnitOutputDirectory Value="..\lib\$(TargetCPU)-$(TargetOS)"/>
       <SrcPath Value="$(LazarusDir)\lcl;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)"/>
     </SearchPaths>
     <Parsing>

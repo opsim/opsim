@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectGroup FileVersion="1">
-    <Targets Count="3">
-      <Target0 FileName="ise/OpSim.lpi"/>
-      <Target1 FileName="test/OpSimTest.lpi"/>
-      <Target2 FileName="test/FlashTest/flashtest.lpi"/>
+    <Targets Count="4">
+      <Target0 FileName="ise\OpSim.lpi">
+        <BuildModes Count="1"/>
+        <Mode1 Name="default"/>
+      </Target0>
+      <Target1 FileName="test\OpSimTest.lpi">
+        <BuildModes Count="1"/>
+        <Mode1 Name="default"/>
+      </Target1>
+      <Target2 FileName="test\FlashTest\flashtest.lpi">
+        <BuildModes Count="1"/>
+        <Mode1 Name="default"/>
+      </Target2>
+      <Target3 FileName="test\unit_conv\unit_conv_test.lpi">
+        <BuildModes Count="1"/>
+        <Mode1 Name="Default"/>
+      </Target3>
     </Targets>
   </ProjectGroup>
 </CONFIG>
