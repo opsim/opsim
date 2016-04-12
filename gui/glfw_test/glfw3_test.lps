@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="3">
+      <Unit0>
+        <Filename Value="glfw3_test.pp"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="3"/>
+        <CursorPos X="17" Y="22"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="glfw3.pas"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="390"/>
+        <CursorPos X="30" Y="405"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="glfw3_h.pas"/>
+        <TopLine Value="1029"/>
+        <CursorPos X="15" Y="1034"/>
+        <UsageCount Value="10"/>
+      </Unit2>
+    </Units>
+    <JumpHistory Count="2" HistoryIndex="1">
+      <Position1>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="47" Column="32" TopLine="23"/>
+      </Position1>
+      <Position2>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="52" Column="87" TopLine="42"/>
+      </Position2>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>
