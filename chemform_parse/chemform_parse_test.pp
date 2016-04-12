@@ -2,7 +2,7 @@ program ChemForm_parse_test;
 
 uses
   Classes,
-  Util,
+  LinkedList,
   ChemFormParser;
 
 var
@@ -39,9 +39,9 @@ begin
 
       try
         if cf <> nil then
-          CHE_free(cf);
+          CHF_free(cf);
 
-        cf := CHE_parse(fields[1]);
+        cf := CHF_parse(fields[1]);
         ok  := 1;
       except
         writeln('error parsing formula');
@@ -53,13 +53,13 @@ begin
       if fields[0] = 'molw' then
       begin
         if cf <> nil then
-          writeln('molecular weight ', CHE_calculate_mol_weight(cf): 0: 5);
+          writeln('molecular weight ', CHF_calculate_mol_weight(cf): 0: 5);
       end
       else
       if fields[0] = 'syms' then
       begin
         if cf <> nil then
-          CHE_print_atoms(cf);
+          CHF_print_atoms(cf);
       end
       else
         writeln('unknown action: ', fields[0]);
@@ -68,7 +68,5 @@ begin
 
   fields.Free;
 
-  CHE_free(cf);
-  printmemlist;
-  readln;
+  CHF_free(cf);
 end.

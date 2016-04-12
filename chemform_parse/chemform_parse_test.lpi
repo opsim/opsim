@@ -40,12 +40,25 @@
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="chemform_parse_test"/>
+      <Filename Value="bin/$(TargetCPU)-$(TargetOS)/chemform_parse_test"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../core"/>
+      <OtherUnitFiles Value="../../../trunk/src/engine/core"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <Linking>
+      <Debugging>
+        <UseHeaptrc Value="True"/>
+      </Debugging>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
   </CompilerOptions>
 </CONFIG>

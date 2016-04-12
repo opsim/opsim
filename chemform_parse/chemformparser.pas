@@ -5,7 +5,7 @@ unit ChemFormParser;
 interface
 
 uses
-  Util;
+  LinkedList;
 
 type
   Element = record
@@ -36,7 +36,7 @@ type
  * \param formula: the chemical formula
  * \return the calculated the parsed formula data structure
  *)
-function CHE_parse(formula : string): pChemForm;
+function CHF_parse(formula : string): pChemForm;
 
 (**
  * Calculate the molweight from the parsed formula data structure
@@ -44,21 +44,21 @@ function CHE_parse(formula : string): pChemForm;
  * \param cf: the parsed formula data structure
  * \return the calculated molecular weight
  *)
-function CHE_calculate_mol_weight(cf : pChemForm): double;
+function CHF_calculate_mol_weight(cf : pChemForm): double;
 
 (**
  * Print the atoms from the formula data structure to stdout
  *
  * \param cf: the parsed formula data structure
  *)
-procedure CHE_print_atoms(cf : pChemForm);
+procedure CHF_print_atoms(cf : pChemForm);
 
 (**
  * Free the formula data structure from memory
  *
  * \param cf: the parsed formula data structure
  *)
-procedure CHE_free(cf : pChemForm);
+procedure CHF_free(cf : pChemForm);
 
 implementation
 
@@ -195,7 +195,7 @@ begin
 end;
 
 //backwards process the chemical formula
-function CHE_parse(formula : string): pChemForm;
+function CHF_parse(formula : string): pChemForm;
 var
   mul    : array[0 .. sizeof(byte) - 1] of integer; //multiplication stack
   idx    : integer = -1;                            //index of stack
@@ -212,7 +212,7 @@ var
   code   : integer;
   found  : boolean;
 begin
-  cf := callocN(sizeof(ChemForm), 'chemform');
+  cf := callocN(sizeof(ChemForm));
   cf^.formula := formula;
 
   i := length(formula);
@@ -273,7 +273,7 @@ begin
 
             if at = nil then
             begin
-               at := callocN(sizeof(Atom), 'atom');
+               at := callocN(sizeof(Atom));
                addtail(@cf^.atoms, at);
 
                at^.elem := @PeriodicTable[j];
@@ -300,7 +300,7 @@ begin
           writeln;
 
           //remove all added previous atoms, the result is not valid
-          CHE_free(cf);
+          CHF_free(cf);
           exit(nil);
         end;
       end;
@@ -312,7 +312,7 @@ begin
   exit(cf);
 end;
 
-function CHE_calculate_mol_weight(cf : pChemForm): double;
+function CHF_calculate_mol_weight(cf : pChemForm): double;
 var
   at : pAtom;
   mw : double = 0;
@@ -331,7 +331,7 @@ begin
   exit(mw);
 end;
 
-procedure CHE_print_atoms(cf : pChemForm);
+procedure CHF_print_atoms(cf : pChemForm);
 var
   at : pAtom;
 begin
@@ -347,8 +347,10 @@ begin
   end;
 end;
 
-procedure CHE_free(cf: pChemForm);
+procedure CHF_free(cf: pChemForm);
 begin
+  if cf = nil then exit;
+
   freelistN(@cf^.atoms);
   freeN(cf);
 end;
