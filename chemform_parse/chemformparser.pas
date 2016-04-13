@@ -5,7 +5,7 @@ unit ChemFormParser;
 interface
 
 uses
-  LinkedList;
+  LinkedList, CHF_tokenizer;
 
 type
   Element = record
@@ -179,7 +179,8 @@ function find_atom_from_list(cf     : pChemForm;
 var
   at : pAtom;
 begin
-  if cf = nil then exit;
+  if cf = nil then
+    exit;
 
   at := cf^.atoms.first;
 
@@ -194,109 +195,145 @@ begin
   exit(nil);
 end;
 
+function find_periodic_element(symbol : string): integer;
+var
+  left  : byte = 1;
+  right : byte = ATOMCOUNT;
+  mid   : byte;
+begin
+  //binary search for the correct position in the periodic table
+  while (PeriodicTable[right].symbol <> symbol) and
+    (PeriodicTable[left].symbol <> symbol) and (right - left > 1) do
+  begin
+    //calculate midpoint of range
+    mid := (left + right) div 2;
+
+    if (PeriodicTable[left].symbol <= symbol) and (PeriodicTable[mid].symbol >= symbol) then
+      //throw away right half
+      right := mid
+    else
+      //throw away left half
+      left  := mid;
+  end;
+
+  if PeriodicTable[right].symbol = symbol then
+    exit(right);
+  if PeriodicTable[left].symbol = symbol then
+    exit(left);
+  exit(-1);
+end;
+
 //backwards process the chemical formula
-function CHF_parse(formula : string): pChemForm;
+function CHF_parse(formula: string): pChemForm;
 var
   mul    : array[0 .. sizeof(byte) - 1] of integer; //multiplication stack
   idx    : integer = -1;                            //index of stack
   lmul   : integer = 1;                             //local multiplier
   temp   : integer;
   i      : integer;
-  j      : integer;
-  k      : integer;
-  s      : integer;
-  num    : integer;
   at     : pAtom;
-  tvalue : string;
   cf     : pChemForm;
   code   : integer;
-  found  : boolean;
+  tok    : pCHFtoken;
+  tstack : pListBase = nil;
+  snum   : string;
+  inum   : integer;
 begin
   cf := callocN(sizeof(ChemForm));
   cf^.formula := formula;
 
-  i := length(formula);
+  //create token stack
+  tstack := callocN(sizeof(ListBase));
+
+  //parse the formula into tokens
+  CHF_parse_chemfunc(formula, tstack);
 
   //reset the multiplication stack
-  for k := 0 to sizeof(byte) do
-    mul[k] := 1;
+  for i := 0 to sizeof(byte) do
+    mul[i] := 1;
 
-  while i > 0 do
+  //parse all tokes available on the stack
+  tok := tstack^.first;
+  while tok <> nil do
   begin
-    s := i;
-
-    //parse  symbols
-    if formula[s] in ['a'..'z'] then
-      while not (formula[i] in ['A'..'Z']) do
-        Dec(i)
-    else
-    //parse numerals
-    if formula[s] in ['0'..'9'] then
-    begin
-      while formula[i] in ['0'..'9'] do
-        Dec(i);
-
-      Inc(i);
-    end;
-
-    tvalue := copy(formula, i, s - i + 1);
-
-    if tvalue = ')' then
-    begin
-      //increase multiplication stack
-      inc(idx);
-      mul[idx] := lmul;
-      lmul := 1;
-    end
-    else
-    if tvalue = '(' then
-    begin
-      mul[idx] := 1;
-      dec(idx)
-    end
-    else
-    begin
-      //test if value is numeric (multiplier)
-      val(tvalue, num, code);
-      if code = 0 then
+    case tok^.token of
+      CHF_RPAREN:
       begin
-        lmul := num;
-      end
-      else
+        //add to multiplication stack
+        Inc(idx);
+        mul[idx] := lmul;
+        lmul     := 1;
+      end;
+      CHF_LPAREN:
       begin
-        found := False;
-        for j := 1 to ATOMCOUNT do
+        //remove from multiplication stack
+        mul[idx] := 1;
+        Dec(idx);
+      end;
+      CHF_HYDRATE:
+      begin
+        if length(tok^.value) > 4 then
         begin
-          if PeriodicTable[j].symbol = tvalue then
-          begin
-            at := find_atom_from_list(cf, tvalue);
+          snum := copy(tok^.value, 2, length(tok^.value) - 4);
+          val(snum, inum, code);
 
-            if at = nil then
-            begin
-               at := callocN(sizeof(Atom));
-               addtail(@cf^.atoms, at);
+          //if conversion fails then reset to 1
+          if code <> 0 then
+            inum := 1;
+        end
+        else
+          inum := 1;
 
-               at^.elem := @PeriodicTable[j];
-            end;
-
-            temp := lmul;
-            for k := 0 to idx do
-              temp := temp * mul[k];
-
-            at^.mult += temp;
-
-            //reset local multiplier
-            lmul := 1;
-
-            found := True;
-            break;
-          end;
+        //now add the water molecules
+        i := find_periodic_element('H');
+        at := find_atom_from_list(cf, 'H');
+        if at = nil then
+        begin
+          at := callocN(sizeof(Atom));
+          addtail(@cf^.atoms, at);
+          at^.elem := @PeriodicTable[i];
         end;
-        if not found then
+        at^.mult += 2 * inum;
+
+        i := find_periodic_element('O');
+        at := find_atom_from_list(cf, 'O');
+        if at = nil then
         begin
-          writeln('''', tvalue, ''' is not an element symbol');
+          at := callocN(sizeof(Atom));
+          addtail(@cf^.atoms, at);
+          at^.elem := @PeriodicTable[i];
+        end;
+        at^.mult += inum;
+      end;
+      CHF_NUM: val(tok^.value, lmul, code);
+      CHF_name:
+      begin
+        i := find_periodic_element(tok^.value);
+        if i <> -1 then
+        begin
+          at := find_atom_from_list(cf, tok^.value);
+
+          if at = nil then
+          begin
+            at := callocN(sizeof(Atom));
+            addtail(@cf^.atoms, at);
+            at^.elem := @PeriodicTable[i];
+          end;
+
+          temp := lmul;
+          for i := 0 to idx do
+            temp := temp * mul[i];
+
+          at^.mult += temp;
+
+          //reset local multiplier
+          lmul := 1;
+        end
+        else
+        begin
+          writeln('''', tok^.value, ''' is not an element symbol');
           writeln(cf^.formula);
-          writeln('^': i);
+          writeln('^': pos(tok^.value, cf^.formula));
           writeln;
 
           //remove all added previous atoms, the result is not valid
@@ -305,9 +342,11 @@ begin
         end;
       end;
     end;
-
-    Dec(i);
+    tok := tok^.next;
   end;
+
+  freelistN(tstack);
+  freeN(tstack);
 
   exit(cf);
 end;
@@ -317,7 +356,8 @@ var
   at : pAtom;
   mw : double = 0;
 begin
-  if cf = nil then exit;
+  if cf = nil then
+    exit;
 
   at := cf^.atoms.first;
 
@@ -335,7 +375,8 @@ procedure CHF_print_atoms(cf : pChemForm);
 var
   at : pAtom;
 begin
-  if cf = nil then exit;
+  if cf = nil then
+    exit;
 
   at := cf^.atoms.first;
 
@@ -349,7 +390,8 @@ end;
 
 procedure CHF_free(cf: pChemForm);
 begin
-  if cf = nil then exit;
+  if cf = nil then
+    exit;
 
   freelistN(@cf^.atoms);
   freeN(cf);

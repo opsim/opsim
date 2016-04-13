@@ -6,11 +6,11 @@ uses
   ChemFormParser;
 
 var
-  fields: TStringList;
-  x:      string;
-  ok:     integer;
-  cf:     pChemForm = nil;
-  loop:   boolean = True;
+  fields : TStringList;
+  x      : string;
+  ok     : integer;
+  cf     : pChemForm = nil;
+  loop   : boolean = True;
 begin
   fields := TStringList.Create;
   fields.Delimiter := ' ';

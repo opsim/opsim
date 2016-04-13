@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="1">
+      <Unit0>
+        <Filename Value="chemform_parse_test.pp"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ChemForm_parse_test"/>
+        <WindowIndex Value="1"/>
+        <CursorPos X="41" Y="9"/>
+        <UsageCount Value="43"/>
+        <Loaded Value="True"/>
+      </Unit0>
+    </Units>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="5">
+      <Item1>
+        <Expression Value="mul"/>
+      </Item1>
+      <Item2>
+        <Expression Value="tok^"/>
+      </Item2>
+      <Item3>
+        <Expression Value="lmul"/>
+      </Item3>
+      <Item4>
+        <Expression Value="idx"/>
+      </Item4>
+      <Item5>
+        <Expression Value="temp"/>
+      </Item5>
+    </Watches>
+  </Debugging>
+</CONFIG>
