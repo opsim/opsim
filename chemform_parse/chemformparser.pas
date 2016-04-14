@@ -338,6 +338,10 @@ begin
 
           //remove all added previous atoms, the result is not valid
           CHF_free(cf);
+
+          freelistN(tstack);
+          freeN(tstack);
+
           exit(nil);
         end;
       end;
