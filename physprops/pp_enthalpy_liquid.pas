@@ -1,12 +1,12 @@
 unit PP_enthalpy_liquid;
 
-{$mode objfpc}{$H+}
+{$mode objfpc}{$H-}
 
 interface
 
 uses
-  util,
-  PhysProps;
+  fpjson, jsonparser,
+  LinkedList, PhysProps;
 
 {
   Calculate the liquid enthalpy from temperature for a pure component.
@@ -33,18 +33,13 @@ procedure PP_enthalpy_liq_register(name        : string;
                                    method, ref : string);
 
 {
-  Load a number of liquid enthalpy models in memory.
-
-  @param(fname is the filename of the list of models)
-}
-procedure PP_enthalpy_liq_load(fname : string);
-
-{
   Free all allocated data.
 
   @param(vm is the first liquid enthalpy model from the list)
 }
 procedure PP_enthalpy_liq_free(vm : pPPModel);
+
+procedure PP_enthalpy_liq_load_JSON(const component: string; const jArray: TJSONArray);
 
 implementation
 
@@ -73,12 +68,14 @@ procedure PP_enthalpy_liq_register(name        : string;
 var
   enth : pPPModel;
 begin
-  enth := callocN(sizeof(PPModel), 'enthalpy liquid callback ');
+  enth := callocN(sizeof(PPModel));
 
   enth^.name := name;
 
   //copy the contents from the coefficient record
-  move(coeff, enth^.coeff, sizeof(coeff));
+  enth^.coeff.data := callocN(sizeof(double) * coeff.totcoeff);
+  enth^.coeff.totcoeff := coeff.totcoeff;
+  move(coeff.data^, enth^.coeff.data^, sizeof(double) * coeff.totcoeff);
 
   enth^.method := method;
   enth^.reference := ref;
@@ -99,84 +96,24 @@ end;
 function PP_enthalpy_liq_calculate(name : string;
                                    T    : double): double;
 var
-  enth : pPPModel;
+  enth  : pPPModel;
+  lname : string;
 begin
+  if pp_model^.enthalpy_liq = nil then exit;
+
+  lname := lowercase(name);
   enth := pPPModel(pp_model^.enthalpy_liq^.first);
 
   while enth <> nil do
   begin
     //check component name
-    if enth^.name = name then
+    if enth^.name = lname then
 
       //check if temperature within limits
       if (enth^.range.min <= T) and (enth^.range.max >= T) then
         exit(pp_T_callback(enth^.callback)(T, enth^.coeff));
 
     enth := enth^.id.next;
-  end;
-end;
-
-//this procedure expect a simple text file format, later it can be changed
-//for either some sort of python script or a database format
-procedure PP_enthalpy_liq_load(fname : string);
-
-  function read_line_from_file(var f : Text): string;
-  var
-    s: string;
-  begin
-    s := '';
-
-    //ignore comments and empty lines
-    while (s = '') or (s[1] = '#') do
-      readln(f, s);
-
-    exit(s);
-  end;
-
-var
-  f          : Text;
-  comp_name  : string;
-  model_name : string;
-  ref        : string;
-  coeff      : PPCoefficients;
-  range      : PPRange;
-  i          : integer;
-begin
-  AssignFile(f, fname);
-
-  try
-    //open the file for reading
-    reset(f);
-
-    //keep reading lines until the end of the file is reached
-    while not eof(f) do
-    begin
-      //component name
-      comp_name := read_line_from_file(f);
-      //model name
-      model_name := read_line_from_file(f);
-      // reference
-      ref := read_line_from_file(f);
-      //temp range min
-      range.min := StrToFloat(read_line_from_file(f));
-      //temp range max
-      range.max := StrToFloat(read_line_from_file(f));
-      //number of coefficients
-      coeff.totcoeff := StrToInt(read_line_from_file(f));
-      //coefficients
-      coeff.data := callocN(coeff.totcoeff * sizeof(double), pchar('coefficient data ' + comp_name));
-      for i := 0 to coeff.totcoeff - 1 do
-        coeff.data[i] := StrToFloat(read_line_from_file(f));
-
-      //register the component
-      PP_enthalpy_liq_register(comp_name, range, coeff, model_name, ref);
-    end;
-
-    //close the file
-    CloseFile(f);
-
-  except
-    PP_error('File handling error occurred.', []);
   end;
 end;
 
@@ -191,6 +128,39 @@ begin
   begin
     freeN(link^.coeff.data);
     link := link^.id.next;
+  end;
+end;
+
+procedure PP_enthalpy_liq_load_JSON(const component: string; const jArray: TJSONArray);
+var
+  coeff   : PPCoefficients;
+  i, j    : Integer;
+  jArray2 : TJSONArray;
+  jData   : TJSONData;
+  jObject : TJSONObject;
+  method  : string;
+  range   : PPRange;
+  ref     : string;
+begin
+  for i := 0 to jArray.Count - 1 do
+  begin
+    jData := jArray.Items[i];
+    jObject := TJSONObject(jData);
+
+    jArray2 := jObject.Get('coeff', TJSONArray(nil));
+    coeff.totcoeff:= jArray2.Count;
+    coeff.data := callocN(sizeof(double) * coeff.totcoeff);
+    for j := 0 to coeff.totcoeff - 1 do
+      coeff.data[j] := jArray2.Items[j].AsFloat;
+
+    jArray2 := jObject.Get('range', TJSONArray(nil));
+    range.min := jArray2.Items[0].AsFloat;
+    range.max := jArray2.Items[1].AsFloat;
+
+    method := jObject.Get('method');
+    ref := jObject.Get('ref');
+    PP_enthalpy_liq_register(component, range, coeff, method, ref);
+    freeN(coeff.data);
   end;
 end;
 

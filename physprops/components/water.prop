@@ -1,0 +1,52 @@
+{
+  "chemical formula": "H2O",
+  "component": "water",
+  "liquid enthalpy": [
+    {
+      "author": "Darius Blaszyk",
+      "coeff": [
+        0.1374209577,
+        4.185789525
+      ],
+      "date": "2016-04-24",
+      "method": "Polynomial",
+      "range": [
+        0,
+        100
+      ],
+      "ref": "Wikipedia"
+    }
+  ],
+  "vapor pressure": [
+    {
+      "author": "Darius Blaszyk",
+      "coeff": [
+        8.07131,
+        1730.63,
+        233.426
+      ],
+      "date": "2016-04-24",
+      "method": "Antoine",
+      "range": [
+        1,
+        100
+      ],
+      "ref": "Wikipedia"
+    },
+    {
+      "author": "Darius Blaszyk",
+      "coeff": [
+        8.14019,
+        1810.94,
+        244.485
+      ],
+      "date": "2016-04-24",
+      "method": "Antoine",
+      "range": [
+        99,
+        374
+      ],
+      "ref": "Wikipedia"
+    }
+  ]
+}

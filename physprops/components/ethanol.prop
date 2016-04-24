@@ -1,0 +1,53 @@
+{
+  "chemical formula": "C2H6O",
+  "component": "ethanol",
+  "liquid enthalpy": [
+    {
+      "author": "Darius Blaszyk",
+      "coeff": [
+        0.9446939242,
+        2.0687950612,
+        0.0069780556
+      ],
+      "date": "2016-04-24",
+      "method": "Polynomial",
+      "range": [
+        0,
+        100
+      ],
+      "ref": "Wikipedia"
+    }
+  ],
+  "vapor pressure": [
+    {
+      "author": "Darius Blaszyk",
+      "coeff": [
+        8.20417,
+        1642.89,
+        230.3
+      ],
+      "date": "2016-04-24",
+      "method": "Antoine",
+      "range": [
+        -57,
+        80
+      ],
+      "ref": "Wikipedia"
+    },
+    {
+      "author": "Darius Blaszyk",
+      "coeff": [
+        7.68117,
+        1332.04,
+        199.2
+      ],
+      "date": "2016-04-24",
+      "method": "Antoine",
+      "range": [
+        77,
+        243
+      ],
+      "ref": "Wikipedia"
+    }
+  ]
+}
