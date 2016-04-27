@@ -1,28 +1,36 @@
 program ppjson;
 
-{$mode objfpc}{$H-}
+{$mode objfpc}{$H+}
 
 uses
-  SysUtils, Classes,
+  SysUtils, StrUtils, Classes,
   fpjson, jsonparser;
 
 var
-  fin, fout : TFileStream;
-  jParse    : TJSONParser;
-  jData     : TJSONData;
-  s         : string;
+  fin, fout    : TFileStream;
+  jParse       : TJSONParser;
+  jData        : TJSONData;
+  s            : string;
+  iname, oname : string;
+
 begin
-  if argc <> 3  then
+  if (argc < 2) or (argc > 3)  then
   begin
     writeln(stdout, 'Pretty print and validator for JSON files');
-    writeln(stdout, 'Usage: ', argv[0], ' infile.json outfile.json');
+    writeln(stdout, 'Usage: ', argv[0], ' infile.json <outfile.json>');
     halt(1);
   end;
 
+  iname := argv[1];
+  if argc = 2 then
+    oname := iname
+  else
+    oname := argv[2];
+
   try
-    fin := TFileStream.Create(argv[1], fmOpenRead);
+    fin := TFileStream.Create(iname, fmOpenRead);
   except
-    writeln(stderr, 'cannot open file ', argv[1]);
+    writeln(stderr, 'cannot open file ', iname);
     halt(1);
   end;
 
@@ -44,6 +52,14 @@ begin
 
   try
     s := jData.FormatJSON();
+
+    //undo some of the escaping
+    //for now we just search replace, perhaps later itterate through all
+    //data object strings???
+    s := ReplaceStr(s, '\\', '\');
+    s := ReplaceStr(s, '\/', '/');
+    s := ReplaceStr(s, '\"', '"');
+
     FreeAndNil(jData);
     FreeAndNil(fin);
     FreeAndNil(jParse);
@@ -53,11 +69,12 @@ begin
   end;
 
   try
-    fout := TFileStream.Create(argv[2], fmCreate);
+    fout := TFileStream.Create(oname, fmCreate);
     fout.WriteBuffer(s[1], length(s));
     FreeAndNil(fout);
   except
-    writeln(stderr, 'cannot write to file ', argv[2]);
+    writeln(stderr, 'cannot write to file ', oname);
     halt(1);
   end;
+  writeln('done.');
 end.
