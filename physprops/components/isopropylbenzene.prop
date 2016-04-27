@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C9H12",
+  "component" : "isopropylbenzene",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        6.3110000000000002E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        3.2090000000000003E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.5700000000000001E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -7.3148999999999997E+000,
+        8.1706000000000001E-001,
+        -2.7134999999999998E+000,
+        -4.5270999999999999E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        264,
+        6.3110000000000002E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.7750000000000000E+001,
+        1,
+        -9.4660000000000002E-004,
+        4.7560000000000000E-007,
+        -9.7509999999999995E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

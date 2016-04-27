@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "CHCl3",
+  "component" : "chloroform",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        5.3639999999999998E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        5.4700000000000003E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        5.0000000000000000E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.5041900000000004E+000,
+        1.0116999999999999E-002,
+        -3.7358999999999998E-001,
+        -2.2322000000000002E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        215,
+        5.3639999999999998E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.2079999999999998E+001,
+        2.0000000000000001E-001,
+        -2.2929999999999999E-004,
+        1.2630000000000001E-007,
+        -2.6960000000000000E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

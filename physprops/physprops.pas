@@ -12,13 +12,17 @@ type
     next, prev : pointer;
   end;
 
+  SimVars = record
+    value : pdouble;
+    uom   : pointer;
+  end;
+
   PPCoefficients = record
     data     : pdouble;
     totcoeff : integer;
   end;
 
-  pp_T_callback = function(T     : double;
-                           coeff : PPCoefficients): double;
+  pp_callback = function(vars : SimVars; coeff : PPCoefficients): double;
 
   PPRange = record
     min : double;
@@ -34,7 +38,7 @@ type
     coeff     : PPCoefficients;
     method    : string;
     reference : string;
-    callback  : pointer;
+    callback  : pp_callback;
   end;
 
   PPModelData = record
@@ -52,6 +56,13 @@ type
     viscosity_vap    : pListBase;
   end;
   pPPModelData = ^PPModelData;
+
+  PPModelCallback = record
+    callback    : pp_callback;
+    method      : string;
+    description : string;
+    equation    : string;
+  end;
 
 var
   pp_model: pPPModelData;

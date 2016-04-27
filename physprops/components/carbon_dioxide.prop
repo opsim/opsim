@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "CO2",
+  "component" : "carbon dioxide",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        3.0410000000000002E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        7.3750000000000000E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        4.6800000000000003E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.9562600000000003E+000,
+        1.1969500000000000E+000,
+        -3.1261399999999999E+000,
+        4.8593900000000003E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        217,
+        3.0410000000000002E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        1.7460000000000001E+001,
+        8.9999999999999997E-002,
+        -1.0080000000000000E-004,
+        6.5390000000000005E-008,
+        -1.8450000000000002E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

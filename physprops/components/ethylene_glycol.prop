@@ -1,0 +1,42 @@
+{
+  "chemical formula" : "C2H6O2",
+  "component" : "ethylene glycol",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        790
+      ],
+      "critical pressure" : [
+        "bar",
+        74
+      ],
+      "critical density" : [
+        "g/cm3",
+        3.3400000000000002E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        3.5700000000000003E+001,
+        2.3999999999999999E-001,
+        -1.4970000000000001E-004,
+        -3.0099999999999998E-008,
+        0
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

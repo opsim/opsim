@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "CH4O",
+  "component" : "methyl alcohol",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        5.1263999999999999E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        8.0920000000000002E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.7200000000000002E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -8.5368999999999993E+000,
+        7.3287000000000002E-001,
+        -3.0249999999999999E+000,
+        1.3634999999999999E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        206,
+        5.1263999999999999E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.0780000000000001E+001,
+        7.0000000000000007E-002,
+        4.0139999999999999E-005,
+        -5.9079999999999997E-008,
+        1.7410000000000001E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

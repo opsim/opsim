@@ -1,21 +1,21 @@
 {
-  "chemical formula" : "H2O",
-  "component" : "water",
+  "chemical formula" : "C2H6O",
+  "component" : "ethyl alcohol",
   "critical constants" : [
     {
       "author" : "Darius Blaszyk",
       "date" : "2016-4-27",
       "critical temperature" : [
         "K",
-        6.4713999999999999E+002
+        5.1391999999999996E+002
       ],
       "critical pressure" : [
         "bar",
-        2.2050000000000000E+002
+        6.1369999999999997E+001
       ],
       "critical density" : [
         "g/cm3",
-        3.2200000000000001E-001
+        2.7600000000000002E-001
       ],
       "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
     }
@@ -24,47 +24,47 @@
     {
       "author" : "Darius Blaszyk",
       "coeff" : [
-        8.0713100000000004E+000,
-        1.7306300000000001E+003,
-        2.3342599999999999E+002
+        8.2041699999999995E+000,
+        1.6428900000000001E+003,
+        2.3030000000000001E+002
       ],
       "date" : "2016-04-24",
       "method" : "Antoine",
       "range" : [
-        1,
-        100
+        -57,
+        80
       ],
       "ref" : "https://en.wikipedia.org/wiki/Antoine_equation"
     },
     {
       "author" : "Darius Blaszyk",
       "coeff" : [
-        8.1401900000000005E+000,
-        1.8109400000000001E+003,
-        2.4448500000000001E+002
+        7.6811699999999998E+000,
+        1.3320400000000000E+003,
+        1.9919999999999999E+002
       ],
       "date" : "2016-04-24",
       "method" : "Antoine",
       "range" : [
-        99,
-        374
+        77,
+        243
       ],
       "ref" : "https://en.wikipedia.org/wiki/Antoine_equation"
     },
     {
       "author" : "Darius Blaszyk",
       "coeff" : [
-        -7.7645099999999996E+000,
-        1.4583800000000000E+000,
-        -2.7757999999999998E+000,
-        -1.2330300000000001E+000
+        -8.4245999999999999E+000,
+        2.8638000000000000E-002,
+        -4.7926000000000002E+000,
+        3.7892999999999999E+000
       ],
       "date" : "2016-4-27",
       "method" : "Wagner",
       "range" : [
         "C",
-        275,
-        6.4713999999999999E+002
+        229,
+        5.1391999999999996E+002
       ],
       "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
       "result unit" : "bar"
@@ -74,11 +74,11 @@
     {
       "author" : "Darius Blaszyk",
       "coeff" : [
-        3.4509999999999998E+001,
-        -1.0000000000000000E-002,
-        4.6860000000000002E-005,
-        -3.7809999999999999E-008,
-        1.1729999999999999E-011
+        1.0400000000000000E+000,
+        2.5000000000000000E-001,
+        -1.5500000000000000E-004,
+        4.6320000000000001E-008,
+        -5.0700000000000000E-012
       ],
       "date" : "2016-4-27",
       "method" : "Polynomial",

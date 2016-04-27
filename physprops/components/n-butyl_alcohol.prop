@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C4H10O",
+  "component" : "n-butyl alcohol",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        5.6304999999999995E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        4.4229999999999997E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.7000000000000002E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -8.0397999999999996E+000,
+        5.7415000000000005E-001,
+        -9.1974999999999998E+000,
+        4.9131999999999998E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        293,
+        5.6304999999999995E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -1.5930000000000000E+001,
+        5.1000000000000001E-001,
+        -3.8220000000000002E-004,
+        1.5419999999999999E-007,
+        -2.6330000000000001E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

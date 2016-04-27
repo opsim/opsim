@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C8H18",
+  "component" : "octane",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        5.6870000000000005E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        2.4899999999999999E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.3200000000000001E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -8.1622000000000003E+000,
+        2.1052000000000000E+000,
+        -5.4164000000000003E+000,
+        -1.5830000000000000E-001
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        216,
+        5.6883000000000004E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -2.3870000000000001E+001,
+        8.4999999999999998E-001,
+        -5.4810000000000004E-004,
+        1.6049999999999999E-007,
+        -1.4230000000000001E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

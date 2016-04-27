@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C6H12O2",
+  "component" : "butyl acetate",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        5.7910000000000002E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        31
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.9399999999999998E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -8.3665800000000008E+000,
+        2.4098500000000000E+000,
+        -6.4251100000000001E+000,
+        -1.9570000000000000E-003
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        333,
+        5.7910000000000002E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        1.3619999999999999E+001,
+        5.4000000000000004E-001,
+        -2.2780000000000001E-004,
+        7.9099999999999996E-010,
+        0
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

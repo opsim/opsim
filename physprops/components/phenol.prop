@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C6H6O",
+  "component" : "phenol",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        6.9420000000000005E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        6.1299999999999997E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        4.1099999999999998E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -8.1683000000000003E+000,
+        1.4051000000000000E+000,
+        -3.4883999999999999E+000,
+        -8.7889999999999997E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        345,
+        6.9420000000000005E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -4.5630000000000003E+001,
+        6.6000000000000003E-001,
+        -6.4289999999999996E-004,
+        3.2160000000000002E-007,
+        -6.4559999999999995E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

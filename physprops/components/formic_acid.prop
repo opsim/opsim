@@ -1,0 +1,42 @@
+{
+  "chemical formula" : "CH2O2",
+  "component" : "formic acid",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        580
+      ],
+      "critical pressure" : [
+        "bar",
+        74
+      ],
+      "critical density" : [
+        "g/cm3",
+        3.8400000000000001E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        1.4890000000000001E+001,
+        1.1000000000000000E-001,
+        -2.3989999999999999E-005,
+        -2.2799999999999999E-008,
+        9.2880000000000000E-012
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

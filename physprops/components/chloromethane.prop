@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "CH3Cl",
+  "component" : "chloromethane",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        4.1625000000000000E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        6.6790000000000006E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        3.6299999999999999E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.5415299999999998E+000,
+        9.0621099999999999E-001,
+        -1.4860000000000000E+000,
+        -6.4486100000000004E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        191,
+        4.1625000000000000E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        1.3300000000000001E+001,
+        1.0000000000000001E-001,
+        -4.1930000000000000E-005,
+        1.0820000000000000E-009,
+        2.4240000000000002E-012
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

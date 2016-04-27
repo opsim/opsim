@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C4H8O2",
+  "component" : "n-butyric acid",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        624
+      ],
+      "critical pressure" : [
+        "bar",
+        3.1500000000000000E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        3.0399999999999999E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -1.0039199999999999E+001,
+        3.1567900000000000E+000,
+        -7.7260400000000002E+000,
+        5.2763000000000000E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        364,
+        624
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        1.1740000000000000E+001,
+        4.0999999999999998E-001,
+        -2.4300000000000000E-004,
+        5.5309999999999997E-008,
+        0
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

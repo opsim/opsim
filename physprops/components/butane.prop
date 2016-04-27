@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C4H10",
+  "component" : "butane",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        4.2518000000000001E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        3.7969999999999999E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.2800000000000001E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -7.0269000000000004E+000,
+        1.5199000000000000E+000,
+        -2.8096000000000001E+000,
+        -1.9570000000000000E-003
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        253,
+        4.2518000000000001E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -2.4800000000000000E+000,
+        3.9000000000000001E-001,
+        -2.2039999999999999E-004,
+        5.5430000000000001E-008,
+        -4.1050000000000000E-012
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

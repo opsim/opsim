@@ -44,14 +44,7 @@ procedure PP_vapor_pressure_load_JSON(const component: string; const jArray: TJS
 implementation
 
 uses
-  math, SysUtils;
-
-//different calculation models
-function antoine_vapor_pressure(T     : double;
-                                coeff : PPCoefficients) : double;
-begin
-  exit(power(10, coeff.data[0] - coeff.data[1] / (T + coeff.data[2])));
-end;
+  math, SysUtils, PP_models;
 
 function wrede_vapor_pressure(T     : double;
                               coeff : PPCoefficients) : double;
@@ -79,12 +72,7 @@ begin
   pvap^.reference := ref;
 
   //determine which callback function to use
-  case lowercase(method) of
-    'antoine': pvap^.callback := @antoine_vapor_pressure;
-
-    else
-      PP_error('unknown vapor pressure method', []);
-  end;
+  pvap^.callback := PP_model_find_callback(lowercase(method));
 
   pvap^.range := range;
 
@@ -96,11 +84,12 @@ function PP_vapor_pressure_calculate(name : string;
 var
   pvap  : pPPModel;
   lname : string;
+  v     : SimVars;
 begin
   if pp_model^.vapor_pressure = nil then exit;
 
   lname := lowercase(name);
-  pvap := pPPModel(pp_model^.vapor_pressure^.first);
+  pvap := pp_model^.vapor_pressure^.first;
 
   while pvap <> nil do
   begin
@@ -109,7 +98,13 @@ begin
 
       //check if temperature within limits
       if (pvap^.range.min <= T) and (pvap^.range.max >= T) then
-        exit(pp_T_callback(pvap^.callback)(T, pvap^.coeff));
+      begin
+        v.value := callocN(sizeof(double));
+        v.value^ := T;
+        PP_vapor_pressure_calculate :=pvap^.callback(v, pvap^.coeff);
+        freeN(v.value);
+        exit;
+      end;
 
     pvap := pvap^.id.next;
   end;
@@ -152,8 +147,8 @@ begin
       coeff.data[j] := jArray2.Items[j].AsFloat;
 
     jArray2 := jObject.Get('range', TJSONArray(nil));
-    range.min := jArray2.Items[0].AsFloat;
-    range.max := jArray2.Items[1].AsFloat;
+    range.min := jArray2.Items[1].AsFloat;
+    range.max := jArray2.Items[2].AsFloat;
 
     method := jObject.Get('method');
     ref := jObject.Get('ref');

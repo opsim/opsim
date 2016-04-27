@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C3H6O2",
+  "component" : "methyl acetate",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        5.0680000000000001E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        4.6899999999999999E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        3.2500000000000001E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -8.0540599999999998E+000,
+        2.5637500000000002E+000,
+        -5.1299400000000004E+000,
+        1.6125000000000000E-001
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        275,
+        5.0680000000000001E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        1.6550000000000001E+001,
+        2.2000000000000000E-001,
+        -4.3420000000000001E-005,
+        2.9140000000000002E-008,
+        0
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

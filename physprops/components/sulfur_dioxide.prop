@@ -1,0 +1,42 @@
+{
+  "chemical formula" : "SO2",
+  "component" : "sulfur dioxide",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        4.3080000000000001E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        7.8840000000000003E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        5.2500000000000002E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.3770000000000000E+001,
+        5.9999999999999998E-002,
+        -5.6220000000000000E-005,
+        2.0890000000000000E-008,
+        -2.7610000000000000E-012
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

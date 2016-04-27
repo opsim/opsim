@@ -1,0 +1,42 @@
+{
+  "chemical formula" : "SO3",
+  "component" : "sulfur trioxide",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        491
+      ],
+      "critical pressure" : [
+        "bar",
+        8.2099999999999994E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        6.3000000000000000E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        1.7149999999999999E+001,
+        1.4999999999999999E-001,
+        -1.5320000000000001E-004,
+        7.4649999999999997E-008,
+        -1.4249999999999999E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

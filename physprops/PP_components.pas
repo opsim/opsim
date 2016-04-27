@@ -11,7 +11,6 @@ implementation
 uses
   SysUtils, Classes,
   fpjson, jsonparser,
-  LinkedList,
   PhysProps,
   PP_vapor_pressure,
   PP_enthalpy_liquid;
@@ -55,6 +54,7 @@ begin
     until FindNext(info) <> 0;
   end;
   FindClose(info);
+  writeln(count, ' components loaded');
 end;
 
 end.

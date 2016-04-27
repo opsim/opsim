@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C6H6",
+  "component" : "benzene",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        5.6215999999999997E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        4.8979999999999997E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        3.0199999999999999E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.9740000000000002E+000,
+        1.3185000000000000E+000,
+        -2.6337000000000002E+000,
+        -3.2587999999999999E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        278,
+        5.6215999999999997E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -55,
+        5.8999999999999997E-001,
+        -5.2930000000000002E-004,
+        2.4289999999999998E-007,
+        -4.5230000000000002E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

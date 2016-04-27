@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C2H2",
+  "component" : "acetylene",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        3.0832999999999998E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        6.1390000000000001E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.3100000000000001E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.9012799999999999E+000,
+        1.2687299999999999E+000,
+        -2.0911300000000002E+000,
+        -2.7560099999999998E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        192,
+        3.0832999999999998E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.6699999999999999E+000,
+        2.2000000000000000E-001,
+        -3.8880000000000002E-004,
+        3.3700000000000001E-007,
+        -1.1159999999999999E-010
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C4H8O2",
+  "component" : "ethyl acetate",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        5.2320000000000005E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        3.8299999999999997E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        3.0800000000000000E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -7.6852099999999997E+000,
+        1.3651100000000000E+000,
+        -4.0898000000000003E+000,
+        -2.0353900000000000E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        289,
+        5.2320000000000005E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        6.2900000000000000E+000,
+        4.1999999999999998E-001,
+        -2.3699999999999999E-004,
+        5.0860000000000000E-008,
+        0
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

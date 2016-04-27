@@ -33,16 +33,22 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <Units Count="2">
+    <Units Count="3">
       <Unit0>
         <Filename Value="test_physprops.pp"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="test_physprops"/>
       </Unit0>
       <Unit1>
         <Filename Value="physprops.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="PhysProps"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="pp_models.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PP_models"/>
+      </Unit2>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -66,5 +72,8 @@
         <UseHeaptrc Value="True"/>
       </Debugging>
     </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
   </CompilerOptions>
 </CONFIG>

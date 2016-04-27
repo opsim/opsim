@@ -1,0 +1,42 @@
+{
+  "chemical formula" : "C3H8O3",
+  "component" : "glycerol",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        726
+      ],
+      "critical pressure" : [
+        "bar",
+        6.6799999999999997E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        3.6099999999999999E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        8.4199999999999999E+000,
+        4.4000000000000000E-001,
+        -3.1589999999999998E-004,
+        9.3779999999999997E-008,
+        0
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

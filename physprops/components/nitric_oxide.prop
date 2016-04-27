@@ -1,0 +1,42 @@
+{
+  "chemical formula" : "NO",
+  "component" : "nitric oxide",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        180
+      ],
+      "critical pressure" : [
+        "bar",
+        6.4849999999999994E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        5.2000000000000002E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        3.2820000000000000E+001,
+        -2.0000000000000000E-002,
+        5.3040000000000000E-005,
+        -3.8829999999999998E-008,
+        9.6020000000000005E-012
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

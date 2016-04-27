@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C2H4",
+  "component" : "ethylene",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        2.8233999999999997E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        5.0390000000000001E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.1500000000000000E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.3205499999999999E+000,
+        1.1681900000000001E+000,
+        -1.5593500000000000E+000,
+        -1.8355200000000000E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        105,
+        2.8233999999999997E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.6200000000000001E+000,
+        1.6000000000000000E-001,
+        -1.0050000000000000E-004,
+        3.2560000000000002E-008,
+        -4.4129999999999999E-012
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

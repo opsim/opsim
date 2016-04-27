@@ -44,22 +44,7 @@ procedure PP_enthalpy_liq_load_JSON(const component: string; const jArray: TJSON
 implementation
 
 uses
-  math, SysUtils;
-
-//different calculation models
-function polynomial_enthalpy_liquid(T     : double;
-                                    coeff : PPCoefficients) : double;
-var
-  temp : double = 0;
-  i    : integer;
-begin
-  for i := 0 to coeff.totcoeff - 1 do
-  begin
-    temp += coeff.data[i] * power(T, i);
-  end;
-
-  exit(temp);
-end;
+  math, SysUtils, PP_models;
 
 procedure PP_enthalpy_liq_register(name        : string;
                                    range       : PPRange;
@@ -81,12 +66,7 @@ begin
   enth^.reference := ref;
 
   //determine which callback function to use
-  case lowercase(method) of
-    'polynomial': enth^.callback := @polynomial_enthalpy_liquid;
-
-    else
-      PP_error('unknown liquid enthalpy method', []);
-  end;
+  enth^.callback := PP_model_find_callback(lowercase(method));
 
   enth^.range := range;
 
@@ -98,20 +78,25 @@ function PP_enthalpy_liq_calculate(name : string;
 var
   enth  : pPPModel;
   lname : string;
+  v     : SimVars;
 begin
   if pp_model^.enthalpy_liq = nil then exit;
 
   lname := lowercase(name);
-  enth := pPPModel(pp_model^.enthalpy_liq^.first);
+  enth := pp_model^.enthalpy_liq^.first;
 
   while enth <> nil do
   begin
-    //check component name
     if enth^.name = lname then
-
-      //check if temperature within limits
+      //check component name
       if (enth^.range.min <= T) and (enth^.range.max >= T) then
-        exit(pp_T_callback(enth^.callback)(T, enth^.coeff));
+      begin
+        v.value := callocN(sizeof(double));
+        v.value^ := T;
+        PP_enthalpy_liq_calculate := enth^.callback(v, enth^.coeff);
+        freeN(v.value);
+        exit;
+      end;
 
     enth := enth^.id.next;
   end;
@@ -154,8 +139,8 @@ begin
       coeff.data[j] := jArray2.Items[j].AsFloat;
 
     jArray2 := jObject.Get('range', TJSONArray(nil));
-    range.min := jArray2.Items[0].AsFloat;
-    range.max := jArray2.Items[1].AsFloat;
+    range.min := jArray2.Items[1].AsFloat;
+    range.max := jArray2.Items[2].AsFloat;
 
     method := jObject.Get('method');
     ref := jObject.Get('ref');

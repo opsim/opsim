@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C8H8",
+  "component" : "styrene",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        6.3679999999999995E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        3.6799999999999997E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.9599999999999999E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -7.1598100000000002E+000,
+        1.7886100000000000E+000,
+        -5.1035899999999996E+000,
+        1.6374899999999999E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        303,
+        6.3679999999999995E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -4.3259999999999998E+001,
+        7.0999999999999996E-001,
+        -6.0639999999999999E-004,
+        2.7160000000000002E-007,
+        -4.9899999999999997E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "chemical formula" : "N2O",
+  "component" : "nitrous oxide",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        3.0960000000000002E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        7.2400000000000006E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        4.5200000000000001E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.1309999999999999E+001,
+        7.0000000000000007E-002,
+        -6.6940000000000006E-005,
+        3.1429999999999998E-008,
+        -6.1110000000000001E-012
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

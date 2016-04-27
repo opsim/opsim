@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "COCl2",
+  "component" : "phosgene",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        455
+      ],
+      "critical pressure" : [
+        "bar",
+        5.6700000000000003E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        5.2000000000000002E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -7.0817699999999997E+000,
+        1.6046100000000001E+000,
+        -2.5715300000000001E+000,
+        -1.8837699999999999E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        216,
+        455
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.6629999999999999E+001,
+        1.4000000000000001E-001,
+        -1.7660000000000001E-004,
+        1.0070000000000000E-007,
+        -2.2090000000000001E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C8H10",
+  "component" : "m-xylene",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        6.1704999999999995E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        3.5350000000000001E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.8199999999999997E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -7.5949000000000000E+000,
+        1.3851000000000000E+000,
+        -3.1690000000000000E+000,
+        -2.4207999999999998E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        264,
+        6.1704999999999995E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -3.9969999999999999E+001,
+        6.8000000000000005E-001,
+        -4.7679999999999999E-004,
+        1.6789999999999999E-007,
+        -2.3450000000000000E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

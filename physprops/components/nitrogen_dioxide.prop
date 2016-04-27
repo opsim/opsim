@@ -1,0 +1,23 @@
+{
+  "chemical formula" : "NO2",
+  "component" : "nitrogen dioxide",
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.4260000000000002E+001,
+        4.0000000000000001E-002,
+        -1.6280000000000000E-005,
+        -6.8779999999999996E-009,
+        3.9700000000000002E-012
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

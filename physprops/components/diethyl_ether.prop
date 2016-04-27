@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C4H10O",
+  "component" : "diethyl ether",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        4.6669999999999999E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        3.6439999999999998E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.6400000000000001E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -7.2991599999999996E+000,
+        1.2482800000000001E+000,
+        -2.9193099999999998E+000,
+        -3.5390000000000001E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        250,
+        4.6669999999999999E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        3.6280000000000001E+001,
+        3.1000000000000000E-001,
+        -1.1890000000000000E-004,
+        8.0320000000000004E-009,
+        2.6299999999999999E-012
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

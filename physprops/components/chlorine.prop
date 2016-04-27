@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "Cl2",
+  "component" : "chlorine",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        4.1689999999999998E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        7.9769999999999996E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        5.7299999999999995E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.3407400000000003E+000,
+        1.1503699999999999E+000,
+        -1.4041600000000001E+000,
+        -3.8457900000000000E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        206,
+        4.1689999999999998E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.6550000000000001E+001,
+        2.9999999999999999E-002,
+        -5.0720000000000002E-005,
+        3.1400000000000003E-008,
+        -7.2189999999999998E-012
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

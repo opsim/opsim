@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "H2",
+  "component" : "hydrogen",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        3.3200000000000003E+001
+      ],
+      "critical pressure" : [
+        "bar",
+        1.2970000000000001E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        3.1000000000000000E-002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -5.5792900000000003E+000,
+        2.6001200000000000E+000,
+        -8.5506000000000004E-001,
+        1.7050300000000000E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        14,
+        33
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.6690000000000001E+001,
+        1.0000000000000000E-002,
+        -2.3839999999999999E-005,
+        2.0039999999999999E-008,
+        -5.4270000000000002E-012
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

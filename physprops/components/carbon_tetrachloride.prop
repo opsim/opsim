@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "CCl4",
+  "component" : "carbon tetrachloride",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        5.5660000000000002E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        4.5159999999999997E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        5.5800000000000005E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.9764099999999996E+000,
+        1.4395700000000000E+000,
+        -2.3418199999999998E+000,
+        -2.5684200000000001E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        253,
+        5.5660000000000002E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        3.8539999999999999E+001,
+        2.2000000000000000E-001,
+        -2.9770000000000003E-004,
+        1.7959999999999999E-007,
+        -4.0600000000000001E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C2H4O",
+  "component" : "acetaldehyde",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        4.6110000000000002E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        56
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.6100000000000001E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -7.0468700000000002E+000,
+        1.2142000000000000E-001,
+        -2.6603700000000001E-002,
+        -5.9029999999999996E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        273,
+        4.6110000000000002E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.4059999999999999E+001,
+        7.0000000000000007E-002,
+        1.2530000000000001E-004,
+        -1.8760000000000001E-007,
+        7.1039999999999995E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "chemical formula" : "C4H6",
+  "component" : "butadiene-1,3",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        425
+      ],
+      "critical pressure" : [
+        "bar",
+        4.3299999999999997E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.4500000000000000E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -7.2491000000000003E+000,
+        2.0173000000000001E+000,
+        -3.0766000000000000E+000,
+        -1.4655000000000000E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "C",
+        164,
+        425
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -2.7219999999999999E+001,
+        4.6999999999999997E-001,
+        -4.5320000000000001E-004,
+        2.2380000000000001E-007,
+        -4.4299999999999998E-011
+      ],
+      "date" : "2016-4-27",
+      "method" : "Polynomial",
+      "range" : [
+        "C"
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
+      "result unit" : "J/mol/K"
+    }
+  ]
+}
