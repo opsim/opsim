@@ -32,7 +32,7 @@
       "date" : "2016-4-27",
       "method" : "Wagner",
       "range" : [
-        "C",
+        "degC",
         206,
         4.1689999999999998E+002
       ],
@@ -53,10 +53,10 @@
       "date" : "2016-4-27",
       "method" : "Polynomial",
       "range" : [
-        "C"
+        "degC"
       ],
       "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
-      "result unit" : "J/mol/K"
+      "result unit" : "J/kg.K"
     }
   ]
 }

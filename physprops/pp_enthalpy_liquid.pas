@@ -139,6 +139,7 @@ begin
       coeff.data[j] := jArray2.Items[j].AsFloat;
 
     jArray2 := jObject.Get('range', TJSONArray(nil));
+    range._unit := jArray2.Items[0].AsString;
     range.min := jArray2.Items[1].AsFloat;
     range.max := jArray2.Items[2].AsFloat;
 

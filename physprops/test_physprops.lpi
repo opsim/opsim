@@ -37,7 +37,6 @@
       <Unit0>
         <Filename Value="test_physprops.pp"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="test_physprops"/>
       </Unit0>
       <Unit1>
         <Filename Value="physprops.pas"/>
@@ -59,7 +58,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\..\..\trunk\src\engine\core"/>
+      <OtherUnitFiles Value="..\..\..\trunk\src\engine\core;..\..\..\trunk\src\engine\unit_conv"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
@@ -72,8 +71,5 @@
         <UseHeaptrc Value="True"/>
       </Debugging>
     </Linking>
-    <Other>
-      <CompilerPath Value="$(CompPath)"/>
-    </Other>
   </CompilerOptions>
 </CONFIG>

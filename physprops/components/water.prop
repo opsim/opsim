@@ -31,6 +31,7 @@
       "date" : "2016-04-24",
       "method" : "Antoine",
       "range" : [
+        "degC",
         1,
         100
       ],
@@ -46,6 +47,7 @@
       "date" : "2016-04-24",
       "method" : "Antoine",
       "range" : [
+        "degC",
         99,
         374
       ],
@@ -62,7 +64,7 @@
       "date" : "2016-4-27",
       "method" : "Wagner",
       "range" : [
-        "C",
+        "degC",
         275,
         6.4713999999999999E+002
       ],
@@ -83,10 +85,10 @@
       "date" : "2016-4-27",
       "method" : "Polynomial",
       "range" : [
-        "C"
+        "degC"
       ],
       "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
-      "result unit" : "J/mol/K"
+      "result unit" : "J/kg.K"
     }
   ]
 }

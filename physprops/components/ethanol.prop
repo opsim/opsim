@@ -12,6 +12,7 @@
       "date": "2016-04-24",
       "method": "Polynomial",
       "range": [
+        "degC",
         0,
         100
       ],
@@ -29,6 +30,7 @@
       "date": "2016-04-24",
       "method": "Antoine",
       "range": [
+        "degC",
         -57,
         80
       ],
@@ -44,6 +46,7 @@
       "date": "2016-04-24",
       "method": "Antoine",
       "range": [
+        "degC",
         77,
         243
       ],

@@ -5,7 +5,7 @@ unit PhysProps;
 interface
 
 uses
-  LinkedList, PP_components;
+  LinkedList, unit_conv, PP_components;
 
 type
   ID = record
@@ -14,7 +14,7 @@ type
 
   SimVars = record
     value : pdouble;
-    uom   : pointer;
+    uom   : pUnitConversion;
   end;
 
   PPCoefficients = record
@@ -25,6 +25,7 @@ type
   pp_callback = function(vars : SimVars; coeff : PPCoefficients): double;
 
   PPRange = record
+    _unit: string;
     min : double;
     max : double;
   end;

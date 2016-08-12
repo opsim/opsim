@@ -16,7 +16,7 @@ uses
   @returns(the calculated vapor pressure in mmHg)
 }
 function PP_vapor_pressure_calculate(name : string;
-                                     T    : double): double;
+                                     T    : SimVars): SimVars;
 
 {
   Register a new model to calculate the vapor pressure from temperature for a pure component.
@@ -80,7 +80,7 @@ begin
 end;
 
 function PP_vapor_pressure_calculate(name : string;
-                                     T    : double): double;
+                                     T    : SimVars): SimVars;
 var
   pvap  : pPPModel;
   lname : string;
@@ -97,13 +97,13 @@ begin
     if pvap^.name = lname then
 
       //check if temperature within limits
-      if (pvap^.range.min <= T) and (pvap^.range.max >= T) then
+      if (pvap^.range.min <= T.value^) and (pvap^.range.max >= T.value^) then
       begin
         v.value := callocN(sizeof(double));
-        v.value^ := T;
-        PP_vapor_pressure_calculate :=pvap^.callback(v, pvap^.coeff);
-        freeN(v.value);
-        exit;
+        v.value^ := pvap^.callback(T, pvap^.coeff);
+        v.uom := pvap^.uom;
+
+        exit(v);
       end;
 
     pvap := pvap^.id.next;
@@ -147,6 +147,7 @@ begin
       coeff.data[j] := jArray2.Items[j].AsFloat;
 
     jArray2 := jObject.Get('range', TJSONArray(nil));
+    range._unit := jArray2.Items[0].AsString;
     range.min := jArray2.Items[1].AsFloat;
     range.max := jArray2.Items[2].AsFloat;
 
