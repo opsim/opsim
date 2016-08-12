@@ -24,10 +24,10 @@ function toupper(c: char): char; {$IFDEF HASINLINE}inline;{$ENDIF}
 function sprintf(str: PChar; const format: PChar; params: array of const): cint; {$IFDEF HASINLINE}inline;{$ENDIF}
 function fprintf(var stream: textfile; const _format: PChar; params: array of const): cint; {$IFDEF HASINLINE}inline;{$ENDIF}
 
-procedure printf(fm: pchar;args: array of const);cdecl;external 'c';
+//procedure printf(fm: pchar;args: array of const);cdecl;external 'c';
 
-//function printf(const Text: PChar): cint; {$IFDEF HASINLINE}inline;{$ENDIF} overload;
-//function printf(const _format: PChar; params: array of const): cint; {$IFDEF HASINLINE}inline;{$ENDIF} overload;
+function printf(const Text: PChar): cint; {$IFDEF HASINLINE}inline;{$ENDIF} overload;
+function printf(const _format: PChar; params: array of const): cint; {$IFDEF HASINLINE}inline;{$ENDIF} overload;
 
 function isdigit(c: char): boolean; {$IFDEF HASINLINE}inline;{$ENDIF}
 
@@ -139,23 +139,23 @@ begin
   writeln(stream, format(_format, params));
 end;
 
-//function printf(const Text: PChar): cint;
-//var
-//  str: string;
-//begin
-//  str := strpas(Text);
-//  str := stringreplace(str, '\t', #9, [rfReplaceAll]);
-//  str := stringreplace(str, '\n', #10, [rfReplaceAll]);
-//  Write(str);
-//end;
-//
-//function printf(const _format: PChar; params: array of const): cint;
-//var
-//  str: string;
-//begin
-//  str := strpas(_format);
-//  printf(PChar(format(str, params)));
-//end;
+function printf(const Text: PChar): cint;
+var
+  str: string;
+begin
+  str := strpas(Text);
+  str := stringreplace(str, '\t', #9, [rfReplaceAll]);
+  str := stringreplace(str, '\n', #10, [rfReplaceAll]);
+  Write(str);
+end;
+
+function printf(const _format: PChar; params: array of const): cint;
+var
+  str: string;
+begin
+  str := strpas(_format);
+  printf(PChar(format(str, params)));
+end;
 
 function isdigit(c: char): boolean;
 begin
@@ -209,12 +209,12 @@ end;
 
 procedure bzero(s: pointer; n: size_t);
 begin
-  fillchar(s, n, #0);
+  fillchar(s^, n, #0);
 end;
 
 procedure bcopy(const src: pointer; dest: pointer; n: cint);
 begin
-  move(src, dest, n);
+  move(src^, dest^, n);
 end;
 
 function memmove(destination: pointer; const Source: pointer; num: size_t): pointer;
@@ -222,8 +222,8 @@ var
   t: PChar;
 begin
   t := getmem(num);
-  move(Source, t, num);
-  move(t, destination, num);
+  move(Source^, t^, num);
+  move(t^, destination^, num);
   freemem(t);
 end;
 
