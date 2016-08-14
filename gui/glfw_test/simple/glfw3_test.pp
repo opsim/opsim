@@ -30,6 +30,7 @@ var
       p := StrAlloc(length(title) + 1);
       strpcopy(p, title);
       glfwSetWindowTitle(win, p);
+      StrDispose(p);
 
       nbFrames := 0;
       lastTime := glfwGetTime;
