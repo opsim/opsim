@@ -3,7 +3,38 @@ program glfw3_test;
 {$mode objfpc}{$H-}
 
 uses
+  SysUtils,
   GL, glfw3;
+
+var
+  window: pGLFWwindow;
+  ratio: double;
+  width, height: integer;
+  nbFrames: longint = 0;
+  lastTime: double;
+
+  procedure setWindowFPS(win: PGLFWwindow);
+  var
+    currentTime: double;
+    title: string;
+    p: pchar;
+  begin
+    // Measure speed
+    currentTime := glfwGetTime;
+    inc(nbFrames);
+
+    if currentTime - lastTime >= 1 then
+    begin
+      title := format('GLFW example - [FPS: %3.0f]', [nbFrames/(currentTime - lastTime)]);
+
+      p := StrAlloc(length(title) + 1);
+      strpcopy(p, title);
+      glfwSetWindowTitle(win, p);
+
+      nbFrames := 0;
+      lastTime := glfwGetTime;
+    end;
+  end;
 
   procedure error_callback(error       : integer;
                            description : PChar); cdecl;
@@ -18,10 +49,6 @@ uses
       glfwSetWindowShouldClose(window, GL_TRUE);
   end;
 
-var
-  window        : pGLFWwindow;
-  ratio         : double;
-  width, height : integer;
 begin
   glfwSetErrorCallback(@error_callback);
 
@@ -46,6 +73,8 @@ begin
 
   while glfwWindowShouldClose(window) = 0 do
   begin
+    setWindowFPS(window);
+
     glfwGetFramebufferSize(window, width, height);
     ratio := width / height;
 

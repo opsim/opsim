@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="5">
+      <Unit0>
+        <Filename Value="glfw3_test.pp"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="75"/>
+        <CursorPos X="20" Y="100"/>
+        <UsageCount Value="52"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="glfw3.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="169"/>
+        <CursorPos X="17" Y="170"/>
+        <UsageCount Value="26"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="glfw3_h.pas"/>
+        <TopLine Value="1029"/>
+        <CursorPos X="15" Y="1034"/>
+        <UsageCount Value="7"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\screen.pas"/>
+        <UnitName Value="screen_h"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="7"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\..\..\..\..\blender-2.49b-release\source\blender\src\winlay.h"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="29"/>
+        <CursorPos X="17" Y="36"/>
+        <UsageCount Value="7"/>
+        <DefaultSyntaxHighlighter Value="C++"/>
+      </Unit4>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="19" Column="22" TopLine="6"/>
+      </Position1>
+      <Position2>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="60" TopLine="33"/>
+      </Position2>
+      <Position3>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="27" Column="17" TopLine="6"/>
+      </Position3>
+      <Position4>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="12" Column="27" TopLine="5"/>
+      </Position4>
+      <Position5>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="29" Column="15" TopLine="8"/>
+      </Position5>
+      <Position6>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="23" Column="26" TopLine="8"/>
+      </Position6>
+      <Position7>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="25" Column="7" TopLine="11"/>
+      </Position7>
+      <Position8>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="18" Column="20" TopLine="11"/>
+      </Position8>
+      <Position9>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="6" Column="12"/>
+      </Position9>
+      <Position10>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="29" Column="32" TopLine="15"/>
+      </Position10>
+      <Position11>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="92" Column="3" TopLine="78"/>
+      </Position11>
+      <Position12>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="28" Column="29" TopLine="16"/>
+      </Position12>
+      <Position13>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="20" Column="22" TopLine="15"/>
+      </Position13>
+      <Position14>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="108" Column="26" TopLine="88"/>
+      </Position14>
+      <Position15>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="27" Column="37" TopLine="14"/>
+      </Position15>
+      <Position16>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="29" TopLine="14"/>
+      </Position16>
+      <Position17>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="21" Column="6" TopLine="14"/>
+      </Position17>
+      <Position18>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="29" TopLine="14"/>
+      </Position18>
+      <Position19>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="31" TopLine="14"/>
+      </Position19>
+      <Position20>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="32" TopLine="14"/>
+      </Position20>
+      <Position21>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="33" TopLine="14"/>
+      </Position21>
+      <Position22>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="28" Column="11" TopLine="14"/>
+      </Position22>
+      <Position23>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="36" TopLine="14"/>
+      </Position23>
+      <Position24>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="38" TopLine="15"/>
+      </Position24>
+      <Position25>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="110" TopLine="90"/>
+      </Position25>
+      <Position26>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="109" TopLine="90"/>
+      </Position26>
+      <Position27>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="29" TopLine="15"/>
+      </Position27>
+      <Position28>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="31" TopLine="15"/>
+      </Position28>
+      <Position29>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="32" TopLine="15"/>
+      </Position29>
+      <Position30>
+        <Filename Value="glfw3_test.pp"/>
+        <Caret Line="33" TopLine="15"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>

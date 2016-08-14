@@ -44,6 +44,10 @@ interface
 uses
   Classes, SysUtils, GL;
 
+const
+  GLFW_TRUE = 1;
+  GLFW_FALSE = 0;
+
 type
   GLFW_INT = integer;
   GLFWwindow = integer;
@@ -418,6 +422,7 @@ function glfwSetMonitorCallback(cbfun: GLFWmonitorfun): pGLFWmonitorfun;
 //========================================================================
 //Video Mode
 //========================================================================
+function glfwGetVideoMode(monitor: pGLFWmonitor): pGLFWvidmode; cdecl; external GLFW_DLL;
 function glfwGetVideoModes(monitor: pGLFWmonitor; var Count: longint): PGLFWvidmode;
   cdecl; external GLFW_DLL;
 procedure glfwSetGamma(monitor: pGLFWmonitor; gamma: single); cdecl; external GLFW_DLL;
@@ -436,15 +441,16 @@ procedure glfwSetWindowShouldClose(window: pGLFWwindow; Action: GLFW_INT);
   cdecl; external GLFW_DLL;
 procedure glfwSetWindowTitle(window: pGLFWwindow; title: PChar); cdecl;
   external GLFW_DLL;
-procedure glfwGetWindowPos(window: pGLFWWindow; var xpos, ypos: integer);
+procedure glfwGetWindowPos(window: pGLFWWindow; out xpos, ypos: integer);
   cdecl; external GLFW_DLL;
 procedure glfwSetWindowPos(window: pGLFWwindow; xpos, ypos: integer);
   cdecl; external GLFW_DLL;
-procedure glfwGetWindowSize(window: pGLFWwindow; var Width, Height: integer); cdecl;
+procedure glfwGetWindowFrameSize(window: pGLFWwindow; out left, top, right, bottom: integer); cdecl; external GLFW_DLL;
+procedure glfwGetWindowSize(window: pGLFWwindow; out Width, Height: integer); cdecl;
   external GLFW_DLL;
 procedure glfwSetWindowSize(window: pGLFWwindow; var Width, Height: integer);
   cdecl; external GLFW_DLL;
-procedure glfwGetFramebufferSize(window: pGLFWwindow; var Width, Height: integer); cdecl;
+procedure glfwGetFramebufferSize(window: pGLFWwindow; out Width, Height: integer); cdecl;
   external GLFW_DLL;
 procedure glfwIconifyWindow(window: pGLFWwindow); cdecl; external GLFW_DLL;
 procedure glfwRestoreWindow(window: pGLFWwindow); cdecl; external GLFW_DLL;
