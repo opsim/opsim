@@ -13,7 +13,7 @@ var
   nbFrames: longint = 0;
   lastTime: double;
 
-  procedure setWindowFPS(win: PGLFWwindow);
+  procedure setWindowFPS(win: pGLFWwindow);
   var
     currentTime: double;
     title: string;
@@ -37,8 +37,8 @@ var
     end;
   end;
 
-  procedure error_callback(error       : integer;
-                           description : PChar); cdecl;
+  procedure error_callback(error             : integer;
+                           const description : PChar); cdecl;
   begin
     writeln(stderr, description);
   end;

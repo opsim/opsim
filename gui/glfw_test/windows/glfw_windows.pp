@@ -61,7 +61,7 @@ var
     writeln('  -h show this help');
   end;
 
-  procedure error_callback(error: integer; description: PChar); cdecl;
+  procedure error_callback(error: integer; const description: PChar); cdecl;
   begin
     writeln(stderr, 'Error: ', description);
   end;
