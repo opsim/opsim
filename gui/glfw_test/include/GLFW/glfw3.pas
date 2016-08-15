@@ -31,6 +31,8 @@ unit glfw3;
 
 interface
 
+{$mode objfpc}
+
 {
   Automatically converted by H2Pas 1.0.0 from glfw3.h
   The following command line parameters were used:
@@ -1389,7 +1391,7 @@ external GLFWLIB name 'glfwGetPrimaryMonitor';
    *
    *  @ingroup monitor
     }
-procedure glfwGetMonitorPos(window:pGLFWwindow; out xpos, ypos:longint);
+procedure glfwGetMonitorPos(monitor:pGLFWmonitor; out xpos, ypos:longint);
 cdecl;
 external GLFWLIB name 'glfwGetMonitorPos';
 
@@ -1425,7 +1427,7 @@ external GLFWLIB name 'glfwGetMonitorPos';
    *
    *  @ingroup monitor
     }
-procedure glfwGetMonitorPhysicalSize(window:pGLFWwindow; out widthMM, heightMM:longint);
+procedure glfwGetMonitorPhysicalSize(monitor:pGLFWmonitor; out widthMM, heightMM:longint);
 cdecl;
 external GLFWLIB name 'glfwGetMonitorPhysicalSize';
 
@@ -1453,7 +1455,7 @@ external GLFWLIB name 'glfwGetMonitorPhysicalSize';
    *
    *  @ingroup monitor
     }
-function glfwGetMonitorName(window:pGLFWwindow): Pchar;
+function glfwGetMonitorName(monitor:pGLFWmonitor): Pchar;
 cdecl;
 external GLFWLIB name 'glfwGetMonitorName';
 
@@ -1513,7 +1515,7 @@ external GLFWLIB name 'glfwSetMonitorCallback';
    *
    *  @ingroup monitor
     }
-function glfwGetVideoModes(window:pGLFWwindow; out count:longint): pGLFWvidmode;
+function glfwGetVideoModes(monitor:pGLFWmonitor; out count:longint): pGLFWvidmode;
 cdecl;
 external GLFWLIB name 'glfwGetVideoModes';
 
@@ -1543,7 +1545,7 @@ external GLFWLIB name 'glfwGetVideoModes';
    *
    *  @ingroup monitor
     }
-function glfwGetVideoMode(window:pGLFWwindow): pGLFWvidmode;
+function glfwGetVideoMode(monitor:pGLFWmonitor): pGLFWvidmode;
 cdecl;
 external GLFWLIB name 'glfwGetVideoMode';
 
@@ -1567,7 +1569,7 @@ external GLFWLIB name 'glfwGetVideoMode';
    *
    *  @ingroup monitor
     }
-procedure glfwSetGamma(window:pGLFWwindow; gamma:single);
+procedure glfwSetGamma(monitor:pGLFWmonitor; gamma:single);
 cdecl;
 external GLFWLIB name 'glfwSetGamma';
 
@@ -1595,7 +1597,7 @@ external GLFWLIB name 'glfwSetGamma';
    *
    *  @ingroup monitor
     }
-function glfwGetGammaRamp(window:pGLFWwindow): pGLFWgammaramp;
+function glfwGetGammaRamp(monitor:pGLFWmonitor): pGLFWgammaramp;
 cdecl;
 external GLFWLIB name 'glfwGetGammaRamp';
 
@@ -1627,7 +1629,7 @@ external GLFWLIB name 'glfwGetGammaRamp';
    *
    *  @ingroup monitor
     }
-procedure glfwSetGammaRamp(window:pGLFWwindow; const ramp:pGLFWgammaramp);
+procedure glfwSetGammaRamp(monitor:pGLFWmonitor; const ramp:pGLFWgammaramp);
 cdecl;
 external GLFWLIB name 'glfwSetGammaRamp';
 
@@ -2419,7 +2421,7 @@ external GLFWLIB name 'glfwFocusWindow';
    *
    *  @ingroup window
     }
-function glfwGetWindowMonitor(window:pGLFWwindow): pGLFWmonitor;
+function glfwGetWindowMonitor(monitor:pGLFWmonitor): pGLFWmonitor;
 cdecl;
 external GLFWLIB name 'glfwGetWindowMonitor';
 
@@ -2470,7 +2472,7 @@ external GLFWLIB name 'glfwGetWindowMonitor';
    *
    *  @ingroup window
     }
-procedure glfwSetWindowMonitor(window:pGLFWwindow; xpos, ypos, width, height, refreshRate:longint);
+procedure glfwSetWindowMonitor(window:pGLFWwindow; monitor:pGLFWmonitor; xpos, ypos, width, height, refreshRate:longint);
 cdecl;
 external GLFWLIB name 'glfwSetWindowMonitor';
 
