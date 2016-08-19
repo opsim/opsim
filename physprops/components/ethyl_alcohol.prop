@@ -35,7 +35,8 @@
         -57,
         80
       ],
-      "ref" : "https://en.wikipedia.org/wiki/Antoine_equation"
+      "ref" : "https://en.wikipedia.org/wiki/Antoine_equation",
+      "result unit" : "Torr"
     },
     {
       "author" : "Darius Blaszyk",
@@ -51,7 +52,8 @@
         77,
         243
       ],
-      "ref" : "https://en.wikipedia.org/wiki/Antoine_equation"
+      "ref" : "https://en.wikipedia.org/wiki/Antoine_equation",
+      "result unit" : "Torr"
     },
     {
       "author" : "Darius Blaszyk",
@@ -72,23 +74,25 @@
       "result unit" : "bar"
     }
   ],
-  "heat capacity gas" : [
+  "molar heat capacity gas" : [
     {
       "author" : "Darius Blaszyk",
       "coeff" : [
-        1.0400000000000000E+000,
-        2.5000000000000000E-001,
-        -1.5500000000000000E-004,
-        4.6320000000000001E-008,
-        -5.0700000000000000E-012
+        2.7091000000000001E+001,
+        1.1055000000000000E-001,
+        1.0957000000000000E-004,
+        -1.5046000000000001E-007,
+        4.6601000000000001E-011
       ],
-      "date" : "2016-4-27",
+      "date" : "2016-8-19",
       "method" : "Polynomial",
       "range" : [
-        "degC"
+        "K",
+        100,
+        1500
       ],
-      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
-      "result unit" : "J/kg.K"
+      "ref" : "Chemical Properties Handbook - Carl L Yaws (McGraw-Hill, 1999)",
+      "result unit" : "J/mol.K"
     }
   ]
 }

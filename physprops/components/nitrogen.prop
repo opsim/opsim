@@ -40,23 +40,25 @@
       "result unit" : "bar"
     }
   ],
-  "heat capacity gas" : [
+  "molar heat capacity gas" : [
     {
       "author" : "Darius Blaszyk",
       "coeff" : [
-        3.1440000000000001E+001,
-        -1.0000000000000000E-002,
-        3.6690000000000003E-005,
-        -2.4190000000000000E-008,
-        5.4330000000000000E-012
+        2.9341999999999999E+001,
+        -3.5395000000000001E-003,
+        1.0076000000000000E-005,
+        -4.3115999999999999E-009,
+        2.5935000000000000E-013
       ],
-      "date" : "2016-4-27",
+      "date" : "2016-8-19",
       "method" : "Polynomial",
       "range" : [
-        "degC"
+        "K",
+        50,
+        1500
       ],
-      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
-      "result unit" : "J/kg.K"
+      "ref" : "Chemical Properties Handbook - Carl L Yaws (McGraw-Hill, 1999)",
+      "result unit" : "J/mol.K"
     }
   ]
 }

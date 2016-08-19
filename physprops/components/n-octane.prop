@@ -1,21 +1,21 @@
 {
-  "chemical formula" : "CH3Cl",
-  "component" : "chloromethane",
+  "chemical formula" : "C8H18",
+  "component" : "n-octane",
   "critical constants" : [
     {
       "author" : "Darius Blaszyk",
       "date" : "2016-4-27",
       "critical temperature" : [
         "K",
-        4.1625000000000000E+002
+        5.6870000000000005E+002
       ],
       "critical pressure" : [
         "bar",
-        6.6790000000000006E+001
+        2.4899999999999999E+001
       ],
       "critical density" : [
         "g/cm3",
-        3.6299999999999999E-001
+        2.3200000000000001E-001
       ],
       "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
     }
@@ -24,39 +24,41 @@
     {
       "author" : "Darius Blaszyk",
       "coeff" : [
-        -6.5415299999999998E+000,
-        9.0621099999999999E-001,
-        -1.4860000000000000E+000,
-        -6.4486100000000004E+000
+        -8.1622000000000003E+000,
+        2.1052000000000000E+000,
+        -5.4164000000000003E+000,
+        -1.5830000000000000E-001
       ],
       "date" : "2016-4-27",
       "method" : "Wagner",
       "range" : [
         "degC",
-        191,
-        4.1625000000000000E+002
+        216,
+        5.6883000000000004E+002
       ],
       "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
       "result unit" : "bar"
     }
   ],
-  "heat capacity gas" : [
+  "molar heat capacity gas" : [
     {
       "author" : "Darius Blaszyk",
       "coeff" : [
-        1.3300000000000001E+001,
-        1.0000000000000001E-001,
-        -4.1930000000000000E-005,
-        1.0820000000000000E-009,
-        2.4240000000000002E-012
+        2.9053000000000001E+001,
+        5.8016000000000001E-001,
+        -5.7102999999999999E-005,
+        -1.9548000000000000E-007,
+        7.6614000000000003E-011
       ],
-      "date" : "2016-4-27",
+      "date" : "2016-8-19",
       "method" : "Polynomial",
       "range" : [
-        "degC"
+        "K",
+        200,
+        1500
       ],
-      "ref" : "http://www.echeguru.com/html_data_files/Ideal_Gas_Heat_Capacity_Constants.html",
-      "result unit" : "J/kg.K"
+      "ref" : "Chemical Properties Handbook - Carl L Yaws (McGraw-Hill, 1999)",
+      "result unit" : "J/mol.K"
     }
   ]
 }
