@@ -27,10 +27,10 @@ function PP_vapor_pressure_calculate(name : string;
   @param(method is the name of the model, internally the correct callback function is then found)
   @param(ref is the reference of the model parameters)
 }
-procedure PP_vapor_pressure_register(name        : string;
-                                     range       : PPRange;
-                                     coeff       : PPCoefficients;
-                                     method, ref : string);
+procedure PP_vapor_pressure_register(name             : string;
+                                     range            : PPRange;
+                                     coeff            : PPCoefficients;
+                                     method, ref, uom : string);
 
 {
   Free all allocated data
@@ -44,18 +44,12 @@ procedure PP_vapor_pressure_load_JSON(const component: string; const jArray: TJS
 implementation
 
 uses
-  math, SysUtils, PP_models;
+  SysUtils, PP_models, unit_conv;
 
-function wrede_vapor_pressure(T     : double;
-                              coeff : PPCoefficients) : double;
-begin
-  exit(power(10, coeff.data[0] - coeff.data[1] / T));
-end;
-
-procedure PP_vapor_pressure_register(name        : string;
-                                     range       : PPRange;
-                                     coeff       : PPCoefficients;
-                                     method, ref : string);
+procedure PP_vapor_pressure_register(name             : string;
+                                     range            : PPRange;
+                                     coeff            : PPCoefficients;
+                                     method, ref, uom : string);
 var
   pvap : pPPModel;
 begin
@@ -67,6 +61,8 @@ begin
   pvap^.coeff.data := callocN(sizeof(double) * coeff.totcoeff);
   pvap^.coeff.totcoeff := coeff.totcoeff;
   move(coeff.data^, pvap^.coeff.data^, sizeof(double) * coeff.totcoeff);
+
+  pvap^.uom := UNC_find_conversion(nil, uom);
 
   pvap^.method := method;
   pvap^.reference := ref;
@@ -85,8 +81,11 @@ var
   pvap  : pPPModel;
   lname : string;
   v     : SimVars;
+  val   : SimVars;
 begin
   if pp_model^.vapor_pressure = nil then exit;
+
+  val.value := callocN(sizeof(double));
 
   lname := lowercase(name);
   pvap := pp_model^.vapor_pressure^.first;
@@ -95,19 +94,24 @@ begin
   begin
     //check component name
     if pvap^.name = lname then
+    begin
+      val.uom := pvap^.range.uom;
+      val.value^ := UNC_convert_unit(T.value^, T.uom, pvap^.range.uom);
 
       //check if temperature within limits
-      if (pvap^.range.min <= T.value^) and (pvap^.range.max >= T.value^) then
+      if (pvap^.range.min <= val.value^) and (pvap^.range.max >= val.value^) then
       begin
         v.value := callocN(sizeof(double));
-        v.value^ := pvap^.callback(T, pvap^.coeff);
+        v.value^ := pvap^.callback(val, pvap^.coeff);
         v.uom := pvap^.uom;
-
+        freeN(val.value);
         exit(v);
       end;
+    end;
 
     pvap := pvap^.id.next;
   end;
+  freeN(val.value);
 end;
 
 procedure PP_vapor_pressure_free(vm: pPPModel);
@@ -134,6 +138,7 @@ var
   method  : string;
   range   : PPRange;
   ref     : string;
+  uom     : TJSONStringType;
 begin
   for i := 0 to jArray.Count - 1 do
   begin
@@ -147,13 +152,16 @@ begin
       coeff.data[j] := jArray2.Items[j].AsFloat;
 
     jArray2 := jObject.Get('range', TJSONArray(nil));
-    range._unit := jArray2.Items[0].AsString;
+    uom := jArray2.Items[0].AsString;
+    range.uom := UNC_find_conversion(nil, uom);
     range.min := jArray2.Items[1].AsFloat;
     range.max := jArray2.Items[2].AsFloat;
 
+    uom := jObject.Get('result unit');
     method := jObject.Get('method');
     ref := jObject.Get('ref');
-    PP_vapor_pressure_register(component, range, coeff, method, ref);
+
+    PP_vapor_pressure_register(component, range, coeff, method, ref, uom);
     freeN(coeff.data);
   end;
 end;

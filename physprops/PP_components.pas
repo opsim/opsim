@@ -13,7 +13,7 @@ uses
   fpjson, jsonparser,
   PhysProps,
   PP_vapor_pressure,
-  PP_enthalpy_liquid;
+  PP_cp_gas;
 
 procedure PP_load_components;
 var
@@ -43,9 +43,9 @@ begin
         if jArray <> nil then
           PP_vapor_pressure_load_JSON(component, jArray);
 
-        jArray := jObject.Get('liquid enthalpy', TJSONArray(nil));
+        jArray := jObject.Get('molar heat capacity gas', TJSONArray(nil));
         if jArray <> nil then
-          PP_enthalpy_liq_load_JSON(component, jArray);
+          PP_cp_gas_load_JSON(component, jArray);
 
         jData.Free;
 

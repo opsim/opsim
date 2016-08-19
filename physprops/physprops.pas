@@ -25,9 +25,9 @@ type
   pp_callback = function(vars : SimVars; coeff : PPCoefficients): double;
 
   PPRange = record
-    _unit: string;
-    min : double;
-    max : double;
+    uom  : pUnitConversion;
+    min  : double;
+    max  : double;
   end;
 
   pPPModel = ^PPModel;
@@ -40,11 +40,12 @@ type
     method    : string;
     reference : string;
     callback  : pp_callback;
+    uom       : pUnitConversion
   end;
 
   PPModelData = record
     modelpath        : string;
-    enthalpy_liq     : pListBase;
+    cp_gas           : pListBase;
     vapor_pressure   : pListBase;
     conductivity_liq : pListBase;
     conductivity_vap : pListBase;
@@ -92,7 +93,7 @@ implementation
 uses
   SysUtils,
   PP_vapor_pressure,
-  PP_enthalpy_liquid;
+  PP_cp_gas;
 
 procedure PP_error(const fmt  : string;
                    const args : array of Const);
@@ -110,7 +111,7 @@ begin
   pp_model^.conductivity_vap := callocN(sizeof(ListBase));
   pp_model^.density_liq := callocN(sizeof(ListBase));
   pp_model^.density_vap := callocN(sizeof(ListBase));
-  pp_model^.enthalpy_liq := callocN(sizeof(ListBase));
+  pp_model^.cp_gas := callocN(sizeof(ListBase));
   pp_model^.enthalpy_vap := callocN(sizeof(ListBase));
   pp_model^.surface_tension := callocN(sizeof(ListBase));
   pp_model^.vapor_pressure := callocN(sizeof(ListBase));
@@ -124,14 +125,14 @@ end;
 procedure PP_free;
 begin
   PP_vapor_pressure_free(pp_model^.vapor_pressure^.first);
-  PP_enthalpy_liq_free(pp_model^.enthalpy_liq^.first);
+  PP_cp_gas_free(pp_model^.cp_gas^.first);
 
   //free all models from memory
   freelistN(pp_model^.conductivity_liq);
   freelistN(pp_model^.conductivity_vap);
   freelistN(pp_model^.density_liq);
   freelistN(pp_model^.density_vap);
-  freelistN(pp_model^.enthalpy_liq);
+  freelistN(pp_model^.cp_gas);
   freelistN(pp_model^.enthalpy_vap);
   freelistN(pp_model^.surface_tension);
   freelistN(pp_model^.vapor_pressure);
@@ -143,7 +144,7 @@ begin
   freeN(pp_model^.conductivity_vap);
   freeN(pp_model^.density_liq);
   freeN(pp_model^.density_vap);
-  freeN(pp_model^.enthalpy_liq);
+  freeN(pp_model^.cp_gas);
   freeN(pp_model^.enthalpy_vap);
   freeN(pp_model^.surface_tension);
   freeN(pp_model^.vapor_pressure);

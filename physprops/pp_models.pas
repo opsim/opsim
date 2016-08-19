@@ -883,7 +883,7 @@ var
 begin
   for i := 0 to coeff.totcoeff - 1 do
   begin
-    temp += coeff.data[i] * power(vars.value[i], i);
+    temp += coeff.data[i] * power(vars.value[0], i);
   end;
 
   PP_model_polynomial := temp;
