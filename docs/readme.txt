@@ -1,3 +1,3 @@
-This folder contains open office "manuals" that describe the different modules including reference material found publicly on the internet. The reference material is not to be used in releases.
+This folder contains open office "manuals" in the root folder that describe the different modules. Once merged to trunk this information will be merged into the official documentation.
 
-The manuals can be found in the root folder, while reference material is located in subfolders.
+The reference documents found publicly on the internet are located in the subfolders.
