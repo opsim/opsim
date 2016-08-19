@@ -78,7 +78,7 @@ function UNC_convert_unit(value              : double;
  *)
 function UNC_convert_unit(value                    : double;
                           convert_from, convert_to : pUnitConversion;
-                          interval                 : boolean): double;
+                          interval                 : boolean = False): double;
 
 (**
  * Return the unit conversion struct.
