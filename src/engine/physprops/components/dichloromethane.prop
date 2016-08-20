@@ -1,0 +1,64 @@
+{
+  "chemical formula" : "CH2Cl2",
+  "component" : "dichloromethane",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        510
+      ],
+      "critical pressure" : [
+        "bar",
+        61
+      ],
+      "critical density" : [
+        "g/cm3",
+        4.5900000000000002E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.4439000000000002E+000,
+        4.7153000000000000E-001,
+        -2.0768100000000000E+000,
+        -2.6735899999999999E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "degC",
+        210,
+        510
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "molar heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.6693999999999999E+001,
+        8.3984000000000003E-002,
+        8.9711999999999998E-006,
+        -5.0924000000000000E-008,
+        1.8726000000000001E-011
+      ],
+      "date" : "2016-8-19",
+      "method" : "Polynomial",
+      "range" : [
+        "K",
+        100,
+        1500
+      ],
+      "ref" : "Chemical Properties Handbook - Carl L Yaws (McGraw-Hill, 1999)",
+      "result unit" : "J/mol.K"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "chemical formula" : "CH3Cl",
+  "component" : "methyl chloride",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        4.1625000000000000E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        6.6790000000000006E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        3.6299999999999999E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.5415299999999998E+000,
+        9.0621099999999999E-001,
+        -1.4860000000000000E+000,
+        -6.4486100000000004E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "degC",
+        191,
+        4.1625000000000000E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "molar heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.7385000000000002E+001,
+        2.6036000000000000E-002,
+        1.0320000000000000E-004,
+        -1.0886999999999999E-007,
+        3.1641999999999998E-011
+      ],
+      "date" : "2016-8-19",
+      "method" : "Polynomial",
+      "range" : [
+        "K",
+        150,
+        1500
+      ],
+      "ref" : "Chemical Properties Handbook - Carl L Yaws (McGraw-Hill, 1999)",
+      "result unit" : "J/mol.K"
+    }
+  ]
+}

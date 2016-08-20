@@ -1,0 +1,98 @@
+{
+  "chemical formula" : "C2H6O",
+  "component" : "ethyl alcohol",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        5.1391999999999996E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        6.1369999999999997E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.7600000000000002E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        8.2041699999999995E+000,
+        1.6428900000000001E+003,
+        2.3030000000000001E+002
+      ],
+      "date" : "2016-04-24",
+      "method" : "Antoine",
+      "range" : [
+        "degC",
+        -57,
+        80
+      ],
+      "ref" : "https://en.wikipedia.org/wiki/Antoine_equation",
+      "result unit" : "Torr"
+    },
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        7.6811699999999998E+000,
+        1.3320400000000000E+003,
+        1.9919999999999999E+002
+      ],
+      "date" : "2016-04-24",
+      "method" : "Antoine",
+      "range" : [
+        "degC",
+        77,
+        243
+      ],
+      "ref" : "https://en.wikipedia.org/wiki/Antoine_equation",
+      "result unit" : "Torr"
+    },
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -8.4245999999999999E+000,
+        2.8638000000000000E-002,
+        -4.7926000000000002E+000,
+        3.7892999999999999E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "degC",
+        229,
+        5.1391999999999996E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "molar heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.7091000000000001E+001,
+        1.1055000000000000E-001,
+        1.0957000000000000E-004,
+        -1.5046000000000001E-007,
+        4.6601000000000001E-011
+      ],
+      "date" : "2016-8-19",
+      "method" : "Polynomial",
+      "range" : [
+        "K",
+        100,
+        1500
+      ],
+      "ref" : "Chemical Properties Handbook - Carl L Yaws (McGraw-Hill, 1999)",
+      "result unit" : "J/mol.K"
+    }
+  ]
+}

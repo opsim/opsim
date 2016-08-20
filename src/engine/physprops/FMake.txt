@@ -1,0 +1,1 @@
+add_library('opsim_physprops', ['physprops.pas', 'PP_components.pas', 'pp_models.pas', 'pp_cp_gas.pas', 'pp_vapor_pressure.pas'], ['opsim_core', 'opsim_unitconv']);

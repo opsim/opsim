@@ -1,0 +1,1 @@
+add_executable('opsim_physprops_test', 'test_physprops', 'test_physprops.pp', ['opsim_core', 'opsim_physprops', 'opsim_unitconv']);
