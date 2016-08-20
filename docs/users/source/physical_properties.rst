@@ -7,7 +7,7 @@ Andrade
 Andrade equation for calculating the liquid viscosity
 
 .. math::
-  \\ln(η) = A + \frac{B}{T} + C \cdot \\ln(T)
+  \ln(η) = A + \frac{B}{T} + C \cdot \ln(T)
 
 
 Antoine
