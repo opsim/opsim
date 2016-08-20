@@ -34,7 +34,7 @@ begin
   writeln('got: ', UNC_convert_unit(v2.value^, v2.uom, UNC_find_conversion(nil, 'bar')): 0: 4, ' expected: 1 bar');
 
   writeln;
-  writeln('liquid enthalpy');
+  writeln('molar gas heat capacity');
   v1.value^ := 25;
   v1.uom := UNC_find_conversion(nil, 'degC');
 
