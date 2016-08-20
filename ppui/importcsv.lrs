@@ -1,0 +1,48 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TCSVImportForm','FORMDATA',[
+  'TPF0'#14'TCSVImportForm'#13'CSVImportForm'#4'Left'#3#145#1#6'Height'#3#248#1
+  +#3'Top'#3#175#0#5'Width'#3'*'#2#7'Caption'#6#12'CSV Importer'#12'ClientHeigh'
+  +'t'#3#248#1#11'ClientWidth'#3'*'#2#8'OnCreate'#7#10'FormCreate'#9'OnDestroy'
+  +#7#11'FormDestroy'#10'LCLVersion'#6#7'1.6.0.4'#0#11'TStringGrid'#6'sgView'#4
+  +'Left'#2#6#6'Height'#3#4#1#3'Top'#3#198#0#5'Width'#3#30#2#5'Align'#7#8'alCli'
+  +'ent'#7'Anchors'#11#0#20'BorderSpacing.Around'#2#6#8'ColCount'#2#1#21'Constr'
+  +'aints.MinHeight'#2#10#15'DefaultColWidth'#2'd'#9'FixedCols'#2#0#9'FixedRows'
+  +#2#0#7'Options'#11#15'goFixedVertLine'#15'goFixedHorzLine'#10'goVertLine'#10
+  +'goHorzLine'#13'goRangeSelect'#19'goDrawFocusSelected'#11'goRowSizing'#11'go'
+  +'ColSizing'#15'goThumbTracking'#14'goSmoothScroll'#0#8'RowCount'#2#1#8'TabOr'
+  +'der'#2#0#0#0#5'TMemo'#8'mmSource'#4'Left'#2#6#6'Height'#2'u'#3'Top'#2'@'#5
+  +'Width'#3#30#2#5'Align'#7#5'alTop'#20'BorderSpacing.Around'#2#6#21'Constrain'
+  +'ts.MinHeight'#2#10#8'OnChange'#7#14'mmSourceChange'#10'ScrollBars'#7#10'ssV'
+  +'ertical'#8'TabOrder'#2#1#0#0#9'TSplitter'#6'splTop'#6'Cursor'#7#8'crVSplit'
+  +#4'Left'#2#0#6'Height'#2#5#3'Top'#3#187#0#5'Width'#3'*'#2#5'Align'#7#5'alTop'
+  +#12'ResizeAnchor'#7#5'akTop'#0#0#6'TLabel'#9'lblSource'#4'Left'#2#6#6'Height'
+  +#2#15#3'Top'#2'+'#5'Width'#3#30#2#5'Align'#7#5'alTop'#20'BorderSpacing.Aroun'
+  +'d'#2#6#7'Caption'#6#17'Source CSV string'#11'ParentColor'#8#0#0#6'TPanel'#9
+  +'pnButtons'#4'Left'#2#0#6'Height'#2'%'#3'Top'#2#0#5'Width'#3'*'#2#5'Align'#7
+  +#5'alTop'#8'AutoSize'#9#10'BevelOuter'#7#6'bvNone'#12'ClientHeight'#2'%'#11
+  +'ClientWidth'#3'*'#2#8'TabOrder'#2#3#0#6'TLabel'#9'Delimiter'#22'AnchorSideL'
+  +'eft.Control'#7#9'pnButtons'#21'AnchorSideTop.Control'#7#12'cbbDelimiter'#24
+  +'AnchorSideBottom.Control'#7#12'cbbDelimiter'#21'AnchorSideBottom.Side'#7#9
+  +'asrBottom'#4'Left'#2#6#6'Height'#2#11#3'Top'#2#12#5'Width'#2'0'#7'Anchors'
+  +#11#5'akTop'#6'akLeft'#8'akBottom'#0#20'BorderSpacing.Around'#2#6#7'Caption'
+  +#6#9'Delimiter'#6'Layout'#7#8'tlCenter'#11'ParentColor'#8#0#0#9'TComboBox'#12
+  +'cbbDelimiter'#22'AnchorSideLeft.Control'#7#9'Delimiter'#19'AnchorSideLeft.S'
+  +'ide'#7#9'asrBottom'#21'AnchorSideTop.Control'#7#9'pnButtons'#4'Left'#2'<'#6
+  +'Height'#2#23#3'Top'#2#6#5'Width'#2'0'#20'BorderSpacing.Around'#2#6#10'ItemH'
+  +'eight'#2#15#9'ItemIndex'#2#0#13'Items.Strings'#1#6#1';'#6#1','#0#8'OnChange'
+  +#7#18'cbbDelimiterChange'#8'TabOrder'#2#0#4'Text'#6#1';'#0#0#7'TButton'#7'bt'
+  +'nLoad'#22'AnchorSideLeft.Control'#7#12'cbbDelimiter'#19'AnchorSideLeft.Side'
+  +#7#9'asrBottom'#21'AnchorSideTop.Control'#7#9'pnButtons'#4'Left'#2'r'#6'Heig'
+  +'ht'#2#25#3'Top'#2#6#5'Width'#2'4'#8'AutoSize'#9#20'BorderSpacing.Around'#2#6
+  +#7'Caption'#6#4'Load'#7'OnClick'#7#12'btnLoadClick'#8'TabOrder'#2#1#0#0#0#12
+  +'TButtonPanel'#12'ButtonPanel1'#4'Left'#2#6#6'Height'#2'"'#3'Top'#3#208#1#5
+  +'Width'#3#30#2#13'OKButton.Name'#6#8'OKButton'#23'OKButton.DefaultCaption'#9
+  +#16'OKButton.OnClick'#7#13'OKButtonClick'#15'HelpButton.Name'#6#10'HelpButto'
+  +'n'#25'HelpButton.DefaultCaption'#9#16'CloseButton.Name'#6#11'CloseButton'#26
+  +'CloseButton.DefaultCaption'#9#19'CloseButton.OnClick'#7#16'CloseButtonClick'
+  +#17'CancelButton.Name'#6#12'CancelButton'#27'CancelButton.DefaultCaption'#9#8
+  +'TabOrder'#2#4#11'ShowButtons'#11#4'pbOK'#8'pbCancel'#0#0#0#11'TOpenDialog'
+  +#10'OpenDialog'#6'Filter'#6#15'CSV files|*.csv'#4'left'#3#168#0#3'top'#3#0#1
+  +#0#0#0
+]);

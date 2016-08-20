@@ -1,0 +1,143 @@
+object CSVImportForm: TCSVImportForm
+  Left = 401
+  Height = 504
+  Top = 175
+  Width = 554
+  Caption = 'CSV Importer'
+  ClientHeight = 504
+  ClientWidth = 554
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '1.6.0.4'
+  object sgView: TStringGrid
+    Left = 6
+    Height = 260
+    Top = 198
+    Width = 542
+    Align = alClient
+    Anchors = []
+    BorderSpacing.Around = 6
+    ColCount = 1
+    Constraints.MinHeight = 10
+    DefaultColWidth = 100
+    FixedCols = 0
+    FixedRows = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goRowSizing, goColSizing, goThumbTracking, goSmoothScroll]
+    RowCount = 1
+    TabOrder = 0
+  end
+  object mmSource: TMemo
+    Left = 6
+    Height = 117
+    Top = 64
+    Width = 542
+    Align = alTop
+    BorderSpacing.Around = 6
+    Constraints.MinHeight = 10
+    OnChange = mmSourceChange
+    ScrollBars = ssVertical
+    TabOrder = 1
+  end
+  object splTop: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 5
+    Top = 187
+    Width = 554
+    Align = alTop
+    ResizeAnchor = akTop
+  end
+  object lblSource: TLabel
+    Left = 6
+    Height = 15
+    Top = 43
+    Width = 542
+    Align = alTop
+    BorderSpacing.Around = 6
+    Caption = 'Source CSV string'
+    ParentColor = False
+  end
+  object pnButtons: TPanel
+    Left = 0
+    Height = 37
+    Top = 0
+    Width = 554
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    ClientHeight = 37
+    ClientWidth = 554
+    TabOrder = 3
+    object Delimiter: TLabel
+      AnchorSideLeft.Control = pnButtons
+      AnchorSideTop.Control = cbbDelimiter
+      AnchorSideBottom.Control = cbbDelimiter
+      AnchorSideBottom.Side = asrBottom
+      Left = 6
+      Height = 11
+      Top = 12
+      Width = 48
+      Anchors = [akTop, akLeft, akBottom]
+      BorderSpacing.Around = 6
+      Caption = 'Delimiter'
+      Layout = tlCenter
+      ParentColor = False
+    end
+    object cbbDelimiter: TComboBox
+      AnchorSideLeft.Control = Delimiter
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = pnButtons
+      Left = 60
+      Height = 23
+      Top = 6
+      Width = 48
+      BorderSpacing.Around = 6
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        ';'
+        ','
+      )
+      OnChange = cbbDelimiterChange
+      TabOrder = 0
+      Text = ';'
+    end
+    object btnLoad: TButton
+      AnchorSideLeft.Control = cbbDelimiter
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = pnButtons
+      Left = 114
+      Height = 25
+      Top = 6
+      Width = 52
+      AutoSize = True
+      BorderSpacing.Around = 6
+      Caption = 'Load'
+      OnClick = btnLoadClick
+      TabOrder = 1
+    end
+  end
+  object ButtonPanel1: TButtonPanel
+    Left = 6
+    Height = 34
+    Top = 464
+    Width = 542
+    OKButton.Name = 'OKButton'
+    OKButton.DefaultCaption = True
+    OKButton.OnClick = OKButtonClick
+    HelpButton.Name = 'HelpButton'
+    HelpButton.DefaultCaption = True
+    CloseButton.Name = 'CloseButton'
+    CloseButton.DefaultCaption = True
+    CloseButton.OnClick = CloseButtonClick
+    CancelButton.Name = 'CancelButton'
+    CancelButton.DefaultCaption = True
+    TabOrder = 4
+    ShowButtons = [pbOK, pbCancel]
+  end
+  object OpenDialog: TOpenDialog
+    Filter = 'CSV files|*.csv'
+    left = 168
+    top = 256
+  end
+end

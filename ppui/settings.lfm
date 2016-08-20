@@ -1,0 +1,85 @@
+object SettingsForm: TSettingsForm
+  Left = 398
+  Height = 391
+  Top = 217
+  Width = 630
+  Caption = 'SettingsForm'
+  ClientHeight = 391
+  ClientWidth = 630
+  OnActivate = FormActivate
+  LCLVersion = '1.6.0.4'
+  object ButtonPanel1: TButtonPanel
+    Left = 6
+    Height = 34
+    Top = 351
+    Width = 618
+    OKButton.Name = 'OKButton'
+    OKButton.DefaultCaption = True
+    OKButton.OnClick = OKButtonClick
+    HelpButton.Name = 'HelpButton'
+    HelpButton.DefaultCaption = True
+    CloseButton.Name = 'CloseButton'
+    CloseButton.DefaultCaption = True
+    CancelButton.Name = 'CancelButton'
+    CancelButton.DefaultCaption = True
+    CancelButton.OnClick = CancelButtonClick
+    TabOrder = 0
+    ShowButtons = [pbOK, pbCancel]
+  end
+  object PageControl1: TPageControl
+    Left = 280
+    Height = 345
+    Top = 0
+    Width = 350
+    ActivePage = TabSheet2
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 1
+    object TabSheet2: TTabSheet
+      Caption = 'Application settings'
+    end
+    object TabSheet1: TTabSheet
+      Caption = 'Database settings'
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 345
+    Top = 0
+    Width = 275
+    Align = alLeft
+    Caption = 'Panel1'
+    ClientHeight = 345
+    ClientWidth = 275
+    TabOrder = 2
+    object TreeView1: TTreeView
+      Left = 7
+      Height = 302
+      Top = 36
+      Width = 261
+      Align = alClient
+      BorderSpacing.Around = 6
+      DefaultItemHeight = 18
+      TabOrder = 0
+    end
+    object TreeFilterEdit1: TTreeFilterEdit
+      Left = 7
+      Height = 23
+      Top = 7
+      Width = 261
+      ButtonWidth = 23
+      NumGlyphs = 1
+      Align = alTop
+      BorderSpacing.Around = 6
+      MaxLength = 0
+      TabOrder = 1
+      FilteredTreeview = TreeView1
+    end
+  end
+  object Splitter1: TSplitter
+    Left = 275
+    Height = 345
+    Top = 0
+    Width = 5
+  end
+end
