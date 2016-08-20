@@ -58,7 +58,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\..\engine\unit_conv;..\..\engine\core"/>
+      <OtherUnitFiles Value="..\..\..\trunk\src\engine\core;..\..\..\trunk\src\engine\unit_conv"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
