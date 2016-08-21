@@ -1,22 +1,16 @@
-Quick start instructions for building OpSim the open source Chemical Engineering Process 
-Simulator.
+Quick start instructions for building OpSim: the open source process 
+simulator.
 
 BUILDING AND INSTALLATION:
+
 The following is a basic outline for compiling and installing OpSim...
 
   - To build you'll first need to setup a build environment. The procedure for this
-    can vary greatly depending on your OS so I'll only cover the high points...
+    can vary depending on your OS so I'll only cover the high points...
   - You'll need the latest version of the Free Pascal Compiler (FPC 3.0.0).
-  - Once you have a working build environment you can build OpSim by running the configure 
-    application. You can either compile and run it, or use instantFPC which will do both 
-    at the same time e.g.
-
-       instantfpc configure.pp
-
-  - Configure will test your environment, compile fpmake and cleanup the folder from 
-    compiled units
-  - You can now build OpSim by issuing : ./fpmake install
-  - If all goes well you should see the folders ./build/build.<plat> where <plat>
-  is the name of your platform. Contained in the build folder should be the file
-  ribify.<ext> where <ext> is the file extension of the Python modules for your
-  platform (such as ".so" or ".pyd").OpSim will be compiled and installed  
+  - Once you have a working build environment you can setup the build environment by 
+    running fmake.
+  - You can now build OpSim by issuing ./make
+  - To install the application, including all platform dependent libraries, scripts
+    and other supporting files issue a ./make install.
+  - If all goes well OpSim will be compiled and installed on your machine. 
