@@ -9,7 +9,7 @@ Welcome to OpSim developers handbook!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    about
    coding_standard
@@ -17,6 +17,7 @@ Contents:
    committing_code
    specifications
    pp_library
+   release_cycle
 
 Indices and tables
 ==================
