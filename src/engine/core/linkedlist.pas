@@ -34,7 +34,6 @@ type
     next, prev: pLink;
   end;
 
-  (* never change the size of this! genfile.c detects pointerlen with it *)
   pListBase = ^ListBase;
 
   ListBase = record

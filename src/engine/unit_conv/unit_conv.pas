@@ -60,7 +60,7 @@ procedure UNC_define_conversion(quantity, unit_  : string;
  * \param value: the string to measure the length.
  * \param from_unit: the current unit the value is in
  * \param to_unit: the desired unit to convert the unit to
- * \param interval: wether or not the unit is calulcated as an inerval e.g. dT instead of T
+ * \param interval: whether or not the unit is calculated as an interval e.g. dT instead of T
  * \return the converted value in the correct unit.
  *)
 function UNC_convert_unit(value              : double;
@@ -73,7 +73,7 @@ function UNC_convert_unit(value              : double;
  * \param value: the string to measure the length.
  * \param convert_from: the current unit the value is in
  * \param convert_to: the desired unit to convert the unit to
- * \param interval: wether or not the unit is calulcated as an inerval e.g. dT instead of T
+ * \param interval: whether or not the unit is calculated as an interval e.g. dT instead of T
  * \return the converted value in the correct unit.
  *)
 function UNC_convert_unit(value                    : double;
@@ -81,11 +81,11 @@ function UNC_convert_unit(value                    : double;
                           interval                 : boolean = False): double;
 
 (**
- * Return the unit conversion struct.
+ * Return the unit conversion record.
  *
  * \param unit_quantity: the unitquantity to start looking in. If nil is supplied then the whole list is searched
  * \param target_unit: the unit to be searched
- * \return the unit conversion struct
+ * \return the unit conversion record
  *)
 function UNC_find_conversion(unit_quantity : pUnitQuantity;
                              search_unit   : string): pUnitConversion;

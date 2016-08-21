@@ -12,8 +12,8 @@ uses
   Calculate the vapor pressure from temperature for a pure component.
 
   @param(name is the name of the pure component)
-  @param(T is the temperature in degrees Celcius)
-  @returns(the calculated vapor pressure in mmHg)
+  @param(T is the temperature)
+  @returns(the calculated vapor pressure)
 }
 function PP_vapor_pressure_calculate(name : string;
                                      T    : SimVars): SimVars;
@@ -22,7 +22,7 @@ function PP_vapor_pressure_calculate(name : string;
   Register a new model to calculate the vapor pressure from temperature for a pure component.
 
   @param(name is the name of the pure component)
-  @param(range is the temperature range the model is valid for in degrees Celcius)
+  @param(range is the temperature range the model is valid for)
   @param(coeff is the model coefficients)
   @param(method is the name of the model, internally the correct callback function is then found)
   @param(ref is the reference of the model parameters)

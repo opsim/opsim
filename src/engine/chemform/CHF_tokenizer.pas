@@ -29,7 +29,7 @@ procedure CHF_parse_chemfunc(chemfunc   : string;
 
 implementation
 
-{$i CHF_lexer.pas}
+{$i CHF_lexer.inc}
 
 procedure CHF_parse_chemfunc(chemfunc   : string;
                              var tstack : pListBase);

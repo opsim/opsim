@@ -12,25 +12,25 @@ uses
   Calculate the liquid enthalpy from temperature for a pure component.
 
   @param(name is the name of the pure component)
-  @param(T is the temperature in degrees Celcius)
-  @returns(the calculated liquid enhtalpy in kJ/kg)
+  @param(T is the temperature)
+  @returns(the calculated molar gas heat capacity)
 }
 function PP_cp_gas_calculate(name : string;
-                                   T    : SimVars): SimVars;
+                             T    : SimVars): SimVars;
 
 {
   Register a new model to calculate the liquid enthalpy from temperature for a pure component.
 
   @param(name is the name of the pure component)
-  @param(range is the temperature range the model is valid for in degrees Celcius)
+  @param(range is the temperature range the model is valid for)
   @param(coeff is the model coefficients)
   @param(method is the name of the model, internally the correct callback function is then found)
   @param(ref is the reference of the model parameters)
 }
 procedure PP_cp_gas_register(name             : string;
-                                   range            : PPRange;
-                                   coeff            : PPCoefficients;
-                                   method, ref, uom : string);
+                             range            : PPRange;
+                             coeff            : PPCoefficients;
+                             method, ref, uom : string);
 
 {
   Free all allocated data.

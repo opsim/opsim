@@ -1,0 +1,4 @@
+@shorttitle(Overview)
+@title(OpSim code documentation v0.01)
+
+This is the documentation of the opsim sources, intended for opsim developers. The developers handbook, where additional information can be found on the internals of opsim is located at http://www.opsim.cc/dev-docs/html. For user's documentation see http://www.opsim.cc/user-docs/html.
