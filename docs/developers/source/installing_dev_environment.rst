@@ -9,25 +9,11 @@ OpSim source code is hosted at SourceForge_, together with additional scripts, t
 
 .. _SourceForge: https://sourceforge.net/p/opsim/code/HEAD/tree/
 
-Access to the repository is provided both for anonymous (read access) and commit access (write access). The main urls for the repositories are:
-
-Read only access:
+Access to the repository is provided both for anonymous (read access) and commit access (write access). The main URL for the repository is:
 
 .. code-block:: bash
    
-   svn checkout svn://svn.code.sf.net/p/opsim/code/trunk opsim-code
-
-Read write access:
-
-.. code-block:: bash
-   
-   svn checkout --username=<username> svn+ssh://<username>@svn.code.sf.net/p/opsim/code/trunk opsim-code
-
-HTTP access:
-
-.. code-block:: bash
-   
-   svn checkout --username=<username> https://svn.code.sf.net/p/opsim/code/trunk opsim-code
+   svn co https://svn.code.sf.net/p/opsim/code/trunk opsim-code
 
 Additional information
 ~~~~~~~~~~~~~~~~~~~~~~
