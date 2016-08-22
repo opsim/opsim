@@ -30,34 +30,34 @@ type
   end;
   pChemForm = ^ChemForm;
 
-(**
- * Parse the chemical formula provided.
- *
- * \param formula: the chemical formula
- * \return the calculated the parsed formula data structure
- *)
+{
+  Parse the chemical formula provided.
+ 
+  @param formula: the chemical formula
+  @return the calculated the parsed formula data structure
+}
 function CHF_parse(formula : string): pChemForm;
 
-(**
- * Calculate the molweight from the parsed formula data structure
- *
- * \param cf: the parsed formula data structure
- * \return the calculated molecular weight
- *)
+{
+  Calculate the molweight from the parsed formula data structure
+ 
+  @param cf: the parsed formula data structure
+  @return the calculated molecular weight
+}
 function CHF_calculate_mol_weight(cf : pChemForm): double;
 
-(**
- * Print the atoms from the formula data structure to stdout
- *
- * \param cf: the parsed formula data structure
- *)
+{
+  Print the atoms from the formula data structure to stdout
+ 
+  @param cf: the parsed formula data structure
+}
 procedure CHF_print_atoms(cf : pChemForm);
 
-(**
- * Free the formula data structure from memory
- *
- * \param cf: the parsed formula data structure
- *)
+{
+  Free the formula data structure from memory
+ 
+  @param cf: the parsed formula data structure
+}
 procedure CHF_free(cf : pChemForm);
 
 implementation

@@ -16,19 +16,19 @@ type
   //a collection of unit quantities
   UnitCollection = record
     quantity    : ListBase;
-    numconv     : integer;         //total amount of conversions defined
+    numconv     : integer;         //<total amount of conversions defined
   end;
 
-  //a collection of unit quantities
   pUnitQuantity = ^UnitQuantity;
+  //a collection of unit quantities
   UnitQuantity = record
     next, prev : pUnitQuantity;
     name       : string;
     conversion : ListBase;
   end;
 
-  //a single conversion
   pUnitConversion = ^UnitConversion;
+  //a single conversion
   UnitConversion = record
     next, prev  : pUnitConversion;
 
@@ -41,70 +41,70 @@ type
     parentquant : pUnitQuantity
   end;
 
-(**
- * Define a new unit conversion.
- *
- * \param quantity: the base unit this unit belongs to
- * \param unit_: the name of the unit
- * \param multiplier: multiplier, the base unit needs to be multiplied with
- * \param bias: the value offset the base unit needs to be offset with
- * \param flag: flag that determines the unit system so one can filter based on unit system in the UI
- *)
+{ 
+  Define a new unit conversion.
+ 
+  @param quantity: the base unit this unit belongs to
+  @param unit_: the name of the unit
+  @param multiplier: multiplier, the base unit needs to be multiplied with
+  @param bias: the value offset the base unit needs to be offset with
+  @param flag: flag that determines the unit system so one can filter based on unit system in the UI
+}
 procedure UNC_define_conversion(quantity, unit_  : string;
                                 multiplier, bias : double;
                                 flag             : word);
 
-(**
- * Return the converted unit.
- *
- * \param value: the string to measure the length.
- * \param from_unit: the current unit the value is in
- * \param to_unit: the desired unit to convert the unit to
- * \param interval: whether or not the unit is calculated as an interval e.g. dT instead of T
- * \return the converted value in the correct unit.
- *)
+{
+  Return the converted unit.
+ 
+  @param value: the string to measure the length.
+  @param from_unit: the current unit the value is in
+  @param to_unit: the desired unit to convert the unit to
+  @param interval: whether or not the unit is calculated as an interval e.g. dT instead of T
+  @return the converted value in the correct unit.
+}
 function UNC_convert_unit(value              : double;
                           from_unit, to_unit : string;
                           interval           : boolean = False): double; overload;
 
-(**
- * Return the converted unit.
- *
- * \param value: the string to measure the length.
- * \param convert_from: the current unit the value is in
- * \param convert_to: the desired unit to convert the unit to
- * \param interval: whether or not the unit is calculated as an interval e.g. dT instead of T
- * \return the converted value in the correct unit.
- *)
+{
+  Return the converted unit.
+ 
+  @param value: the string to measure the length.
+  @param convert_from: the current unit the value is in
+  @param convert_to: the desired unit to convert the unit to
+  @param interval: whether or not the unit is calculated as an interval e.g. dT instead of T
+  @return the converted value in the correct unit.
+}
 function UNC_convert_unit(value                    : double;
                           convert_from, convert_to : pUnitConversion;
                           interval                 : boolean = False): double;
 
-(**
- * Return the unit conversion record.
- *
- * \param unit_quantity: the unitquantity to start looking in. If nil is supplied then the whole list is searched
- * \param target_unit: the unit to be searched
- * \return the unit conversion record
- *)
+{
+  Return the unit conversion record.
+ 
+  @param unit_quantity: the unitquantity to start looking in. If nil is supplied then the whole list is searched
+  @param target_unit: the unit to be searched
+  @return the unit conversion record
+}
 function UNC_find_conversion(unit_quantity : pUnitQuantity;
                              search_unit   : string): pUnitConversion;
 
-(**
- * Free all the internal variables from memory
- *)
+{
+  Free all the internal variables from memory
+}
 procedure UNC_free;
 
-(**
- * Get the number of unit quantities defined in the unit conversion library
- * \return the number of unit quantities defined
- *)
+{
+  Get the number of unit quantities defined in the unit conversion library
+  @return the number of unit quantities defined
+}
 function UNC_count_quantities: integer;
 
-(**
- * Get the number of unit conversions defined in the unit conversion library
- * \return the number of unit conversions defined
- *)
+{
+  Get the number of unit conversions defined in the unit conversion library
+  @return the number of unit conversions defined
+}
 function UNC_count_conversions: integer;
 
 implementation

@@ -298,16 +298,16 @@ If you choose to write PasDoc comments, here's an example of a typical comment f
 
 .. code-block:: pascal
 
-   (**
-    * Define a new unit conversion.
-    *
-    * \param quantity: the base unit this unit belongs to
-    * \param unit_: the name of the unit
-    * \param multiplier: multiplier, the base unit needs to be multiplied with
-    * \param bias: the value offset the base unit needs to be offset with
-    * \param flag: flag that determines the unit system so one can filter based on unit system in the UI
-    *)
-    procedure UNC_define_conversion(
+   {
+     Define a new unit conversion.
+    
+     \param quantity: the base unit this unit belongs to
+     \param unit_: the name of the unit
+     \param multiplier: multiplier, the base unit needs to be multiplied with
+     \param bias: the value offset the base unit needs to be offset with
+     \param flag: flag that determines the unit system so one can filter based on unit system in the UI
+   } 
+   procedure UNC_define_conversion(
                 quantity, unit_  : string;
                 multiplier, bias : double;
                 flag             : word);
