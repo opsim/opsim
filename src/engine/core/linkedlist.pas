@@ -31,26 +31,85 @@ type
   pLink = ^Link;
 
   Link = record
-    next, prev: pLink;
+    next, prev: pLink;   //<
   end;
 
   pListBase = ^ListBase;
 
   ListBase = record
-    first, last: pointer;
+    first, last: pointer;   //<
   end;
 
+{
+   This is the procedure addhead
+   @param listbase:
+   @param vlink:
+}
 procedure addhead(listbase: pListBase; vlink: pointer);
+{
+   This is the procedure addtail
+   @param listbase:
+   @param vlink:
+}
 procedure addtail(listbase: pListBase; vlink: pointer);
+{
+   This is the function callocN
+   @param len:
+   @return the pointer type
+}
 function callocN(len: PtrUInt): pointer;
+{
+   This is the function countlist
+   @param listbase:
+   @return the integer type
+}
 function countlist(listbase: pListBase): integer;
+{
+   This is the procedure freeN
+   @param vmemh:
+}
 procedure freeN(vmemh: pointer);
+{
+   This is the procedure freelinkN
+   @param listbase:
+   @param vlink:
+}
 procedure freelinkN(listbase: pListBase; vlink: pointer);
+{
+   This is the procedure freelist
+   @param listbase:
+}
 procedure freelist(listbase: pListBase);
+{
+   This is the procedure freelistN
+   @param listbase:
+}
 procedure freelistN(listbase: pListBase);
+{
+   This is the procedure insertlink
+   @param listbase:
+   @param vprevlink:
+   @param vnewlink:
+}
 procedure insertlink(listbase: pListBase; vprevlink, vnewlink: pointer);
+{
+   This is the procedure insertlinkbefore
+   @param listbase:
+   @param vnextlink:
+   @param vnewlink:
+}
 procedure insertlinkbefore(listbase: pListBase; vnextlink, vnewlink: pointer);
+{
+   This is the function mallocN
+   @param len:
+   @return the pointer type
+}
 function mallocN(len: PtrUInt): pointer;
+{
+   This is the procedure remlink
+   @param listbase:
+   @param vlink:
+}
 procedure remlink(listbase: pListBase; vlink: pointer);
 
 implementation

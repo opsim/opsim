@@ -9,24 +9,24 @@ uses
 
 type
   Element = record
-    symbol  : string[3];
-    name    : string[24];
-    anumb   : byte;
-    aweight : double;
+    symbol  : string[3];    //<
+    name    : string[24];   //<
+    anumb   : byte;         //<
+    aweight : double;       //<
   end;
   pElement = ^Element;
 
   Atom = record
-    next, prev : pointer;
-    mult       : integer;
-    elem       : pElement;
+    next, prev : pointer;    //<
+    mult       : integer;    //<
+    elem       : pElement;   //<
   end;
   pAtom = ^Atom;
 
   ChemForm = record
-    name    : string;
-    formula : string;
-    atoms   : ListBase;
+    name    : string;     //<
+    formula : string;     //<
+    atoms   : ListBase;   //<
   end;
   pChemForm = ^ChemForm;
 

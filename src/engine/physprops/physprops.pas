@@ -9,61 +9,61 @@ uses
 
 type
   ID = record
-    next, prev : pointer;
+    next, prev : pointer;   //<
   end;
 
   SimVars = record
-    value : pdouble;
-    uom   : pUnitConversion;
+    value : pdouble;           //<
+    uom   : pUnitConversion;   //<
   end;
 
   PPCoefficients = record
-    data     : pdouble;
-    totcoeff : integer;
+    data     : pdouble;   //<
+    totcoeff : integer;   //<
   end;
 
   pp_callback = function(vars : SimVars; coeff : PPCoefficients): double;
 
   PPRange = record
-    uom  : pUnitConversion;
-    min  : double;
-    max  : double;
+    uom  : pUnitConversion;   //<
+    min  : double;            //<
+    max  : double;            //<
   end;
 
   pPPModel = ^PPModel;
   PPModel = record
-    id        : ID;
+    id        : ID;               //<
 
-    name      : string;
-    range     : PPRange;
-    coeff     : PPCoefficients;
-    method    : string;
-    reference : string;
-    callback  : pp_callback;
-    uom       : pUnitConversion
+    name      : string;           //<
+    range     : PPRange;          //<
+    coeff     : PPCoefficients;   //<
+    method    : string;           //<
+    reference : string;           //<
+    callback  : pp_callback;      //<
+    uom       : pUnitConversion   //<
   end;
 
   PPModelData = record
-    modelpath        : string;
-    cp_gas           : pListBase;
-    vapor_pressure   : pListBase;
-    conductivity_liq : pListBase;
-    conductivity_vap : pListBase;
-    density_liq      : pListBase;
-    density_vap      : pListBase;
-    enthalpy_vap     : pListBase;
-    molweight        : pointer;
-    surface_tension  : pListBase;
-    viscosity_liq    : pListBase;
-    viscosity_vap    : pListBase;
+    modelpath        : string;      //<
+    cp_gas           : pListBase;   //<
+    vapor_pressure   : pListBase;   //<
+    conductivity_liq : pListBase;   //<
+    conductivity_vap : pListBase;   //<
+    density_liq      : pListBase;   //<
+    density_vap      : pListBase;   //<
+    enthalpy_vap     : pListBase;   //<
+    molweight        : pointer;     //<
+    surface_tension  : pListBase;   //<
+    viscosity_liq    : pListBase;   //<
+    viscosity_vap    : pListBase;   //<
   end;
   pPPModelData = ^PPModelData;
 
   PPModelCallback = record
-    callback    : pp_callback;
-    method      : string;
-    description : string;
-    equation    : string;
+    callback    : pp_callback;   //<
+    method      : string;        //<
+    description : string;        //<
+    equation    : string;        //<
   end;
 
 var

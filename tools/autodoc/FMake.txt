@@ -1,0 +1,1 @@
+add_executable('autodoc', 'autodoc', 'autodoc.pp', []);

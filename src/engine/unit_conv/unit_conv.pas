@@ -15,30 +15,30 @@ const
 type
   //a collection of unit quantities
   UnitCollection = record
-    quantity    : ListBase;
-    numconv     : integer;         //<total amount of conversions defined
+    quantity    : ListBase;   //<
+    numconv     : integer;    //<total amount of conversions defined
   end;
 
   pUnitQuantity = ^UnitQuantity;
   //a collection of unit quantities
   UnitQuantity = record
-    next, prev : pUnitQuantity;
-    name       : string;
-    conversion : ListBase;
+    next, prev : pUnitQuantity;   //<
+    name       : string;          //<
+    conversion : ListBase;        //<
   end;
 
   pUnitConversion = ^UnitConversion;
   //a single conversion
   UnitConversion = record
-    next, prev  : pUnitConversion;
+    next, prev  : pUnitConversion;   //<
 
-    name        : string;
-    multiplier  : double;
-    bias        : double;
-    ambiguous   : boolean;
-    flag        : word;
+    name        : string;            //<
+    multiplier  : double;            //<
+    bias        : double;            //<
+    ambiguous   : boolean;           //<
+    flag        : word;              //<
 
-    parentquant : pUnitQuantity
+    parentquant : pUnitQuantity      //<
   end;
 
 { 

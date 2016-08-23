@@ -19,11 +19,17 @@ const
 type
   pCHFtoken = ^CHFtoken;
   CHFtoken = record
-    next, prev : pCHFtoken;
-    token      : integer;
-    value      : string;
+    next, prev : pCHFtoken;   //<
+    token      : integer;     //<
+    value      : string;      //<
   end;
 
+{
+   This is the procedure CHF_parse_chemfunc
+   @param chemfunc:
+   @param var:
+   @param tstack:
+}
 procedure CHF_parse_chemfunc(chemfunc   : string;
                              var tstack : pListBase);
 
