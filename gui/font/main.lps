@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="2">
+      <Unit0>
+        <Filename Value="main.pp"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="93"/>
+        <CursorPos X="3" Y="114"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="fnt_ft_bitmapped.pas"/>
+        <UnitName Value="FNT_FT_bitmapped"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="22" Y="2"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit1>
+    </Units>
+    <JumpHistory Count="9" HistoryIndex="8">
+      <Position1>
+        <Filename Value="main.pp"/>
+      </Position1>
+      <Position2>
+        <Filename Value="main.pp"/>
+        <Caret Line="11" Column="3"/>
+      </Position2>
+      <Position3>
+        <Filename Value="main.pp"/>
+        <Caret Line="85" Column="98" TopLine="69"/>
+      </Position3>
+      <Position4>
+        <Filename Value="main.pp"/>
+        <Caret Line="10" Column="17"/>
+      </Position4>
+      <Position5>
+        <Filename Value="main.pp"/>
+        <Caret Line="11" Column="19" TopLine="10"/>
+      </Position5>
+      <Position6>
+        <Filename Value="main.pp"/>
+        <Caret Line="10" Column="12"/>
+      </Position6>
+      <Position7>
+        <Filename Value="main.pp"/>
+        <Caret Line="66" TopLine="50"/>
+      </Position7>
+      <Position8>
+        <Filename Value="main.pp"/>
+        <Caret Line="19" TopLine="2"/>
+      </Position8>
+      <Position9>
+        <Filename Value="main.pp"/>
+        <Caret Line="16" Column="3" TopLine="6"/>
+      </Position9>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="5">
+      <Item1>
+        <Expression Value="data"/>
+      </Item1>
+      <Item2>
+        <Expression Value="data^"/>
+      </Item2>
+      <Item3>
+        <Expression Value="ch"/>
+      </Item3>
+      <Item4>
+        <Expression Value="expanded_data[2 * (i + j * width) + 1]"/>
+      </Item4>
+      <Item5>
+        <Expression Value="char((bitmap.buffer + (i + bitmap.Width * j))^)"/>
+      </Item5>
+    </Watches>
+  </Debugging>
+</CONFIG>

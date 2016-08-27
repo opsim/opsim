@@ -10,13 +10,10 @@
       </Flags>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <Title Value="glfw_windows"/>
+      <Title Value="main"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
     </General>
-    <i18n>
-      <EnableI18N LFM="False"/>
-    </i18n>
     <VersionInfo>
       <StringTable ProductVersion=""/>
     </VersionInfo>
@@ -29,12 +26,11 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="-b"/>
       </local>
     </RunParams>
     <Units Count="1">
       <Unit0>
-        <Filename Value="glfw_windows.pp"/>
+        <Filename Value="main.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
     </Units>
@@ -43,11 +39,11 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="..\..\bin\$(TargetCPU)-$(TargetOS)\glfw_windows"/>
+      <Filename Value="..\bin\$(TargetCPU)-$(TargetOS)\ft_test"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\include\GLFW"/>
+      <OtherUnitFiles Value="..\glfw_test\include\GLFW"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
   </CompilerOptions>

@@ -42,7 +42,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="..\bin\$(TargetCPU)-$(TargetOS)\glfw3_test"/>
+      <Filename Value="..\..\bin\$(TargetCPU)-$(TargetOS)\glfw3_test"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
