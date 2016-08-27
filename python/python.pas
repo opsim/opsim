@@ -44,6 +44,11 @@ end;
 
 initialization
   DLL_handle := LoadLibrary('python35.dll');
+  if DLL_handle = NilHandle then
+  begin
+    writeln('Error: could not load python');
+    halt(1);
+  end;
 
   Py_Initialize := ImportPyFunc('Py_Initialize');
   Py_DecodeLocale := ImportPyFunc('Py_DecodeLocale');
