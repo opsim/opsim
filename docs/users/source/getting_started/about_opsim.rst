@@ -70,7 +70,11 @@ There is a lot of usefull information to be found on the internet, that OpSim be
 **Other simulators**
 
   - OllinTS_ is a thermodinamical server (also the Sim42 sources can be found here)
-  - DWSIM_ ìs An Open Source Process Simulator written in VB.NET and C#
+  - DWSIM_ is An Open Source Process Simulator written in VB.NET and C#
+  - COCO_ (CAPE-OPEN to CAPE-OPEN) is a free-of-charge CAPE-OPEN compliant steady-state simulation environment.
+  - ChemSep_ is a column simulator for distillation, absorption, and extraction operations.
   
 .. _OllinTS: https://sourceforge.net/projects/ollints/
 .. _DWSIM: http://dwsim.inforside.com.br/wiki/index.php?title=Main_Page
+.. _COCO: http://www.cocosimulator.org/
+.. _ChemSep: http://www.chemsep.com/
