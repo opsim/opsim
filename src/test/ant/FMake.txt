@@ -1,0 +1,1 @@
+add_executable('opsim_ant_test', 'ant_test', 'simple.pp', ['opsim_core', 'opsim_ant']);

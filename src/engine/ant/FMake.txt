@@ -1,0 +1,1 @@
+add_library('opsim_ant', ['ANT_base.pas'{$IFDEF MSWINDOWS}, 'ANT_gdi.pas'{$ENDIF}, 'ANT_main.pas', 'ANT_messages.pas', 'ANT_types.pas'{$IFDEF LINUX}, 'ANT_X11.pas'{$ENDIF}], ['opsim_core']);
