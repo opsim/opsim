@@ -9,9 +9,11 @@ uses
 X, Xlib, xutil, GLX,
 LinkedList, ANT_types;
 
-function X11_CreateWindow(Width, Height: integer; title: PChar): pWindow;
+function X11_CreateWindow(width, height: integer; title: PChar): pWindow;
 procedure X11_DestroyWindow(var win: pWindow);
 procedure X11_SwapBuffers(win: pWindow);
+procedure X11_GetFrameBufferSize(win: pWindow; out width, height: integer);
+
 procedure X11_PollEvents;
 //function X11_WindowFromHWND(hWnd: Windows.HWND): pWindow;
 //function X11_GetKeyboardShiftState: TShiftState;
@@ -26,7 +28,7 @@ ANT_main, ANT_base, ANT_messages;
  * Create an RGB, double-buffered window.
  * Return the window and context handles.
  *)
-function X11_CreateWindow(Width, Height: integer; title: PChar): pWindow;
+function X11_CreateWindow(width, height: integer; title: PChar): pWindow;
 
 const 
   WINDOW_POS_X = 0;
@@ -77,7 +79,7 @@ begin
           CWOverrideRedirect;
 
   win^.Xwin := XCreateWindow(win^.dpy, root, WINDOW_POS_X, WINDOW_POS_Y,
-               Width, Height, 0, visinfo^.depth, InputOutput, visinfo^.visual, mask, @attr);
+               width, height, 0, visinfo^.depth, InputOutput, visinfo^.visual, mask, @attr);
 
   win^.ctx := glXCreateContext(win^.dpy, visinfo, nil, True);
 
@@ -89,8 +91,8 @@ begin
   //set hints and properties
   sizehints.x := WINDOW_POS_X;
   sizehints.y := WINDOW_POS_Y;
-  sizehints.Width := Width;
-  sizehints.Height := Height;
+  sizehints.width := width;
+  sizehints.height := height;
   sizehints.flags := USSize or USPosition;
   XSetNormalHints(win^.dpy, win^.Xwin, @sizehints);
   XSetStandardProperties(win^.dpy, win^.Xwin, title, title,
@@ -129,6 +131,16 @@ begin
   glXSwapBuffers(win^.dpy, win^.Xwin);
 end;
 
+procedure X11_GetFrameBufferSize(win: pWindow; out width, height: integer);
+var
+  attribs: XWindowAttributes;
+begin
+  XGetWindowAttributes(win^.dpy, win^.Xwin, @attribs);
+
+  width := attribs.width;
+  height := attribs.height;
+end;
+
 procedure X11_PollEvents;
 var
   buffer: string[10];
@@ -160,8 +172,8 @@ begin
                 end;
         ConfigureNotify:
                          begin
-                           params.rect.Width := event.xconfigure.Width;
-                           params.rect.Height := event.xconfigure.Height;
+                           params.rect.width := event.xconfigure.width;
+                           params.rect.height := event.xconfigure.height;
 
                            antPostMessage(win, ANT_MESSAGE_RESIZE, params);
                          end;

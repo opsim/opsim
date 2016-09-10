@@ -13,16 +13,19 @@ uses
 function gdi_CreateWindow(Width, Height: integer; title: PChar): pWindow;
 procedure gdi_DestroyWindow(var win: pWindow);
 procedure gdi_SwapBuffers(win: pWindow);
+procedure gdi_GetFrameBufferSize(win: pWindow; out width, height: integer);
+
 procedure gdi_PollEvents;
-function gdi_WindowFromHWND(hWnd: Windows.HWND): pWindow;
-function gdi_GetKeyboardShiftState: TShiftState;
-function WndProc(hWnd: Windows.HWND; message: UINT; wParam: WPARAM; lParam: LPARAM): LRESULT; stdcall;
 
 implementation
 
 uses
   SysUtils,
   ANT_main, ANT_messages;
+
+function gdi_WindowFromHWND(hWnd: Windows.HWND): pWindow; forward;
+function gdi_GetKeyboardShiftState: TShiftState; forward;
+function WndProc(hWnd: Windows.HWND; message: UINT; wParam: WPARAM; lParam: LPARAM): LRESULT; stdcall; forward;
 
 function gdi_CreateWindow(Width, Height: integer; title: PChar): pWindow;
 const
@@ -234,6 +237,16 @@ end;
 procedure gdi_SwapBuffers(win: pWindow);
 begin
   SwapBuffers(win^.h_DC);
+end;
+
+procedure gdi_GetFrameBufferSize(win: pWindow; out width, height: integer);
+var
+  area: RECT;
+begin
+  GetClientRect(win^.h_Wnd, @area);
+
+  width := area.right;
+  height := area.bottom;
 end;
 
 procedure gdi_PollEvents;
