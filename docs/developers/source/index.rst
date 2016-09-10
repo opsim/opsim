@@ -15,6 +15,7 @@ Contents:
    coding_standard
    installing_dev_environment
    committing_code
+   architecture/index
    specifications
    pp_library
    release_cycle
