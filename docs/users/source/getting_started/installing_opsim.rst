@@ -1,7 +1,7 @@
 Installing OpSim
 ================
 
-OpSim is available from the `OpSim website`_. There are archives available from the download_ section. OpSim should run out of the box, without installation procedure. To use OpSim, just unpack the archive and run OpSim!
+OpSim is available from the `OpSim website`_. There are archives available from the download_ section for different platforms and architectures. OpSim should run out of the box, without installation procedure. To use OpSim, just unpack the archive and run OpSim!
 
 .. _`OpSim website`: http://www.opsim.cc
 .. _download: http://www.opsim.cc/?page_id=2
