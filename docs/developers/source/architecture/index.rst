@@ -9,5 +9,7 @@
 
    general.rst
    interface.rst
+   widgets.rst
+   font.rst
    simulation_engine.rst
    data_layer.rst
