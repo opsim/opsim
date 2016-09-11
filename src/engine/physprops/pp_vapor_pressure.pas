@@ -39,6 +39,11 @@ procedure PP_vapor_pressure_register(name             : string;
 }
 procedure PP_vapor_pressure_free(vm : pPPModel);
 
+{
+   Loads vapor pressure model data from a JSON file
+   @param component: component name
+   @param jArray: component data
+}
 procedure PP_vapor_pressure_load_JSON(const component: string; const jArray: TJSONArray);
 
 implementation

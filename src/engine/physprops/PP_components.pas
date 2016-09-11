@@ -4,6 +4,9 @@ unit PP_components;
 
 interface
 
+{
+   Seaches and loads physical property models from file
+}
 procedure PP_load_components;
 
 implementation

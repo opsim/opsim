@@ -9,14 +9,41 @@ uses
 X, Xlib, xutil, GLX,
 LinkedList, ANT_types;
 
+{
+   Creates an X11 window and its associated context.
+   @param Width: the width of the window
+   @param Height: the height of the window
+   @param title: the title of the window
+   @return a reference to the created window
+}
 function X11_CreateWindow(width, height: integer; title: PChar): pWindow;
+
+{
+   Destroys an X11 window and its associated context.
+   @param win: the reference to the window being destroyed
+}
 procedure X11_DestroyWindow(var win: pWindow);
+
+{
+   Swaps the front and back buffers of the specified window.
+   @param win: the reference to the window
+}
 procedure X11_SwapBuffers(win: pWindow);
+
+{
+   Retrieves the size of the framebuffer of the specified window.
+   @param win: the reference to the window
+   @param Width: the width of the window
+   @param Height: the height of the window
+}
 procedure X11_GetFrameBufferSize(win: pWindow; out width, height: integer);
 
+{
+   This is the procedure will poll for any pending events and put them in 
+   the eventlist. Next the eventlist is checked and if needed the event 
+   callback function is called.
+}
 procedure X11_PollEvents;
-//function X11_WindowFromHWND(hWnd: Windows.HWND): pWindow;
-//function X11_GetKeyboardShiftState: TShiftState;
 
 implementation
 

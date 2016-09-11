@@ -39,6 +39,11 @@ procedure PP_cp_gas_register(name             : string;
 }
 procedure PP_cp_gas_free(vm : pPPModel);
 
+{
+   Loads Cp gas data frm a JSON file
+   @param component: component name
+   @param jArray: component data
+}
 procedure PP_cp_gas_load_JSON(const component: string; const jArray: TJSONArray);
 
 implementation

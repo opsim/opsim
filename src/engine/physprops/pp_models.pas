@@ -11,24 +11,54 @@ const
   R = 8.3144598;
   R2 = R * R;
 
+{
+   Find the appropriate callback based on the method name
+   @param method: method name
+   @return the physical properties callback function
+}
 function PP_model_find_callback(method: string): pp_callback;
 
-// Andrade equation for calculating the liquid viscosity
+{
+   Andrade equation for calculating the liquid viscosity
+   @param vars: input variables input variables
+   @param coeff: model coefficients model coefficients
+   @return the model result
+}
 function PP_model_Andrade(vars: SimVars; coeff: PPCoefficients): double;
 
-// Antoine vapor pressure equation
+{
+   Antoine vapor pressure equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Antoine(vars: SimVars; coeff: PPCoefficients): double;
 
-// Antoine equation for the viscosity
+{
+   Antoine equation for the viscosity
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Antoine_viscosity(vars: SimVars; coeff: PPCoefficients): double;
 
-// Barin equations for thermophysical property data
+{
+   Barin equations for thermophysical property data
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Barin(vars: SimVars; coeff: PPCoefficients): double;
 
 // Bromley-Pitzer activity coefficient model (Aspen[7], page 3-54)
 //function PP_model_Bromley_Pitzer(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// BWR-equation of state
+{
+   BWR-equation of state
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_BWR(vars: SimVars; coeff: PPCoefficients): double;
 
 // Benedict-Webb-Rubin-Lee-Starling equation of state (Aspen[7], page 3-8)
@@ -46,25 +76,60 @@ function PP_model_BWR(vars: SimVars; coeff: PPCoefficients): double;
 // coefficients of aqueous systems (Aspen [7], page 3-63)
 //function PP_model_coefficient_model(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// Cragoe vapor pressure equation
+{
+   Cragoe vapor pressure equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Cragoe(vars: SimVars; coeff: PPCoefficients): double;
 
-// DIPPR101 equation
+{
+   DIPPR101 equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_DIPPR101(vars: SimVars; coeff: PPCoefficients): double;
 
-// DIPPR equation for the gas viscosity at 0 atm pressure and the gas thermal conductivity
+{
+   DIPPR equation for the gas viscosity at 0 atm pressure and the gas thermal conductivity
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_DIPPR102(vars: SimVars; coeff: PPCoefficients): double;
 
-// DIPPR104 equation
+{
+   DIPPR104 equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_DIPPR104(vars: SimVars; coeff: PPCoefficients): double;
 
-// DIPPR105 equation
+{
+   DIPPR105 equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_DIPPR105(vars: SimVars; coeff: PPCoefficients): double;
 
-// DIPPR106 equation
+{
+   DIPPR106 equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_DIPPR106(vars: SimVars; coeff: PPCoefficients): double;
 
-// DIPPR equation for the ideal heat capacity
+{
+   DIPPR equation for the ideal heat capacity
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_DIPPR107(vars: SimVars; coeff: PPCoefficients): double;
 
 // NRTL activity coefficient model for electrolytes(Aspen[7], page 358)
@@ -103,10 +168,20 @@ function PP_model_DIPPR107(vars: SimVars; coeff: PPCoefficients): double;
 // Hayden-O''Connel equation of state (Aspen[7], page 3-9)
 //function PP_model_Hayden_O_Connel(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// Aspen[7]-equation for the solid heat capacity (page 3-102)
+{
+   Aspen[7]-equation for the solid heat capacity (page 3-102)
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_heat_capacity_ASPEN(vars: SimVars; coeff: PPCoefficients): double;
 
-// Jones-Dole equation
+{
+   Jones-Dole equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Jones_Dole(vars: SimVars; coeff: PPCoefficients): double;
 
 // Lee-Kesler equation of state (Aspen[7], page 3-18)
@@ -115,16 +190,31 @@ function PP_model_Jones_Dole(vars: SimVars; coeff: PPCoefficients): double;
 // Lee-Kesler-Plocker equation of state (Aspen[7], page 3-19)
 //function PP_model_Lee_Kesler_Plocker(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// DIPPR equation for the liquid viscosity
+{
+   DIPPR equation for the liquid viscosity
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_liquid_viscosity_DIPPR(vars: SimVars; coeff: PPCoefficients): double;
 
 // Margules equation for calculating liquid activity coefficients (DDB[8], page XVI)
 //function PP_model_Margules(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// modified Antoine vapor pressure equation (Aspen[7], page 3-80)
+{
+   modified Antoine vapor pressure equation (Aspen[7], page 3-80)
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_mod_Antoine_Aspen(vars: SimVars; coeff: PPCoefficients): double;
 
-// modified Antoine vapor pressure equation (Hysys[9], page A-36)
+{
+   modified Antoine vapor pressure equation (Hysys[9], page A-36)
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_mod_Antoine_Hysys(vars: SimVars; coeff: PPCoefficients): double;
 
 // modified polynomial
@@ -133,16 +223,31 @@ function PP_model_mod_Antoine_Hysys(vars: SimVars; coeff: PPCoefficients): doubl
 // NRTL activity coefficient model (DDB[8], page XVI)
 //function PP_model_NRTL(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// standard Peng-Robinson equation of state (Aspen[7], page 3-34)
+{
+   standard Peng-Robinson equation of state (Aspen[7], page 3-34)
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Peng_Robinson(vars: SimVars; coeff: PPCoefficients): double;
 
-// Peng-Robinson-Boston-Mathias equation of state (Aspen[7], page 325)
+{
+   Peng-Robinson-Boston-Mathias equation of state (Aspen[7], page 325)
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Peng_Robinson_Boston_Mathias(vars: SimVars; coeff: PPCoefficients): double;
 
 // Pitzer model for activity
 //function PP_model_Pitzer_activity(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// polynomial
+{
+   Standard polynomial function
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_polynomial(vars: SimVars; coeff: PPCoefficients): double;
 
 // Redlich-Kister equation for excess properties in binary systems
@@ -151,22 +256,52 @@ function PP_model_polynomial(vars: SimVars; coeff: PPCoefficients): double;
 // Redlich-Kister model for calculating activity coefficients (Aspen[7], page 3-66)
 //function PP_model_Redlich_Kister_Aspen(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// Redlich-Kwong equation of state (Aspen[7], page 3-27)
+{
+   Redlich-Kwong equation of state (Aspen[7], page 3-27)
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Redlich_Kwong(vars: SimVars; coeff: PPCoefficients): double;
 
-// Aspen modification of the Redlich-Kwong equation of state( Aspen[7], page 3-28)
+{
+   Aspen modification of the Redlich-Kwong equation of state( Aspen[7], page 3-28)
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Redlich_Kwong_Aspen(vars: SimVars; coeff: PPCoefficients): double;
 
-// standard Redlich-Kwong-Soave equation of state (Aspen[7], page 335)
+{
+   standard Redlich-Kwong-Soave equation of state (Aspen[7], page 335)
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Redlich_Kwong_Soave(vars: SimVars; coeff: PPCoefficients): double;
 
-// Redlich-Kwong equation of state with Boston-Mathias alpha function (Aspen[7], page 3-29)
+{
+   Redlich-Kwong equation of state with Boston-Mathias alpha function (Aspen[7], page 3-29)
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Redlich_Kwong_Soave_Boston_Mathias(vars: SimVars; coeff: PPCoefficients): double;
 
-// Riedel vapor pressure equation
+{
+   Riedel vapor pressure equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Riedel(vars: SimVars; coeff: PPCoefficients): double;
 
-// Riedel equation for thermal conductivities
+{
+   Riedel equation for thermal conductivities
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Riedel_therm_cond(vars: SimVars; coeff: PPCoefficients): double;
 
 // Scatchard-Hildebrand model (Aspen[7], page 3-67)
@@ -175,13 +310,28 @@ function PP_model_Riedel_therm_cond(vars: SimVars; coeff: PPCoefficients): doubl
 // Schwartzentruber-Renon equation of state (Aspen[7], page 3-31)
 //function PP_model_Schwartzentruber_Renon(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// Surface Tension after Sprow and Prausnitz
+{
+   Surface Tension after Sprow and Prausnitz
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Sprow_Prausnitz(vars: SimVars; coeff: PPCoefficients): double;
 
-// DIPPR correlation for surface tension
+{
+   DIPPR correlation for surface tension
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_suface_tension_DIPPR(vars: SimVars; coeff: PPCoefficients): double;
 
-// NEL equation for thermal conductivity
+{
+   NEL equation for thermal conductivity
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_thermal_conductivity_NEL(vars: SimVars; coeff: PPCoefficients): double;
 
 // extended Margules equation for calculating liquid activity coefficients (Aspen[7], page 3-68)
@@ -193,7 +343,12 @@ function PP_model_thermal_conductivity_NEL(vars: SimVars; coeff: PPCoefficients)
 // van Laar equation for calculating liquid activity coefficients (DDB[8], page XVI)
 //function PP_model_van_Laar(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// vapor pressure equation
+{
+   vapor pressure equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_vapor_pressure_1(vars: SimVars; coeff: PPCoefficients): double;
 
 // virial equation
@@ -202,28 +357,58 @@ function PP_model_vapor_pressure_1(vars: SimVars; coeff: PPCoefficients): double
 // ASPEN[7] mixing rule for the liquid viscosity (listed under the heading Andrade/DIPPR, page 3122)
 //function PP_model_viscosity_mixing_rule(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// Wagner vapor pressure equation
+{
+   Wagner vapor pressure equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Wagner(vars: SimVars; coeff: PPCoefficients): double;
 
-// 2nd Wagner vapor pressure equation
+{
+   2nd Wagner vapor pressure equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Wagner2(vars: SimVars; coeff: PPCoefficients): double;
 
-// Wagner vapor pressure equation (Aspen)
+{
+   Wagner vapor pressure equation (Aspen)
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Wagner3(vars: SimVars; coeff: PPCoefficients): double;
 
 // Wilson equation for calculating liquid activity coefficients (DDB[8], page XVI)
 //function PP_model_Wilson(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// Wrede vapor pressure equation
+{
+   Wrede vapor pressure equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Wrede(vars: SimVars; coeff: PPCoefficients): double;
 
-// Wrede vapor pressure equation
+{
+   Wrede vapor pressure equation
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Wrede_ln(vars: SimVars; coeff: PPCoefficients): double;
 
 // Yen-Woods equation for densities
 //function PP_model_Yen_Woods(vars  : SimVars; coeff : PPCoefficients) : double;
 
-// Yuan - Mok equation for the heat capacity
+{
+   Yuan - Mok equation for the heat capacity
+   @param vars: input variables
+   @param coeff: model coefficients
+   @return the model result
+}
 function PP_model_Yuan_Mok(vars: SimVars; coeff: PPCoefficients): double;
 
 const

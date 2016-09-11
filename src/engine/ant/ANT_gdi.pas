@@ -10,11 +10,37 @@ uses
   LinkedList,
   ANT_base, ANT_types;
 
+{
+   Creates a GDI window and its associated context.
+   @param Width: the width of the window
+   @param Height: the height of the window
+   @param title: the title of the window
+   @return a reference to the created window
+}
 function gdi_CreateWindow(Width, Height: integer; title: PChar): pWindow;
+{
+   Destroys a GDI window and its associated context.
+   @param win: the reference to the window being destroyed
+}
 procedure gdi_DestroyWindow(var win: pWindow);
+{
+   Swaps the front and back buffers of the specified window.
+   @param win: the reference to the window
+}
 procedure gdi_SwapBuffers(win: pWindow);
+{
+   Retrieves the size of the framebuffer of the specified window.
+   @param win: the reference to the window
+   @param Width: the width of the window
+   @param Height: the height of the window
+}
 procedure gdi_GetFrameBufferSize(win: pWindow; out width, height: integer);
 
+{
+   This is the procedure will poll for any pending events and put them in 
+   the eventlist. Next the eventlist is checked and if needed the event 
+   callback function is called.
+}
 procedure gdi_PollEvents;
 
 implementation

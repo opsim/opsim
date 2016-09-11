@@ -28,16 +28,57 @@ const
   ANT_VRESIZE_CURSOR         = $00000006;
 
 
+{
+   Initializes the ANT library
+   @return True is successfull otherwise False
+}
 function ANT_Init: boolean;
+{
+   Terminates the ANT library
+}
 procedure ANT_Terminate;
 
+{
+   Creates a window and its associated context.
+   @param Width: the width of the window
+   @param Height: the height of the window
+   @param title: the title of the window
+   @return a reference to the created window
+}
 function ANT_CreateWindow(width, height: integer; title: PChar): pWindow;
+{
+   Destroys a window and its associated context.
+   @param win: the reference to the window being destroyed
+}
 procedure ANT_DestroyWindow(win: pWindow);
+{
+   Swaps the front and back buffers of the specified window.
+   @param win: the reference to the window
+}
 procedure ANT_SwapBuffers(win: pWindow);
+{
+   Retrieves the size of the framebuffer of the specified window.
+   @param win: the reference to the window
+   @param Width: the width of the window
+   @param Height: the height of the window
+}
 procedure ANT_GetFrameBufferSize(win: pWindow; out width, height: integer);
 
+{
+   Sets the error callback procedure
+   @param pointer to error callback:
+}
 procedure ANT_SetErrorCallback(errorCallback: ANT_ErrorCallback);
+{
+   Sets the event callback procedure
+   @param pointer to event callback:
+}
 procedure ANT_SetEventCallback(eventCallback: ANT_EventCallback);
+{
+   This is the procedure will poll for any pending events and put them in 
+   the eventlist. Next the eventlist is checked and if needed the event 
+   callback function is called.
+}
 procedure ANT_PollEvents;
 
 implementation
