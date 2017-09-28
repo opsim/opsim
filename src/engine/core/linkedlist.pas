@@ -40,6 +40,7 @@ type
     first, last: pointer;   //<
   end;
 
+function newname(lb: pListBase; name: string): string;
 {
    This is the procedure addhead
    @param listbase:
@@ -116,6 +117,11 @@ implementation
 
 uses
   SysUtils;
+
+function newname(lb: pListBase; name: string): string;
+begin
+  exit(Format('%s.%.3d', [name, countlist(lb) + 1]));
+end;
 
 procedure addhead(listbase: pListBase; vlink: pointer);
 var
