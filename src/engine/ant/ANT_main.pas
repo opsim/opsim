@@ -27,7 +27,6 @@ const
   ANT_HRESIZE_CURSOR         = $00000005;
   ANT_VRESIZE_CURSOR         = $00000006;
 
-
 {
    Initializes the ANT library
    @return True is successfull otherwise False
@@ -38,6 +37,9 @@ function ANT_Init: boolean;
 }
 procedure ANT_Terminate;
 
+function ANT_WindowShouldClose(win: pANTwindow): boolean;
+
+procedure ANT_SetWindowShouldClose(win: pANTwindow; value: boolean);
 {
    Creates a window and its associated context.
    @param Width: the width of the window
@@ -45,24 +47,24 @@ procedure ANT_Terminate;
    @param title: the title of the window
    @return a reference to the created window
 }
-function ANT_CreateWindow(width, height: integer; title: PChar): pWindow;
+function ANT_CreateWindow(width, height: integer; title: PChar): pANTwindow;
 {
    Destroys a window and its associated context.
    @param win: the reference to the window being destroyed
 }
-procedure ANT_DestroyWindow(win: pWindow);
+procedure ANT_DestroyWindow(win: pANTwindow);
 {
    Swaps the front and back buffers of the specified window.
    @param win: the reference to the window
 }
-procedure ANT_SwapBuffers(win: pWindow);
+procedure ANT_SwapBuffers(win: pANTwindow);
 {
    Retrieves the size of the framebuffer of the specified window.
    @param win: the reference to the window
-   @param Width: the width of the window
-   @param Height: the height of the window
+   @param width: the width of the window
+   @param height: the height of the window
 }
-procedure ANT_GetFrameBufferSize(win: pWindow; out width, height: integer);
+procedure ANT_GetFrameBufferSize(win: pANTwindow; out width, height: integer);
 
 {
    Sets the error callback procedure
@@ -102,7 +104,7 @@ end;
 
 procedure ANT_Terminate;
 var
-  win: pWindow;
+  win: pANTwindow;
 begin
   //destroy any windows that are not destroyed yet
   win := windowlist.first;
@@ -115,7 +117,17 @@ begin
   end;
 end;
 
-function ANT_CreateWindow(width, height: integer; title: PChar): pWindow;
+function ANT_WindowShouldClose(win: pANTwindow): boolean;
+begin
+  exit(win^.shouldClose);
+end;
+
+procedure ANT_SetWindowShouldClose(win: pANTwindow; value: boolean);
+begin
+  win^.shouldClose := value;
+end;
+
+function ANT_CreateWindow(width, height: integer; title: PChar): pANTwindow;
 begin
 {$IFDEF MSWINDOWS}
   exit(gdi_CreateWindow(width, height, title));
@@ -125,7 +137,7 @@ begin
 {$ENDIF}
 end;
 
-procedure ANT_DestroyWindow(win: pWindow);
+procedure ANT_DestroyWindow(win: pANTwindow);
 begin
 {$IFDEF MSWINDOWS}
   gdi_DestroyWindow(win);
@@ -139,7 +151,7 @@ begin
   freeN(win);
 end;
 
-procedure ANT_SwapBuffers(win: pWindow);
+procedure ANT_SwapBuffers(win: pANTwindow);
 begin
 {$IFDEF MSWINDOWS}
   gdi_SwapBuffers(win);
@@ -149,7 +161,7 @@ begin
 {$ENDIF}
 end;
 
-procedure ANT_GetFrameBufferSize(win: pWindow; out width, height: integer);
+procedure ANT_GetFrameBufferSize(win: pANTwindow; out width, height: integer);
 begin
 {$IFDEF MSWINDOWS}
   gdi_GetFrameBufferSize(win, width, height);

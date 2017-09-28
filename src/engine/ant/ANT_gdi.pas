@@ -17,24 +17,24 @@ uses
    @param title: the title of the window
    @return a reference to the created window
 }
-function gdi_CreateWindow(Width, Height: integer; title: PChar): pWindow;
+function gdi_CreateWindow(Width, Height: integer; title: PChar): pANTwindow;
 {
    Destroys a GDI window and its associated context.
    @param win: the reference to the window being destroyed
 }
-procedure gdi_DestroyWindow(var win: pWindow);
+procedure gdi_DestroyWindow(var win: pANTwindow);
 {
    Swaps the front and back buffers of the specified window.
    @param win: the reference to the window
 }
-procedure gdi_SwapBuffers(win: pWindow);
+procedure gdi_SwapBuffers(win: pANTwindow);
 {
    Retrieves the size of the framebuffer of the specified window.
    @param win: the reference to the window
    @param Width: the width of the window
    @param Height: the height of the window
 }
-procedure gdi_GetFrameBufferSize(win: pWindow; out width, height: integer);
+procedure gdi_GetFrameBufferSize(win: pANTwindow; out width, height: integer);
 
 {
    This is the procedure will poll for any pending events and put them in 
@@ -49,11 +49,11 @@ uses
   SysUtils,
   ANT_main, ANT_messages;
 
-function gdi_WindowFromHWND(hWnd: Windows.HWND): pWindow; forward;
+function gdi_WindowFromHWND(hWnd: Windows.HWND): pANTwindow; forward;
 function gdi_GetKeyboardShiftState: TShiftState; forward;
 function WndProc(hWnd: Windows.HWND; message: UINT; wParam: WPARAM; lParam: LPARAM): LRESULT; stdcall; forward;
 
-function gdi_CreateWindow(Width, Height: integer; title: PChar): pWindow;
+function gdi_CreateWindow(Width, Height: integer; title: PChar): pANTwindow;
 const
   bits = 16;
 var
@@ -64,9 +64,9 @@ var
   pfd: pixelformatdescriptor;
   dmScreenSettings: Devmode;
   WindowRect: TRect;
-  win: pWindow = nil;
+  win: pANTwindow = nil;
 begin
-  win := callocN(sizeof(window));
+  win := callocN(sizeof(ANTWindow));
 
   WindowRect.Left := 0;
   WindowRect.Top := 0;
@@ -91,7 +91,7 @@ begin
 
   if RegisterClass(wc) = 0 then
     begin
-      antError(ANT_PLATFORM_ERROR, 'failed to register the window class', []);
+      antError(ANT_PLATFORM_ERROR, 'ANT error: failed to register the window class', []);
       exit(nil);
     end;
 
@@ -109,7 +109,7 @@ begin
 
       if (ChangeDisplaySettings(dmScreenSettings, CDS_FULLSCREEN)) <> DISP_CHANGE_SUCCESSFUL then
         begin
-          antError(ANT_PLATFORM_ERROR, 'fullscreen mode is not supported, switching to windowed mode instead', []);
+          antError(ANT_PLATFORM_ERROR, 'ANT error: fullscreen mode is not supported, switching to windowed mode instead', []);
           win^.fscreen := False;
         end;
     end;
@@ -142,7 +142,7 @@ begin
   if win^.h_Wnd = 0 then
     begin
       gdi_DestroyWindow(win);
-      antError(ANT_PLATFORM_ERROR, 'window creation error', []);
+      antError(ANT_PLATFORM_ERROR, 'ANT error: window creation error', []);
       exit(nil);
     end;
 
@@ -179,7 +179,7 @@ begin
   if win^.h_DC = 0 then
     begin
       gdi_DestroyWindow(win);
-      antError(ANT_PLATFORM_ERROR, 'can''t create a GL device context', []);
+      antError(ANT_PLATFORM_ERROR, 'ANT error: can''t create a GL device context', []);
       exit(nil);
     end;
 
@@ -187,14 +187,14 @@ begin
   if PixelFormat = 0 then
     begin
       gdi_DestroyWindow(win);
-      antError(ANT_PLATFORM_ERROR, 'can''t find a suitable PixelFormat', []);
+      antError(ANT_PLATFORM_ERROR, 'ANT error: can''t find a suitable PixelFormat', []);
       exit(nil);
     end;
 
   if not SetPixelFormat(win^.h_DC, PixelFormat, @pfd) then
     begin
       gdi_DestroyWindow(win);
-      antError(ANT_PLATFORM_ERROR, 'can''t set PixelFormat', []);
+      antError(ANT_PLATFORM_ERROR, 'ANT error: can''t set PixelFormat', []);
       exit(nil);
     end;
 
@@ -202,14 +202,14 @@ begin
   if win^.h_RC = 0 then
     begin
       gdi_DestroyWindow(win);
-      antError(ANT_PLATFORM_ERROR, 'can''t create a GL rendering context', []);
+      antError(ANT_PLATFORM_ERROR, 'ANT error: can''t create a GL rendering context', []);
       exit(nil);
     end;
 
   if not wglMakeCurrent(win^.h_DC, win^.h_RC) then
     begin
       gdi_DestroyWindow(win);
-      antError(ANT_PLATFORM_ERROR, 'can''t activate the GL rendering context', []);
+      antError(ANT_PLATFORM_ERROR, 'ANT error: can''t activate the GL rendering context', []);
       exit(nil);
     end;
 
@@ -221,7 +221,7 @@ begin
   exit(win);
 end;
 
-procedure gdi_DestroyWindow(var win: pWindow);
+procedure gdi_DestroyWindow(var win: pANTwindow);
 begin
   //destroy window and context
   if win^.fscreen then
@@ -233,39 +233,39 @@ begin
   if win^.h_RC <> 0 then
     begin
       if (not wglMakeCurrent(win^.h_DC,0)) then
-        antError(ANT_PLATFORM_ERROR, 'release of DC and RC failed', []);
+        antError(ANT_PLATFORM_ERROR, 'ANT error: release of DC and RC failed', []);
 
       if (not wglDeleteContext(win^.h_RC)) then
         begin
-          antError(ANT_PLATFORM_ERROR, 'release of Rendering Context failed', []);
+          antError(ANT_PLATFORM_ERROR, 'ANT error: release of Rendering Context failed', []);
           win^.h_RC := 0;
         end;
     end;
 
   if (win^.h_DC = 1) and (releaseDC(win^.h_Wnd, win^.h_DC) <> 0) then
     begin
-      antError(ANT_PLATFORM_ERROR, 'release of Device Context failed', []);
+      antError(ANT_PLATFORM_ERROR, 'ANT error: release of Device Context failed', []);
       win^.h_DC := 0;
     end;
 
   if (win^.h_Wnd <> 0) and (not destroywindow(win^.h_Wnd)) then
     begin
-      antError(ANT_PLATFORM_ERROR, 'could not release hWnd', []);
+      antError(ANT_PLATFORM_ERROR, 'ANT error: could not release hWnd', []);
       win^.h_Wnd := 0;
     end;
 
   if (not UnregisterClass('ANT', win^.h_Instance)) then
     begin
-      antError(ANT_PLATFORM_ERROR, 'could not unregister class', []);
+      antError(ANT_PLATFORM_ERROR, 'ANT error: could not unregister class', []);
     end;
 end;
 
-procedure gdi_SwapBuffers(win: pWindow);
+procedure gdi_SwapBuffers(win: pANTwindow);
 begin
   SwapBuffers(win^.h_DC);
 end;
 
-procedure gdi_GetFrameBufferSize(win: pWindow; out width, height: integer);
+procedure gdi_GetFrameBufferSize(win: pANTwindow; out width, height: integer);
 var
   area: RECT;
 begin
@@ -287,9 +287,9 @@ begin
     end;
 end;
 
-function gdi_WindowFromHWND(hWnd: Windows.HWND): pWindow;
+function gdi_WindowFromHWND(hWnd: Windows.HWND): pANTwindow;
 var
-  wi: pWindow;
+  wi: pANTwindow;
 begin
   wi := windowlist.first;
 
@@ -332,7 +332,7 @@ end;
 function WndProc(hWnd: Windows.HWND; message: UINT; wParam: WPARAM; lParam: LPARAM): LRESULT; stdcall;
 var
   x, y: integer;
-  win: pWindow;
+  win: pANTwindow;
   params: ANT_MessageParams;
 begin
   x := LOWORD(lParam);
@@ -388,15 +388,6 @@ begin
                     antPostMessage(win, ANT_MESSAGE_MOUSEMOVE, params);
                   end;
 
-    WM_CREATE:
-    ;
-
-    WM_CLOSE:
-              PostQuitMessage(0);
-
-    WM_DESTROY:
-    ;
-
     WM_KEYDOWN,
     WM_KEYUP:
               begin
@@ -411,20 +402,13 @@ begin
 
     WM_SIZE:
              begin
-               params.rect.Width  := smallint(lParam and $FFFF);
-               params.rect.Height := smallint((lParam and $FFFF0000) shr 16);
+               params.rect.top := 0;
+               params.rect.left := 0;
+               params.rect.width  := smallint(lParam and $FFFF);
+               params.rect.height := smallint((lParam and $FFFF0000) shr 16);
 
                antPostMessage(win, ANT_MESSAGE_RESIZE, params);
              end;
-
-    //WM_PAINT:
-    //begin
-    //  // Don't have Windows fighting us while resize!
-    //  gDisplay;
-    //end;
-
-    WM_ERASEBKGND:
-                   exit(1);
 
     else
       begin

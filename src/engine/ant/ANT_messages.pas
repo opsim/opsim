@@ -81,7 +81,7 @@ type
     next: pANT_MessageRec;       //< next item in the list
     prev: pANT_MessageRec;       //< previous item in the list
 
-    win: pWindow;                //< ANT window that has sent message
+    win: pANTwindow;             //< ANT window that has sent message
     mcode: integer;              //< message code
     params: ANT_MessageParams;   //< event data
   end;
@@ -92,7 +92,7 @@ type
    @param MsgCode: message code
    @param Params: event data
 }
-procedure antPostMessage(Window: pWindow; MsgCode: integer; Params: ANT_MessageParams);
+procedure antPostMessage(Window: pANTwindow; MsgCode: integer; Params: ANT_MessageParams);
 {
    Reads the last mesage from the queue
    @return The last message from the queue, otherwise nil.
@@ -112,7 +112,7 @@ implementation
 var 
   msglist: ListBase;
 
-procedure antPostMessage(Window: pWindow; MsgCode: integer; Params: ANT_MessageParams);
+procedure antPostMessage(Window: pANTwindow; MsgCode: integer; Params: ANT_MessageParams);
 var
   msg: pANT_MessageRec;
 begin

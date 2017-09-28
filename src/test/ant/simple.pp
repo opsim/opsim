@@ -9,8 +9,7 @@ GL,
 ANT_main, ANT_types, ANT_messages;
 
 var 
-  active: boolean = true;
-  window: pWindow;
+  window: pANTWindow;
   ratio: double;
   width: integer = 640;
   height: integer = 480;
@@ -45,8 +44,7 @@ begin
 end;
 
 procedure event_callback(msg: pointer);
-
-var 
+var
   event: pANT_MessageRec;
 begin
   event := msg;
@@ -54,8 +52,10 @@ begin
   case event^.mcode of 
     ANT_MESSAGE_KEYPRESS:
                           begin
-                            if event^.params.keyboard.keychar = 27 then
-                              active := false;
+                            writeln(event^.params.keyboard.keychar);
+
+                            if event^.params.keyboard.keychar = ANT_KEY_ESCAPE then
+                              ANT_SetWindowShouldClose(event^.win, True);
                           end;
     ANT_MESSAGE_MOUSEDOWN:
                            begin
@@ -83,7 +83,7 @@ begin
 
   writeln('OpenGL version: ', glGetString(GL_VERSION));
 
-  while active do
+  while not ANT_WindowShouldClose(window) do
     begin
       setWindowFPS;
 
