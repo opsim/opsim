@@ -16,19 +16,19 @@ LinkedList, ANT_types;
    @param title: the title of the window
    @return a reference to the created window
 }
-function X11_CreateWindow(width, height: integer; title: PChar): pWindow;
+function X11_CreateWindow(width, height: integer; title: PChar): pANTwindow;
 
 {
    Destroys an X11 window and its associated context.
    @param win: the reference to the window being destroyed
 }
-procedure X11_DestroyWindow(var win: pWindow);
+procedure X11_DestroyWindow(var win: pANTwindow);
 
 {
    Swaps the front and back buffers of the specified window.
    @param win: the reference to the window
 }
-procedure X11_SwapBuffers(win: pWindow);
+procedure X11_SwapBuffers(win: pANTwindow);
 
 {
    Retrieves the size of the framebuffer of the specified window.
@@ -36,7 +36,7 @@ procedure X11_SwapBuffers(win: pWindow);
    @param Width: the width of the window
    @param Height: the height of the window
 }
-procedure X11_GetFrameBufferSize(win: pWindow; out width, height: integer);
+procedure X11_GetFrameBufferSize(win: pANTwindow; out width, height: integer);
 
 {
    This is the procedure will poll for any pending events and put them in 
@@ -55,7 +55,7 @@ ANT_main, ANT_base, ANT_messages;
  * Create an RGB, double-buffered window.
  * Return the window and context handles.
  *)
-function X11_CreateWindow(width, height: integer; title: PChar): pWindow;
+function X11_CreateWindow(width, height: integer; title: PChar): pANTwindow;
 
 const 
   WINDOW_POS_X = 0;
@@ -65,7 +65,7 @@ var
   attribs: array [0..10] of integer = (GLX_RGBA, GLX_RED_SIZE,
                                        1, GLX_GREEN_SIZE, 1, GLX_BLUE_SIZE, 1, GLX_DOUBLEBUFFER,
                                        GLX_DEPTH_SIZE, 1, None);
-  win: pWindow = nil;
+  win: pANTwindow = nil;
   scrnum: integer;
   attr: TXSetWindowAttributes;
   mask: cardinal;
@@ -73,7 +73,7 @@ var
   visinfo: pXVisualInfo;
   sizehints: TXSizeHints;
 begin
-  win := callocN(sizeof(window));
+  win := callocN(sizeof(ANTwindow));
 
   win^.dpy := XOpenDisplay(nil);
   if win^.dpy = nil then
@@ -140,7 +140,7 @@ begin
   exit(win);
 end;
 
-procedure X11_DestroyWindow(var win: pWindow);
+procedure X11_DestroyWindow(var win: pANTwindow);
 begin
   //destroy window and context
   if win^.fscreen then
@@ -153,14 +153,14 @@ begin
   XCloseDisplay(win^.dpy);
 end;
 
-procedure X11_SwapBuffers(win: pWindow);
+procedure X11_SwapBuffers(win: pANTwindow);
 begin
   glXSwapBuffers(win^.dpy, win^.Xwin);
 end;
 
-procedure X11_GetFrameBufferSize(win: pWindow; out width, height: integer);
+procedure X11_GetFrameBufferSize(win: pANTwindow; out width, height: integer);
 var
-  attribs: XWindowAttributes;
+  attribs: TXWindowAttributes;
 begin
   XGetWindowAttributes(win^.dpy, win^.Xwin, @attribs);
 
@@ -172,7 +172,7 @@ procedure X11_PollEvents;
 var
   buffer: string[10];
   event: TXEvent;
-  win: pWindow;
+  win: pANTwindow;
   params: ANT_MessageParams;
   r: integer;
   done: integer = 0;
