@@ -82,10 +82,10 @@ var
     ob := FSE_object_new(lb);
 
     //add primitives and ports
-    FSE_primitive_line_new(ob, 10, 10, 200, 330);
-    FSE_primitive_line_new(ob, 10, 10, 110, 330);
-    FSE_port_new(ob, 'port', 10, 10, FSE_PORT_INPUT);
-    FSE_primitive_arc_new(ob, 10, 10, 20, 0, 360);
+    FSE_primitive_line_new(ob, 25, 0, 50, 25);
+    FSE_primitive_line_new(ob, 25, 50, 50, 25);
+    FSE_primitive_arc_new(ob, 0, 0, 25, 0, 360);
+    //FSE_port_new(ob, 'port', 0, 0, FSE_PORT_INPUT);
 
     //position of FSE object
     ob^.x := 100;
