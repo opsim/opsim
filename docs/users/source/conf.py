@@ -50,8 +50,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'OpSim users'
-copyright = '2016, OpSim team'
+project = 'OpSim Reference Manual'
+copyright = '2016-2017, OpSim team'
 author = 'OpSim team'
 
 # The version info for the project you're documenting, acts as replacement for
