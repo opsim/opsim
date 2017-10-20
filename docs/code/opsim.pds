@@ -52,19 +52,19 @@ Count=0
 
 [IncludeDirectories]
 Count=5
-Item_0=..\..\..\trunk\src\engine\chemform
-Item_1=..\..\..\trunk\src\engine\core
-Item_2=..\..\..\trunk\src\engine\physprops
-Item_3=..\..\..\trunk\src\engine\solver
-Item_4=..\..\..\trunk\src\engine\unit_conv
+Item_0=..\..\src\engine\chemform
+Item_1=..\..\src\engine\core
+Item_2=..\..\src\engine\physprops
+Item_3=..\..\src\engine\solver
+Item_4=..\..\src\engine\unit_conv
 
 [Files]
 Count=5
-Item_0=..\..\..\trunk\src\engine\chemform\chemformparser.pas
-Item_1=..\..\..\trunk\src\engine\chemform\CHF_tokenizer.pas
-Item_2=..\..\..\trunk\src\engine\core\*.pas
-Item_3=..\..\..\trunk\src\engine\physprops\*.pas
-Item_4=..\..\..\trunk\src\engine\unit_conv\*.pas
+Item_0=..\..\src\engine\chemform\chemformparser.pas
+Item_1=..\..\src\engine\chemform\CHF_tokenizer.pas
+Item_2=..\..\src\engine\core\*.pas
+Item_3=..\..\src\engine\physprops\*.pas
+Item_4=..\..\src\engine\unit_conv\*.pas
 
 [HyphenatedWords]
 Count=0
