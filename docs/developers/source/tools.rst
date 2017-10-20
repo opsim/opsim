@@ -1,3 +1,12 @@
+Tools
+=====
+
+autodoc
+-------
+This tool inserts pasdoc comments in the interface section of a source file.
+
+ppjson
+------
 This is a pretty printer and validator for json. It's based on the fcl-json package.
 
 This tool is used to make sure the physical properties component models are valid JSON 

@@ -1,1 +1,0 @@
-This directory is meant to build a local environment to run the application.

@@ -19,6 +19,7 @@ Contents:
    specifications
    pp_library
    release_cycle
+   tools
 
 Indices and tables
 ==================
