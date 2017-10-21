@@ -6,8 +6,10 @@
 
 OpSim is an open source Chemical Engineering Process Simulator with a user friendly drag-and-drop graphical user interface and an underlying high performance simulation engine. OpSim is cross-platform and runs equally well on Linux, Windows and Macintosh computers.
 
-## Building and installation
+## Binaries
+If you would like to start using OpSim immediately please check out our [release](https://github.com/daar/opsim/releases) page. There you will find a fully containing zipfile suited for your platform. Please report any issues or ideas that you have to improve OpSim.
 
+## Building and installation
 The following is a basic outline for compiling and installing OpSim...
 
   - To build you'll first need to setup a build environment. The procedure for this can vary depending on your OS so I'll only cover the high points...
