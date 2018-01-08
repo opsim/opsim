@@ -1,0 +1,7 @@
+Program CajScriptTest;
+var S: String;
+begin
+  S := 'ABCDEF';
+  S := Copy(S, 2, 3); { 'BCD' }
+  writeln(s);
+end.

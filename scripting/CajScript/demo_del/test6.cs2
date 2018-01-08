@@ -1,0 +1,8 @@
+Program CajScriptTest;
+var 
+  s1, s2 : string;
+Begin
+  s1:='da';
+  s2:='e';
+  if (s1>s2) then writeln('s1>s2') else writeln('s1<=s2');
+End.

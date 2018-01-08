@@ -1,0 +1,26 @@
+Version history:
+
+2.16 22 June 2000,    Removed the bug I was searching for from 2.08 of.
+2.15 19 June 2000,    Removed a couple of memory leaks.
+2.14 14-15 June 2000, Complete rebuild of the String list and pointer list objects. These are now used instead of TList and TStringlist in Delphi.
+2.13 6 June 2000,     Removed some real number divide bugs.
+2.12 6 June 2000,     Removed real number bug, when there was one number, a period and some other numbers the . was seen as an error.
+2.11 15 may 2000,     Removed several bugs. Added support for string comparing with < > <= >=.
+2.10 7 May 2000,      Addad array support.
+2.09 4 May 2000,      Removed several very important bugs.
+2.08 2 May 2000,      Added unit to convert Procedure headers to CajScript procedure headers. Removed several Boolean bugs.
+2.07 27 April 2000,   Removed some bugs. Now it really works in FPC. Added support for Case/Of.
+2.06 21 April 2000,   Added support for While.
+2.05 17 April 2000,   Added support for Freepascal and CBuilder, not tested.
+2.04 15 April 2000,   Added standard functions, added support for FOR statements.
+2.03 14 April 2000,   Remove a bug when adding one string to an other.
+2.02 13 April 2000,   Added : Internal Procedure/Functions, Variable parameters for internal and extenal functions, Internal Procedure calls from outside the script.
+2.01 11 April 2000,   Cajscript 2.0 is ready, a full rewrite of the engine.
+1.7 28 February 2000, Bizy day today (School Vacation), added support for 'FOR' tokens. Also And, Xor and Or are now supported. 
+1.6 28 February 2000, The examples are changed (reading/writing variables).
+1.5 14 February 2000, Optimized code for more runs after each other. I've changed the code in SetData; It now analises the code and parses procedure/function headers then Run has not to parse the full source, only the executable code. 
+1.4 7 February 2000,  bugfix for char support.
+1.3 28 January 2000,  added support for in-code procedures/functions.
+1.2 26 January 2000,  removed some bugs.
+1.1 22 January 2000,  removed some bugs.
+1.0 21 January 2000,  created first working version.

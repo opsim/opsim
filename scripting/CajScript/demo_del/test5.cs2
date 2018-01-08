@@ -1,0 +1,21 @@
+Program CajScriptTest;
+var
+  Items : Array of String;
+  I, No : Integer;
+  s : string;
+Begin
+  Writeln('Type in the number of players:');
+  Readln(s);
+  no:=StrToInt(S, -1);
+  if no<=0 then begin
+   Writeln('Illegal number of players!');
+  end else begin
+    SetArrayLength(Items, No);
+    For i:=0 to no-1 do Begin
+      Writeln('Type name for player '+inttostr(i+1));
+      Readln(items[I]);
+    end;
+    no:=Random(no);
+    Writeln(Items[no]+' ('+inttostr(no+1)+') wins this small game!');
+  end;
+End.

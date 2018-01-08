@@ -1,0 +1,377 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="Author" content="Carlo">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>CajScript 2.0</title>
+</head>
+
+<body bgcolor="#C0C0FF" text="#000000" link="#0000FF"
+vlink="#800080" alink="#FF0080">
+
+<h1>Cajscript 2.0</h1>
+
+<p>Made by <a href="http://www.weyert.nl/innerfuse">InnerFuse</a>.</p>
+
+<p><a name="tcs2pascalscript"></a><tt>TCs2PascalScript = </tt><b><tt>Object/Class</tt></b><br>
+<tt>Variables : </tt><a href="#pvariablemanager"><tt>PVariableManager</tt></a><tt>
+</tt><b><tt>read</tt></b><tt> Use to add variables.</tt><br>
+<tt>Procedures : </tt><a href="#pproceduremanager"><tt>PProcedureManager</tt></a><b><tt>
+read</tt></b><tt> Use to add external function/procedures.</tt><br>
+<tt>OnUses : </tt><a href="#tonuses"><tt>TOnUses</tt></a><tt> </tt><b><tt>Read/Write</tt></b><tt>
+Triggered when an Uses Clause is occured.</tt><font
+face="Times New Roman"><br>
+</font><tt>OnRunLine : </tt><a href="#tonrunline"><tt>TOnRunLine</tt></a><tt>
+</tt><b><tt>Read/Write</tt></b><tt> Triggered when an Uses Clause
+is occured.</tt><font face="Times New Roman"><br>
+</font><tt>ErrorCode : </tt><a href="#tcs2error"><tt>TCs2Error</tt></a><tt>
+</tt><b><tt>Read</tt></b><tt> Used to read the error occured.</tt><br>
+<tt>ErrorPos : LongInt </tt><b><tt>Read</tt></b><tt> Used to read
+the error position.</tt></p>
+
+<p><b><tt>Constructor </tt></b><tt>Create (Id : Pointer);</tt><br>
+<tt>Create an instance of the script engine, ID is passed to all
+events.</tt></p>
+
+<p><b><tt>Procedure </tt></b><tt>SetText (p : Pchar);</tt><br>
+<tt>Assign a text to the script engine. Afterwards you should
+check</tt><i><tt>errorcode</tt></i><tt>.</tt></p>
+
+<p><b><tt>Procedure </tt></b><tt>RunScript;</tt><br>
+<tt>Execute the script code, first assign some script with </tt><i><tt>SetText</tt></i><tt>.</tt></p>
+
+<p><b><tt>Function </tt></b><tt>RunScriptProc (</tt><b><tt>Const </tt></b><tt>Name
+: </tt><b><tt>String</tt></b><tt>;Parameters : </tt><a
+href="#pvariablemanager"><tt>PVariableManager</tt></a><tt>): </tt><a
+href="#pcajvariant"><tt>PCajVariant</tt></a><tt>;</tt><br>
+<tt>Run an function inside the script. Parameters must be
+assigned. If there are any parameter errors it will return :
+EParameterError. Error position points the the param no. If the
+function does not exist, it returns EUnknownIdentifier with
+position 0.</tt></p>
+
+<p><b><tt>Destructor </tt></b><tt>Destroy;</tt><br>
+<tt>Destroy the scriptengine.</tt></p>
+
+<hr>
+
+<p><br>
+<a name="pvariablemanager"></a><b>PVariableManager</b><br>
+<b>Type</b><br>
+&nbsp; PVariableManager = Pointer;<br>
+Variable manager is used for storing an array of variables. You
+can use these functions for accessing it:</p>
+
+<p><b>Function </b>VM_Create (InheritFrom : PVariableManager) :
+PVariableManager;<br>
+Create an instance of PVariableManager<br>
+<b>Procedure</b> VM_Destroy (p : PVariableManager);<br>
+Destroy an instance of PVariableManager<br>
+<b>Function </b>VM_Add ( P : PVariableManager; D : <a
+href="#pcajvariant">PCajVariant</a>;<b>Const </b>Name : <b>String</b>)
+: <a href="#pcajvariant">PCajVariant</a>;<br>
+Add a PCajVariant to it.<br>
+<b>Procedure </b>VM_Delete (p : PVariableManager; Idx : LongInt);<br>
+Delete a PCajVariant from it. Also destroy all the Variants.<br>
+<b>Function </b>VM_Get (p : PVariableManager; Idx : LongInt) : <a
+href="#pcajvariant">PCajVariant</a>;<br>
+Return a PCajVariant from the variable list.<br>
+<b>Procedure</b> VM_SetName (p : PVariableManager; Idx : LongInt;
+S: <b>String</b>);<br>
+Set the name of an item.<br>
+<b>Function </b>VM_Count (p : PVariableManager) : LongInt;<br>
+Return the number of variant.<br>
+<b>Function </b>VM_Find (p : PVariableManager; <b>Const </b>Name
+:<b>String</b>) : LongInt;<br>
+Find a variant.<br>
+<b>Procedure </b>VM_Clear (p : PVariableManager);<br>
+Remove all items from the list.</p>
+
+<hr>
+
+<p><br>
+<a name="pproceduremanager"></a><b>PProcedureManager</b><br>
+<b>Type </b>PProcedureManager = Pointer.<br>
+Procedure manager is used for adding external procedures to the
+script.</p>
+
+<p><b>Function </b>PM_Create : PProcedureManager;<br>
+Create an instance of PProcedureManager.<br>
+<b>Procedure </b>PM_Destroy (p : PProcedureManager);<br>
+Destroy an instance of PProcedureManager.<br>
+<b>Procedure </b>PM_Clear (p : PProcedureManager);<br>
+Remove all items.<br>
+<b>Procedure </b>PM_Add (p : PProcedureManager; Const Spec : <b>String</b>;Addr
+: Pointer);<br>
+Spec should be the procedure header in this format:<br>
+<tt>ReturnType+' '+ProcedureName+' '+Parameter1Name+'
+'+Parameter1Type+' '+Parameter2Name....</tt><br>
+The types are number (see PCajVariant0.<br>
+When there is an ! before the parameter name, it is an <b>Var</b>
+variant.This can be changed.</p>
+
+<p>Addr should point to an <a href="#tregisteredproc">TRegisteredProc.</a><br>
+<b>Procedure</b> PM_Delete (p : PProcedureManager; I : LongInt);<br>
+Delete procedure number I.<br>
+<b>Function</b> PM_Find (p : PProcedureManager; Const Name : <b>String</b>):
+Integer;<br>
+Search for procedure.<br>
+<b>Function</b> PM_Get (p : PProcedureManager; i : LongInt) :
+Pointer;<br>
+Return the address of the procedure.<br>
+<b>Function</b> PM_GetSpec (p : PProcedureManager; i : LongInt) :
+<b>String</b>;<br>
+Return the procedure definition of I.<br>
+</p>
+
+<hr>
+
+<p><br>
+<a name="tcs2error"></a><b>Type </b>TCs2Error = Word;<br>
+&nbsp; TCs2Error is used for error handling.</p>
+
+<p>Eror codes:<br>
+&nbsp; ENoError - No error has occured<br>
+&nbsp; ECanNotReadProperty - Can not read property, not used yet<br>
+&nbsp; ECanNotWriteProperty - Can not write property, not used
+yet<br>
+&nbsp; EUnknownIdentifier - The identifier is unknown<br>
+&nbsp; EIdentifierExpected - An identifier is expected<br>
+&nbsp; ESemicolonExpected - A semicolon is required<br>
+&nbsp; EBeginExpected - <em>Begin </em>is expected<br>
+&nbsp; EDuplicateIdentifier - Duplicate identifier<br>
+&nbsp; EUnexpectedEndOfFile - Unexpected end of file is occured<br>
+&nbsp; EColonExpected - An colon is expected<br>
+&nbsp; ESyntaxError - There was an error in the syntax<br>
+&nbsp; EStringError - A string error, usually, a string that has
+notended before the enter.<br>
+&nbsp; EErrorInStatement - Error in the statement<br>
+&nbsp; EAssignmentExpected - Assignment is expected<br>
+&nbsp; ETypeMismatch - Type is not the same.<br>
+&nbsp; EErrorInExpression - Error in the expresssion.<br>
+&nbsp; ERoundOpenExpected - A round open is expected<br>
+&nbsp; ERoundCloseExpected - A round close is expected<br>
+&nbsp; EVariableExpected - A variable is expected<br>
+&nbsp; ECommaExpected - A comma is expected<br>
+&nbsp; EThenExpected&nbsp; - <i>Then</i> is expected<br>
+&nbsp; EPeriodExpected - A period is expected<br>
+&nbsp; EParameterError - Parameter error, occurs when calling
+RunScriptProc.The ErrorPos gives the parameter number.<br>
+&nbsp; EToExpected - <em>To </em>expected<br>
+&nbsp; EDoExpected - <em>Do</em> expected<br>
+&nbsp; ERangeError - out of range<br>
+&nbsp; EOfExpected - <em>Of</em> expected<br>
+&nbsp; EndExpxcted - <em>End</em> expected<br>
+&nbsp; EOutOfRange - Out of range<br>
+&nbsp; EOpenBlockExpected - Open block expected<br>
+&nbsp; ECloseBlockExpected - Close block expected<br>
+</p>
+
+<hr>
+
+<p><a name="tonuses"></a><tt>TOnUses =</tt><b><tt>Function </tt></b><tt>(</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Id
+: Pointer;</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sender
+: PCs2PascalScript;</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name
+: </tt><b><tt>String</tt></b><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+: TCs2Error;</tt><br>
+<tt>This function is triggered when script is loaded (When
+assigning a script it is </tt><em><tt>SYSTEM</tt></em><i><tt>) </tt></i><tt>and
+when someone add uses XXX; One uses can not occur twice.</tt></p>
+
+<p><i><tt>Id</tt></i><tt> The id passed to the </tt><b><tt>TCs2PascalScript.Create</tt></b><tt>.
+Can be used when using more scripts at once.</tt><br>
+<i><tt>Sender</tt></i><tt> The </tt><b><tt>TCs2PascalScript</tt></b><tt>.</tt><br>
+<i><tt>Name</tt></i><tt> The name of the uses.</tt><br>
+<tt>This function should return ENoError when no error has
+occured.</tt></p>
+
+<hr>
+
+<p><a name="tregisteredproc"></a><tt>TRegisteredProc = </tt><b><tt>Function
+</tt></b><tt>(</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID
+: Pointer;</tt><br>
+<b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Const
+</tt></b><tt>ProcName : </tt><b><tt>String</tt></b><tt>;</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Params
+:&nbsp; VariableManager;</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res
+: PCajVariant</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+: TCS2Error;</tt><br>
+<tt>This function is triggered when some external function is
+called.</tt></p>
+
+<p><i><tt>Id</tt></i><tt> The id passed to the </tt><b><tt>TCs2PascalScript.Create</tt></b><tt>.
+Can be used when using more scripts at once.</tt><br>
+<i><tt>ProcName</tt></i><tt> The name of the uses.</tt><br>
+<i><tt>Params</tt></i><tt> an array of parameters, use VM_Get to
+receive.</tt><br>
+<i><tt>Res</tt></i><tt> when your function returns something, put
+it in here.</tt><br>
+<tt>This function should return ENoError.</tt></p>
+
+<hr>
+
+<pre>TOnRunLine = <strong>Function </strong>(
+                       Id : Pointer;
+                       Sender : PCs2PascalScript; 
+                       Position : Longint
+                      ) : TCs2Error;
+This function is triggered when the script engine has passed a command.</pre>
+
+<p><i><tt>Id</tt></i><tt> The id passed to the </tt><b><tt>TCs2PascalScript.Create</tt></b><tt>.
+Can be used when using more scripts at once.</tt><font
+face="Times New Roman"><br>
+</font><i><tt>Sender</tt></i><tt> The </tt><b><tt>TCs2PascalScript</tt></b><tt>.</tt><br>
+<em>Position</em> The current position in the script, usefull for
+script debugging.</p>
+
+<hr>
+
+<p><br>
+<a name="pcajvariant"></a><b>TCajVariant</b><br>
+CajVariant is used for storing variables.<br>
+<b><tt>Type<br>
+</tt></b><tt>&nbsp; PCajVariant = ^TCajVariant;<br>
+&nbsp; TCajVariant = </tt><b><tt>Packed Record<br>
+</tt></b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VType
+: Word;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flags
+: Byte; {Readonly(Const) = 1}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><b><tt>Case
+</tt></b><tt>Word </tt><b><tt>of<br>
+</tt></b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_UByte&nbsp;&nbsp;&nbsp;
+: (CV_UByte&nbsp;&nbsp;&nbsp; : Byte);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_SByte&nbsp;&nbsp;&nbsp;
+: (CV_SByte&nbsp;&nbsp;&nbsp; : ShortInt);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_Char&nbsp;&nbsp;&nbsp;&nbsp;
+: (CV_Char&nbsp;&nbsp;&nbsp;&nbsp; : Char);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_UInt16&nbsp;&nbsp;
+: (CV_UInt16&nbsp;&nbsp; : Word);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_SInt16&nbsp;&nbsp;
+: (CV_SInt16&nbsp;&nbsp; : </tt><i><tt>{$IFDEF DELPHI}</tt></i><tt>SmallInt</tt><i><tt>{$ELSE}</tt></i><tt>
+Integer</tt><i><tt>{$ENDIF}</tt></i><tt> );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_UInt32&nbsp;&nbsp;
+: (CV_UInt32&nbsp;&nbsp; : </tt><i><tt>{$IFDEF DELPHI} </tt></i><tt>Cardinal</tt><i><tt>{$ELSE}</tt></i><tt>LongInt</tt><i><tt>{$ENDIF}</tt></i><tt>
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_SInt32&nbsp;&nbsp;
+: (CV_SInt32&nbsp;&nbsp; : LongInt);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_String&nbsp;&nbsp;
+: (CV_Str&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </tt><b><tt>String</tt></b><tt>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_Real&nbsp;&nbsp;&nbsp;&nbsp;
+: (CV_Real&nbsp;&nbsp;&nbsp;&nbsp; : Real);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_Single&nbsp;&nbsp;
+: (CV_Single&nbsp;&nbsp; : Single);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_Double&nbsp;&nbsp;
+: (CV_Double&nbsp;&nbsp; : Double);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_Extended
+: (CV_Extended : Extended);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_Comp&nbsp;&nbsp;&nbsp;&nbsp;
+: (CV_Comp&nbsp;&nbsp;&nbsp;&nbsp; : Comp);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_Bool&nbsp;&nbsp;&nbsp;&nbsp;
+: (CV_Bool&nbsp;&nbsp;&nbsp;&nbsp; : Boolean);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV_Var&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+: (cv_Var&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Pointer);</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><b><tt>End;</tt></b><br>
+Variable type (TCajVariant.VType):</p>
+
+<table border="1">
+    <tr>
+        <td>CSV_None</td>
+        <td>0</td>
+        <td>No result, used with procedures</td>
+    </tr>
+    <tr>
+        <td>CSV_UByte</td>
+        <td>1</td>
+        <td><b>CajScript/Pascal/Delphi</b>: Byte</td>
+    </tr>
+    <tr>
+        <td>CSV_SByte</td>
+        <td>2</td>
+        <td><b>CajScript/Pascal/Delphi</b>: ShortInt</td>
+    </tr>
+    <tr>
+        <td>CSV_UInt16</td>
+        <td>3</td>
+        <td><b>CajScript</b>:<b> </b>SmallInt <b>Pascal</b>:
+        Integer <b>Delphi</b>: SmallInt</td>
+    </tr>
+    <tr>
+        <td>CSV_SInt16</td>
+        <td>4</td>
+        <td><b>CajScript/Pascal/Delphi</b>: Word</td>
+    </tr>
+    <tr>
+        <td>CSV_UInt32</td>
+        <td>5</td>
+        <td><b>CajScript/Delphi</b>: Integer/Longint <b>Pascal</b>:
+        Longint</td>
+    </tr>
+    <tr>
+        <td>CSV_SInt32</td>
+        <td>6</td>
+        <td><b>CajScript/Delphi</b>: Cardinal <b>Pascal</b>:Longint</td>
+    </tr>
+    <tr>
+        <td>CSV_Char</td>
+        <td>7</td>
+        <td><b>Cajscript/Pascal/Delphi</b>: Char</td>
+    </tr>
+    <tr>
+        <td>CSV_String</td>
+        <td>8</td>
+        <td><b>CajScript/Pascal/Delphi</b>: String</td>
+    </tr>
+    <tr>
+        <td>CSV_Real</td>
+        <td>9</td>
+        <td><b>CajScript/Pascal/Delphi</b>: Real</td>
+    </tr>
+    <tr>
+        <td>CSV_Single:</td>
+        <td>10</td>
+        <td><b>CajScript/Pascal/Delphi</b>: Single</td>
+    </tr>
+    <tr>
+        <td>CSV_Double</td>
+        <td>11</td>
+        <td><b>CajScript/Pascal/Delphi</b>: Double</td>
+    </tr>
+    <tr>
+        <td>CSV_Extended</td>
+        <td>12</td>
+        <td><b>CajScript/Pascal/Delphi</b>: Extended</td>
+    </tr>
+    <tr>
+        <td>CSV_Comp</td>
+        <td>13</td>
+        <td><b>CajScript/Pascal/Delphi</b>: Comp</td>
+    </tr>
+    <tr>
+        <td>CSV_Bool</td>
+        <td>14</td>
+        <td><b>CajScript/Pascal/Delphi</b>: Boolean</td>
+    </tr>
+    <tr>
+        <td>CSV_Var</td>
+        <td>15</td>
+        <td>Variable, <b>CV_Var</b> points to an other <b>TCajVariant</b>.<br>
+        Use <i>GetVarLink</i> to resolve links.</td>
+    </tr>
+    <tr>
+        <td>CSV_Array</td>
+        <td>16</td>
+        <td>Array of CV_ArrVType points to the array type.<br>
+        Does only work with one demensional arrays.</td>
+    </tr>
+</table>
+</body>
+</html>

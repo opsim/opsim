@@ -1,0 +1,8 @@
+Program CajScriptTest;
+var
+  text :string;
+Begin
+  Writeln('Type in some text');
+  readln(text);
+  writeln('The length of this text is : '+IntTostr(length(text)));
+End.

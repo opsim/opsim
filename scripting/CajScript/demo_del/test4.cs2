@@ -1,0 +1,10 @@
+Program CajScriptTest;
+var S: String;
+begin
+ S := 'This is a test string';
+ while Pos(' ', S) > 0 do Begin
+   Insert('[SPACE]', s, pos(' ',s));
+   Delete(s, pos(' ', s), 1);
+  End;
+  writeln(s);
+end.

@@ -1,0 +1,9 @@
+Program CajScriptTest;
+var
+   Name :string;
+Begin
+  Writeln('Hello !');
+  Writeln('What''s your name ? ');
+  Readln(Name);
+  Writeln('So your name is : '+Name+'.');
+End.
