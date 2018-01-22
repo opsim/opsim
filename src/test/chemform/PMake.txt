@@ -1,2 +1,2 @@
+add_executable('opsim_chemform_test', 'chemform_parse_test', 'chemform_parse_test.pp', ['opsim_core', 'opsim_chemform']);
 add_executable('opsim_chemform_test', 'chemform', 'chemform.pp', ['opsim_core', 'opsim_chemform']);
-//add_executable('opsim_chemform_test', 'chemform_parse_test', 'chemform_parse_test.pp', ['opsim_core', 'opsim_chemform']);

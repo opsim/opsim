@@ -1,5 +1,7 @@
 program ChemForm_parse_test;
 
+{$mode objfpc}
+
 uses
   Classes,
   LinkedList,

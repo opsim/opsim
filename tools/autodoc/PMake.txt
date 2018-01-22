@@ -1,1 +1,1 @@
-add_executable('autodoc', 'autodoc', 'autodoc.pp', []);
+add_executable('opsim_autodoc', 'autodoc', 'autodoc.pp', []);

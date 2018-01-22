@@ -1,1 +1,10 @@
-add_library('opsim_ant', ['ANT_base.pas'{$IFDEF MSWINDOWS}, 'ANT_gdi.pas'{$ENDIF}, 'ANT_main.pas', 'ANT_messages.pas', 'ANT_types.pas'{$IFDEF LINUX}, 'ANT_X11.pas'{$ENDIF}], ['opsim_core']);
+add_library('opsim_ant', 
+[
+  'ANT_base.pas',
+  'ANT_main.pas',
+  'ANT_messages.pas',
+  'ANT_types.pas',
+{$IFDEF MSWINDOWS} 'ANT_gdi.pas' {$ENDIF}
+{$IFDEF LINUX} 'ANT_X11.pas'{$ENDIF}
+{$IFDEF DARWIN} 'ANT_Cocoa.pas'{$ENDIF}
+], ['opsim_core']);

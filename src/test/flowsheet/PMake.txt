@@ -1,0 +1,1 @@
+add_executable('opsim_fse_test', 'fse_test', 'FSE_test.pp', ['opsim_core', 'opsim_ant', 'opsim_FSE']);

@@ -1,1 +1,1 @@
-add_executable('ppjson', 'ppjson', 'ppjson.pp', []);
+add_executable('opsim_ppjson', 'ppjson', 'ppjson.pp', []);

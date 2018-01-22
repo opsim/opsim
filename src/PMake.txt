@@ -1,0 +1,5 @@
+include_directories('opsim_src', ['$(PMAKE_BINARY_DIR)']);
+
+execute_process('$(PMAKE_SOURCE_DIR)', 'git', ['log', '--pretty=format:"''%h''"', '-n', '1'], '$(GIT_HASH)');
+execute_file('$(PMAKE_BINARY_DIR)hash.inc', '$(GIT_HASH)', WRITEFILE);
+

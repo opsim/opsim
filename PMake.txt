@@ -1,2 +1,2 @@
-compiler_minimum_required(3,0,0);
+compiler_minimum_required(3,0,4);
 project('OpSim');
