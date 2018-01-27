@@ -42,9 +42,9 @@ blender, blenglob,
 blendef,
 screen,
 cfuncs;
-//{$include "sector.h"}
-//{$include "render.h"}
-//{$include "ika.h"}
+////{$include "sector.h"}
+////{$include "render.h"}
+////{$include "ika.h"}
 
 //const
 //MAX_IDPUP = 24;
@@ -264,16 +264,16 @@ end;
 //  id:= rt; 
 //  lb:= wich_libbase(G.main,GS(id.name)); 
 //  idn:= alloc_libblock(lb,GS(id.name),id.name+2); 
-//  memh:= {!!!a type cast? =>} {pMemHead(}idn; 
+//  memh:=  {pMemHead(}idn;
 //  dec(memh); 
 //  if memh.len-sizeof(ID)>0
 //  then
 //  begin 
-//    cp:= {!!!a type cast? =>} {pchar(}id; 
-//    cpn:= {!!!a type cast? =>} {pchar(}idn; 
+//    cp:=  {pchar(}id;
+//    cpn:=  {pchar(}idn;
 //    memcpy(cpn+sizeof(ID),cp+sizeof(ID),memh.len-sizeof(ID)); 
 //  end;
-//  id.new:= idn; 
+//  id._new:= idn; 
 //  idn.flag:= idn.flag or (LIB_NEW); 
 //  begin
 //    result:= idn; 
@@ -295,43 +295,43 @@ end;
 //    (* GetShort uit util.h *)
 //    ID_SCE:
 //    begin
-//      free_scene({!!!a type cast? =>} {pScene(}id); 
+//      free_scene( {pScene(}id);
 //    end;
 //    ID_LI:
 //    begin
-//      free_library({!!!a type cast? =>} {pLibrary(}id); 
+//      free_library( {pLibrary(}id);
 //    end;
 //    ID_OB:
 //    begin
-//      free_object({!!!a type cast? =>} {pObject(}id); 
+//      free_object( {pObject(}id);
 //    end;
 //    ID_ME:
 //    begin
-//      free_mesh({!!!a type cast? =>} {pMesh(}id); 
+//      free_mesh( {pMesh(}id);
 //    end;
 //    ID_CU:
 //    begin
-//      free_curve({!!!a type cast? =>} {pCurve(}id); 
+//      free_curve( {pCurve(}id);
 //    end;
 //    ID_MB:
 //    begin
-//      free_mball({!!!a type cast? =>} {pMetaBall(}id); 
+//      free_mball( {pMetaBall(}id);
 //    end;
 //    ID_MA:
 //    begin
-//      free_material({!!!a type cast? =>} {pMaterial(}id); 
+//      free_material( {pMaterial(}id);
 //    end;
 //    ID_TE:
 //    begin
-//      free_texture({!!!a type cast? =>} {pTex(}id); 
+//      free_texture( {pTex(}id);
 //    end;
 //    ID_IM:
 //    begin
-//      free_image({!!!a type cast? =>} {pImage(}id); 
+//      free_image( {pImage(}id);
 //    end;
 //    ID_IK:
 //    begin
-//      free_ika({!!!a type cast? =>} {pIka(}id); 
+//      free_ika( {pIka(}id);
 //    end;
 //    ID_WV:
 //    (* free_wave(id); *)
@@ -339,19 +339,19 @@ end;
 //    end;
 //    ID_LT:
 //    begin
-//      free_lattice({!!!a type cast? =>} {pLattice(}id); 
+//      free_lattice( {pLattice(}id);
 //    end;
 //    ID_SE:
 //    begin
-//      free_sector({!!!a type cast? =>} {pSector(}id); 
+//      free_sector( {pSector(}id);
 //    end;
 //    ID_LF:
 //    begin
-//      free_life({!!!a type cast? =>} {pLife(}id); 
+//      free_life( {pLife(}id);
 //    end;
 //    ID_LA:
 //    begin
-//      free_lamp({!!!a type cast? =>} {pLamp(}id); 
+//      free_lamp( {pLamp(}id);
 //    end;
 //    ID_CA:
 //    begin
@@ -359,27 +359,27 @@ end;
 //    end;
 //    ID_IP:
 //    begin
-//      free_ipo({!!!a type cast? =>} {pIpo(}id); 
+//      free_ipo( {pIpo(}id);
 //    end;
 //    ID_KE:
 //    begin
-//      free_key({!!!a type cast? =>} {pKey(}id); 
+//      free_key( {pKey(}id);
 //    end;
 //    ID_WO:
 //    begin
-//      free_world({!!!a type cast? =>} {pWorld(}id); 
+//      free_world( {pWorld(}id);
 //    end;
 //    ID_SCR:
 //    begin
-//      free_screen({!!!a type cast? =>} {pbScreen(}id); 
+//      free_screen( {pbScreen(}id);
 //    end;
 //    ID_VF:
 //    begin
-//      free_vfont({!!!a type cast? =>} {pVFont(}id); 
+//      free_vfont( {pVFont(}id);
 //    end;
 //    ID_TXT:
 //    begin
-//      free_text({!!!a type cast? =>} {pText(}id); 
+//      free_text( {pText(}id);
 //    end;
 //    
 //  end;{case?}
@@ -410,7 +410,7 @@ end;
 //  begin 
 //    if GS(id.name)=ID_OB
 //    then
-//    free_object_fromscene({!!!a type cast? =>} {pObject(}id); 
+//    free_object_fromscene( {pObject(}id);
 //    free_libblock(lb,id); 
 //  end;
 //end;
@@ -814,7 +814,7 @@ end;
 //  while id
 //  do
 //  begin 
-//    ipo:= {!!!a type cast? =>} {pIpo(}id; 
+//    ipo:=  {pIpo(}id;
 //    if blocktype=ipo.blocktype
 //    then
 //    begin 
@@ -843,7 +843,7 @@ end;
 //  while id
 //  do
 //  begin 
-//    ipo:= {!!!a type cast? =>} {pIpo(}id; 
+//    ipo:=  {pIpo(}id;
 //    if blocktype=ipo.blocktype
 //    then
 //    begin 
@@ -1117,7 +1117,7 @@ end;
 //    while id
 //    do
 //    begin 
-//      id.new:= 0; 
+//      id._new:= 0; 
 //      id.flag:= id.flag and ( not LIB_NEW); 
 //      id:= id.next; 
 //    end;
@@ -1148,7 +1148,7 @@ end;
 //    while id
 //    do
 //    begin 
-//      id.new:= 0; 
+//      id._new:= 0; 
 //      id.flag:= id.flag and ( not (LIB_EXTERN or LIB_INDIRECT or LIB_NEW)); 
 //      idn:= id.next; (* id wordt mogelijk opnieuw ingevoegd *)
 //      if id.lib<>nil 

@@ -180,7 +180,7 @@ screen, blender, util;
 //  (* blauw *)
 //  DefButCol(14,RGBDRAW,$607070,$998892,0,$FFFFFF,0); 
 //  (* zalm *)
-//  bbuf:= loadiffmem({!!!a type cast? =>} {pinteger(}datatoc_blenderbuttons,LI_rect); (* paars *)
+//  bbuf:= loadiffmem( {pinteger(}datatoc_blenderbuttons,LI_rect); (* paars *)
 //  (* IKONEN INLADEN *)
 //  if bbuf=0
 //  then
@@ -269,7 +269,7 @@ begin
 //  cp: pchar; 
 //  tstr: array [0..Pred(100)] of char; 
 //  dofork: smallint = 1; 
-//  {$ifdef WIN32}
+//  {$ifdef WINDOWS}
 //  {forceborderless: smallint; }{<= !!!5 external variable}(* To allow borderless on Windows *)
 //  {$endif}
 //  {$ifdef __FreeBSD__}
@@ -358,7 +358,7 @@ begin
 //          printf('    -mttRead from disk (Don't buffer)\n');
 //          printf('\nWindow options:\n');
 //          printf('  -wttForce opening with borders\n');
-//          {$ifdef WIN32}
+//          {$ifdef WINDOWS}
 //          printf('  -WttForce opening without borders\n');
 //          {$endif}
 //          printf('  -p <sx> <sy> <w> <h>tOpen with lower left corner at <sx>, <sy>\n');
@@ -397,7 +397,7 @@ begin
 //  (* __sgi *)
 //  bzero( and cur_sdna,sizeof(structSDNA)); 
 //  cur_sdna.data:= DNAstr+4; 
-//  cur_sdna.datalen:= *({!!!a type cast? =>} {pinteger(}DNAstr); 
+//  cur_sdna.datalen:= *( {pinteger(}DNAstr);
 //  init_structDNA( and cur_sdna); 
 //  init_render_data();   (* moet vooraan staan ivm R.winpos uit defaultfile *)
 //  if G.background=0
@@ -450,7 +450,7 @@ begin
 //          (* bypass frame rendering *)
 //          begin
 //            borderless:= 0; 
-//            {$ifdef WIN32}
+//            {$ifdef WINDOWS}
 //          end;
 //          'W':
 //          begin
@@ -462,7 +462,7 @@ begin
 //      end;
 //    end;
 //    (* fork voordat X opstart *)
-//    {$if !defined(__BeOS) && !defined(WIN32) && !defined(MESA31)}
+//    {$if !defined(BEOS) && !defined(WINDOWS) && !defined(MESA31)}
 //    if dofork<>nil
 //    then
 //    if fork()
@@ -643,7 +643,7 @@ begin
 //    set_scene(sce); 
 //  end;
 //  qenter(Q_FIRSTTIME,1); 
-//  {$ifdef WIN32}
+//  {$ifdef WINDOWS}
 //  if glutGetDepth()<=8
 //  then
 //  begin 

@@ -30,12 +30,12 @@ interface
 
 uses
 util;
-//{$include "blender.h"}
-//{$include "graphics.h"}
-//{$include "edit.h"}
-//{$include "ipo.h"}
-//{$include "ika.h"}
-//{$include "sequence.h"}
+////{$include "blender.h"}
+////{$include "graphics.h"}
+////{$include "edit.h"}
+////{$include "ipo.h"}
+////{$include "ika.h"}
+////{$include "sequence.h"}
 
 const
 IPOTHRESH = 0.9; 
@@ -816,7 +816,7 @@ space, ipo;
 //  if G.sipo.blocktype=ID_KE
 //  then
 //  begin 
-//    key:= {!!!a type cast? =>} {pKey(}G.sipo.from; 
+//    key:=  {pKey(}G.sipo.from; 
 //    if key)and(key.block.first
 //    then
 //    begin 
@@ -867,7 +867,7 @@ space, ipo;
 //    if G.sipo.blocktype=ID_OB
 //    then
 //    begin 
-//      ob:={!!!a type cast? =>} {pObject(}G.sipo.from; 
+//      ob:= {pObject(}G.sipo.from; 
 //      if ob)and(ob.type=OB_IKA
 //      then
 //      itterate_ika(ob); 
@@ -900,7 +900,7 @@ space, ipo;
 //    if G.sipo.blocktype=ID_KE
 //    then
 //    begin 
-//      do_spec_key({!!!a type cast? =>} {pKey(}G.sipo.from); 
+//      do_spec_key( {pKey(}G.sipo.from); 
 //      allqueue(REDRAWVIEW3D,0); 
 //    end;
 //    else
@@ -995,7 +995,7 @@ space, ipo;
 //      result:= 0; 
 //      exit;
 //    end;
-//    {*}from^:={!!!a type cast? =>} {pID(}ob; 
+//    {*}from^:= {pID(}ob; 
 //    begin
 //      result:= ob.ipo; 
 //      exit;
@@ -1011,7 +1011,7 @@ space, ipo;
 //      result:= 0; 
 //      exit;
 //    end;
-//    ma:= give_current_material(ob,ob.actcol); {*}from^:={!!!a type cast? =>} {pID(}ma; 
+//    ma:= give_current_material(ob,ob.actcol); {*}from^:= {pID(}ma; 
 //    if ma<>nil 
 //    then
 //    begin
@@ -1029,7 +1029,7 @@ space, ipo;
 //      result:= 0; 
 //      exit;
 //    end;
-//    key:= give_current_key(ob); {*}from^:={!!!a type cast? =>} {pID(}key; 
+//    key:= give_current_key(ob); {*}from^:= {pID(}key; 
 //    if key<>nil 
 //    then
 //    begin
@@ -1041,7 +1041,7 @@ space, ipo;
 //  if G.sipo.blocktype=ID_SEQ
 //  then
 //  begin 
-//    {*}from^:={!!!a type cast? =>} {pID(}last_seq; 
+//    {*}from^:= {pID(}last_seq; 
 //    if last_seq<>nil 
 //    then
 //    begin
@@ -1065,7 +1065,7 @@ space, ipo;
 //      result:= 0; 
 //      exit;
 //    end;
-//    cu:= ob.data; {*}from^:={!!!a type cast? =>} {pID(}cu; 
+//    cu:= ob.data; {*}from^:= {pID(}cu; 
 //    begin
 //      result:= cu.ipo; 
 //      exit;
@@ -1075,7 +1075,7 @@ space, ipo;
 //  if G.sipo.blocktype=ID_WO
 //  then
 //  begin 
-//    wo:= G.scene.world; {*}from^:={!!!a type cast? =>} {pID(}wo; 
+//    wo:= G.scene.world; {*}from^:= {pID(}wo; 
 //    if wo<>nil 
 //    then
 //    begin
@@ -1099,7 +1099,7 @@ space, ipo;
 //      result:= 0; 
 //      exit;
 //    end;
-//    la:= ob.data; {*}from^:={!!!a type cast? =>} {pID(}la; 
+//    la:= ob.data; {*}from^:= {pID(}la; 
 //    begin
 //      result:= la.ipo; 
 //      exit;
@@ -1121,7 +1121,7 @@ space, ipo;
 //      result:= 0; 
 //      exit;
 //    end;
-//    ca:= ob.data; {*}from^:={!!!a type cast? =>} {pID(}ca; 
+//    ca:= ob.data; {*}from^:= {pID(}ca; 
 //    if ca<>nil 
 //    then
 //    begin
@@ -1144,7 +1144,7 @@ space, ipo;
 //  
 //  
 //  
-//  dfac:= 1.0 div ({!!!a type cast? =>} {float(}tot+1.0); (* deze berekening zorgt voor twee verschillende cycles regenboogkleuren *)
+//  dfac:= 1.0 div ( {float(}tot+1.0); (* deze berekening zorgt voor twee verschillende cycles regenboogkleuren *)
 //  if cur<tot div 2
 //  then
 //  fac:= cur*2.0*dfac; 
@@ -1305,7 +1305,7 @@ space, ipo;
 //    inc(ei); 
 //  end;
 //  ei:= si.editipo; 
-//  key:= {!!!a type cast? =>} {pKey(}G.sipo.from; 
+//  key:=  {pKey(}G.sipo.from; 
 //  if key)and(key.type=KEY_RELATIVE
 //  then
 //  begin 
@@ -2476,7 +2476,7 @@ space, ipo;
 //              if id)and(GS(id.name)=ID_OB
 //              then
 //              begin 
-//                ob:={!!!a type cast? =>} {pObject(}id; 
+//                ob:= {pObject(}id; 
 //                if ob.sf<>0.0)and((ob.ipoflag and OB_OFFS_OB)
 //                then
 //                begin 
@@ -2675,7 +2675,7 @@ space, ipo;
 //  if GS(from.name)=ID_OB
 //  then
 //  begin 
-//    ob:= {!!!a type cast? =>} {pObject(}from; 
+//    ob:=  {pObject(}from; 
 //    if ob.id.lib<>nil 
 //    then
 //    begin
@@ -2691,7 +2691,7 @@ space, ipo;
 //  if GS(from.name)=ID_MA
 //  then
 //  begin 
-//    ma:= {!!!a type cast? =>} {pMaterial(}from; 
+//    ma:=  {pMaterial(}from; 
 //    if ma.id.lib<>nil 
 //    then
 //    begin
@@ -2707,7 +2707,7 @@ space, ipo;
 //  if GS(from.name)=ID_SEQ
 //  then
 //  begin 
-//    seq:= {!!!a type cast? =>} {pSequence(}from; 
+//    seq:=  {pSequence(}from; 
 //    if seq.type and SEQ_EFFECT
 //    then
 //    begin 
@@ -2726,7 +2726,7 @@ space, ipo;
 //  if GS(from.name)=ID_CU
 //  then
 //  begin 
-//    cu:= {!!!a type cast? =>} {pCurve(}from; 
+//    cu:=  {pCurve(}from; 
 //    if cu.id.lib<>nil 
 //    then
 //    begin
@@ -2742,7 +2742,7 @@ space, ipo;
 //  if GS(from.name)=ID_KE
 //  then
 //  begin 
-//    key:= {!!!a type cast? =>} {pKey(}from; 
+//    key:=  {pKey(}from; 
 //    if key.id.lib<>nil 
 //    then
 //    begin
@@ -2758,7 +2758,7 @@ space, ipo;
 //  if GS(from.name)=ID_WO
 //  then
 //  begin 
-//    wo:= {!!!a type cast? =>} {pWorld(}from; 
+//    wo:=  {pWorld(}from; 
 //    if wo.id.lib<>nil 
 //    then
 //    begin
@@ -2774,7 +2774,7 @@ space, ipo;
 //  if GS(from.name)=ID_LA
 //  then
 //  begin 
-//    la:= {!!!a type cast? =>} {pLamp(}from; 
+//    la:=  {pLamp(}from; 
 //    if la.id.lib<>nil 
 //    then
 //    begin
@@ -2790,7 +2790,7 @@ space, ipo;
 //  if GS(from.name)=ID_CA
 //  then
 //  begin 
-//    ca:= {!!!a type cast? =>} {pCamera(}from; 
+//    ca:=  {pCamera(}from; 
 //    if ca.id.lib<>nil 
 //    then
 //    begin
@@ -3011,7 +3011,7 @@ space, ipo;
 //    if val<0
 //    then
 //    val:= 0; 
-//    y:= {!!!a type cast? =>} {float(}(1 shl val); 
+//    y:=  {float(}(1 shl val); 
 //  end;
 //  insert_vert_ipo(ei.icu,x,y); 
 //  ei.flag:= ei.flag or (IPO_SELECT); 
@@ -3342,9 +3342,9 @@ space, ipo;
 //            end;
 //            inc(bezt); 
 //          end;
-//          VecMulf(new.vec[0],1.0 div ({!!!a type cast? =>} {float(}tot)); 
-//          VecMulf(new.vec[1],1.0 div ({!!!a type cast? =>} {float(}tot)); 
-//          VecMulf(new.vec[2],1.0 div ({!!!a type cast? =>} {float(}tot)); 
+//          VecMulf(new.vec[0],1.0 div ( {float(}tot)); 
+//          VecMulf(new.vec[1],1.0 div ( {float(}tot)); 
+//          VecMulf(new.vec[2],1.0 div ( {float(}tot)); 
 //          freeN(icu.bezt); 
 //          icu.bezt:= new; 
 //          sort_time_ipocurve(icu); 
@@ -3385,7 +3385,7 @@ space, ipo;
 //    if tot>1
 //    then
 //    begin 
-//      val:= val div ({!!!a type cast? =>} {float(}tot); 
+//      val:= val div ( {float(}tot); 
 //      ik:= G.sipo.ipokey.first; 
 //      while ik
 //      do
@@ -3530,12 +3530,12 @@ space, ipo;
 //                then
 //                begin 
 //                  
-//                  seq:= {!!!a type cast? =>} {pSequence(}G.sipo.from; 
+//                  seq:=  {pSequence(}G.sipo.from; 
 //                  if seq<>nil 
 //                  then
 //                  begin 
 //                    dx:= (CFRA-seq.startdisp); 
-//                    dx:= 100.0*dx div ({!!!a type cast? =>} {float(}(seq.enddisp-seq.startdisp)); 
+//                    dx:= 100.0*dx div ( {float(}(seq.enddisp-seq.startdisp)); 
 //                    dx:= dx - (bezt.vec[1][0]); 
 //                  end;
 //                end;
@@ -3736,14 +3736,14 @@ space, ipo;
 //    if G.sipo.blocktype=ID_KE)and(G.sipo.from
 //    then
 //    begin 
-//      key:= {!!!a type cast? =>} {pKey(}G.sipo.from; 
+//      key:=  {pKey(}G.sipo.from; 
 //      ei:= G.sipo.editipo; 
 //      if key.type=KEY_NORMAL)or((ei.flag and IPO_VISIBLE)
 //      then
 //      begin 
 //        getmouseco_areawin(mval); 
 //        areamouseco_to_ipoco(mval,@x,@y); 
-//        mindist:= 20.0*(G.v2d.cur.ymax-G.v2d.cur.ymin) div {!!!a type cast? =>} {float(}curarea.winy; 
+//        mindist:= 20.0*(G.v2d.cur.ymax-G.v2d.cur.ymin) div  {float(}curarea.winy; 
 //        kb:= key.block.first; (* hoeveel is 20 pixels? *)
 //        while kb
 //        do
@@ -3775,7 +3775,7 @@ space, ipo;
 //            (* doet ook alle keypos *)
 //            deselectall_editipo(); 
 //            actkb.flag:= actkb.flag or (1); 
-//            showkeypos({!!!a type cast? =>} {pKey(}G.sipo.from,actkb); 
+//            showkeypos( {pKey(}G.sipo.from,actkb); 
 //            (* oldflag= actkb->flag; *)
 //            (* if(G.qual & LR_SHIFTKEY); *)
 //            (* else { *)
@@ -4036,7 +4036,7 @@ space, ipo;
 //  if G.sipo.blocktype=ID_KE)and(totipo_edit=0)and(totipo_sel=0
 //  then
 //  begin 
-//    key:= {!!!a type cast? =>} {pKey(}G.sipo.from; 
+//    key:=  {pKey(}G.sipo.from; 
 //    if key=0
 //    then
 //    exit;
@@ -4848,7 +4848,7 @@ space, ipo;
 //        if GS(id.name)=ID_OB
 //        then
 //        begin 
-//          ob:= {!!!a type cast? =>} {pObject(}id; 
+//          ob:=  {pObject(}id; 
 //          if ob.sf<>0.0)and((ob.ipoflag and OB_OFFS_OB)
 //          then
 //          begin 
@@ -4951,7 +4951,7 @@ space, ipo;
 //          if id)and(GS(id.name)=ID_OB
 //          then
 //          begin 
-//            ob:={!!!a type cast? =>} {pObject(}id; 
+//            ob:= {pObject(}id; 
 //            if ob.sf<>0.0)and((ob.ipoflag and OB_OFFS_OB)
 //            then
 //            begin 
@@ -4966,7 +4966,7 @@ space, ipo;
 //            if last_seq<>nil 
 //            then
 //            begin 
-//              cfra:= 100.0*(cfra-last_seq.startdisp) div ({!!!a type cast? =>} {float(}(last_seq.enddisp-last_seq.startdisp)); 
+//              cfra:= 100.0*(cfra-last_seq.startdisp) div ( {float(}(last_seq.enddisp-last_seq.startdisp)); 
 //            end;
 //          end;
 //          insertvals:= mallocN(sizeof(float)*2*tot,'insertkey_editipo'); 
@@ -5008,7 +5008,7 @@ space, ipo;
 //            insert_vert_ipo(ei.icu,fp[0],fp[1]); 
 //          end;
 //          freeN(insertvals); 
-//          calc_ipo(G.sipo.ipo,{!!!a type cast? =>} {float(}CFRA); 
+//          calc_ipo(G.sipo.ipo, {float(}CFRA); 
 //        end;
 //      end;
 //    end
@@ -5342,7 +5342,7 @@ space, ipo;
 //      ika: pIka;
 //       
 //      begin
-//        id:= {!!!a type cast? =>} {pID(}(base.object); (* alle curves in ipo deselect *)
+//        id:=  {pID(}(base.object); (* alle curves in ipo deselect *)
 //        if base.object.ipo<>nil 
 //        then
 //        begin 
@@ -6005,7 +6005,7 @@ end;
 //to: integer;
 // 
 //begin
-//  to:={!!!a type cast? =>} {integer(}frame; 
+//  to:= {integer(}frame; 
 //  if frame-to>0.5
 //  then
 //  inc(to); 
@@ -6609,7 +6609,7 @@ end;
 //  xo:= xn:=mval[0]; 
 //  yo:= yn:=mval[1]; 
 //  dvec[0]:= dvec[1]:=0.0; 
-//  sizefac:= fsqrt({!!!a type cast? =>} {float(}((yc-yn)*(yc-yn)+(xn-xc)*(xn-xc))); 
+//  sizefac:= fsqrt( {float(}((yc-yn)*(yc-yn)+(xn-xc)*(xn-xc))); 
 //  if sizefac<2.0
 //  then
 //  sizefac:= 2.0; 
@@ -6658,7 +6658,7 @@ end;
 //      if mode='s'
 //      then
 //      begin 
-//        size[0]:= size[1]:=(fsqrt({!!!a type cast? =>} {float(}((yc-mval[1])*(yc-mval[1])+(mval[0]-xc)*(mval[0]-xc)))) div sizefac; 
+//        size[0]:= size[1]:=(fsqrt( {float(}((yc-mval[1])*(yc-mval[1])+(mval[0]-xc)*(mval[0]-xc)))) div sizefac; 
 //        if midtog<>nil 
 //        then
 //        size[proj]:= 1.0; 
@@ -6717,7 +6717,7 @@ end;
 //      if G.sipo.showkey<>nil 
 //      then
 //      update_ipokey_val(); 
-//      calc_ipo(G.sipo.ipo,{!!!a type cast? =>} {float(}CFRA); 
+//      calc_ipo(G.sipo.ipo, {float(}CFRA); 
 //      (* update realtime *)
 //      if G.sipo.lock<>nil 
 //      then
@@ -6924,7 +6924,7 @@ end;
 //        end;
 //      end;
 //    end;
-//    calc_ipo(G.sipo.ipo,{!!!a type cast? =>} {float(}CFRA); 
+//    calc_ipo(G.sipo.ipo, {float(}CFRA); 
 //  end;
 //  editipo_changed(1); 
 //  freeN(transmain); 
@@ -7125,7 +7125,7 @@ end;
 //    if G.sipo.blocktype=ID_KE
 //    then
 //    begin 
-//      key:= {!!!a type cast? =>} {pKey(}G.sipo.from; 
+//      key:=  {pKey(}G.sipo.from; 
 //      if key=0
 //      then
 //      exit;
@@ -7232,8 +7232,8 @@ end;
 // 
 //ei2: pEditIpo;
 // 
-//sa: pScrArea; 
-//oldarea: pScrArea; 
+//sa: pScrArea;
+//oldarea: pScrArea;
 //ipo: pIpo; 
 //poin: pinteger; 
 //swaptime: double; 
@@ -7372,34 +7372,34 @@ end;
 //    ei2.icu.flag:= ei2.icu.flag or (IPO_LOCK); 
 //  end;
 //  fac:= G.v2d.cur.ymax-G.v2d.cur.ymin; 
-//  fac:= fac div ({!!!a type cast? =>} {float(}curarea.winy); 
+//  fac:= fac div ( {float(}curarea.winy); 
 //  oldarea:= curarea; 
 //  sa:= G.curscreen.areabase.first; (* welke area *)
 //  while sa
 //  do
 //  begin 
-//    if sa.win)and(sa.windraw
+//    if sa^.win)and(sa^.windraw
 //    then
 //    begin 
 //      if G.sipo.blocktype=ID_MA)or(G.sipo.blocktype=ID_LA
 //      then
 //      begin 
-//        if sa.spacetype=SPACE_BUTS
+//        if sa^.spacetype=SPACE_BUTS
 //        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //      else
 //      begin 
-//        if sa.spacetype=SPACE_VIEW3D
+//        if sa^.spacetype=SPACE_VIEW3D
 //        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //    end;
-//    sa:= sa.next; 
+//    sa:= sa^.next;
 //  end;
 //  if sa<>nil 
 //  then
-//  areawinset(sa.win); 
+//  areawinset(sa^.win);
 //  (* kandie? *)
 //  while get_mbut()@L_MOUSE
 //  do
@@ -7458,7 +7458,7 @@ end;
 //      headerprint(str); 
 //      if sa<>nil 
 //      then
-//      sa.windraw(); 
+//      sa^.windraw();
 //      tottime:= tottime - (swaptime); (* minimaal swaptime laten voorbijgaan *)
 //      while update_time()
 //      do
@@ -7556,7 +7556,7 @@ end;
 //  allqueue(REDRAWVIEW3D,0); 
 //  if sa<>nil 
 //  then
-//  addqueue(sa.headwin,REDRAW,1); 
+//  addqueue(sa^.headwin,REDRAW,1);
 //  addqueue(oldarea.headwin,REDRAW,1); 
 //  (* headerprint *)
 //  addqueue(oldarea.win,REDRAW,1); 

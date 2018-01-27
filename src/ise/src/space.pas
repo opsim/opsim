@@ -28,6 +28,7 @@ unit space;
 interface
 
 uses
+ctypes, cfuncs,
 util, screen;
 
 procedure freespacelist(lb: pListBase);
@@ -37,10 +38,11 @@ procedure newspace(sa: pScrArea;  type_: integer);
 implementation
 
 uses
+GL,
 blender, blenglob, editipo, blendef, mywindow;
-//{$include "blender.h"}
-//{$include "sequence.h"}
-//{$include "graphics.h"}
+////{$include "blender.h"}
+////{$include "sequence.h"}
+////{$include "graphics.h"}
 //
 //procedure defheaddraw; 
 //(* screen.c *)
@@ -66,7 +68,7 @@ procedure set_func_space(sa: pScrArea); forward;
 //procedure copy_view3d_lock(val: smallint); 
 //var
 //vd: pView3D; 
-//sa: pScrArea; 
+//sa: pScrArea;
 //sc: pbScreen; 
 //bit: integer; (* van G.scene naar andere views kopieeren *)
 //begin
@@ -77,10 +79,10 @@ procedure set_func_space(sa: pScrArea); forward;
 //  while sc
 //  do
 //  begin 
-//    if sc.scene=G.scene
+//    if sc^.scene=G.scene
 //    then
 //    begin 
-//      sa:= sc.areabase.first; 
+//      sa:= sc^.areabase.first;
 //      while sa
 //      do
 //      begin 
@@ -140,7 +142,7 @@ procedure set_func_space(sa: pScrArea); forward;
 //        sa:= sa^.next; 
 //      end;
 //    end;
-//    sc:= sc.id.next; 
+//    sc:= sc^.id.next;
 //  end;
 //end;
 //
@@ -1150,7 +1152,7 @@ procedure set_func_space(sa: pScrArea); forward;
 //addqueue(curarea.win,REDRAW,1); 
 //end;
 //
-//procedure initview3d(sa: pScrArea); 
+//procedure initview3d(sa: pScrArea);
 //var
 //vd: pView3D; 
 //begin
@@ -1410,7 +1412,7 @@ procedure set_func_space(sa: pScrArea); forward;
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
 //
-//procedure initipo(sa: pScrArea); 
+//procedure initipo(sa: pScrArea);
 //var
 //sipo: pSpaceIpo; 
 //begin
@@ -1433,22 +1435,23 @@ procedure set_func_space(sa: pScrArea); forward;
 //  sipo.blocktype:= ID_OB; 
 //  (* sipo space loopt van (0,-?) tot (??,?) *)
 //end;
-//(* ******************** SPACE: INFO ********************** *)
-//
-//procedure drawinfospace; 
-//var
-//fac: float; 
-//naam: array [0..Pred(20)] of char; 
-//str: pchar; 
-//begin
-//  
+
+(* ******************** SPACE: INFO ********************** *)
+
+procedure drawinfospace;
+var
+fac: single;
+naam: array [0..Pred(20)] of char;
+str: pchar;
+begin
+
 //  procedure reset_autosave; 
-//  
-//  
-//  
-//  glClearColor(0.5,0.5,0.5,0.0); 
-//  glClear(GL_COLOR_BUFFER_BIT); 
-//  fac:= ({!!!a type cast? =>} {float(}curarea.winx) div 1280.0; 
+
+
+
+  glClearColor(0.5,0.5,0.5,0.0);
+  glClear(GL_COLOR_BUFFER_BIT);
+//  fac:= ( {float(}curarea.winx) div 1280.0; 
 //  ortho2(0.0,1280.0,0.0,curarea.winy div fac); 
 //  sprintf(naam,'win %d',curarea.win); 
 //  DefButBlock(naam,curarea.win,G.font,35,2,2); 
@@ -1495,12 +1498,12 @@ procedure set_func_space(sa: pScrArea); forward;
 //    fmprstr('C Key registered by: '); 
 //    fmprstr(cdata+20); 
 //  end;
-//end;
-//
-//procedure winqreadinfospace(event: ushort;  val: smallint); 
-//var
-//str: pchar; 
-//begin
+end;
+
+procedure winqreadinfospace(event: word;  val: smallint);
+var
+str: pchar;
+begin
 //  
 //  if val<>nil 
 //  then
@@ -1538,7 +1541,8 @@ procedure set_func_space(sa: pScrArea); forward;
 //      
 //    end;{case?}
 //  end;
-//end;
+end;
+
 //(* ******************** SPACE: BUTS ********************** *)
 //
 //procedure drawbutspace; 
@@ -1566,8 +1570,8 @@ procedure set_func_space(sa: pScrArea); forward;
 //
 //procedure winqreadbutspace(event: ushort;  val: smallint); 
 //var
-//sa: pScrArea; 
-//sa3d: pScrArea; 
+//sa: pScrArea;
+//sa3d: pScrArea;
 //str: pchar; 
 //dx: float; 
 //dy: float; 
@@ -1697,7 +1701,7 @@ procedure set_func_space(sa: pScrArea); forward;
 //  (* buts space loopt van (0,0) tot (1280, 228) *)
 //end;
 //
-//procedure init_butspace(sa: pScrArea); 
+//procedure init_butspace(sa: pScrArea);
 //var
 //buts: pSpaceButs; 
 //begin
@@ -1713,7 +1717,7 @@ procedure set_func_space(sa: pScrArea); forward;
 //
 //procedure extern_set_butspace(fkey: integer); 
 //var
-//sa: pScrArea; 
+//sa: pScrArea;
 //buts: pSpaceButs; (* als een ftoets ingedrukt: de dichtsbijzijnde buttonwindow wordt gezet *)
 //begin
 //  
@@ -1815,7 +1819,7 @@ procedure set_func_space(sa: pScrArea); forward;
 //          begin 
 //            getmouseco_areawin(mval); 
 //            areamouseco_to_ipoco(mval, and dx, and dy); 
-//            cfra:= {!!!a type cast? =>} {integer(}dx; 
+//            cfra:=  {integer(}dx; 
 //            if cfra<1
 //            then
 //            cfra:= 1; (* else if(cfra> EFRA) cfra= EFRA; *)
@@ -2024,7 +2028,7 @@ procedure set_func_space(sa: pScrArea); forward;
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
 //
-//procedure init_seqspace(sa: pScrArea); 
+//procedure init_seqspace(sa: pScrArea);
 //var
 //sseq: pSpaceSeq; 
 //begin
@@ -2057,7 +2061,7 @@ procedure set_func_space(sa: pScrArea); forward;
 //
 //procedure winqreadfilespace{!!!3 unknown typedef}; 
 //
-//procedure init_filespace(sa: pScrArea); 
+//procedure init_filespace(sa: pScrArea);
 //var
 //sfile: pSpaceFile; 
 //begin
@@ -2147,7 +2151,7 @@ procedure set_func_space(sa: pScrArea); forward;
 //  end;{case?}
 //end;
 //
-//procedure init_imagespace(sa: pScrArea); 
+//procedure init_imagespace(sa: pScrArea);
 //var
 //sima: pSpaceImage; 
 //begin
@@ -2330,7 +2334,7 @@ procedure set_func_space(sa: pScrArea); forward;
 //  (* v2d->scroll= L_SCROLL+B_SCROLL; *)
 //end;
 //
-//procedure init_oopsspace(sa: pScrArea); 
+//procedure init_oopsspace(sa: pScrArea);
 //var
 //soops: pSpaceOops; 
 //begin
@@ -2386,21 +2390,22 @@ begin
       begin
         set_func_space(sa);
       end
-//      else
-//      if type_=SPACE_VIEW3D      then
-//      begin 
-//        initview3d(sa); 
-//      end
-//      else
+      else
+      if type_=SPACE_VIEW3D      then
+      begin
+        set_func_space(sa);
+//        initview3d(sa);
+      end
+      else
 //      if type_=SPACE_IPO       then
 //      begin 
 //        initipo(sa); 
 //      end
 //      else
-//      if type_=SPACE_INFO       then
-//      begin 
-//        set_func_space(sa); 
-//      end
+      if type_=SPACE_INFO       then
+      begin
+        set_func_space(sa);
+      end
 //      else
 //      if type_=SPACE_BUTS      then
 //      begin 
@@ -2543,7 +2548,7 @@ begin
 //    else
 //    if sfile^.spacetype=SPACE_OOPS     then
 //    begin 
-//      so:={!!!a type cast? =>} {pSpaceOops(}sfile; 
+//      so:= {pSpaceOops(}sfile; 
 //      so.oops.first:= so.oops.last:=0; 
 //    end
 //    else
@@ -2568,20 +2573,20 @@ begin
   begin
 //    if sfile^.spacetype=SPACE_BUTS    then
 //    begin 
-//      buts:= {!!!a type cast? =>} {pSpaceButs(}sfile; 
+//      buts:=  {pSpaceButs(}sfile; 
 //      buts.rect:= 0; 
 //    end
 //    else
 //    if sfile^.spacetype=SPACE_IPO     then
 //    begin 
-//      si:= {!!!a type cast? =>} {pSpaceIpo(}sfile; 
+//      si:=  {pSpaceIpo(}sfile; 
 //      si.editipo:= 0; 
 //      si.ipokey.first:= si.ipokey.last:=0; 
 //    end
 //    else
 //    if sfile^.spacetype=SPACE_VIEW3D    then
 //    begin 
-//      vd:= {!!!a type cast? =>} {pView3D(}sfile; 
+//      vd:=  {pView3D(}sfile; 
 //      if vd.bgpic<>nil       then
 //      begin 
 //        vd.bgpic:= dupallocN(vd.bgpic); 
@@ -2615,9 +2620,9 @@ procedure set_func_space(sa: pScrArea);
 var
 sseq: pSpaceSeq;
 buts: pSpaceButs; (* ook na file inlezen: terugzetten functie pointers *)
-(* default *)
-begin
 
+begin
+  (* default *)
   sa^.windraw:= nil;
   sa^.winchange:= nil;
   sa^.winqread:= nil;
@@ -2652,11 +2657,11 @@ begin
 //      sa^.winqread:= (void(* )())winqreadfilespace; 
 //      sa^.headqread:= (void(* )())winqreadfilespace; 
 //    end;
-//    SPACE_INFO:
-//    begin
-//      sa^.windraw:= drawinfospace; 
-//      sa^.winqread:= (void(* )())winqreadinfospace; 
-//    end;
+    SPACE_INFO:
+    begin
+      sa^.windraw:= @drawinfospace;
+      sa^.winqread:= @winqreadinfospace;
+    end;
 //    SPACE_SEQ:
 //    begin
 //      sa^.windraw:= drawseqspace; 
@@ -2697,7 +2702,7 @@ end;
 //
 //procedure allqueue(event: ushort;  val: smallint); 
 //var
-//sa: pScrArea; 
+//sa: pScrArea;
 //v3d: pView3D; 
 //buts: pSpaceButs; 
 //si: pSpaceIpo; 
@@ -3040,7 +3045,7 @@ end;
 //procedure allspace(event: ushort;  val: smallint); 
 //var
 //sc: pbScreen; 
-//sa: pScrArea; 
+//sa: pScrArea;
 //v3d: pView3D; 
 //buts: pSpaceButs; 
 //si: pSpaceIpo;
@@ -3056,7 +3061,7 @@ end;
 //  while sc
 //  do
 //  begin 
-//    sa:= sc.areabase.first; 
+//    sa:= sc^.areabase.first;
 //    while sa
 //    do
 //    begin 
@@ -3070,7 +3075,7 @@ end;
 //            if v3d^.spacetype=SPACE_IPO
 //            then
 //            begin 
-//              si:={!!!a type cast? =>} {pSpaceIpo(}v3d; 
+//              si:= {pSpaceIpo(}v3d; 
 //              if si.editipo<>nil 
 //              then
 //              freeN(si.editipo); 
@@ -3083,7 +3088,7 @@ end;
 //            if v3d^.spacetype=SPACE_OOPS
 //            then
 //            begin 
-//              so:={!!!a type cast? =>} {pSpaceOops(}v3d; 
+//              so:= {pSpaceOops(}v3d; 
 //              so.flag:= so.flag or (SO_TESTBLOCKS); 
 //            end;
 //          end;
@@ -3093,14 +3098,14 @@ end;
 //      end;
 //      sa:= sa^.next; 
 //    end;
-//    sc:= sc.id.next; 
+//    sc:= sc^.id.next;
 //  end;
 //end;
 //
 //procedure force_draw; 
 //var
-//tempsa: pScrArea; 
-//sa: pScrArea; 
+//tempsa: pScrArea;
+//sa: pScrArea;
 //begin(* alle area's die (ongeveer) zelfde laten zien als curarea *)
 //  
 //  
@@ -3116,7 +3121,7 @@ end;
 //      if sa^.spacetype=SPACE_VIEW3D
 //      then
 //      begin 
-//        if ({!!!a type cast? =>} {pView3D(}sa^.spacedata.first).lay and ({!!!a type cast? =>} {pView3D(}tempsa^.spacedata.first).lay
+//        if ( {pView3D(}sa^.spacedata.first).lay and ( {pView3D(}tempsa^.spacedata.first).lay
 //        then
 //        begin 
 //          areawinset(sa^.win); 
@@ -3148,8 +3153,8 @@ end;
 //
 //procedure force_draw_plus(type: integer); 
 //var
-//tempsa: pScrArea; 
-//sa: pScrArea; 
+//tempsa: pScrArea;
+//sa: pScrArea;
 //begin(* alle area's die (ongeveer) zelfde laten zien als curarea EN areas van 'type' *)
 //  
 //  
@@ -3200,8 +3205,8 @@ end;
 //
 //procedure force_draw_all; 
 //var
-//tempsa: pScrArea; 
-//sa: pScrArea; 
+//tempsa: pScrArea;
+//sa: pScrArea;
 //begin(* alle area's die (ongeveer) zelfde laten zien als curarea EN areas van 'type' *)
 //  
 //  

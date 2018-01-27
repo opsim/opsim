@@ -95,17 +95,17 @@ float AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
  Spec(inpr,spec) 
 *)
 (* ************************ FUNKTIES **************************** *)
-//{$include <math.h>}
-//{$include <sys/types.h>}
-//{$if !defined(__sgi) && !defined(WIN32)}
-//{$include <sys/time.h>}
-//{$include <unistd.h>}
+////{$include <math.h>}
+////{$include <sys/types.h>}
+//{$if !defined(__sgi) && !defined(WINDOWS)}
+////{$include <sys/time.h>}
+////{$include <unistd.h>}
 //{$endif}
-//{$include "blender.h"}
+////{$include "blender.h"}
 //const
 //SMALL_NUMBER = 1.e-8; 
-//{$ifdef WIN32}
-//{$include <stdlib.h>}
+//{$ifdef WINDOWS}
+////{$include <stdlib.h>}
 //
 //implementation
 //
@@ -118,7 +118,7 @@ float AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //function drand48: float; 
 //begin
 //  begin
-//    result:= (({!!!a type cast? =>} {float(}rand()) div RAND_MAX); 
+//    result:= (( {float(}rand()) div RAND_MAX); 
 //    exit;
 //  end;
 //end;
@@ -705,8 +705,8 @@ end;
 //m1p: pfloat; 
 //m2p: pfloat; 
 //begin 
-//  m1: pMat3Row = {!!!a type cast? =>} {pMat3Row(}m1p; 
-//  m2: pMat4Row = {!!!a type cast? =>} {pMat4Row(}m2p; 
+//  m1: pMat3Row =  {pMat3Row(}m1p; 
+//  m2: pMat4Row =  {pMat4Row(}m2p; 
 //  m1[0][0]:= m2[0][0]; 
 //  m1[0][1]:= m2[0][1]; 
 //  m1[0][2]:= m2[0][2]; 
@@ -1569,12 +1569,12 @@ end;
 //  mat[coz][0]:= vec[0]; 
 //  mat[coz][1]:= vec[1]; 
 //  mat[coz][2]:= vec[2]; 
-//  Normalise({!!!a type cast? =>} {pfloat(}mat[coz]); 
+//  Normalise( {pfloat(}mat[coz]); 
 //  inp:= mat[coz][0]*up[0]+mat[coz][1]*up[1]+mat[coz][2]*up[2]; 
 //  mat[coy][0]:= up[0]-inp*mat[coz][0]; 
 //  mat[coy][1]:= up[1]-inp*mat[coz][1]; 
 //  mat[coy][2]:= up[2]-inp*mat[coz][2]; 
-//  Normalise({!!!a type cast? =>} {pfloat(}mat[coy]); 
+//  Normalise( {pfloat(}mat[coy]); 
 //  Crossf(mat[cox],mat[coy],mat[coz]); 
 //end;
 //
@@ -1641,12 +1641,12 @@ end;
 //  mat[coz][0]:= vec[0]; 
 //  mat[coz][1]:= vec[1]; 
 //  mat[coz][2]:= vec[2]; 
-//  Normalise({!!!a type cast? =>} {pfloat(}mat[coz]); 
+//  Normalise( {pfloat(}mat[coz]); 
 //  inp:= mat[coz][2]; 
 //  mat[coy][0]:= -inp*mat[coz][0]; 
 //  mat[coy][1]:= -inp*mat[coz][1]; 
 //  mat[coy][2]:= 1.0-inp*mat[coz][2]; 
-//  Normalise({!!!a type cast? =>} {pfloat(}mat[coy]); 
+//  Normalise( {pfloat(}mat[coy]); 
 //  Crossf(mat[cox],mat[coy],mat[coz]); 
 //end;
 //(* **************** VIEW / PROJEKTIE ********************************  *)

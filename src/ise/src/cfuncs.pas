@@ -32,17 +32,17 @@ function printf(const _format: PChar; params: array of const): cint; {$IFDEF HAS
 
 function isdigit(c: char): boolean; {$IFDEF HASINLINE}inline;{$ENDIF}
 
-function acos(x: cfloat): cfloat; {$IFDEF HASINLINE}inline;{$ENDIF}
-function asin(x: cfloat): cfloat; {$IFDEF HASINLINE}inline;{$ENDIF}
-function atan(x: cfloat): cfloat; {$IFDEF HASINLINE}inline;{$ENDIF}
-function fsqrt(x: cfloat): cfloat; {$IFDEF HASINLINE}inline;{$ENDIF}
+function acos(x: single): single; {$IFDEF HASINLINE}inline;{$ENDIF}
+function asin(x: single): single; {$IFDEF HASINLINE}inline;{$ENDIF}
+function atan(x: single): single; {$IFDEF HASINLINE}inline;{$ENDIF}
+function fsqrt(x: single): single; {$IFDEF HASINLINE}inline;{$ENDIF}
 
 function atof(const str: PChar): cdouble; {$IFDEF HASINLINE}inline;{$ENDIF}
 function atoi(const str: PChar): cint; {$IFDEF HASINLINE}inline;{$ENDIF}
 function atol(const str: PChar): clong; {$IFDEF HASINLINE}inline;{$ENDIF}
 function atoll(const str: PChar): clonglong; {$IFDEF HASINLINE}inline;{$ENDIF}
 
-function pow(base, exponent: cfloat): cfloat; {$IFDEF HASINLINE}inline;{$ENDIF}
+function pow(base, exponent: single): single; {$IFDEF HASINLINE}inline;{$ENDIF}
 
 procedure bzero(s: pointer; n: size_t); {$IFDEF HASINLINE}inline;{$ENDIF}
 procedure bcopy(const src: pointer; dest: pointer; n: cint); {$IFDEF HASINLINE}inline;{$ENDIF}
@@ -52,13 +52,13 @@ function malloc(size : size_t): pointer;
 function calloc(num, size : size_t): pointer;
 procedure free(ptr: pointer);
 
-function ffloor(x: cfloat): cfloat;{$IFDEF HASINLINE}inline;{$ENDIF}
+function ffloor(x: single): single;{$IFDEF HASINLINE}inline;{$ENDIF}
 
 function booltoint(f: boolean): cint;{$IFDEF HASINLINE}inline;{$ENDIF}
 
 procedure usleep(time: cuint);{$IFDEF HASINLINE}inline;{$ENDIF}
 
-function iif(f: boolean; a, b: cfloat): cfloat;
+function iif(f: boolean; a, b: single): single;
 
 //file functions
 
@@ -173,22 +173,22 @@ begin
   isdigit := c in ['0'..'9'];
 end;
 
-function acos(x: cfloat): cfloat;
+function acos(x: single): single;
 begin
   acos := arccos(x);
 end;
 
-function asin(x: cfloat): cfloat;
+function asin(x: single): single;
 begin
   asin := arcsin(x);
 end;
 
-function atan(x: cfloat): cfloat;
+function atan(x: single): single;
 begin
   atan := arctan(x);
 end;
 
-function fsqrt(x: cfloat): cfloat;
+function fsqrt(x: single): single;
 begin
   fsqrt := sqrt(x);
 end;
@@ -213,7 +213,7 @@ begin
   atoll := StrToInt(str);
 end;
 
-function pow(base, exponent: cfloat): cfloat;
+function pow(base, exponent: single): single;
 begin
   pow := Power(base, exponent);
 end;
@@ -268,7 +268,7 @@ begin
   freemem(ptr);
 end;
 
-function ffloor(x: cfloat): cfloat;
+function ffloor(x: single): single;
 begin
   ffloor := floor(x);
 end;
@@ -286,7 +286,7 @@ begin
   sleep(time);
 end;
 
-function iif(f: boolean; a, b: cfloat): cfloat;
+function iif(f: boolean; a, b: single): single;
 begin
   if f then iif := a else iif := b;
 end;

@@ -24,153 +24,173 @@ unit Button;
 interface
 
 //(* hoort bij button.c *)
-//{$ifndef BUTTON_H}
-//{$define BUTTON_H}
-//(* dit is oud *)
-//const
-//PAPER = 100; 
-//PEN = 7; 
-//BUT_IN = 13; 
-//BUT_OUT = 12; 
-//CHA = 32; 
-//SHO = 64; 
-//(* #define LON 96 *)
-//INT = 96; 
-//FLO = 128; 
-//(* #define DOU 160 *)
-//FUN = 192; 
-//BIT = 256; 
-//BUTPOIN = (128+64+32); 
-//BUT = (1 shl 9); 
-//ROW = (2 shl 9); 
-//TOG = (3 shl 9); 
-//SLI = (4 shl 9); 
-//NUM = (5 shl 9); 
-//TEX = (6 shl 9); 
-//TOG3 = (7 shl 9); 
-//BUTRET = (8 shl 9); 
-//TOGN = (9 shl 9); 
-//LABEL = (10 shl 9); 
-//MENU = (11 shl 9); 
-//ICONROW = (12 shl 9); 
-//ICONTOG = (13 shl 9); 
-//NUMSLI = (14 shl 9); 
-//COL = (15 shl 9); 
-//IDPOIN = (16 shl 9); 
-//HSVSLI = (17 shl 9); 
-//BUTTYPE = (31 shl 9); 
-//MAXBUTSTR = 20; 
+{ dit is oud  }
+
+const
+  PAPER = 100;
+  PEN = 7;
+  BUT_IN = 13;
+  BUT_OUT = 12;
+  CHA = 32;
+  SHO = 64;
+{ #define LON	96  }
+  INT = 96;
+  FLO = 128;
+{ #define DOU	160  }
+  FUN = 192;
+  BIT = 256;
+  BUTPOIN = (128+64)+32;
+  _BUT = 1 shl 9;
+  ROW = 2 shl 9;
+  TOG = 3 shl 9;
+  SLI = 4 shl 9;
+  NUM = 5 shl 9;
+  TEX = 6 shl 9;
+  TOG3 = 7 shl 9;
+  BUTRET = 8 shl 9;
+  TOGN = 9 shl 9;
+  _LABEL = 10 shl 9;
+  MENU = 11 shl 9;
+  ICONROW = 12 shl 9;
+  ICONTOG = 13 shl 9;
+  NUMSLI = 14 shl 9;
+  COL = 15 shl 9;
+  IDPOIN = 16 shl 9;
+  HSVSLI = 17 shl 9;
+  BUTTYPE = 31 shl 9;
+  MAXBUTSTR = 20;
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+
+//function BTST(a,b : longint) : longint;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+//function BCLR(a,b : longint) : longint;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+//function BSET(a,b : longint) : longint;
+
+const
+  RGBDRAW = 1;
+
+type
+  pBut = ^But;
+  But = record
+      _type : smallint;
+      nr : smallint;
+      str : ^char;
+      strdata : array[0..(MAXBUTSTR)-1] of char;
+      x1 : smallint;
+      y1 : smallint;
+      x2 : smallint;
+      y2 : smallint;
+      poin : ^char;
+      min : single;
+      max : single;
+      a1 : smallint;
+      a2 : smallint;
+      rt : array[0..3] of smallint;
+      func : procedure ;
+      font : pointer;
+      tip : ^char;
+      lockstr : ^char;
+      lock : smallint;
+      win : smallint;
+      col : smallint;
+      drawtype : smallint;
+    end;
+
+{ drawmode is ook naam fie  }
+  ButCol = record
+      drawmode : smallint;
+      rgb : smallint;
+      back : dword;
+      paper_sel : dword;
+      paper_desel : dword;
+      pen_sel : dword;
+      pen_desel : dword;
+      border1 : dword;
+      border2 : dword;
+      border3 : dword;
+      border4 : dword;
+      drmode : smallint;
+      rt : smallint;
+    end;
+
+  ButBlock = record
+      next : ^ButBlock;
+      first : ^But;
+      aantal : longint;
+      window : longint;
+      naam : array[0..19] of char;
+    end;
+
+  Bgrp = record
+      next : ^Bgrp;
+      prev : ^Bgrp;
+      _type : smallint;
+      nr : smallint;
+      str : ^char;
+      x1 : smallint;
+      y1 : smallint;
+      x2 : smallint;
+      y2 : smallint;
+      poin : ^char;
+      min : single;
+      max : single;
+      a1 : smallint;
+      a2 : smallint;
+      font : pointer;
+      col : smallint;
+      drawtype : smallint;
+      func : pointer;
+    end;
+
+  ButIcon = record
+      xim : smallint;
+      yim : smallint;
+      rect : ^dword;
+      xofs : smallint;
+      yofs : smallint;
+    end;
+
+
+//procedure AutoButFontSize(size8:pointer; size6:pointer);
 //
-//function BTST(a: integer; b: integer): integer; {<= !!!6 unknown macro}
+//procedure ButtonsGetmouse(adr:Psmallint);
 //
-//function BCLR(a: integer; b: integer): integer; {<= !!!6 unknown macro}
+//function DefBut(_type:smallint; nr:smallint; str:Pchar; x1:smallint; y1:smallint;
+//           x2:smallint; y2:smallint; poin:pointer; min:single; max:single;
+//           a1:smallint; a2:smallint):pBut;
 //
-//function BSET(a: integer; b: integer): integer; {<= !!!6 unknown macro}
-//RGBDRAW = 1; 
-//type
-//But = record
-//type: smallint; 
-//nr: smallint; 
-//str: pchar; 
-//strdata: array [0..Pred(MAXBUTSTR)] of char; 
-//x1: smallint; 
-//y1: smallint; 
-//x2: smallint; 
-//y2: smallint; 
-//poin: pchar; 
-//min: float; 
-//max: float; 
-//a1: smallint; 
-//a2: smallint; 
-//rt: array [0..Pred(4)] of smallint; 
-//func: procedure; 
-//font: pinteger; 
-//tip: pchar; 
-//lockstr: pchar; 
-//lock: smallint; 
-//win: smallint; 
-//col: smallint; 
-//drawtype: smallint; 
-//end;
-//ButCol = record
-//drawmode: smallint; 
-//rgb: smallint; 
-//back: UINT; 
-//paper_sel: UINT; 
-//paper_desel: UINT; 
-//pen_sel: UINT; 
-//pen_desel: UINT; 
-//border1: UINT; 
-//border2: UINT; 
-//border3: UINT; 
-//border4: UINT; 
-//drmode: smallint; 
-//rt: smallint; (* drawmode is ook naam fie *)
-//end;
-//ButBlock = record
-//next: pButBlock; 
-//first: pBut; 
-//aantal: integer; 
-//window: integer; 
-//naam: array [0..Pred(20)] of char; 
-//end;
-//Bgrp = record
-//next: pBgrp; 
-//prev: pBgrp; 
-//type: smallint; 
-//nr: smallint; 
-//str: pchar; 
-//x1: smallint; 
-//y1: smallint; 
-//x2: smallint; 
-//y2: smallint; 
-//poin: pchar; 
-//min: float; 
-//max: float; 
-//a1: smallint; 
-//a2: smallint; 
-//font: pinteger; 
-//col: smallint; 
-//drawtype: smallint; 
-//func: pinteger; 
-//end;
-//ButIcon = record
-//xim: smallint; 
-//yim: smallint; 
-//rect: pUINT; 
-//xofs: smallint; 
-//yofs: smallint; 
-//end;
+//function DefButt(_type:smallint; nr:smallint; str:Pchar; x1:smallint; y1:smallint;
+//           x2:smallint; y2:smallint; poin:pointer; min:single; max:single;
+//           a1:smallint; a2:smallint; tip:Pchar):pBut;
 //
-//procedure AutoButFontSize(size8: pinteger;  size6: pinteger); 
+//procedure DefButBlock(str:Pchar; win:longint; font:pointer; aantal:smallint; col:smallint;
+//            drawtype:smallint);
 //
-//procedure ButtonsGetmouse(adr: psmallint); 
+//procedure ClearButLock;
 //
-//function DefBut(type: smallint;  nr: smallint;  str: pchar;  x1: smallint;  y1: smallint;  x2: smallint;  y2: smallint;  poin: pinteger;  min: float;  max: float;  a1: smallint;  a2: smallint): pBut; 
+//procedure FreeButBlock(str:Pchar);
 //
-//function DefButt(type: smallint;  nr: smallint;  str: pchar;  x1: smallint;  y1: smallint;  x2: smallint;  y2: smallint;  poin: pinteger;  min: float;  max: float;  a1: smallint;  a2: smallint;  tip: pchar): pBut; 
+//procedure fdrawline(x1:single; y1:single; x2:single; y2:single);
 //
-//procedure DefButBlock(str: pchar;  win: integer;  font: pinteger;  aantal: smallint;  col: smallint;  drawtype: smallint); 
+//procedure getname_menu_but(butname:Pchar; str:Pchar; item:longint);
 //
-//procedure ClearButLock; 
+//procedure SetButFunc(func:pointer );
 //
-//procedure FreeButBlock(str: pchar); 
+//function DoButtons:smallint;
 //
-//procedure fdrawline(x1: float;  y1: float;  x2: float;  y2: float); 
+//function GetButTip:pchar;
 //
-//procedure getname_menu_but(butname: pchar;  str: pchar;  item: integer); 
-//
-//procedure SetButFunc(
-//
-//procedure func; 
-//); 
-//
-//function DoButtons: smallint; 
-//
-//function GetButTip: pchar; 
-//
-//procedure EmbossBox2(x1: smallint;  y1: smallint;  x2: smallint;  y2: smallint;  sel: smallint;  dark: uint;  light: uint); 
-//{$endif}
+//procedure EmbossBox2(x1:smallint; y1:smallint; x2:smallint; y2:smallint; sel:smallint;
+//            dark:cardinal; light:cardinal);
+
 //(* BUTTON_H *)
 
 procedure sdrawline(x1: smallint;  y1: smallint;  x2: smallint;  y2: smallint);
@@ -423,9 +443,9 @@ GL;
  * spatiering BGspacing() in de richting BGdirection(). Hierna wordt
  * de lijst geflushed.
  *)
-//{$include "blender.h"}
-//{$include "graphics.h"}
-//{$include "screen.h"}
+////{$include "blender.h"}
+////{$include "graphics.h"}
+////{$include "screen.h"}
 //(* ************ GLOBALS ************* *)
 //type
 //ButBlock = record
@@ -498,7 +518,7 @@ GL;
 //  (* outline *)
 //  v1[0]:= x1; 
 //  v1[1]:= y1; 
-//  glLineWidth({!!!a type cast? =>} {GLfloat(}(3)); 
+//  glLineWidth( {GLfloat(}(3)); 
 //  cpack($0); 
 //  glBegin(GL_LINE_LOOP); 
 //  glVertex2fv(v1); 
@@ -509,7 +529,7 @@ GL;
 //  v1[0]:= v1[0] - (sizex); 
 //  glVertex2fv(v1); 
 //  glEnd(); 
-//  glLineWidth({!!!a type cast? =>} {GLfloat(}(1)); 
+//  glLineWidth( {GLfloat(}(1)); 
 //  glShadeModel(GL_SMOOTH); 
 //  cbd:= coba.data; 
 //  v1[0]:= v2[0]:=x1; 
@@ -553,7 +573,7 @@ GL;
 //    v1[0]:= v2[0]:=v3[0]:=x1+cbd.pos*sizex; 
 //    if a=coba.cur
 //    then
-//    glLineWidth({!!!a type cast? =>} {GLfloat(}(3)); 
+//    glLineWidth( {GLfloat(}(3)); 
 //    cpack($0); 
 //    LINE2F(v1,v2); 
 //    cpack($FFFFFF); 
@@ -561,7 +581,7 @@ GL;
 //    if a=coba.cur
 //    then
 //    begin 
-//      glLineWidth({!!!a type cast? =>} {GLfloat(}(1)); 
+//      glLineWidth( {GLfloat(}(1)); 
 //    end;
 //  end;
 //end;
@@ -711,8 +731,8 @@ GL;
 //  xwin:= adr[0]; 
 //  ywin:= adr[1]; 
 //  window_to_graphics(@xwin,@ywin); 
-//  adr[0]:= {!!!a type cast? =>} {smallint(}(xwin+0.5); 
-//  adr[1]:= {!!!a type cast? =>} {smallint(}(ywin+0.5); 
+//  adr[0]:=  {smallint(}(xwin+0.5); 
+//  adr[1]:=  {smallint(}(ywin+0.5); 
 //end;
 //void{!!!e unknown token}
 //nr: smallint; 
@@ -751,7 +771,7 @@ GL;
 //  rd: pchar; 
 //  ri: pchar; 
 //  col: pchar; (* rectdraw, recticon *)
-//  rd:= {!!!a type cast? =>} {pchar(}temprect; 
+//  rd:=  {pchar(}temprect; 
 //  rii:= BGicon[nr].rect; 
 //  if rii=0
 //  then
@@ -767,7 +787,7 @@ GL;
 //  then
 //  begin 
 //    col:= (char* )@paper; 
-//    ri:= {!!!a type cast? =>} {pchar(}rii; (* ABGR *)
+//    ri:=  {pchar(}rii; (* ABGR *)
 //    (* eerste kleur icon==paperkleur *)
 //    if ri[0])and(ri[1])and(ri[2]
 //    then
@@ -780,7 +800,7 @@ GL;
 //  for{while} b:=sizeb downto Succ(0) { b--}
 //  do
 //  begin 
-//    ri:= {!!!a type cast? =>} {pchar(}rii; 
+//    ri:=  {pchar(}rii; 
 //    while{for} 
 //    a:= sizea; 
 //    {to} a>0
@@ -998,7 +1018,7 @@ end;
 //    
 //    
 //    
-//    fp:={!!!a type cast? =>} {pfloat(}poin; 
+//    fp:= {pfloat(}poin; 
 //    rgb_to_hsv(fp[0],fp[1],fp[2],@h,@s,@v); 
 //    case but.str[0] of
 //      'H':
@@ -1021,28 +1041,28 @@ end;
 //  if type=CHA
 //  then
 //  begin 
-//    {*}lvalue^:=*{!!!a type cast? =>} {pchar(}poin; 
+//    {*}lvalue^:=* {pchar(}poin; 
 //    format:= 1; 
 //  end;
 //  else
 //  if type=SHO
 //  then
 //  begin 
-//    {*}lvalue^:=*{!!!a type cast? =>} {psmallint(}poin; 
+//    {*}lvalue^:=* {psmallint(}poin; 
 //    format:= 1; 
 //  end;
 //  else
 //  if type=INT
 //  then
 //  begin 
-//    {*}lvalue^:=*{!!!a type cast? =>} {pinteger(}poin; 
+//    {*}lvalue^:=* {pinteger(}poin; 
 //    format:= 1; 
 //  end;
 //  else
 //  if type=FLO
 //  then
 //  begin 
-//    {*}fvalue^:=*{!!!a type cast? =>} {pfloat(}poin; 
+//    {*}fvalue^:=* {pfloat(}poin; 
 //    format:= 2; 
 //  end;
 //  if format=1
@@ -1078,7 +1098,7 @@ end;
 //    
 //    
 //    
-//    fp:={!!!a type cast? =>} {pfloat(}but.poin; 
+//    fp:= {pfloat(}but.poin; 
 //    rgb_to_hsv(fp[0],fp[1],fp[2],@h,@s,@v); 
 //    case but.str[0] of
 //      'H':
@@ -1100,19 +1120,19 @@ end;
 //  else
 //  if type=CHA
 //  then
-//  *({!!!a type cast? =>} {pchar(}poin):={!!!a type cast? =>} {char(}lvalue; 
+//  *( {pchar(}poin):= {char(}lvalue; 
 //  else
 //  if type=SHO
 //  then
-//  *({!!!a type cast? =>} {psmallint(}poin):={!!!a type cast? =>} {smallint(}lvalue; 
+//  *( {psmallint(}poin):= {smallint(}lvalue; 
 //  else
 //  if type=INT
 //  then
-//  *({!!!a type cast? =>} {pinteger(}poin):=lvalue; 
+//  *( {pinteger(}poin):=lvalue; 
 //  else
 //  if type=FLO
 //  then
-//  *({!!!a type cast? =>} {pfloat(}poin):=fvalue; 
+//  *( {pfloat(}poin):=fvalue; 
 //end;
 //
 //procedure SetButFont(font: pinteger); 
@@ -1420,7 +1440,7 @@ end;
 //bc:=  and BGbutcol[col]; 
 //cpack($505050); 
 //glRectf(x1,y1,x2,y2); 
-//EmbossBoxN({!!!a type cast? =>} {float(}x1-1,{!!!a type cast? =>} {float(}y1-1,{!!!a type cast? =>} {float(}x2+1,{!!!a type cast? =>} {float(}y2+1,1); 
+//EmbossBoxN( {float(}x1-1, {float(}y1-1, {float(}x2+1, {float(}y2+1,1); 
 //(* het blokje *)
 //sel{!!!e unknown token} {was ?}if  then cpack(bc.border1) {was :}else cpack(bc.paper_sel); 
 //glRects(x1+f,y1+1,x1+h+f,y2-1); 
@@ -1512,7 +1532,7 @@ end;
 //  cpack(bc.paper_sel); 
 //  glRects(x1+1,y1+1,x2-1,y2-1); 
 //end;
-//EmbossBoxN({!!!a type cast? =>} {float(}x1,{!!!a type cast? =>} {float(}y1,{!!!a type cast? =>} {float(}x2,{!!!a type cast? =>} {float(}y2,sel); 
+//EmbossBoxN( {float(}x1, {float(}y1, {float(}x2, {float(}y2,sel); 
 //(* after this function, textbutton needs color *)
 //if sel<>0{nil} {<= !!!9} 
 //then
@@ -1545,7 +1565,7 @@ end;
 //  x:= x1+4; 
 //  else
 //  x:= (x1+x2-s+1) div 2; 
-//  glRasterPos2f({!!!a type cast? =>} {float(}x,{!!!a type cast? =>} {float(}(y1+y2-12 div 2-3.0) div 2.0); 
+//  glRasterPos2f( {float(}x, {float(}(y1+y2-12 div 2-3.0) div 2.0); 
 //  fmprstr(str); 
 //end;
 //end;
@@ -1578,7 +1598,7 @@ end;
 //  cpack(bc.paper_sel); 
 //  glRects(x1+1,y1+1,x2-1,y2-1); 
 //end;
-//EmbossBoxN({!!!a type cast? =>} {float(}x1,{!!!a type cast? =>} {float(}y1,{!!!a type cast? =>} {float(}x2,{!!!a type cast? =>} {float(}y2,1); 
+//EmbossBoxN( {float(}x1, {float(}y1, {float(}x2, {float(}y2,1); 
 //(* after this function, textbutton needs color *)
 //if sel<>0{nil} {<= !!!9} 
 //then
@@ -1611,7 +1631,7 @@ end;
 //  x:= x1+4; 
 //  else
 //  x:= (x1+x2-s+1) div 2; 
-//  glRasterPos2f({!!!a type cast? =>} {float(}x,{!!!a type cast? =>} {float(}(y1+y2-12 div 2-3.0) div 2.0); 
+//  glRasterPos2f( {float(}x, {float(}(y1+y2-12 div 2-3.0) div 2.0); 
 //  fmprstr(str); 
 //end;
 //end;
@@ -1760,7 +1780,7 @@ end;
 //  for{while} a:=0 to Pred(items) { a++}
 //  do
 //  begin 
-//    x1:= startx+width*({!!!a type cast? =>} {integer(}a div rows); 
+//    x1:= startx+width*( {integer(}a div rows); 
 //    y1:= starty-height*(a mod rows)+(rows-1)*height; 
 //    tbox_embossbox(x1,y1,x1+width,y1+height,2); 
 //    glRasterPos2i(x1+5,y1+tbfontyofs); 
@@ -1974,11 +1994,11 @@ end;
 //  then
 //  begin 
 //    rows:= items div 4; 
-//    if items mod ({!!!a type cast? =>} {integer(}items div 3)<=items mod rows
+//    if items mod ( {integer(}items div 3)<=items mod rows
 //    then
 //    begin 
 //      rows:= items div 3; 
-//      if items mod ({!!!a type cast? =>} {integer(}items div 2)<=items mod rows
+//      if items mod ( {integer(}items div 2)<=items mod rows
 //      then
 //      begin 
 //        rows:= items div 2; 
@@ -2003,7 +2023,7 @@ end;
 //  if columns<1
 //  then
 //  columns:= 1; 
-//  rows:= {!!!a type cast? =>} {integer(}items div columns; 
+//  rows:=  {integer(}items div columns; 
 //  if rows<1
 //  then
 //  rows:= 1; 
@@ -2042,7 +2062,7 @@ end;
 //  if a=items
 //  then
 //  a:= 0; 
-//  startx:= mval[0]-width div 2-({!!!a type cast? =>} {integer(}a div rows)*width; 
+//  startx:= mval[0]-width div 2-( {integer(}a div rows)*width; 
 //  starty:= mval[1]-height+TBOXH div 2+(a mod rows)*TBOXH; 
 //  if title<>0{nil} {<= !!!9} 
 //  then
@@ -2149,7 +2169,7 @@ end;
 //    then
 //    begin 
 //      (* vergelijken, acto is init op -1 *)
-//      x1:= startx+width*({!!!a type cast? =>} {integer(}acto div rows); 
+//      x1:= startx+width*( {integer(}acto div rows); 
 //      y1:= starty-TBOXH*(acto mod rows)+(rows-1)*TBOXH; 
 //      tbox_embossbox(x1,y1,x1+width,y1+TBOXH,2); 
 //      glIndexi(TBOXBLACK); 
@@ -2159,7 +2179,7 @@ end;
 //    if act>=0)and(act<items
 //    then
 //    begin 
-//      x1:= startx+width*({!!!a type cast? =>} {integer(}act div rows); 
+//      x1:= startx+width*( {integer(}act div rows); 
 //      y1:= starty-TBOXH*(act mod rows)+(rows-1)*TBOXH; 
 //      tbox_embossbox(x1,y1,x1+width,y1+TBOXH,3); 
 //      glIndexi(TBOXBLACK); 
@@ -2182,7 +2202,7 @@ end;
 //then
 //begin 
 //  value:= retp[act]; 
-//  fvalue:= {!!!a type cast? =>} {float(}value; 
+//  fvalue:=  {float(}value; 
 //  SetButVal(but,fvalue,value); 
 //end;
 //else
@@ -2358,7 +2378,7 @@ end;
 //    (* tijdelijk veranderen van icoon, daarna weer terug! *)
 //    begin
 //      GetButVal(but,@value,@lvalue); 
-//      BGaddicon:= lvalue-{!!!a type cast? =>} {integer(}(but.min); 
+//      BGaddicon:= lvalue- {integer(}(but.min); 
 //      ButDrawFunc(but.str,but.x1,but.y1,but.x2,but.y2,sel,but.col); 
 //      a:= (but.y1+but.y2) div 2; 
 //      cpack(0); 
@@ -2495,7 +2515,7 @@ end;
 //        if (but.type and BUTPOIN)=SHO
 //        then
 //        begin 
-//          sp:= {!!!a type cast? =>} {psmallint(}but.poin; 
+//          sp:=  {psmallint(}but.poin; 
 //          if BTST(sp[1],(but.type and 31))
 //          then
 //          ok:= 1; 
@@ -2583,14 +2603,14 @@ end;
 //      if (but.type and BUTPOIN)=FLO
 //      then
 //      begin 
-//        fp:= {!!!a type cast? =>} {pfloat(}but.poin; 
+//        fp:=  {pfloat(}but.poin; 
 //        colr:= ffloor(255.0*fp[0]+0.5); 
 //        colg:= ffloor(255.0*fp[1]+0.5); 
 //        colb:= ffloor(255.0*fp[2]+0.5); 
 //      end;
 //      else
 //      begin 
-//        cp:= {!!!a type cast? =>} {pchar(}but.poin; 
+//        cp:=  {pchar(}but.poin; 
 //        colr:= cp[0]; 
 //        colg:= cp[1]; 
 //        colb:= cp[2]; 
@@ -3458,7 +3478,7 @@ end;
 //  begin 
 //    qual:= get_qual(); 
 //    ButtonsGetmouse(mval); 
-//    f:= {!!!a type cast? =>} {float(}(mval[0]-sx) div deler+fstart; 
+//    f:=  {float(}(mval[0]-sx) div deler+fstart; 
 //    if qual and LR_CTRLKEY
 //    then
 //    begin 
@@ -3497,9 +3517,9 @@ end;
 //    (* plus 1 of min 1 *)
 //    if (but.type and BUTTYPE)=SLI
 //    then
-//    f:= {!!!a type cast? =>} {float(}(mval[0]-but.x1) div (but.x2-but.x1-h); 
+//    f:=  {float(}(mval[0]-but.x1) div (but.x2-but.x1-h); 
 //    else
-//    f:= {!!!a type cast? =>} {float(}(mval[0]-(but.x1+but.x2) div 2) div ((but.x2-but.x1) div 2-h); 
+//    f:=  {float(}(mval[0]-(but.x1+but.x2) div 2) div ((but.x2-but.x1) div 2-h); 
 //    f:= but.min+f*(but.max-but.min); 
 //    if a=1
 //    then
@@ -3937,7 +3957,7 @@ end;
 //                  if (b.type and BUTTYPE)=TOGN
 //                  then
 //                  push:= {not}0=push; 
-//                  SetButVal(b,{!!!a type cast? =>} {float(}push,push); 
+//                  SetButVal(b, {float(}push,push); 
 //                  DrawBut(b,push); 
 //                end;
 //                while get_mbut()@L_MOUSE
@@ -3967,7 +3987,7 @@ end;
 //                  end;
 //                  inc(bt); 
 //                end;
-//                SetButVal(b,b.max,{!!!a type cast? =>} {integer(}b.max); 
+//                SetButVal(b,b.max, {integer(}b.max); 
 //                DrawBut(b,1); 
 //              end;
 //              SLI:
@@ -3983,7 +4003,7 @@ end;
 //                ButtonsGetmouse(mval); 
 //                a:= GetButVal(b,@value,@lvalue); 
 //                sx:= mval[0]; 
-//                fstart:= {!!!a type cast? =>} {float(}(b.max-b.min); 
+//                fstart:=  {float(}(b.max-b.min); 
 //                fstart:= (value-b.min) div fstart; 
 //                f:= fstart; 
 //                temp:= lvalue; 
@@ -4025,7 +4045,7 @@ end;
 //                  if mval[0]<>sx
 //                  then
 //                  begin 
-//                    f:= f + (({!!!a type cast? =>} {float(}(mval[0]-sx)) div deler); 
+//                    f:= f + (( {float(}(mval[0]-sx)) div deler); 
 //                    if f>1.0
 //                    then
 //                    f:= 1.0; 
@@ -4118,7 +4138,7 @@ end;
 //                  begin 
 //                    if qual<>0{nil} {<= !!!9} 
 //                    then
-//                    tempf:= {!!!a type cast? =>} {integer(}(tempf+0.5); 
+//                    tempf:=  {integer(}(tempf+0.5); 
 //                    else
 //                    begin 
 //                      if sx<(b.x1+b.x2) div 2
@@ -4155,7 +4175,7 @@ end;
 //                if (b.type and BUTPOIN)=SHO
 //                then
 //                begin 
-//                  sp:= {!!!a type cast? =>} {psmallint(}b.poin; 
+//                  sp:=  {psmallint(}b.poin; 
 //                  if BTST(sp[1],b.type and 31)
 //                  then
 //                  begin 
@@ -4230,11 +4250,11 @@ end;
 //                  if w<>a
 //                  then
 //                  begin 
-//                    temp:= {!!!a type cast? =>} {integer(}value+w; 
-//                    if temp<{!!!a type cast? =>} {integer(}b.min
+//                    temp:=  {integer(}value+w; 
+//                    if temp< {integer(}b.min
 //                    then
 //                    temp:= b.min; 
-//                    if temp>{!!!a type cast? =>} {integer(}b.max
+//                    if temp> {integer(}b.max
 //                    then
 //                    temp:= b.max; 
 //                    SetButVal(b,tempf,temp); 
@@ -4251,10 +4271,10 @@ end;
 //                  temp:= value+1; 
 //                  else
 //                  temp:= value-1; 
-//                  if temp<{!!!a type cast? =>} {integer(}b.min
+//                  if temp< {integer(}b.min
 //                  then
 //                  temp:= b.min; 
-//                  if temp>{!!!a type cast? =>} {integer(}b.max
+//                  if temp> {integer(}b.max
 //                  then
 //                  temp:= b.max; 
 //                  SetButVal(b,tempf,temp); 
@@ -4277,7 +4297,7 @@ end;
 //                b.min:= 0.0; 
 //                b.max:= 22.0; 
 //                do_textbut(b); 
-//                b.poin:= {!!!a type cast? =>} {pchar(}idpp; 
+//                b.poin:=  {pchar(}idpp; 
 //                b.func:= func; 
 //                b.type:= IDPOIN; 
 //                b.func(s,idpp); 

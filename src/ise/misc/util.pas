@@ -19,287 +19,559 @@
  * ***** END GPL/BL DUAL LICENSE BLOCK *****
  *)
 unit util;
-
 interface
 
-//{$ifndef UTIL_H}
-//{$define UTIL_H}
 //{$include <sys/types.h>}
 //{$include <stdlib.h>}
 //{$include <string.h>}
-//{$ifdef debug}
+{$ifdef debug}
 //{$include <malloc.h>}
+{$endif}
+//{$ifndef	NULL}
+//
+//  const
+//    NULL = 0;
 //{$endif}
-//{$ifndef NULL}
-//const
-//NULL =nil;
+//{$ifndef	FALSE}
+//
+//  const
+//    FALSE = 0;
 //{$endif}
-//{$ifndef FALSE}
-//FALSE =nil;
-//{$endif}
-//{$ifndef TRUE}
-//TRUE = 1;
+//{$ifndef	TRUE}
+//
+//  const
+//    TRUE = 1;
 //{$endif}
 //{$ifndef ulong}
-//ulong = unsignedlong;
+//
+//  const
+//    ulong = dword;
 //{$endif}
-//{$ifndef ushort}
-//ushort = unsignedshort;
+//{$ifndef word}
+//
+//  const
+//    word = word;
 //{$endif}
 //{$ifndef uchar}
-//uchar = unsignedchar;
+//
+//  const
+//    uchar = byte;
 //{$endif}
 //{$ifndef uint}
-//uint = unsignedint;
-//{$endif}
 //
-//function mallocstruct(x: integer; y: integer): integer; {<= !!!6 unknown macro}
-//
-//function callocstruct(x: integer; y: integer): integer; {<= !!!6 unknown macro}
-//
-//function mallocstructN(x: integer; y: integer; name: integer): integer; {<= !!!6 unknown macro}
-//
-//function callocstructN(x: integer; y: integer; name: integer): integer; {<= !!!6 unknown macro}
-//
-//function RMK(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function ELEM(a: integer; b: integer; c: integer): integer; {<= !!!6 unknown macro}
-//
-//function ELEM3(a: integer; b: integer; c: integer; d: integer): integer; {<= !!!6 unknown macro}
-//
-//function ELEM4(a: integer; b: integer; c: integer; d: integer; e: integer): integer; {<= !!!6 unknown macro}
-//
-//function ELEM5(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer): integer; {<= !!!6 unknown macro}
-//
-//function ELEM6(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer; g: integer): integer; {<= !!!6 unknown macro}
-//
-//function ELEM7(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer; g: integer; h: integer): integer; {<= !!!6 unknown macro}
-//
-//function ELEM8(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer; g: integer; h: integer; i: integer): integer; {<= !!!6 unknown macro}
-//
-//function STREQ(str: integer; a: integer): integer; {<= !!!6 unknown macro}
-//
-//function STREQ2(str: integer; a: integer; b: integer): integer; {<= !!!6 unknown macro}
-//
-//function STREQ3(str: integer; a: integer; b: integer; c: integer): integer; {<= !!!6 unknown macro}
-//
-//function MIN2(x: integer; y: integer): integer; {<= !!!6 unknown macro}
-//
-//function MIN3(x: integer; y: integer; z: integer): integer; {<= !!!6 unknown macro}
-//
-//function MIN4(x: integer; y: integer; z: integer; a: integer): integer; {<= !!!6 unknown macro}
-//
-//function MAX2(x: integer; y: integer): integer; {<= !!!6 unknown macro}
-//
-//function MAX3(x: integer; y: integer; z: integer): integer; {<= !!!6 unknown macro}
-//
-//function MAX4(x: integer; y: integer; z: integer; a: integer): integer; {<= !!!6 unknown macro}
-//
-//function SWAP(type: integer; a: integer; b: integer): integer; {<= !!!6 unknown macro}
-//{$ifndef ABS}
-//
-//function ABS(x: integer): integer; {<= !!!6 unknown macro}
-//{$endif}
-//{$ifdef AMIGA}
-//
-//function GL(x: integer): integer; {<= !!!6 unknown macro}
-//{$else}
-//
-//function GL(x: integer): integer; {<= !!!6 unknown macro}
-//{$endif}
-//
-//function GS(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function GSS(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function SWAP_L(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function SWAP_S(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function SWAP_SHORT(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function SWAP_LONG(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function ENDIAN_NOP(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function GET_BIG_LONG(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function GET_LITTLE_LONG(x: integer): integer; {<= !!!6 unknown macro}
-//{$if defined( __sgi) || defined (__SUN) || defined (__PPC__)}
-//
-//function MAKE_ID(a: integer; b: integer; c: integer; d: integer): integer; {<= !!!6 unknown macro}
-//GET_ID = GET_BIG_LONG;
-//LITTLE_SHORT = SWAP_SHORT;
-//LITTLE_LONG = SWAP_LONG;
-//BIG_SHORT = ENDIAN_NOP;
-//BIG_LONG = ENDIAN_NOP;
-//{$else}
-//
-//function MAKE_ID(a: integer; b: integer; c: integer; d: integer): integer; {<= !!!6 unknown macro}
-//GET_ID = GET_LITTLE_LONG;
-//LITTLE_SHORT = ENDIAN_NOP;
-//LITTLE_LONG = ENDIAN_NOP;
-//BIG_SHORT = SWAP_SHORT;
-//BIG_LONG = SWAP_LONG;
-//{$endif}
-//{$ifdef __ANSI_CPP__}
-//(* ansi *)
-//
-//function NEW(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function CLN(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function PRINT(d: integer; var1: integer): integer; {<= !!!6 unknown macro}
-//
-//function PRINT2(d: integer; e: integer; var1: integer; var2: integer): integer; {<= !!!6 unknown macro}
-//
-//function PRINT3(d: integer; e: integer; f: integer; var1: integer; var2: integer; var3: integer): integer; {<= !!!6 unknown macro}
-//
-//function PRINT4(d: integer; e: integer; f: integer; g: integer; var1: integer; var2: integer; var3: integer; var4: integer): integer; {<= !!!6 unknown macro}
-//{$else}
-//(* -cckr *)
-//
-//function NEW(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function CLN(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function PRINT(d: integer; var1: integer): integer; {<= !!!6 unknown macro}
-//
-//function PRINT2(d: integer; e: integer; var1: integer; var2: integer): integer; {<= !!!6 unknown macro}
-//
-//function PRINT3(d: integer; e: integer; f: integer; var1: integer; var2: integer; var3: integer): integer; {<= !!!6 unknown macro}
-//
-//function PRINT4(d: integer; e: integer; f: integer; g: integer; var1: integer; var2: integer; var3: integer; var4: integer): integer; {<= !!!6 unknown macro}
+//  const
+//    uint = dword;
 //{$endif}
 
-type
-pLink = ^Link;
-Link = record
-next: pLink;
-prev: pLink;
-end;
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
 
-(* never change the size of this! genfile.c detects pointerlen with it *)
+  function mallocstruct(x,y : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  function callocstruct(x,y : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  //function mallocstructN(x,y,name : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  //function callocstructN(x,y,name : longint) : longint;
+
+  { #define RMK(x) }
+  { #define ELEM(a, b, c)		( (a)==(b) || (a)==(c) ) }
+  { #define ELEM3(a, b, c, d)	( ELEM(a, b, c) || (a)==(d) ) }
+  { #define ELEM4(a, b, c, d, e)	( ELEM(a, b, c) || ELEM(a, d, e) ) }
+  { #define ELEM5(a, b, c, d, e, f)	( ELEM(a, b, c) || ELEM3(a, d, e, f) ) }
+  { #define ELEM6(a, b, c, d, e, f, g)	( ELEM(a, b, c) || ELEM4(a, d, e, f, g) ) }
+  { #define ELEM7(a, b, c, d, e, f, g, h)	( ELEM3(a, b, c, d) || ELEM4(a, e, f, g, h) ) }
+  { #define ELEM8(a, b, c, d, e, f, g, h, i)	( ELEM4(a, b, c, d, e) || ELEM4(a, f, g, h, i) ) }
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  //function STREQ(str,a : longint) : longint;
+
+  { #define STREQ2(str, a, b)	( STREQ(str, a) || STREQ(str, b) ) }
+  { #define STREQ3(str, a, b, c)	( STREQ2(str, a, b) || STREQ(str, c) ) }
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function MIN2(x,y : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function MIN3(x,y,z : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function MIN4(x,y,z,a : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function MAX2(x,y : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function MAX3(x,y,z : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function MAX4(x,y,z,a : longint) : longint;
+
+  { #define SWAP(type, a, b)	 type sw_ap; sw_ap=(a); (a)=(b); (b)=sw_ap;  }
+{$ifndef ABS}
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+
+  //function ABS(x : longint) : longint;
+
+{$endif}
+  { #ifdef AMIGA }
+  { #	define GL(x) (*((int *)(x))) }
+  { #else }
+  { #	define GL(x) (((word *)(x))[0] << 16 | ((word *)(x))[1]) }
+  { #endif }
+  {#define GS(x) (((uchar *)(x))[0] << 8 | ((uchar *)(x))[1]) }
+  {#define GSS(x) (((uchar *)(x))[1] << 8 | ((uchar *)(x))[0]) }
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+
+  function SWAP_L(x : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function SWAP_S(x : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function SWAP_SHORT(x : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  //function SWAP_LONG(x : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function ENDIAN_NOP(x : longint) : longint;
+
+  {#define GET_BIG_LONG(x) (((uchar *) (x))[0] << 24 | ((uchar *) (x))[1] << 16 | ((uchar *) (x))[2] << 8 | ((uchar *) (x))[3]) }
+  {#define GET_LITTLE_LONG(x) (((uchar *) (x))[3] << 24 | ((uchar *) (x))[2] << 16 | ((uchar *) (x))[1] << 8 | ((uchar *) (x))[0]) }
+{$if defined( __sgi) or defined (__SUN) or defined (__PPC__)}
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+
+  function MAKE_ID(a,b,c,d : longint) : longint;
+
+  const
+    GET_ID = GET_BIG_LONG;
+    LITTLE_SHORT = SWAP_SHORT;
+    LITTLE_LONG = SWAP_LONG;
+    BIG_SHORT = ENDIAN_NOP;
+    BIG_LONG = ENDIAN_NOP;
+{$else}
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+
+  //function MAKE_ID(a,b,c,d : longint) : longint;
+
+  //const
+  //  GET_ID = GET_LITTLE_LONG;
+  //  LITTLE_SHORT = ENDIAN_NOP;
+  //  LITTLE_LONG = ENDIAN_NOP;
+  //  BIG_SHORT = SWAP_SHORT;
+  //  BIG_LONG = SWAP_LONG;
+{$endif}
+
+{$ifdef __ANSI_CPP__}
+  { ansi  }
+  {#define NEW(x) (x*)mallocN(sizeof(x),# x) }
+  {#define CLN(x) (x*)callocN(sizeof(x),# x) }
+  {#define PRINT(d, var1)	printf(# var1 ":%" # d "\n", var1) }
+  {#define PRINT2(d, e, var1, var2)	printf(# var1 ":%" # d " " # var2 ":%" # e "\n", var1, var2) }
+  {#define PRINT3(d, e, f, var1, var2, var3)	printf(# var1 ":%" # d " " # var2 ":%" # e " " # var3 ":%" # f "\n", var1, var2, var3) }
+  {#define PRINT4(d, e, f, g, var1, var2, var3, var4)	printf(# var1 ":%" # d " " # var2 ":%" # e " " # var3 ":%" # f " " # var4 ":%" # g "\n", var1, var2, var3, var4) }
+{$else}
+  { -cckr  }
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+
+  function NEW(x : longint) : longint;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  function CLN(x : longint) : longint;
+
+  {#define PRINT(d, var1)	printf(# var1 ":%" # d "\n", var1) }
+  {#define PRINT2(d, e, var1, var2)	printf(# var1 ":%" # d " " # var2 ":%" # e "\n", var1, var2) }
+  {#define PRINT3(d, e, f, var1, var2, var3)	printf(# var1 ":%" # d " " # var2 ":%" # e " " # var3 ":%" # f "\n", var1, var2, var3) }
+  {#define PRINT4(d, e, f, g, var1, var2, var3, var4)	printf(# var1 ":%" # d " " # var2 ":%" # e " " # var3 ":%" # f " " # var4 ":%" # g "\n", var1, var2, var3, var4) }
+{$endif}
+
+  type
+    pLink = ^Link;
+    Link = record
+        next : ^Link;
+        prev : ^Link;
+      end;
+  { never change the size of this! genfile.c detects pointerlen with it  }
+
   pListBase = ^ListBase;
-ListBase = record
-first: pointer;
-last: pointer;
-end;
+    ListBase = record
+        first : pointer;
+        last : pointer;
+      end;
+  { 8 byte alignment!  }
 
-//(* 8 byte alignment! *)
-pMemHead = ^MemHead;
-MemHead = record
-tag1: integer;
-len: integer;
-next: pMemHead;
-prev: pMemHead;
-name: pchar;
-nextname: pchar;
-level: integer;
-tag2: integer;
-end;
+    pMemHead = ^MemHead;
+    MemHead = record
+        tag1 : longint;
+        len : longint;
+        next : ^MemHead;
+        prev : ^MemHead;
+        name : pchar;
+        nextname : pchar;
+        level : longint;
+        tag2 : longint;
+      end;
 
-pMemTail = ^MemTail;
-MemTail = record
-tag3: integer;
-pad: integer;
-end;
+    pMemTail = ^MemTail;
+    MemTail = record
+        tag3 : longint;
+        pad : longint;
+      end;
 
-const
-{$IFDEF ENDIAN_LITTLE}
-  MEMTAG1 = byte('O') shl 24 or byte('M') shl 16 or byte('E') shl 8 or byte('M');
-  MEMTAG2 = byte('L') shl 24 or byte('B') shl 16 or byte('Y') shl 8 or byte('R');
-  MEMTAG3 = byte('!') shl 24 or byte('K') shl 16 or byte('C') shl 8 or byte('O');
-  MEMFREE = byte('E') shl 24 or byte('E') shl 16 or byte('R') shl 8 or byte('F');
-{$ELSE}
-  MEMTAG1 = byte('M') shl 24 or byte('E') shl 16 or byte('M') shl 8 or byte('O');
-  MEMTAG2 = byte('R') shl 24 or byte('Y') shl 16 or byte('B') shl 8 or byte('L');
-  MEMTAG3 = byte('O') shl 24 or byte('C') shl 16 or byte('K') shl 8 or byte('!');
-  MEMFREE = byte('F') shl 24 or byte('R') shl 16 or byte('E') shl 8 or byte('E');
-{$ENDIF}
+  { was #define dname def_expr }
+  function MEMTAG1 : longint; { return type might be wrong }
 
-//function MEMNEXT(x: integer): integer; {<= !!!6 unknown macro}
-//{totblock: integer; }{<= !!!5 external variable}
-//{mem_in_use: integer; }{<= !!!5 external variable}
-//{$ifdef debug}
-//
-//function malloc(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function free(x: integer): integer; {<= !!!6 unknown macro}
-//
-//function calloc(x: integer; y: integer): integer; {<= !!!6 unknown macro}
-//{$endif}
-//(* ******* util.c *)
-//
-//procedure Sginap(Ticks: integer);
+  { was #define dname def_expr }
+  function MEMTAG2 : longint; { return type might be wrong }
 
-procedure addhead(listbase: pListBase;  vlink: pointer);
+  { was #define dname def_expr }
+  function MEMTAG3 : longint; { return type might be wrong }
 
-procedure addtail(listbase: pListBase;  vlink: pointer);
+  { was #define dname def_expr }
+  function MEMFREE : longint; { return type might be wrong }
 
-//procedure ap_framelen(cmd: pchar;  i: integer);
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  function MEMNEXT(x : longint) : pMemHead;
 
-function callocN(len: integer;  str: pchar): pointer;
 
-function check_memlist(memh: pMemHead): pchar;
+    //var
+    //  totblock : longint;cvar;external;
+    //  mem_in_use : longint;cvar;external;
 
-//function countlist(listbase: pListBase): integer;
-//
-//function file_size(name: pchar): integer;
-//
-//function fileselect(title: pchar;  dir: pchar): smallint;
+{$ifdef debug}
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
 
-function freeN(vmemh: pointer): smallint;
+  function malloc(x : longint) : longint;
 
-//procedure freelinkN(listbase: pListBase;  vlink: pinteger);
-//
-//procedure freelist(listbase: pListBase);
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function free(x : longint) : longint;
 
-procedure freelistN(listbase: pListBase);
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function calloc(x,y : longint) : longint;
 
-//procedure insertlink(listbase: pListBase;  vprevlink: pinteger;  vnewlink: pinteger);
+{$endif}
+  { ******* util.c  }
 
-procedure insertlinkbefore(listbase: pListBase;  vnextlink: pointer;  vnewlink: pointer);
+  //procedure Sginap(Ticks:longint);
+  procedure addhead(listbase:pListBase; vlink:pointer);
+  procedure addtail(listbase:pListBase; vlink:pointer);
+  //procedure ap_framelen(cmd:Pchar; i:longint);
+  function callocN(len:longint; str:Pchar):pointer;
+  function check_memlist(memh:PMemHead):pchar;
+  //function countlist(listbase:pListBase):longint;
+  //function file_size(name:Pchar):longint;
+  //function fileselect(title:Pchar; dir:Pchar):smallint;
+  function freeN(vmemh:pointer):smallint;
+  //procedure freelinkN(listbase:pListBase; vlink:pointer);
+  //procedure freelist(listbase:pListBase);
+  procedure freelistN(listbase:pListBase);
+  //procedure insertlink(listbase:pListBase; vprevlink:pointer; vnewlink:pointer);
+  procedure insertlinkbefore(listbase:pListBase; vnextlink:pointer; vnewlink:pointer);
+  //function load_to_mem(name:Pchar):pointer;
+  function mallocN(len:longint; str:Pchar):pointer;
+  //procedure newname(name:Pchar; add:longint);
+  procedure printmemlist;
+  procedure rem_memblock(memh:PMemHead);
+  procedure remlink(listbase:pListBase; vlink:pointer);
+  //function string_to_tcode(str:Pchar):longint;
+  //function stringdec(_string:Pchar; kop:Pchar; staart:Pchar; numlen:Pword):longint;
+  //procedure stringenc(_string:Pchar; kop:Pchar; staart:Pchar; numlen:word; pic:longint);
+  //function stringselect(title:Pchar; _file:Pchar):smallint;
+  //function strnmatch(s1:Pchar; s2:Pchar):longint;
+  //function tcode_to_string(len:longint):pchar;
 
-//procedure load_to_mem(name: pchar);
+{ UTIL_H  }
 
-function mallocN(len: integer;  str: pchar): pointer;
-
-//procedure newname(name: pchar;  add: integer);
-
-procedure printmemlist;
-
-procedure rem_memblock(memh: pMemHead);
-
-procedure remlink(listbase: pListBase;  vlink: pointer);
-
-//function string_to_tcode(str: pchar): integer;
-//
-//function stringdec(string: pchar;  kop: pchar;  staart: pchar;  numlen: pushort): integer;
-//
-//procedure stringenc(string: pchar;  kop: pchar;  staart: pchar;  numlen: ushort;  pic: integer);
-//
-//function stringselect(title: pchar;  file: pchar): smallint;
-//
-//function strnmatch(s1: pchar;  s2: pchar): integer;
-//
-//function tcode_to_string(len: integer): pchar;
-//{$endif}
-(* UTIL_H *)
 
 implementation
 
 uses
 cfuncs;
 
-//{$include <stdio.h>}
-//{$include "util.h"}
-//{$include <fcntl.h>}
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  function mallocstruct(x,y : longint) : longint;
+  begin
+    mallocstruct:=longint(malloc(y*(sizeof(x))));
+  end;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  function callocstruct(x,y : longint) : longint;
+  begin
+    callocstruct:=longint(calloc(y,sizeof(x)));
+  end;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  function mallocstructN(x,y: longint;name : pchar) : longint;
+  begin
+    mallocstructN:=longint(mallocN(y*(sizeof(x)), name));
+  end;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  function callocstructN(x,y: longint;name : pchar) : longint;
+  begin
+    callocstructN:=longint(callocN(y*(sizeof(x)),name));
+  end;
+
+    { was #define dname(params) para_def_expr }
+    { argument types are unknown }
+    { return type might be wrong }
+    function STREQ(str,a : pchar) : longint;
+    begin
+      if strcmp(str,a)=0 then
+      STREQ:=1
+      else
+      STREQ:=0;
+    end;
+
+    { was #define dname(params) para_def_expr }
+    { argument types are unknown }
+    { return type might be wrong }
+    function MIN2(x,y : longint) : longint;
+    var
+       if_local1 : longint;
+    (* result types are not known *)
+    begin
+      if y<>0 then
+        if_local1:=x
+      else
+        if_local1:=y;
+
+      if x<(if_local1) then
+      MIN2:=1
+      else
+        MIN2:=0;
+    end;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function MIN3(x,y,z : longint) : longint;
+  begin
+    MIN3:=MIN2(MIN2(x,y),z);
+  end;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+function MIN4(x,y,z,a : longint) : longint;
+begin
+  MIN4:=MIN2(MIN2(x,y),MIN2(z,a));
+end;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+function MAX2(x,y : longint) : longint;
+var
+   if_local1 : longint;
+(* result types are not known *)
+begin
+  if y<>0 then
+    if_local1:=x
+  else
+    if_local1:=y;
+
+  if x>(if_local1) then
+  MAX2:=1
+  else
+    MAX2:=0;
+end;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+function MAX3(x,y,z : longint) : longint;
+begin
+  MAX3:=MAX2(MAX2(x,y),z);
+end;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+function MAX4(x,y,z,a : longint) : longint;
+begin
+  MAX4:=MAX2(MAX2(x,y),MAX2(z,a));
+end;
+
+    { was #define dname(params) para_def_expr }
+    { argument types are unknown }
+    { return type might be wrong }
+    function SWAP_L(x : longint) : longint;
+    begin
+      SWAP_L:=((((x shl 24) and $ff000000) or ((x shl 8) and $ff0000)) or ((x shr 8) and $ff00)) or ((x shr 24) and $ff);
+    end;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  { return type might be wrong }
+  function SWAP_S(x : longint) : longint;
+  begin
+    SWAP_S:=((x shl 8) and $ff00) or ((x shr 8) and $ff);
+  end;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+function SWAP_SHORT(x : longint) : longint;
+begin
+  SWAP_SHORT:=((word(x)) shl 8) or ((word(x)) shr 8);
+end;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+//function SWAP_LONG(x : longint) : longint;
+//begin
+//  SWAP_LONG:=(((x shl 24) or ((x(@($ff00))) shl 8)) or ((x shr 8) and $ff00)) or ((x shr 24) and $ff);
+//end;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+function ENDIAN_NOP(x : longint) : longint;
+begin
+  ENDIAN_NOP:=x;
+end;
+
+    { was #define dname(params) para_def_expr }
+    { argument types are unknown }
+    { return type might be wrong }
+    function MAKE_ID(a,b,c,d : pchar) : longint;
+    begin
+      {$IFDEF ENDIAN_LITTLE}
+      MAKE_ID:=((((longint(a)) shl 24) or ((longint(b)) shl 16)) or (longint(c) shl 8)) or longint(d);
+      {$else}
+      MAKE_ID:=((((longint(d)) shl 24) or ((longint(c)) shl 16)) or (longint(b) shl 8)) or longint(a);
+      {$endif}
+    end;
+
+    { was #define dname(params) para_def_expr }
+    { argument types are unknown }
+    function NEW(x : longint) : longint;
+    begin
+      NEW:=longint(mallocN(sizeof(x),'x'));
+    end;
+
+  { was #define dname(params) para_def_expr }
+  { argument types are unknown }
+  function CLN(x : longint) : longint;
+  begin
+    CLN:=longint(callocN(sizeof(x),'x'));
+  end;
+
+    { was #define dname def_expr }
+    function MEMTAG1 : longint; { return type might be wrong }
+      begin
+        MEMTAG1:=MAKE_ID('M','E','M','O');
+      end;
+
+  { was #define dname def_expr }
+  function MEMTAG2 : longint; { return type might be wrong }
+    begin
+      MEMTAG2:=MAKE_ID('R','Y','B','L');
+    end;
+
+{ was #define dname def_expr }
+function MEMTAG3 : longint; { return type might be wrong }
+  begin
+    MEMTAG3:=MAKE_ID('O','C','K','!');
+  end;
+
+{ was #define dname def_expr }
+function MEMFREE : longint; { return type might be wrong }
+  begin
+    MEMFREE:=MAKE_ID('F','R','E','E');
+  end;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+function MEMNEXT(x : longint) : pMemHead;
+begin
+  MEMNEXT:=pMemHead((pchar(x))-(pchar(@((pMemHead(0))^.next))));
+end;
+
+{$IFDEF DEBUG}
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+function malloc(x : longint) : pointer;
+begin
+  malloc:=mallocN(x,'debug');
+end;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+function free(var x : pointer) : smallint;
+begin
+  free:=freeN(x);
+end;
+
+{ was #define dname(params) para_def_expr }
+{ argument types are unknown }
+{ return type might be wrong }
+function calloc(x,y : longint) : pointer;
+begin
+  calloc:=callocN(x*y,'debug');
+end;
+{$ENDIF}
+
+////{$include <stdio.h>}
+////{$include "util.h"}
+////{$include <fcntl.h>}
 //{$ifdef WIN32}
-//{$include "winstuff.h"}
+////{$include "winstuff.h"}
 //{$endif}
 //{$ifndef WIN32}
-//{$include <sys/time.h>}
+////{$include <sys/time.h>}
 //{$endif}
 
 var
@@ -317,12 +589,12 @@ begin
   MEMNEXT:=pMemHead((pchar(x))-(pchar(@((pMemHead(0))^.next))));
 end;
 
-//function stringdec(string: pchar;  kop: pchar;  staart: pchar;  numlen: pushort): integer; 
+//function stringdec(string: pchar;  kop: pchar;  staart: pchar;  numlen: pword): integer; 
 //var
-//len: ushort; 
-//len2: ushort; 
-//nums: ushort; 
-//nume: ushort; 
+//len: word; 
+//len2: word; 
+//nums: word; 
+//nume: word; 
 //i: smallint; 
 //found: smallint;
 // 
@@ -429,7 +701,7 @@ end;
 //    then
 //    {*}numlen^:=nume-nums+1; 
 //    begin
-//      result:= ({!!!a type cast? =>} {integer(}atoi(@(string[nums]))); 
+//      result:= ( {integer(}atoi(@(string[nums])));
 //      exit;
 //    end;
 //  end;
@@ -451,12 +723,12 @@ end;
 //  end;
 //end;
 //
-//procedure stringenc(string: pchar;  kop: pchar;  staart: pchar;  numlen: ushort;  pic: integer); 
+//procedure stringenc(string: pchar;  kop: pchar;  staart: pchar;  numlen: word;  pic: integer); 
 //var
 //numstr: array [0..Pred(10)] of char;
 // 
-//len: ushort; 
-//i: ushort; 
+//len: word; 
+//i: word; 
 //begin
 //  numstr:=#0; 
 //  
@@ -481,7 +753,7 @@ end;
 //head: array [0..Pred(128)] of char; 
 //tail: array [0..Pred(128)] of char; 
 //pic: integer; 
-//digits: ushort; 
+//digits: word; 
 //i: integer; 
 //exp: integer; 
 //begin
@@ -596,7 +868,7 @@ end;
 //Link = record
 //end;
 //
-//procedure freelinkN(listbase: pListBase;  vlink: pinteger); 
+//procedure freelinkN(listbase: pListBase;  vlink: pinteger);
 //begin
 //  
 //  if link=nil
@@ -612,7 +884,7 @@ end;
 //Link = record
 //end;(* newlink komt na prevlink *)
 //
-//procedure insertlink(listbase: pListBase;  vprevlink: pinteger;  vnewlink: pinteger); 
+//procedure insertlink(listbase: pListBase;  vprevlink: pinteger;  vnewlink: pinteger);
 //begin
 //  if newlink=nil
 //  then
@@ -700,7 +972,7 @@ end;
 //Link = record
 //end;
 //
-//procedure freelist(listbase: pListBase); 
+//procedure freelist(listbase: pListBase);
 //begin
 //  
 //  if listbase=nil
@@ -740,7 +1012,7 @@ begin
   listbase^.last:=nil;
 end;
 
-//function countlist(listbase: pListBase): integer; 
+//function countlist(listbase: pListBase): integer;
 //var
 //link: pLink; 
 //count: integer;
@@ -1462,25 +1734,25 @@ end;
 //{mallocstruct(x,y) (x* )malloc((y)* sizeof(x))}
 //function mallocstruct(x: integer; y: integer): integer;
 //begin
-//  result:= {!!!a type cast? =>} {px(}malloc((y)*sizeof(x))
+//  result:=  {px(}malloc((y)*sizeof(x))
 //end;
 //
 //{callocstruct(x,y) (x* )calloc((y), sizeof(x))}
 //function callocstruct(x: integer; y: integer): integer;
 //begin
-//  result:= {!!!a type cast? =>} {px(}calloc((y),sizeof(x))
+//  result:=  {px(}calloc((y),sizeof(x))
 //end;
 //
 //{mallocstructN(x,y,name) (x* )mallocN((y)* sizeof(x),name)}
 //function mallocstructN(x: integer; y: integer; name: integer): integer;
 //begin
-//  result:= {!!!a type cast? =>} {px(}mallocN((y)*sizeof(x),name)
+//  result:=  {px(}mallocN((y)*sizeof(x),name)
 //end;
 //
 //{callocstructN(x,y,name) (x* )callocN((y)* sizeof(x),name)}
 //function callocstructN(x: integer; y: integer; name: integer): integer;
 //begin
-//  result:= {!!!a type cast? =>} {px(}callocN((y)*sizeof(x),name)
+//  result:=  {px(}callocN((y)*sizeof(x),name)
 //end;
 //
 //{RMK(x)}
@@ -1488,43 +1760,43 @@ end;
 //begin
 //end;
 //
-//{ELEM(a, b, c)  ( (a)==(b) || (a)==(c) )}
+//{ELEM(a, b, c)  ( (a)==(b) or (a)==(c) )}
 //function ELEM(a: integer; b: integer; c: integer): integer;
 //begin
 //  result:= ((a)=(b))or((a)=(c))
 //end;
 //
-//{ELEM3(a, b, c, d) ( ELEM(a, b, c) || (a)==(d) )}
+//{ELEM3(a, b, c, d) ( ELEM(a, b, c) or (a)==(d) )}
 //function ELEM3(a: integer; b: integer; c: integer; d: integer): integer;
 //begin
 //  result:= (ELEM(a,b,c))or((a)=(d))
 //end;
 //
-//{ELEM4(a, b, c, d, e) ( ELEM(a, b, c) || ELEM(a, d, e) )}
+//{ELEM4(a, b, c, d, e) ( ELEM(a, b, c) or ELEM(a, d, e) )}
 //function ELEM4(a: integer; b: integer; c: integer; d: integer; e: integer): integer;
 //begin
 //  result:= (ELEM(a,b,c))or(ELEM(a,d,e))
 //end;
 //
-//{ELEM5(a, b, c, d, e, f) ( ELEM(a, b, c) || ELEM3(a, d, e, f) )}
+//{ELEM5(a, b, c, d, e, f) ( ELEM(a, b, c) or ELEM3(a, d, e, f) )}
 //function ELEM5(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer): integer;
 //begin
 //  result:= (ELEM(a,b,c))or(ELEM3(a,d,e,f))
 //end;
 //
-//{ELEM6(a, b, c, d, e, f, g) ( ELEM(a, b, c) || ELEM4(a, d, e, f, g) )}
+//{ELEM6(a, b, c, d, e, f, g) ( ELEM(a, b, c) or ELEM4(a, d, e, f, g) )}
 //function ELEM6(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer; g: integer): integer;
 //begin
 //  result:= (ELEM(a,b,c))or(ELEM4(a,d,e,f,g))
 //end;
 //
-//{ELEM7(a, b, c, d, e, f, g, h) ( ELEM3(a, b, c, d) || ELEM4(a, e, f, g, h) )}
+//{ELEM7(a, b, c, d, e, f, g, h) ( ELEM3(a, b, c, d) or ELEM4(a, e, f, g, h) )}
 //function ELEM7(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer; g: integer; h: integer): integer;
 //begin
 //  result:= (ELEM3(a,b,c,d))or(ELEM4(a,e,f,g,h))
 //end;
 //
-//{ELEM8(a, b, c, d, e, f, g, h, i) ( ELEM4(a, b, c, d, e) || ELEM4(a, f, g, h, i) )}
+//{ELEM8(a, b, c, d, e, f, g, h, i) ( ELEM4(a, b, c, d, e) or ELEM4(a, f, g, h, i) )}
 //function ELEM8(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer; g: integer; h: integer; i: integer): integer;
 //begin
 //  result:= (ELEM4(a,b,c,d,e))or(ELEM4(a,f,g,h,i))
@@ -1536,13 +1808,13 @@ end;
 //  result:= (lstrcmp((str),(a))=nil)
 //end;
 //
-//{STREQ2(str, a, b) ( STREQ(str, a) || STREQ(str, b) )}
+//{STREQ2(str, a, b) ( STREQ(str, a) or STREQ(str, b) )}
 //function STREQ2(str: integer; a: integer; b: integer): integer;
 //begin
 //  result:= (STREQ(str,a))or(STREQ(str,b))
 //end;
 //
-//{STREQ3(str, a, b, c) ( STREQ2(str, a, b) || STREQ(str, c) )}
+//{STREQ3(str, a, b, c) ( STREQ2(str, a, b) or STREQ(str, c) )}
 //function STREQ3(str: integer; a: integer; b: integer; c: integer): integer;
 //begin
 //  result:= (STREQ2(str,a,b))or(STREQ(str,c))
@@ -1599,25 +1871,25 @@ end;
 //{GL(x) ( *((int * )(x)))}
 //function GL(x: integer): integer;
 //begin
-//  result:= (*({!!!a type cast? =>} {pinteger(}(x)))
+//  result:= (*( {pinteger(}(x)))
 //end;
 //
-//{GL(x) (((ushort * )(x))[0] << 16 | ((ushort * )(x))[1])}
+//{GL(x) (((word * )(x))[0] << 16 | ((word * )(x))[1])}
 //function GL(x: integer): integer;
 //begin
-//  result:= (({!!!a type cast? =>} {pushort(}(x))[0] shl 16 or ({!!!a type cast? =>} {pushort(}(x))[1])
+//  result:= (( {pword(}(x))[0] shl 16 or ( {pword(}(x))[1])
 //end;
 //
 //{GS(x) (((uchar * )(x))[0] << 8 | ((uchar * )(x))[1])}
 //function GS(x: integer): integer;
 //begin
-//  result:= (({!!!a type cast? =>} {puchar(}(x))[0] shl 8 or ({!!!a type cast? =>} {puchar(}(x))[1])
+//  result:= (( {puchar(}(x))[0] shl 8 or ( {puchar(}(x))[1])
 //end;
 //
 //{GSS(x) (((uchar * )(x))[1] << 8 | ((uchar * )(x))[0])}
 //function GSS(x: integer): integer;
 //begin
-//  result:= (({!!!a type cast? =>} {puchar(}(x))[1] shl 8 or ({!!!a type cast? =>} {puchar(}(x))[0])
+//  result:= (( {puchar(}(x))[1] shl 8 or ( {puchar(}(x))[0])
 //end;
 //
 //{SWAP_L(x) (((x << 24) & 0xff000000) | ((x << 8) & 0xff0000) | ((x >> 8) & 0xff00) | ((x >> 24) & 0xff))}
@@ -1653,37 +1925,37 @@ end;
 //{GET_BIG_LONG(x) (((uchar * ) (x))[0] << 24 | ((uchar * ) (x))[1] << 16 | ((uchar * ) (x))[2] << 8 | ((uchar * ) (x))[3])}
 //function GET_BIG_LONG(x: integer): integer;
 //begin
-//  result:= (({!!!a type cast? =>} {puchar(}(x))[0] shl 24 or ({!!!a type cast? =>} {puchar(}(x))[1] shl 16 or ({!!!a type cast? =>} {puchar(}(x))[2] shl 8 or ({!!!a type cast? =>} {puchar(}(x))[3])
+//  result:= (( {puchar(}(x))[0] shl 24 or ( {puchar(}(x))[1] shl 16 or ( {puchar(}(x))[2] shl 8 or ( {puchar(}(x))[3])
 //end;
 //
 //{GET_LITTLE_LONG(x) (((uchar * ) (x))[3] << 24 | ((uchar * ) (x))[2] << 16 | ((uchar * ) (x))[1] << 8 | ((uchar * ) (x))[0])}
 //function GET_LITTLE_LONG(x: integer): integer;
 //begin
-//  result:= (({!!!a type cast? =>} {puchar(}(x))[3] shl 24 or ({!!!a type cast? =>} {puchar(}(x))[2] shl 16 or ({!!!a type cast? =>} {puchar(}(x))[1] shl 8 or ({!!!a type cast? =>} {puchar(}(x))[0])
+//  result:= (( {puchar(}(x))[3] shl 24 or ( {puchar(}(x))[2] shl 16 or ( {puchar(}(x))[1] shl 8 or ( {puchar(}(x))[0])
 //end;
 //
 //{MAKE_ID(a,b,c,d) ( (int)(a)<<24 | (int)(b)<<16 | (c)<<8 | (d) )}
 //function MAKE_ID(a: integer; b: integer; c: integer; d: integer): integer;
 //begin
-//  result:= ({!!!a type cast? =>} {integer(}(a) shl 24 or {!!!a type cast? =>} {integer(}(b) shl 16 or (c) shl 8 or (d))
+//  result:= ( {integer(}(a) shl 24 or  {integer(}(b) shl 16 or (c) shl 8 or (d))
 //end;
 //
 //{MAKE_ID(a,b,c,d) ( (int)(d)<<24 | (int)(c)<<16 | (b)<<8 | (a) )}
 //function MAKE_ID(a: integer; b: integer; c: integer; d: integer): integer;
 //begin
-//  result:= ({!!!a type cast? =>} {integer(}(d) shl 24 or {!!!a type cast? =>} {integer(}(c) shl 16 or (b) shl 8 or (a))
+//  result:= ( {integer(}(d) shl 24 or  {integer(}(c) shl 16 or (b) shl 8 or (a))
 //end;
 //
 //{NEW(x) (x* )mallocN(sizeof(x),# x)}
 //function NEW(x: integer): integer;
 //begin
-//  result:= {!!!a type cast? =>} {px(}mallocN(sizeof(x),x)
+//  result:=  {px(}mallocN(sizeof(x),x)
 //end;
 //
 //{CLN(x) (x* )callocN(sizeof(x),# x)}
 //function CLN(x: integer): integer;
 //begin
-//  result:= {!!!a type cast? =>} {px(}callocN(sizeof(x),x)
+//  result:=  {px(}callocN(sizeof(x),x)
 //end;
 //
 //{PRINT(d, var1) printf(# var1 ":%" # d "\n", var1)}
@@ -1717,13 +1989,13 @@ end;
 //{NEW(x) (x* )mallocN(sizeof(x),"x")}
 //function NEW(x: integer): integer;
 //begin
-//  result:= {!!!a type cast? =>} {px(}mallocN(sizeof(x),'x')
+//  result:=  {px(}mallocN(sizeof(x),'x')
 //end;
 //
 //{CLN(x) (x* )callocN(sizeof(x),"x")}
 //function CLN(x: integer): integer;
 //begin
-//  result:= {!!!a type cast? =>} {px(}callocN(sizeof(x),'x')
+//  result:=  {px(}callocN(sizeof(x),'x')
 //end;
 //
 //{PRINT(d, var1) printf(# var1 ":%" # d "\n", var1)}
@@ -1757,7 +2029,7 @@ end;
 //{MEMNEXT(x) ((MemHead * )(((char * ) x) - ((char * ) & (((MemHead * )0)->next))))}
 //function MEMNEXT(x: integer): integer;
 //begin
-//  result:= ({!!!a type cast? =>} {pMemHead(}(({!!!a type cast? =>} {pchar(}x)-((char* ) and (({!!!a type cast? =>} {pMemHead(}0).next))))
+//  result:= ( {pMemHead(}(( {pchar(}x)-((char* ) and (( {pMemHead(}0).next))))
 //end;
 //
 //{malloc(x) mallocN(x,"debug")}

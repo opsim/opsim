@@ -36,23 +36,25 @@ uses
 function myswinopen(winid, xmin, xmax, ymin, ymax: integer): integer;
 procedure init_my_mainwin(win: integer);
 procedure mywinset(wid: integer);
+function mywinget:longint;
 procedure myortho2(x1, x2, y1, y2: single);
 procedure warp_pointer(x, y: integer);
 procedure mywinposition(swin: integer;  xmin: integer;  xmax: integer;  ymin: integer;  ymax: integer);
 procedure loadmatrix_win(mat: Mat4;  swin: integer);
 procedure mywinclose(winid: integer);
+procedure myswapbuffers;
 
 implementation
 
 uses
   GL, GLu, GLut,
-  blender, screen, util,
+  blender, screen, util, blenglob,
   cfuncs;
 
 //(*     let op: winid's beginnen met 4, eerste 3 voor GL! *)
-//{$include "blender.h"}
-//{$include "screen.h"}
-//{$include "graphics.h"}
+////{$include "blender.h"}
+////{$include "screen.h"}
+////{$include "graphics.h"}
 
 var
 swincount: integer = 4;
@@ -205,7 +207,7 @@ end;
 //  if win=nil
 //  then
 //  exit;
-//  glGetFloatv(GL_MODELVIEW_MATRIX,{!!!a type cast? =>} {pfloat(}win^.viewmat); 
+//  glGetFloatv(GL_MODELVIEW_MATRIX, {pfloat(}win^.viewmat); 
 //end;
 //
 //procedure mygetsingmatrix(mat: array [0..,0..Pred(4)] of float); 
@@ -223,8 +225,8 @@ end;
 //  if win=nil
 //  then
 //  begin 
-//    glGetFloatv(GL_PROJECTION_MATRIX,{!!!a type cast? =>} {pfloat(}matproj); 
-//    glGetFloatv(GL_MODELVIEW_MATRIX,{!!!a type cast? =>} {pfloat(}matview); 
+//    glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}matproj); 
+//    glGetFloatv(GL_MODELVIEW_MATRIX, {pfloat(}matview); 
 //    Mat4MulMat4(mat,matview,matproj); 
 //  end;
 //  else
@@ -250,13 +252,10 @@ end;
 
 (* deze winset en winget gaan over de aktieve output window *)
 (* de window waar de muis staat is G.curscreen->winakt *)
-//function mywinget: integer; 
-//begin
-//  begin
-//    result:= curswin; 
-//    exit;
-//  end;
-//end;
+function mywinget: integer;
+begin
+  exit(curswin);
+end;
 
 procedure mywinset(wid: integer);
 var
@@ -302,7 +301,7 @@ end;
 //function mywinexist(wid: integer): integer; 
 //begin
 //  begin
-//    result:= {!!!a type cast? =>} {integer(}swinarray[wid]; 
+//    result:=  {integer(}swinarray[wid]; 
 //    exit;
 //  end;
 //end;
@@ -406,7 +405,7 @@ end;
 //  win:= swinarray[curswin]; 
 //  if win<>nil 
 //  then
-//  glGetFloatv(GL_PROJECTION_MATRIX,{!!!a type cast? =>} {pfloat(}win^.winmat); 
+//  glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}win^.winmat); 
 //  glMatrixMode(GL_MODELVIEW); 
 //end;
 //
@@ -421,7 +420,7 @@ end;
 //  win:= swinarray[curswin]; 
 //  if win<>nil 
 //  then
-//  glGetFloatv(GL_PROJECTION_MATRIX,{!!!a type cast? =>} {pfloat(}win^.winmat); 
+//  glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}win^.winmat); 
 //  glMatrixMode(GL_MODELVIEW); 
 //end;
 
@@ -435,7 +434,7 @@ endx: integer;
 endy: integer;
 begin
   glEnable(GL_SCISSOR_TEST);
-  //{$if not defined(__BeOS) && not defined (__WIN32)}
+  //{$if not defined(BEOS) && not defined (WINDOWS)}
   //glutSetWindow(win);
   //{$endif}
   sizex:= glutGet(GLUT_WINDOW_WIDTH);
@@ -448,7 +447,7 @@ mainwindow.xmin:= orx;
 mainwindow.ymin:= ory;
 mainwindow.xmax:= endx;
 mainwindow.ymax:= endy;
-ortho2(-0.5,{!!!a type cast? =>} {float(}sizex-0.5,-0.5,{!!!a type cast? =>} {float(}sizey-0.5);
+ortho2(-0.5, {float(}sizex-0.5,-0.5, {float(}sizey-0.5);
 glLoadIdentity();
 glGetFloatv(GL_PROJECTION_MATRIX, @mainwindow.winmat[0]);
 glGetFloatv(GL_MODELVIEW_MATRIX, @mainwindow.viewmat[0]);
@@ -459,26 +458,28 @@ end;
 
 (* ********** END MY WINDOW ************** *)
 
-//procedure myswapbuffers; 
-//var
-//sa: pScrArea; 
-//begin
-//  
-//  sa:= G.curscreen.areabase.first; 
-//  while sa
-//  do
-//  begin 
-//    if sa.win_swap=WIN_BACK_OK
-//    then
-//    sa.win_swap:= WIN_FRONT_OK; 
-//    if sa.head_swap=WIN_BACK_OK
-//    then
-//    sa.head_swap:= WIN_FRONT_OK; 
-//    sa:= sa.next; 
-//  end;
-//  glutSwapBuffers(); 
-//end;
-//(* ************************** FONTS ************************ *)
+procedure myswapbuffers;
+var
+sa: pScrArea;
+begin
+  sa:= G.curscreen^.areabase.first;
+
+  while sa<>nil  do
+  begin
+    if sa^.win_swap=WIN_BACK_OK    then
+    sa^.win_swap:= WIN_FRONT_OK;
+
+    if sa^.head_swap=WIN_BACK_OK     then
+    sa^.head_swap:= WIN_FRONT_OK;
+
+    sa:= sa^.next;
+  end;
+
+  glutSwapBuffers();
+end;
+
+(* ************************** FONTS ************************ *)
+
 //fmtype: pinteger =nil; 
 //
 //procedure fmsetfont(type: pinteger); 
@@ -488,12 +489,12 @@ end;
 //
 //procedure fmprstr(str: pchar); 
 //begin
-//  glutBitmapStr({!!!a type cast? =>} {pinteger(}fmtype,str); 
+//  glutBitmapStr( {pinteger(}fmtype,str); 
 //end;
 //
 //procedure fmoutchar(font: pinteger;  c: char); 
 //begin
-//  glutBitmapCharacter({!!!a type cast? =>} {pinteger(}fmtype,c); 
+//  glutBitmapCharacter( {pinteger(}fmtype,c); 
 //end;
 //
 //function fmstrwidth(str: pchar): integer; 
@@ -535,7 +536,7 @@ end;
 //  
 //  retval:=nil; 
 //  fmsetfont(handle); 
-//  len:= {!!!a type cast? =>} {integer(}lstrlen(str); 
+//  len:=  {integer(}lstrlen(str); 
 //  for{while} i:=nil to Pred(len) { i++}
 //  do
 //  begin 
@@ -587,7 +588,7 @@ end;
 //end;
 //(* ***************************************************** *)
 //(* ***************************************************** *)
-//{$if defined(__BeOS) || defined(__WIN32)}
+//{$if defined(BEOS) or defined(WINDOWS)}
 //var {was static}
 //ximage: pinteger =nil; 
 //xdraw: integer =nil; (* wordt maar 1 keer gedaan, voor mainwin *)
@@ -679,7 +680,7 @@ end;
 //  ov_y:= y; 
 //  ov_sx:= sx; 
 //  ov_sy:= sy; 
-//  {$ifdef __WIN32}
+//  {$ifdef WINDOWS}
 //  y:= (G.curscreen.sizey-y); (* ander coordinatensysteem! *)
 //  if curswin>3
 //  then
@@ -699,7 +700,7 @@ end;
 //procedure myContextSetup; 
 //begin
 //end;
-//{$ifdef __BeOS}
+//{$ifdef BEOS}
 //
 //procedure glutNoBorder; 
 //begin
@@ -1534,7 +1535,7 @@ end;
 //    sdrawXORline(x0,y0,x1,y1); 
 //  end;
 //end;
-//(* end of #if defined(__BeOS ) || defined(WIN32) *)
+//(* end of #if defined(BEOS ) or defined(WINDOWS) *)
 //(* ******************************************* *)
 //(* ******************************************* *)
 //(* ******************************************* *)
@@ -1564,7 +1565,7 @@ end;
 //  exit;
 //  if x0=x1)and(y0=y1
 //  then
-//  {$if defined(__sgi) || defined(__SUN)}
+//  {$if defined(__sgi) or defined(__SUN)}
 //  exit;
 //  glDisable(GL_DITHER); 
 //  {$endif}
@@ -1576,7 +1577,7 @@ end;
 //  glBlendEquationEXT(GL_FUNC_ADD_EXT); 
 //  glDisable(GL_LOGIC_OP); 
 //  glDisable(GL_BLEND); 
-//  {$if defined(__sgi) || defined(__SUN)}
+//  {$if defined(__sgi) or defined(__SUN)}
 //  glEnable(GL_DITHER); 
 //  {$endif}
 //end;
@@ -1593,7 +1594,7 @@ end;
 //  {$ifdef MESA31}
 //  {$endif}
 //  (* automatische onthoud, max 4 lijnen *)
-//  {$if defined(__sgi) || defined(__SUN)}
+//  {$if defined(__sgi) or defined(__SUN)}
 //  exit;
 //  glDisable(GL_DITHER); 
 //  {$endif}
@@ -1641,7 +1642,7 @@ end;
 //  glDisable(GL_LOGIC_OP); 
 //  glDisable(GL_BLEND); 
 //  glBlendEquationEXT(GL_FUNC_ADD_EXT); 
-//  {$if defined(__sgi) || defined(__SUN)}
+//  {$if defined(__sgi) or defined(__SUN)}
 //  glEnable(GL_DITHER); 
 //  {$endif}
 //end;
@@ -1970,7 +1971,7 @@ end;
 //  begin{*}x^:=ov_x; 
 //    {*}sx^:=ov_sx; 
 //    {*}sy^:=ov_sy; 
-//    {$if defined(WIN32) || defined (__BeOS)}
+//    {$if defined(WINDOWS) or defined (BEOS)}
 //    {*}y^:=ov_y; 
 //    {$else}
 //    {*}y^:=(G.curscreen.sizey-ov_y)-ov_sy; 
