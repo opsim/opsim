@@ -2090,31 +2090,27 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//procedure markdirty_all; 
-//var
-//sa: pScrArea;
-//begin
-//  
-//  sa:= G.curscreen^.areabase.first; 
-//  while sa
-//  do
-//  begin 
-//    if sa^.win<>nil 
-//    then
-//    begin 
-//      addqueue(sa^.win,REDRAW,1); 
-//      sa^.win_swap:= sa^.win_swap and ( not WIN_FRONT_OK); 
-//    end;
-//    if sa^.headwin<>nil 
-//    then
-//    begin 
-//      addqueue(sa^.headwin,REDRAW,1); 
-//      sa^.head_swap:= sa^.head_swap and ( not WIN_FRONT_OK); 
-//    end;
-//    sa:= sa^.next; 
-//  end;
-//end;
+
+procedure markdirty_all;
+var
+sa: pScrArea;
+begin
+  sa:= G.curscreen^.areabase.first;
+  while sa <>nil do
+  begin
+    if sa^.win<>0 then
+    begin
+      addqueue(sa^.win,REDRAW,1);
+      sa^.win_swap:= sa^.win_swap and ( not WIN_FRONT_OK);
+    end;
+    if sa^.headwin<>0    then
+    begin
+      addqueue(sa^.headwin,REDRAW,1);
+      sa^.head_swap:= sa^.head_swap and ( not WIN_FRONT_OK);
+    end;
+    sa:= sa^.next;
+  end;
+end;
 //(* BePatch! glutGetFrontbuffer is defined by glDrawBuffer! In fact the name is wrong... *)
 //
 //procedure header_front_to_back_glut(sa: pScrArea);
@@ -2603,19 +2599,19 @@ begin
     //  dodrawscreen:= 1;
     //end;
     //else
-    //if event=REDRAW     then
-    //begin
-    //  towin:=nil;
-    //  if val=G.curscreen^.mainwin        then
-    //  begin
-    //    markdirty_all();
-    //    dodrawscreen:= 1;
-    //  end;
-    //  else
-    //  if val>3        then
-    //  begin
-    //    addqueue(val,REDRAW,val);
-    //  end;
+    if event=REDRAW     then
+    begin
+      towin:=0;
+      if val=G.curscreen^.mainwin        then
+      begin
+        markdirty_all();
+        dodrawscreen:= 1;
+      end
+      else
+      if val>3 then
+      begin
+        addqueue(val,REDRAW,val);
+      end;
     //  else
     //  if R.win)and(val=R.win        then
     //  begin
@@ -2625,7 +2621,7 @@ begin
     //    R.winyof:= ory;
     //    redraw_render_win(val);
     //  end;
-    //end;
+    end;
     //else
     //if event=RIGHTARROWKEY      then
     //begin
