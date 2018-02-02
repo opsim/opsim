@@ -4753,7 +4753,7 @@ uses
 //    end;
 //    else
 //    begin 
-//      error('Can'#39't find filetype'); 
+//      error('Can''t find filetype');
 //      G.afbreek:= 1; 
 //      exit;
 //    end;

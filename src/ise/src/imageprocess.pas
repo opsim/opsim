@@ -743,7 +743,7 @@ implementation
 //  if file=-1
 // then
 //  begin 
-//    error('Can'#39't write file'); 
+//    error('Can''t write file');
 //    exit;
 //  end;
 //  x:= CMBB; 

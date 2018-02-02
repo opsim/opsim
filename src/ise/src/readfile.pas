@@ -1784,7 +1784,7 @@ end;
 //        warn:= 1; 
 //        if ob.id.lib<>0{nil} {<= !!!9} 
 //        then
-//        printf('Can'#39't find obdata of %s lib %s\n',ob.id.name+2,ob.id.lib.name);
+//        printf('Can''t find obdata of %s lib %s\n',ob.id.name+2,ob.id.lib.name);
 //        else
 //        printf('Object %s lost data. Lib:%x\n',ob.id.name+2,ob.id.lib);
 //      end;
@@ -3920,7 +3920,7 @@ end;
 //    if file<=0
 //    then
 //    begin 
-//      errorstr('Can'#39't find file',name,0); 
+//      errorstr('Can''t find file',name,0); 
 //      begin
 //        result:= 0; 
 //        exit;
@@ -5219,7 +5219,7 @@ end;
 //                if disable_newlibadr=(void* )1
 //                then
 //                begin 
-//                  printf('LIB ERROR: can'#39't find %s\n',id.name);
+//                  printf('LIB ERROR: can''t find %s\n',id.name);
 //                  change_libadr(id,0); 
 //                end;
 //                else
@@ -5231,7 +5231,7 @@ end;
 //          end;
 //        end;
 //        else
-//        printf('ERROR: can'#39't find lib %s \n',main.curlib.name);
+//        printf('ERROR: can''t find lib %s \n',main.curlib.name);
 //      end;
 //      disable_newlibadr:= 0; 
 //      expand_main(main,main.curlib.filedata); 
@@ -5260,7 +5260,7 @@ end;
 //        then
 //        begin 
 //          remlink(lbarray[a],id); 
-//          printf('LIB ERROR: can'#39't find %s\n',id.name);
+//          printf('LIB ERROR: can''t find %s\n',id.name);
 //          change_libadr(id,0); 
 //          freeN(id); 
 //        end;
