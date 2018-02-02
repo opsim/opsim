@@ -77,8 +77,8 @@ uses
   procedure  LINE3S(v1, v2: PGLshort);	//glBegin(GL_LINES); glVertex3sv((short *)(v1)); glVertex3sv((short *)(v2)); glEnd(); }
   procedure  LINE2I(v1, v2: PGLint);	//glBegin(GL_LINES); glVertex2iv((int *)(v1)); glVertex2iv((int *)(v2)); glEnd(); }
   procedure  LINE3I(v1, v2: PGLint);	//glBegin(GL_LINES); glVertex3iv((int *)(v1)); glVertex3iv((int *)(v2)); glEnd(); }
-  procedure  LINE2F(v1, v2: PGLfloat);	//glBegin(GL_LINES); glVertex2fv((float *)(v1)); glVertex2fv((float *)(v2)); glEnd(); }
-  procedure  LINE3F(v1, v2: PGLfloat);	//glBegin(GL_LINES); glVertex3fv((float *)(v1)); glVertex3fv((float *)(v2)); glEnd(); }
+  procedure  LINE2F(v1, v2: PGLfloat);	//glBegin(GL_LINES); glVertex2fv((single *)(v1)); glVertex2fv((single *)(v2)); glEnd(); }
+  procedure  LINE3F(v1, v2: PGLfloat);	//glBegin(GL_LINES); glVertex3fv((single *)(v1)); glVertex3fv((single *)(v2)); glEnd(); }
 
   const
     IRIS = 1;
@@ -120,6 +120,11 @@ uses
     CURSOR_WAIT = GLUT_CURSOR_WAIT;
     CURSOR_EDIT = GLUT_CURSOR_CROSSHAIR;
     CURSOR_STD = GLUT_CURSOR_INHERIT;
+
+    //alias
+    GLUT_BITMAP_HELVETICAB_12 = GLUT_BITMAP_HELVETICA_12;
+    GLUT_BITMAP_HELVETICAB_10 = GLUT_BITMAP_HELVETICA_10;
+    GLUT_BITMAP_HELVETICAB_8 = GLUT_BITMAP_8_BY_13;
 
   { Mij afspraak is cpack een getal dat als 0xFFaa66 of zo kan worden uitgedrukt. Is dus gevoelig voor endian.
    * Met deze define wordt het altijd goed afgebeeld
@@ -271,13 +276,13 @@ begin
   glBegin(GL_LINES);glVertex3iv(v1);glVertex3iv(v2);glEnd();
 end;
 
-//{LINE2F(v1, v2) {glBegin(GL_LINES); glVertex2fv((float * )(v1)); glVertex2fv((float * )(v2)); glEnd();}}
+//{LINE2F(v1, v2) {glBegin(GL_LINES); glVertex2fv((single * )(v1)); glVertex2fv((single * )(v2)); glEnd();}}
   procedure LINE2F(v1, v2: PGLfloat);
 begin
   glBegin(GL_LINES);glVertex2fv(v1);glVertex2fv(v2);glEnd();
 end;
 
-//{LINE3F(v1, v2) {glBegin(GL_LINES); glVertex3fv((float * )(v1)); glVertex3fv((float * )(v2)); glEnd();}}
+//{LINE3F(v1, v2) {glBegin(GL_LINES); glVertex3fv((single * )(v1)); glVertex3fv((single * )(v2)); glEnd();}}
   procedure LINE3F(v1, v2: PGLfloat);
 begin
   glBegin(GL_LINES);glVertex3fv(v1);glVertex3fv(v2);glEnd();
@@ -295,13 +300,13 @@ end;
 //  result:= glColor3ub(((x) and $FF),(((x) shr 8) and $FF),(((x) shr 16) and $FF))
 //end;
 //
-//{glMultMatrixf(x)  glMultMatrixf( (float * )(x))}
+//{glMultMatrixf(x)  glMultMatrixf( (single * )(x))}
 //function glMultMatrixf(x: integer): integer; 
 //begin
 //  result:= glMultMatrixf( {pfloat(}(x))
 //end;
 //
-//{glLoadMatrixf(x)  glLoadMatrixf( (float * )(x))}
+//{glLoadMatrixf(x)  glLoadMatrixf( (single * )(x))}
 //function glLoadMatrixf(x: integer): integer; 
 //begin
 //  result:= glLoadMatrixf( {pfloat(}(x))

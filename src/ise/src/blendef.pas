@@ -61,14 +61,14 @@ interface
    * jan 95 maart 95
    *
     }
-{ $include <float.h>	/* deze moet een keer naar de blender.h */}
+{ $include <single.h>	/* deze moet een keer naar de blender.h */}
 { $include "code.h"}
   { **************** ALGEMEEN *********************  }
   { #define COREDUMP(n)			static int times=0; if(times++ == n) abort(); }
   { #define VECCOPY(v1,v2) 		*(v1)= *(v2); *(v1+1)= *(v2+1); *(v1+2)= *(v2+2); }
   { #define QUATCOPY(v1,v2) 	*(v1)= *(v2); *(v1+1)= *(v2+1); *(v1+2)= *(v2+2); *(v1+3)= *(v2+3); }
   { #define INPR(v1, v2)		( (v1)[0]*(v2)[0] + (v1)[1]*(v2)[1] + (v1)[2]*(v2)[2] ) }
-  { #define CLAMP(a, b, c)		if((a)<(b)) (a)=(b); else if((a)>(c)) (a)=(c) }
+  procedure CLAMP(var a: smallint; b, c: smallint); //{ #define CLAMP(a, b, c)		if((a)<(b)) (a)=(b); else if((a)>(c)) (a)=(c) }
   { #define CLAMPIS(a, b, c)	((a)<(b) ? (b) : (a)>(c) ? (c) : (a)) }
   { #define CLAMPTEST(a, b, c)	if((b)<(c)) CLAMP(a, b, c); else CLAMP(a, c, b); }
   { #define IS_EQ(a,b) ((fabs((double)(a)-(b)) >= (double) FLT_EPSILON) ? 0 : 1) }
@@ -125,15 +125,15 @@ interface
     NOT_YET = 0;
   { #define TESTBASE(base)	( ((base)->flag & SELECT) && ((base)->lay & G.vd->lay) ) }
   { #define TESTBASELIB(base)	( ((base)->flag & SELECT) && ((base)->lay & G.vd->lay) && ((base)->object->id.lib==0)) }
-  { #define FIRSTBASE		G.scene->base.first }
+  function FIRSTBASE: pointer; //		G.scene->base.first }
   { #define LASTBASE		G.scene->base.last }
   { #define BASACT			(G.scene->basact) }
   { #define OBACT			(BASACT? BASACT->object: 0) }
   { #define ID_NEW(a)		if( (a) && (a)->id.new ) (a)= (void *)(a)->id.new }
   { #define ID_NEW_US(a)	if( (a)->id.new) (a)= (void *)(a)->id.new; (a)->id.us++; }
   { #define ID_NEW_US2(a)	if( ((ID *)a)->new) (a)= ((ID *)a)->new; ((ID *)a)->us++; }
-  { #define	CFRA			(G.scene->r.cfra) }
-  { #define	F_CFRA			((float)(G.scene->r.cfra)) }
+  function CFRA: smallint; { #define	CFRA			(G.scene->r.cfra) }
+  { #define	F_CFRA			((single)(G.scene->r.cfra)) }
   { #define	SFRA			(G.scene->r.sfra) }
   { #define	EFRA			(G.scene->r.efra) }
   { #define ISPOIN(a, b, c)			( (a->b) && (a->c) ) }
@@ -141,6 +141,8 @@ interface
   { #define ISPOIN4(a, b, c, d, e)	( (a->b) && (a->c) && (a->d) && (a->e) ) }
   { #define KNOTSU(nu)	    ( (nu)->orderu+ (nu)->pntsu+ (nu->orderu-1)*((nu)->flagu & 1) ) }
   { #define KNOTSV(nu)	    ( (nu)->orderv+ (nu)->pntsv+ (nu->orderv-1)*((nu)->flagv & 1) ) }
+
+  const
   { psfont  }
     FNT_PDRAW = 1;
     FNT_HAEBERLI = 2;
@@ -492,7 +494,7 @@ interface
     LIB_DOIT = 1024;
 
   { ID  }
-  { #define ID_SCE	MAKE_ID2('S', 'C') }
+ID_SCE = $5343; // 	MAKE_ID2('S', 'C') }
   { #define ID_LI	MAKE_ID2('L', 'I') }
   { #define ID_OB	MAKE_ID2('O', 'B') }
   { #define ID_ME	MAKE_ID2('M', 'E') }
@@ -1267,13 +1269,13 @@ ID_SCR = $5352; //MAKE_ID2('S', 'R') }
 { $ifdef GS}
 { $undef GS}
 { $endif}
-  {#define GS(a)	(*((short *)(a))) }
+  function GS(a: pchar): integer; {#define GS(a)	(*((short *)(a))) }
 { $endif}
 
 implementation
 
 uses
-  sysutils;
+  sysutils, blenglob;
 
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
@@ -1289,6 +1291,30 @@ uses
     begin
       MAXFLOAT:=single(3.40282347e+38);
     end;
+
+  procedure CLAMP(var a: smallint; b, c: smallint);
+  begin
+      if a<b then
+        a:=b
+      else
+        if a>c then
+        a:=c;
+  end;
+
+  function FIRSTBASE: pointer;
+  begin
+    exit(G.scene^.base.first);
+  end;
+
+  function CFRA: smallint;
+  begin
+    exit(G.scene^.r.cfra);
+  end;
+
+  function GS(a: pchar): integer;
+  begin
+    exit(psmallint(a)^);
+  end;
 
     { was #define dname(params) para_def_expr }
     { argument types are unknown }
@@ -1364,7 +1390,7 @@ uses
 //{CLAMPIS(a, b, c) ((a)<(b) ? (b) : (a)>(c) ? (c) : (a))}
 //function CLAMPIS(a: integer; b: integer; c: integer): integer; 
 //begin
-//  result:= ((a)<(b) {was ?}if  then (b) {was :}else (a)>(c) {was ?}if  then (c) {was :}else (a))
+//  result:= ((a)<(b) {was ?}if then (b) {was :}else (a)>(c) {was ?}if then (c) {was :}else (a))
 //end;
 //
 //{CLAMPTEST(a, b, c) if((b)<(c)) {CLAMP(a, b, c);} else {CLAMP(a, c, b);}}
@@ -1376,7 +1402,7 @@ uses
 //{IS_EQ(a,b) ((fabs((double)(a)-(b)) >= (double) FLT_EPSILON) ? 0 : 1)}
 //function IS_EQ(a: integer; b: integer): integer; 
 //begin
-//  result:= ((fabs( {double(}(a)-(b))>= {double(}FLT_EPSILON) {was ?}if  then 0 {was :}else 1)
+//  result:= ((fabs( {double(}(a)-(b))>= {double(}FLT_EPSILON) {was ?}if then 0 {was :}else 1)
 //end;
 //
 //{INIT_MINMAX(min, max) (min)[0]= (min)[1]= (min)[2]= 1.0e30; (max)[0]= (max)[1]= (max)[2]= -1.0e30;}
@@ -1394,7 +1420,7 @@ uses
 //{MINSIZE(val, size) ( ((val)>=0.0) ? (((val)<(size)) ? (size): (val)) : ( ((val)>(-size)) ? (-size) : (val)))}
 //function MINSIZE(val: integer; size: integer): integer; 
 //begin
-//  result:= (((val)>=0.0) {was ?}if  then (((val)<(size)) {was ?}if  then (size) {was :}else (val)) {was :}else (((val)>(-size)) {was ?}if  then (-size) {was :}else (val)))
+//  result:= (((val)>=0.0) {was ?}if then (((val)<(size)) {was ?}if then (size) {was :}else (val)) {was :}else (((val)>(-size)) {was ?}if then (-size) {was :}else (val)))
 //end;
 //
 //{BTST(a,b) ( ( (a) & 1<<(b) )!=0 )}
@@ -1418,7 +1444,7 @@ uses
 //{BROW(min, max) (((max)>=31? 0xFFFFFFFF: (1<<(max+1))-1) - ((min)? ((1<<(min))-1):0) )}
 //function BROW(min: integer; max: integer): integer; 
 //begin
-//  result:= (((max)>=31 {was ?}if  then $FFFFFFFF {was :}else (1 shl (max+1))-1)-((min) {was ?}if  then ((1 shl (min))-1) {was :}else 0))
+//  result:= (((max)>=31 {was ?}if then $FFFFFFFF {was :}else (1 shl (max+1))-1)-((min) {was ?}if then ((1 shl (min))-1) {was :}else 0))
 //end;
 //
 //{COPY_4(a,b)  *((int * )(a))= *((int * )(b))}

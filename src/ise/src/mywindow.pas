@@ -31,7 +31,7 @@ unit mywindow;
 interface
 
 uses
-  arithb;
+  arithb, screen, util;
 
 function myswinopen(winid, xmin, xmax, ymin, ymax: integer): integer;
 procedure init_my_mainwin(win: integer);
@@ -39,16 +39,33 @@ procedure mywinset(wid: integer);
 function mywinget:longint;
 procedure myortho2(x1, x2, y1, y2: single);
 procedure warp_pointer(x, y: integer);
+
+function mywin_inmenu: integer;
+procedure mywin_getmenu_rect(x: pinteger;  y: pinteger;  sx: pinteger;  sy: pinteger);
+
 procedure mywinposition(swin: integer;  xmin: integer;  xmax: integer;  ymin: integer;  ymax: integer);
 procedure loadmatrix_win(mat: Mat4;  swin: integer);
 procedure mywinclose(winid: integer);
 procedure myswapbuffers;
+procedure myContextSetup;
+procedure getmouse(mval: psmallint);
+
+procedure my_put_frontbuffer_image;
+procedure my_get_frontbuffer_image(x: integer;  y: integer;  sx: integer;  sy: integer);
+
+procedure fmsetfont(_type: pinteger);
+procedure fmprstr(str: pchar);
+function fmgetstrwidth(handle: pinteger;  str: pchar): integer;
+
+var
+swinarray: array [0..MAXWIN-1] of pbWindow;
+swindowbase: ListBase = (first:nil; last:nil);
 
 implementation
 
 uses
   GL, GLu, GLut,
-  blender, screen, util, blenglob,
+  blender, blenglob,
   cfuncs;
 
 //(*     let op: winid's beginnen met 4, eerste 3 voor GL! *)
@@ -59,9 +76,7 @@ uses
 var
 swincount: integer = 4;
 curswin: integer =0;
-swinarray: array [0..Pred(MAXWIN)] of pbWindow;
 mainwindow: bWindow;
-swindowbase: ListBase = (first:nil; last:nil);
 
 //procedure mygetsize(x: pinteger;  y: pinteger); 
 //var
@@ -69,7 +84,7 @@ swindowbase: ListBase = (first:nil; last:nil);
 //begin
 //  
 //  if curswin<4
-//  then
+// then
 //  begin 
 //    {*}x^:=glutGet(GLUT_WINDOW_WIDTH); 
 //    {*}y^:=glutGet(GLUT_WINDOW_HEIGHT); 
@@ -77,7 +92,7 @@ swindowbase: ListBase = (first:nil; last:nil);
 //  end;
 //  win:= swinarray[curswin]; 
 //  if win=nil
-//  then
+// then
 //  exit;
 //  {*}x^:=win^.xmax-win^.xmin+1; 
 //  {*}y^:=win^.ymax-win^.ymin+1; 
@@ -90,11 +105,11 @@ swindowbase: ListBase = (first:nil; last:nil);
 //  {*}x^:=glutGet(GLUT_WINDOW_X); 
 //  {*}y^:=displaysizey-glutGet(GLUT_WINDOW_HEIGHT)-glutGet(GLUT_WINDOW_Y); 
 //  if curswin>=4
-//  then
+// then
 //  begin 
 //    win:= swinarray[curswin]; 
 //    if win<>nil 
-//    then
+// then
 //    begin 
 //      {*}x^+=win^.xmin; 
 //      {*}y^+=win^.ymin; 
@@ -108,7 +123,7 @@ swindowbase: ListBase = (first:nil; last:nil);
 //begin
 //  
 //  if curswin=1
-//  then
+// then
 //  begin 
 //    {*}x^:=*y:=nil; 
 //  end;
@@ -116,14 +131,14 @@ swindowbase: ListBase = (first:nil; last:nil);
 //  begin 
 //    win:= swinarray[curswin]; 
 //    if win=nil
-//    then
+// then
 //    exit;
 //    {*}x^:=win^.xmin; 
 //    {*}y^:=win^.ymin; 
 //  end;
 //end;
 //
-//procedure myloadmatrix(mat: array [0..,0..Pred(4)] of float); 
+//procedure myloadmatrix(mat: array [0..,0..3] of float);
 //var
 //win: pbWindow; 
 //mode: GLint; 
@@ -133,11 +148,11 @@ swindowbase: ListBase = (first:nil; last:nil);
 //  glLoadMatrixf(mat); 
 //  win:= swinarray[curswin]; 
 //  if win=nil
-//  then
+// then
 //  exit;
 //  glGetIntegerv(GL_MATRIX_MODE,@mode); 
 //  if mode=GL_MODELVIEW
-//  then
+// then
 //  Mat4CpyMat4(win^.viewmat,mat); 
 //  else
 //  Mat4CpyMat4(win^.winmat,mat); 
@@ -150,17 +165,17 @@ mode: GLint;
 begin
   win:= swinarray[swin];
 
-  if win=nil  then
+  if win=nil then
   exit;
 
   glGetIntegerv(GL_MATRIX_MODE,@mode);
-  if mode=GL_MODELVIEW   then
+  if mode=GL_MODELVIEW then
   Mat4CpyMat4(@win^.viewmat,@mat)
   else
   Mat4CpyMat4(@win^.winmat,@mat);
 end;
 
-//procedure mygetmatrix(mat: array [0..,0..Pred(4)] of float); 
+//procedure mygetmatrix(mat: array [0..,0..3] of float);
 //var
 //win: pbWindow; 
 //mode: GLint; 
@@ -169,52 +184,52 @@ end;
 //  
 //  win:= swinarray[curswin]; 
 //  if win=nil
-//  then
+// then
 //  exit;
 //  glGetIntegerv(GL_MATRIX_MODE,@mode); 
 //  if mode=GL_MODELVIEW
-//  then
+// then
 //  Mat4CpyMat4(mat,win^.viewmat); 
 //  else
 //  Mat4CpyMat4(mat,win^.winmat); 
 //end;
 //
-//procedure mymultmatrixold(mat: array [0..,0..Pred(4)] of float); 
+//procedure mymultmatrixold(mat: array [0..,0..3] of float);
 //var
 //win: pbWindow; 
-//tmat: array [0..Pred(4),0..Pred(4)] of float; 
+//tmat: array [0..3,0..3] of float;
 //begin
 //  
 //  
 //  win:= swinarray[curswin]; 
 //  if win=nil
-//  then
+// then
 //  exit;
 //  Mat4MulMat4(tmat,mat,win^.viewmat); 
 //  Mat4CpyMat4(win^.viewmat,tmat); 
 //  glLoadMatrixf(tmat); 
 //end;
 //
-//procedure mymultmatrix(mat: array [0..,0..Pred(4)] of float); 
+//procedure mymultmatrix(mat: array [0..,0..3] of float);
 //var
 //win: pbWindow; 
-//tmat: array [0..Pred(4),0..Pred(4)] of float; 
+//tmat: array [0..3,0..3] of float;
 //begin
 //  
 //  
 //  glMultMatrixf(mat); 
 //  win:= swinarray[curswin]; 
 //  if win=nil
-//  then
+// then
 //  exit;
 //  glGetFloatv(GL_MODELVIEW_MATRIX, {pfloat(}win^.viewmat); 
 //end;
 //
-//procedure mygetsingmatrix(mat: array [0..,0..Pred(4)] of float); 
+//procedure mygetsingmatrix(mat: array [0..,0..3] of float);
 //var
 //win: pbWindow; 
-//matview: array [0..Pred(4),0..Pred(4)] of float; 
-//matproj: array [0..Pred(4),0..Pred(4)] of float; 
+//matview: array [0..3,0..3] of float;
+//matproj: array [0..3,0..3] of float;
 //mode: integer; 
 //begin
 //  
@@ -223,7 +238,7 @@ end;
 //  
 //  win:= swinarray[curswin]; 
 //  if win=nil
-//  then
+// then
 //  begin 
 //    glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}matproj); 
 //    glGetFloatv(GL_MODELVIEW_MATRIX, {pfloat(}matview); 
@@ -242,7 +257,7 @@ a: integer = 4;
 begin
   while (wid=0)and(a<MAXWIN)  do
   begin
-    if swinarray[a]=nil    then
+    if swinarray[a]=nil then
       wid:= a;
     inc(a);
   end;
@@ -262,7 +277,7 @@ var
 win: pbWindow;
 begin
 
-  if (wid>1)and(wid<4)  then
+  if (wid>1)and(wid<4) then
   begin
     (* render window *)
     glutSetWindow(wid);
@@ -271,7 +286,7 @@ begin
   end;
 
   win:= swinarray[wid];
-  if win=nil   then
+  if win=nil then
   begin
     printf('winset %d: doesn'#39't exist\n',[wid]);
     exit;
@@ -279,7 +294,7 @@ begin
 
   glutSetWindow(win^.parent_id);
 
-  if win^.parent_id=wid    then
+  if win^.parent_id=wid then
   begin
     (* main window *)
     glViewport(0,0,(win^.xmax-win^.xmin)+1,(win^.ymax-win^.ymin)+1);
@@ -317,7 +332,7 @@ begin
   addtail(@swindowbase,win);
   inc(swincount);
 
-  if swincount>=MAXWIN  then
+  if swincount>=MAXWIN then
   begin
     printf('too many windows\n');
     exit(0);
@@ -341,14 +356,14 @@ procedure mywinclose(winid: integer);
 var
 win: pbWindow;
 begin
-  if (winid<>0)and(winid<4)  then
+  if (winid<>0)and(winid<4) then
   begin
     glutDestroyWindow(winid);
     exit;
   end;
 
   win:= swinarray[winid];
-  if win=nil   then
+  if win=nil then
   begin
     printf('error: close window %d, doesn''t exist\n',[winid]);
     exit;
@@ -358,7 +373,7 @@ begin
   freeN(win);
   swinarray[winid]:=nil;
   if curswin=winid
-  then
+ then
   curswin:=0;
   dec(swincount);
 end;
@@ -369,7 +384,7 @@ var
 win: pbWindow;
 begin
   win:= swinarray[swin];
-  if win=nil  then
+  if win=nil then
   exit;
 
   win^.xmin:= xmin;
@@ -388,7 +403,7 @@ begin
   gluOrtho2D(x1,x2,y1,y2);
   win:= swinarray[curswin];
 
-  if win<>nil  then
+  if win<>nil then
   glGetFloatv(GL_PROJECTION_MATRIX, @win^.winmat[0]);
 
   glMatrixMode(GL_MODELVIEW);
@@ -404,7 +419,7 @@ end;
 //  glOrtho(x1,x2,y1,y2,n,f); 
 //  win:= swinarray[curswin]; 
 //  if win<>nil 
-//  then
+// then
 //  glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}win^.winmat); 
 //  glMatrixMode(GL_MODELVIEW); 
 //end;
@@ -419,7 +434,7 @@ end;
 //  glFrustum(x1,x2,y1,y2,n,f); 
 //  win:= swinarray[curswin]; 
 //  if win<>nil 
-//  then
+// then
 //  glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}win^.winmat); 
 //  glMatrixMode(GL_MODELVIEW); 
 //end;
@@ -466,10 +481,10 @@ begin
 
   while sa<>nil  do
   begin
-    if sa^.win_swap=WIN_BACK_OK    then
+    if sa^.win_swap=WIN_BACK_OK then
     sa^.win_swap:= WIN_FRONT_OK;
 
-    if sa^.head_swap=WIN_BACK_OK     then
+    if sa^.head_swap=WIN_BACK_OK then
     sa^.head_swap:= WIN_FRONT_OK;
 
     sa:= sa^.next;
@@ -480,18 +495,27 @@ end;
 
 (* ************************** FONTS ************************ *)
 
-//fmtype: pinteger =nil; 
-//
-//procedure fmsetfont(type: pinteger); 
-//begin
-//  fmtype:= type; 
-//end;
-//
-//procedure fmprstr(str: pchar); 
-//begin
-//  glutBitmapStr( {pinteger(}fmtype,str); 
-//end;
-//
+var
+fmtype: pointer =nil;
+
+procedure fmsetfont(_type: pinteger);
+begin
+  fmtype:= _type;
+end;
+
+procedure fmprstr(str: pchar);
+var
+  s: PChar;
+begin
+  s := str;
+
+  while s <> #0 do
+  begin
+    glutBitmapCharacter(fmtype,byte(s^));
+    inc(s);
+  end;
+end;
+
 //procedure fmoutchar(font: pinteger;  c: char); 
 //begin
 //  glutBitmapCharacter( {pinteger(}fmtype,c); 
@@ -508,7 +532,7 @@ end;
 //  
 //  retval:=nil; 
 //  if {not}0=fmtype
-//  then
+// then
 //  begin
 //    result:=nil; 
 //    exit;
@@ -524,30 +548,21 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//function fmgetstrwidth(handle: pinteger;  str: pchar): integer; 
-//var
-//i: integer; 
-//len: integer; 
-//retval: integer;
-// 
-//begin
-//  
-//  
-//  retval:=nil; 
-//  fmsetfont(handle); 
-//  len:=  {integer(}lstrlen(str); 
-//  for{while} i:=nil to Pred(len) { i++}
-//  do
-//  begin 
-//    retval:= retval + (glutBitmapWidth(fmtype,str[i])); 
-//  end;
-//  begin
-//    result:= retval; 
-//    exit;
-//  end;
-//end;
-//
+
+function fmgetstrwidth(handle: pinteger;  str: pchar): integer;
+var
+i: integer=0;
+len: integer=0;
+retval: integer=0;
+begin
+  fmsetfont(handle);
+  len:=  lstrlen(str);
+  for i:=0 to len-1  do
+    retval:= retval + glutBitmapWidth(fmtype,byte(str[i]));
+
+  exit(retval);
+end;
+
 //procedure fminit; 
 //begin
 //end;
@@ -576,7 +591,7 @@ end;
 //procedure setlinestyle(nr: integer); 
 //begin
 //  if nr=nil
-//  then
+// then
 //  begin 
 //    glDisable(GL_LINE_STIPPLE); 
 //  end;
@@ -586,17 +601,19 @@ end;
 //    glLineStipple(nr,$AAAA); 
 //  end;
 //end;
-//(* ***************************************************** *)
-//(* ***************************************************** *)
-//{$if defined(BEOS) or defined(WINDOWS)}
-//var {was static}
-//ximage: pinteger =nil; 
-//xdraw: integer =nil; (* wordt maar 1 keer gedaan, voor mainwin *)
-//ov_x: integer; 
-//ov_y: integer; 
-//ov_sx: integer; 
-//ov_sy: integer; 
-//
+
+(* ***************************************************** *)
+(* ***************************************************** *)
+
+{$if defined(BEOS) or defined(WINDOWS)}
+var
+ximage: integer =0;
+xdraw: integer =0; (* wordt maar 1 keer gedaan, voor mainwin *)
+ov_x: integer;
+ov_y: integer;
+ov_sx: integer;
+ov_sy: integer;
+
 //function get_qual: smallint; 
 //var
 //retval: integer;
@@ -607,13 +624,13 @@ end;
 //  retval:=nil; 
 //  qual:=glutGetQual(); 
 //  if qual and GLUT_ACTIVE_SHIFT
-//  then
+// then
 //  retval:= retval or (LR_SHIFTKEY); 
 //  if qual and GLUT_ACTIVE_CTRL
-//  then
+// then
 //  retval:= retval or (LR_CTRLKEY); 
 //  if qual and GLUT_ACTIVE_ALT
-//  then
+// then
 //  retval:= retval or (LR_ALTKEY); 
 //  begin
 //    result:= retval; 
@@ -634,19 +651,19 @@ end;
 //  qual:=glutGetQual(); 
 //  ret:=nil; 
 //  if mval and 1
-//  then
+// then
 //  ret:= ret or (L_MOUSE); 
 //  if mval and 4
-//  then
+// then
 //  ret:= ret or (M_MOUSE); 
 //  if mval and 2
-//  then
+// then
 //  ret:= ret or (R_MOUSE); 
 //  if (U.flag and TWOBUTTONMOUSE))and((qual and GLUT_ACTIVE_ALT)
-//  then
+// then
 //  begin 
 //    if ret and L_MOUSE
-//    then
+// then
 //    begin 
 //      ret:= ret and ( not L_MOUSE); 
 //      ret:= ret or (M_MOUSE); 
@@ -657,50 +674,59 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//procedure getmouse(mval: psmallint); 
-//begin
-//  glutGetMouse(mval); 
-//  mval[0]:= mval[0] + (G.curscreen.startx); 
-//  mval[1]:= G.curscreen.starty+G.curscreen.sizey-mval[1]; 
-//  (* returns windowcos *)
-//end;
-//
-//procedure my_put_frontbuffer_image; 
-//begin
-//  ximage:=nil; 
-//  glutPutFrontBuffer(); 
-//  (* return; *)
-//end;
-//
-//procedure my_get_frontbuffer_image(x: integer;  y: integer;  sx: integer;  sy: integer); 
-//begin
-//  ximage:= 1; 
-//  ov_x:= x; 
-//  ov_y:= y; 
-//  ov_sx:= sx; 
-//  ov_sy:= sy; 
-//  {$ifdef WINDOWS}
-//  y:= (G.curscreen.sizey-y); (* ander coordinatensysteem! *)
-//  if curswin>3
-//  then
-//  begin 
-//    y:= y - (curarea.winrct.ymin); 
-//  end;
-//  {$endif}
-//  glutGetFrontBuffer(x,y,sx,sy); 
-//end;
-//
+
+procedure getmouse(mval: psmallint);
+begin
+  //glutGetMouse(mval);      (* returns windowcos *)
+  mval[0]:= mval[0] + (G.curscreen^.startx);
+  mval[1]:= G.curscreen^.starty+G.curscreen^.sizey-mval[1];
+end;
+
+procedure my_put_frontbuffer_image;
+begin
+  ximage:=0;
+
+  (* return; *)
+  //glutPutFrontBuffer();
+  glDrawbuffer(GL_FRONT);
+end;
+
+procedure my_get_frontbuffer_image(x: integer;  y: integer;  sx: integer;  sy: integer);
+begin
+  //TODO: check this code
+
+  //ximage:= 1;
+  //
+  //ov_x:= x;
+  //ov_y:= y;
+  //ov_sx:= sx;
+  //ov_sy:= sy;
+  //
+  //{$ifdef WINDOWS}
+  //(* ander coordinatensysteem! *)
+  //y:= (G.curscreen^.sizey-y);
+  //if curswin>3 then
+  //begin
+  //  y:= y - (curarea^.winrct.ymin);
+  //end;
+  //{$endif}
+  //
+  //glutGetFrontBuffer(x,y,sx,sy);
+
+  glReadBuffer(GL_FRONT);
+end;
+
 //procedure myCopySubBuffer(x: integer;  y: integer;  sx: integer;  sy: integer); 
 //begin
 //  (* return; *)
 //  (* glutPutFrontBuffer();  *)
 //end;
-//
-//procedure myContextSetup; 
-//begin
-//end;
-//{$ifdef BEOS}
+
+procedure myContextSetup;
+begin
+end;
+
+{$ifdef BEOS}
 //
 //procedure glutNoBorder; 
 //begin
@@ -1469,16 +1495,16 @@ end;
 //    end;
 //  end;{case?}
 //end;
-//{$endif}
+{$endif}
 //
 //procedure sdrawXORline(x0: integer;  y0: integer;  x1: integer;  y1: integer); 
 //begin
 //  if x0=x1)and(y0=y1
-//  then
+// then
 //  exit;
 //  (* sdrawXORline expects current blender win coordinates *)
 //  if curswin>3
-//  then
+// then
 //  begin 
 //    x0:= x0 + (curarea.winrct.xmin); 
 //    x1:= x1 + (curarea.winrct.xmin); 
@@ -1488,8 +1514,8 @@ end;
 //  glutInvertLine(x0,y0,x1,y1); 
 //end;
 //var {was static}
-//old: array [0..Pred(4),0..Pred(4)] of smallint; 
-//flags: array [0..Pred(4)] of char;
+//old: array [0..3,0..3] of smallint;
+//flags: array [0..3] of char;
 // (* automatische onthoud, max 4 lijnen *)
 //(* flush *)
 //
@@ -1499,32 +1525,32 @@ end;
 //  flags:=(0,0,0,0); (* automatische onthoud, max 4 lijnen *)
 //  (* flush *)
 //  if nr=-1
-//  then
+// then
 //  begin 
 //    if flags[0]<>nil 
-//    then
+// then
 //    sdrawXORline(old[0][0],old[0][1],old[0][2],old[0][3]); 
 //    flags[0]:=nil; 
 //    if flags[1]<>nil 
-//    then
+// then
 //    sdrawXORline(old[1][0],old[1][1],old[1][2],old[1][3]); 
 //    flags[1]:=nil; 
 //    if flags[2]<>nil 
-//    then
+// then
 //    sdrawXORline(old[2][0],old[2][1],old[2][2],old[2][3]); 
 //    flags[2]:=nil; 
 //    if flags[3]<>nil 
-//    then
+// then
 //    sdrawXORline(old[3][0],old[3][1],old[3][2],old[3][3]); 
 //    flags[3]:=nil; 
 //  end;
 //  else
 //  begin 
 //    if nr>=nil)and(nr<4
-//    then
+// then
 //    begin 
 //      if flags[nr]<>nil 
-//      then
+// then
 //      sdrawXORline(old[nr][0],old[nr][1],old[nr][2],old[nr][3]); 
 //      old[nr][0]:= x0; 
 //      old[nr][1]:= y0; 
@@ -1535,12 +1561,14 @@ end;
 //    sdrawXORline(x0,y0,x1,y1); 
 //  end;
 //end;
-//(* end of #if defined(BEOS ) or defined(WINDOWS) *)
-//(* ******************************************* *)
-//(* ******************************************* *)
-//(* ******************************************* *)
-//(* ************* X  STUFF (and some OpenGL that doesn't work at BeOS) ***************** *)
-//{$else}
+
+(* end of #if defined(BEOS ) or defined(WINDOWS) *)
+(* ******************************************* *)
+(* ******************************************* *)
+(* ******************************************* *)
+(* ************* X  STUFF (and some OpenGL that doesn't work at BeOS) ***************** *)
+{$else}
+
 //{__glutDisplay: pDisplay; }{<= !!!5 external variable}(* extern GLUTwindow *__glutCurrentWindow; *)
 //{__glutScreen: integer; }{<= !!!5 external variable}
 //var {was static}
@@ -1564,7 +1592,7 @@ end;
 //  {$endif}
 //  exit;
 //  if x0=x1)and(y0=y1
-//  then
+// then
 //  {$if defined(__sgi) or defined(__SUN)}
 //  exit;
 //  glDisable(GL_DITHER); 
@@ -1582,8 +1610,8 @@ end;
 //  {$endif}
 //end;
 //var {was static}
-//old: array [0..Pred(4),0..Pred(4)] of smallint; 
-//flags: array [0..Pred(4)] of char;
+//old: array [0..3,0..3] of smallint;
+//flags: array [0..3] of char;
 // 
 //{$ifdef MESA31}
 //
@@ -1604,32 +1632,32 @@ end;
 //  glLogicOp(GL_INVERT); 
 //  (* flush *)
 //  if nr=-1
-//  then
+// then
 //  begin 
 //    if flags[0]<>nil 
-//    then
+// then
 //    sdrawline(old[0][0],old[0][1],old[0][2],old[0][3]); 
 //    flags[0]:=nil; 
 //    if flags[1]<>nil 
-//    then
+// then
 //    sdrawline(old[1][0],old[1][1],old[1][2],old[1][3]); 
 //    flags[1]:=nil; 
 //    if flags[2]<>nil 
-//    then
+// then
 //    sdrawline(old[2][0],old[2][1],old[2][2],old[2][3]); 
 //    flags[2]:=nil; 
 //    if flags[3]<>nil 
-//    then
+// then
 //    sdrawline(old[3][0],old[3][1],old[3][2],old[3][3]); 
 //    flags[3]:=nil; 
 //  end;
 //  else
 //  begin 
 //    if nr>=nil)and(nr<4
-//    then
+// then
 //    begin 
 //      if flags[nr]<>nil 
-//      then
+// then
 //      sdrawline(old[nr][0],old[nr][1],old[nr][2],old[nr][3]); 
 //      old[nr][0]:= x0; 
 //      old[nr][1]:= y0; 
@@ -1668,14 +1696,14 @@ end;
 //  
 //  gcvals.font:=nil; 
 //  if xdraw=nil
-//  then
+// then
 //  xdraw:= glXGetCurrentDrawable(); 
 //  dep:= glutGet(GLUT_WINDOW_BUFFER_SIZE); 
 //  if dep<12
-//  then
+// then
 //  printf('Error: screen depth (%d) should be at least 15.\n',dep); 
-//  if G.f and G_DEBUG
-//  then
+//  if (G.f and G_DEBUG) <> 0
+// then
 //  begin 
 //    printf('Display: %d %d\n',displaysizex,displaysizey); 
 //    PRINT(d,dep); 
@@ -1684,11 +1712,11 @@ end;
 //  blackGC:= XCreateGC(__glutDisplay,xdraw,GCForeground,@gcvals); 
 //  {$ifdef __sgi}
 //  if dep=15)or(dep=16
-//  then
+// then
 //  {$else}
 //  begin 
 //    if dep=15
-//    then
+// then
 //    {$endif}
 //    begin 
 //      gcvals.foreground:= (10+(10 shl 5)+(10 shl 10)); 
@@ -1702,13 +1730,13 @@ end;
 //    end;
 //    else
 //    begin 
-//      gcvals.foreground:= (dep=16 {was ?}if  then (10+(10 shl 6)+(10 shl 11)) {was :}else $555555); 
+//      gcvals.foreground:= (dep=16 {was ?}if then (10+(10 shl 6)+(10 shl 11)) {was :}else $555555);
 //      darkGC:= XCreateGC(__glutDisplay,xdraw,GCForeground,@gcvals); 
-//      gcvals.foreground:= (dep=16 {was ?}if  then (15+(15 shl 6)+(15 shl 11)) {was :}else $999999); 
+//      gcvals.foreground:= (dep=16 {was ?}if then (15+(15 shl 6)+(15 shl 11)) {was :}else $999999);
 //      grayGC:= XCreateGC(__glutDisplay,xdraw,GCForeground,@gcvals); 
-//      gcvals.foreground:= (dep=16 {was ?}if  then (23+(23 shl 6)+(23 shl 11)) {was :}else $cccccc); 
+//      gcvals.foreground:= (dep=16 {was ?}if then (23+(23 shl 6)+(23 shl 11)) {was :}else $cccccc);
 //      lightGC:= XCreateGC(__glutDisplay,xdraw,GCForeground,@gcvals); 
-//      gcvals.foreground:= (dep=16 {was ?}if  then (31+(31 shl 6)+(31 shl 11)) {was :}else $ffffff); 
+//      gcvals.foreground:= (dep=16 {was ?}if then (31+(31 shl 6)+(31 shl 11)) {was :}else $ffffff);
 //      whiteGC:= XCreateGC(__glutDisplay,xdraw,GCForeground,@gcvals); 
 //    end;
 //    curgc:= blackGC; 
@@ -1737,13 +1765,13 @@ end;
 //    ret:=nil; 
 //    XQueryPointer(__glutDisplay,RootWindow(__glutDisplay,__glutScreen),@root, and child,@root_x,@root_y,@win_x,@win_y,@Xqual); 
 //    if Xqual and ShiftMask
-//    then
+// then
 //    ret:= ret or (LR_SHIFTKEY); 
 //    if Xqual and ControlMask
-//    then
+// then
 //    ret:= ret or (LR_CTRLKEY); 
 //    if Xqual and Mod1Mask
-//    then
+// then
 //    ret:= ret or (LR_ALTKEY); 
 //    begin
 //      result:= ret; 
@@ -1773,19 +1801,19 @@ end;
 //    ret:=nil; 
 //    XQueryPointer(__glutDisplay,RootWindow(__glutDisplay,__glutScreen),@root, and child,@root_x,@root_y,@win_x,@win_y,@Xqual); 
 //    if Xqual and Button1Mask
-//    then
+// then
 //    ret:= ret or (L_MOUSE); 
 //    if Xqual and Button2Mask
-//    then
+// then
 //    ret:= ret or (M_MOUSE); 
 //    if Xqual and Button3Mask
-//    then
+// then
 //    ret:= ret or (R_MOUSE); 
 //    if (U.flag and TWOBUTTONMOUSE))and((Xqual and Mod1Mask)
-//    then
+// then
 //    begin 
 //      if ret and L_MOUSE
-//      then
+// then
 //      begin 
 //        ret:= ret and ( not L_MOUSE); 
 //        ret:= ret or (M_MOUSE); 
@@ -1825,19 +1853,19 @@ end;
 //  begin
 //    
 //    if xdraw=nil
-//    then
+// then
 //    xdraw:= glXGetCurrentDrawable(); (* clip: erg belangrijk: 1 pixel teveel en X knalt eruit *)
 //    if x<0
-//    then
+// then
 //    x:=nil; 
 //    if y<0
-//    then
+// then
 //    y:=nil; 
 //    if x+sx>=G.curscreen.sizex
-//    then
+// then
 //    sx:= G.curscreen.sizex-x-1; 
 //    if y+sy>=G.curscreen.sizey
-//    then
+// then
 //    sy:= G.curscreen.sizey-y-1; (* only mesa 3.0 (libc5 for now) will have the swap hack *)
 //    {$ifdef MESA30}
 //    glXCopySubBufferMESA(__glutDisplay,xdraw,x,y,sx,sy); 
@@ -1870,7 +1898,7 @@ end;
 //  begin
 //    
 //    if ximage)and(xdraw
-//    then
+// then
 //    begin 
 //      gc:= XCreateGC(__glutDisplay,xdraw,0,0{nil}); 
 //      XSetFunction(__glutDisplay,gc,GXcopy); 
@@ -1893,44 +1921,44 @@ end;
 //    
 //    
 //    if xdraw=nil
-//    then
+// then
 //    xdraw:= glXGetCurrentDrawable(); 
 //    if ximage=nil{nil}
-//    then
+// then
 //    begin 
 //      (* clip: erg belangrijk: 1 pixel teveel en X knalt eruit *)
 //      (* also: blenderscreen outside 'Display': then prtend the window is smaller! *)
 //      if G.curscreen.startx<0
-//      then
+// then
 //      startx:= -G.curscreen.startx; 
 //      else
 //      startx:=nil; 
 //      if G.curscreen.starty<0
-//      then
+// then
 //      starty:= -G.curscreen.starty; 
 //      else
 //      starty:=nil; 
 //      if G.curscreen.sizex+G.curscreen.startx>displaysizex
-//      then
+// then
 //      sizex:= displaysizex-G.curscreen.startx; 
 //      else
 //      sizex:= G.curscreen.sizex; 
 //      if G.curscreen.sizey+G.curscreen.starty>displaysizey
-//      then
+// then
 //      sizey:= displaysizey-G.curscreen.starty; 
 //      else
 //      sizey:= G.curscreen.sizey; (* OK: *)
 //      if x<startx
-//      then
+// then
 //      x:= startx; 
 //      if y<starty
-//      then
+// then
 //      y:= starty; 
 //      if x+sx>=sizex
-//      then
+// then
 //      sx:= sizex-x-1; 
 //      if y+sy>=sizey
-//      then
+// then
 //      sy:= sizey-y-1; 
 //      ov_x:= x; 
 //      ov_y:= (G.curscreen.sizey-y-sy); 
@@ -1941,7 +1969,7 @@ end;
 //      (* deze bewaren we omdat bij terugzetten een andere window aktief kan zijn geworden *)
 //    end;
 //  end;
-//  {$endif}
+{$endif}
 
     procedure warp_pointer(x, y: integer);
   begin
@@ -1952,32 +1980,25 @@ end;
   (*******************)
   (*  Menu utilities *)
 
-//  function mywin_inmenu: integer; 
-//  begin
-//    if ximage<>nil 
-//    then
-//    begin
-//      result:= 1; 
-//      exit;
-//    end;
-//    else
-//    begin
-//      result:=nil; 
-//      exit;
-//    end;
-//  end;
-//  
-//  procedure mywin_getmenu_rect(x: pinteger;  y: pinteger;  sx: pinteger;  sy: pinteger); 
-//  begin{*}x^:=ov_x; 
-//    {*}sx^:=ov_sx; 
-//    {*}sy^:=ov_sy; 
-//    {$if defined(WINDOWS) or defined (BEOS)}
-//    {*}y^:=ov_y; 
-//    {$else}
-//    {*}y^:=(G.curscreen.sizey-ov_y)-ov_sy; 
-//    {$endif}
-//  end;
-//end;
+  function mywin_inmenu: integer;
+  begin
+    if ximage<>0 then
+    exit(1)
+    else
+    exit(0);
+  end;
+
+  procedure mywin_getmenu_rect(x: pinteger;  y: pinteger;  sx: pinteger;  sy: pinteger);
+  begin
+    x^:=ov_x;
+    sx^:=ov_sx;
+    sy^:=ov_sy;
+    {$if defined(WINDOWS) or defined (BEOS)}
+    y^:=ov_y;
+    {$else}
+    y^:=(G.curscreen.sizey-ov_y)-ov_sy;
+    {$endif}
+  end;
 
 initialization
   fillbyte(swinarray, sizeof(swinarray), 0);

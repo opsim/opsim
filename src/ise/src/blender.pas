@@ -30,7 +30,7 @@ interface
 uses
 ctypes,cfuncs,
 util,
-library_, arithb;
+library_, arithb, storage;
 
 { *********** vec *************  }
 
@@ -95,6 +95,7 @@ type
       w : double;
     end;
 
+  prcti= ^rcti;
   rcti = record
       xmin : longint;
       xmax : longint;
@@ -102,12 +103,14 @@ type
       ymax : longint;
     end;
 
+  prctf = ^rctf;
   rctf = record
       xmin : single;
       xmax : single;
       ymin : single;
       ymax : single;
     end;
+    
 { *******************************************  }
 { * * * * * * *  L I B R A R Y  * * * * * * *  }
 { *******************************************  }
@@ -1048,7 +1051,7 @@ pLibrary = ^_Library;
   {undef far }
   {define near clipsta }
   {define far clipend }
-  { 	float lens, grid, clipsta, clipend;  }
+  { 	single lens, grid, clipsta, clipend;  }
   { moeten achter elkaar blijven staan ivm als pointer doorgeven  }
 
   pView3D = ^View3D;
@@ -1180,13 +1183,15 @@ pLibrary = ^_Library;
         pad2 : longint;
       end;
 
+    retfunc = procedure(name: pchar);
+
     pSpaceFile = ^SpaceFile;
     SpaceFile = record
         next : pSpaceFile;
         prev : pSpaceFile;
         spacetype : longint;
         pad : longint;
-        //filelist : pdirentry;
+        filelist : pdirentry;
         totfile : longint;
         title : array[0..23] of char;
         dir : array[0..159] of char;
@@ -1202,7 +1207,7 @@ pLibrary = ^_Library;
         ipotype : smallint;
         menu : smallint;
         act : smallint;
-        returnfunc : procedure ;cdecl;
+        returnfunc : retfunc;
       end;
 
     pSpaceOops = ^SpaceOops;
@@ -1403,9 +1408,11 @@ include "exports.h"   *)
 
 procedure duplicatelist(list1: pListBase;  list2: pListBase);
 procedure initglobals;
+procedure addlisttolist(list1: pListBase;  list2: pListBase);
 
 var
 matone: Mat4 = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1));
+U: UserDef;
 
 implementation
 
@@ -1423,40 +1430,40 @@ versionstr: array [0..47] of char = (#14, #92, #240, #247, #43, #199, #126, #71,
 
 versionfstr: array [0..23] of char; (* voor files *)
 
-//(* ********** vrijgeven ********** *)
-//
+(* ********** vrijgeven ********** *)
+
 //procedure free_blender;
 //var
-//main: pMain; 
+//main: pMain;
 //begin
-//  
-//  freestructDNA_all(); 
-//  free_mainlist(); 
+//
+//  freestructDNA_all();
+//  free_mainlist();
 //  (* genfile.c *)
-//  freeImBufdata(); 
+//  freeImBufdata();
 //  (* library.c *)
 //end;(* imbuf lib *)
-//
-//
-//procedure addlisttolist(list1: pListBase;  list2: pListBase); 
-//begin
-//  if list2.first=0
-//  then
-//  exit;
-//  if list1.first=0
-//  then
-//  begin 
-//    list1.first:= list2.first; 
-//    list1.last:= list2.last; 
-//  end;
-//  else
-//  begin 
-//    ((structLink* )list1.last).next:=list2.first; 
-//    ((structLink* )list2.first).prev:=list1.last; 
-//    list1.last:= list2.last; 
-//  end;
-//  list2.first:= list2.last:=0; 
-//end;
+
+
+procedure addlisttolist(list1: pListBase;  list2: pListBase);
+begin
+  if list2^.first=nil   then
+  exit;
+
+  if list1^.first=nil  then
+  begin
+    list1^.first:= list2^.first;
+    list1^.last:= list2^.last;
+  end
+  else
+  begin
+    pLink(list1^.last)^.next:=list2^.first;
+    pLink(list2^.first)^.prev:=list1^.last;
+    list1^.last:= list2^.last;
+  end;
+  list2^.first:= nil;
+  list2^.last:=nil;
+end;
 
 function dupallocN(mem: pointer): pointer;
 var
@@ -1482,21 +1489,20 @@ begin
   end;
 end;
 
-//function alloc_len(mem: pinteger): integer; 
+//function alloc_len(mem: pinteger): integer;
 //var
-//memh: pMemHead; 
+//memh: pMemHead;
 //begin
-//  
-//  if mem=0
-//  then
+//
+//  if mem=0 then
 //  begin
-//    result:= 0; 
+//    result:= 0;
 //    exit;
 //  end;
 //  memh:=  {pMemHead(}mem;
-//  dec(memh); 
+//  dec(memh);
 //  begin
-//    result:= memh.len; 
+//    result:= memh.len;
 //    exit;
 //  end;
 //end;
@@ -1523,11 +1529,11 @@ end;
 procedure initglobals;
 begin
   bzero(@G,sizeof(Global));
-//  G.animspeed:= 4; 
+//  G.animspeed:= 4;
   G.main:= callocN(sizeof(Main),'initglobals');
   addtail(@G.mainbase,G.main);
-//  strcpy(G.ima,'//'); 
-//  strcpy(G.psx,'//'); 
+//  strcpy(G.ima,'//');
+//  strcpy(G.psx,'//');
   G.version:= 172;
 
   G.order:= 1;
@@ -1553,10 +1559,10 @@ begin
   sprintf(@versionstr[16],'%d',[G.version]);
 
 //  {$ifdef __sgi}
-//  initmoviepointers(); 
+//  initmoviepointers();
 //  (* define in iff.h *)
 //  {$endif}
-//  clear_workob(); 
+//  clear_workob();
 end;(* object.c *)
 
 

@@ -19,6 +19,8 @@ function strncmp(const str1, str2: PChar; num: size_t): cint;{$IFDEF HASINLINE}i
 function strcmp(const str1, str2: PChar): cint;{$IFDEF HASINLINE}inline;{$ENDIF}
 function strchr(const str: PChar; character: char): PChar;{$IFDEF HASINLINE}inline;{$ENDIF}
 function lstrlen ( const str: PChar):size_t;
+function lstrcmp(str1, str2: pchar): integer;
+function strrchr (str: pchar; character: char): pchar;
 
 function toupper(c: char): char; {$IFDEF HASINLINE}inline;{$ENDIF}
 
@@ -129,6 +131,30 @@ begin
     Inc(counter);
 
   exit(counter);
+end;
+
+function lstrcmp(str1, str2: pchar): integer;
+begin
+  lstrcmp := strcomp(str1, str2);
+end;
+
+function strrchr(str: pchar; character: char): pchar;
+var
+  i: integer = 0;
+  pos: integer = -1;
+begin
+  while (str + i) <> #0 do
+  begin
+    if (str + i)^ = character then
+      pos := i;
+
+    inc(i);
+  end;
+
+  if pos = -1 then
+    exit(nil)
+  else
+    exit(str + pos);
 end;
 
 function toupper(c: char): char;

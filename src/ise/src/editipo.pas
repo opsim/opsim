@@ -145,7 +145,7 @@ space, ipo;
 //    OB_EFF_X:
 //    begin
 //      if colipo<>nil 
-//      then
+// then
 //      strcpy(str,'ColR'); 
 //      else
 //      strcpy(str,'EffX'); 
@@ -153,7 +153,7 @@ space, ipo;
 //    OB_EFF_Y:
 //    begin
 //      if colipo<>nil 
-//      then
+// then
 //      strcpy(str,'ColG'); 
 //      else
 //      strcpy(str,'EffY'); 
@@ -161,7 +161,7 @@ space, ipo;
 //    OB_EFF_Z:
 //    begin
 //      if colipo<>nil 
-//      then
+// then
 //      strcpy(str,'ColB'); 
 //      else
 //      strcpy(str,'EffZ'); 
@@ -174,7 +174,7 @@ space, ipo;
 //begin
 //  str[0]:= 0; 
 //  if nr>=MA_MAP1
-//  then
+// then
 //  begin 
 //    case (nr and MA_MAP1-1) of
 //      MAP_OFS_X:
@@ -320,7 +320,7 @@ space, ipo;
 //begin
 //  str[0]:= 0; 
 //  if nr>=MA_MAP1
-//  then
+// then
 //  begin 
 //    case (nr and MA_MAP1-1) of
 //      MAP_OFS_X:
@@ -478,7 +478,7 @@ space, ipo;
 //begin
 //  str[0]:= 0; 
 //  if nr=KEY_SPEED
-//  then
+// then
 //  begin 
 //    strcpy(str,'Speed'); 
 //    exit;
@@ -490,7 +490,7 @@ space, ipo;
 //begin
 //  str[0]:= 0; 
 //  if nr>=MA_MAP1
-//  then
+// then
 //  begin 
 //    case (nr and MA_MAP1-1) of
 //      MAP_OFS_X:
@@ -622,7 +622,7 @@ space, ipo;
 //begin
 //  
 //  if ipo=0
-//  then
+// then
 //  begin
 //    result:= 0; 
 //    exit;
@@ -632,7 +632,7 @@ space, ipo;
 //  do
 //  begin 
 //    if icu.adrcode=adrcode
-//    then
+// then
 //    begin
 //      result:= icu; 
 //      exit;
@@ -649,10 +649,10 @@ space, ipo;
 //var
 //bezt: pBezTriple; 
 //bp: pBPoint; 
-//vec: array [0..Pred(3)] of float;
+//vec: array [0..2] of single;
 // 
-//min: array [0..Pred(3)] of float; 
-//max: array [0..Pred(3)] of float; 
+//min: array [0..2] of single;
+//max: array [0..2] of single;
 //a: integer; 
 //begin
 //  
@@ -662,11 +662,11 @@ space, ipo;
 //  
 //  
 //  if icu.totvert<>nil 
-//  then
+// then
 //  begin 
 //    INIT_MINMAX(min,max); 
 //    if icu.bezt<>nil 
-//    then
+// then
 //    begin 
 //      a:= icu.totvert; 
 //      bezt:= icu.bezt; 
@@ -674,7 +674,7 @@ space, ipo;
 //      do
 //      begin 
 //        if icu.vartype and IPO_BITS
-//        then
+// then
 //        begin 
 //          vec[0]:= bezt.vec[1][0]; 
 //          vec[1]:= 0.0; 
@@ -685,13 +685,13 @@ space, ipo;
 //        else
 //        begin 
 //          if icu.ipo=IPO_BEZ)and(a<>icu.totvert-1
-//          then
+// then
 //          begin 
 //            DO_MINMAX(bezt.vec[0],min,max); 
 //          end;
 //          DO_MINMAX(bezt.vec[1],min,max); 
 //          if icu.ipo=IPO_BEZ)and(a<>0
-//          then
+// then
 //          begin 
 //            DO_MINMAX(bezt.vec[2],min,max); 
 //          end;
@@ -701,7 +701,7 @@ space, ipo;
 //    end;
 //    else
 //    if icu.bp<>nil 
-//    then
+// then
 //    begin 
 //      a:= icu.totvert; 
 //      bp:= icu.bp; 
@@ -713,10 +713,10 @@ space, ipo;
 //      end;
 //    end;
 //    if min[0]=max[0]
-//    then
+// then
 //    max[0]:= min[0]+1.0; 
 //    if min[1]=max[1]
-//    then
+// then
 //    max[1]:= min[1]+0.1; 
 //    icu.totrct.xmin:= min[0]; 
 //    icu.totrct.ymin:= min[1]; 
@@ -745,7 +745,7 @@ space, ipo;
 //  begin 
 //    boundbox_ipocurve(icu); 
 //    if first<>nil 
-//    then
+// then
 //    begin 
 //      {*}bb^:=icu.totrct; 
 //      first:= 0; 
@@ -762,8 +762,8 @@ space, ipo;
 //v2d: pView2D; 
 //key: pKey; 
 //kb: pKeyBlock; 
-//dx: float; 
-//dy: float; 
+//dx: single; 
+//dy: single; 
 //a: integer; 
 //first: integer;
 // 
@@ -778,68 +778,68 @@ space, ipo;
 //  
 //  
 //  first:=1; 
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  if ei=0
-//  then
+// then
 //  exit;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
 //  do
 //  begin 
 //    if ei.icu<>nil 
-//    then
+// then
 //    begin 
 //      (* 2 keer i.v.m. ittereren nieuwe autohandle *)
 //      calchandles_ipocurve(ei.icu); 
 //      calchandles_ipocurve(ei.icu); 
 //      if ei.flag and IPO_VISIBLE
-//      then
+// then
 //      begin 
 //        boundbox_ipocurve(ei.icu); 
 //        sort_time_ipocurve(ei.icu); 
 //        if first<>nil 
-//        then
+// then
 //        begin 
-//          G.sipo.v2d.tot:= ei.icu.totrct; 
+//          G.sipo^.v2d.tot:= ei.icu.totrct;
 //          first:= 0; 
 //        end;
 //        else
-//        union_rctf(@(G.sipo.v2d.tot),@(ei.icu.totrct)); 
+//        union_rctf(@(G.sipo^.v2d.tot),@(ei.icu.totrct));
 //      end;
 //    end;
 //  end;
-//  v2d:= @(G.sipo.v2d); (* keylijnen? *)
-//  if G.sipo.blocktype=ID_KE
-//  then
+//  v2d:= @(G.sipo^.v2d); (* keylijnen? *)
+//  if G.sipo^.blocktype=ID_KE
+// then
 //  begin 
-//    key:=  {pKey(}G.sipo.from; 
+//    key:=  {pKey(}G.sipo^.from;
 //    if key)and(key.block.first
-//    then
+// then
 //    begin 
 //      kb:= key.block.first; 
 //      if kb.pos<v2d.tot.ymin
-//      then
+// then
 //      v2d.tot.ymin:= kb.pos; 
 //      kb:= key.block.last; 
 //      if kb.pos>v2d.tot.ymax
-//      then
+// then
 //      v2d.tot.ymax:= kb.pos; 
 //    end;
 //  end;
 //  (* is er geen curve? *)
 //  if first<>nil 
-//  then
+// then
 //  begin 
 //    v2d.tot.xmin:= 0.0; 
 //    v2d.tot.xmax:= EFRA; 
 //    v2d.tot.ymin:= -0.1; 
 //    v2d.tot.ymax:= 1.1; 
-//    if G.sipo.blocktype=ID_SEQ
-//    then
+//    if G.sipo^.blocktype=ID_SEQ
+// then
 //    begin 
 //      v2d.tot.xmin:= -5.0; 
 //      v2d.tot.xmax:= 105.0; 
@@ -847,72 +847,72 @@ space, ipo;
 //      v2d.tot.ymax:= 1.1; 
 //    end;
 //  end;
-//  G.sipo.tot:= v2d.tot; 
+//  G.sipo^.tot:= v2d.tot;
 //  if doredraw<>nil 
-//  then
+// then
 //  begin 
 //    (* als do_ipo altijd wordt aangeroepen: problemen met insertkey, bijvoorbeeld
 //       * als alleen een 'loc' wordt ge-insert wordt de 'ob->rot' veranderd.
 //       *)
-//    if G.sipo.blocktype=ID_OB
-//    then
+//    if G.sipo^.blocktype=ID_OB
+// then
 //    begin 
 //      (* clear delta loc,rot,size (bij ipo vrijgeven/deleten) *)
-//      clear_delta_obipo(G.sipo.ipo); 
+//      clear_delta_obipo(G.sipo^.ipo);
 //    end;
-//    do_ipo(G.sipo.ipo); 
+//    do_ipo(G.sipo^.ipo);
 //    addqueue(curarea.headwin,REDRAW,1); 
 //    addqueue(curarea.win,REDRAW,1); 
 //    allqueue(REDRAWBUTSANIM,0); 
-//    if G.sipo.blocktype=ID_OB
-//    then
+//    if G.sipo^.blocktype=ID_OB
+// then
 //    begin 
-//      ob:= {pObject(}G.sipo.from; 
+//      ob:= {pObject(}G.sipo^.from;
 //      if ob)and(ob.type=OB_IKA
-//      then
+// then
 //      itterate_ika(ob); 
 //      allqueue(REDRAWVIEW3D,0); 
 //    end;
 //    else
-//    if G.sipo.blocktype=ID_MA
-//    then
+//    if G.sipo^.blocktype=ID_MA
+// then
 //    allqueue(REDRAWBUTSMAT,0); 
 //    else
-//    if G.sipo.blocktype=ID_WO
-//    then
+//    if G.sipo^.blocktype=ID_WO
+// then
 //    allqueue(REDRAWBUTSWORLD,0); 
 //    else
-//    if G.sipo.blocktype=ID_LA
-//    then
+//    if G.sipo^.blocktype=ID_LA
+// then
 //    allqueue(REDRAWBUTSLAMP,0); 
 //    else
-//    if G.sipo.blocktype=ID_CA
-//    then
+//    if G.sipo^.blocktype=ID_CA
+// then
 //    begin 
 //      allqueue(REDRAWBUTSEDIT,0); 
 //      allqueue(REDRAWVIEW3D,0); 
 //    end;
 //    else
-//    if G.sipo.blocktype=ID_SEQ
-//    then
+//    if G.sipo^.blocktype=ID_SEQ
+// then
 //    clear_last_seq(); 
 //    else
-//    if G.sipo.blocktype=ID_KE
-//    then
+//    if G.sipo^.blocktype=ID_KE
+// then
 //    begin 
-//      do_spec_key( {pKey(}G.sipo.from); 
+//      do_spec_key( {pKey(}G.sipo^.from);
 //      allqueue(REDRAWVIEW3D,0); 
 //    end;
 //    else
-//    if G.sipo.blocktype=ID_CU
-//    then
+//    if G.sipo^.blocktype=ID_CU
+// then
 //    begin 
 //      calc_curvepath(OBACT); 
 //      allqueue(REDRAWVIEW3D,0); 
 //    end;
 //  end;
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  make_ipokey(); 
 //end;
 //
@@ -920,8 +920,8 @@ space, ipo;
 //var
 //ei: pEditIpo; 
 //bezt: pBezTriple; 
-//facx: float; 
-//facy: float; 
+//facx: single; 
+//facy: single; 
 //a: integer; 
 //b: integer; 
 //begin(* komt uit buttons, scale met G.sipo->tot rect *)
@@ -931,15 +931,15 @@ space, ipo;
 //  
 //  
 //  
-//  facx:= (G.sipo.tot.xmax-G.sipo.tot.xmin) div (G.sipo.v2d.tot.xmax-G.sipo.v2d.tot.xmin); 
-//  facy:= (G.sipo.tot.ymax-G.sipo.tot.ymin) div (G.sipo.v2d.tot.ymax-G.sipo.v2d.tot.ymin); 
-//  ei:= G.sipo.editipo; 
+//  facx:= (G.sipo^.tot.xmax-G.sipo^.tot.xmin) div (G.sipo^.v2d.tot.xmax-G.sipo^.v2d.tot.xmin);
+//  facy:= (G.sipo^.tot.ymax-G.sipo^.tot.ymin) div (G.sipo^.v2d.tot.ymax-G.sipo^.v2d.tot.ymin);
+//  ei:= G.sipo^.editipo;
 //  if ei=0
-//  then
+// then
 //  exit;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -953,12 +953,12 @@ space, ipo;
 //      while b{--} dec(b); 
 //      do
 //      begin 
-//        bezt.vec[0][0]:= facx*(bezt.vec[0][0]-G.sipo.v2d.tot.xmin)+G.sipo.tot.xmin; 
-//        bezt.vec[1][0]:= facx*(bezt.vec[1][0]-G.sipo.v2d.tot.xmin)+G.sipo.tot.xmin; 
-//        bezt.vec[2][0]:= facx*(bezt.vec[2][0]-G.sipo.v2d.tot.xmin)+G.sipo.tot.xmin; 
-//        bezt.vec[0][1]:= facy*(bezt.vec[0][1]-G.sipo.v2d.tot.ymin)+G.sipo.tot.ymin; 
-//        bezt.vec[1][1]:= facy*(bezt.vec[1][1]-G.sipo.v2d.tot.ymin)+G.sipo.tot.ymin; 
-//        bezt.vec[2][1]:= facy*(bezt.vec[2][1]-G.sipo.v2d.tot.ymin)+G.sipo.tot.ymin; 
+//        bezt.vec[0][0]:= facx*(bezt.vec[0][0]-G.sipo^.v2d.tot.xmin)+G.sipo^.tot.xmin;
+//        bezt.vec[1][0]:= facx*(bezt.vec[1][0]-G.sipo^.v2d.tot.xmin)+G.sipo^.tot.xmin;
+//        bezt.vec[2][0]:= facx*(bezt.vec[2][0]-G.sipo^.v2d.tot.xmin)+G.sipo^.tot.xmin;
+//        bezt.vec[0][1]:= facy*(bezt.vec[0][1]-G.sipo^.v2d.tot.ymin)+G.sipo^.tot.ymin;
+//        bezt.vec[1][1]:= facy*(bezt.vec[1][1]-G.sipo^.v2d.tot.ymin)+G.sipo^.tot.ymin;
+//        bezt.vec[2][1]:= facy*(bezt.vec[2][1]-G.sipo^.v2d.tot.ymin)+G.sipo^.tot.ymin;
 //        inc(bezt); 
 //      end;
 //    end
@@ -986,11 +986,11 @@ space, ipo;
 //  
 //  {*}from^:=0; 
 //  ob:= OBACT; 
-//  if G.sipo.blocktype=ID_OB
-//  then
+//  if G.sipo^.blocktype=ID_OB
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
@@ -1002,65 +1002,65 @@ space, ipo;
 //    end;
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_MA
-//  then
+//  if G.sipo^.blocktype=ID_MA
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    ma:= give_current_material(ob,ob.actcol); {*}from^:= {pID(}ma; 
 //    if ma<>nil 
-//    then
+// then
 //    begin
 //      result:= ma.ipo; 
 //      exit;
 //    end;
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_KE
-//  then
+//  if G.sipo^.blocktype=ID_KE
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    key:= give_current_key(ob); {*}from^:= {pID(}key; 
 //    if key<>nil 
-//    then
+// then
 //    begin
 //      result:= key.ipo; 
 //      exit;
 //    end;
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_SEQ
-//  then
+//  if G.sipo^.blocktype=ID_SEQ
+// then
 //  begin 
 //    {*}from^:= {pID(}last_seq; 
 //    if last_seq<>nil 
-//    then
+// then
 //    begin
 //      result:= last_seq.ipo; 
 //      exit;
 //    end;
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_CU
-//  then
+//  if G.sipo^.blocktype=ID_CU
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    if ob.type<>OB_CURVE
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
@@ -1072,29 +1072,29 @@ space, ipo;
 //    end;
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_WO
-//  then
+//  if G.sipo^.blocktype=ID_WO
+// then
 //  begin 
 //    wo:= G.scene.world; {*}from^:= {pID(}wo; 
 //    if wo<>nil 
-//    then
+// then
 //    begin
 //      result:= wo.ipo; 
 //      exit;
 //    end;
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_LA
-//  then
+//  if G.sipo^.blocktype=ID_LA
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    if ob.type<>OB_LAMP
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
@@ -1106,24 +1106,24 @@ space, ipo;
 //    end;
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_CA
-//  then
+//  if G.sipo^.blocktype=ID_CA
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    if ob.type<>OB_CAMERA
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    ca:= ob.data; {*}from^:= {pID(}ca; 
 //    if ca<>nil 
-//    then
+// then
 //    begin
 //      result:= ca.ipo; 
 //      exit;
@@ -1137,22 +1137,22 @@ space, ipo;
 //
 //function ipo_rainbow(cur: integer;  tot: integer): uint; 
 //var
-//fac: float; 
-//dfac: float; 
-//sat: float; 
+//fac: single; 
+//dfac: single; 
+//sat: single; 
 //begin
 //  
 //  
 //  
-//  dfac:= 1.0 div ( {float(}tot+1.0); (* deze berekening zorgt voor twee verschillende cycles regenboogkleuren *)
+//  dfac:= 1.0 div ( {single(}tot+1.0); (* deze berekening zorgt voor twee verschillende cycles regenboogkleuren *)
 //  if cur<tot div 2
-//  then
+// then
 //  fac:= cur*2.0*dfac; 
 //  else
 //  fac:= (cur-tot div 2)*2.0*dfac+dfac; 
 //  sat:= 0.5; 
 //  if fac>0.5)and(fac<0.8
-//  then
+// then
 //  sat:= 0.4; 
 //  begin
 //    result:= hsv_to_cpack(fac,sat,1.0); 
@@ -1171,8 +1171,8 @@ space, ipo;
 //  
 //  
 //  
-//  ei:= si.editipo:=callocN(OB_TOTIPO*sizeof(EditIpo),'editipo'); 
-//  si.totipo:= OB_TOTIPO; if{!!!e unknown token}
+//  ei:= si^.editipo:=callocN(OB_TOTIPO*sizeof(EditIpo),'editipo');
+//  si^.totipo:= OB_TOTIPO; if{!!!e unknown token}
 //  colipo:= 1; 
 //  else
 //  colipo:= 0; 
@@ -1184,36 +1184,36 @@ space, ipo;
 //    ei.disptype:= IPO_DISPDEGR; 
 //    else
 //    if ei.adrcode=OB_LAY
-//    then
+// then
 //    ei.disptype:= IPO_DISPBITS; 
 //    else
 //    if ei.adrcode=OB_TIME
-//    then
+// then
 //    ei.disptype:= IPO_DISPTIME; 
 //    ei.col:= ipo_rainbow(a,OB_TOTIPO); 
 //    if colipo<>nil 
-//    then
+// then
 //    begin 
 //      len:= lstrlen(ei.name); 
 //      if len<>nil 
-//      then
+// then
 //      begin 
 //        if ei.name[len-1 ]='R'
-//        then
+// then
 //        ei.col:= $5050FF; 
 //        else
 //        if ei.name[len-1 ]='G'
-//        then
+// then
 //        ei.col:= $50FF50; 
 //        else
 //        if ei.name[len-1 ]='B'
-//        then
+// then
 //        ei.col:= $FF7050; 
 //      end;
 //    end;
-//    ei.icu:= find_ipocurve(si.ipo,ei.adrcode); 
+//    ei.icu:= find_ipocurve(si^.ipo,ei.adrcode);
 //    if ei.icu<>nil 
-//    then
+// then
 //    begin 
 //      ei.flag:= ei.icu.flag; 
 //    end;
@@ -1228,17 +1228,17 @@ space, ipo;
 //begin
 //  
 //  
-//  ei:= si.editipo:=callocN(SEQ_TOTIPO*sizeof(EditIpo),'editipo'); 
-//  si.totipo:= SEQ_TOTIPO; 
+//  ei:= si^.editipo:=callocN(SEQ_TOTIPO*sizeof(EditIpo),'editipo');
+//  si^.totipo:= SEQ_TOTIPO;
 //  for{while} a:=0 to Pred(SEQ_TOTIPO) { a++}
 //  do
 //  begin 
 //    getname_seq_ei(seq_ar[a],ei.name); 
 //    ei.adrcode:= seq_ar[a]; 
 //    ei.col:= ipo_rainbow(a,SEQ_TOTIPO); 
-//    ei.icu:= find_ipocurve(si.ipo,ei.adrcode); 
+//    ei.icu:= find_ipocurve(si^.ipo,ei.adrcode);
 //    if ei.icu<>nil 
-//    then
+// then
 //    begin 
 //      ei.flag:= ei.icu.flag; 
 //    end;
@@ -1255,17 +1255,17 @@ space, ipo;
 //begin
 //  
 //  
-//  ei:= si.editipo:=callocN(CU_TOTIPO*sizeof(EditIpo),'editipo'); 
-//  si.totipo:= CU_TOTIPO; 
+//  ei:= si^.editipo:=callocN(CU_TOTIPO*sizeof(EditIpo),'editipo');
+//  si^.totipo:= CU_TOTIPO;
 //  for{while} a:=0 to Pred(CU_TOTIPO) { a++}
 //  do
 //  begin 
 //    getname_cu_ei(cu_ar[a],ei.name); 
 //    ei.adrcode:= cu_ar[a]; 
 //    ei.col:= ipo_rainbow(a,CU_TOTIPO); 
-//    ei.icu:= find_ipocurve(si.ipo,ei.adrcode); 
+//    ei.icu:= find_ipocurve(si^.ipo,ei.adrcode);
 //    if ei.icu<>nil 
-//    then
+// then
 //    begin 
 //      ei.flag:= ei.icu.flag; 
 //    end;
@@ -1284,30 +1284,30 @@ space, ipo;
 //  
 //  
 //  
-//  ei:= si.editipo:=callocN(KEY_TOTIPO*sizeof(EditIpo),'editipo'); 
-//  si.totipo:= KEY_TOTIPO; 
+//  ei:= si^.editipo:=callocN(KEY_TOTIPO*sizeof(EditIpo),'editipo');
+//  si^.totipo:= KEY_TOTIPO;
 //  for{while} a:=0 to Pred(KEY_TOTIPO) { a++}
 //  do
 //  begin 
 //    getname_key_ei(key_ar[a],ei.name); 
 //    ei.adrcode:= key_ar[a]; 
 //    ei.col:= ipo_rainbow(a,KEY_TOTIPO); 
-//    ei.icu:= find_ipocurve(si.ipo,ei.adrcode); 
+//    ei.icu:= find_ipocurve(si^.ipo,ei.adrcode);
 //    if ei.icu<>nil 
-//    then
+// then
 //    begin 
 //      ei.flag:= ei.icu.flag; 
 //    end;
 //    else
 //    if a=0
-//    then
+// then
 //    ei.flag:= ei.flag or (IPO_VISIBLE); 
 //    inc(ei); 
 //  end;
-//  ei:= si.editipo; 
-//  key:=  {pKey(}G.sipo.from; 
+//  ei:= si^.editipo;
+//  key:=  {pKey(}G.sipo^.from;
 //  if key)and(key.type=KEY_RELATIVE
-//  then
+// then
 //  begin 
 //    strcpy(ei.name,'----'); 
 //  end;
@@ -1393,9 +1393,9 @@ space, ipo;
 //procedure make_mat_editipo(si: pSpaceIpo); 
 //var
 //ei: pEditIpo; 
-//fac: float; 
-//dfac: float; 
-//sat: float; 
+//fac: single; 
+//dfac: single; 
+//sat: single; 
 //a: integer; 
 //len: integer; 
 //begin
@@ -1405,11 +1405,11 @@ space, ipo;
 //  
 //  
 //  
-//  if si.from=0
-//  then
+//  if si^.from=0
+// then
 //  exit;
-//  ei:= si.editipo:=callocN(MA_TOTIPO*sizeof(EditIpo),'editipo'); 
-//  si.totipo:= MA_TOTIPO; 
+//  ei:= si^.editipo:=callocN(MA_TOTIPO*sizeof(EditIpo),'editipo');
+//  si^.totipo:= MA_TOTIPO;
 //  dfac:= 1.0 div (MA_TOTIPO+1); 
 //  fac:= 0.0; 
 //  for{while} a:=0 to Pred(MA_TOTIPO) { a++}
@@ -1418,38 +1418,38 @@ space, ipo;
 //    getname_mat_ei(ma_ar[a],ei.name); 
 //    ei.adrcode:= ma_ar[a]; 
 //    if ei.adrcode and MA_MAP1
-//    then
+// then
 //    begin 
 //      ei.adrcode:= ei.adrcode - (MA_MAP1); 
-//      ei.adrcode:= ei.adrcode or (texchannel_to_adrcode(si.channel)); 
+//      ei.adrcode:= ei.adrcode or (texchannel_to_adrcode(si^.channel));
 //    end;
 //    else
 //    begin 
 //      (* dit was weggecommentaard. Waarom? *)
 //      if ei.adrcode=MA_MODE
-//      then
+// then
 //      ei.disptype:= IPO_DISPBITS; 
 //    end;
 //    ei.col:= ipo_rainbow(a,WO_TOTIPO); 
 //    len:= lstrlen(ei.name); 
 //    if len<>nil 
-//    then
+// then
 //    begin 
 //      if ei.name[len-1 ]='R'
-//      then
+// then
 //      ei.col:= $5050FF; 
 //      else
 //      if ei.name[len-1 ]='G'
-//      then
+// then
 //      ei.col:= $50FF50; 
 //      else
 //      if ei.name[len-1 ]='B'
-//      then
+// then
 //      ei.col:= $FF7050; 
 //    end;
-//    ei.icu:= find_ipocurve(si.ipo,ei.adrcode); 
+//    ei.icu:= find_ipocurve(si^.ipo,ei.adrcode);
 //    if ei.icu<>nil 
-//    then
+// then
 //    begin 
 //      ei.flag:= ei.icu.flag; 
 //    end;
@@ -1460,9 +1460,9 @@ space, ipo;
 //procedure make_world_editipo(si: pSpaceIpo); 
 //var
 //ei: pEditIpo; 
-//fac: float; 
-//dfac: float; 
-//sat: float; 
+//fac: single; 
+//dfac: single; 
+//sat: single; 
 //a: integer; 
 //len: integer; 
 //begin
@@ -1472,11 +1472,11 @@ space, ipo;
 //  
 //  
 //  
-//  if si.from=0
-//  then
+//  if si^.from=0
+// then
 //  exit;
-//  ei:= si.editipo:=callocN(WO_TOTIPO*sizeof(EditIpo),'editipo'); 
-//  si.totipo:= WO_TOTIPO; 
+//  ei:= si^.editipo:=callocN(WO_TOTIPO*sizeof(EditIpo),'editipo');
+//  si^.totipo:= WO_TOTIPO;
 //  dfac:= 1.0 div (WO_TOTIPO+1); 
 //  fac:= 0.0; 
 //  for{while} a:=0 to Pred(WO_TOTIPO) { a++}
@@ -1485,37 +1485,37 @@ space, ipo;
 //    getname_world_ei(wo_ar[a],ei.name); 
 //    ei.adrcode:= wo_ar[a]; 
 //    if ei.adrcode and MA_MAP1
-//    then
+// then
 //    begin 
 //      ei.adrcode:= ei.adrcode - (MA_MAP1); 
-//      ei.adrcode:= ei.adrcode or (texchannel_to_adrcode(si.channel)); 
+//      ei.adrcode:= ei.adrcode or (texchannel_to_adrcode(si^.channel));
 //    end;
 //    else
 //    begin 
 //      if ei.adrcode=MA_MODE
-//      then
+// then
 //      ei.disptype:= IPO_DISPBITS; 
 //    end;
 //    ei.col:= ipo_rainbow(a,MA_TOTIPO); 
 //    len:= lstrlen(ei.name); 
 //    if len<>nil 
-//    then
+// then
 //    begin 
 //      if ei.name[len-1 ]='R'
-//      then
+// then
 //      ei.col:= $5050FF; 
 //      else
 //      if ei.name[len-1 ]='G'
-//      then
+// then
 //      ei.col:= $50FF50; 
 //      else
 //      if ei.name[len-1 ]='B'
-//      then
+// then
 //      ei.col:= $FF7050; 
 //    end;
-//    ei.icu:= find_ipocurve(si.ipo,ei.adrcode); 
+//    ei.icu:= find_ipocurve(si^.ipo,ei.adrcode);
 //    if ei.icu<>nil 
-//    then
+// then
 //    begin 
 //      ei.flag:= ei.icu.flag; 
 //    end;
@@ -1530,23 +1530,23 @@ space, ipo;
 //begin
 //  
 //  
-//  ei:= si.editipo:=callocN(LA_TOTIPO*sizeof(EditIpo),'editipo'); 
-//  si.totipo:= LA_TOTIPO; 
+//  ei:= si^.editipo:=callocN(LA_TOTIPO*sizeof(EditIpo),'editipo');
+//  si^.totipo:= LA_TOTIPO;
 //  for{while} a:=0 to Pred(LA_TOTIPO) { a++}
 //  do
 //  begin 
 //    getname_la_ei(la_ar[a],ei.name); 
 //    ei.adrcode:= la_ar[a]; 
 //    if ei.adrcode and MA_MAP1
-//    then
+// then
 //    begin 
 //      ei.adrcode:= ei.adrcode - (MA_MAP1); 
-//      ei.adrcode:= ei.adrcode or (texchannel_to_adrcode(si.channel)); 
+//      ei.adrcode:= ei.adrcode or (texchannel_to_adrcode(si^.channel));
 //    end;
 //    ei.col:= ipo_rainbow(a,LA_TOTIPO); 
-//    ei.icu:= find_ipocurve(si.ipo,ei.adrcode); 
+//    ei.icu:= find_ipocurve(si^.ipo,ei.adrcode);
 //    if ei.icu<>nil 
-//    then
+// then
 //    begin 
 //      ei.flag:= ei.icu.flag; 
 //    end;
@@ -1561,17 +1561,17 @@ space, ipo;
 //begin
 //  
 //  
-//  ei:= si.editipo:=callocN(CAM_TOTIPO*sizeof(EditIpo),'editipo'); 
-//  si.totipo:= CAM_TOTIPO; 
+//  ei:= si^.editipo:=callocN(CAM_TOTIPO*sizeof(EditIpo),'editipo');
+//  si^.totipo:= CAM_TOTIPO;
 //  for{while} a:=0 to Pred(CAM_TOTIPO) { a++}
 //  do
 //  begin 
 //    getname_cam_ei(cam_ar[a],ei.name); 
 //    ei.adrcode:= cam_ar[a]; 
 //    ei.col:= ipo_rainbow(a,CAM_TOTIPO); 
-//    ei.icu:= find_ipocurve(si.ipo,ei.adrcode); 
+//    ei.icu:= find_ipocurve(si^.ipo,ei.adrcode);
 //    if ei.icu<>nil 
-//    then
+// then
 //    begin 
 //      ei.flag:= ei.icu.flag; 
 //    end;
@@ -1592,120 +1592,120 @@ space, ipo;
 //  
 //  
 //  
-//  if G.sipo.editipo<>nil 
-//  then
-//  freeN(G.sipo.editipo); 
-//  G.sipo.editipo:= 0; 
-//  G.sipo.totipo:= 0; 
+//  if G.sipo^.editipo<>nil
+// then
+//  freeN(G.sipo^.editipo);
+//  G.sipo^.editipo:= 0;
+//  G.sipo^.totipo:= 0;
 //  ob:= OBACT; 
-//  G.sipo.ipo:= get_ipo_to_edit( and from); 
-//  G.sipo.from:= from; 
-//  if G.sipo.ipo<>nil 
-//  then
-//  G.sipo.showkey:= G.sipo.ipo.showkey; 
-//  if G.sipo.blocktype=ID_OB
-//  then
+//  G.sipo^.ipo:= get_ipo_to_edit( and from);
+//  G.sipo^.from:= from;
+//  if G.sipo^.ipo<>nil
+// then
+//  G.sipo^.showkey:= G.sipo^.ipo.showkey;
+//  if G.sipo^.blocktype=ID_OB
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    exit;
 //    ob.ipowin:= ID_OB; 
 //    make_ob_editipo(ob,G.sipo); 
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_MA
-//  then
+//  if G.sipo^.blocktype=ID_MA
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    exit;
 //    ob.ipowin:= ID_MA; 
 //    make_mat_editipo(G.sipo); 
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_SEQ
-//  then
+//  if G.sipo^.blocktype=ID_SEQ
+// then
 //  make_seq_editipo(G.sipo); 
 //  else
-//  if G.sipo.blocktype=ID_CU
-//  then
+//  if G.sipo^.blocktype=ID_CU
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    exit;
 //    ob.ipowin:= ID_CU; 
 //    make_cu_editipo(G.sipo); 
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_KE
-//  then
+//  if G.sipo^.blocktype=ID_KE
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    exit;
 //    ob.ipowin:= ID_KE; 
 //    make_key_editipo(G.sipo); 
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_WO
-//  then
+//  if G.sipo^.blocktype=ID_WO
+// then
 //  begin 
 //    make_world_editipo(G.sipo); 
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_LA
-//  then
+//  if G.sipo^.blocktype=ID_LA
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    exit;
 //    ob.ipowin:= ID_LA; 
 //    make_lamp_editipo(G.sipo); 
 //  end;
 //  else
-//  if G.sipo.blocktype=ID_CA
-//  then
+//  if G.sipo^.blocktype=ID_CA
+// then
 //  begin 
 //    if ob=0
-//    then
+// then
 //    exit;
 //    ob.ipowin:= ID_CA; 
 //    make_camera_editipo(G.sipo); 
 //  end;
-//  if G.sipo.editipo=0
-//  then
+//  if G.sipo^.editipo=0
+// then
 //  exit;
 //  (* rowbut voor VISIBLE select *)
-//  G.sipo.rowbut:= 0; 
-//  ei:= G.sipo.editipo; 
+//  G.sipo^.rowbut:= 0;
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
 //  do
 //  begin 
 //    if ei.flag and IPO_VISIBLE
-//    then
-//    G.sipo.rowbut:= G.sipo.rowbut or ((1 shl a)); 
+// then
+//    G.sipo^.rowbut:= G.sipo^.rowbut or ((1 shl a));
 //    if ei.icu<>nil 
-//    then
+// then
 //    ei.icu.flag:= ei.flag; 
 //  end;
 //  editipo_changed(0); 
-//  if G.sipo.ipo<>nil 
-//  then
+//  if G.sipo^.ipo<>nil
+// then
 //  begin 
-//    rf:= @(G.sipo.ipo.cur); 
+//    rf:= @(G.sipo^.ipo.cur);
 //    if rf.xmin<rf.xmax)and(rf.ymin<rf.ymax
-//    then
+// then
 //    G.v2d.cur:= {*}rf^; 
 //  end;
 //  else
 //  begin 
-//    if G.sipo.blocktype=ID_OB
-//    then
+//    if G.sipo^.blocktype=ID_OB
+// then
 //    begin 
 //      G.v2d.cur.xmin:= 0.0; 
 //      G.v2d.cur.xmax:= EFRA; 
@@ -1713,8 +1713,8 @@ space, ipo;
 //      G.v2d.cur.ymax:= +5.0; 
 //    end;
 //    else
-//    if G.sipo.blocktype=ID_CA
-//    then
+//    if G.sipo^.blocktype=ID_CA
+// then
 //    begin 
 //      G.v2d.cur.xmin:= 0.0; 
 //      G.v2d.cur.xmax:= EFRA; 
@@ -1731,8 +1731,8 @@ space, ipo;
 //      G.v2d.cur.ymax:= +1.1; 
 //    end
 //    else
-//    if G.sipo.blocktype=ID_SEQ
-//    then
+//    if G.sipo^.blocktype=ID_SEQ
+// then
 //    begin 
 //      G.v2d.cur.xmin:= -5.0; 
 //      G.v2d.cur.xmax:= 105.0; 
@@ -1740,8 +1740,8 @@ space, ipo;
 //      G.v2d.cur.ymax:= +1.1; 
 //    end;
 //    else
-//    if G.sipo.blocktype=ID_KE
-//    then
+//    if G.sipo^.blocktype=ID_KE
+// then
 //    begin 
 //      G.v2d.cur.xmin:= -0.1; 
 //      G.v2d.cur.xmax:= EFRA; 
@@ -1758,20 +1758,20 @@ space, ipo;
 //begin
 //  
 //  
-//  if G.sipo.editipo=0
-//  then
+//  if G.sipo^.editipo=0
+// then
 //  make_editipo(); 
 //  else
 //  begin 
 //    ipo:= get_ipo_to_edit( and from); 
-//    if G.sipo.ipo<>ipo)or(G.sipo.from<>from
-//    then
+//    if G.sipo^.ipo<>ipo)or(G.sipo^.from<>from
+// then
 //    make_editipo(); 
 //  end;
 //  (* kopie current view *)
-//  if G.sipo.ipo<>nil 
-//  then
-//  G.sipo.ipo.cur:= G.v2d.cur; 
+//  if G.sipo^.ipo<>nil
+// then
+//  G.sipo^.ipo.cur:= G.v2d.cur;
 //end;
 //(* ****************************************** *)
 //totipo_edit: integer; 
@@ -1804,35 +1804,35 @@ space, ipo;
 //  totipo_vertsel:= 0; 
 //  totipo_key:= 0; 
 //  totipo_keysel:= 0; 
-//  if G.sipo.ipo)and(G.sipo.ipo.id.lib
-//  then
+//  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
+// then
 //  exit;
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  if ei=0
-//  then
+// then
 //  exit;
-//  for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//  for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //  do
 //  begin 
 //    if ei.flag and IPO_VISIBLE
-//    then
+// then
 //    begin 
 //      inc(totipo_vis); 
 //      if ei.flag and IPO_SELECT
-//      then
+// then
 //      inc(totipo_sel); 
-//      if G.sipo.showkey)or((ei.flag and IPO_EDIT)
-//      then
+//      if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
+// then
 //      begin 
 //        (* als showkey: wel de vertices tellen (voor grab) *)
-//        if G.sipo.showkey=0
-//        then
+//        if G.sipo^.showkey=0
+// then
 //        inc(totipo_edit); 
 //        if ei.icu<>nil 
-//        then
+// then
 //        begin 
 //          if ei.icu.bezt<>nil 
-//          then
+// then
 //          begin 
 //            bezt:= ei.icu.bezt; 
 //            b:= ei.icu.totvert; 
@@ -1840,18 +1840,18 @@ space, ipo;
 //            do
 //            begin 
 //              if ei.icu.ipo=IPO_BEZ
-//              then
+// then
 //              begin 
 //                if bezt.f1 and 1
-//                then
+// then
 //                inc(totipo_vertsel); 
 //                if bezt.f3 and 1
-//                then
+// then
 //                inc(totipo_vertsel); 
 //                totipo_vert:= totipo_vert + (2); 
 //              end;
 //              if bezt.f2 and 1
-//              then
+// then
 //              inc(totipo_vertsel); 
 //              inc(totipo_vert); 
 //              inc(bezt); 
@@ -1859,7 +1859,7 @@ space, ipo;
 //          end;
 //          else
 //          if ei.icu.bp<>nil 
-//          then
+// then
 //          begin 
 //            bp:= ei.icu.bp; 
 //            b:= ei.icu.totvert; 
@@ -1867,7 +1867,7 @@ space, ipo;
 //            do
 //            begin 
 //              if bp.f1 and 1
-//              then
+// then
 //              inc(totipo_vertsel); 
 //              inc(totipo_vert); 
 //              inc(bp); 
@@ -1878,16 +1878,16 @@ space, ipo;
 //    end;
 //    inc(ei); 
 //  end;
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
-//    ik:= G.sipo.ipokey.first; 
+//    ik:= G.sipo^.ipokey.first;
 //    while ik
 //    do
 //    begin 
 //      inc(totipo_key); 
 //      if ik.flag and 1
-//      then
+// then
 //      inc(totipo_keysel); 
 //      ik:= ik.next; 
 //    end;
@@ -1905,10 +1905,10 @@ space, ipo;
 //  
 //  
 //  
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -1916,28 +1916,28 @@ space, ipo;
 //  begin 
 //    ei.flag:= ei.flag and ( not IPO_VISIBLE); 
 //    flag:= (1 shl a); 
-//    if G.sipo.rowbut and flag
-//    then
+//    if G.sipo^.rowbut and flag
+// then
 //    ei.flag:= ei.flag or (IPO_VISIBLE); 
 //    if ei.icu<>nil 
-//    then
+// then
 //    ei.icu.flag:= ei.flag; 
 //  end;
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
-//    ik:= G.sipo.ipokey.first; 
+//    ik:= G.sipo^.ipokey.first;
 //    while ik
 //    do
 //    begin 
-//      for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//      for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //      do
 //      begin 
 //        if ik.data[a]<>nil 
-//        then
+// then
 //        begin 
 //          if ik.flag and 1
-//          then
+// then
 //          begin 
 //            ik.data[a].f1:= ik.data[a].f1 or (1); 
 //            ik.data[a].f2:= ik.data[a].f2 or (1); 
@@ -1969,17 +1969,17 @@ space, ipo;
 //  
 //  tot:=0; 
 //  ok:=0; (* van showkey direkt door naar editen geselecteerde punten *)
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
-//    G.sipo.showkey:= 0; 
-//    if G.sipo.ipo<>nil 
-//    then
-//    G.sipo.ipo.showkey:= 0; 
-//    ei:= G.sipo.editipo; 
+//    G.sipo^.showkey:= 0;
+//    if G.sipo^.ipo<>nil
+// then
+//    G.sipo^.ipo.showkey:= 0;
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
@@ -1989,43 +1989,43 @@ space, ipo;
 //    allqueue(REDRAWVIEW3D,0); 
 //  end;
 //  get_status_editipo(); 
-//  if G.sipo.ipo)and(G.sipo.ipo.id.lib
-//  then
+//  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
+// then
 //  exit;
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
 //  do
 //  begin 
 //    if ei.icu<>nil 
-//    then
+// then
 //    begin 
 //      if ei.flag and IPO_VISIBLE
-//      then
+// then
 //      begin 
 //        if totipo_edit=0)and((ei.flag and IPO_SELECT)
-//        then
+// then
 //        begin 
 //          ei.flag:= ei.flag or (IPO_EDIT); 
 //          ei.icu.flag:= ei.flag; 
 //        end;
 //        else
 //        if totipo_edit)and((ei.flag and IPO_EDIT)
-//        then
+// then
 //        begin 
 //          ei.flag:= ei.flag - (IPO_EDIT); 
 //          ei.icu.flag:= ei.flag; 
 //        end;
 //        else
 //        if totipo_vis=1
-//        then
+// then
 //        begin 
 //          if ei.flag and IPO_EDIT
-//          then
+// then
 //          ei.flag:= ei.flag - (IPO_EDIT); 
 //          else
 //          ei.flag:= ei.flag or (IPO_EDIT); 
@@ -2059,43 +2059,43 @@ space, ipo;
 //  sel:=0; 
 //  deselectall_key(); 
 //  get_status_editipo(); 
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
-//    ik:= G.sipo.ipokey.first; 
+//    ik:= G.sipo^.ipokey.first;
 //    while ik
 //    do
 //    begin 
 //      if totipo_vertsel<>nil 
-//      then
+// then
 //      ik.flag:= ik.flag and ( not 1); 
 //      else
 //      ik.flag:= ik.flag or (1); 
 //      ik:= ik.next; 
 //    end;
 //    update_editipo_flags(); 
-//    if G.sipo.showkey)and(G.sipo.blocktype=ID_OB
-//    then
+//    if G.sipo^.showkey)and(G.sipo^.blocktype=ID_OB
+// then
 //    begin 
 //      ob:= OBACT; 
 //      if ob)and((ob.ipoflag and OB_DRAWKEY)
-//      then
+// then
 //      draw_object_ext(BASACT); 
 //    end;
 //  end;
 //  else
 //  if totipo_edit=0
-//  then
+// then
 //  begin 
-//    ei:= G.sipo.editipo; 
-//    for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//    ei:= G.sipo^.editipo;
+//    for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //    do
 //    begin 
 //      if ei.flag and IPO_VISIBLE
-//      then
+// then
 //      begin 
 //        if totipo_sel<>nil 
-//        then
+// then
 //        ei.flag:= ei.flag and ( not IPO_SELECT); 
 //        else
 //        ei.flag:= ei.flag or (IPO_SELECT); 
@@ -2106,8 +2106,8 @@ space, ipo;
 //  end;
 //  else
 //  begin 
-//    ei:= G.sipo.editipo; 
-//    for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//    ei:= G.sipo^.editipo;
+//    for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //    do
 //    begin 
 //      
@@ -2116,14 +2116,14 @@ space, ipo;
 //        bezt:= ei.icu.bezt; 
 //        bp:= ei.icu.bp; 
 //        if bezt<>nil 
-//        then
+// then
 //        begin 
 //          b:= ei.icu.totvert; 
 //          while b{--} dec(b); 
 //          do
 //          begin 
 //            if totipo_vertsel<>nil 
-//            then
+// then
 //            begin 
 //              bezt.f1:= bezt.f2:=bezt.f3:=0; 
 //            end;
@@ -2136,14 +2136,14 @@ space, ipo;
 //        end;
 //        else
 //        if bp<>nil 
-//        then
+// then
 //        begin 
 //          b:= ei.icu.totvert; 
 //          while b{--} dec(b); 
 //          do
 //          begin 
 //            if totipo_vertsel<>nil 
-//            then
+// then
 //            bp.f1:= 0; 
 //            else
 //            bp.f1:= 0; 
@@ -2170,19 +2170,19 @@ space, ipo;
 //  
 //  sel:=0; 
 //  get_status_editipo(); 
-//  G.sipo.rowbut:= 0; 
-//  ei:= G.sipo.editipo; 
-//  for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//  G.sipo^.rowbut:= 0;
+//  ei:= G.sipo^.editipo;
+//  for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //  do
 //  begin 
 //    if totipo_vis=0
-//    then
+// then
 //    begin 
 //      if ei.icu<>nil 
-//      then
+// then
 //      begin 
 //        ei.flag:= ei.flag or (IPO_VISIBLE); 
-//        G.sipo.rowbut:= G.sipo.rowbut or ((1 shl a)); 
+//        G.sipo^.rowbut:= G.sipo^.rowbut or ((1 shl a));
 //      end;
 //    end;
 //    else
@@ -2190,13 +2190,13 @@ space, ipo;
 //    inc(ei); 
 //  end;
 //  update_editipo_flags(); 
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
 //    make_ipokey(); 
 //    ob:= OBACT; 
 //    if ob)and((ob.ipoflag and OB_DRAWKEY)
-//    then
+// then
 //    allqueue(REDRAWVIEW3D,0); 
 //  end;
 //  addqueue(curarea.win,REDRAW,1); 
@@ -2222,10 +2222,10 @@ space, ipo;
 //  sel:=0; 
 //  deselectall_key(); 
 //  get_status_editipo(); 
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
-//    ik:= G.sipo.ipokey.first; 
+//    ik:= G.sipo^.ipokey.first;
 //    while ik
 //    do
 //    begin 
@@ -2236,14 +2236,14 @@ space, ipo;
 //  end;
 //  else
 //  if totipo_edit=0
-//  then
+// then
 //  begin 
-//    ei:= G.sipo.editipo; 
-//    for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//    ei:= G.sipo^.editipo;
+//    for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //    do
 //    begin 
 //      if ei.flag and IPO_VISIBLE
-//      then
+// then
 //      begin 
 //        ei.flag:= ei.flag and ( not IPO_SELECT); 
 //      end;
@@ -2253,8 +2253,8 @@ space, ipo;
 //  end;
 //  else
 //  begin 
-//    ei:= G.sipo.editipo; 
-//    for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//    ei:= G.sipo^.editipo;
+//    for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //    do
 //    begin 
 //      
@@ -2263,7 +2263,7 @@ space, ipo;
 //        bezt:= ei.icu.bezt; 
 //        bp:= ei.icu.bp; 
 //        if bezt<>nil 
-//        then
+// then
 //        begin 
 //          b:= ei.icu.totvert; 
 //          while b{--} dec(b); 
@@ -2275,7 +2275,7 @@ space, ipo;
 //        end;
 //        else
 //        if bp<>nil 
-//        then
+// then
 //        begin 
 //          b:= ei.icu.totvert; 
 //          while b{--} dec(b); 
@@ -2302,7 +2302,7 @@ space, ipo;
 //dist: smallint;
 // 
 //temp: smallint; 
-//mval: array [0..Pred(2)] of smallint; 
+//mval: array [0..1] of smallint;
 //hpoint: smallint;
 // 
 //begin(* selected krijgen een nadeel *)
@@ -2320,10 +2320,10 @@ space, ipo;
 //  {*}bezt^:=0; 
 //  {*}bp^:=0; 
 //  getmouseco_areawin(mval); 
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -2333,7 +2333,7 @@ space, ipo;
 //    function ISPOIN3{!!!3 unknown typedef}: if; 
 //    begin
 //      if ei.icu.bezt<>nil 
-//      then
+// then
 //      begin 
 //        bezt1:= ei.icu.bezt; 
 //        b:= ei.icu.totvert; 
@@ -2344,32 +2344,32 @@ space, ipo;
 //          ipoco_to_areaco_noclip(bezt1.vec[1],bezt1.s[1]); 
 //          ipoco_to_areaco_noclip(bezt1.vec[2],bezt1.s[2]); 
 //          if ei.disptype=IPO_DISPBITS
-//          then
+// then
 //          begin 
 //            temp:= abs(mval[0]-bezt1.s[1][0]); 
 //          end;
 //          else
 //          temp:= abs(mval[0]-bezt1.s[1][0])+abs(mval[1]-bezt1.s[1][1]); 
 //          if bezt1.f2 and 1
-//          then
+// then
 //          temp:= temp + (5); 
 //          if temp<dist
-//          then
+// then
 //          begin 
 //            hpoint:= 1; {*}bezt^:=bezt1; 
 //            dist:= temp; {*}icu^:=ei.icu; 
 //            {*}bp^:=0; 
 //          end;
 //          if ei.disptype<>IPO_DISPBITS)and(ei.icu.ipo=IPO_BEZ
-//          then
+// then
 //          begin 
 //            (* middelste punten een klein voordeel *)
 //            temp:= -3+abs(mval[0]-bezt1.s[0][0])+abs(mval[1]-bezt1.s[0][1]); 
 //            if bezt1.f1 and 1
-//            then
+// then
 //            temp:= temp + (5); 
 //            if temp<dist
-//            then
+// then
 //            begin 
 //              hpoint:= 0; {*}bezt^:=bezt1; 
 //              dist:= temp; {*}icu^:=ei.icu; 
@@ -2377,10 +2377,10 @@ space, ipo;
 //            end;
 //            temp:= abs(mval[0]-bezt1.s[2][0])+abs(mval[1]-bezt1.s[2][1]); 
 //            if bezt1.f3 and 1
-//            then
+// then
 //            temp:= temp + (5); 
 //            if temp<dist
-//            then
+// then
 //            begin 
 //              hpoint:= 2; {*}bezt^:=bezt1; 
 //              dist:= temp; {*}icu^:=ei.icu; 
@@ -2392,7 +2392,7 @@ space, ipo;
 //      end;
 //      else
 //      if ei.icu.bp<>nil 
-//      then
+// then
 //      begin 
 //        bp1:= ei.icu.bp; 
 //        b:= ei.icu.totvert; 
@@ -2402,10 +2402,10 @@ space, ipo;
 //          ipoco_to_areaco_noclip(bp1.vec,bp1.s); 
 //          temp:= abs(mval[0]-bp1.s[0])+abs(mval[1]-bp1.s[1]); 
 //          if (bp1.f1 and 1)
-//          then
+// then
 //          temp:= temp + (5); 
 //          if temp<dist
-//          then
+// then
 //          begin 
 //            hpoint:= 0; {*}bp^:=bp1; 
 //            dist:= temp; {*}icu^:=ei.icu; 
@@ -2427,7 +2427,7 @@ space, ipo;
 //ei: pEditIpo; 
 //bezt: pBezTriple; 
 //id: pID; 
-//cfra: float; 
+//cfra: single; 
 //a: integer; 
 //b: integer; 
 //ob: pObject;
@@ -2439,13 +2439,13 @@ space, ipo;
 //  
 //  
 //  
-//  if G.sipo.editipo=0
-//  then
+//  if G.sipo^.editipo=0
+// then
 //  exit;
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -2457,11 +2457,11 @@ space, ipo;
 //    ob: pObject;
 //     
 //    begin
-//      if G.sipo.showkey)or((ei.flag and IPO_EDIT)
-//      then
+//      if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
+// then
 //      begin 
 //        if ei.icu.bezt<>nil 
-//        then
+// then
 //        begin 
 //          b:= ei.icu.totvert; 
 //          bezt:= ei.icu.bezt; 
@@ -2469,23 +2469,23 @@ space, ipo;
 //          do
 //          begin 
 //            if BEZSELECTED(bezt)
-//            then
+// then
 //            begin 
 //              cfra:= bezt.vec[1][0] div G.scene.r.framelen; 
-//              id:= G.sipo.from; 
+//              id:= G.sipo^.from;
 //              if id)and(GS(id.name)=ID_OB
-//              then
+// then
 //              begin 
 //                ob:= {pObject(}id; 
 //                if ob.sf<>0.0)and((ob.ipoflag and OB_OFFS_OB)
-//                then
+// then
 //                begin 
 //                  cfra:= cfra + (ob.sf div G.scene.r.framelen); 
 //                end;
 //              end;
 //              CFRA:= ffloor(cfra+0.5); 
 //              if CFRA<1
-//              then
+// then
 //              CFRA:= 1; 
 //              do_global_buttons(B_NEWFRAME); 
 //              break; {<= !!!b possible in "switch" - then remove this line}
@@ -2502,18 +2502,18 @@ space, ipo;
 //procedure do_ipowin_buts(event: smallint); 
 //begin
 //  if (G.qual and LR_SHIFTKEY)=0
-//  then
+// then
 //  begin 
-//    G.sipo.rowbut:= (1 shl event); 
+//    G.sipo^.rowbut:= (1 shl event);
 //  end;
 //  addqueue(curarea.win,REDRAW,1); 
 //  update_editipo_flags(); 
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
 //    make_ipokey(); 
-//    if G.sipo.blocktype=ID_OB
-//    then
+//    if G.sipo^.blocktype=ID_OB
+// then
 //    allqueue(REDRAWVIEW3D,0); 
 //  end;
 //end;
@@ -2524,45 +2524,45 @@ space, ipo;
 //ei1: pEditIpo; 
 //a: integer; 
 //nr: integer; 
-//mval: array [0..Pred(2)] of smallint; 
+//mval: array [0..1] of smallint;
 //begin
 //  
 //  
 //  
 //  
 //  
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  exit;
 //  (* geen editipo toestaan: editipo's naar selected omzetten *)
 //  get_status_editipo(); 
 //  if totipo_edit<>nil 
-//  then
+// then
 //  begin 
 //    set_editflag_editipo(); 
 //  end;
 //  getmouseco_areawin(mval); 
 //  (* welke *)
-//  nr:= -(mval[1]-curarea.winy+30-G.sipo.butofs-IPOBUTY) div IPOBUTY; 
-//  if nr>=0)and(nr<G.sipo.totipo
-//  then
+//  nr:= -(mval[1]-curarea.winy+30-G.sipo^.butofs-IPOBUTY) div IPOBUTY;
+//  if nr>=0)and(nr<G.sipo^.totipo
+// then
 //  begin 
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    ei:= ei + (nr); 
 //    if ei.icu<>nil 
-//    then
+// then
 //    begin 
 //      if (ei.flag and IPO_VISIBLE)=0
-//      then
+// then
 //      begin 
 //        ei.flag:= ei.flag or (IPO_VISIBLE); 
-//        G.sipo.rowbut:= G.sipo.rowbut or ((1 shl nr)); 
+//        G.sipo^.rowbut:= G.sipo^.rowbut or ((1 shl nr));
 //      end;
 //      if (G.qual and LR_SHIFTKEY)=0
-//      then
+// then
 //      begin 
-//        ei1:= G.sipo.editipo; 
-//        for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//        ei1:= G.sipo^.editipo;
+//        for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //        do
 //        begin 
 //          ei1.flag:= ei1.flag and ( not IPO_SELECT); 
@@ -2570,7 +2570,7 @@ space, ipo;
 //        end;
 //      end;
 //      if ei.flag and IPO_SELECT
-//      then
+// then
 //      begin 
 //        ei.flag:= ei.flag and ( not IPO_SELECT); 
 //      end;
@@ -2597,7 +2597,7 @@ space, ipo;
 //  sel:=0; 
 //  get_status_editipo(); 
 //  if totipo_edit>1
-//  then
+// then
 //  begin 
 //    error('Too many editipo's'); 
 //    begin
@@ -2605,37 +2605,37 @@ space, ipo;
 //      exit;
 //    end;
 //  end;
-//  if G.sipo.editipo=0
-//  then
+//  if G.sipo^.editipo=0
+// then
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
-//  ei:= G.sipo.editipo; 
-//  for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//  ei:= G.sipo^.editipo;
+//  for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //  do
 //  begin 
 //    if ei.flag and IPO_VISIBLE
-//    then
+// then
 //    begin 
 //      if ei.flag and IPO_EDIT
-//      then
+// then
 //      begin
 //        result:= ei; 
 //        exit;
 //      end;
 //      else
 //      if totipo_vis=1
-//      then
+// then
 //      begin
 //        result:= ei; 
 //        exit;
 //      end;
 //      if ei.flag and IPO_SELECT
-//      then
+// then
 //      begin 
 //        if totipo_sel=1
-//        then
+// then
 //        begin
 //          result:= ei; 
 //          exit;
@@ -2673,47 +2673,47 @@ space, ipo;
 //  
 //  ipo:=0; 
 //  if GS(from.name)=ID_OB
-//  then
+// then
 //  begin 
 //    ob:=  {pObject(}from; 
 //    if ob.id.lib<>nil 
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    ipo:= ob.ipo; 
 //    if make)and(ipo=0
-//    then
+// then
 //    ipo:= ob.ipo:=add_ipo('ObIpo',ID_OB); 
 //  end;
 //  else
 //  if GS(from.name)=ID_MA
-//  then
+// then
 //  begin 
 //    ma:=  {pMaterial(}from; 
 //    if ma.id.lib<>nil 
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    ipo:= ma.ipo; 
 //    if make)and(ipo=0
-//    then
+// then
 //    ipo:= ma.ipo:=add_ipo('MatIpo',ID_MA); 
 //  end;
 //  else
 //  if GS(from.name)=ID_SEQ
-//  then
+// then
 //  begin 
 //    seq:=  {pSequence(}from; 
 //    if seq.type and SEQ_EFFECT
-//    then
+// then
 //    begin 
 //      ipo:= seq.ipo; 
 //      if make)and(ipo=0
-//      then
+// then
 //      ipo:= seq.ipo:=add_ipo('SeqIpo',ID_SEQ); 
 //    end;
 //    else
@@ -2724,82 +2724,82 @@ space, ipo;
 //  end;
 //  else
 //  if GS(from.name)=ID_CU
-//  then
+// then
 //  begin 
 //    cu:=  {pCurve(}from; 
 //    if cu.id.lib<>nil 
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    ipo:= cu.ipo; 
 //    if make)and(ipo=0
-//    then
+// then
 //    ipo:= cu.ipo:=add_ipo('CuIpo',ID_CU); 
 //  end;
 //  else
 //  if GS(from.name)=ID_KE
-//  then
+// then
 //  begin 
 //    key:=  {pKey(}from; 
 //    if key.id.lib<>nil 
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    ipo:= key.ipo; 
 //    if make)and(ipo=0
-//    then
+// then
 //    ipo:= key.ipo:=add_ipo('KeyIpo',ID_KE); 
 //  end;
 //  else
 //  if GS(from.name)=ID_WO
-//  then
+// then
 //  begin 
 //    wo:=  {pWorld(}from; 
 //    if wo.id.lib<>nil 
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    ipo:= wo.ipo; 
 //    if make)and(ipo=0
-//    then
+// then
 //    ipo:= wo.ipo:=add_ipo('WoIpo',ID_WO); 
 //  end;
 //  else
 //  if GS(from.name)=ID_LA
-//  then
+// then
 //  begin 
 //    la:=  {pLamp(}from; 
 //    if la.id.lib<>nil 
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    ipo:= la.ipo; 
 //    if make)and(ipo=0
-//    then
+// then
 //    ipo:= la.ipo:=add_ipo('LaIpo',ID_LA); 
 //  end;
 //  else
 //  if GS(from.name)=ID_CA
-//  then
+// then
 //  begin 
 //    ca:=  {pCamera(}from; 
 //    if ca.id.lib<>nil 
-//    then
+// then
 //    begin
 //      result:= 0; 
 //      exit;
 //    end;
 //    ipo:= ca.ipo; 
 //    if make)and(ipo=0
-//    then
+// then
 //    ipo:= ca.ipo:=add_ipo('CaIpo',ID_CA); 
 //  end;
 //  else
@@ -2826,22 +2826,22 @@ space, ipo;
 //  (* ook testen of ipo en ipocurve bestaan *)
 //  ipo:= get_ipo(from,1); (* 1= make *)
 //  if G.sipo<>nil 
-//  then
-//  G.sipo.ipo:= ipo; 
+// then
+//  G.sipo^.ipo:= ipo;
 //  if ipo)and(ipo.id.lib=0
-//  then
+// then
 //  begin 
 //    icu:= ipo.curve.first; 
 //    while icu
 //    do
 //    begin 
 //      if icu.adrcode=adrcode
-//      then
+// then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      icu:= icu.next; 
 //    end;
 //    if icu=0
-//    then
+// then
 //    begin 
 //      icu:= callocN(sizeof(IpoCurve),'ipocurve'); 
 //      icu.flag:= icu.flag or (IPO_VISIBLE); 
@@ -2857,7 +2857,7 @@ space, ipo;
 //  end;
 //end;
 //
-//procedure insert_vert_ipo(icu: pIpoCurve;  x: float;  y: float); 
+//procedure insert_vert_ipo(icu: pIpoCurve;  x: single;  y: single); 
 //var
 //bp: pBPoint; 
 //bezt: pBezTriple; 
@@ -2877,7 +2877,7 @@ space, ipo;
 //  
 //  
 //  if icu.bp<>nil 
-//  then
+// then
 //  begin 
 //    bp:= icu.bp; 
 //  end;
@@ -2891,7 +2891,7 @@ space, ipo;
 //    beztr.h1:= beztr.h2:=HD_AUTO; 
 //    bezt:= icu.bezt; 
 //    if bezt=0
-//    then
+// then
 //    begin 
 //      icu.bezt:= callocN(sizeof(BezTriple),'beztriple'); *(icu.bezt):=beztr; 
 //      icu.totvert:= 1; 
@@ -2920,21 +2920,21 @@ space, ipo;
 //      begin 
 //        (* geen dubbele punten *)
 //        if a<icu.totvert)and((bezt.vec[1][0]>x-IPOTHRESH)and(bezt.vec[1][0]<x+IPOTHRESH)
-//        then
+// then
 //        begin 
 //          *(bezt):=beztr; 
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
 //        if a=icu.totvert)or(bezt.vec[1][0]>x
-//        then
+// then
 //        begin 
 //          newbezt:= callocN((icu.totvert+1)*sizeof(BezTriple),'beztriple'); 
 //          if a>0
-//          then
+// then
 //          memcpy(newbezt,icu.bezt,a*sizeof(BezTriple)); 
 //          bezt:= newbezt+a; *(bezt):=beztr; 
 //          if a<icu.totvert
-//          then
+// then
 //          memcpy(newbezt+a+1,icu.bezt+a,(icu.totvert-a)*sizeof(BezTriple)); 
 //          freeN(icu.bezt); 
 //          icu.bezt:= newbezt; 
@@ -2946,14 +2946,14 @@ space, ipo;
 //    calchandles_ipocurve(icu); 
 //    (* handletype goedzetten *)
 //    if icu.totvert>2
-//    then
+// then
 //    begin 
 //      h1:= h2:=HD_AUTO; 
 //      if a>0
-//      then
+// then
 //      h1:= (bezt-1).h2; 
 //      if a<icu.totvert-1
-//      then
+// then
 //      h2:= (bezt+1).h1; 
 //      bezt.h1:= h1; 
 //      bezt.h2:= h2; 
@@ -2965,53 +2965,53 @@ space, ipo;
 //procedure add_vert_ipo; 
 //var
 //ei: pEditIpo; 
-//x: float; 
-//y: float; 
+//x: single; 
+//y: single; 
 //val: integer; 
-//mval: array [0..Pred(2)] of smallint; 
+//mval: array [0..1] of smallint;
 //begin
 //  
 //  
 //  
 //  
 //  
-//  if G.sipo.ipo)and(G.sipo.ipo.id.lib
-//  then
+//  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
+// then
 //  exit;
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
-//    G.sipo.showkey:= 0; 
-//    free_ipokey(@G.sipo.ipokey); 
+//    G.sipo^.showkey:= 0;
+//    free_ipokey(@G.sipo^.ipokey);
 //  end;
 //  getmouseco_areawin(mval); 
 //  if mval[0]>G.v2d.mask.xmax
-//  then
+// then
 //  exit;
 //  ei:= get_editipo(); 
 //  if ei=0
-//  then
+// then
 //  exit;
 //  areamouseco_to_ipoco(mval,@x,@y); 
 //  if ei.icu=0
-//  then
+// then
 //  begin 
-//    if G.sipo.from<>nil 
-//    then
-//    ei.icu:= get_ipocurve(G.sipo.from,ei.adrcode); 
+//    if G.sipo^.from<>nil
+// then
+//    ei.icu:= get_ipocurve(G.sipo^.from,ei.adrcode);
 //  end;
 //  if ei.icu=0
-//  then
+// then
 //  exit;
 //  if ei.disptype=IPO_DISPBITS
-//  then
+// then
 //  begin 
 //    ei.icu.vartype:= IPO_BITS; 
 //    val:= ffloor(y-0.5); 
 //    if val<0
-//    then
+// then
 //    val:= 0; 
-//    y:=  {float(}(1 shl val); 
+//    y:=  {single(}(1 shl val); 
 //  end;
 //  insert_vert_ipo(ei.icu,x,y); 
 //  ei.flag:= ei.flag or (IPO_SELECT); 
@@ -3043,12 +3043,12 @@ space, ipo;
 //  
 //  get_status_editipo(); 
 //  if totipo_vertsel=0
-//  then
+// then
 //  exit;
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -3057,8 +3057,8 @@ space, ipo;
 //    
 //    function ISPOIN3{!!!3 unknown typedef}: if; 
 //    begin
-//      if G.sipo.showkey)or((ei.flag and IPO_EDIT)
-//      then
+//      if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
+// then
 //      begin 
 //        icu:= ei.icu; 
 //        tot:= 0; 
@@ -3068,12 +3068,12 @@ space, ipo;
 //        do
 //        begin 
 //          if bezt.f2 and 1
-//          then
+// then
 //          inc(tot); 
 //          inc(bezt); 
 //        end;
 //        if tot<>nil 
-//        then
+// then
 //        begin 
 //          icu.totvert:= icu.totvert + (tot); 
 //          new:= beztn:=mallocN(icu.totvert*sizeof(BezTriple),'bezt'); 
@@ -3084,7 +3084,7 @@ space, ipo;
 //          begin 
 //            {*}beztn^:=*bezt; 
 //            if bezt.f2 and 1
-//            then
+// then
 //            begin 
 //              beztn.f1:= beztn.f2:=beztn.f3:=0; 
 //              inc(beztn); {*}beztn^:=*bezt; 
@@ -3099,16 +3099,16 @@ space, ipo;
 //      end;
 //    end
 //  end;
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
 //    make_ipokey(); 
-//    if G.sipo.blocktype=ID_OB
-//    then
+//    if G.sipo^.blocktype=ID_OB
+// then
 //    begin 
 //      ob:= OBACT; 
 //      if ob)and((ob.ipoflag and OB_DRAWKEY)
-//      then
+// then
 //      allqueue(REDRAWVIEW3D,0); 
 //    end;
 //  end;
@@ -3123,8 +3123,8 @@ space, ipo;
 //bezt: pBezTriple; 
 //new: pBezTriple; 
 //new1: pBezTriple; 
-//newy: float; 
-//val: float; 
+//newy: single; 
+//val: single; 
 //mode: integer; 
 //a: integer; 
 //b: integer; 
@@ -3140,10 +3140,10 @@ space, ipo;
 //  
 //  
 //  
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -3153,15 +3153,15 @@ space, ipo;
 //    function ISPOIN3{!!!3 unknown typedef}: if; 
 //    begin
 //      mode:= 0; (* OF de curve is selected OF in editmode OF in keymode *)
-//      if G.sipo.showkey)or((ei.flag and IPO_EDIT)
-//      then
+//      if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
+// then
 //      mode:= 1; 
 //      else
 //      if ei.flag and IPO_SELECT
-//      then
+// then
 //      mode:= 2; 
 //      if mode<>nil 
-//      then
+// then
 //      begin 
 //        bezt:= ei.icu.bezt; 
 //        new:= new1:=mallocN(ei.icu.totvert*sizeof(BezTriple),'newbezt'); {*}new^:=*bezt; 
@@ -3172,11 +3172,11 @@ space, ipo;
 //        begin 
 //          (* mag er verwijderd worden? *)
 //          if mode=2)or((bezt.f2 and 1)
-//          then
+// then
 //          begin 
 //            (* verschillen de punten? *)
 //            if fabs(bezt.vec[1][0]-new.vec[1][0])>0.9
-//            then
+// then
 //            begin 
 //              inc(new); {*}new^:=*bezt; 
 //            end;
@@ -3205,29 +3205,29 @@ space, ipo;
 //  editipo_changed(1); 
 //  (* maakt ook ipokeys opnieuw! *)
 //  (* dubbele keys weg *)
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
-//    ik:= G.sipo.ipokey.first; 
+//    ik:= G.sipo^.ipokey.first;
 //    ikn:= ik.next; 
 //    while ik)and(ikn
 //    do
 //    begin 
 //      if (ik.flag and 1))and((ikn.flag and 1)
-//      then
+// then
 //      begin 
 //        if fabs(ik.val-ikn.val)<0.9
-//        then
+// then
 //        begin 
 //          val:= (ik.val+ikn.val) div 2.0; 
-//          for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//          for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //          do
 //          begin 
 //            if ik.data[a]<>nil 
-//            then
+// then
 //            ik.data[a].vec[1][0]:= val; 
 //            if ikn.data[a]<>nil 
-//            then
+// then
 //            ikn.data[a].vec[1][0]:= val; 
 //          end;
 //        end;
@@ -3250,7 +3250,7 @@ space, ipo;
 //bezt: pBezTriple; 
 //beztn: pBezTriple; 
 //new: pBezTriple; 
-//val: float; 
+//val: single; 
 //mode: integer; 
 //tot: integer; 
 //a: integer; 
@@ -3271,20 +3271,20 @@ space, ipo;
 //  get_status_editipo(); 
 //  mode:= pupmenu('Join %t|All Selected %x1|Selected doubles %x2'); 
 //  if mode=2
-//  then
+// then
 //  begin 
 //    remove_doubles_ipo(); 
 //    exit;
 //  end;
 //  else
 //  if mode<>1
-//  then
+// then
 //  exit;
 //  (* eerst: meerdere geselecteerde verts in 1 curve *)
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -3293,8 +3293,8 @@ space, ipo;
 //    
 //    function ISPOIN3{!!!3 unknown typedef}: if; 
 //    begin
-//      if G.sipo.showkey)or((ei.flag and IPO_EDIT)
-//      then
+//      if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
+// then
 //      begin 
 //        icu:= ei.icu; 
 //        tot:= 0; 
@@ -3304,12 +3304,12 @@ space, ipo;
 //        do
 //        begin 
 //          if bezt.f2 and 1
-//          then
+// then
 //          inc(tot); 
 //          inc(bezt); 
 //        end;
 //        if tot>1
-//        then
+// then
 //        begin 
 //          dec(tot); 
 //          icu.totvert:= icu.totvert - (tot); 
@@ -3322,10 +3322,10 @@ space, ipo;
 //          do
 //          begin 
 //            if bezt.f2 and 1
-//            then
+// then
 //            begin 
 //              if tot=0
-//              then
+// then
 //              {*}new^:=*bezt; 
 //              else
 //              begin 
@@ -3342,9 +3342,9 @@ space, ipo;
 //            end;
 //            inc(bezt); 
 //          end;
-//          VecMulf(new.vec[0],1.0 div ( {float(}tot)); 
-//          VecMulf(new.vec[1],1.0 div ( {float(}tot)); 
-//          VecMulf(new.vec[2],1.0 div ( {float(}tot)); 
+//          VecMulf(new.vec[0],1.0 div ( {single(}tot)); 
+//          VecMulf(new.vec[1],1.0 div ( {single(}tot)); 
+//          VecMulf(new.vec[2],1.0 div ( {single(}tot)); 
 //          freeN(icu.bezt); 
 //          icu.bezt:= new; 
 //          sort_time_ipocurve(icu); 
@@ -3356,23 +3356,23 @@ space, ipo;
 //  editipo_changed(1); 
 //  (* dan: in keymode: meerdere geselecteerde keys samenvoegen *)
 //  (* maakt ook ipokeys opnieuw! *)
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
-//    ik:= G.sipo.ipokey.first; 
+//    ik:= G.sipo^.ipokey.first;
 //    val:= 0.0; 
 //    tot:= 0; 
 //    while ik
 //    do
 //    begin 
 //      if ik.flag and 1
-//      then
+// then
 //      begin 
-//        for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//        for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //        do
 //        begin 
 //          if ik.data[a]<>nil 
-//          then
+// then
 //          begin 
 //            val:= val + (ik.data[a].vec[1][0]); 
 //            break; {<= !!!b possible in "switch" - then remove this line}
@@ -3383,21 +3383,21 @@ space, ipo;
 //      ik:= ik.next; 
 //    end;
 //    if tot>1
-//    then
+// then
 //    begin 
-//      val:= val div ( {float(}tot); 
-//      ik:= G.sipo.ipokey.first; 
+//      val:= val div ( {single(}tot); 
+//      ik:= G.sipo^.ipokey.first;
 //      while ik
 //      do
 //      begin 
 //        if ik.flag and 1
-//        then
+// then
 //        begin 
-//          for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//          for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //          do
 //          begin 
 //            if ik.data[a]<>nil 
-//            then
+// then
 //            begin 
 //              ik.data[a].vec[1][0]:= val; 
 //            end;
@@ -3416,7 +3416,7 @@ space, ipo;
 //icu: pIpoCurve; 
 //ei: pEditIpo; 
 //bezt: pBezTriple; 
-//dx: float; 
+//dx: single; 
 //a: integer; 
 //b: integer; 
 //event: smallint; 
@@ -3435,13 +3435,13 @@ space, ipo;
 //  
 //  event:= pupmenu('Snap %t|Horizontal %x1|To next %x2|To frame %x3|To current frame%x4'); 
 //  if event<1
-//  then
+// then
 //  exit;
 //  get_status_editipo(); 
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  b:= 0; 
-//  {to} b<G.sipo.totipo
+//  {to} b<G.sipo^.totipo
 //  {;}
 //  inc(b); 
 //  inc(ei); 
@@ -3453,19 +3453,19 @@ space, ipo;
 //    seq: pSequence; 
 //    begin
 //      ok2:= 0; 
-//      if G.sipo.showkey<>nil 
-//      then
+//      if G.sipo^.showkey<>nil
+// then
 //      ok2:= 1; 
 //      else
 //      if totipo_vert)and((ei.flag and IPO_EDIT)
-//      then
+// then
 //      ok2:= 2; 
 //      else
 //      if totipo_vert=0)and((ei.flag and IPO_SELECT)
-//      then
+// then
 //      ok2:= 3; 
 //      if ok2<>nil 
-//      then
+// then
 //      begin 
 //        bezt:= ei.icu.bezt; 
 //        a:= ei.icu.totvert; 
@@ -3474,68 +3474,68 @@ space, ipo;
 //        begin 
 //          ok:= 0; 
 //          if totipo_vert<>nil 
-//          then
+// then
 //          begin 
 //            if bezt.f2 and 1
-//            then
+// then
 //            ok:= 1; 
 //          end;
 //          else
 //          ok:= 1; 
 //          if ok<>nil 
-//          then
+// then
 //          begin 
 //            if event=1
-//            then
+// then
 //            begin 
 //              bezt.vec[0][1]:= bezt.vec[2][1]:=bezt.vec[1][1]; 
 //              if bezt.h1=HD_AUTO)or(bezt.h1=HD_VECT
-//              then
+// then
 //              bezt.h1:= HD_ALIGN; 
 //              if bezt.h2=HD_AUTO)or(bezt.h2=HD_VECT
-//              then
+// then
 //              bezt.h2:= HD_ALIGN; 
 //            end;
 //            else
 //            if event=2
-//            then
+// then
 //            begin 
 //              if a<>nil 
-//              then
+// then
 //              begin 
 //                bezt.vec[0][1]:= bezt.vec[1][1]:=bezt.vec[2][1]:=(bezt+1).vec[1][1]; 
 //                if bezt.h1=HD_AUTO)or(bezt.h1=HD_VECT
-//                then
+// then
 //                bezt.h1:= HD_ALIGN; 
 //                if bezt.h2=HD_AUTO)or(bezt.h2=HD_VECT
-//                then
+// then
 //                bezt.h2:= HD_ALIGN; 
 //              end;
 //            end;
 //            else
 //            if event=3
-//            then
+// then
 //            begin 
 //              bezt.vec[1][0]:= ffloor(bezt.vec[1][0]+0.5); 
 //            end;
 //            else
 //            if event=4
-//            then
+// then
 //            begin 
 //              (* to current frame *)
 //              if ok2=1)or(ok2=2
-//              then
+// then
 //              begin 
-//                if G.sipo.blocktype=ID_SEQ
-//                then
+//                if G.sipo^.blocktype=ID_SEQ
+// then
 //                begin 
 //                  
-//                  seq:=  {pSequence(}G.sipo.from; 
+//                  seq:=  {pSequence(}G.sipo^.from;
 //                  if seq<>nil 
-//                  then
+// then
 //                  begin 
 //                    dx:= (CFRA-seq.startdisp); 
-//                    dx:= 100.0*dx div ( {float(}(seq.enddisp-seq.startdisp)); 
+//                    dx:= 100.0*dx div ( {single(}(seq.enddisp-seq.startdisp)); 
 //                    dx:= dx - (bezt.vec[1][0]); 
 //                  end;
 //                end;
@@ -3571,15 +3571,15 @@ space, ipo;
 //kb: pKeyBlock; 
 //actkb: pKeyBlock;
 // 
-//x: float; 
-//y: float; 
-//dist: float; 
-//mindist: float; 
+//x: single; 
+//y: single; 
+//dist: single; 
+//mindist: single; 
 //a: integer; 
 //oldflag: integer; 
 //hand: integer; 
 //ok: integer; 
-//mval: array [0..Pred(2)] of smallint; 
+//mval: array [0..1] of smallint;
 //xo: smallint; 
 //yo: smallint; 
 //begin
@@ -3605,27 +3605,27 @@ space, ipo;
 //  
 //  
 //  
-//  if G.sipo.editipo=0
-//  then
+//  if G.sipo^.editipo=0
+// then
 //  exit;
 //  get_status_editipo(); 
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
 //    getmouseco_areawin(mval); 
 //    areamouseco_to_ipoco(mval,@x,@y); 
 //    actik:= 0; 
 //    mindist:= 1000.0; 
-//    ik:= G.sipo.ipokey.first; 
+//    ik:= G.sipo^.ipokey.first;
 //    while ik
 //    do
 //    begin 
 //      dist:= fabs(ik.val-x); 
 //      if ik.flag and 1
-//      then
+// then
 //      dist:= dist + (1.0); 
 //      if dist<mindist
-//      then
+// then
 //      begin 
 //        actik:= ik; 
 //        mindist:= dist; 
@@ -3633,19 +3633,19 @@ space, ipo;
 //      ik:= ik.next; 
 //    end;
 //    if actik<>nil 
-//    then
+// then
 //    begin 
 //      oldflag:= actik.flag; 
 //      if G.qual and LR_SHIFTKEY
-//      then
+// then
 //      ; 
 //      else
 //      deselectall_editipo(); 
 //      if G.qual and LR_SHIFTKEY
-//      then
+// then
 //      begin 
 //        if oldflag and 1
-//        then
+// then
 //        actik.flag:= actik.flag and ( not 1); 
 //        else
 //        actik.flag:= actik.flag or (1); 
@@ -3658,20 +3658,20 @@ space, ipo;
 //  end;
 //  else
 //  if totipo_edit<>nil 
-//  then
+// then
 //  begin 
 //    hand:= findnearest_ipovert(@icu, and bezt, and bp); 
 //    if G.qual and LR_SHIFTKEY
-//    then
+// then
 //    begin 
 //      if bezt<>nil 
-//      then
+// then
 //      begin 
 //        if hand=1
-//        then
+// then
 //        begin 
 //          if BEZSELECTED(bezt)
-//          then
+// then
 //          begin 
 //            bezt.f1:= bezt.f2:=bezt.f3:=0; 
 //          end;
@@ -3682,10 +3682,10 @@ space, ipo;
 //        end;
 //        else
 //        if hand=0
-//        then
+// then
 //        begin 
 //          if bezt.f1 and 1
-//          then
+// then
 //          bezt.f1:= 0; 
 //          else
 //          bezt.f1:= 1; 
@@ -3693,7 +3693,7 @@ space, ipo;
 //        else
 //        begin 
 //          if bezt.f3 and 1
-//          then
+// then
 //          bezt.f3:= 0; 
 //          else
 //          bezt.f3:= 1; 
@@ -3701,17 +3701,17 @@ space, ipo;
 //      end;
 //      else
 //      if bp<>nil 
-//      then
+// then
 //      bp.f1:= bp.f1 or (1); 
 //    end;
 //    else
 //    begin 
 //      deselectall_editipo(); 
 //      if bezt<>nil 
-//      then
+// then
 //      begin 
 //        if hand=1
-//        then
+// then
 //        begin 
 //          bezt.f1:= bezt.f1 or (1); 
 //          bezt.f2:= bezt.f2 or (1); 
@@ -3719,41 +3719,41 @@ space, ipo;
 //        end;
 //        else
 //        if hand=0
-//        then
+// then
 //        bezt.f1:= bezt.f1 or (1); 
 //        else
 //        bezt.f3:= bezt.f3 or (1); 
 //      end;
 //      else
 //      if bp<>nil 
-//      then
+// then
 //      bp.f1:= bp.f1 or (1); 
 //    end;
 //  end;
 //  else
 //  begin 
 //    (* vertex keys ? *)
-//    if G.sipo.blocktype=ID_KE)and(G.sipo.from
-//    then
+//    if G.sipo^.blocktype=ID_KE)and(G.sipo^.from
+// then
 //    begin 
-//      key:=  {pKey(}G.sipo.from; 
-//      ei:= G.sipo.editipo; 
+//      key:=  {pKey(}G.sipo^.from;
+//      ei:= G.sipo^.editipo;
 //      if key.type=KEY_NORMAL)or((ei.flag and IPO_VISIBLE)
-//      then
+// then
 //      begin 
 //        getmouseco_areawin(mval); 
 //        areamouseco_to_ipoco(mval,@x,@y); 
-//        mindist:= 20.0*(G.v2d.cur.ymax-G.v2d.cur.ymin) div  {float(}curarea.winy; 
+//        mindist:= 20.0*(G.v2d.cur.ymax-G.v2d.cur.ymin) div  {single(}curarea.winy; 
 //        kb:= key.block.first; (* hoeveel is 20 pixels? *)
 //        while kb
 //        do
 //        begin 
 //          dist:= fabs(kb.pos-y); 
 //          if kb.flag and SELECT
-//          then
+// then
 //          dist:= dist + (0.$1); 
 //          if dist<mindist
-//          then
+// then
 //          begin 
 //            actkb:= kb; 
 //            mindist:= dist; 
@@ -3761,21 +3761,21 @@ space, ipo;
 //          kb:= kb.next; 
 //        end;
 //        if actkb<>nil 
-//        then
+// then
 //        begin 
 //          ok:= LongBool(1); 
 //          if G.obedit)and((actkb.flag and 1)=0
-//          then
+// then
 //          begin 
 //            ok:= okee('Copy Key after leaving EditMode'); 
 //          end;
 //          if ok<>nil 
-//          then
+// then
 //          begin 
 //            (* doet ook alle keypos *)
 //            deselectall_editipo(); 
 //            actkb.flag:= actkb.flag or (1); 
-//            showkeypos( {pKey(}G.sipo.from,actkb); 
+//            showkeypos( {pKey(}G.sipo^.from,actkb);
 //            (* oldflag= actkb->flag; *)
 //            (* if(G.qual & LR_SHIFTKEY); *)
 //            (* else { *)
@@ -3794,51 +3794,51 @@ space, ipo;
 //    end;
 //    (* select curve *)
 //    if actkb=0
-//    then
+// then
 //    begin 
 //      if totipo_vis=1
-//      then
+// then
 //      begin 
-//        ei:= G.sipo.editipo; 
+//        ei:= G.sipo^.editipo;
 //        while{for} 
 //        a:= 0; 
-//        {to} a<G.sipo.totipo
+//        {to} a<G.sipo^.totipo
 //        {;}
 //        inc(a); 
 //        inc(ei); 
 //        do
 //        begin 
 //          if ei.icu<>nil 
-//          then
+// then
 //          begin 
 //            if ei.flag and IPO_VISIBLE
-//            then
+// then
 //            actei:= ei; 
 //          end;
 //        end;
 //      end;
 //      else
 //      if totipo_vis>1
-//      then
+// then
 //      begin 
 //        actei:= select_proj_ipo(0,0); 
 //      end;
 //      if actei<>nil 
-//      then
+// then
 //      oldflag:= actei.flag; 
 //      if G.qual and LR_SHIFTKEY
-//      then
+// then
 //      ; 
 //      else
 //      deselectall_editipo(); 
 //      if actei<>nil 
-//      then
+// then
 //      begin 
 //        if G.qual and LR_SHIFTKEY
-//        then
+// then
 //        begin 
 //          if oldflag and IPO_SELECT
-//          then
+// then
 //          actei.flag:= actei.flag and ( not IPO_SELECT); 
 //          else
 //          actei.flag:= actei.flag or (IPO_SELECT); 
@@ -3852,12 +3852,12 @@ space, ipo;
 //  end;
 //  update_editipo_flags(); 
 //  force_draw(); 
-//  if G.sipo.showkey)and(G.sipo.blocktype=ID_OB
-//  then
+//  if G.sipo^.showkey)and(G.sipo^.blocktype=ID_OB
+// then
 //  begin 
 //    ob:= OBACT; 
 //    if ob)and((ob.ipoflag and OB_DRAWKEY)
-//    then
+// then
 //    draw_object_ext(BASACT); 
 //  end;
 //  getmouseco_areawin(mval); 
@@ -3869,10 +3869,10 @@ space, ipo;
 //    usleep(1); 
 //    getmouseco_areawin(mval); 
 //    if abs(mval[0]-xo)+abs(mval[1]-yo)>4
-//    then
+// then
 //    begin 
 //      if actkb<>nil 
-//      then
+// then
 //      move_keys(); 
 //      else
 //      transform_ipo('g'); 
@@ -3897,16 +3897,16 @@ space, ipo;
 //  
 //  
 //  ok:=0; 
-//  if G.sipo.ipo)and(G.sipo.ipo.id.lib
-//  then
+//  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
+// then
 //  exit;
 //  if code=1)or(code=2
-//  then
+// then
 //  begin 
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
@@ -3921,16 +3921,16 @@ space, ipo;
 //        do
 //        begin 
 //          if bezt.f1)or(bezt.f3
-//          then
+// then
 //          begin 
 //            if bezt.f1<>nil 
-//            then
+// then
 //            bezt.h1:= code; 
 //            if bezt.f3<>nil 
-//            then
+// then
 //            bezt.h2:= code; 
 //            if bezt.h1<>bezt.h2
-//            then
+// then
 //            begin 
 //              if{!!!e unknown token}
 //              bezt.h1:= HD_FREE; if{!!!e unknown token}
@@ -3946,10 +3946,10 @@ space, ipo;
 //  else
 //  begin 
 //    (* is er 1 handle NIET vrij: alles vrijmaken, else ALIGNED maken *)
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
@@ -3964,27 +3964,27 @@ space, ipo;
 //        do
 //        begin 
 //          if bezt.f1)and(bezt.h1
-//          then
+// then
 //          ok:= 1; 
 //          if bezt.f3)and(bezt.h2
-//          then
+// then
 //          ok:= 1; 
 //          if ok<>nil 
-//          then
+// then
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //          inc(bezt); 
 //        end;
 //      end;
 //    end;
 //    if ok<>nil 
-//    then
+// then
 //    ok:= HD_FREE; 
 //    else
 //    ok:= HD_ALIGN; 
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
@@ -3999,10 +3999,10 @@ space, ipo;
 //        do
 //        begin 
 //          if bezt.f1<>nil 
-//          then
+// then
 //          bezt.h1:= ok; 
 //          if bezt.f3<>nil 
-//          then
+// then
 //          bezt.h2:= ok; 
 //          inc(bezt); 
 //        end;
@@ -4026,40 +4026,40 @@ space, ipo;
 //  
 //  
 //  
-//  if G.sipo.ipo)and(G.sipo.ipo.id.lib
-//  then
+//  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
+// then
 //  exit;
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  exit;
 //  get_status_editipo(); 
-//  if G.sipo.blocktype=ID_KE)and(totipo_edit=0)and(totipo_sel=0
-//  then
+//  if G.sipo^.blocktype=ID_KE)and(totipo_edit=0)and(totipo_sel=0
+// then
 //  begin 
-//    key:=  {pKey(}G.sipo.from; 
+//    key:=  {pKey(}G.sipo^.from;
 //    if key=0
-//    then
+// then
 //    exit;
 //    event:= pupmenu('Key Type %t|Linear %x1|Cardinal %x2|B spline %x3'); 
 //    if event<1
-//    then
+// then
 //    exit;
 //    kb:= key.block.first; 
 //    while kb
 //    do
 //    begin 
 //      if kb.flag and SELECT
-//      then
+// then
 //      begin 
 //        kb.type:= 0; 
 //        if event=1
-//        then
+// then
 //        kb.type:= KEY_LINEAR; 
 //        if event=2
-//        then
+// then
 //        kb.type:= KEY_CARDINAL; 
 //        if event=3
-//        then
+// then
 //        kb.type:= KEY_BSPLINE; 
 //      end;
 //      kb:= kb.next; 
@@ -4069,12 +4069,12 @@ space, ipo;
 //  begin 
 //    event:= pupmenu('Ipo Type %t|Constant %x1|Linear %x2|Bezier %x3'); 
 //    if event<1
-//    then
+// then
 //    exit;
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
@@ -4084,11 +4084,11 @@ space, ipo;
 //      function ISPOIN3{!!!3 unknown typedef}: if; 
 //      begin
 //        if event=1
-//        then
+// then
 //        ei.icu.ipo:= IPO_CONST; 
 //        else
 //        if event=2
-//        then
+// then
 //        ei.icu.ipo:= IPO_LIN; 
 //        else
 //        ei.icu.ipo:= IPO_BEZ; 
@@ -4110,7 +4110,7 @@ space, ipo;
 //b: integer; 
 //val: integer; 
 //ok: integer; 
-//mval: array [0..Pred(2)] of smallint; 
+//mval: array [0..1] of smallint;
 //begin
 //  
 //  
@@ -4126,7 +4126,7 @@ space, ipo;
 //  get_status_editipo(); 
 //  val:= get_border(@rect,3); 
 //  if val<>nil 
-//  then
+// then
 //  begin 
 //    mval[0]:= rect.xmin; 
 //    mval[1]:= rect.ymin; 
@@ -4134,18 +4134,18 @@ space, ipo;
 //    mval[0]:= rect.xmax; 
 //    mval[1]:= rect.ymax; 
 //    areamouseco_to_ipoco(mval,@rectf.xmax,@rectf.ymax); 
-//    if G.sipo.showkey<>nil 
-//    then
+//    if G.sipo^.showkey<>nil
+// then
 //    begin 
-//      ik:= G.sipo.ipokey.first; 
+//      ik:= G.sipo^.ipokey.first;
 //      while ik
 //      do
 //      begin 
 //        if rectf.xmin<ik.val)and(rectf.xmax>ik.val
-//        then
+// then
 //        begin 
 //          if val=LEFTMOUSE
-//          then
+// then
 //          ik.flag:= ik.flag or (1); 
 //          else
 //          ik.flag:= ik.flag and ( not 1); 
@@ -4156,18 +4156,18 @@ space, ipo;
 //    end;
 //    else
 //    if totipo_edit=0
-//    then
+// then
 //    begin 
 //      if rect.xmin<rect.xmax)and(rect.ymin<rect.ymax
-//      then
+// then
 //      select_proj_ipo(@rectf,val); 
 //    end;
 //    else
 //    begin 
-//      ei:= G.sipo.editipo; 
+//      ei:= G.sipo^.editipo;
 //      while{for} 
 //      a:= 0; 
-//      {to} a<G.sipo.totipo
+//      {to} a<G.sipo^.totipo
 //      {;}
 //      inc(a); 
 //      inc(ei); 
@@ -4177,7 +4177,7 @@ space, ipo;
 //        function ISPOIN3{!!!3 unknown typedef}: if; 
 //        begin
 //          if ei.icu.bezt<>nil 
-//          then
+// then
 //          begin 
 //            b:= ei.icu.totvert; 
 //            bezt:= ei.icu.bezt; 
@@ -4186,23 +4186,23 @@ space, ipo;
 //            begin 
 //              ok:= 0; 
 //              if ei.icu.ipo=IPO_BEZ
-//              then
+// then
 //              begin 
 //                if in_rctf(@rectf,bezt.vec[0][0],bezt.vec[0][1])
-//                then
+// then
 //                ok:= 1; 
 //                if in_rctf(@rectf,bezt.vec[2][0],bezt.vec[2][1])
-//                then
+// then
 //                ok:= 1; 
 //              end;
 //              if in_rctf(@rectf,bezt.vec[1][0],bezt.vec[1][1])
-//              then
+// then
 //              ok:= 1; 
 //              if ok<>nil 
-//              then
+// then
 //              begin 
 //                if val=LEFTMOUSE
-//                then
+// then
 //                begin 
 //                  bezt.f1:= bezt.f1 or (1); 
 //                  bezt.f2:= bezt.f2 or (1); 
@@ -4220,7 +4220,7 @@ space, ipo;
 //          end;
 //          else
 //          if ei.icu.bp<>nil 
-//          then
+// then
 //          begin 
 //          end;
 //        end
@@ -4258,31 +4258,31 @@ space, ipo;
 //  
 //  
 //  get_status_editipo(); 
-//  if G.sipo.ipo)and(G.sipo.ipo.id.lib
-//  then
+//  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
+// then
 //  exit;
 //  if totipo_edit=0)and(totipo_sel=0)and(totipo_vertsel=0
-//  then
+// then
 //  begin 
 //    delete_key(); 
 //    exit;
 //  end;
 //  if okee('Erase selected')=0
-//  then
+// then
 //  exit;
 //  (* eerste doorloop, kunnen hele stukken weg? *)
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
 //  do
 //  begin 
 //    del:= 0; 
-//    if G.sipo.showkey=0)and(totipo_edit=0
-//    then
+//    if G.sipo^.showkey=0)and(totipo_edit=0
+// then
 //    begin 
 //      
 //      function ISPOIN3{!!!3 unknown typedef}: if; 
@@ -4295,22 +4295,22 @@ space, ipo;
 //      
 //      function ISPOIN{!!!3 unknown typedef}: if; 
 //      begin
-//        if G.sipo.showkey)or((ei.flag and IPO_EDIT)
-//        then
+//        if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
+// then
 //        begin 
 //          if ei.icu.bezt<>nil 
-//          then
+// then
 //          begin 
 //            bezt:= ei.icu.bezt; 
 //            b:= ei.icu.totvert; 
 //            if b<>nil 
-//            then
+// then
 //            begin 
 //              while b
 //              do
 //              begin 
 //                if BEZSELECTED(bezt)
-//                then
+// then
 //                ; 
 //                else
 //                break; {<= !!!b possible in "switch" - then remove this line}
@@ -4318,7 +4318,7 @@ space, ipo;
 //                inc(bezt); 
 //              end;
 //              if b=0
-//              then
+// then
 //              del:= 1; 
 //            end;
 //          end;
@@ -4327,13 +4327,13 @@ space, ipo;
 //            bp:= ei.icu.bp; 
 //            b:= ei.icu.totvert; 
 //            if b<>nil 
-//            then
+// then
 //            begin 
 //              while b
 //              do
 //              begin 
 //                if bp.f1 and 1
-//                then
+// then
 //                ; 
 //                else
 //                break; {<= !!!b possible in "switch" - then remove this line}
@@ -4341,7 +4341,7 @@ space, ipo;
 //                inc(bp); 
 //              end;
 //              if b=0
-//              then
+// then
 //              del:= 1; 
 //            end;
 //          end;
@@ -4349,14 +4349,14 @@ space, ipo;
 //      end;
 //    end;
 //    if del<>nil 
-//    then
+// then
 //    begin 
-//      remlink(@(G.sipo.ipo.curve),ei.icu); 
+//      remlink(@(G.sipo^.ipo.curve),ei.icu);
 //      if ei.icu.bezt<>nil 
-//      then
+// then
 //      freeN(ei.icu.bezt); 
 //      if ei.icu.bp<>nil 
-//      then
+// then
 //      freeN(ei.icu.bp); 
 //      freeN(ei.icu); 
 //      ei.flag:= ei.flag and ( not IPO_SELECT); 
@@ -4364,10 +4364,10 @@ space, ipo;
 //      ei.icu:= 0; 
 //    end;
 //  end;
-//  ei:= G.sipo.editipo; (* tweede doorloop, kleine stukken weg: alleen curves *)
+//  ei:= G.sipo^.editipo; (* tweede doorloop, kleine stukken weg: alleen curves *)
 //  while{for} 
 //  b:= 0; 
-//  {to} b<G.sipo.totipo
+//  {to} b<G.sipo^.totipo
 //  {;}
 //  inc(b); 
 //  inc(ei); 
@@ -4376,19 +4376,19 @@ space, ipo;
 //    
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
-//      if G.sipo.showkey)or((ei.flag and IPO_EDIT)
-//      then
+//      if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
+// then
 //      begin 
 //        event:= 0; 
 //        if ei.icu.bezt<>nil 
-//        then
+// then
 //        begin 
 //          bezt:= ei.icu.bezt; 
 //          for{while} a:=0 to Pred(ei.icu.totvert) { a++}
 //          do
 //          begin 
 //            if BEZSELECTED(bezt)
-//            then
+// then
 //            begin 
 //              memcpy(bezt,bezt+1,(ei.icu.totvert-a-1)*sizeof(BezTriple)); 
 //              dec(ei.icu.totvert); 
@@ -4399,7 +4399,7 @@ space, ipo;
 //            inc(bezt); 
 //          end;
 //          if event<>nil 
-//          then
+// then
 //          begin 
 //            bezt1:= mallocstructN(BezTriple,ei.icu.totvert,'delNurb'); 
 //            memcpy(bezt1,ei.icu.bezt,(ei.icu.totvert)*sizeof(BezTriple)); 
@@ -4409,14 +4409,14 @@ space, ipo;
 //        end;
 //        else
 //        if ei.icu.bp<>nil 
-//        then
+// then
 //        begin 
 //          bp:= ei.icu.bp; 
 //          for{while} a:=0 to Pred(ei.icu.totvert) { a++}
 //          do
 //          begin 
 //            if bp.f1 and 1
-//            then
+// then
 //            begin 
 //              memcpy(bp,bp+1,(ei.icu.totvert-a-1)*sizeof(BPoint)); 
 //              dec(ei.icu.totvert); 
@@ -4429,7 +4429,7 @@ space, ipo;
 //            end;
 //          end;
 //          if event<>nil 
-//          then
+// then
 //          begin 
 //            bp1:= mallocstructN(BPoint,ei.icu.totvert,'delNurb2'); 
 //            memcpy(bp1,ei.icu.bp,(ei.icu.totvert)*sizeof(BPoint)); 
@@ -4455,10 +4455,10 @@ space, ipo;
 //  do
 //  begin 
 //    if icu.bezt<>nil 
-//    then
+// then
 //    freeN(icu.bezt); 
 //    if icu.bp<>nil 
-//    then
+// then
 //    freeN(icu.bezt); 
 //    remlink(@ipocopybuf,icu); 
 //    freeN(icu); 
@@ -4475,17 +4475,17 @@ space, ipo;
 //  
 //  
 //  
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
 //    error('cannot copy\n'); 
 //    exit;
 //  end;
 //  free_ipocopybuf(); 
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -4495,18 +4495,18 @@ space, ipo;
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
 //      if (ei.flag and IPO_EDIT))or((ei.flag and IPO_SELECT)
-//      then
+// then
 //      begin 
 //        icu:= callocN(sizeof(IpoCurve),'ipocopybuf'); {*}icu^:=*(ei.icu); 
 //        addtail(@ipocopybuf,icu); 
 //        if icu.bezt<>nil 
-//        then
+// then
 //        begin 
 //          icu.bezt:= mallocN(icu.totvert*sizeof(BezTriple),'ipocopybuf'); 
 //          memcpy(icu.bezt,ei.icu.bezt,icu.totvert*sizeof(BezTriple)); 
 //        end;
 //        if icu.bp<>nil 
-//        then
+// then
 //        begin 
 //          icu.bp:= mallocN(icu.totvert*sizeof(BPoint),'ipocopybuf'); 
 //          memcpy(icu.bp,ei.icu.bp,icu.totvert*sizeof(BPoint)); 
@@ -4516,7 +4516,7 @@ space, ipo;
 //    end
 //  end;
 //  if totipocopybuf=0
-//  then
+// then
 //  error('Copybuf is empty'); 
 //end;
 //
@@ -4531,27 +4531,27 @@ space, ipo;
 //  
 //  
 //  
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  exit;
 //  if totipocopybuf=0
-//  then
+// then
 //  exit;
-//  if G.sipo.ipo=0
-//  then
+//  if G.sipo^.ipo=0
+// then
 //  exit;
-//  if G.sipo.ipo)and(G.sipo.ipo.id.lib
-//  then
+//  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
+// then
 //  exit;
 //  get_status_editipo(); 
 //  if totipo_vis=0
-//  then
+// then
 //  begin 
 //    error('No visible splines'); 
 //  end;
 //  else
 //  if totipo_vis<>totipocopybuf)and(totipo_sel<>totipocopybuf
-//  then
+// then
 //  begin 
 //    error('Incompatible paste'); 
 //  end;
@@ -4559,44 +4559,44 @@ space, ipo;
 //  begin 
 //    (* problemen voorkomen: andere splines visible dan select *)
 //    if totipo_vis=totipo_sel
-//    then
+// then
 //    totipo_vis:= 0; 
 //    icu:= ipocopybuf.first; 
 //    if icu=0
-//    then
+// then
 //    exit;
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
 //    do
 //    begin 
 //      if ei.flag and IPO_VISIBLE
-//      then
+// then
 //      begin 
 //        ok:= 0; 
 //        if totipo_vis=totipocopybuf
-//        then
+// then
 //        ok:= 1; 
 //        if totipo_sel=totipocopybuf)and((ei.flag and IPO_SELECT)
-//        then
+// then
 //        ok:= 1; 
 //        if ok<>nil 
-//        then
+// then
 //        begin 
-//          ei.icu:= get_ipocurve(G.sipo.from,ei.adrcode); 
+//          ei.icu:= get_ipocurve(G.sipo^.from,ei.adrcode);
 //          if ei.icu=0
-//          then
+// then
 //          exit;
 //          if ei.icu.bezt<>nil 
-//          then
+// then
 //          freeN(ei.icu.bezt); 
 //          ei.icu.bezt:= 0; 
 //          if ei.icu.bp<>nil 
-//          then
+// then
 //          freeN(ei.icu.bp); 
 //          ei.icu.bp:= 0; 
 //          ei.icu.totvert:= icu.totvert; 
@@ -4604,13 +4604,13 @@ space, ipo;
 //          ei.icu.extrap:= icu.extrap; 
 //          ei.icu.ipo:= icu.ipo; 
 //          if icu.bezt<>nil 
-//          then
+// then
 //          begin 
 //            ei.icu.bezt:= mallocN(icu.totvert*sizeof(BezTriple),'ipocopybuf'); 
 //            memcpy(ei.icu.bezt,icu.bezt,icu.totvert*sizeof(BezTriple)); 
 //          end;
 //          if icu.bp<>nil 
-//          then
+// then
 //          begin 
 //            ei.icu.bp:= mallocN(icu.totvert*sizeof(BPoint),'ipocopybuf'); 
 //            memcpy(ei.icu.bp,icu.bp,icu.totvert*sizeof(BPoint)); 
@@ -4630,14 +4630,14 @@ space, ipo;
 //begin
 //  
 //  
-//  if G.sipo.ipo)and(G.sipo.ipo.id.lib
-//  then
+//  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
+// then
 //  exit;
 //  (* in geval van keys: altijd ok *)
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -4646,8 +4646,8 @@ space, ipo;
 //    
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
-//      if (ei.flag and IPO_EDIT))or((ei.flag and IPO_SELECT))or((G.sipo.showkey)
-//      then
+//      if (ei.flag and IPO_EDIT))or((ei.flag and IPO_SELECT))or((G.sipo^.showkey)
+// then
 //      begin 
 //        ei.icu.extrap:= mode; 
 //      end;
@@ -4656,7 +4656,7 @@ space, ipo;
 //  editipo_changed(1); 
 //end;
 //
-//function find_other_handles(eicur: pEditIpo;  ctime: float;  {!!!3 unknown typedef}): integer; 
+//function find_other_handles(eicur: pEditIpo;  ctime: single;  {!!!3 unknown typedef}): integer; 
 //var
 //ei: pEditIpo; 
 //bezt: pBezTriple; 
@@ -4672,17 +4672,17 @@ space, ipo;
 //  
 //  c:=1; 
 //  
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
 //  do
 //  begin 
 //    if ei<>eicur)and(ei.icu)and((ei.flag and IPO_VISIBLE)
-//    then
+// then
 //    begin 
 //      bezt:= ei.icu.bezt; 
 //      totvert:= ei.icu.totvert; 
@@ -4695,10 +4695,10 @@ space, ipo;
 //      do
 //      begin 
 //        if bezt.vec[1][0]<ctime+IPOTHRESH)and(bezt.vec[1][0]>ctime-IPOTHRESH
-//        then
+// then
 //        begin 
 //          if c>2
-//          then
+// then
 //          begin
 //            result:= 0; 
 //            exit;
@@ -4710,7 +4710,7 @@ space, ipo;
 //    end;
 //  end;
 //  if c=3
-//  then
+// then
 //  begin
 //    result:= 1; 
 //    exit;
@@ -4721,15 +4721,15 @@ space, ipo;
 //  end;
 //end;
 //
-//procedure set_speed_editipo(speed: float); 
+//procedure set_speed_editipo(speed: single); 
 //var
 //ei: pEditIpo; 
 //bezt: pBezTriple; 
-//beztar: array [0..Pred(3)] of pBezTriple; 
-//si: float; 
-//co: float; 
-//vec1: array [0..Pred(3)] of float; 
-//vec2: array [0..Pred(3)] of float; 
+//beztar: array [0..2] of pBezTriple;
+//si: single; 
+//co: single; 
+//vec1: array [0..2] of single;
+//vec2: array [0..2] of single;
 //a: integer; 
 //b: integer; 
 //totvert: integer; 
@@ -4747,14 +4747,14 @@ space, ipo;
 //  
 //  
 //  didit:=0; 
-//  if G.sipo.ipo)and(G.sipo.ipo.id.lib
-//  then
+//  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
+// then
 //  exit;
 //  (* uitgaande van 1 visible curve, selected punt, bijhorende punten: lencorr! *)
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -4774,11 +4774,11 @@ space, ipo;
 //      do
 //      begin 
 //        if BEZSELECTED(bezt)
-//        then
+// then
 //        begin 
 //          beztar[0]:= bezt; 
 //          if find_other_handles(ei,bezt.vec[1][0],beztar)
-//          then
+// then
 //          begin 
 //            beztar[0].h1:= beztar[0].h2:=HD_ALIGN; 
 //            beztar[1].h1:= beztar[1].h2:=HD_ALIGN; 
@@ -4811,7 +4811,7 @@ space, ipo;
 //    end
 //  end;
 //  if didit=0
-//  then
+// then
 //  error('Did not set speed'); 
 //  editipo_changed(1); 
 //  allqueue(REDRAWIPO,0); 
@@ -4822,8 +4822,8 @@ space, ipo;
 //icu: pIpoCurve; 
 //ob: pObject; 
 //poin: pinteger; 
-//curval: float; 
-//cfra: float; 
+//curval: single; 
+//cfra: single; 
 //type: integer; 
 //begin
 //  
@@ -4833,26 +4833,26 @@ space, ipo;
 //  
 //  
 //  if id<>nil 
-//  then
+// then
 //  begin 
 //    icu:= get_ipocurve(id,adrcode); 
 //    if icu<>nil 
-//    then
+// then
 //    begin 
 //      poin:= get_ipo_poin(id,icu,@type); 
 //      if poin<>nil 
-//      then
+// then
 //      begin 
 //        curval:= read_ipo_poin(poin,type); 
 //        cfra:= frame_to_float(CFRA); 
 //        if GS(id.name)=ID_OB
-//        then
+// then
 //        begin 
 //          ob:=  {pObject(}id; 
 //          if ob.sf<>0.0)and((ob.ipoflag and OB_OFFS_OB)
-//          then
+// then
 //          begin 
-//            (* eigenlijk frametofloat overniew berekenen! daarvoor CFRA als float door kunnen geven *)
+//            (* eigenlijk frametofloat overniew berekenen! daarvoor CFRA als single door kunnen geven *)
 //            cfra:= cfra - (ob.sf*G.scene.r.framelen); 
 //          end;
 //        end;
@@ -4869,7 +4869,7 @@ space, ipo;
 //id: pID; 
 //bezt: pBezTriple; 
 //fp: pfloat; 
-//cfra: float; 
+//cfra: single; 
 //insertvals: pfloat; 
 //a: integer; 
 //nr: integer; 
@@ -4891,18 +4891,18 @@ space, ipo;
 //  
 //  
 //  
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  event:= pupmenu('Insert KeyVertices %t|Current frame %x1|Selected Keys %x2'); 
 //  else
 //  event:= pupmenu('Insert KeyVertices %t|Current frame %x1'); 
 //  if event<1
-//  then
+// then
 //  exit;
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  nr:= 0; 
-//  {to} nr<G.sipo.totipo
+//  {to} nr<G.sipo^.totipo
 //  {;}
 //  inc(nr); 
 //  inc(ei); 
@@ -4915,65 +4915,65 @@ space, ipo;
 //     
 //    begin
 //      ok:= 0; 
-//      if G.sipo.showkey<>nil 
-//      then
+//      if G.sipo^.showkey<>nil
+// then
 //      ok:= 1; 
 //      else
 //      if ei.flag and IPO_SELECT
-//      then
+// then
 //      ok:= 1; 
 //      if ok<>nil 
-//      then
+// then
 //      begin 
 //        (* aantal tellen *)
 //        if event=1
-//        then
+// then
 //        tot:= 1; 
 //        else
 //        begin 
-//          ik:= G.sipo.ipokey.first; 
+//          ik:= G.sipo^.ipokey.first;
 //          tot:= 0; 
 //          while ik
 //          do
 //          begin 
 //            if ik.flag and 1
-//            then
+// then
 //            inc(tot); 
 //            ik:= ik.next; 
 //          end;
 //        end;
 //        if tot<>nil 
-//        then
+// then
 //        begin 
 //          (* correctie voor ob timeoffs *)
 //          cfra:= frame_to_float(CFRA); 
-//          id:= G.sipo.from; 
+//          id:= G.sipo^.from;
 //          if id)and(GS(id.name)=ID_OB
-//          then
+// then
 //          begin 
 //            ob:= {pObject(}id; 
 //            if ob.sf<>0.0)and((ob.ipoflag and OB_OFFS_OB)
-//            then
+// then
 //            begin 
 //              cfra:= cfra - (ob.sf*G.scene.r.framelen); 
 //            end;
 //          end;
 //          else
 //          if id)and(GS(id.name)=ID_SEQ
-//          then
+// then
 //          begin 
 //            {last_seq: pSequence; }{<= !!!5 external variable}(* editsequence.c *)
 //            if last_seq<>nil 
-//            then
+// then
 //            begin 
-//              cfra:= 100.0*(cfra-last_seq.startdisp) div ( {float(}(last_seq.enddisp-last_seq.startdisp)); 
+//              cfra:= 100.0*(cfra-last_seq.startdisp) div ( {single(}(last_seq.enddisp-last_seq.startdisp)); 
 //            end;
 //          end;
-//          insertvals:= mallocN(sizeof(float)*2*tot,'insertkey_editipo'); 
-//          calc_ipo(G.sipo.ipo,cfra); 
+//          insertvals:= mallocN(sizeof(single)*2*tot,'insertkey_editipo'); 
+//          calc_ipo(G.sipo^.ipo,cfra);
 //          (* zeker zijn dat icu->curval klopt *)
 //          if event=1
-//          then
+// then
 //          begin 
 //            insertvals[0]:= cfra; 
 //            insertvals[1]:= ei.icu.curval; 
@@ -4981,14 +4981,14 @@ space, ipo;
 //          else
 //          begin 
 //            fp:= insertvals; 
-//            ik:= G.sipo.ipokey.first; 
+//            ik:= G.sipo^.ipokey.first;
 //            while ik
 //            do
 //            begin 
 //              if ik.flag and 1
-//              then
+// then
 //              begin 
-//                calc_ipo(G.sipo.ipo,ik.val); 
+//                calc_ipo(G.sipo^.ipo,ik.val);
 //                fp[0]:= ik.val; 
 //                fp[1]:= ei.icu.curval; 
 //                fp:= fp + (2); 
@@ -5008,7 +5008,7 @@ space, ipo;
 //            insert_vert_ipo(ei.icu,fp[0],fp[1]); 
 //          end;
 //          freeN(insertvals); 
-//          calc_ipo(G.sipo.ipo, {float(}CFRA); 
+//          calc_ipo(G.sipo^.ipo, {single(}CFRA);
 //        end;
 //      end;
 //    end
@@ -5047,51 +5047,51 @@ space, ipo;
 //  
 //  
 //  if curarea.spacetype=SPACE_IPO
-//  then
+// then
 //  begin 
 //    insertkey_editipo(); 
 //  end;
 //  else
 //  if curarea.spacetype=SPACE_BUTS
-//  then
+// then
 //  begin 
-//    if G.buts.mainb=BUTS_MAT
-//    then
+//    if G.buts^.mainb=BUTS_MAT
+// then
 //    begin 
-//      id:= G.buts.lockpoin; 
-//      ma:= G.buts.lockpoin; 
+//      id:= G.buts^.lockpoin;
+//      ma:= G.buts^.lockpoin;
 //      if id<>nil 
-//      then
+// then
 //      begin 
 //        event:= pupmenu('Insert Key %t|RGB%x0|Alpha%x1|HaSize%x2|Mode %x3|All Color%x10|Ofs%x12|Size%x13|All Mapping%x11'); 
 //        if event=-1
-//        then
+// then
 //        exit;
 //        map:= texchannel_to_adrcode(ma.texact); 
 //        if event=0)or(event=10
-//        then
+// then
 //        begin 
 //          insertkey(id,MA_COL_R); 
 //          insertkey(id,MA_COL_G); 
 //          insertkey(id,MA_COL_B); 
 //        end;
 //        if event=1)or(event=10
-//        then
+// then
 //        begin 
 //          insertkey(id,MA_ALPHA); 
 //        end;
 //        if event=2)or(event=10
-//        then
+// then
 //        begin 
 //          insertkey(id,MA_HASIZE); 
 //        end;
 //        if event=3)or(event=10
-//        then
+// then
 //        begin 
 //          insertkey(id,MA_MODE); 
 //        end;
 //        if event=10
-//        then
+// then
 //        begin 
 //          insertkey(id,MA_SPEC_R); 
 //          insertkey(id,MA_SPEC_G); 
@@ -5104,21 +5104,21 @@ space, ipo;
 //          insertkey(id,MA_MODE); 
 //        end;
 //        if event=12)or(event=11
-//        then
+// then
 //        begin 
 //          insertkey(id,map+MAP_OFS_X); 
 //          insertkey(id,map+MAP_OFS_Y); 
 //          insertkey(id,map+MAP_OFS_Z); 
 //        end;
 //        if event=13)or(event=11
-//        then
+// then
 //        begin 
 //          insertkey(id,map+MAP_SIZE_X); 
 //          insertkey(id,map+MAP_SIZE_Y); 
 //          insertkey(id,map+MAP_SIZE_Z); 
 //        end;
 //        if event=11
-//        then
+// then
 //        begin 
 //          insertkey(id,map+MAP_R); 
 //          insertkey(id,map+MAP_G); 
@@ -5131,35 +5131,35 @@ space, ipo;
 //      end;
 //    end;
 //    else
-//    if G.buts.mainb=BUTS_WORLD
-//    then
+//    if G.buts^.mainb=BUTS_WORLD
+// then
 //    begin 
-//      id:= G.buts.lockpoin; 
-//      wo:= G.buts.lockpoin; 
+//      id:= G.buts^.lockpoin;
+//      wo:= G.buts^.lockpoin;
 //      if id<>nil 
-//      then
+// then
 //      begin 
 //        event:= pupmenu('Insert Key %t|ZenRGB%x0|HorRGB%x1|Mist%x2|stars %x3|Ofs%x12|Size%x13'); 
 //        if event=-1
-//        then
+// then
 //        exit;
 //        map:= texchannel_to_adrcode(wo.texact); 
 //        if event=0
-//        then
+// then
 //        begin 
 //          insertkey(id,WO_ZEN_R); 
 //          insertkey(id,WO_ZEN_G); 
 //          insertkey(id,WO_ZEN_B); 
 //        end;
 //        if event=1
-//        then
+// then
 //        begin 
 //          insertkey(id,WO_HOR_R); 
 //          insertkey(id,WO_HOR_G); 
 //          insertkey(id,WO_HOR_B); 
 //        end;
 //        if event=2
-//        then
+// then
 //        begin 
 //          insertkey(id,WO_MISI); 
 //          insertkey(id,WO_MISTDI); 
@@ -5167,7 +5167,7 @@ space, ipo;
 //          insertkey(id,WO_MISTHI); 
 //        end;
 //        if event=3
-//        then
+// then
 //        begin 
 //          insertkey(id,WO_STAR_R); 
 //          insertkey(id,WO_STAR_G); 
@@ -5176,14 +5176,14 @@ space, ipo;
 //          insertkey(id,WO_STARSIZE); 
 //        end;
 //        if event=12
-//        then
+// then
 //        begin 
 //          insertkey(id,map+MAP_OFS_X); 
 //          insertkey(id,map+MAP_OFS_Y); 
 //          insertkey(id,map+MAP_OFS_Z); 
 //        end;
 //        if event=13
-//        then
+// then
 //        begin 
 //          insertkey(id,map+MAP_SIZE_X); 
 //          insertkey(id,map+MAP_SIZE_Y); 
@@ -5192,45 +5192,45 @@ space, ipo;
 //      end;
 //    end;
 //    else
-//    if G.buts.mainb=BUTS_LAMP
-//    then
+//    if G.buts^.mainb=BUTS_LAMP
+// then
 //    begin 
-//      id:= G.buts.lockpoin; 
-//      la:= G.buts.lockpoin; 
+//      id:= G.buts^.lockpoin;
+//      la:= G.buts^.lockpoin;
 //      if id<>nil 
-//      then
+// then
 //      begin 
 //        event:= pupmenu('Insert Key %t|RGB%x0|Energy%x1|Spotsi%x2|Ofs%x12|Size%x13'); 
 //        if event=-1
-//        then
+// then
 //        exit;
 //        map:= texchannel_to_adrcode(la.texact); 
 //        if event=0
-//        then
+// then
 //        begin 
 //          insertkey(id,LA_COL_R); 
 //          insertkey(id,LA_COL_G); 
 //          insertkey(id,LA_COL_B); 
 //        end;
 //        if event=1
-//        then
+// then
 //        begin 
 //          insertkey(id,LA_ENERGY); 
 //        end;
 //        if event=2
-//        then
+// then
 //        begin 
 //          insertkey(id,LA_SPOTSI); 
 //        end;
 //        if event=12
-//        then
+// then
 //        begin 
 //          insertkey(id,map+MAP_OFS_X); 
 //          insertkey(id,map+MAP_OFS_Y); 
 //          insertkey(id,map+MAP_OFS_Z); 
 //        end;
 //        if event=13
-//        then
+// then
 //        begin 
 //          insertkey(id,map+MAP_SIZE_X); 
 //          insertkey(id,map+MAP_SIZE_Y); 
@@ -5239,29 +5239,29 @@ space, ipo;
 //      end;
 //    end;
 //    else
-//    if G.buts.mainb=BUTS_EDIT
-//    then
+//    if G.buts^.mainb=BUTS_EDIT
+// then
 //    begin 
 //      ob:= OBACT; 
 //      if ob)and(ob.type=OB_CAMERA
-//      then
+// then
 //      begin 
-//        id:= G.buts.lockpoin; 
-//        ca:= G.buts.lockpoin; 
+//        id:= G.buts^.lockpoin;
+//        ca:= G.buts^.lockpoin;
 //        if id<>nil 
-//        then
+// then
 //        begin 
 //          event:= pupmenu('Insert Key %t|Lens%x0|Clipping%x1'); 
 //          if event=-1
-//          then
+// then
 //          exit;
 //          if event=0
-//          then
+// then
 //          begin 
 //            insertkey(id,CAM_LENS); 
 //          end;
 //          if event=1
-//          then
+// then
 //          begin 
 //            insertkey(id,CAM_STA); 
 //            insertkey(id,CAM_END); 
@@ -5274,7 +5274,7 @@ space, ipo;
 //  end;
 //  else
 //  if curarea.spacetype=SPACE_VIEW3D
-//  then
+// then
 //  begin 
 //    base:= FIRSTBASE; 
 //    while base
@@ -5285,48 +5285,48 @@ space, ipo;
 //      base:= base.next; 
 //    end;
 //    if base=0
-//    then
+// then
 //    exit;
 //    strcpy(menustr,'Insert Key %t|Loc%x0|Rot%x1|Size%x2|LocRot%x3|LocRotSize%x4|Layer%x5|Avail%x9'); 
 //    if ob:=OBACT
-//    then
+// then
 //    begin 
 //      if ob.type=OB_MESH
-//      then
+// then
 //      strcat(menustr,'| %x6|Mesh%x7'); 
 //      else
 //      if ob.type=OB_LATTICE
-//      then
+// then
 //      strcat(menustr,'| %x6|Lattice%x7'); 
 //      else
 //      if ob.type=OB_CURVE
-//      then
+// then
 //      strcat(menustr,'| %x6|Curve%x7'); 
 //      else
 //      if ob.type=OB_SURF
-//      then
+// then
 //      strcat(menustr,'| %x6|Surface%x7'); 
 //      else
 //      if ob.type=OB_IKA
-//      then
+// then
 //      strcat(menustr,'| %x6|Effector%x8'); 
 //    end;
 //    event:= pupmenu(menustr); 
 //    if event=-1
-//    then
+// then
 //    exit;
 //    if event=7
-//    then
+// then
 //    begin 
 //      if ob.type=OB_MESH
-//      then
+// then
 //      insert_meshkey(ob.data); 
 //      else
 //      if{!!!e unknown token}
 //      insert_curvekey(ob.data); 
 //      else
 //      if ob.type=OB_LATTICE
-//      then
+// then
 //      insert_lattkey(ob.data); 
 //      allqueue(REDRAWIPO,0); 
 //      allqueue(REDRAWBUTSANIM,0); 
@@ -5344,7 +5344,7 @@ space, ipo;
 //      begin
 //        id:=  {pID(}(base.object); (* alle curves in ipo deselect *)
 //        if base.object.ipo<>nil 
-//        then
+// then
 //        begin 
 //          icu:= base.object.ipo.curve.first; 
 //          while icu
@@ -5352,34 +5352,34 @@ space, ipo;
 //          begin 
 //            icu.flag:= icu.flag and ( not IPO_SELECT); 
 //            if event=9
-//            then
+// then
 //            insertkey(id,icu.adrcode); 
 //            icu:= icu.next; 
 //          end;
 //        end;
 //        if event=0)or(event=3)or(event=4
-//        then
+// then
 //        begin 
 //          insertkey(id,OB_LOC_X); 
 //          insertkey(id,OB_LOC_Y); 
 //          insertkey(id,OB_LOC_Z); 
 //        end;
 //        if event=1)or(event=3)or(event=4
-//        then
+// then
 //        begin 
 //          insertkey(id,OB_ROT_X); 
 //          insertkey(id,OB_ROT_Y); 
 //          insertkey(id,OB_ROT_Z); 
 //        end;
 //        if event=2)or(event=4
-//        then
+// then
 //        begin 
 //          insertkey(id,OB_SIZE_X); 
 //          insertkey(id,OB_SIZE_Y); 
 //          insertkey(id,OB_SIZE_Z); 
 //        end;
 //        if event=5
-//        then
+// then
 //        begin 
 //          (* localview weghalen *)
 //          tlay:= base.object.lay; 
@@ -5388,7 +5388,7 @@ space, ipo;
 //          base.object.lay:= tlay; 
 //        end;
 //        if event=8
-//        then
+// then
 //        begin 
 //          (* deze patch moet omdat duplicators de positie van effg veranderen *)
 //          ika:=ob.data; 
@@ -5423,7 +5423,7 @@ begin
   ik:= lb^.first;
   while ik<>nil    do
   begin
-    if ik^.data<>nil    then
+    if ik^.data<>nil then
     freeN(ik^.data);
     ik:= ik^.next;
   end;
@@ -5442,36 +5442,36 @@ end;
 //  do
 //  begin 
 //    if ik.val=bezt.vec[1][0]
-//    then
+// then
 //    begin 
 //      if ik.data[nr]=0
-//      then
+// then
 //      begin 
 //        (* dubbele punten! *)
 //        ik.data[nr]:= bezt; 
 //        if bezt.f2 and 1
-//        then
+// then
 //        ik.flag:= 1; 
 //        exit;
 //      end;
 //    end;
 //    else
 //    if ik.val>bezt.vec[1][0]
-//    then
+// then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    ik:= ik.next; 
 //  end;
 //  ikn:= callocN(sizeof(IpoKey),'add_to_ipokey'); 
 //  if ik<>nil 
-//  then
+// then
 //  insertlinkbefore(lb,ik,ikn); 
 //  else
 //  addtail(lb,ikn); 
-//  ikn.data:= callocN(sizeof(float* )*len,'add_to_ipokey'); 
+//  ikn.data:= callocN(sizeof(single* )*len,'add_to_ipokey'); 
 //  ikn.data[nr]:= bezt; 
 //  ikn.val:= bezt.vec[1][0]; 
 //  if bezt.f2 and 1
-//  then
+// then
 //  ikn.flag:= 1; 
 //end;
 //
@@ -5498,7 +5498,7 @@ end;
 //  
 //  totcu:=0; 
 //  if ipo=0)or(lb=0
-//  then
+// then
 //  exit;
 //  free_ipokey(lb); 
 //  icu:= ipo.curve.first; 
@@ -5514,7 +5514,7 @@ end;
 //  do
 //  begin 
 //    if icu.flag and IPO_VISIBLE
-//    then
+// then
 //    begin 
 //      bezt:= icu.bezt; 
 //      totvert:= icu.totvert; 
@@ -5557,15 +5557,15 @@ end;
 //  
 //  
 //  
-//  lb:= @G.sipo.ipokey; 
+//  lb:= @G.sipo^.ipokey;
 //  free_ipokey(lb); 
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  if ei=0
-//  then
+// then
 //  exit;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -5584,7 +5584,7 @@ end;
 //      inc(bezt); 
 //      do
 //      begin 
-//        add_to_ipokey(lb,bezt,a,G.sipo.totipo); 
+//        add_to_ipokey(lb,bezt,a,G.sipo^.totipo);
 //      end;
 //      ei.flag:= ei.flag and ( not IPO_SELECT); 
 //      ei.flag:= ei.flag and ( not IPO_EDIT); 
@@ -5596,32 +5596,32 @@ end;
 //  do
 //  begin 
 //    sel:= desel:=0; 
-//    for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//    for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //    do
 //    begin 
 //      if ik.data[a]<>nil 
-//      then
+// then
 //      begin 
 //        bezt:= ik.data[a]; 
 //        if bezt.f2 and 1
-//        then
+// then
 //        inc(sel); 
 //        else
 //        inc(desel); 
 //      end;
 //    end;
 //    if sel)and(desel
-//    then
+// then
 //    sel:= 0; 
-//    for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//    for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //    do
 //    begin 
 //      if ik.data[a]<>nil 
-//      then
+// then
 //      begin 
 //        bezt:= ik.data[a]; 
 //        if sel<>nil 
-//        then
+// then
 //        begin 
 //          bezt.f1:= bezt.f1 or (1); 
 //          bezt.f2:= bezt.f2 or (1); 
@@ -5636,7 +5636,7 @@ end;
 //      end;
 //    end;
 //    if sel<>nil 
-//    then
+// then
 //    ik.flag:= 1; 
 //    else
 //    ik.flag:= 0; 
@@ -5668,10 +5668,10 @@ end;
 //  drot:=0; 
 //  dsize:=0; 
 //  if ob.ipo=0
-//  then
+// then
 //  exit;
 //  if ob.ipo.showkey=0
-//  then
+// then
 //  exit;
 //  (* testen: zijn er delta curves? *)
 //  icu:= ob.ipo.curve.first; 
@@ -5679,7 +5679,7 @@ end;
 //  do
 //  begin 
 //    if icu.flag and IPO_VISIBLE
-//    then
+// then
 //    begin 
 //      case icu.adrcode of
 //        OB_DLOC_X,
@@ -5710,7 +5710,7 @@ end;
 //  do
 //  begin 
 //    if icu.flag and IPO_VISIBLE
-//    then
+// then
 //    begin 
 //      ok:= 0; 
 //      case icu.adrcode of
@@ -5731,7 +5731,7 @@ end;
 //        OB_LOC_Z:
 //        begin
 //          if dloc=0
-//          then
+// then
 //          ok:= 1; 
 //        end;
 //        OB_ROT_X,
@@ -5739,7 +5739,7 @@ end;
 //        OB_ROT_Z:
 //        begin
 //          if drot=0
-//          then
+// then
 //          ok:= 1; 
 //        end;
 //        OB_SIZE_X,
@@ -5747,19 +5747,19 @@ end;
 //        OB_SIZE_Z:
 //        begin
 //          if dsize=0
-//          then
+// then
 //          ok:= 1; 
 //        end;
 //        
 //      end;{case?}
 //      if ok<>nil 
-//      then
+// then
 //      begin 
 //        for{while} a:=0 to Pred(OB_TOTIPO) { a++}
 //        do
 //        begin 
 //          if icu.adrcode=ob_ar[a]
-//          then
+// then
 //          begin 
 //            adrcode:= a; 
 //            break; {<= !!!b possible in "switch" - then remove this line}
@@ -5771,7 +5771,7 @@ end;
 //        do
 //        begin 
 //          if sel=0)or((bezt.f2 and 1)
-//          then
+// then
 //          begin 
 //            add_to_ipokey(lb,bezt,adrcode,OB_TOTIPO); 
 //          end;
@@ -5791,15 +5791,15 @@ end;
 //begin
 //  
 //  
-//  ik:= G.sipo.ipokey.first; 
+//  ik:= G.sipo^.ipokey.first;
 //  while ik
 //  do
 //  begin 
-//    for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//    for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //    do
 //    begin 
 //      if ik.data[a]<>nil 
-//      then
+// then
 //      begin 
 //        ik.val:= ik.data[a].vec[1][0]; 
 //        break; {<= !!!b possible in "switch" - then remove this line}
@@ -5833,7 +5833,7 @@ end;
 //  do
 //  begin 
 //    if ik.data[a]<>nil 
-//    then
+// then
 //    begin 
 //      bezt:= ik.data[a]; 
 //      case ob_ar[a] of
@@ -5900,37 +5900,37 @@ end;
 //  end;
 //  (* oldvals voor o.a. undo *)
 //  if tob.locx<>nil 
-//  then
+// then
 //  set_tob_old(tob.oldloc,tob.locx); 
 //  if tob.locy<>nil 
-//  then
+// then
 //  set_tob_old(tob.oldloc+1,tob.locy); 
 //  if tob.locz<>nil 
-//  then
+// then
 //  set_tob_old(tob.oldloc+2,tob.locz); 
 //  (* bewaar de eerste oldrot, ivm mapping curves ('1'=10 graden) en correcte berekening *)
 //  if tob.rotx<>nil 
-//  then
+// then
 //  set_tob_old(tob.oldrot+3,tob.rotx); 
 //  if tob.roty<>nil 
-//  then
+// then
 //  set_tob_old(tob.oldrot+4,tob.roty); 
 //  if tob.rotz<>nil 
-//  then
+// then
 //  set_tob_old(tob.oldrot+5,tob.rotz); 
 //  (* bewaar de eerste oldsize, dit mag niet de dsize zijn! *)
 //  if tob.sizex<>nil 
-//  then
+// then
 //  set_tob_old(tob.oldsize+3,tob.sizex); 
 //  if tob.sizey<>nil 
-//  then
+// then
 //  set_tob_old(tob.oldsize+4,tob.sizey); 
 //  if tob.sizez<>nil 
-//  then
+// then
 //  set_tob_old(tob.oldsize+5,tob.sizez); 
 //  tob.flag:= TOB_IPO; 
 //  if delta<>nil 
-//  then
+// then
 //  tob.flag:= tob.flag or (TOB_IPODROT); 
 //end;
 //
@@ -5946,7 +5946,7 @@ end;
 //  
 //  
 //  if dir=1
-//  then
+// then
 //  ik:= elems.last; 
 //  else
 //  ik:= elems.first; 
@@ -5956,16 +5956,16 @@ end;
 //  do
 //  begin 
 //    if ik.flag<>nil 
-//    then
+// then
 //    inc(totsel); 
 //    if previk<>nil 
-//    then
+// then
 //    begin 
 //      if G.qual and LR_SHIFTKEY
-//      then
+// then
 //      begin 
 //        if ik.flag<>nil 
-//        then
+// then
 //        previk.flag:= 1; 
 //      end;
 //      else
@@ -5973,41 +5973,41 @@ end;
 //    end;
 //    previk:= ik; 
 //    if dir=1
-//    then
+// then
 //    ik:= ik.prev; 
 //    else
 //    ik:= ik.next; 
 //    if G.qual and LR_SHIFTKEY
-//    then
+// then
 //    ; 
 //    else
 //    if ik=0
-//    then
+// then
 //    previk.flag:= 0; 
 //  end;
 //  (* als geen een key select: *)
 //  if totsel=0
-//  then
+// then
 //  begin 
 //    if dir=1
-//    then
+// then
 //    ik:= elems.first; 
 //    else
 //    ik:= elems.last; 
 //    if ik<>nil 
-//    then
+// then
 //    ik.flag:= 1; 
 //  end;
 //end;
 //
-//function float_to_frame(frame: float): integer; 
+//function float_to_frame(frame: single): integer; 
 //var
 //to: integer;
 // 
 //begin
 //  to:= {integer(}frame; 
 //  if frame-to>0.5
-//  then
+// then
 //  inc(to); 
 //  begin
 //    result:= to; 
@@ -6019,18 +6019,18 @@ end;
 //procedure movekey_ipo(dir: integer); 
 //var
 //ik: pIpoKey; 
-//toframe: float; 
+//toframe: single; 
 //a: integer; 
 //begin
 //  
 //  
 //  
-//  if G.sipo.showkey=0
-//  then
+//  if G.sipo^.showkey=0
+// then
 //  exit;
-//  ik:= G.sipo.ipokey.first; 
+//  ik:= G.sipo^.ipokey.first;
 //  if dir=-1
-//  then
+// then
 //  begin 
 //    while ik)and(float_to_frame(ik.val)<CFRA
 //    do
@@ -6047,12 +6047,12 @@ end;
 //      ik:= ik.next; 
 //    end;
 //    if ik<>nil 
-//    then
+// then
 //    toframe:= ik.val; 
 //  end;
 //  a:= float_to_frame(toframe); 
 //  if a<>CFRA)and(a>0
-//  then
+// then
 //  begin 
 //    CFRA:= a; 
 //    do_global_buttons(B_NEWFRAME); 
@@ -6073,7 +6073,7 @@ end;
 //previk: pIpoKey; 
 //a: integer; 
 //totsel: integer; 
-//toframe: float;
+//toframe: single;
 // 
 //begin
 //  
@@ -6094,16 +6094,16 @@ end;
 //    begin
 //      ob:= base.object; 
 //      if ob.ipo)and(ob.ipo.showkey
-//      then
+// then
 //      begin 
 //        elems.first:= elems.last:=0; 
 //        make_ipokey_transform(ob, and elems,0); 
 //        if elems.first<>nil 
-//        then
+// then
 //        begin 
 //          ik:= elems.first; 
 //          if dir=-1
-//          then
+// then
 //          begin 
 //            while ik)and(float_to_frame(ik.val)<CFRA
 //            do
@@ -6120,7 +6120,7 @@ end;
 //              ik:= ik.next; 
 //            end;
 //            if ik<>nil 
-//            then
+// then
 //            toframe:= ik.val; 
 //          end;
 //          free_ipokey( and elems); 
@@ -6131,7 +6131,7 @@ end;
 //  end;
 //  a:= float_to_frame(toframe); 
 //  if a<>CFRA)and(a>0
-//  then
+// then
 //  begin 
 //    CFRA:= a; 
 //    do_global_buttons(B_NEWFRAME); 
@@ -6149,26 +6149,26 @@ end;
 //begin
 //  
 //  
-//  if G.sipo.showkey=0
-//  then
+//  if G.sipo^.showkey=0
+// then
 //  exit;
-//  nextkey(@G.sipo.ipokey,dir); 
-//  ik:= G.sipo.ipokey.first; (* kopieeren naar beziers *)
+//  nextkey(@G.sipo^.ipokey,dir);
+//  ik:= G.sipo^.ipokey.first; (* kopieeren naar beziers *)
 //  while ik
 //  do
 //  begin 
-//    for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+//    for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //    do
 //    begin 
 //      if ik.data[a]<>nil 
-//      then
+// then
 //      ik.data[a].f1:= ik.data[a].f2:=ik.data[a].f3:=ik.flag; 
 //    end;
 //    ik:= ik.next; 
 //  end;
 //  allqueue(REDRAWIPO,0); 
-//  if G.sipo.blocktype=ID_OB
-//  then
+//  if G.sipo^.blocktype=ID_OB
+// then
 //  allqueue(REDRAWVIEW3D,0); 
 //end;
 //(* alleen extern aanroepen vanuit view3d queue *)
@@ -6200,12 +6200,12 @@ end;
 //    begin
 //      ob:= base.object; 
 //      if (ob.ipoflag and OB_DRAWKEY))and(ob.ipo)and(ob.ipo.showkey
-//      then
+// then
 //      begin 
 //        elems.first:= elems.last:=0; 
 //        make_ipokey_transform(ob, and elems,0); 
 //        if elems.first<>nil 
-//        then
+// then
 //        begin 
 //          nextkey( and elems,dir); 
 //          ik:= elems.first; (* kopieeren naar beziers *)
@@ -6216,7 +6216,7 @@ end;
 //            do
 //            begin 
 //              if ik.data[a]<>nil 
-//              then
+// then
 //              ik.data[a].f1:= ik.data[a].f2:=ik.data[a].f3:=ik.flag; 
 //            end;
 //            ik:= ik.next; 
@@ -6248,10 +6248,10 @@ end;
 //  
 //  
 //  
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -6260,22 +6260,22 @@ end;
 //    
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
-//      if (ei.flag and IPO_EDIT))or(G.sipo.showkey
-//      then
+//      if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
+// then
 //      begin 
 //        if ei.icu.bezt<>nil 
-//        then
+// then
 //        begin 
 //          sort_time_ipocurve(ei.icu); 
 //        end;
 //      end;
 //    end
 //  end;
-//  ei:= G.sipo.editipo; 
+//  ei:= G.sipo^.editipo;
 //  tv:= transmain; 
 //  while{for} 
 //  a:= 0; 
-//  {to} a<G.sipo.totipo
+//  {to} a<G.sipo^.totipo
 //  {;}
 //  inc(a); 
 //  inc(ei); 
@@ -6284,11 +6284,11 @@ end;
 //    
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
-//      if (ei.flag and IPO_EDIT))or(G.sipo.showkey
-//      then
+//      if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
+// then
 //      begin 
 //        if ei.icu.bezt<>nil 
-//        then
+// then
 //        begin 
 //          bezt:= ei.icu.bezt; 
 //          b:= ei.icu.totvert; 
@@ -6296,23 +6296,23 @@ end;
 //          do
 //          begin 
 //            if ei.icu.ipo=IPO_BEZ
-//            then
+// then
 //            begin 
 //              if bezt.f1 and 1
-//              then
+// then
 //              begin 
 //                tv.loc:= bezt.vec[0]; 
 //                inc(tv); 
 //              end;
 //              if bezt.f3 and 1
-//              then
+// then
 //              begin 
 //                tv.loc:= bezt.vec[2]; 
 //                inc(tv); 
 //              end;
 //            end;
 //            if bezt.f2 and 1
-//            then
+// then
 //            begin 
 //              tv.loc:= bezt.vec[1]; 
 //              inc(tv); 
@@ -6324,11 +6324,11 @@ end;
 //      end;
 //    end;
 //  end;
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  make_ipokey(); 
 //  if dvec=0
-//  then
+// then
 //  exit;
 //  tv:= transmain; 
 //  while{for} 
@@ -6351,20 +6351,20 @@ end;
 //bezt: pBezTriple; 
 //transmain: pTransVert; 
 //tv: pTransVert; 
-//xref: float;
+//xref: single;
 // 
-//yref: float;
+//yref: single;
 // 
-//dx: float; 
-//dy: float; 
-//dvec: array [0..Pred(2)] of float; 
-//min: array [0..Pred(3)] of float; 
-//max: array [0..Pred(3)] of float; 
-//vec: array [0..Pred(2)] of float; 
-//div: float; 
-//cent: array [0..Pred(2)] of float; 
-//size: array [0..Pred(2)] of float; 
-//sizefac: float; 
+//dx: single; 
+//dy: single; 
+//dvec: array [0..1] of single;
+//min: array [0..2] of single;
+//max: array [0..2] of single;
+//vec: array [0..1] of single;
+//div: single; 
+//cent: array [0..1] of single;
+//size: array [0..1] of single;
+//sizefac: single; 
 //tot: integer;
 // 
 //a: integer; 
@@ -6377,8 +6377,8 @@ end;
 // 
 //dosort: integer; 
 //proj: integer; 
-//event: ushort; 
-//mval: array [0..Pred(2)] of smallint; 
+//event: word; 
+//mval: array [0..1] of smallint;
 //val: smallint; 
 //xo: smallint; 
 //yo: smallint; 
@@ -6386,7 +6386,7 @@ end;
 //yn: smallint; 
 //xc: smallint; 
 //yc: smallint; 
-//str: array [0..Pred(32)] of char; 
+//str: array [0..31] of char;
 //begin
 //  
 //  
@@ -6423,28 +6423,28 @@ end;
 //  
 //  
 //  
-//  if G.sipo.ipo)and(G.sipo.ipo.id.lib
-//  then
+//  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
+// then
 //  exit;
-//  if G.sipo.editipo=0
-//  then
+//  if G.sipo^.editipo=0
+// then
 //  exit;
 //  if mode='r'
-//  then
+// then
 //  exit;
 //  (* vanuit gesture *)
 //  INIT_MINMAX(min,max); 
 //  get_status_editipo(); 
 //  (* welke vertices doen mee *)
 //  if totipo_vertsel<>nil 
-//  then
+// then
 //  begin 
 //    tot:= totipo_vertsel; 
 //    tv:= transmain:=callocN(tot*sizeof(TransVert),'transmain'); 
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
@@ -6453,11 +6453,11 @@ end;
 //      
 //      function ISPOIN{!!!3 unknown typedef}: if; 
 //      begin
-//        if (ei.flag and IPO_EDIT))or(G.sipo.showkey
-//        then
+//        if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
+// then
 //        begin 
 //          if ei.icu.bezt<>nil 
-//          then
+// then
 //          begin 
 //            bezt:= ei.icu.bezt; 
 //            b:= ei.icu.totvert; 
@@ -6465,27 +6465,27 @@ end;
 //            do
 //            begin 
 //              if ei.icu.ipo=IPO_BEZ
-//              then
+// then
 //              begin 
 //                if bezt.f1 and 1
-//                then
+// then
 //                begin 
 //                  tv.loc:= bezt.vec[0]; 
 //                  VECCOPY(tv.oldloc,tv.loc); 
 //                  if ei.disptype=IPO_DISPBITS
-//                  then
+// then
 //                  tv.flag:= 1; 
 //                  DO_MINMAX2(bezt.vec[1],min,max); 
 //                  (* let op: we nemen middelste vertex *)
 //                  inc(tv); 
 //                end;
 //                if bezt.f3 and 1
-//                then
+// then
 //                begin 
 //                  tv.loc:= bezt.vec[2]; 
 //                  VECCOPY(tv.oldloc,tv.loc); 
 //                  if ei.disptype=IPO_DISPBITS
-//                  then
+// then
 //                  tv.flag:= 1; 
 //                  DO_MINMAX2(bezt.vec[1],min,max); 
 //                  (* let op: we nemen middelste vertex *)
@@ -6493,12 +6493,12 @@ end;
 //                end;
 //              end;
 //              if bezt.f2 and 1
-//              then
+// then
 //              begin 
 //                tv.loc:= bezt.vec[1]; 
 //                VECCOPY(tv.oldloc,tv.loc); 
 //                if ei.disptype=IPO_DISPBITS
-//                then
+// then
 //                tv.flag:= 1; 
 //                DO_MINMAX2(bezt.vec[1],min,max); 
 //                inc(tv); 
@@ -6512,12 +6512,12 @@ end;
 //  end;
 //  else
 //  if totipo_edit=0)and(totipo_sel<>0
-//  then
+// then
 //  begin 
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
@@ -6527,20 +6527,20 @@ end;
 //      function ISPOIN3{!!!3 unknown typedef}: if; 
 //      begin
 //        if ei.icu.bezt)and(ei.icu.ipo=IPO_BEZ
-//        then
+// then
 //        tot:= tot + (3*ei.icu.totvert); 
 //        else
 //        tot:= tot + (ei.icu.totvert); 
 //      end;
 //    end;
 //    if tot=0
-//    then
+// then
 //    exit;
 //    tv:= transmain:=callocN(tot*sizeof(TransVert),'transmain'); 
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
@@ -6550,7 +6550,7 @@ end;
 //      function ISPOIN3{!!!3 unknown typedef}: if; 
 //      begin
 //        if ei.icu.bezt<>nil 
-//        then
+// then
 //        begin 
 //          bezt:= ei.icu.bezt; 
 //          b:= ei.icu.totvert; 
@@ -6558,25 +6558,25 @@ end;
 //          do
 //          begin 
 //            if ei.icu.ipo=IPO_BEZ
-//            then
+// then
 //            begin 
 //              tv.loc:= bezt.vec[0]; 
 //              VECCOPY(tv.oldloc,tv.loc); 
 //              if ei.disptype=IPO_DISPBITS
-//              then
+// then
 //              tv.flag:= 1; 
 //              inc(tv); 
 //              tv.loc:= bezt.vec[2]; 
 //              VECCOPY(tv.oldloc,tv.loc); 
 //              if ei.disptype=IPO_DISPBITS
-//              then
+// then
 //              tv.flag:= 1; 
 //              inc(tv); 
 //            end;
 //            tv.loc:= bezt.vec[1]; 
 //            VECCOPY(tv.oldloc,tv.loc); 
 //            if ei.disptype=IPO_DISPBITS
-//            then
+// then
 //            tv.flag:= 1; 
 //            DO_MINMAX2(bezt.vec[1],min,max); 
 //            inc(tv); 
@@ -6587,17 +6587,17 @@ end;
 //    end;
 //  end;
 //  if tot=0
-//  then
+// then
 //  begin 
 //    if totipo_edit=0
-//    then
+// then
 //    move_keys(); 
 //    exit;
 //  end;
 //  cent[0]:= (min[0]+max[0]) div 2.0; 
 //  cent[1]:= (min[1]+max[1]) div 2.0; 
-//  if G.sipo.showkey<>nil 
-//  then
+//  if G.sipo^.showkey<>nil
+// then
 //  begin 
 //    midtog:= 1; 
 //    proj:= 1; 
@@ -6609,19 +6609,19 @@ end;
 //  xo:= xn:=mval[0]; 
 //  yo:= yn:=mval[1]; 
 //  dvec[0]:= dvec[1]:=0.0; 
-//  sizefac:= fsqrt( {float(}((yc-yn)*(yc-yn)+(xn-xc)*(xn-xc))); 
+//  sizefac:= fsqrt( {single(}((yc-yn)*(yc-yn)+(xn-xc)*(xn-xc))); 
 //  if sizefac<2.0
-//  then
+// then
 //  sizefac:= 2.0; 
 //  while afbreek=0
 //  do
 //  begin 
 //    getmouseco_areawin(mval); 
 //    if mval[0]<>xo)or(mval[1]<>yo)or(firsttime
-//    then
+// then
 //    begin 
 //      if mode='g'
-//      then
+// then
 //      begin 
 //        dx:= mval[0]-xo; 
 //        dy:= mval[1]-yo; 
@@ -6630,7 +6630,7 @@ end;
 //        div:= G.v2d.mask.ymax-G.v2d.mask.ymin; 
 //        dvec[1]:= dvec[1] + ((G.v2d.cur.ymax-G.v2d.cur.ymin)*(dy) div div); 
 //        if midtog<>nil 
-//        then
+// then
 //        dvec[proj]:= 0.0; 
 //        vec[0]:= dvec[0]; 
 //        vec[1]:= dvec[1]; 
@@ -6648,7 +6648,7 @@ end;
 //        begin 
 //          tv.loc[0]:= tv.oldloc[0]+vec[0]; 
 //          if tv.flag=0
-//          then
+// then
 //          tv.loc[1]:= tv.oldloc[1]+vec[1]; 
 //        end;
 //        sprintf(str,'X: %.3f   Y: %.3f  ',vec[0],vec[1]); 
@@ -6656,11 +6656,11 @@ end;
 //      end;
 //      else
 //      if mode='s'
-//      then
+// then
 //      begin 
-//        size[0]:= size[1]:=(fsqrt( {float(}((yc-mval[1])*(yc-mval[1])+(mval[0]-xc)*(mval[0]-xc)))) div sizefac; 
+//        size[0]:= size[1]:=(fsqrt( {single(}((yc-mval[1])*(yc-mval[1])+(mval[0]-xc)*(mval[0]-xc)))) div sizefac; 
 //        if midtog<>nil 
-//        then
+// then
 //        size[proj]:= 1.0; 
 //        size[0]:= size[0] * (xref); 
 //        size[1]:= size[1] * (yref); 
@@ -6677,7 +6677,7 @@ end;
 //        begin 
 //          tv.loc[0]:= size[0]*(tv.oldloc[0]-cent[0])+cent[0]; 
 //          if tv.flag=0
-//          then
+// then
 //          tv.loc[1]:= size[1]*(tv.oldloc[1]-cent[1])+cent[1]; 
 //        end;
 //        sprintf(str,'sizeX: %.3f   sizeY: %.3f  ',size[0],size[1]); 
@@ -6686,10 +6686,10 @@ end;
 //      xo:= mval[0]; 
 //      yo:= mval[1]; 
 //      dosort:= 0; 
-//      ei:= G.sipo.editipo; 
+//      ei:= G.sipo^.editipo;
 //      while{for} 
 //      a:= 0; 
-//      {to} a<G.sipo.totipo
+//      {to} a<G.sipo^.totipo
 //      {;}
 //      inc(a); 
 //      inc(ei); 
@@ -6699,53 +6699,53 @@ end;
 //        function ISPOIN{!!!3 unknown typedef}: if; 
 //        begin(* let op: als de tijd verkeerd is: niet de handles corrigeren *)
 //          if test_time_ipocurve(ei.icu)
-//          then
+// then
 //          inc(dosort); 
 //          else
 //          testhandles_ipocurve(ei.icu); 
 //        end;
 //      end;
 //      if dosort<>nil 
-//      then
+// then
 //      begin 
 //        if mode='g'
-//        then
+// then
 //        remake_ipo_transverts(transmain,vec,tot); 
 //        else
 //        remake_ipo_transverts(transmain,0,tot); 
 //      end;
-//      if G.sipo.showkey<>nil 
-//      then
+//      if G.sipo^.showkey<>nil
+// then
 //      update_ipokey_val(); 
-//      calc_ipo(G.sipo.ipo, {float(}CFRA); 
+//      calc_ipo(G.sipo^.ipo, {single(}CFRA);
 //      (* update realtime *)
-//      if G.sipo.lock<>nil 
-//      then
+//      if G.sipo^.lock<>nil
+// then
 //      begin 
-//        if G.sipo.blocktype=ID_MA
-//        then
+//        if G.sipo^.blocktype=ID_MA
+// then
 //        begin 
 //          force_draw_plus(SPACE_BUTS); 
 //        end;
 //        else
-//        if G.sipo.blocktype=ID_KE
-//        then
+//        if G.sipo^.blocktype=ID_KE
+// then
 //        begin 
 //          do_ob_key(OBACT); 
 //          makeDispList(OBACT); 
 //          force_draw_plus(SPACE_VIEW3D); 
 //        end;
 //        else
-//        if G.sipo.blocktype=ID_OB
-//        then
+//        if G.sipo^.blocktype=ID_OB
+// then
 //        begin 
 //          var
 //          base: pBase = FIRSTBASE; 
 //          while base
 //          do
 //          begin 
-//            if base.object.ipo=G.sipo.ipo
-//            then
+//            if base.object.ipo=G.sipo^.ipo
+// then
 //            do_ob_ipo(base.object); 
 //            base:= base.next; 
 //          end;
@@ -6767,7 +6767,7 @@ end;
 //    begin 
 //      event:= extern_qread(@val); 
 //      if val<>nil 
-//      then
+// then
 //      begin 
 //        case event of
 //          ESCKEY,
@@ -6780,15 +6780,15 @@ end;
 //          end;
 //          MIDDLEMOUSE:
 //          begin
-//            if G.sipo.showkey=0
-//            then
+//            if G.sipo^.showkey=0
+// then
 //            begin 
 //              midtog:=  not midtog; 
 //              if midtog<>nil 
-//              then
+// then
 //              begin 
 //                if abs(mval[0]-xn)>abs(mval[1]-yn)
-//                then
+// then
 //                proj:= 1; 
 //                else
 //                proj:= 0; 
@@ -6800,11 +6800,11 @@ end;
 //          YKEY:
 //          begin
 //            if event=XKEY
-//            then
+// then
 //            xref:= -xref; 
 //            else
-//            if G.sipo.showkey=0
-//            then
+//            if G.sipo^.showkey=0
+// then
 //            yref:= -yref; 
 //            firsttime:= 1; 
 //          end;
@@ -6816,34 +6816,34 @@ end;
 //          else
 //          begin
 //            if mode='g'
-//            then
+// then
 //            begin 
 //              if G.qual and LR_CTRLKEY
-//              then
+// then
 //              begin 
 //                if event=LEFTARROWKEY
-//                then
+// then
 //                begin 
 //                  dvec[0]:= dvec[0] - (1.0); 
 //                  firsttime:= 1; 
 //                end;
 //                else
 //                if event=RIGHTARROWKEY
-//                then
+// then
 //                begin 
 //                  dvec[0]:= dvec[0] + (1.0); 
 //                  firsttime:= 1; 
 //                end;
 //                else
 //                if event=UPARROWKEY
-//                then
+// then
 //                begin 
 //                  dvec[1]:= dvec[1] + (1.0); 
 //                  firsttime:= 1; 
 //                end;
 //                else
 //                if event=DOWNARROWKEY
-//                then
+// then
 //                begin 
 //                  dvec[1]:= dvec[1] - (1.0); 
 //                  firsttime:= 1; 
@@ -6858,12 +6858,12 @@ end;
 //        end;{case?}
 //      end;
 //      if afbreek<>nil 
-//      then
+// then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //  end;
 //  if event=ESCKEY)or(event=RIGHTMOUSE
-//  then
+// then
 //  begin 
 //    tv:= transmain; 
 //    while{for} 
@@ -6878,10 +6878,10 @@ end;
 //      tv.loc[1]:= tv.oldloc[1]; 
 //    end;
 //    dosort:= 0; 
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
@@ -6890,11 +6890,11 @@ end;
 //      
 //      function ISPOIN{!!!3 unknown typedef}: if; 
 //      begin
-//        if (ei.flag and IPO_EDIT))or(G.sipo.showkey
-//        then
+//        if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
+// then
 //        begin 
 //          if test_time_ipocurve(ei.icu)
-//          then
+// then
 //          begin 
 //            dosort:= 1; 
 //            break; {<= !!!b possible in "switch" - then remove this line}
@@ -6903,12 +6903,12 @@ end;
 //      end;
 //    end;
 //    if dosort<>nil 
-//    then
+// then
 //    remake_ipo_transverts(transmain,0,tot); 
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
@@ -6917,14 +6917,14 @@ end;
 //      
 //      function ISPOIN{!!!3 unknown typedef}: if; 
 //      begin
-//        if (ei.flag and IPO_EDIT))or(G.sipo.showkey
-//        then
+//        if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
+// then
 //        begin 
 //          testhandles_ipocurve(ei.icu); 
 //        end;
 //      end;
 //    end;
-//    calc_ipo(G.sipo.ipo, {float(}CFRA); 
+//    calc_ipo(G.sipo^.ipo, {single(}CFRA);
 //  end;
 //  editipo_changed(1); 
 //  freeN(transmain); 
@@ -6950,7 +6950,7 @@ end;
 //  
 //  
 //  
-//  float{!!!e unknown token},
+//  single{!!!e unknown token},
 //  delta[3]{!!!e unknown token},
 //  old[3]{!!!e unknown token}; 
 //  
@@ -6958,29 +6958,29 @@ end;
 //  
 //  scale10:=0; 
 //  totbut:=2; 
-//  if G.sipo.ipo)and(G.sipo.ipo.id.lib
-//  then
+//  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
+// then
 //  exit;
-//  if G.sipo.editipo=0
-//  then
+//  if G.sipo^.editipo=0
+// then
 //  exit;
 //  (* welke vertices doen mee *)
 //  get_status_editipo(); 
 //  if G.qual and LR_SHIFTKEY
-//  then
+// then
 //  totbut:= 1; 
 //  if G.vd=0
-//  then
+// then
 //  :=10000.0; 
 //  else
 //  :=MAX2(G.vd.clipend,10000.0); 
 //  if totipo_vertsel<>nil 
-//  then
+// then
 //  begin 
-//    ei:= G.sipo.editipo; 
+//    ei:= G.sipo^.editipo;
 //    while{for} 
 //    a:= 0; 
-//    {to} a<G.sipo.totipo
+//    {to} a<G.sipo^.totipo
 //    {;}
 //    inc(a); 
 //    inc(ei); 
@@ -6989,11 +6989,11 @@ end;
 //      
 //      function ISPOIN{!!!3 unknown typedef}: if; 
 //      begin
-//        if (ei.flag and IPO_EDIT))or(G.sipo.showkey
-//        then
+//        if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
+// then
 //        begin 
 //          if ei.icu.bezt<>nil 
-//          then
+// then
 //          begin 
 //            bezt1:= ei.icu.bezt; 
 //            b:= ei.icu.totvert; 
@@ -7001,7 +7001,7 @@ end;
 //            do
 //            begin 
 //              if BEZSELECTED(bezt1)
-//              then
+// then
 //              begin 
 //                bezt:= bezt1; 
 //                break; {<= !!!b possible in "switch" - then remove this line}
@@ -7012,40 +7012,40 @@ end;
 //        end;
 //      end
 //      if bezt<>nil 
-//      then
+// then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //    if bezt=0
-//    then
+// then
 //    exit;
 //    if bezt.f2 and 1
-//    then
+// then
 //    begin 
 //      VECCOPY(old,bezt.vec[1]); 
-//      if totipo_vis=1)and(G.sipo.blocktype=ID_OB
-//      then
+//      if totipo_vis=1)and(G.sipo^.blocktype=ID_OB
+// then
 //      begin 
 //        if{!!!e unknown token}
 //        scale10:= 1; if{!!!e unknown token}
 //        scale10:= 1; 
 //      end;
 //      if scale10<>nil 
-//      then
+// then
 //      bezt.vec[1][1]:= bezt.vec[1][1] * (10.0); 
 //      add_numbut(0,NUM or FLO,'LocX:',-1000,10000,bezt.vec[1],0); 
 //      if totbut=2
-//      then
+// then
 //      add_numbut(1,NUM or FLO,'LocY:',-,,bezt.vec[1]+1,0); 
 //      do_clever_numbuts('Active BezierPoint',totbut,REDRAW); 
 //      if scale10<>nil 
-//      then
+// then
 //      bezt.vec[1][1]:= bezt.vec[1][1] div (10.0); 
 //      VecSubf(delta,bezt.vec[1],old); 
 //      VECCOPY(bezt.vec[1],old); 
-//      ei:= G.sipo.editipo; (* apply *)
+//      ei:= G.sipo^.editipo; (* apply *)
 //      while{for} 
 //      a:= 0; 
-//      {to} a<G.sipo.totipo
+//      {to} a<G.sipo^.totipo
 //      {;}
 //      inc(a); 
 //      inc(ei); 
@@ -7054,11 +7054,11 @@ end;
 //        
 //        function ISPOIN{!!!3 unknown typedef}: if; 
 //        begin
-//          if (ei.flag and IPO_EDIT))or(G.sipo.showkey
-//          then
+//          if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
+// then
 //          begin 
 //            if ei.icu.bezt<>nil 
-//            then
+// then
 //            begin 
 //              bezt:= ei.icu.bezt; 
 //              b:= ei.icu.totvert; 
@@ -7066,7 +7066,7 @@ end;
 //              do
 //              begin 
 //                if bezt.f2 and 1
-//                then
+// then
 //                begin 
 //                  bezt.vec[0][0]:= bezt.vec[0][0] + (delta[0]); 
 //                  bezt.vec[1][0]:= bezt.vec[1][0] + (delta[0]); 
@@ -7081,10 +7081,10 @@ end;
 //          end;
 //        end;
 //      end;
-//      ei:= G.sipo.editipo; 
+//      ei:= G.sipo^.editipo;
 //      while{for} 
 //      a:= 0; 
-//      {to} a<G.sipo.totipo
+//      {to} a<G.sipo^.totipo
 //      {;}
 //      inc(a); 
 //      inc(ei); 
@@ -7100,21 +7100,21 @@ end;
 //    end;
 //    else
 //    if bezt.f1 and 1
-//    then
+// then
 //    begin 
 //      add_numbut(0,NUM or FLO,'LocX:',-1000,10000,bezt.vec[0],0); 
 //      if totbut=2
-//      then
+// then
 //      add_numbut(1,NUM or FLO,'LocY:',-,,bezt.vec[0]+1,0); 
 //      do_clever_numbuts('Active HandlePoint',totbut,REDRAW); 
 //    end;
 //    else
 //    if bezt.f3 and 1
-//    then
+// then
 //    begin 
 //      add_numbut(0,NUM or FLO,'LocX:',-1000,10000,bezt.vec[0],0); 
 //      if totbut=2
-//      then
+// then
 //      add_numbut(1,NUM or FLO,'LocY:',-,,bezt.vec[2]+1,0); 
 //      do_clever_numbuts('Active HandlePoint',totbut,REDRAW); 
 //    end;
@@ -7122,24 +7122,24 @@ end;
 //  end;
 //  else
 //  begin 
-//    if G.sipo.blocktype=ID_KE
-//    then
+//    if G.sipo^.blocktype=ID_KE
+// then
 //    begin 
-//      key:=  {pKey(}G.sipo.from; 
+//      key:=  {pKey(}G.sipo^.from;
 //      if key=0
-//      then
+// then
 //      exit;
 //      kb:= key.block.first; 
 //      while kb
 //      do
 //      begin 
 //        if kb.flag and SELECT
-//        then
+// then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        kb:= kb.next; 
 //      end;
-//      if kb)and(G.sipo.rowbut and 1
-//      then
+//      if kb)and(G.sipo^.rowbut and 1
+// then
 //      begin 
 //        add_numbut(0,NUM or FLO,'Pos:',-100,100,@kb.pos,0); 
 //        do_clever_numbuts('Active Key',1,REDRAW); 
@@ -7184,7 +7184,7 @@ end;
 //  filter_sampledata(data,sfra,efra); 
 //  icu.ipo:= IPO_LIN; 
 //  if icu.bezt<>nil 
-//  then
+// then
 //  freeN(icu.bezt); 
 //  icu.bezt:= 0; 
 //  tot:= 1; 
@@ -7198,7 +7198,7 @@ end;
 //  do
 //  begin 
 //    if IS_EQ(da[0],da[1])=0)and(IS_EQ(da[1],da[2])=0
-//    then
+// then
 //    inc(tot); 
 //  end;
 //  icu.totvert:= tot; 
@@ -7216,7 +7216,7 @@ end;
 //  do
 //  begin 
 //    if IS_EQ(da[0],da[1])=0)and(IS_EQ(da[1],da[2])=0
-//    then
+// then
 //    begin 
 //      bezt.vec[1][0]:= a; 
 //      bezt.vec[1][1]:= da[0]; 
@@ -7237,9 +7237,9 @@ end;
 //ipo: pIpo; 
 //poin: pinteger; 
 //swaptime: double; 
-//or1: float; 
-//or2: float; 
-//fac: float; 
+//or1: single; 
+//or2: single; 
+//fac: single; 
 //data1: pfloat; 
 //data2: pfloat; 
 //type: integer; 
@@ -7252,14 +7252,14 @@ end;
 //cfra: integer; 
 //sfra: integer; 
 //efra: integer; 
-//event: ushort; 
+//event: word; 
 //anim: smallint; 
 //val: smallint; 
 //xn: smallint; 
 //yn: smallint; 
-//mvalo: array [0..Pred(2)] of smallint; 
-//mval: array [0..Pred(2)] of smallint; 
-//str: array [0..Pred(128)] of char; 
+//mvalo: array [0..1] of smallint;
+//mval: array [0..1] of smallint;
+//str: array [0..127] of char;
 //begin(* 1 of 2 aktieve curves
 //    * kopie maken (ESC) 
 //    *
@@ -7297,36 +7297,36 @@ end;
 //  
 //  
 //  
-//  if G.sipo.from=0
-//  then
+//  if G.sipo^.from=0
+// then
 //  exit;
 //  if SFRA>=EFRA
-//  then
+// then
 //  exit;
 //  anim:= pupmenu('Record Mouse %t|Still %x1|Play anim %x2'); 
 //  if anim<1
-//  then
+// then
 //  exit;
 //  if anim<>2
-//  then
+// then
 //  anim:= 0; 
-//  ipo:= get_ipo(G.sipo.from,1); (* 1= make *)
+//  ipo:= get_ipo(G.sipo^.from,1); (* 1= make *)
 //  if G.sipo<>nil 
-//  then
-//  G.sipo.ipo:= ipo; 
-//  ei:= G.sipo.editipo; (* find the curves... *)
-//  for{while} a:=0 to Pred(G.sipo.totipo) { a++}
+// then
+//  G.sipo^.ipo:= ipo;
+//  ei:= G.sipo^.editipo; (* find the curves... *)
+//  for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //  do
 //  begin 
 //    if ei.flag and IPO_VISIBLE
-//    then
+// then
 //    begin 
 //      if ei1=0
-//      then
+// then
 //      ei1:= ei; 
 //      else
 //      if ei2=0
-//      then
+// then
 //      ei2:= ei; 
 //      else
 //      begin 
@@ -7337,75 +7337,75 @@ end;
 //    inc(ei); 
 //  end;
 //  if ei1=0
-//  then
+// then
 //  begin 
 //    error('Select 1 or 2 channels'); 
 //    exit;
 //  end;
 //  (* curves gereedmaken, startwaardes *)
 //  if ei1.icu=0
-//  then
-//  ei1.icu:= get_ipocurve(G.sipo.from,ei1.adrcode); 
+// then
+//  ei1.icu:= get_ipocurve(G.sipo^.from,ei1.adrcode);
 //  if ei1.icu=0
-//  then
+// then
 //  exit;
-//  poin:= get_ipo_poin(G.sipo.from,ei1.icu,@type); 
+//  poin:= get_ipo_poin(G.sipo^.from,ei1.icu,@type);
 //  if poin<>nil 
-//  then
+// then
 //  ei1.icu.curval:= read_ipo_poin(poin,type); 
 //  or1:= ei1.icu.curval; 
 //  ei1.icu.flag:= ei1.icu.flag or (IPO_LOCK); 
 //  if ei2<>nil 
-//  then
+// then
 //  begin 
 //    if ei2.icu=0
-//    then
-//    ei2.icu:= get_ipocurve(G.sipo.from,ei2.adrcode); 
+// then
+//    ei2.icu:= get_ipocurve(G.sipo^.from,ei2.adrcode);
 //    if ei2.icu=0
-//    then
+// then
 //    exit;
-//    poin:= get_ipo_poin(G.sipo.from,ei2.icu,@type); 
+//    poin:= get_ipo_poin(G.sipo^.from,ei2.icu,@type);
 //    if poin<>nil 
-//    then
+// then
 //    ei2.icu.curval:= read_ipo_poin(poin,type); 
 //    or2:= ei2.icu.curval; 
 //    ei2.icu.flag:= ei2.icu.flag or (IPO_LOCK); 
 //  end;
 //  fac:= G.v2d.cur.ymax-G.v2d.cur.ymin; 
-//  fac:= fac div ( {float(}curarea.winy); 
+//  fac:= fac div ( {single(}curarea.winy); 
 //  oldarea:= curarea; 
 //  sa:= G.curscreen.areabase.first; (* welke area *)
 //  while sa
 //  do
 //  begin 
 //    if sa^.win)and(sa^.windraw
-//    then
+// then
 //    begin 
-//      if G.sipo.blocktype=ID_MA)or(G.sipo.blocktype=ID_LA
-//      then
+//      if G.sipo^.blocktype=ID_MA)or(G.sipo^.blocktype=ID_LA
+// then
 //      begin 
 //        if sa^.spacetype=SPACE_BUTS
-//        then
+// then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //      else
 //      begin 
 //        if sa^.spacetype=SPACE_VIEW3D
-//        then
+// then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //    end;
 //    sa:= sa^.next;
 //  end;
 //  if sa<>nil 
-//  then
+// then
 //  areawinset(sa^.win);
 //  (* kandie? *)
 //  while get_mbut()@L_MOUSE
 //  do
 //  usleep(2); 
-//  data1:= callocN(sizeof(float)*(EFRA-SFRA+1),'data1'); 
-//  data2:= callocN(sizeof(float)*(EFRA-SFRA+1),'data2'); 
+//  data1:= callocN(sizeof(single)*(EFRA-SFRA+1),'data1'); 
+//  data2:= callocN(sizeof(single)*(EFRA-SFRA+1),'data2'); 
 //  getmouseco_areawin(mvalo); 
 //  xn:= mvalo[0]; 
 //  yn:= mvalo[1]; 
@@ -7420,34 +7420,34 @@ end;
 //  begin 
 //    getmouseco_areawin(mval); 
 //    if mval[0]<>mvalo[0])or(mval[1]<>mvalo[1])or(firsttime)or((G.qual and LR_CTRLKEY)
-//    then
+// then
 //    begin 
 //      if anim<>nil 
-//      then
+// then
 //      CFRA:= cfra; 
 //      else
 //      firsttime:= 0; 
 //      set_timecursor(cfra); 
 //      (* ipo doen: eerst alles daarna de specifieke *)
 //      if anim=2
-//      then
+// then
 //      begin 
 //        do_all_ipos(); 
 //        do_all_keys(); 
 //      end;
 //      ei1.icu.curval:= or1+fac*(mval[0]-xn); 
 //      if ei2<>nil 
-//      then
+// then
 //      ei2.icu.curval:= or2+fac*(mval[1]-yn); 
-//      do_ipo_nocalc(G.sipo.ipo); 
+//      do_ipo_nocalc(G.sipo^.ipo);
 //      do_all_visible_ikas(); 
 //      if G.qual and LR_CTRLKEY
-//      then
+// then
 //      begin 
 //        sprintf(str,'Recording... %d\n',cfra); 
 //        data1[cfra-SFRA]:= ei1.icu.curval; 
 //        if ei2<>nil 
-//        then
+// then
 //        data2[cfra-SFRA]:= ei2.icu.curval; 
 //        sfra:= MIN2(sfra,cfra); 
 //        efra:= MAX2(efra,cfra); 
@@ -7457,7 +7457,7 @@ end;
 //      do_ob_key(OBACT); 
 //      headerprint(str); 
 //      if sa<>nil 
-//      then
+// then
 //      sa^.windraw();
 //      tottime:= tottime - (swaptime); (* minimaal swaptime laten voorbijgaan *)
 //      while update_time()
@@ -7468,11 +7468,11 @@ end;
 //      mvalo[0]:= mval[0]; 
 //      mvalo[1]:= mval[1]; 
 //      if anim)or((G.qual and LR_CTRLKEY)
-//      then
+// then
 //      begin 
 //        inc(cfra); 
 //        if cfra>EFRA
-//        then
+// then
 //        cfra:= SFRA; 
 //      end;
 //    end;
@@ -7481,7 +7481,7 @@ end;
 //    begin 
 //      event:= extern_qread(@val); 
 //      if val<>nil 
-//      then
+// then
 //      begin 
 //        case event of
 //          LEFTMOUSE,
@@ -7495,67 +7495,67 @@ end;
 //        end;{case?}
 //      end;
 //      if afbreek<>nil 
-//      then
+// then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //  end;
 //  if event<>ESCKEY
-//  then
+// then
 //  begin 
 //    sampledata_to_ipocurve(data1+sfra-SFRA,sfra,efra,ei1.icu); 
 //    if ei2<>nil 
-//    then
+// then
 //    sampledata_to_ipocurve(data2+sfra-SFRA,sfra,efra,ei2.icu); 
 //    (* vervelend als dat aanstaat *)
-//    if G.sipo.showkey<>nil 
-//    then
+//    if G.sipo^.showkey<>nil
+// then
 //    begin 
-//      G.sipo.showkey:= 0; 
-//      free_ipokey(@G.sipo.ipokey); 
+//      G.sipo^.showkey:= 0;
+//      free_ipokey(@G.sipo^.ipokey);
 //    end;
 //  end;
 //  else
 //  begin 
 //    (* undo: startwaardes *)
-//    poin:= get_ipo_poin(G.sipo.from,ei1.icu,@type); 
+//    poin:= get_ipo_poin(G.sipo^.from,ei1.icu,@type);
 //    if poin<>nil 
-//    then
+// then
 //    write_ipo_poin(poin,type,or1); 
 //    if ei1.icu.bezt=0
-//    then
+// then
 //    begin 
-//      remlink(@(G.sipo.ipo.curve),ei1.icu); 
+//      remlink(@(G.sipo^.ipo.curve),ei1.icu);
 //      freeN(ei1.icu); 
 //      ei1.icu:= 0; 
 //    end;
 //    if ei2<>nil 
-//    then
+// then
 //    begin 
-//      poin:= get_ipo_poin(G.sipo.from,ei2.icu,@type); 
+//      poin:= get_ipo_poin(G.sipo^.from,ei2.icu,@type);
 //      if poin<>nil 
-//      then
+// then
 //      write_ipo_poin(poin,type,or2); 
 //      if ei2.icu.bezt=0
-//      then
+// then
 //      begin 
-//        remlink(@(G.sipo.ipo.curve),ei2.icu); 
+//        remlink(@(G.sipo^.ipo.curve),ei2.icu);
 //        freeN(ei2.icu); 
 //        ei2.icu:= 0; 
 //      end;
 //    end;
 //  end;
 //  if ei1.icu<>nil 
-//  then
+// then
 //  ei1.icu.flag:= ei1.icu.flag and ( not IPO_LOCK); 
 //  if ei2)and(ei2.icu
-//  then
+// then
 //  ei2.icu.flag:= ei2.icu.flag and ( not IPO_LOCK); 
 //  editipo_changed(0); 
-//  do_ipo(G.sipo.ipo); 
+//  do_ipo(G.sipo^.ipo);
 //  waitcursor(0); 
 //  allqueue(REDRAWVIEW3D,0); 
 //  if sa<>nil 
-//  then
+// then
 //  addqueue(sa^.headwin,REDRAW,1);
 //  addqueue(oldarea.headwin,REDRAW,1); 
 //  (* headerprint *)

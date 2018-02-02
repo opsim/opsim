@@ -81,13 +81,15 @@ interface
   //function callocstructN(x,y,name : longint) : longint;
 
   { #define RMK(x) }
-  { #define ELEM(a, b, c)		( (a)==(b) || (a)==(c) ) }
-  { #define ELEM3(a, b, c, d)	( ELEM(a, b, c) || (a)==(d) ) }
-  { #define ELEM4(a, b, c, d, e)	( ELEM(a, b, c) || ELEM(a, d, e) ) }
-  { #define ELEM5(a, b, c, d, e, f)	( ELEM(a, b, c) || ELEM3(a, d, e, f) ) }
-  { #define ELEM6(a, b, c, d, e, f, g)	( ELEM(a, b, c) || ELEM4(a, d, e, f, g) ) }
-  { #define ELEM7(a, b, c, d, e, f, g, h)	( ELEM3(a, b, c, d) || ELEM4(a, e, f, g, h) ) }
-  { #define ELEM8(a, b, c, d, e, f, g, h, i)	( ELEM4(a, b, c, d, e) || ELEM4(a, f, g, h, i) ) }
+
+  function ELEM(a, b, c: integer): boolean;
+  function ELEM3(a, b, c, d: integer): boolean;
+  function ELEM4(a, b, c, d, e: integer): boolean;
+  function ELEM5(a, b, c, d, e, f: integer): boolean;
+  function ELEM6(a, b, c, d, e, f, g: integer): boolean;
+  function ELEM7(a, b, c, d, e, f, g, h: integer): boolean;
+  function ELEM8(a, b, c, d, e, f, g, h, i: integer): boolean;
+
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
   { return type might be wrong }
@@ -98,32 +100,32 @@ interface
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
   { return type might be wrong }
-  function MIN2(x,y : longint) : longint;
+  function MIN2(x,y : single) : single;
 
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
   { return type might be wrong }
-  function MIN3(x,y,z : longint) : longint;
+  function MIN3(x,y,z : single) : single;
 
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
   { return type might be wrong }
-  function MIN4(x,y,z,a : longint) : longint;
+  function MIN4(x,y,z,a : single) : single;
 
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
   { return type might be wrong }
-  function MAX2(x,y : longint) : longint;
+  function MAX2(x,y : single) : single;
 
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
   { return type might be wrong }
-  function MAX3(x,y,z : longint) : longint;
+  function MAX3(x,y,z : single) : single;
 
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
   { return type might be wrong }
-  function MAX4(x,y,z,a : longint) : longint;
+  function MAX4(x,y,z,a : single) : single;
 
   { #define SWAP(type, a, b)	 type sw_ap; sw_ap=(a); (a)=(b); (b)=sw_ap;  }
 {$ifndef ABS}
@@ -218,7 +220,7 @@ interface
 
   {#define PRINT(d, var1)	printf(# var1 ":%" # d "\n", var1) }
   {#define PRINT2(d, e, var1, var2)	printf(# var1 ":%" # d " " # var2 ":%" # e "\n", var1, var2) }
-  {#define PRINT3(d, e, f, var1, var2, var3)	printf(# var1 ":%" # d " " # var2 ":%" # e " " # var3 ":%" # f "\n", var1, var2, var3) }
+  procedure PRINT3(d, e, f: char; var1, var2, var3: integer); //{#define PRINT3(d, e, f, var1, var2, var3)	printf(# var1 ":%" # d " " # var2 ":%" # e " " # var3 ":%" # f "\n", var1, var2, var3) }
   {#define PRINT4(d, e, f, g, var1, var2, var3, var4)	printf(# var1 ":%" # d " " # var2 ":%" # e " " # var3 ":%" # f " " # var4 ":%" # g "\n", var1, var2, var3, var4) }
 {$endif}
 
@@ -309,7 +311,7 @@ interface
   //procedure freelinkN(listbase:pListBase; vlink:pointer);
   //procedure freelist(listbase:pListBase);
   procedure freelistN(listbase:pListBase);
-  //procedure insertlink(listbase:pListBase; vprevlink:pointer; vnewlink:pointer);
+  procedure insertlink(listbase:pListBase; vprevlink:pointer; vnewlink:pointer);
   procedure insertlinkbefore(listbase:pListBase; vnextlink:pointer; vnewlink:pointer);
   //function load_to_mem(name:Pchar):pointer;
   function mallocN(len:longint; str:Pchar):pointer;
@@ -371,12 +373,47 @@ cfuncs;
       STREQ:=0;
     end;
 
+    function ELEM(a, b, c: integer): boolean;
+    begin
+      exit((a=b) or (a=c) );
+    end;
+
+    function ELEM3(a, b, c, d: integer): boolean;
+    begin
+      exit( ELEM(a, b, c) or (a=d) );
+    end;
+
+    function ELEM4(a, b, c, d, e: integer): boolean;
+    begin
+      exit( ELEM(a, b, c) or ELEM(a, d, e) );
+    end;
+
+    function ELEM5(a, b, c, d, e, f: integer): boolean;
+    begin
+      exit( ELEM(a, b, c) or ELEM3(a, d, e, f) );
+    end;
+
+    function ELEM6(a, b, c, d, e, f, g: integer): boolean;
+    begin
+      exit( ELEM(a, b, c) or ELEM4(a, d, e, f, g) );
+    end;
+
+    function ELEM7(a, b, c, d, e, f, g, h: integer): boolean;
+    begin
+      exit( ELEM3(a, b, c, d) or ELEM4(a, e, f, g, h) );
+    end;
+
+    function ELEM8(a, b, c, d, e, f, g, h, i: integer): boolean;
+    begin
+      exit( ELEM4(a, b, c, d, e) or ELEM4(a, f, g, h, i) );
+    end;
+
     { was #define dname(params) para_def_expr }
     { argument types are unknown }
     { return type might be wrong }
-    function MIN2(x,y : longint) : longint;
+    function MIN2(x,y : single) : single;
     var
-       if_local1 : longint;
+       if_local1 : single;
     (* result types are not known *)
     begin
       if y<>0 then
@@ -393,7 +430,7 @@ cfuncs;
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
   { return type might be wrong }
-  function MIN3(x,y,z : longint) : longint;
+  function MIN3(x,y,z : single) : single;
   begin
     MIN3:=MIN2(MIN2(x,y),z);
   end;
@@ -401,7 +438,7 @@ cfuncs;
 { was #define dname(params) para_def_expr }
 { argument types are unknown }
 { return type might be wrong }
-function MIN4(x,y,z,a : longint) : longint;
+function MIN4(x,y,z,a : single) : single;
 begin
   MIN4:=MIN2(MIN2(x,y),MIN2(z,a));
 end;
@@ -409,9 +446,9 @@ end;
 { was #define dname(params) para_def_expr }
 { argument types are unknown }
 { return type might be wrong }
-function MAX2(x,y : longint) : longint;
+function MAX2(x,y : single) : single;
 var
-   if_local1 : longint;
+   if_local1 : single;
 (* result types are not known *)
 begin
   if y<>0 then
@@ -428,7 +465,7 @@ end;
 { was #define dname(params) para_def_expr }
 { argument types are unknown }
 { return type might be wrong }
-function MAX3(x,y,z : longint) : longint;
+function MAX3(x,y,z : single) : single;
 begin
   MAX3:=MAX2(MAX2(x,y),z);
 end;
@@ -436,7 +473,7 @@ end;
 { was #define dname(params) para_def_expr }
 { argument types are unknown }
 { return type might be wrong }
-function MAX4(x,y,z,a : longint) : longint;
+function MAX4(x,y,z,a : single) : single;
 begin
   MAX4:=MAX2(MAX2(x,y),MAX2(z,a));
 end;
@@ -505,6 +542,11 @@ end;
   function CLN(x : longint) : longint;
   begin
     CLN:=longint(callocN(sizeof(x),'x'));
+  end;
+
+  procedure PRINT3(d, e, f: char; var1, var2, var3: integer);
+  begin
+    printf(pchar('var1:%' + d + ' var2:%' + e + ' var3:%' + f + '\n'), [var1, var2, var3]);
   end;
 
     { was #define dname def_expr }
@@ -606,68 +648,52 @@ end;
 //  
 //  found:=LongBool(0); 
 //  len2:= len:=lstrlen(string); 
-//  if len>6
-//  then
+//  if len>6 then
 //  begin 
-//    if strncasecmp(string+len-6,'.blend',6)=nil
-//    then
+//    if strncasecmp(string+len-6,'.blend',6)=nil then
 //    len:= len - (6); 
 //    else
-//    if strncasecmp(string+len-6,'.trace',6)=nil
-//    then
+//    if strncasecmp(string+len-6,'.trace',6)=nil then
 //    len:= len - (6); 
 //  end;
-//  if len=len2
-//  then
+//  if len=len2 then
 //  begin 
-//    if len>4
-//    then
+//    if len>4 then
 //    begin 
 //      (* .jf0 en .jf1 voor jstreams afvangen *)
-//      if strncasecmp(string+len-4,'.jf',3)=nil
-//      then
+//      if strncasecmp(string+len-4,'.jf',3)=nil then
 //      len:= len - (4); 
 //      else
-//      if strncasecmp(string+len-4,'.tga',4)=nil
-//      then
+//      if strncasecmp(string+len-4,'.tga',4)=nil then
 //      len:= len - (4); 
 //      else
-//      if strncasecmp(string+len-4,'.jpg',4)=nil
-//      then
+//      if strncasecmp(string+len-4,'.jpg',4)=nil then
 //      len:= len - (4); 
 //      else
-//      if strncasecmp(string+len-4,'.txt',4)=nil
-//      then
+//      if strncasecmp(string+len-4,'.txt',4)=nil then
 //      len:= len - (4); 
 //      else
-//      if strncasecmp(string+len-4,'.cyc',4)=nil
-//      then
+//      if strncasecmp(string+len-4,'.cyc',4)=nil then
 //      len:= len - (4); 
 //      else
-//      if strncasecmp(string+len-4,'.enh',4)=nil
-//      then
+//      if strncasecmp(string+len-4,'.enh',4)=nil then
 //      len:= len - (4); 
 //      else
-//      if strncasecmp(string+len-4,'.rgb',4)=nil
-//      then
+//      if strncasecmp(string+len-4,'.rgb',4)=nil then
 //      len:= len - (4); 
 //      else
-//      if strncasecmp(string+len-4,'.psx',4)=nil
-//      then
+//      if strncasecmp(string+len-4,'.psx',4)=nil then
 //      len:= len - (4); 
 //    end;
 //  end;
 //  for{while} i:=len-1 downto 0 { i--}
 //  do
 //  begin 
-//    if string[i]='/'
-//    then
+//    if string[i]='/' then
 //    break; {<= !!!b possible in "switch" - then remove this line}
-//    if isdigit(string[i])
-//    then
+//    if isdigit(string[i]) then
 //    begin 
-//      if found<>nil 
-//      then
+//      if found<>nil  then
 //      begin 
 //        nums:= i; 
 //      end;
@@ -680,42 +706,34 @@ end;
 //    end;
 //    else
 //    begin 
-//      if found<>nil 
-//      then
+//      if found<>nil  then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //  end;
-//  if found<>nil 
-//  then
+//  if found<>nil  then
 //  begin 
-//    if staart<>nil 
-//    then
+//    if staart<>nil  then
 //    strcpy(staart,@string[nume+1]); 
-//    if kop<>nil 
-//    then
+//    if kop<>nil  then
 //    begin 
 //      strcpy(kop,string); 
 //      kop[nums]:=nil; 
 //    end;
-//    if numlen<>nil 
-//    then
+//    if numlen<>nil  then
 //    {*}numlen^:=nume-nums+1; 
 //    begin
 //      result:= ( {integer(}atoi(@(string[nums])));
 //      exit;
 //    end;
 //  end;
-//  if staart<>nil 
-//  then
+//  if staart<>nil  then
 //  strcpy(staart,string+len); 
-//  if kop<>nil 
-//  then
+//  if kop<>nil  then
 //  begin 
 //    strncpy(kop,string,len); 
 //    kop[len]:=nil; 
 //  end;
-//  if numlen<>nil 
-//  then
+//  if numlen<>nil  then
 //  {*}numlen^:=nil; 
 //  begin
 //    result:=nil; 
@@ -725,7 +743,7 @@ end;
 //
 //procedure stringenc(string: pchar;  kop: pchar;  staart: pchar;  numlen: word;  pic: integer); 
 //var
-//numstr: array [0..Pred(10)] of char;
+//numstr: array [0..9] of char;
 // 
 //len: word; 
 //i: word; 
@@ -734,12 +752,10 @@ end;
 //  
 //  
 //  strcpy(string,kop); 
-//  if pic>0)or(numlen=4
-//  then
+//  if pic>0)or(numlen=4 then
 //  begin 
 //    len:= sprintf(numstr,'%d',pic); 
-//    for{while} i:=len to Pred(numlen) {i++}
-//    do
+//    for{while} i:=len to numlen-1 do
 //    begin 
 //      strcat(string,'0'); 
 //    end;
@@ -750,8 +766,8 @@ end;
 //
 //procedure newname(name: pchar;  add: integer); 
 //var
-//head: array [0..Pred(128)] of char; 
-//tail: array [0..Pred(128)] of char; 
+//head: array [0..127] of char;
+//tail: array [0..127] of char;
 //pic: integer; 
 //digits: word; 
 //i: integer; 
@@ -762,8 +778,7 @@ end;
 //  
 //  
 //  pic:= stringdec(name,head,tail, and digits); (* gaan we van 100 -> 99 of van 10 naar 9 *)
-//  if add<0)and(digits<4)and(digits>0
-//  then
+//  if add<0)and(digits<4)and(digits>0 then
 //  begin 
 //    
 //    
@@ -771,13 +786,11 @@ end;
 //    for{while} i:=digits downto Succ(1) { i--}
 //    do
 //    exp:= exp * (10); 
-//    if pic>=exp)and((pic+add)<exp
-//    then
+//    if pic>=exp)and((pic+add)<exp then
 //    dec(digits); 
 //  end;
 //  pic:= pic + (add); 
-//  if digits=4)and(pic<0
-//  then
+//  if digits=4)and(pic<0 then
 //  pic:=nil; 
 //  stringenc(name,head,tail,digits,pic); 
 //end;
@@ -791,19 +804,19 @@ var
 begin
   link:= vlink;
 
-  if link=nil  then
+  if link=nil then
   exit;
 
-  if listbase=nil  then
+  if listbase=nil then
   exit;
 
   link^.next:= listbase^.first;
   link^.prev:=nil;
 
-  if listbase^.first<>nil  then
+  if listbase^.first<>nil then
   pLink(listbase^.first)^.prev:=link;
 
-  if listbase^.last=nil  then
+  if listbase^.last=nil then
   listbase^.last:= link;
 
   listbase^.first:= link;
@@ -818,15 +831,15 @@ var
 begin
   link:= vlink;
 
-  if link=nil  then
+  if link=nil then
   exit;
 
-  if listbase=nil  then
+  if listbase=nil then
   exit;
 
   link^.next:= nil;
   link^.prev:= listbase^.last;
-  if listbase^.last<>nil  then
+  if listbase^.last<>nil then
   pLink(listbase^.last)^.next:=link;
 
   if listbase^.first=nil then
@@ -845,16 +858,16 @@ var
 begin
   link:= vlink;
 
-  if link=nil  then
+  if link=nil then
   exit;
 
-  if listbase=nil   then
+  if listbase=nil then
   exit;
 
-  if link^.next<>nil  then
+  if link^.next<>nil then
   link^.next^.prev:= link^.prev;
 
-  if link^.prev<>nil  then
+  if link^.prev<>nil then
   link^.prev^.next:= link^.next;
 
   if listbase^.last=link then
@@ -871,58 +884,53 @@ end;
 //procedure freelinkN(listbase: pListBase;  vlink: pinteger);
 //begin
 //  
-//  if link=nil
-//  then
+//  if link=nil then
 //  exit;
-//  if listbase=nil
-//  then
+//  if listbase=nil then
 //  exit;
 //  remlink(listbase,link); 
 //  freeN(link); 
 //end;
-//type
-//Link = record
-//end;(* newlink komt na prevlink *)
-//
-//procedure insertlink(listbase: pListBase;  vprevlink: pinteger;  vnewlink: pinteger);
-//begin
-//  if newlink=nil
-//  then
-//  exit;
-//  if listbase=nil
-//  then
-//  exit;
-//  if listbase^.first=nil
-//  then
-//  begin 
-//    (* lege lijst *)
-//    listbase^.first:= newlink; 
-//    listbase^.last:= newlink; 
-//    exit;
-//  end;
-//  if prevlink=nil
-//  then
-//  begin 
-//    (* inserten voor eerste element *)
-//    newlink^.next:= listbase^.first; 
-//    newlink^.prev:=nil; 
-//    newlink^.next^.prev:= newlink; 
-//    listbase^.first:= newlink; 
-//    exit;
-//  end;
-//  if listbase^.last=prevlink
-//  then
-//  listbase^.last:= newlink; 
-//  newlink^.next:= prevlink^.next; 
-//  prevlink^.next:= newlink; (* aan einde lijst *)
-//  if newlink^.next<>nil 
-//  then
-//  newlink^.next^.prev:= newlink; 
-//  newlink^.prev:= prevlink; 
-//end;
-//type
-//Link = record
-//end;
+
+procedure insertlink(listbase: pListBase;  vprevlink: pointer;  vnewlink: pointer);
+var
+ prevlink: pLink;
+ newlink: pLink;
+begin
+  prevlink:= vprevlink;
+  newlink:= vnewlink;
+
+  (* newlink komt na prevlink *)
+
+  if newlink=nil then
+  exit;
+  if listbase=nil then
+  exit;
+
+  if listbase^.first=nil then  (* lege lijst *)
+  begin
+    listbase^.first:= newlink;
+    listbase^.last:= newlink;
+    exit;
+  end;
+  if prevlink=nil then    (* inserten voor eerste element *)
+  begin
+    newlink^.next:= listbase^.first;
+    newlink^.prev:=nil;
+    newlink^.next^.prev:= newlink;
+    listbase^.first:= newlink;
+    exit;
+  end;
+
+  if listbase^.last=prevlink then  (* aan einde lijst *)
+  listbase^.last:= newlink;
+
+  newlink^.next:= prevlink^.next;
+  prevlink^.next:= newlink;
+  if newlink^.next<>nil then
+  newlink^.next^.prev:= newlink;
+  newlink^.prev:= prevlink;
+end;
 
 procedure insertlinkbefore(listbase: pListBase;  vnextlink: pointer;  vnewlink: pointer);
 var
@@ -933,13 +941,13 @@ begin
 
         (* newlink komt voor nextlink *)
 
-  if newlink=nil   then
+  if newlink=nil then
   exit;
-  if listbase=nil  then
+  if listbase=nil then
   exit;
 
   (* lege lijst *)
-  if listbase^.first=nil   then
+  if listbase^.first=nil then
   begin
 
     listbase^.first:= newlink;
@@ -958,14 +966,14 @@ begin
   end;
 
   (* aan begin lijst *)
-  if listbase^.first=nextlink    then
+  if listbase^.first=nextlink then
   listbase^.first:= newlink;
 
   newlink^.next:= nextlink;
   newlink^.prev:= nextlink^.prev;
   nextlink^.prev:= newlink;
 
-  if newlink^.prev<>nil   then
+  if newlink^.prev<>nil then
   newlink^.prev^.next:= newlink;
 end;
 //type
@@ -975,8 +983,7 @@ end;
 //procedure freelist(listbase: pListBase);
 //begin
 //  
-//  if listbase=nil
-//  then
+//  if listbase=nil then
 //  exit;
 //  link:= listbase^.first; 
 //  while link
@@ -1020,8 +1027,7 @@ end;
 //begin
 //  
 //  count:=nil; 
-//  if listbase<>nil 
-//  then
+//  if listbase<>nil  then
 //  begin 
 //    link:= listbase^.first; 
 //    while link
@@ -1040,8 +1046,8 @@ end;
 //
 //function fileselect(title: pchar;  dir: pchar): smallint; 
 //var
-//buf: array [0..Pred(200)] of char; 
-//fspipe: array [0..Pred(2)] of integer; 
+//buf: array [0..199] of char;
+//fspipe: array [0..1] of integer;
 //len: integer; 
 //ok: integer; 
 //begin
@@ -1049,8 +1055,7 @@ end;
 //  
 //  
 //  
-//  if pipe(fspipe)
-//  then
+//  if pipe(fspipe) then
 //  begin
 //    result:= (0); 
 //    exit;
@@ -1058,17 +1063,13 @@ end;
 //  end;
 //  sprintf(buf,'fs -d '%s' -p '%d' -t '%s'',dir,fspipe[1],title);
 //  len:= ok:=nil; 
-//  if system(buf)=nil
-//  then
+//  if system(buf)=nil then
 //  begin 
-//    if read(fspipe[0],@len,4)=4
-//    then
+//    if read(fspipe[0],@len,4)=4 then
 //    begin 
-//      if read(fspipe[0],buf,len)=len
-//      then
+//      if read(fspipe[0],buf,len)=len then
 //      begin 
-//        if len>1
-//        then
+//        if len>1 then
 //        begin 
 //          strcpy(dir,buf); 
 //          ok:= 1; 
@@ -1086,8 +1087,8 @@ end;
 //
 //function stringselect(title: pchar;  file: pchar): smallint; 
 //var
-//buf: array [0..Pred(200)] of char; 
-//fspipe: array [0..Pred(2)] of integer; 
+//buf: array [0..199] of char;
+//fspipe: array [0..1] of integer;
 //len: integer; 
 //ok: integer; 
 //begin
@@ -1095,25 +1096,20 @@ end;
 //  
 //  
 //  
-//  if pipe(fspipe)
-//  then
+//  if pipe(fspipe) then
 //  begin
 //    result:= (0); 
 //    exit;
 //  end;
 //  sprintf(buf,'fs -f '%s' -s -p '%d' -t '%s'',file,fspipe[1],title);
 //  len:= ok:=nil; 
-//  if system(buf)=nil
-//  then
+//  if system(buf)=nil then
 //  begin 
-//    if read(fspipe[0],@len,4)=4
-//    then
+//    if read(fspipe[0],@len,4)=4 then
 //    begin 
-//      if read(fspipe[0],buf,len)=len
-//      then
+//      if read(fspipe[0],buf,len)=len then
 //      begin 
-//        if len>1
-//        then
+//        if len>1 then
 //        begin 
 //          strcpy(file,buf); 
 //          ok:= 1; 
@@ -1152,20 +1148,20 @@ var
 memh: pMemHead;
 memt: pMemTail;
 begin
-  if len<=0  then
+  if len<=0 then
   begin
     printf('Malloc error: len=%d in %s\n',[len,str]);
           exit(nil);
   end;
 
-  if sizeof(longint)=8  then
+  if sizeof(longint)=8 then
   len:= (len+3) and  not 3      (* eenheden van 4 *)
   else
   len:= (len+7) and  not 7;      (* eenheden van 8 *)
 
   memh:= pMemHead(malloc(len+sizeof(MemHead)+sizeof(MemTail)));
 
-  if memh<>nil  then
+  if memh<>nil then
   begin
     memh^.tag1:= MEMTAG1;
     memh^.name:= str;
@@ -1177,7 +1173,7 @@ begin
     memt^.tag3:= MEMTAG3;
     addtail(membase,@memh^.next);
 
-    if memh^.next<>nil    then
+    if memh^.next<>nil then
     memh^.nextname:= MEMNEXT(memh^.next)^.name;
 
     inc(totblock);
@@ -1196,7 +1192,7 @@ var
 memh: pMemHead;
 memt: pMemTail;
 begin
-  if len<=0  then
+  if len<=0 then
   begin
     printf('Malloc error: len=%d in %s\n',[len,str]);
     exit(nil);
@@ -1209,7 +1205,7 @@ begin
 
   memh:= pMemHead(calloc(len+sizeof(MemHead)+sizeof(MemTail),1));
 
-  if memh<>nil  then
+  if memh<>nil then
   begin
     memh^.tag1:= MEMTAG1;
     memh^.name:= str;
@@ -1221,7 +1217,7 @@ begin
     memt^.tag3:= MEMTAG3;
     addtail(membase,@memh^.next);
 
-        if memh^.next<>nil    then
+        if memh^.next<>nil then
         memh^.nextname:= MEMNEXT(memh^.next)^.name;
 
         inc(totblock);
@@ -1238,9 +1234,9 @@ end;
 procedure rem_memblock(memh: pMemHead);
 begin
   remlink(membase,@memh^.next);
-  if memh^.prev<>nil  then
+  if memh^.prev<>nil then
   begin
-    if memh^.next<>nil    then
+    if memh^.next<>nil then
     MEMNEXT(memh^.prev)^.nextname:=MEMNEXT(memh^.next)^.name
     else
     MEMNEXT(memh^.prev)^.nextname:=#0;
@@ -1258,13 +1254,13 @@ begin
   printf('total memory blocks: %d\n\n',[totblock]);
 
   membl:= membase^.first;
-  if membl<>nil    then
+  if membl<>nil then
   membl:= MEMNEXT(membl);
 
   while membl <>nil do
   begin
     printf('%24s len: %8d %p\n',[membl^.name,membl^.len,membl+1]);
-    if membl^.next<>nil    then
+    if membl^.next<>nil then
     membl:= MEMNEXT(membl^.next)
     else
     break;
@@ -1280,32 +1276,32 @@ backok: pMemHead;
 name: pchar;
 begin
   forw:= membase^.first;
-  if forw<>nil  then
+  if forw<>nil then
   forw:= MEMNEXT(forw);
 
   forwok:= nil;
   while forw <>nil  do
   begin
-    if (forw^.tag1<>MEMTAG1)or(forw^.tag2<>MEMTAG2)    then
+    if (forw^.tag1<>MEMTAG1)or(forw^.tag2<>MEMTAG2) then
     break;
     forwok:= forw;
-    if forw^.next<>nil    then
+    if forw^.next<>nil then
     forw:= MEMNEXT(forw^.next)
     else
     forw:= nil;
   end;
 
   back:= pMemHead(membase^.last);
-  if back<>nil  then
+  if back<>nil then
   back:= MEMNEXT(back);
   backok:= nil;
   while back<>nil  do
   begin
-    if (back^.tag1<>MEMTAG1)or(back^.tag2<>MEMTAG2)    then
+    if (back^.tag1<>MEMTAG1)or(back^.tag2<>MEMTAG2) then
     break;
 
     backok:= back;
-    if back^.prev<>nil    then
+    if back^.prev<>nil then
     back:= MEMNEXT(back^.prev)
     else
     back:= nil;
@@ -1314,65 +1310,65 @@ begin
   if forw<>back then
     exit('MORE THAN 1 MEMORYBLOCK CORRUPT');
 
-  if (forw=nil)and(back=nil)  then
+  if (forw=nil)and(back=nil) then
   begin
     (* geen foute headers gevonden dan maar op zoek naar memblock*)
     forw:= membase^.first;
 
-    if forw<>nil    then
+    if forw<>nil then
     forw:= MEMNEXT(forw);
 
     forwok:= nil;
     while forw<>nil    do
     begin
-      if forw=memh     then
+      if forw=memh then
       break;
 
-      if (forw^.tag1<>MEMTAG1)or(forw^.tag2<>MEMTAG2)      then
+      if (forw^.tag1<>MEMTAG1)or(forw^.tag2<>MEMTAG2) then
       break;
 
       forwok:= forw;
-      if forw^.next<>nil      then
+      if forw^.next<>nil then
       forw:= MEMNEXT(forw^.next)
       else
       forw:=nil;
     end;
 
-    if forw=nil    then
+    if forw=nil then
     exit(nil);
 
     back:= pMemHead(membase^.last);
-    if back<>nil    then
+    if back<>nil then
     back:= MEMNEXT(back);
     backok:= nil;
     while back <>nil    do
     begin
-      if back=memh        then
+      if back=memh then
       break;
 
-      if (back^.tag1<>MEMTAG1)or(back^.tag2<>MEMTAG2)      then
+      if (back^.tag1<>MEMTAG1)or(back^.tag2<>MEMTAG2) then
       break;
 
       backok:= back;
-      if back^.prev<>nil      then
+      if back^.prev<>nil then
       back:= MEMNEXT(back^.prev)
       else
       back:= nil;
     end;
   end;
-  if forwok<>nil  then
+  if forwok<>nil then
   name:= forwok^.nextname
   else
   name:= 'No name found';
 
-  if forw=memh  then
+  if forw=memh then
   begin
     (* voor alle zekerheid wordt dit block maar uit de lijst gehaald *)
     if forwok<>nil
-    then
+ then
     begin
       if backok<>nil
-      then
+ then
       begin
         forwok^.next:=  backok^.next;
         backok^.prev:=  forwok^.next;
@@ -1386,7 +1382,7 @@ begin
     end
     else
     begin
-      if backok<>nil      then
+      if backok<>nil then
       begin
         backok^.prev:= nil;
         membase^.first:=   backok^.next;
@@ -1415,14 +1411,14 @@ name: pchar;
 begin
   memh:=vmemh;
 
-  if memh=nil  then
+  if memh=nil then
   begin
     memory_error('free','attempt to free NULL pointer');
       exit(-1);
    end;
   if sizeof(longint)=8 then
   begin
-    if (integer(memh) and $7) <>0    then
+    if (integer(memh) and $7) <>0 then
     begin
       memory_error('free','attempt to free illegal pointer');
       exit(-1);
@@ -1430,7 +1426,7 @@ begin
   end
   else
   begin
-    if (integer(memh) and $3) <>0    then
+    if (integer(memh) and $3) <>0 then
     begin
       memory_error('free','attempt to free illegal pointer');
       exit(-1);
@@ -1438,16 +1434,16 @@ begin
   end;
 
   dec(memh);
-  if (memh^.tag1=MEMFREE)and(memh^.tag2=MEMFREE)  then
+  if (memh^.tag1=MEMFREE)and(memh^.tag2=MEMFREE) then
   begin
     memory_error(memh^.name,'double free');
     exit(-1);
   end;
-  if (memh^.tag1=MEMTAG1)and(memh^.tag2=MEMTAG2)and((memh^.len and $3)=0)  then
+  if (memh^.tag1=MEMTAG1)and(memh^.tag2=MEMTAG2)and((memh^.len and $3)=0) then
   begin
     memt:= pMemTail(pchar(memh)+sizeof(MemHead)+memh^.len);
     if memt^.tag3=MEMTAG3
-    then
+ then
     begin
       memh^.tag1:= MEMFREE;
       memh^.tag2:= MEMFREE;
@@ -1460,9 +1456,9 @@ begin
     error:= 2;
     memory_error(memh^.name,'end corrupt');
     name:= check_memlist(memh);
-    if name<>nil    then
+    if name<>nil then
     begin
-      if name<>memh^.name      then
+      if name<>memh^.name then
       memory_error(name,'is also corrupt');
     end;
   end
@@ -1470,7 +1466,7 @@ begin
   begin
     error:= -1;
     name:= check_memlist(memh);
-    if name=nil    then
+    if name=nil then
     memory_error('free','pointer not in memlist')
     else
     memory_error(name,'error in header');
@@ -1482,18 +1478,17 @@ end;
 
 //procedure ap_framelen(cmd: pchar;  i: integer); 
 //var
-//buf: array [0..Pred(8)] of char; 
+//buf: array [0..7] of char;
 //begin
 //  
-//  if i<10
-//  then
+//  if i<10 then
 //  sprintf(buf,'0%d',i); 
 //  else
 //  sprintf(buf,'%d',i); 
 //  strcat(cmd,buf); 
 //end;
 //var {was static}
-//str: array [0..Pred(64)] of char; 
+//str: array [0..63] of char;
 //
 //function tcode_to_string(len: integer): pchar; 
 //var
@@ -1503,8 +1498,7 @@ end;
 //  
 //  
 //  
-//  if len<0
-//  then
+//  if len<0 then
 //  begin 
 //    strcpy(str,'- '); 
 //    len:= -len; 
@@ -1514,24 +1508,21 @@ end;
 //    str[0]:=nil; 
 //  end;
 //  rlen:= len; 
-//  if len>=90000
-//  then
+//  if len>=90000 then
 //  begin 
 //    i:= rlen div 90000; 
 //    ap_framelen(str,i); 
 //    strcat(str,':'); 
 //    rlen:= rlen - (90000*i); 
 //  end;
-//  if len>=1500
-//  then
+//  if len>=1500 then
 //  begin 
 //    i:= rlen div 1500; 
 //    ap_framelen(str,i); 
 //    strcat(str,':'); 
 //    rlen:= rlen - (1500*i); 
 //  end;
-//  if len>=25
-//  then
+//  if len>=25 then
 //  begin 
 //    i:= rlen div 25; 
 //    ap_framelen(str,i); 
@@ -1548,12 +1539,12 @@ end;
 //function string_to_tcode(str: pchar): integer; 
 //var
 //i: integer; 
-//val: array [0..Pred(4)] of integer; 
+//val: array [0..3] of integer;
 //tcode: integer;
 // 
 //j: integer;
 // 
-//string: array [0..Pred(64)] of char; 
+//string: array [0..63] of char;
 //begin
 //  
 //  
@@ -1568,8 +1559,7 @@ end;
 //  inc(i); 
 //  do
 //  begin 
-//    if isdigit(string[i])=nil
-//    then
+//    if isdigit(string[i])=nil then
 //    string[i]:= ' '; 
 //  end;
 //  i:= sscanf(string,'%ld%ld%ld%ld',val,val+1,val+2,val+3); 
@@ -1610,14 +1600,12 @@ end;
 //  i:=nil; 
 //  
 //  
-//  if s1=nil
-//  then
+//  if s1=nil then
 //  begin
 //    result:= (0); 
 //    exit;
 //  end;
-//  if s2=nil
-//  then
+//  if s2=nil then
 //  begin
 //    result:= (0); 
 //    exit;
@@ -1626,14 +1614,12 @@ end;
 //  begin 
 //    c1:= toupper(s1[i]); 
 //    c2:= toupper(s2[i]); 
-//    if c1<>c2
-//    then
+//    if c1<>c2 then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    inc(i); 
 //  end;
 //  until not {0=}(c1)and(c2);
-//  if c1=nil)and(c2=nil
-//  then
+//  if c1=nil)and(c2=nil then
 //  begin
 //    result:= (32767); 
 //    exit;
@@ -1651,15 +1637,13 @@ end;
 //begin
 //  
 //  
-//  if name=nil
-//  then
+//  if name=nil then
 //  begin
 //    result:= (0); 
 //    exit;
 //  end;
 //  file:= open(name,O_RDONLY); 
-//  if file=-1
-//  then
+//  if file=-1 then
 //  begin
 //    result:= (0); 
 //    exit;
@@ -1681,30 +1665,25 @@ end;
 //  
 //  
 //  
-//  if name=nil
-//  then
+//  if name=nil then
 //  begin
 //    result:= (0); 
 //    exit;
 //  end;
 //  file:= open(name,O_RDONLY); 
-//  if file=-1
-//  then
+//  if file=-1 then
 //  begin
 //    result:= (0); 
 //    exit;
 //  end;
 //  size:= lseek(file,0,SEEK_END); 
-//  if size>0
-//  then
+//  if size>0 then
 //  begin 
 //    lseek(file,0,SEEK_SET); 
 //    mem:= mallocN(size,'load_to_mem'); 
-//    if mem<>nil 
-//    then
+//    if mem<>nil  then
 //    begin 
-//      if read(file,mem,size)<>size
-//      then
+//      if read(file,mem,size)<>size then
 //      begin 
 //        freeN(mem); 
 //        mem:=nil; 
@@ -1823,7 +1802,7 @@ end;
 //{MIN2(x,y)  ( (x)<(y) ? (x) : (y) )}
 //function MIN2(x: integer; y: integer): integer;
 //begin
-//  result:= ((x)<(y) {was ?}if  then (x) {was :}else (y))
+//  result:= ((x)<(y) {was ?}if then (x) {was :}else (y))
 //end;
 //
 //{MIN3(x,y,z)  MIN2( MIN2((x),(y)) , (z) )}
@@ -1841,7 +1820,7 @@ end;
 //{MAX2(x,y)  ( (x)>(y) ? (x) : (y) )}
 //function MAX2(x: integer; y: integer): integer;
 //begin
-//  result:= ((x)>(y) {was ?}if  then (x) {was :}else (y))
+//  result:= ((x)>(y) {was ?}if then (x) {was :}else (y))
 //end;
 //
 //{MAX3(x,y,z)  MAX2( MAX2((x),(y)) , (z) )}
@@ -1865,7 +1844,7 @@ end;
 //{ABS(x) ((x) < 0 ? -(x) : (x))}
 //function ABS(x: integer): integer;
 //begin
-//  result:= ((x)<0 {was ?}if  then -(x) {was :}else (x))
+//  result:= ((x)<0 {was ?}if then -(x) {was :}else (x))
 //end;
 //
 //{GL(x) ( *((int * )(x)))}
