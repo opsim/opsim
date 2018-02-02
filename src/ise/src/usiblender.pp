@@ -30,7 +30,7 @@ uses
 GL, GLU, GLUT,
 screen, blender, util, blenglob, cfuncs, blendef, graphics,
 drawobject, drawview, mywindow, Button, scene, drawscene,
-mydevice, toolbox;
+mydevice, toolbox, font;
 //{$include "blender.h"}
 //{$include "graphics.h"}
 //{$include "file.h"}
@@ -353,7 +353,7 @@ begin
 
 	printf ('\nWindow options:\n');
 	printf ('  -w\t\tForce opening with borders\n');
-{$ifdef WIN32}
+{$ifdef WINDOWS}
 	printf ('  -W\t\tForce opening without borders\n');
 {$endif}
 	printf ('  -p <sx> <sy> <w> <h>\tOpen with lower left corner at <sx>, <sy>\n');
@@ -478,11 +478,11 @@ begin
 
     //read_homefile();
     //load_firstfont();
-    if G.main^.vfont.first=nil then
-    begin
-      printf('can''t find default vectorfont\n');
-      halt(0);
-    end;
+    //if G.main^.vfont.first=nil then
+    //begin
+    //  printf('can''t find default vectorfont\n');
+    //  halt(0);
+    //end;
 
     //readBlog();
     strcpy(G.lib,G.sce);

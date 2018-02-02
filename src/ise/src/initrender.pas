@@ -42,11 +42,11 @@ interface
 //{$include <stdio.h>}
 //{$include <limits.h>}
 //
-//{$ifndef WIN32}
+//{$ifndef WINDOWS}
 //{$include <sys/time.h>  * struct timeval * }
 //{$endif}
 //
-//{$if !defined(__BeOS) && !defined(WIN32)}
+//{$if !defined(__BeOS) && !defined(WINDOWS)}
 //{$include <sys/resource.h>  * struct rusage * }
 //{$endif}
 //
@@ -1053,7 +1053,7 @@ uses
 //    if fp<>0{nil} {<= !!!9} 
 //    then
 //    begin 
-//      fprintf(fp,'INFO'#13#10''); 
+//      fprintf(fp,'INFO\n'); 
 //    end;
 //  end;
 //  if fp=0
@@ -1067,11 +1067,11 @@ uses
 //  then
 //  exit;
 //  
-//  fprintf(fp,'NAME'#13#10'%s'#13#10'',ob.id.name+2); 
+//  fprintf(fp,'NAME\n%s\n',ob.id.name+2); 
 //  
 //  if ob.infoflag and OB_INFO_LOC
 //  then
-//  fprintf(fp,'LOC'#13#10'%f %f %f'#13#10'',ob.obmat[3][0],ob.obmat[3][1],ob.obmat[3][2]); 
+//  fprintf(fp,'LOC\n%f %f %f\n',ob.obmat[3][0],ob.obmat[3][1],ob.obmat[3][2]); 
 //  
 //  if ob.infoflag and OB_INFO_SCO
 //  then
@@ -1079,7 +1079,7 @@ uses
 //    
 //    Mat4MulMat4(mat,ob.obmat,R.viewmat); 
 //    info_calc_schermco(mat[3],vec1); 
-//    fprintf(fp,'SCO'#13#10'%f %f %f'#13#10'',vec1[0],vec1[1],vec1[2]); 
+//    fprintf(fp,'SCO\n%f %f %f\n',vec1[0],vec1[1],vec1[2]); 
 //  end;
 //  
 //  if ob.infoflag and OB_INFO_DROT
@@ -1087,7 +1087,7 @@ uses
 //  begin 
 //    
 //    info_calc_drot(ob, and co); 
-//    fprintf(fp,'DROT'#13#10'%f'#13#10'',co); 
+//    fprintf(fp,'DROT\n%f\n',co); 
 //    
 //  end;
 //end;
@@ -1109,7 +1109,7 @@ uses
 //  if nr<0)or(nr>MAXVERT
 //  then
 //  begin 
-//    printf('error in addvert: %d'#13#10'',nr); 
+//    printf('error in addvert: %d\n',nr); 
 //    begin
 //      result:= R.blove[0]; 
 //      exit;
@@ -1140,7 +1140,7 @@ uses
 //  if nr<0)or(nr>MAXVERT
 //  then
 //  begin 
-//    printf('error in addhalo: %d'#13#10'',nr); 
+//    printf('error in addhalo: %d\n',nr); 
 //    begin
 //      result:= R.bloha[0]; 
 //      exit;
@@ -1171,7 +1171,7 @@ uses
 //  if nr<0)or(nr>MAXVLAK
 //  then
 //  begin 
-//    printf('error in addvlak: %d'#13#10'',nr); 
+//    printf('error in addvlak: %d\n',nr); 
 //    begin
 //      result:= R.blovl[0]; 
 //      exit;
@@ -1434,7 +1434,7 @@ uses
 //  if R.totlamp>=MAXLAMP
 //  then
 //  begin 
-//    printf('lamp overflow'#13#10''); 
+//    printf('lamp overflow\n'); 
 //    exit;
 //  end;
 //  la:= ob.data; 
@@ -4214,7 +4214,7 @@ uses
 //
 //if warning<>0{nil} {<= !!!9} 
 //then
-//printf('WARNING: ob %s with vertcol, non-flat squares'#13#10'',ob.id.name+2); 
+//printf('WARNING: ob %s with vertcol, non-flat squares\n',ob.id.name+2); 
 //end;
 //
 //
@@ -4793,7 +4793,7 @@ uses
 //          ibuf.zbuf:= {!!!a type cast? =>} {pinteger(}R.rectz; 
 //        end;
 //        else
-//        printf('no zbuf'#13#10''); 
+//        printf('no zbuf\n'); 
 //      end;
 //    end;
 //    else
@@ -5631,7 +5631,7 @@ uses
 //      if done>MAXVERT
 //      then
 //      begin 
-//        printf('Too many stars'#13#10''); 
+//        printf('Too many stars\n'); 
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //      if test_break()
@@ -6072,7 +6072,7 @@ uses
 //  
 //  saveiff(ibuf,name,IB_rect); 
 //  
-//  printf('Saved: %s'#13#10'',name); 
+//  printf('Saved: %s\n',name); 
 //  freeImBuf(ibuf); 
 //  
 //  freeN(R.rectot); 
@@ -6620,7 +6620,7 @@ uses
 //
 //(* ~~~~~~~~~~~~~~~~ timer ~~~~~~~~~~~~~~~~~~~~~~ *)
 //
-//{$if !defined(__BeOS) && !defined(WIN32)}
+//{$if !defined(__BeOS) && !defined(WINDOWS)}
 //
 //type
 //rusage = record
@@ -6665,7 +6665,7 @@ uses
 //  if real<>0{nil} {<= !!!9} 
 //  then
 //  {*}real^:=rt2-rt1; 
-//  {$ifdef WIN32}
+//  {$ifdef WINDOWS}
 //  if cpu)and(real
 //  then
 //  begin 
@@ -6676,7 +6676,7 @@ uses
 //
 //{$else}
 //
-//{$ifdef WIN32}
+//{$ifdef WINDOWS}
 //var {was static}
 //old_time: integer; 
 //type
@@ -7044,7 +7044,7 @@ uses
 //      end;
 //      timestr(G.cputime,name); 
 //      
-//      printf(' Time: %s (%.2f)'#13#10'',name,({!!!a type cast? =>} {float(}(G.time-G.cputime)) div 100); 
+//      printf(' Time: %s (%.2f)\n',name,({!!!a type cast? =>} {float(}(G.time-G.cputime)) div 100); 
 //      fflush(stdout); 
 //    end;
 //    (* nodig voor renderd !! *)

@@ -12,6 +12,8 @@ type
 
 { $DEFINE HASINLINE}
 
+function getenv(const name: pchar): pchar;
+
 function strncpy(Dest, Source: PChar; MaxLen: cint): PChar; {$IFDEF HASINLINE}inline;{$ENDIF}
 function strcpy(destination: PChar; const Source: PChar): PChar; {$IFDEF HASINLINE}inline;{$ENDIF}
 function strcasecmp(const string1, string2: PChar): cint; {$IFDEF HASINLINE}inline;{$ENDIF}
@@ -68,6 +70,11 @@ implementation
 
 uses
   drivers, SysUtils;
+
+function getenv(const name: pchar): pchar;
+begin
+  exit(pchar(GetEnvironmentVariable(name)));
+end;
 
 function strncpy(Dest, Source: PChar; MaxLen: cint): PChar;
 var

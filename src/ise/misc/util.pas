@@ -19,49 +19,8 @@
  * ***** END GPL/BL DUAL LICENSE BLOCK *****
  *)
 unit util;
-interface
 
-//{$include <sys/types.h>}
-//{$include <stdlib.h>}
-//{$include <string.h>}
-{$ifdef debug}
-//{$include <malloc.h>}
-{$endif}
-//{$ifndef	NULL}
-//
-//  const
-//    NULL = 0;
-//{$endif}
-//{$ifndef	FALSE}
-//
-//  const
-//    FALSE = 0;
-//{$endif}
-//{$ifndef	TRUE}
-//
-//  const
-//    TRUE = 1;
-//{$endif}
-//{$ifndef ulong}
-//
-//  const
-//    ulong = dword;
-//{$endif}
-//{$ifndef word}
-//
-//  const
-//    word = word;
-//{$endif}
-//{$ifndef uchar}
-//
-//  const
-//    uchar = byte;
-//{$endif}
-//{$ifndef uint}
-//
-//  const
-//    uint = dword;
-//{$endif}
+interface
 
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
@@ -606,16 +565,6 @@ begin
 end;
 {$ENDIF}
 
-////{$include <stdio.h>}
-////{$include "util.h"}
-////{$include <fcntl.h>}
-//{$ifdef WIN32}
-////{$include "winstuff.h"}
-//{$endif}
-//{$ifndef WIN32}
-////{$include <sys/time.h>}
-//{$endif}
-
 var
 totblock: integer =0;
 mem_in_use: integer =0;
@@ -1042,8 +991,9 @@ end;
 //    exit;
 //  end;
 //end;
-//{$ifndef WIN32}
-//
+
+{$ifndef WINDOWS}
+
 //function fileselect(title: pchar;  dir: pchar): smallint; 
 //var
 //buf: array [0..199] of char;
@@ -1124,16 +1074,8 @@ end;
 //    exit;
 //  end;
 //end;
-//{$endif}
-//{$ifdef malloc}
-//{$undef malloc}
-//{$endif}
-//{$ifdef calloc}
-//{$undef calloc}
-//{$endif}
-//{$ifdef free}
-//{$undef free}
-//{$endif}
+
+{$endif}
 
 procedure _MemorY_ErroR(block, error: pchar);
 begin
@@ -1696,11 +1638,9 @@ end;
 //    exit;
 //  end;
 //end;
-//{$ifndef WIN32}
-//type
-//timeval = record
-//end;
-//
+
+{$ifndef WINDOWS}
+
 //procedure Sginap(Ticks: integer); 
 //begin
 //  
@@ -1708,7 +1648,8 @@ end;
 //  timeout.tv_usec:= Ticks*10000-timeout.tv_sec*1000000; 
 //  select(0,0,0,0,@timeout); 
 //end;
-//{$endif}
+
+{$endif}
 
 //{mallocstruct(x,y) (x* )malloc((y)* sizeof(x))}
 //function mallocstruct(x: integer; y: integer): integer;

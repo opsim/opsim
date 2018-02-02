@@ -83,31 +83,14 @@ unit readfile;
 interface
 
 function convertstringcode(str: pchar): integer;
+function gethome: pchar;
 
 implementation
 
 uses
 cfuncs,
-blender, blendef, blenglob;
-//{$include "blender.h"}
-//{$include "graphics.h"}
-//{$include "file.h"}
-//{$include "screen.h"}
-//{$include "render.h"}
-//{$include "sequence.h"}
-//{$include "effect.h"}
-//{$include "sector.h"}
-//{$include "ika.h"}
-//{$include "oops.h"}
-//{$include "imasel.h"}
-//{$include "datatoc.h"}
-//{$include "text.h"}
-//
-//{$ifndef WIN32}
-//{$include <sys/param.h>}
-//{$endif}
-//{$include <fcntl.h>}
-//
+blender, blendef, blenglob, fileops;
+
 //type
 //OldNew = record
 //old: pinteger; 
@@ -131,82 +114,57 @@ blender, blendef, blenglob;
 //pointerlen: integer; 
 //{switch_endian: integer; }{<= !!!5 external variable}(* genfile.c *)
 //
-//disable_newlibadr: pinteger; 
-//(* ******************************************* *)
-//
+//disable_newlibadr: pinteger;
+
+(* ******************************************* *)
+
 //{bprogname: array [0..] of char; }{<= !!!5 external variable}(* usiblender.c *)
-//
-//
-//
-//function gethome: pchar; 
-//var
-//ret: pchar; 
-//{$ifdef __BeOS}
-//begin
-//  begin
-//    result:= '/boot/home/'; (* BeOS 4.5: doubleclick at icon doesnt give home env *)
-//    
-//    {$elif !defined(__WIN32)}
-//    exit;
-//  end;
-//  begin
-//    result:= getenv('HOME'); 
-//    {$else}
-//    (* Windows *)
-//    exit;
-//  end;
-//  ret:= getenv('HOME'); 
-//  if ret<>0{nil} {<= !!!9} 
-//  then
-//  begin 
-//    if fop_exists(ret)
-//    then
-//    begin
-//      result:= ret; 
-//      exit;
-//    end;
-//    if G.f@G_DEBUG
-//    then
-//    printf('Unable to find home at: %s'#13#10'',ret); 
-//  end;
-//  ret:= getenv('WINDOWS'); 
-//  if ret<>0{nil} {<= !!!9} 
-//  then
-//  begin 
-//    if fop_exists(ret)
-//    then
-//    begin
-//      result:= ret; 
-//      exit;
-//    end;
-//    if G.f@G_DEBUG
-//    then
-//    printf('Unable to find home at: %s'#13#10'',ret); 
-//  end;
-//  ret:= getenv('WINDIR'); 
-//  if ret<>0{nil} {<= !!!9} 
-//  then
-//  begin 
-//    if fop_exists(ret)
-//    then
-//    begin
-//      result:= ret; 
-//      exit;
-//    end;
-//    if G.f@G_DEBUG
-//    then
-//    printf('Unable to find home at: %s'#13#10'',ret); 
-//  end;
-//  begin
-//    result:= 'C:\Temp'; 
-//    {$endif}
-//    exit;
-//  end;
-//end;
-//
-//(* ************ DIV ****************** *)
-//
-//
+
+
+
+function gethome: pchar;
+var
+ret: pchar;
+
+begin
+  {$ifdef __BeOS}
+  exit('/boot/home/'); (* BeOS 4.5: doubleclick at icon doesnt give home env *)
+
+    {$elif !defined(WINDOWS)}
+    exit(getenv('HOME'));
+    {$else}
+    (* Windows *)
+      ret:= getenv('HOME');
+  if ret<>nil  then
+  begin
+    if fop_exists(ret)<>0    then
+    exit(ret);
+     if (G.f and G_DEBUG)<>0 then
+    printf('Unable to find home at: %s\n',[ret]);
+  end;
+  ret:= getenv('WINDOWS');
+  if ret<>nil  then
+  begin
+    if fop_exists(ret)<>0    then
+      exit(ret);
+    if (G.f and G_DEBUG)<>0 then
+    printf('Unable to find home at: %s\n',[ret]);
+  end;
+  ret:= getenv('WINDIR');
+  if ret<>nil  then
+  begin
+    if fop_exists(ret)<>0    then
+    exit(ret);
+     if (G.f and G_DEBUG)<>0 then
+    printf('Unable to find home at: %s\n',[ret]);
+  end;
+  exit('C:\Temp');
+    {$endif}
+end;
+
+(* ************ DIV ****************** *)
+
+
 //function testextensie(str: pchar;  ext: pchar): integer; 
 //var
 //a: smallint; 
@@ -1451,16 +1409,16 @@ end;
 //line: pTextLine; 
 //begin
 //  
-//  printf('-- Text: %s (%d)--'#13#10'',text.id.name,text.nlines); 
+//  printf('-- Text: %s (%d)--\n',text.id.name,text.nlines);
 //  line:= text.lines.first; 
 //  while line
 //  do
 //  begin 
-//    printf('%x %x %x %d: <%s>'#13#10'',line.prev,line,line.next,line.len,line.line); 
+//    printf('%x %x %x %d: <%s>\n',line.prev,line,line.next,line.len,line.line);
 //    line:= line.next; 
 //  end;
-//  printf('Main cursor: %x %d'#13#10'',text.curl,text.curc); 
-//  printf('Selection cursor: %x %d'#13#10'',text.sell,text.selc); 
+//  printf('Main cursor: %x %d\n',text.curl,text.curc);
+//  printf('Selection cursor: %x %d\n',text.sell,text.selc);
 //end;
 //
 //void{!!!e unknown token}
@@ -1494,7 +1452,7 @@ end;
 //      if ln.len<>lstrlen(ln.line)
 //      then
 //      begin 
-//        printf('Error loading text, line lengths differ'#13#10''); 
+//        printf('Error loading text, line lengths differ\n');
 //        ln.len:= lstrlen(ln.line); 
 //      end;
 //      ln:= ln.next; 
@@ -1826,9 +1784,9 @@ end;
 //        warn:= 1; 
 //        if ob.id.lib<>0{nil} {<= !!!9} 
 //        then
-//        printf('Can'#39't find obdata of %s lib %s'#13#10'',ob.id.name+2,ob.id.lib.name); 
+//        printf('Can'#39't find obdata of %s lib %s\n',ob.id.name+2,ob.id.lib.name);
 //        else
-//        printf('Object %s lost data. Lib:%x'#13#10'',ob.id.name+2,ob.id.lib); 
+//        printf('Object %s lost data. Lib:%x\n',ob.id.name+2,ob.id.lib);
 //      end;
 //      for{while} a:=0 to Pred(ob.totcol) { a++}
 //      do
@@ -1925,7 +1883,7 @@ end;
 //        if base.object=0
 //        then
 //        begin 
-//          printf('LIB ERROR: base removed'#13#10''); 
+//          printf('LIB ERROR: base removed\n');
 //          remlink(@sce.base,base); 
 //          if base=sce.basact
 //          then
@@ -2261,7 +2219,7 @@ end;
 //    if se.v1=0{nil}
 //    then
 //    begin 
-//      printf('error reading screen... file corrupt'#13#10''); 
+//      printf('error reading screen... file corrupt\n');
 //      se.v1:= se.v2; 
 //    end;
 //    se:= se.next; 
@@ -4180,7 +4138,7 @@ end;
 //    if ok=0
 //    then
 //    begin 
-//      printf('ERROR: file incomplete'#13#10''); 
+//      printf('ERROR: file incomplete\n');
 //      error('Warning: file not complete'); 
 //    end;
 //    do_versions(G.main); 
@@ -4280,8 +4238,8 @@ end;
 //  if fp=0{nil}
 //  then
 //  begin 
-//    printf('Could not install %s'#13#10'',fname); 
-//    printf('Check permissions on %s.'#13#10'',gethome()); 
+//    printf('Could not install %s\n',fname);
+//    printf('Check permissions on %s.\n',gethome());
 //    exit(1); 
 //  end;
 //  fwrite(data,size,1,fp); 
@@ -4506,11 +4464,11 @@ end;
 //        then
 //        begin 
 //          read_libblock(main,bhead,LIB_READ+LIB_INDIRECT); 
-//          printf('expand: other lib %s'#13#10'',lib.name); 
+//          printf('expand: other lib %s\n',lib.name);
 //        end;
 //        else
 //        begin 
-//          printf('expand: already linked: %s lib: %s'#13#10'',id.name,lib.name); 
+//          printf('expand: already linked: %s lib: %s\n',id.name,lib.name);
 //          add_lib_adr(bhead.old,id); 
 //          (* if(id->lib==0) add_lib_adr(bhead->old, id); *)
 //          (* bovenstaand is niet nodig! Kan toch niet misgaan? *)
@@ -4928,7 +4886,7 @@ end;
 //        end;
 //        else
 //        begin 
-//          printf('append: already linked'#13#10''); 
+//          printf('append: already linked\n');
 //          add_lib_adr(bhead.old,id); 
 //          if id.flag and LIB_INDIRECT
 //          then
@@ -5235,7 +5193,7 @@ end;
 //        if filedata=0
 //        then
 //        begin 
-//          printf('read lib %s'#13#10'',main.curlib.name); 
+//          printf('read lib %s\n',main.curlib.name);
 //          filedata:= openblenderfile(main.curlib.name, and filelen); 
 //          main.curlib.filedata:= filedata; 
 //        end;
@@ -5261,7 +5219,7 @@ end;
 //                if disable_newlibadr=(void* )1
 //                then
 //                begin 
-//                  printf('LIB ERROR: can'#39't find %s'#13#10'',id.name); 
+//                  printf('LIB ERROR: can'#39't find %s\n',id.name);
 //                  change_libadr(id,0); 
 //                end;
 //                else
@@ -5273,7 +5231,7 @@ end;
 //          end;
 //        end;
 //        else
-//        printf('ERROR: can'#39't find lib %s '#13#10'',main.curlib.name); 
+//        printf('ERROR: can'#39't find lib %s \n',main.curlib.name);
 //      end;
 //      disable_newlibadr:= 0; 
 //      expand_main(main,main.curlib.filedata); 
@@ -5302,7 +5260,7 @@ end;
 //        then
 //        begin 
 //          remlink(lbarray[a],id); 
-//          printf('LIB ERROR: can'#39't find %s'#13#10'',id.name); 
+//          printf('LIB ERROR: can'#39't find %s\n',id.name);
 //          change_libadr(id,0); 
 //          freeN(id); 
 //        end;

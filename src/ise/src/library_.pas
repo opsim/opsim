@@ -54,10 +54,10 @@ cfuncs;
 //procedure id_lib_extern(id: pID);
 //begin
 //  if id<>nil 
-// then
+//  then
 //  begin 
 //    if id.flag and LIB_INDIRECT
-// then
+//    then
 //    begin 
 //      id.flag:= id.flag - (LIB_INDIRECT); 
 //      id.flag:= id.flag or (LIB_EXTERN); 
@@ -68,11 +68,11 @@ cfuncs;
 //procedure id_us_plus(id: pID); 
 //begin
 //  if id<>nil 
-// then
+//  then
 //  begin 
 //    inc(id.us); 
 //    if id.flag and LIB_INDIRECT
-// then
+//    then
 //    begin 
 //      id.flag:= id.flag - (LIB_INDIRECT); 
 //      id.flag:= id.flag or (LIB_EXTERN); 
@@ -178,8 +178,8 @@ var
 id: pID = nil;
 begin
   case type_ of
-//    ID_SCE:
-//      id:= callocN(sizeof(Scene),'scene');
+    ID_SCE:
+      id:= callocN(sizeof(Scene),'scene');
 //    ID_LI:
 //      id:= callocN(sizeof(Library),'library');
 //    ID_OB:
@@ -233,7 +233,7 @@ id: pID = nil;
 idtest: pID;
 begin
   id:= alloc_libblock_notest(type_);
-  if id<>nil then
+  if id<>nil  then
   begin
     addtail(lb,id);
     id^.us:= 1;
@@ -267,7 +267,7 @@ end;
 //  memh:=  {pMemHead(}idn;
 //  dec(memh); 
 //  if memh.len-sizeof(ID)>0
-// then
+//  then
 //  begin 
 //    cp:=  {pchar(}id;
 //    cpn:=  {pchar(}idn;
@@ -397,19 +397,19 @@ end;
 //  id:=idv; 
 //  dec(id.us); 
 //  if id.us<0
-// then
+//  then
 //  begin 
 //    if id.lib<>nil 
-// then
+//    then
 //    printf('ERROR block %s %s users %d\n',id.lib.name,id.name,id.us); 
 //    else
 //    printf('ERROR block %s users %d\n',id.name,id.us); 
 //  end;
 //  if id.us=0
-// then
+//  then
 //  begin 
 //    if GS(id.name)=ID_OB
-// then
+//    then
 //    free_object_fromscene( {pObject(}id);
 //    free_libblock(lb,id); 
 //  end;
@@ -446,12 +446,12 @@ end;
 //    free_liblist(lbarray[a]); 
 //  end;
 //  if lb<>nil 
-// then
+//  then
 //  begin 
 //    remlink(lb,main); 
 //    freeN(main); 
 //    if G.main=main
-// then
+//    then
 //    G.main:= 0; 
 //  end;
 //  free_matcopybuf(); 
@@ -531,14 +531,14 @@ end;
 //  begin 
 //    idnext:= id.next; 
 //    if id.lib<>nil 
-// then
+//    then
 //    begin 
 //      main:= first; 
 //      while main
 //      do
 //      begin 
 //        if main.curlib=id.lib
-// then
+//        then
 //        begin 
 //          lbn:= wich_libbase(main,GS(id.name)); 
 //          remlink(lb,id); 
@@ -548,7 +548,7 @@ end;
 //        main:= main.next; 
 //      end;
 //      if main=0
-// then
+//      then
 //      printf('error split_libdata\n'); 
 //    end;
 //    id:= idnext; 
@@ -569,14 +569,14 @@ end;
 //  
 //  
 //  if G.mainbase.first<>G.mainbase.last
-// then
+//  then
 //  begin 
 //    printf('error split main\n'); 
 //    exit;
 //  end;
 //  lib:= G.main.library.first; 
 //  if lib<>nil 
-// then
+//  then
 //  begin 
 //    while lib
 //    do
@@ -608,10 +608,10 @@ end;
 //  do
 //  begin 
 //    if main.curlib<>nil 
-// then
+//    then
 //    begin 
 //      if lstrcmp(dir,main.curlib.name)=0
-// then
+//      then
 //      begin
 //        result:= main; 
 //        exit;
@@ -619,7 +619,7 @@ end;
 //    end;
 //    else
 //    if lstrcmp(dir,main.name)=0
-// then
+//    then
 //    begin
 //      result:= main; 
 //      exit;
@@ -658,7 +658,7 @@ end;
 //    do
 //    begin 
 //      if id.flag and flag
-// then
+//      then
 //      inc(tot); 
 //      id:= id.next; 
 //    end;
@@ -684,7 +684,7 @@ end;
 //  do
 //  begin 
 //    if lstrcmp(id.name+2,name)=0
-// then
+//    then
 //    begin
 //      result:= id; 
 //      exit;
@@ -721,12 +721,12 @@ end;
 //    len:= len + (5+lstrlen(id.name)); 
 //    inc(count); 
 //    if count>maxpup
-// then
+//    then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    id:= id.next; 
 //  end;
 //  if count>maxpup
-// then
+//  then
 //  begin 
 //    {*}str^:=mallocN(40,'IDnames_pup'); 
 //    strcpy({*}str^,'DataBrowse %x-2'); 
@@ -735,7 +735,7 @@ end;
 //  {*}str^:=mallocN(len,'IDnames_pup'); 
 //  (*str)[0]:=0; 
 //  if link=0
-// then
+//  then
 //  strcpy({*}str^,'  %t|'); 
 //  id:= lb.first; 
 //  count:= 0; 
@@ -743,47 +743,47 @@ end;
 //  do
 //  begin 
 //    if id=link
-// then
+//    then
 //    {*}nr^:=count; 
 //    fake:= id.flag and LIB_FAKEUSER; 
 //    if id.lib)and(id.us=0
-// then
+//    then
 //    strcat({*}str^,'L0 '); 
 //    else
 //    if id.lib)and(fake
-// then
+//    then
 //    strcat({*}str^,'LF '); 
 //    else
 //    if id.lib<>nil 
-// then
+//    then
 //    strcat({*}str^,'L   '); 
 //    else
 //    if fake<>nil 
-// then
+//    then
 //    strcat({*}str^,'  F '); 
 //    else
 //    if id.us=0
-// then
+//    then
 //    strcat({*}str^,'  0 '); 
 //    else
 //    if id.us<0
-// then
+//    then
 //    strcat({*}str^,'-1W '); 
 //    else
 //    strcat({*}str^,'     '); 
 //    strcat({*}str^,id.name+2); 
 //    if id.next<>nil 
-// then
+//    then
 //    strcat({*}str^,'|'); 
 //    inc(count); 
 //    if count>45
-// then
+//    then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    id:= id.next; 
 //  end;
 //  len:= lstrlen(*str); (* verwijderen laatste OR teken *)
 //  if len)and((*str)[len-1]='|'
-// then
+//  then
 //  (*str)[len-1]:=0; 
 //end;
 //
@@ -816,18 +816,18 @@ end;
 //  begin 
 //    ipo:=  {pIpo(}id;
 //    if blocktype=ipo.blocktype
-// then
+//    then
 //    begin 
 //      len:= len + (5+lstrlen(id.name)); 
 //      inc(count); 
 //      if count>MAX_IDPUP
-// then
+//      then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //    id:= id.next; 
 //  end;
 //  if count>MAX_IDPUP
-// then
+//  then
 //  begin 
 //    {*}str^:=mallocN(40,'IPOnames_pup'); 
 //    strcpy({*}str^,'DataBrowse %x-2'); 
@@ -836,7 +836,7 @@ end;
 //  {*}str^:=mallocN(len,'IPOnames_pup'); 
 //  (*str)[0]:=0; 
 //  if link=0
-// then
+//  then
 //  strcpy({*}str^,'  %t|'); 
 //  id:= lb.first; 
 //  count:= 0; 
@@ -845,40 +845,40 @@ end;
 //  begin 
 //    ipo:=  {pIpo(}id;
 //    if blocktype=ipo.blocktype
-// then
+//    then
 //    begin 
 //      if id=link
-// then
+//      then
 //      {*}nr^:=count; 
 //      fake:= id.flag and LIB_FAKEUSER; 
 //      if id.lib)and(id.us=0
-// then
+//      then
 //      strcat({*}str^,'L0 '); 
 //      else
 //      if id.lib)and(fake
-// then
+//      then
 //      strcat({*}str^,'L F '); 
 //      else
 //      if id.lib<>nil 
-// then
+//      then
 //      strcat({*}str^,'L   '); 
 //      else
 //      if fake<>nil 
-// then
+//      then
 //      strcat({*}str^,'  F '); 
 //      else
 //      if id.us=0
-// then
+//      then
 //      strcat({*}str^,'  0 '); 
 //      else
 //      if id.us<0
-// then
+//      then
 //      strcat({*}str^,'-1W '); 
 //      else
 //      strcat({*}str^,'     '); 
 //      strcat({*}str^,id.name+2); 
 //      if id.next<>nil 
-// then
+//      then
 //      strcat({*}str^,'|'); 
 //      inc(count); 
 //    end;
@@ -886,7 +886,7 @@ end;
 //  end;
 //  len:= lstrlen(*str); (* verwijderen laatste OR teken *)
 //  if len)and((*str)[len-1]='|'
-// then
+//  then
 //  (*str)[len-1]:=0; 
 //end;
 //
@@ -902,13 +902,13 @@ end;
 //  name:= id.name+2; 
 //  len:= lstrlen(name); 
 //  if len<2
-// then
+//  then
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
 //  if name[len-1]='.'
-// then
+//  then
 //  begin
 //    result:= 0; 
 //    exit;
@@ -917,13 +917,13 @@ end;
 //  do
 //  begin 
 //    if name[len]='.'
-// then
+//    then
 //    begin
 //      result:= 1; 
 //      exit;
 //    end;
 //    if isdigit(name[len])=0
-// then
+//    then
 //    begin
 //      result:= 0; 
 //      exit;
@@ -951,12 +951,12 @@ begin
 
   while a<>0  do
   begin
-    if name[a]='.' then
+    if name[a]='.'    then
     begin
       left[a]:= #0; {*}nr^:=atol(name+a+1);
       exit;
     end;
-    if not isdigit(name[a]) then
+    if not isdigit(name[a])    then
     break; {<= !!!b possible in "switch" - then remove this line}
 
     left[a]:= #0;
@@ -971,13 +971,13 @@ procedure sort_alpha_id(lb: pListBase;  id: pID);
 var
 idtest: pID; (* alfabetisch opnieuw invoegen *)
 begin
-  if lb^.first<>lb^.last then
+  if lb^.first<>lb^.last   then
   begin
     remlink(lb,id);
     idtest:= lb^.first;
     while idtest<>nil     do
     begin
-      if (strcasecmp(idtest^.name,id^.name)>0)or(idtest^.lib<>nil) then
+      if (strcasecmp(idtest^.name,id^.name)>0)or(idtest^.lib<>nil)       then
       begin
         insertlinkbefore(lb,idtest,id);
         break;
@@ -986,7 +986,7 @@ begin
     end;
 
     (* als laatste *)
-    if idtest=nil then
+    if idtest=nil    then
       addtail(lb,id);
   end;
 end;
@@ -1000,20 +1000,20 @@ var
   nrtest: integer;
   maxtest: integer = 32;
   a: integer;
-  aname: array [0..31] of char;
+  aname: array [0..Pred(32)] of char;
   name: pchar;
   left: array [0..Pred(24)] of char;
   leftest: array [0..Pred(24)] of char;
-  in_use: array [0..31] of char;
+  in_use: array [0..Pred(32)] of char;
 begin
   (* - naam splitsen
     * - zoeken
     *)
 
-  if id^.lib<>nil then
+  if id^.lib<>nil  then
     exit(0);
 
-  if tname=nil then
+  if tname=nil  then
   name:= id^.name+2
   else
   begin
@@ -1021,24 +1021,24 @@ begin
     strncpy(aname,tname,21);
     name:= aname;
 
-    if lstrlen(name)>21 then
+    if lstrlen(name)>21     then
     name[21]:= #0;
   end;
 
-  if lb=nil then
+  if lb=nil   then
   lb:= wich_libbase(G.main, psmallint(@id^.name[0])^);
 
   (* eerste fase: bestaat de id al? *)
   idtest:= lb^.first;
   while idtest<>nil   do
   begin
-    if (id<>idtest)and(idtest^.lib=nil) then
+    if (id<>idtest)and(idtest^.lib=nil)     then
     begin
       (* niet alphabetic testen! *)
       (* optim *)
-      if idtest^.name[2]=name[0] then
+      if idtest^.name[2]=name[0]      then
       begin
-        if strcmp(name,idtest^.name+2)=0 then
+        if strcmp(name,idtest^.name+2)=0        then
         break;
       end;
     end;
@@ -1046,7 +1046,7 @@ begin
   end;
 
   (* if there is no double return *)
-  if idtest=nil then
+  if idtest=nil   then
   begin
     strcpy(id^.name+2,name);
     exit(0);
@@ -1055,23 +1055,23 @@ begin
   bzero(@in_use[0],maxtest);
   splitIDname(name,left,@nr);
 
-  if (nr>999)and(lstrlen(left)>16) then
+  if (nr>999)and(lstrlen(left)>16)   then
   left[16]:= #0
   else
-  if lstrlen(left)>17 then
+  if lstrlen(left)>17   then
   left[17]:= #0;
 
   idtest:= pID(lb^.first);
   while idtest<>nil   do
   begin
-    if (id<>idtest)and(idtest^.lib=nil) then
+    if (id<>idtest)and(idtest^.lib=nil)      then
     begin
       splitIDname(idtest^.name+2,leftest,@nrtest);
-      if strcmp(left,leftest)=0 then
+      if strcmp(left,leftest)=0       then
       begin
-        if nrtest<maxtest then
+        if nrtest<maxtest         then
         in_use[nrtest]:= #1;
-        if nr<=nrtest then
+        if nr<=nrtest         then
         nr:= nrtest+1;
       end;
     end;
@@ -1079,15 +1079,15 @@ begin
   end;
   for{while} a:=0 to Pred(maxtest) { a++}  do
   begin
-    if a>=nr then
+    if a>=nr      then
     break;
-    if in_use[a]=#0 then
+    if in_use[a]=#0     then
     begin
       nr:= a;
       break;
     end;
   end;
-  if nr=0 then
+  if nr=0     then
   sprintf(id^.name+2,'%s',[left])
   else
   begin
@@ -1152,7 +1152,7 @@ end;
 //      id.flag:= id.flag and ( not (LIB_EXTERN or LIB_INDIRECT or LIB_NEW)); 
 //      idn:= id.next; (* id wordt mogelijk opnieuw ingevoegd *)
 //      if id.lib<>nil 
-// then
+//      then
 //      begin 
 //        id.lib:= 0; 
 //        new_id(lbarray[a],id,0); 
@@ -1202,7 +1202,7 @@ end;
 //  
 //  lb:= wich_libbase(G.main,GS(name-2)); 
 //  if lb=0
-// then
+//  then
 //  exit;
 //  (* zoek welke id *)
 //  idtest:= lb.first; 
@@ -1210,14 +1210,14 @@ end;
 //  do
 //  begin 
 //    if lstrcmp(idtest.name+2,name)=0
-// then
+//    then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    idtest:= idtest.next; 
 //  end;
 //  if idtest<>nil 
-// then
+//  then
 //  if new_id(lb,idtest,name)=0
-// then
+//  then
 //  sort_alpha_id(lb,idtest); 
 //end;
 //

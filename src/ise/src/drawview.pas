@@ -1213,7 +1213,7 @@ end;
 //tel: integer;
 // 
 //kleur: uint; 
-//{$if defined(WIN32) || defined(MESA31)}
+//{$if defined(WINDOWS) || defined(MESA31)}
 //begin
 //  
 //  tel:=1; 
@@ -1249,7 +1249,7 @@ end;
 //    end;
 //  end;
 //  
-//  {$if defined(__sgi) || defined(__SUN) || defined(__BeOS) || defined(WIN32) || defined(MESA31)}
+//  {$if defined(__sgi) || defined(__SUN) || defined(__BeOS) || defined(WINDOWS) || defined(MESA31)}
 //  glDisable(GL_DITHER); 
 //  {$endif}
 //  
@@ -1317,7 +1317,7 @@ end;
 //  glDisable(GL_DEPTH_TEST); 
 //  
 //  
-//  {$if defined(__sgi) || defined(__SUN) || defined(__BeOS) || defined (WIN32) || defined(MESA31)}
+//  {$if defined(__sgi) || defined(__SUN) || defined(__BeOS) || defined (WINDOWS) || defined(MESA31)}
 //  glEnable(GL_DITHER); 
 //  {$endif}
 //end;
@@ -1793,7 +1793,7 @@ end;
 //    G.zbuf:= LongBool(0); 
 //    glDisable(GL_DEPTH_TEST); 
 //  end;
-//  {$if defined(__WIN32) || defined(MESA31)}
+//  {$if defined(WINDOWS) || defined(MESA31)}
 //  
 //  if G.f and (G_VERTEXPAINT or G_FACESELECT)
 // then

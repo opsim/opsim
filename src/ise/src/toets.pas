@@ -941,7 +941,7 @@ end;
 //      if G.f and G_DEBUG
 //      then
 //      begin 
-//        printf('swap'#13#10''); 
+//        printf('swap\n'); 
 //        glutSwapBuffers(); 
 //      end;
 //    end;
@@ -1123,7 +1123,7 @@ end;
 //          if event>0
 //          then
 //          begin 
-//            printf('start timer'#13#10''); 
+//            printf('start timer\n'); 
 //            waitcursor(1); 
 //            start_timer(); 
 //            for{while} a:=0 to Pred(10) { a++}
@@ -1137,10 +1137,10 @@ end;
 //          end_timer(@time,0); 
 //          if event=1
 //          then
-//          printf('draw %d'#13#10'',time); 
+//          printf('draw %d\n',time); 
 //          if event=2
 //          then
-//          printf('d+sw %d'#13#10'',time); 
+//          printf('d+sw %d\n',time); 
 //          waitcursor(0); 
 //          begin
 //            result:= 0; 

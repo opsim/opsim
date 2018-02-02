@@ -22,7 +22,7 @@ unit blendef;
 
 interface
 
-{$ifdef __WIN32}
+{$ifdef WINDOWS}
 {$else}
 {$ifndef __BeOS}
 
@@ -33,7 +33,7 @@ interface
 {$ifdef __FreeBSD__}
   {#define dlsym(handle, sym) dlsym(handle, "_" sym) }
 {$endif}
-{$ifdef __WIN32}
+{$ifdef WINDOWS}
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
   { return type might be wrong }
@@ -1256,7 +1256,7 @@ ID_SCR = $5352; //MAKE_ID2('S', 'R') }
   {
   #endif
 
-  #if defined(__FreeBSD__) || defined(linux) || defined(__BeOS) || defined(__WIN32)
+  #if defined(__FreeBSD__) || defined(linux) || defined(__BeOS) || defined(WINDOWS)
    }
   { END BAD ZR  }
 

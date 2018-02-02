@@ -39,7 +39,7 @@ uses
 //{$include "file.h"}
 //{$include "imasel.h"}
 //
-//{$if defined WIN32 || defined MIPS1 || defined __BeOS}
+//{$if defined(WINDOWS) || defined MIPS1 || defined __BeOS}
 
 procedure activate_fileselect(_type: integer;  title: pchar;  _file: pchar; func: retfunc);
 
@@ -67,7 +67,7 @@ uses
 //{$include <fnmatch.h>}
 //{$endif}
 //
-//{$ifndef WIN32}
+//{$ifndef WINDOWS}
 //{$include <sys/param.h>}
 //{$endif}
 //
@@ -380,26 +380,26 @@ var
 //      if pipein<>0{nil})and(pipeout<>0
 //      then
 //      begin 
-//        fprintf(pipeout,'cd %s'#13#10'',sfile^.dir); 
-//        fprintf(pipeout,'LEADER=%s/%s'#13#10'',sfile^.dir,sfile^.file); 
-//        fprintf(pipeout,'SELECTED=%s/%s'#13#10'',sfile^.dir,sfile^.file); 
-//        fprintf(pipeout,'ARGC=1'#13#10''); 
+//        fprintf(pipeout,'cd %s\n',sfile^.dir);
+//        fprintf(pipeout,'LEADER=%s/%s\n',sfile^.dir,sfile^.file);
+//        fprintf(pipeout,'SELECTED=%s/%s\n',sfile^.dir,sfile^.file);
+//        fprintf(pipeout,'ARGC=1\n');
 //        
-//        while fscanf(pipein,' %511[^'#13#10']'#13#10'',cmd)<>EOF
+//        while fscanf(pipein,' %511[^\n]\n',cmd)<>EOF
 //        do
 //        begin 
 //          (*fprintf(stderr, "%s\n", cmd);*)
 //          if STARTSWITH('TYPE',cmd)
 //          then
 //          begin 
-//            fprintf(pipeout,'LEADERTYPE=%s'#13#10'',cmd+5); 
+//            fprintf(pipeout,'LEADERTYPE=%s\n',cmd+5);
 //          end;
 //          else
 //          if STARTSWITH('CMD OPEN',cmd)
 //          then
 //          begin 
 //            pipestart:= LongBool(1); 
-//            fprintf(pipeout,'%s'#13#10'',cmd+8); 
+//            fprintf(pipeout,'%s\n',cmd+8);
 //          end;
 //          else
 //          if STARTSWITH('CMD',cmd)
@@ -411,7 +411,7 @@ var
 //          if pipestart<>0{nil} {<= !!!9} 
 //          then
 //          begin 
-//            fprintf(pipeout,'%s'#13#10'',cmd); 
+//            fprintf(pipeout,'%s\n',cmd);
 //          end;
 //        end;
 //      end;
@@ -461,7 +461,7 @@ var
 //  
 //  make_file_string(tmp,dir,); 
 //  strcpy(dir,tmp); 
-//  {$ifdef WIN32}
+//  {$ifdef WINDOWS}
 //  if dir[0]='.'
 //  then
 //  begin 
@@ -773,7 +773,7 @@ end;
 //var
 //a: integer; 
 //tmp: array [0..Pred(FILE_MAXDIR+FILE_MAXFILE)] of char; 
-//{$ifdef WIN32}
+//{$ifdef WINDOWS}
 //begin
 //  
 //  char_switch(dir,'/',#92); 
@@ -781,7 +781,7 @@ end;
 //  char_switch(dir,#92,'/'); 
 //  {$endif}
 //  a:= lstrlen(dir); 
-//  {$ifdef WIN32}
+//  {$ifdef WINDOWS}
 //  while fop_exists(dir)=0
 //  do
 //  begin 
@@ -836,7 +836,7 @@ end;
 //  
 //  dir[0]:= 0; 
 //  file[0]:= 0; 
-//  {$ifdef WIN32}
+//  {$ifdef WINDOWS}
 //  if lstrlen(string)
 //  then
 //  begin 
@@ -993,7 +993,7 @@ end;
 //  exit;
 //  
 //  dir:= sfile^.dir; 
-//  {$ifdef WIN32}
+//  {$ifdef WINDOWS}
 //  if a:=lstrlen(dir)
 //  then
 //  begin 
@@ -1353,7 +1353,7 @@ end;
 //    if sfile^.flag and FILE_SHOWSHORT
 //    then
 //    
-//    {$ifndef WIN32}
+//    {$ifndef WINDOWS}
 //    exit;
 //    (* rwx rwx rwx *)
 //    x:= x + (20); 
@@ -2440,7 +2440,7 @@ end;
 //  strcat(string,file); 
 //  (* Trim slashes from the front of file *)
 //  (* Push all slashes to the system preferred direction *)
-//  {$ifdef WIN32}
+//  {$ifdef WINDOWS}
 //  char_switch(string,'/',#92); 
 //  {$else}
 //  char_switch(string,#92,'/'); 
@@ -2924,7 +2924,7 @@ end;
 //        if sfile^.type=FILE_MAIN
 //        then
 //        
-//        {$ifdef WIN32}
+//        {$ifdef WINDOWS}
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        strcpy(sfile^.dir,'\'); 
 //        {$else}

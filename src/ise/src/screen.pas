@@ -503,8 +503,8 @@ procedure start_autosave(val:longint); cdecl;
 //function testsplitpoint(sa:pScrArea; dir:char; fac:single):smallint;
 //
 //procedure visiblefunc(dummy:longint);
-//
-//procedure waitcursor(val:longint);
+
+procedure waitcursor(val:longint);
 
 procedure wich_cursor(sa:pScrArea);
 
@@ -686,55 +686,47 @@ procedure init_screen_cursors;
 begin
 end;
 
-//procedure waitcursor(val: integer); 
-//var
-//sa: pScrArea;
-//oldwin: integer; 
-//begin
-//  
-//  
-//  if G.curscreen=nil
-// then
-//  exit;
-//  if G.background<>nil 
-// then
-//  exit;
-//  if val<>nil 
-// then
-//  begin 
-//    (* only once: for time-cursor *)
-//    if R.flag and R_RENDERING
-// then
-//    exit;
-//    if R.win)and(R.win=G.curscreen^.winakt
-// then
-//    begin 
-//      oldwin:= G.curscreen^.winakt; 
-//      mywinset(G.curscreen^.mainwin); 
-//      glutSetCursor(CURSOR_WAIT); 
-//      mywinset(oldwin); 
-//    end;
-//    else
-//    glutSetCursor(CURSOR_WAIT); 
-//  end;
-//  else
-//  if G.curscreen^.winakt>3
-// then
-//  begin 
-//    if R.flag and R_RENDERING
-// then
-//    exit;
-//    sa:= areawinar[G.curscreen^.winakt]; 
-//    if sa^.cursor)and(sa^.win=G.curscreen^.winakt
-// then
-//    glutSetCursor(sa^.cursor); 
-//    else
-//    glutSetCursor(CURSOR_STD); 
-//  end;
-//  else
-//  glutSetCursor(CURSOR_STD); 
-//end;
-//
+procedure waitcursor(val: integer);
+var
+sa: pScrArea;
+oldwin: integer;
+begin
+  if G.curscreen=nil then
+  exit;
+  if G.background<>0 then
+  exit;
+
+  if val<>0 then
+  begin
+    (* only once: for time-cursor *)
+    //if (R.flag and R_RENDERING) <> 0 then
+    //exit;
+    //
+    //if (R.win<>nil)and(R.win=G.curscreen^.winakt) then
+    //begin
+    //  oldwin:= G.curscreen^.winakt;
+    //  mywinset(G.curscreen^.mainwin);
+    //  glutSetCursor(CURSOR_WAIT);
+    //  mywinset(oldwin);
+    //end
+    //else
+    glutSetCursor(CURSOR_WAIT);
+  end
+  else
+  if G.curscreen^.winakt>3 then
+  begin
+    //if (R.flag and R_RENDERING)<>0 then
+    //exit;
+    sa:= areawinar[G.curscreen^.winakt];
+    if (sa^.cursor<>0)and(sa^.win=G.curscreen^.winakt) then
+    glutSetCursor(sa^.cursor)
+    else
+    glutSetCursor(CURSOR_STD);
+  end
+  else
+  glutSetCursor(CURSOR_STD);
+end;
+
 //procedure tempcursor(curs: integer); 
 //var
 //sa: pScrArea;
