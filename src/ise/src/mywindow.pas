@@ -288,7 +288,7 @@ begin
   win:= swinarray[wid];
   if win=nil then
   begin
-    printf('winset %d: doesn'#39't exist\n',[wid]);
+    printf('winset %d: doesn''t exist\n',[wid]);
     exit;
   end;
 
@@ -449,7 +449,7 @@ endx: integer;
 endy: integer;
 begin
   glEnable(GL_SCISSOR_TEST);
-  //{$if not defined(BEOS) && not defined (WINDOWS)}
+  //{$if !defined(BEOS) and !defined(WINDOWS)}
   //glutSetWindow(win);
   //{$endif}
   sizex:= glutGet(GLUT_WINDOW_WIDTH);

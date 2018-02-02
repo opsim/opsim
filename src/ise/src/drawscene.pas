@@ -35,9 +35,6 @@ interface
 
 uses
 blender, screen, blenglob, blendef, scene, space;
-//{$include "blender.h"}
-//{$include "file.h"}
-//{$include "graphics.h"}
 
 procedure set_scene(sce: pScene);
 
@@ -372,7 +369,7 @@ end;
 //    begin 
 //      if (G.f and G_DEBUG) <> 0
 // then
-//      printf('can'#39't open %s\n',name);
+//      printf('can''t open %s\n',name);
 //      for{while} a:=0 to Pred(64) { a++}
 //      do
 //      cdata[a+52]:= 1; 

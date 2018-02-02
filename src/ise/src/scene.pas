@@ -270,7 +270,7 @@ begin
           if test^._object=par then
           dec(doit);
           if doit=0 then
-          break; {<= !!!b possible in "switch" - then remove this line}
+          break;
           test:= test^.next;
         end;
         if test<>nil then
@@ -346,7 +346,7 @@ end;
 //    end;
 //    sce:= sce^.id.next; 
 //  end;
-//  sprintf(str,'Can'#39't find scene: %s',name); 
+//  sprintf(str,'Can''t find scene: %s',name); 
 //  error(str); 
 //end;
 //

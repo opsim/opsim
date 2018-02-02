@@ -941,7 +941,7 @@ end;
 //      if G.f and G_DEBUG
 //      then
 //      begin 
-//        printf('swap\n'); 
+//        printf('swap\n');
 //        glutSwapBuffers(); 
 //      end;
 //    end;
@@ -1123,7 +1123,7 @@ end;
 //          if event>0
 //          then
 //          begin 
-//            printf('start timer\n'); 
+//            printf('start timer\n');
 //            waitcursor(1); 
 //            start_timer(); 
 //            for{while} a:=0 to Pred(10) { a++}
@@ -1137,10 +1137,10 @@ end;
 //          end_timer(@time,0); 
 //          if event=1
 //          then
-//          printf('draw %d\n',time); 
+//          printf('draw %d\n',time);
 //          if event=2
 //          then
-//          printf('d+sw %d\n',time); 
+//          printf('d+sw %d\n',time);
 //          waitcursor(0); 
 //          begin
 //            result:= 0; 
@@ -1163,7 +1163,7 @@ end;
 //        begin 
 //          if write_homefile()=0
 //          then
-//          error('Can'#39't write ~/.B.blend'); 
+//          error('Can''t write ~/.B.blend'); 
 //        end;
 //        begin
 //          result:= 0; 

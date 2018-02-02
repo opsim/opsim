@@ -2382,17 +2382,21 @@ begin
   {$ifdef __sgi}
   screen_swapbuffers_OGL();
   {$endif}
+
   {$ifdef MESA30}
   screen_swapbuffers_MESA();
   {$else}
   screen_swapbuffers_REDRAW();
   {$endif}
+
   {$ifdef WINDOWS}
   screen_swapbuffers_REDRAW();
   {$endif}
+
   {$ifdef BEOS}
   screen_swapbuffers_GLUT();
   {$endif}
+
   {$ifdef __SUN}
   {$ifndef MESA}
   screen_swapbuffers_OGL();
@@ -3725,7 +3729,7 @@ begin
   glutEntryFunc(@inputchangefunc);
 end;
 
-function mywinopen(mode: integer;  posx: smallint;  posy: smallint;  sizex: smallint;  sizey: smallint): integer;
+function mywinopen(mode: integer;  posx, posy, sizex, sizey: smallint): integer;
 var
 win: integer;
 begin
@@ -3836,7 +3840,7 @@ begin
     warp_pointer(sc^.sizex div 2,sc^.sizey div 2);
     scrmousex:= sc^.sizex div 2;
     scrmousey:= sc^.sizey div 2;
-    //qenter(REDRAW,1);
+    qenter(REDRAW,1);
   end
   else
   sc^.mainwin:= mainwin;

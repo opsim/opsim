@@ -79,7 +79,7 @@ end;
 //  do
 //  begin 
 //    if sc^.scene=G.scene
-// then
+//    then
 //    begin 
 //      sa:= sc^.areabase.first;
 //      while sa
@@ -90,33 +90,33 @@ end;
 //        do
 //        begin 
 //          if vd.spacetype=SPACE_OOPS)and(val=REDRAW
-// then
+//          then
 //          begin 
 //            if sa^.win<>nil 
-// then
+//            then
 //            addqueue(sa^.win,REDRAW,1); 
 //          end;
 //          else
 //          if vd.spacetype=SPACE_VIEW3D)and(vd.scenelock
-// then
+//          then
 //          begin 
 //            if vd.localview=0
-// then
+//            then
 //            begin 
 //              vd.lay:= G.scene.lay; 
 //              vd.camera:= G.scene.camera; 
 //              if vd.camera=0)and(vd.persp>1
-// then
+//              then
 //              vd.persp:= 1; 
 //              if (vd.lay and vd.layact)=0
-// then
+//              then
 //              begin 
 //                bit:= 0; 
 //                while bit<32
 //                do
 //                begin 
 //                  if vd.lay and (1 shl bit)
-// then
+//                  then
 //                  begin 
 //                    vd.layact:= 1 shl bit; 
 //                    break; {<= !!!b possible in "switch" - then remove this line}
@@ -125,13 +125,13 @@ end;
 //                end;
 //              end;
 //              if val=REDRAW)and(vd=sa^.spacedata.first
-// then
+//              then
 //              begin 
 //                if sa^.win<>nil 
-// then
+//                then
 //                addqueue(sa^.win,REDRAW,1); 
 //                if sa^.headwin<>nil 
-// then
+//                then
 //                addqueue(sa^.headwin,REDRAW,1); 
 //              end;
 //            end;
@@ -148,7 +148,7 @@ end;
 //procedure handle_view3d_lock; 
 //begin
 //  if G.vd.localview=0)and(G.vd.scenelock)and(curarea.spacetype=SPACE_VIEW3D
-// then
+//  then
 //  begin 
 //    (* naar scene kopieeren *)
 //    G.scene.lay:= G.vd.lay; 
@@ -182,18 +182,18 @@ end;
 //  
 //  
 //  if curarea.win=0
-// then
+//  then
 //  exit;
 //  (* hier komtie vanuit sa->headqread() *)
 //  if event=MOUSEY
-// then
+//  then
 //  exit;
 //  if val<>nil 
-// then
+//  then
 //  begin 
 //    (* TEXTEDITING?? *)
 //    if G.obedit)and(G.obedit.type=OB_FONT
-// then
+//    then
 //    begin 
 //      case event of
 //        LEFTMOUSE:
@@ -203,14 +203,14 @@ end;
 //        MIDDLEMOUSE:
 //        begin
 //          if U.flag and VIEWMOVE
-// then
+//          then
 //          begin 
 //            if G.qual and LR_SHIFTKEY
-// then
+//            then
 //            viewmove(0); 
 //            else
 //            if G.qual and LR_CTRLKEY
-// then
+//            then
 //            viewmove(2); 
 //            else
 //            viewmove(1); 
@@ -218,11 +218,11 @@ end;
 //          else
 //          begin 
 //            if G.qual and LR_SHIFTKEY
-// then
+//            then
 //            viewmove(1); 
 //            else
 //            if G.qual and LR_CTRLKEY
-// then
+//            then
 //            viewmove(2); 
 //            else
 //            viewmove(0); 
@@ -232,7 +232,7 @@ end;
 //        UKEY:
 //        begin
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          begin 
 //            remake_editText(); 
 //            doredraw:= 1; 
@@ -242,7 +242,7 @@ end;
 //        KEYBD:
 //        begin
 //          if padevent=0
-// then
+//          then
 //          begin 
 //            do_textedit(event,val); 
 //          end;
@@ -271,7 +271,7 @@ end;
 //        
 //      end;{case?}
 //      if padevent<>nil 
-// then
+//      then
 //      dec(padevent); 
 //    end;
 //    else
@@ -284,7 +284,7 @@ end;
 //        LEFTMOUSE:
 //        begin
 //          if G.f and G_VERTEXPAINT
-// then
+//          then
 //          vertex_paint(); 
 //          else
 //          mouse_cursor(); 
@@ -292,14 +292,14 @@ end;
 //        MIDDLEMOUSE:
 //        begin
 //          if U.flag and VIEWMOVE
-// then
+//          then
 //          begin 
 //            if G.qual and LR_SHIFTKEY
-// then
+//            then
 //            viewmove(0); 
 //            else
 //            if G.qual and LR_CTRLKEY
-// then
+//            then
 //            viewmove(2); 
 //            else
 //            viewmove(1); 
@@ -307,11 +307,11 @@ end;
 //          else
 //          begin 
 //            if G.qual and LR_SHIFTKEY
-// then
+//            then
 //            viewmove(1); 
 //            else
 //            if G.qual and LR_CTRLKEY
-// then
+//            then
 //            viewmove(2); 
 //            else
 //            viewmove(0); 
@@ -320,7 +320,7 @@ end;
 //        RIGHTMOUSE:
 //        begin
 //          if G.obedit)and((G.qual and LR_CTRLKEY)=0
-// then
+//          then
 //          begin 
 //            if{!!!e unknown token}
 //            mouse_mesh(); 
@@ -329,24 +329,24 @@ end;
 //            mouse_nurb(); 
 //            else
 //            if G.obedit.type=OB_MBALL
-// then
+//            then
 //            mouse_mball(); 
 //            else
 //            if G.obedit.type=OB_LATTICE
-// then
+//            then
 //            mouse_lattice(); 
 //          end;
 //          else
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          mouse_select(); 
 //          else
 //          if G.f and G_FACESELECT
-// then
+//          then
 //          face_select(); 
 //          else
 //          if G.f and G_VERTEXPAINT
-// then
+//          then
 //          sample_vpaint(); 
 //          else
 //          mouse_select(); 
@@ -406,11 +406,11 @@ end;
 //        AKEY:
 //        begin
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          apply_object(); 
 //          else
 //          if G.qual and LR_SHIFTKEY
-// then
+//          then
 //          begin 
 //            tbox_setmain(0); 
 //            toolbox(); 
@@ -418,7 +418,7 @@ end;
 //          else
 //          begin 
 //            if G.obedit<>nil 
-// then
+//            then
 //            begin 
 //              if{!!!e unknown token}
 //              deselectall_mesh(); 
@@ -427,17 +427,17 @@ end;
 //              deselectall_nurb(); 
 //              else
 //              if G.obedit.type=OB_MBALL
-// then
+//              then
 //              deselectall_mball(); 
 //              else
 //              if G.obedit.type=OB_LATTICE
-// then
+//              then
 //              deselectall_Latt(); 
 //            end;
 //            else
 //            begin 
 //              if G.f and G_FACESELECT
-// then
+//              then
 //              deselectall_tface(); 
 //              else
 //              deselectall(); 
@@ -447,7 +447,7 @@ end;
 //        BKEY:
 //        begin
 //          if G.qual and LR_SHIFTKEY
-// then
+//          then
 //          set_render_border(); 
 //          else
 //          borderselect(); 
@@ -455,20 +455,20 @@ end;
 //        CKEY:
 //        begin
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          begin 
 //            copymenu(); 
 //          end;
 //          else
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          begin 
 //            convertmenu(); 
 //          end;
 //          (* editobject.c *)
 //          else
 //          if G.qual and LR_SHIFTKEY
-// then
+//          then
 //          begin 
 //            view3d_home(1); 
 //            curs:= give_cursor(); 
@@ -477,7 +477,7 @@ end;
 //          end;
 //          else
 //          if G.obedit<>0)and(ELEM(G.obedit.type,OB_CURVE,OB_SURF)
-// then
+//          then
 //          begin 
 //            makecyclicNurb(); 
 //            makeDispList(G.obedit); 
@@ -495,16 +495,16 @@ end;
 //        DKEY:
 //        begin
 //          if G.qual and LR_SHIFTKEY
-// then
+//          then
 //          begin 
 //            if G.obedit<>nil 
-// then
+//            then
 //            begin 
 //              if{!!!e unknown token}
 //              adduplicate_mesh(); 
 //              else
 //              if G.obedit.type=OB_MBALL
-// then
+//              then
 //              adduplicate_mball(); 
 //              else
 //              if{!!!e unknown token}
@@ -515,15 +515,15 @@ end;
 //          end;
 //          else
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          begin 
 //            if G.obedit=0
-// then
+//            then
 //            adduplicate(0); 
 //          end;
 //          else
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          begin 
 //            imagestodisplist(); 
 //          end;
@@ -532,7 +532,7 @@ end;
 //          begin 
 //            pupval:= pupmenu('Draw mode%t|BoundBox %x1|Wire %x2|OpenGL Solid %x3|Shaded solid %x4'); 
 //            if pupval>0
-// then
+//            then
 //            begin 
 //              G.vd.drawtype:= pupval; 
 //              doredraw:= 1; 
@@ -541,50 +541,50 @@ end;
 //          {$else}
 //          else
 //          if G.main.sector.first<>nil 
-// then
+//          then
 //          sector_simulate(); 
 //          {$endif}
 //        end;
 //        EKEY:
 //        begin
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            if{!!!e unknown token}
 //            extrude_mesh(); 
 //            else
 //            if G.obedit.type=OB_CURVE
-// then
+//            then
 //            addvert_Nurb('e'); 
 //            else
 //            if G.obedit.type=OB_SURF
-// then
+//            then
 //            extrude_nurb(); 
 //          end;
 //          else
 //          begin 
 //            ob:= OBACT; 
 //            if ob)and(ob.type=OB_IKA
-// then
+//            then
 //            if okee('extrude IKA')
-// then
+//            then
 //            extrude_ika(ob,1); 
 //          end;
 //        end;
 //        FKEY:
 //        begin
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            
 //            function ELEM3{!!!3 unknown typedef}: if; 
 //            begin
 //              if G.qual and LR_SHIFTKEY
-// then
+//              then
 //              fill_mesh(); 
 //              else
 //              if G.qual and LR_ALTKEY
-// then
+//              then
 //              beauty_fill(); 
 //              else
 //              addedgevlak_mesh(); 
@@ -595,15 +595,15 @@ end;
 //          end;
 //          else
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          sort_faces(); 
 //          else
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          first_base(); 
 //          else
 //          if G.qual and LR_SHIFTKEY
-// then
+//          then
 //          fly(); 
 //          else
 //          {$ifndef FREE}
@@ -615,7 +615,7 @@ end;
 //        GKEY:
 //        begin
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          clear_object('g'); 
 //          else
 //          transform('g'); 
@@ -623,38 +623,38 @@ end;
 //        HKEY:
 //        begin
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            
 //            function ELEM3{!!!3 unknown typedef}: if; 
 //            begin
 //              if G.qual and LR_ALTKEY
-// then
+//              then
 //              reveal_mesh(); 
 //              else
 //              hide_mesh(G.qual and LR_SHIFTKEY); 
 //            end;
 //            else
 //            if G.obedit.type=OB_SURF
-// then
+//            then
 //            begin 
 //              if G.qual and LR_ALTKEY
-// then
+//              then
 //              revealNurb(); 
 //              else
 //              hideNurb(G.qual and LR_SHIFTKEY); 
 //            end;
 //            else
 //            if G.obedit.type=OB_CURVE
-// then
+//            then
 //            begin 
 //              if G.qual and 48
-// then
+//              then
 //              autocalchandlesNurb_all(1); 
 //              else
 //              (* flag=1, selected *)
 //              if G.qual and 3
-// then
+//              then
 //              sethandlesNurb(1); 
 //              else
 //              sethandlesNurb(3); 
@@ -664,7 +664,7 @@ end;
 //          end;
 //          else
 //          if G.f and G_FACESELECT
-// then
+//          then
 //          hide_tface(); 
 //        end;
 //        IKEY:
@@ -673,25 +673,25 @@ end;
 //        JKEY:
 //        begin
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          begin 
 //            if ob:=OBACT
-// then
+//            then
 //            begin 
 //              if ob.type=OB_MESH
-// then
+//              then
 //              join_mesh(); 
 //              else
 //              if ob.type=OB_CURVE
-// then
+//              then
 //              join_curve(OB_CURVE); 
 //              else
 //              if ob.type=OB_SURF
-// then
+//              then
 //              join_curve(OB_SURF); 
 //              else
 //              if ob.type=OB_SECTOR
-// then
+//              then
 //              join_sector(); 
 //            end;
 //            (* editmesh.c *)
@@ -700,26 +700,26 @@ end;
 //        KKEY:
 //        begin
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            if G.obedit.type=OB_SURF
-// then
+//            then
 //            printknots(); 
 //          end;
 //          else
 //          begin 
 //            if G.qual and LR_SHIFTKEY
-// then
+//            then
 //            begin 
 //              if G.f and G_VERTEXPAINT
-// then
+//              then
 //              clear_vpaint(); 
 //              else
 //              select_select_keys(); 
 //            end;
 //            else
 //            if G.qual and LR_CTRLKEY
-// then
+//            then
 //            make_skeleton(); 
 //            else
 //            (*      else if(G.qual & LR_ALTKEY) delete_skeleton(); *)
@@ -729,7 +729,7 @@ end;
 //        LKEY:
 //        begin
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            if{!!!e unknown token}
 //            selectconnected_mesh(); 
@@ -740,15 +740,15 @@ end;
 //          else
 //          begin 
 //            if G.qual and LR_SHIFTKEY
-// then
+//            then
 //            selectlinks(); 
 //            else
 //            if G.qual and LR_CTRLKEY
-// then
+//            then
 //            linkmenu(); 
 //            else
 //            if G.f and G_FACESELECT
-// then
+//            then
 //            select_linked_tfaces(); 
 //            else
 //            make_local(); 
@@ -761,22 +761,22 @@ end;
 //        NKEY:
 //        begin
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            
 //            function ELEM3{!!!3 unknown typedef}: if; 
 //            begin
 //              if G.qual and LR_SHIFTKEY
-// then
+//              then
 //              begin 
 //                if okee('Recalc normals inside')
-// then
+//                then
 //                righthandfaces(2); 
 //              end;
 //              else
 //              begin 
 //                if okee('Recalc normals outside')
-// then
+//                then
 //                righthandfaces(1); 
 //              end;
 //              allqueue(REDRAWVIEW3D,0); 
@@ -785,22 +785,22 @@ end;
 //          {$ifndef FREE}
 //          else
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          add_networklink(); 
 //          {$endif}
 //        end;
 //        OKEY:
 //        begin
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          clear_object('o'); 
 //          else
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            {prop_mode: integer; }{<= !!!5 external variable}
 //            if G.qual and LR_SHIFTKEY
-// then
+//            then
 //            prop_mode:= {not}0=prop_mode; 
 //            else
 //            G.f:= G.f xor (G_PROPORTIONAL); 
@@ -810,13 +810,13 @@ end;
 //        PKEY:
 //        begin
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            if G.qual<>nil 
-// then
+//            then
 //            begin 
 //              if G.qual and LR_CTRLKEY
-// then
+//              then
 //              make_parent(); 
 //            end;
 //            else
@@ -828,25 +828,25 @@ end;
 //          end;
 //          else
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          make_parent(); 
 //          else
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          clear_parent(); 
 //        end;
 //        RKEY:
 //        begin
 //          if G.obedit=0)and((G.f and G_FACESELECT)
-// then
+//          then
 //          rotate_uv_tface(); 
 //          else
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          clear_object('r'); 
 //          else
 //          if G.qual and LR_SHIFTKEY
-// then
+//          then
 //          selectrow_nurb(); 
 //          else
 //          transform('r'); 
@@ -854,24 +854,24 @@ end;
 //        SKEY:
 //        begin
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          begin 
 //            if G.obedit<>nil 
-// then
+//            then
 //            ; 
 //            else
 //            clear_object('s'); 
 //          end;
 //          else
 //          if G.qual and LR_SHIFTKEY
-// then
+//          then
 //          snapmenu(); 
 //          else
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          begin 
 //            if G.obedit<>nil 
-// then
+//            then
 //            transform('S'); 
 //          end;
 //          else
@@ -880,10 +880,10 @@ end;
 //        TKEY:
 //        begin
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          begin 
 //            if G.obedit<>nil 
-// then
+//            then
 //            begin 
 //              
 //              function ELEM3{!!!3 unknown typedef}: if; 
@@ -898,10 +898,10 @@ end;
 //          end;
 //          else
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          begin 
 //            if G.obedit)and(G.obedit.type=OB_CURVE
-// then
+//            then
 //            clear_tilt(); 
 //            else
 //            clear_track(); 
@@ -909,7 +909,7 @@ end;
 //          else
 //          begin 
 //            if G.obedit<>nil 
-// then
+//            then
 //            transform('t'); 
 //            else
 //            texspace_edit(); 
@@ -918,7 +918,7 @@ end;
 //        UKEY:
 //        begin
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            if{!!!e unknown token}
 //            remake_editMesh(); 
@@ -927,16 +927,16 @@ end;
 //            remake_editNurb(); 
 //            else
 //            if G.obedit.type=OB_LATTICE
-// then
+//            then
 //            remake_editLatt(); 
 //          end;
 //          else
 //          if G.f and G_FACESELECT
-// then
+//          then
 //          uv_autocalc_tface(); 
 //          else
 //          if G.f and G_VERTEXPAINT
-// then
+//          then
 //          vpaint_undo(); 
 //          else
 //          single_user(); 
@@ -944,10 +944,10 @@ end;
 //        VKEY:
 //        begin
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            if G.obedit.type=OB_CURVE
-// then
+//            then
 //            begin 
 //              sethandlesNurb(2); 
 //              makeDispList(G.obedit); 
@@ -956,7 +956,7 @@ end;
 //          end;
 //          else
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          image_aspect(); 
 //          else
 //          set_vpaint(); 
@@ -964,22 +964,22 @@ end;
 //        WKEY:
 //        begin
 //          if G.qual and LR_SHIFTKEY
-// then
+//          then
 //          begin 
 //            transform('w'); 
 //          end;
 //          else
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          begin 
 //            (* if(G.obedit && G.obedit->type==OB_MESH) write_videoscape(); *)
 //          end;
 //          else
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          begin 
 //            if G.obedit<>nil 
-// then
+//            then
 //            begin 
 //              
 //              function ELEM{!!!3 unknown typedef}: if; 
@@ -994,7 +994,7 @@ end;
 //        XKEY:
 //        begin
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            if{!!!e unknown token}
 //            delete_mesh(); 
@@ -1003,7 +1003,7 @@ end;
 //            delNurb(); 
 //            else
 //            if G.obedit.type=OB_MBALL
-// then
+//            then
 //            delete_mball(); 
 //          end;
 //          else
@@ -1012,7 +1012,7 @@ end;
 //        YKEY:
 //        begin
 //          if G.obedit<>nil 
-// then
+//          then
 //          begin 
 //            if{!!!e unknown token}
 //            split_mesh(); 
@@ -1022,27 +1022,27 @@ end;
 //        begin
 //          do_realtimelight(0,0,0); 
 //          if G.qual and LR_CTRLKEY
-// then
+//          then
 //          begin 
 //            reshadeall_displist(); 
 //            G.vd.drawtype:= OB_SHADED; 
 //          end;
 //          else
 //          if G.qual and LR_SHIFTKEY
-// then
+//          then
 //          begin 
 //            if G.vd.drawtype=OB_SHADED
-// then
+//            then
 //            G.vd.drawtype:= OB_WIRE; 
 //            else
 //            G.vd.drawtype:= OB_SHADED; 
 //          end;
 //          else
 //          if G.qual and LR_ALTKEY
-// then
+//          then
 //          begin 
 //            if G.vd.drawtype=OB_TEXTURE
-// then
+//            then
 //            G.vd.drawtype:= OB_SOLID; 
 //            else
 //            G.vd.drawtype:= OB_TEXTURE; 
@@ -1050,7 +1050,7 @@ end;
 //          else
 //          begin 
 //            if G.vd.drawtype=OB_SOLID)or(G.vd.drawtype=OB_SHADED
-// then
+//            then
 //            G.vd.drawtype:= OB_WIRE; 
 //            else
 //            G.vd.drawtype:= OB_SOLID; 
@@ -1076,7 +1076,7 @@ end;
 //        (* '/' *)
 //        begin
 //          if G.vd.localview<>nil 
-// then
+//          then
 //          begin 
 //            G.vd.localview:= 0; 
 //          endlocalview(curarea); 
@@ -1093,11 +1093,11 @@ end;
 //      begin
 //        ob:= OBACT; 
 //        if ob<>nil 
-// then
+//        then
 //        begin 
 //          obmat_to_viewmat(ob); 
 //          if G.vd.persp=2
-// then
+//          then
 //          G.vd.persp:= 1; 
 //          addqueue(curarea.win,REDRAW,1); 
 //        end;
@@ -1110,7 +1110,7 @@ end;
 //      PAGEUPKEY:
 //      begin
 //        if G.qual and LR_CTRLKEY
-// then
+//        then
 //        movekey_obipo(1); 
 //        else
 //        nextkey_obipo(1); 
@@ -1119,7 +1119,7 @@ end;
 //      (* in editipo.c *)
 //      begin
 //        if G.qual and LR_CTRLKEY
-// then
+//        then
 //        movekey_obipo(-1); 
 //        else
 //        nextkey_obipo(-1); 
@@ -1174,7 +1174,7 @@ end;
 //  vd.gridlines:= 16; 
 //  vd.lay:= vd.layact:=1; 
 //  if G.scene<>nil 
-// then
+//  then
 //  begin 
 //    vd.lay:= vd.layact:=G.scene.lay; 
 //    vd.camera:= G.scene.camera; 
@@ -1199,7 +1199,7 @@ end;
 //  
 //  
 //  if G.v2d=0
-// then
+//  then
 //  exit;
 //  ortho2(G.v2d.cur.xmin,G.v2d.cur.xmax,G.v2d.cur.ymin,G.v2d.cur.ymax); 
 //  test_view2d(); 
@@ -1218,22 +1218,22 @@ end;
 //  
 //  doredraw:=0; 
 //  if curarea.win=0
-// then
+//  then
 //  exit;
 //  if val<>nil 
-// then
+//  then
 //  begin 
 //    case event of
 //      LEFTMOUSE:
 //      begin
 //        if in_ipo_buttons()
-// then
+//        then
 //        begin 
 //          FrontbufferButs(LongBool(1)); 
 //          val:= DoButtons(); 
 //          FrontbufferButs(LongBool(0)); 
 //          if val<>nil 
-// then
+//          then
 //          do_ipowin_buts(val-1); 
 //          else
 //          begin 
@@ -1242,7 +1242,7 @@ end;
 //          end;
 //        end;
 //        if G.qual and LR_CTRLKEY
-// then
+//        then
 //        add_vert_ipo(); 
 //        else
 //        gesture(); 
@@ -1250,7 +1250,7 @@ end;
 //      MIDDLEMOUSE:
 //      begin
 //        if in_ipo_buttons()
-// then
+//        then
 //        begin 
 //          scroll_ipobuts(); 
 //        end;
@@ -1267,7 +1267,7 @@ end;
 //        dx:= 0.1154*(G.v2d.cur.xmax-G.v2d.cur.xmin); 
 //        dy:= 0.1154*(G.v2d.cur.ymax-G.v2d.cur.ymin); 
 //        if val=SPACE_BUTS
-// then
+//        then
 //        begin 
 //          dx:= dx div (2.0); 
 //          dy:= dy div (2.0); 
@@ -1284,7 +1284,7 @@ end;
 //        dx:= 0.15*(G.v2d.cur.xmax-G.v2d.cur.xmin); 
 //        dy:= 0.15*(G.v2d.cur.ymax-G.v2d.cur.ymin); 
 //        if val=SPACE_BUTS
-// then
+//        then
 //        begin 
 //          dx:= dx div (2.0); 
 //          dy:= dy div (2.0); 
@@ -1299,7 +1299,7 @@ end;
 //      PAGEUPKEY:
 //      begin
 //        if G.qual and LR_CTRLKEY
-// then
+//        then
 //        movekey_ipo(1); 
 //        else
 //        nextkey_ipo(1); 
@@ -1307,7 +1307,7 @@ end;
 //      PAGEDOWNKEY:
 //      begin
 //        if G.qual and LR_CTRLKEY
-// then
+//        then
 //        movekey_ipo(-1); 
 //        else
 //        nextkey_ipo(-1); 
@@ -1319,7 +1319,7 @@ end;
 //      AKEY:
 //      begin
 //        if in_ipo_buttons()
-// then
+//        then
 //        begin 
 //          swap_visible_editipo(); 
 //        end;
@@ -1337,7 +1337,7 @@ end;
 //      DKEY:
 //      begin
 //        if G.qual and LR_SHIFTKEY
-// then
+//        then
 //        add_duplicate_editipo(); 
 //      end;
 //      GKEY:
@@ -1347,7 +1347,7 @@ end;
 //      HKEY:
 //      begin
 //        if G.qual and LR_SHIFTKEY
-// then
+//        then
 //        sethandles_ipo(HD_AUTO); 
 //        else
 //        sethandles_ipo(HD_ALIGN); 
@@ -1358,19 +1358,19 @@ end;
 //      end;
 //      KKEY:
 //      begin
-//        if G.sipo^.showkey<>nil 
-// then
+//        if G.sipo.showkey<>nil 
+//        then
 //        begin 
-//          G.sipo^.showkey:= 0; 
+//          G.sipo.showkey:= 0; 
 //          swap_selectall_editipo(); 
 //        end;
 //        (* sel all *)
 //        else
-//        G.sipo^.showkey:= 1; 
-//        free_ipokey(@G.sipo^.ipokey); 
-//        if G.sipo^.ipo<>nil 
-// then
-//        G.sipo^.ipo.showkey:= G.sipo^.showkey; 
+//        G.sipo.showkey:= 1; 
+//        free_ipokey(@G.sipo.ipokey); 
+//        if G.sipo.ipo<>nil 
+//        then
+//        G.sipo.ipo.showkey:= G.sipo.showkey; 
 //        addqueue(curarea.headwin,REDRAW,1); 
 //        allqueue(REDRAWVIEW3D,0); 
 //        doredraw:= 1; 
@@ -1382,7 +1382,7 @@ end;
 //      SKEY:
 //      begin
 //        if G.qual and LR_SHIFTKEY
-// then
+//        then
 //        ipo_snapmenu(); 
 //        else
 //        transform_ipo('s'); 
@@ -1398,7 +1398,7 @@ end;
 //      XKEY:
 //      begin
 //        if G.qual and LR_SHIFTKEY
-// then
+//        then
 //        delete_key(); 
 //        else
 //        del_ipo(); 
@@ -1407,7 +1407,7 @@ end;
 //    end;{case?}
 //  end;
 //  if doredraw<>nil 
-// then
+//  then
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
 //
@@ -1419,19 +1419,19 @@ end;
 //  sipo:= callocN(sizeof(SpaceIpo),'initipo'); 
 //  addhead(@sa^.spacedata,sipo); 
 //  set_func_space(sa); 
-//  sipo^.spacetype:= SPACE_IPO; 
-//  sipo^.v2d.tot.xmin:= 0.0; 
-//  sipo^.v2d.tot.ymin:= -10.0; 
-//  sipo^.v2d.tot.xmax:= G.scene.r.efra; 
-//  sipo^.v2d.tot.ymax:= 10.0; 
-//  sipo^.v2d.cur:= sipo^.v2d.tot; 
-//  sipo^.v2d.min[0]:= 0.$1; 
-//  sipo^.v2d.min[1]:= 0.$1; 
-//  sipo^.v2d.max[0]:= 15000.0; 
-//  sipo^.v2d.max[1]:= 10000.0; 
-//  sipo^.v2d.scroll:= L_SCROLL+B_SCROLL; 
-//  sipo^.v2d.keeptot:= 0; 
-//  sipo^.blocktype:= ID_OB; 
+//  sipo.spacetype:= SPACE_IPO; 
+//  sipo.v2d.tot.xmin:= 0.0; 
+//  sipo.v2d.tot.ymin:= -10.0; 
+//  sipo.v2d.tot.xmax:= G.scene.r.efra; 
+//  sipo.v2d.tot.ymax:= 10.0; 
+//  sipo.v2d.cur:= sipo.v2d.tot; 
+//  sipo.v2d.min[0]:= 0.$1; 
+//  sipo.v2d.min[1]:= 0.$1; 
+//  sipo.v2d.max[0]:= 15000.0; 
+//  sipo.v2d.max[1]:= 10000.0; 
+//  sipo.v2d.scroll:= L_SCROLL+B_SCROLL; 
+//  sipo.v2d.keeptot:= 0; 
+//  sipo.blocktype:= ID_OB; 
 //  (* sipo space loopt van (0,-?) tot (??,?) *)
 //end;
 
@@ -1490,7 +1490,7 @@ begin
 //  DefButt(TEX,0,'Textures:',545,60,245,20,U.textudir,1.0,63.0,0,0,'The default directory to search when loading textures'); 
 //  DefButt(TEX,0,'SeqPlugin:',795,60,245,20,U.plugseqdir,1.0,63.0,0,0,'The default directory to search when loading sequence plugins'); 
 //  if TEST_C_KEY<>nil 
-// then
+//  then
 //  begin 
 //    glRasterPos2i(545,84); 
 //    cpack($0); 
@@ -1505,7 +1505,7 @@ str: pchar;
 begin
 //  
 //  if val<>nil 
-// then
+//  then
 //  begin 
 //    case event of
 //      LEFTMOUSE:
@@ -1514,10 +1514,10 @@ begin
 //        event:= DoButtons(); 
 //        FrontbufferButs(LongBool(0)); 
 //        if event<>nil 
-// then
+//        then
 //        begin 
 //          if event=B_U_CAPSLOCK
-// then
+//          then
 //          disable_capslock(U.flag and NO_CAPSLOCK); 
 //          else
 //          do_global_buttons(event); 
@@ -1526,11 +1526,11 @@ begin
 //      MOUSEY:
 //      begin
 //        if U.flag and TOOLTIPS
-// then
+//        then
 //        begin 
 //          str:= GetButTip(); 
 //          if str<>nil 
-// then
+//          then
 //          begin 
 //            set_info_text(str); 
 //            allqueue(REDRAWINFO,1); 
@@ -1561,7 +1561,7 @@ end;
 //  
 //  
 //  if G.v2d=0
-// then
+//  then
 //  exit;
 //  test_view2d(); 
 //  ortho2(G.v2d.cur.xmin,G.v2d.cur.xmax,G.v2d.cur.ymin,G.v2d.cur.ymax); 
@@ -1584,10 +1584,10 @@ end;
 //  
 //  doredraw:=0; 
 //  if curarea.win=0
-// then
+//  then
 //  exit;
 //  if val<>nil 
-// then
+//  then
 //  begin 
 //    case event of
 //      LEFTMOUSE:
@@ -1615,11 +1615,11 @@ end;
 //      MOUSEY:
 //      begin
 //        if U.flag and TOOLTIPS
-// then
+//        then
 //        begin 
 //          str:= GetButTip(); 
 //          if str<>nil 
-// then
+//          then
 //          begin 
 //            set_info_text(str); 
 //            allqueue(REDRAWINFO,1); 
@@ -1650,22 +1650,22 @@ end;
 //        do
 //        begin 
 //          if sa^.spacetype=SPACE_VIEW3D
-// then
+//          then
 //          begin 
 //            if sa3d<>nil 
-// then
+//            then
 //            exit;
 //            sa3d:= sa; 
 //          end;
 //          sa:= sa^.next; 
 //        end;
 //        if sa3d<>nil 
-// then
+//        then
 //        begin 
 //          sa:= curarea; 
 //          areawinset(sa3d.win); 
 //          if event=ZKEY
-// then
+//          then
 //          winqread3d(event,val); 
 //          else
 //          persptoetsen(event); 
@@ -1677,7 +1677,7 @@ end;
 //    end;{case?}
 //  end;
 //  if doredraw<>nil 
-// then
+//  then
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
 //
@@ -1721,7 +1721,7 @@ end;
 //begin
 //  
 //  if curarea.spacetype=SPACE_BUTS
-// then
+//  then
 //  sa:= curarea; 
 //  else
 //  begin 
@@ -1731,44 +1731,44 @@ end;
 //    do
 //    begin 
 //      if sa^.spacetype=SPACE_BUTS
-// then
+//      then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      sa:= sa^.next; 
 //    end;
 //  end;
 //  if sa=0
-// then
+//  then
 //  exit;
 //  if sa<>curarea
-// then
+//  then
 //  areawinset(sa^.win); 
 //  buts:= sa^.spacedata.first; 
 //  if fkey=F4KEY
-// then
+//  then
 //  buts^.mainb:= BUTS_LAMP;
 //  else
 //  if fkey=F5KEY
-// then
+//  then
 //  buts^.mainb:= BUTS_MAT;
 //  else
 //  if fkey=F6KEY
-// then
+//  then
 //  buts^.mainb:= BUTS_TEX;
 //  else
 //  if fkey=F7KEY
-// then
+//  then
 //  buts^.mainb:= BUTS_ANIM;
 //  else
 //  if fkey=F8KEY
-// then
+//  then
 //  buts^.mainb:= BUTS_WORLD;
 //  else
 //  if fkey=F9KEY
-// then
+//  then
 //  buts^.mainb:= BUTS_EDIT;
 //  else
 //  if fkey=F10KEY
-// then
+//  then
 //  buts^.mainb:= BUTS_RENDER;
 //  addqueue(sa^.headwin,REDRAW,1); 
 //  addqueue(sa^.win,REDRAW,1); 
@@ -1800,17 +1800,17 @@ end;
 //  
 //  
 //  if curarea.win=0
-// then
+//  then
 //  exit;
 //  sseq:= curarea.spacedata.first; 
 //  if val<>nil 
-// then
+//  then
 //  begin 
 //    case event of
 //      LEFTMOUSE:
 //      begin
-//        if sseq^.mainb)or(view2dmove()=0
-// then
+//        if sseq.mainb)or(view2dmove()=0
+//        then
 //        begin 
 //          first:= 1; 
 //          set_special_seq_update(1); 
@@ -1820,10 +1820,10 @@ end;
 //            areamouseco_to_ipoco(mval, and dx, and dy); 
 //            cfra:=  {integer(}dx; 
 //            if cfra<1
-// then
+//            then
 //            cfra:= 1; (* else if(cfra> EFRA) cfra= EFRA; *)
 //            if cfra<>CFRA)or(first
-// then
+//            then
 //            begin 
 //              first:= 0; 
 //              CFRA:= cfra; 
@@ -1837,40 +1837,40 @@ end;
 //      end;
 //      MIDDLEMOUSE:
 //      begin
-//        if sseq^.mainb<>nil 
-// then
+//        if sseq.mainb<>nil 
+//        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        view2dmove(); 
 //      end;
 //      RIGHTMOUSE:
 //      (* in drawipo.c *)
 //      begin
-//        if sseq^.mainb<>nil 
-// then
+//        if sseq.mainb<>nil 
+//        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        mouse_select_seq(); 
 //      end;
 //      PADPLUSKEY:
 //      begin
-//        if sseq^.mainb<>nil 
-// then
+//        if sseq.mainb<>nil 
+//        then
 //        begin 
-//          inc(sseq^.zoom); 
-//          if sseq^.zoom>8
-// then
-//          sseq^.zoom:= 8; 
+//          inc(sseq.zoom); 
+//          if sseq.zoom>8
+//          then
+//          sseq.zoom:= 8; 
 //        end;
 //        else
 //        begin 
 //          if G.qual<>nil 
-// then
+//          then
 //          begin 
 //            if G.qual and LR_SHIFTKEY
-// then
+//            then
 //            insert_gap(25,CFRA); 
 //            else
 //            if G.qual and LR_ALTKEY
-// then
+//            then
 //            insert_gap(250,CFRA); 
 //            allqueue(REDRAWSEQ,0); 
 //          end;
@@ -1886,21 +1886,21 @@ end;
 //      end;
 //      PADMINUS:
 //      begin
-//        if sseq^.mainb<>nil 
-// then
+//        if sseq.mainb<>nil 
+//        then
 //        begin 
-//          dec(sseq^.zoom); 
-//          if sseq^.zoom<1
-// then
-//          sseq^.zoom:= 1; 
+//          dec(sseq.zoom); 
+//          if sseq.zoom<1
+//          then
+//          sseq.zoom:= 1; 
 //        end;
 //        else
 //        begin 
 //          if G.qual<>nil 
-// then
+//          then
 //          begin 
 //            if G.qual and LR_SHIFTKEY
-// then
+//            then
 //            no_gaps(); 
 //          end;
 //          else
@@ -1920,7 +1920,7 @@ end;
 //      PADPERIOD:
 //      begin
 //        if last_seq<>nil 
-// then
+//        then
 //        begin 
 //          CFRA:= last_seq.startdisp; 
 //          G.v2d.cur.xmin:= last_seq.startdisp-(last_seq.len div 20); 
@@ -1930,11 +1930,11 @@ end;
 //      end;
 //      AKEY:
 //      begin
-//        if sseq^.mainb<>nil 
-// then
+//        if sseq.mainb<>nil 
+//        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        if G.qual and LR_SHIFTKEY
-// then
+//        then
 //        begin 
 //          add_sequence(); 
 //        end;
@@ -1943,18 +1943,18 @@ end;
 //      end;
 //      BKEY:
 //      begin
-//        if sseq^.mainb<>nil 
-// then
+//        if sseq.mainb<>nil 
+//        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        borderselect_seq(); 
 //      end;
 //      CKEY:
 //      begin
 //        if last_seq)and((last_seq.flag and (SEQ_LEFTSEL+SEQ_RIGHTSEL))
-// then
+//        then
 //        begin 
 //          if last_seq.flag and SEQ_LEFTSEL
-// then
+//          then
 //          CFRA:= last_seq.startdisp; 
 //          else
 //          CFRA:= last_seq.enddisp-1; 
@@ -1968,11 +1968,11 @@ end;
 //      end;
 //      DKEY:
 //      begin
-//        if sseq^.mainb<>nil 
-// then
+//        if sseq.mainb<>nil 
+//        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        if G.qual and LR_SHIFTKEY
-// then
+//        then
 //        add_duplicate_seq(); 
 //      end;
 //      EKEY:
@@ -1985,19 +1985,19 @@ end;
 //      end;
 //      GKEY:
 //      begin
-//        if sseq^.mainb<>nil 
-// then
+//        if sseq.mainb<>nil 
+//        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        transform_seq('g'); 
 //      end;
 //      MKEY:
 //      begin
 //        if G.qual and LR_CTRLKEY
-// then
+//        then
 //        make_effect_movie(); 
 //        else
 //        if G.qual and LR_ALTKEY
-// then
+//        then
 //        un_meta(); 
 //        else
 //        make_meta(); 
@@ -2005,7 +2005,7 @@ end;
 //      SKEY:
 //      begin
 //        if G.qual and LR_SHIFTKEY
-// then
+//        then
 //        seq_snapmenu(); 
 //      end;
 //      TKEY:
@@ -2014,8 +2014,8 @@ end;
 //      end;
 //      XKEY:
 //      begin
-//        if sseq^.mainb<>nil 
-// then
+//        if sseq.mainb<>nil 
+//        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        del_seq(); 
 //      end;
@@ -2023,7 +2023,7 @@ end;
 //    end;{case?}
 //  end;
 //  if doredraw<>nil 
-// then
+//  then
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
 //
@@ -2035,23 +2035,23 @@ end;
 //  sseq:= callocN(sizeof(SpaceSeq),'initseqspace'); 
 //  addhead(@sa^.spacedata,sseq); 
 //  set_func_space(sa); 
-//  sseq^.spacetype:= SPACE_SEQ; 
-//  sseq^.zoom:= 1; 
-//  sseq^.v2d.tot.xmin:= 0.0; 
-//  sseq^.v2d.tot.ymin:= 0.0; 
-//  sseq^.v2d.tot.xmax:= 250.0; 
-//  sseq^.v2d.tot.ymax:= 8.0; 
-//  sseq^.v2d.cur:= sseq^.v2d.tot; 
-//  sseq^.v2d.min[0]:= 10.0; 
-//  sseq^.v2d.min[1]:= 4.0; 
-//  sseq^.v2d.max[0]:= 32000.0; 
-//  sseq^.v2d.max[1]:= MAXSEQ; 
-//  sseq^.v2d.minzoom:= 0.1; 
-//  sseq^.v2d.maxzoom:= 10.0; 
-//  sseq^.v2d.scroll:= L_SCROLL+B_SCROLL; 
-//  sseq^.v2d.keepaspect:= 0; 
-//  sseq^.v2d.keepzoom:= 0; 
-//  sseq^.v2d.keeptot:= 0; 
+//  sseq.spacetype:= SPACE_SEQ; 
+//  sseq.zoom:= 1; 
+//  sseq.v2d.tot.xmin:= 0.0; 
+//  sseq.v2d.tot.ymin:= 0.0; 
+//  sseq.v2d.tot.xmax:= 250.0; 
+//  sseq.v2d.tot.ymax:= 8.0; 
+//  sseq.v2d.cur:= sseq.v2d.tot; 
+//  sseq.v2d.min[0]:= 10.0; 
+//  sseq.v2d.min[1]:= 4.0; 
+//  sseq.v2d.max[0]:= 32000.0; 
+//  sseq.v2d.max[1]:= MAXSEQ; 
+//  sseq.v2d.minzoom:= 0.1; 
+//  sseq.v2d.maxzoom:= 10.0; 
+//  sseq.v2d.scroll:= L_SCROLL+B_SCROLL; 
+//  sseq.v2d.keepaspect:= 0; 
+//  sseq.v2d.keepzoom:= 0; 
+//  sseq.v2d.keeptot:= 0; 
 //  (* seq space loopt van (0,8) tot (250, 0) *)
 //end;
 //(* ******************** SPACE: FILE ********************** *)
@@ -2082,14 +2082,14 @@ end;
 //begin
 //  
 //  if val=0
-// then
+//  then
 //  exit;
 //  sima:= curarea.spacedata.first; 
 //  case event of
 //    LEFTMOUSE:
 //    begin
 //      if G.qual and LR_SHIFTKEY
-// then
+//      then
 //      mouseco_to_curtile(); 
 //      else
 //      gesture(); 
@@ -2114,7 +2114,7 @@ end;
 //    PADMINUS:
 //    begin
 //      if sima.zoom>1
-// then
+//      then
 //      begin 
 //        dec(sima.zoom); 
 //        addqueue(curarea.win,REDRAW,1); 
@@ -2135,7 +2135,7 @@ end;
 //    NKEY:
 //    begin
 //      if G.qual and LR_CTRLKEY
-// then
+//      then
 //      replace_names_but(); 
 //    end;
 //    RKEY:
@@ -2181,7 +2181,7 @@ end;
 //  
 //  
 //  if val=0
-// then
+//  then
 //  exit;
 //  soops:= curarea.spacedata.first; 
 //  case event of
@@ -2240,7 +2240,7 @@ end;
 //    LKEY:
 //    begin
 //      if G.qual and LR_SHIFTKEY
-// then
+//      then
 //      select_backlinked_oops(); 
 //      else
 //      select_linked_oops(); 
@@ -2248,11 +2248,11 @@ end;
 //    SKEY:
 //    begin
 //      if G.qual and LR_ALTKEY
-// then
+//      then
 //      shrink_oops(); 
 //      else
 //      if G.qual and LR_SHIFTKEY
-// then
+//      then
 //      shuffle_oops(); 
 //      else
 //      transform_oops('s'); 
@@ -2357,9 +2357,9 @@ procedure newspace(sa: pScrArea;  type_: integer);
 var
 v3d: pView3D;
 begin
-  if type_>=0 then
+  if type_>=0  then
   begin
-    if sa^.spacetype<>type_ then
+    if sa^.spacetype<>type_    then
     begin
       sa^.spacetype:= type_;
       sa^.butspacetype:= type_;
@@ -2375,7 +2375,7 @@ begin
       v3d:= sa^.spacedata.first; (* zoeken of er al een bestaat, we gebruiken v3d als algemeen voorbeeld *)
       while v3d <>nil       do
       begin
-        if v3d^.spacetype=type_ then
+        if v3d^.spacetype=type_         then
         begin
           remlink(@sa^.spacedata,v3d);
           addhead(@sa^.spacedata,v3d);
@@ -2385,62 +2385,62 @@ begin
         v3d:= v3d^.next;
       end;
       (* er bestaat er nog geen: nieuwe maken *)
-      if type_=SPACE_EMPTY then
+      if type_=SPACE_EMPTY       then
       begin
         set_func_space(sa);
       end
       else
-      if type_=SPACE_VIEW3D then
+      if type_=SPACE_VIEW3D      then
       begin
         set_func_space(sa);
 //        initview3d(sa);
       end
       else
-//      if type_=SPACE_IPO then
+//      if type_=SPACE_IPO       then
 //      begin 
 //        initipo(sa); 
 //      end
 //      else
-      if type_=SPACE_INFO then
+      if type_=SPACE_INFO       then
       begin
         set_func_space(sa);
       end
 //      else
-//      if type_=SPACE_BUTS then
+//      if type_=SPACE_BUTS      then
 //      begin 
 //        init_butspace(sa); 
 //      end
 //      else
-//      if type_=SPACE_FILE then
+//      if type_=SPACE_FILE       then
 //      begin 
 //        init_filespace(sa); 
 //      end
 //      else
-//      if type_=SPACE_SEQ then
+//      if type_=SPACE_SEQ      then
 //      begin 
 //        init_seqspace(sa); 
 //      end
 //      else
-//      if type_=SPACE_IMAGE then
+//      if type_=SPACE_IMAGE      then
 //      begin 
 //        init_imagespace(sa); 
 //      end
 //      else
-//      if type_=SPACE_IMASEL then
+//      if type_=SPACE_IMASEL       then
 //      begin 
 //        init_imaselspace(sa); 
 //      end
 //      else
-//      if type_=SPACE_OOPS then
+//      if type_=SPACE_OOPS      then
 //      begin 
 //        init_oopsspace(sa); 
 //      end
 //      else
-//      if type_=SPACE_PAINT then
+//      if type_=SPACE_PAINT      then
 //      begin 
 //      end
 //      else
-//      if type_=SPACE_TEXT then
+//      if type_=SPACE_TEXT       then
 //      begin 
 //        init_textspace(sa); 
 //      end;
@@ -2458,49 +2458,49 @@ begin
   sfile:= lb^.first;
   while sfile  <> nil  do
   begin
-    if sfile^.spacetype=SPACE_FILE then
+    if sfile^.spacetype=SPACE_FILE    then
     begin
-      if sfile^.libfiledata<>nil then
+      if sfile^.libfiledata<>nil       then
       freeN(sfile^.libfiledata);
     end
     else
-    if sfile^.spacetype=SPACE_BUTS then
+    if sfile^.spacetype=SPACE_BUTS     then
     begin
       buts:= pSpaceButs(sfile);
       if buts^.rect<>nil then
       freeN(buts^.rect);
-      if G.buts=buts then
+      if G.buts=buts       then
       G.buts:= nil;
     end
     else
-    if sfile^.spacetype=SPACE_IPO then
+    if sfile^.spacetype=SPACE_IPO     then
     begin
       si:= pSpaceIpo(sfile);
-      if si^.editipo<>nil then
+      if si^.editipo<>nil      then
       freeN(si^.editipo);
       free_ipokey(@si^.ipokey);
-      if G.sipo=si then
+      if G.sipo=si       then
       G.sipo:= nil;
     end ;
     //else
-    //if sfile^.spacetype=SPACE_VIEW3D then
+    //if sfile^.spacetype=SPACE_VIEW3D     then
     //begin
     //  vd:= pView3D(sfile);
-    //  if vd^.bgpic<>nil then
+    //  if vd^.bgpic<>nil      then
     //  begin
-    //    if vd^.bgpic.rect<>nil then
+    //    if vd^.bgpic.rect<>nil        then
     //    freeN(vd^.bgpic.rect);
-    //    if vd^.bgpic.ima<>nil then
+    //    if vd^.bgpic.ima<>nil        then
     //    dec(vd^.bgpic.ima.id.us);
     //    freeN(vd^.bgpic);
     //  end;
-    //  if vd^.localvd<>nil then
+    //  if vd^.localvd<>nil      then
     //  freeN(vd^.localvd);
-    //  if G.vd=vd then
+    //  if G.vd=vd       then
     //  G.vd:= 0;
     //end;
     //else
-    //if sfile^.spacetype=SPACE_OOPS then
+    //if sfile^.spacetype=SPACE_OOPS     then
     //begin
     //  free_oopspace(sfile);
     //end;
@@ -2511,11 +2511,11 @@ begin
     //  free_imasel(sfile);
     //end;
     //else
-    //if sfile^.spacetype=SPACE_PAINT then
+    //if sfile^.spacetype=SPACE_PAINT    then
     //begin
     //end;
     //else
-    //if sfile^.spacetype=SPACE_TEXT then
+    //if sfile^.spacetype=SPACE_TEXT     then
     //begin
     //  free_textspace(sfile);
     //end;
@@ -2539,29 +2539,29 @@ begin
   sfile:= lb2^.first;
   while sfile<>nil do
   begin
-//    if sfile^.spacetype=SPACE_FILE then
+//    if sfile^.spacetype=SPACE_FILE    then
 //    begin 
 //      sfile^.libfiledata:= 0; 
 //      sfile^.filelist:= 0; 
 //    end
 //    else
-//    if sfile^.spacetype=SPACE_OOPS then
+//    if sfile^.spacetype=SPACE_OOPS     then
 //    begin 
 //      so:= {pSpaceOops(}sfile; 
 //      so.oops.first:= so.oops.last:=0; 
 //    end
 //    else
-//    if sfile^.spacetype=SPACE_IMASEL then
+//    if sfile^.spacetype=SPACE_IMASEL    then
 //    begin 
 //      check_imasel_copy(sfile); 
 //    end
 //    else
-//    if sfile^.spacetype=SPACE_TEXT then
+//    if sfile^.spacetype=SPACE_TEXT    then
 //    begin 
 //      check_text_copy(sfile); 
 //    end
 //    else
-//    if sfile^.spacetype=SPACE_PAINT then
+//    if sfile^.spacetype=SPACE_PAINT     then
 //    begin 
 //    end;
     sfile:= sfile^.next;
@@ -2570,27 +2570,27 @@ begin
   sfile:= lb1^.first;
   while sfile  <>nil  do
   begin
-//    if sfile^.spacetype=SPACE_BUTS then
+//    if sfile^.spacetype=SPACE_BUTS    then
 //    begin 
 //      buts:=  {pSpaceButs(}sfile; 
 //      buts^.rect:= 0;
 //    end
 //    else
-//    if sfile^.spacetype=SPACE_IPO then
+//    if sfile^.spacetype=SPACE_IPO     then
 //    begin 
 //      si:=  {pSpaceIpo(}sfile; 
 //      si^.editipo:= 0;
 //      si^.ipokey.first:= si^.ipokey.last:=0;
 //    end
 //    else
-//    if sfile^.spacetype=SPACE_VIEW3D then
+//    if sfile^.spacetype=SPACE_VIEW3D    then
 //    begin 
 //      vd:=  {pView3D(}sfile; 
-//      if vd.bgpic<>nil then
+//      if vd.bgpic<>nil       then
 //      begin 
 //        vd.bgpic:= dupallocN(vd.bgpic); 
 //        vd.bgpic.rect:= 0; 
-//        if vd.bgpic.ima<>nil then
+//        if vd.bgpic.ima<>nil         then
 //        inc(vd.bgpic.ima.id.us); 
 //      end;
 //    end;
@@ -2601,9 +2601,9 @@ begin
   vd:= lb2^.first;
   while vd <>nil  do
   begin
-//    if vd.spacetype=SPACE_VIEW3D then
+//    if vd.spacetype=SPACE_VIEW3D    then
 //    begin 
-//      if vd.localvd<>nil then
+//      if vd.localvd<>nil      then
 //      begin 
 //        restore_localviewdata(vd); 
 //        vd.localvd:= 0; 
@@ -2711,13 +2711,13 @@ begin
   sa:= G.curscreen^.areabase.first;
   while sa<>nil  do
   begin
-    if event=REDRAWALL then
+    if event=REDRAWALL    then
     begin
       addqueue(sa^.win,REDRAW,1);
       addqueue(sa^.headwin,REDRAW,1);
     end
     else
-    if sa^.win<>val then
+    if sa^.win<>val     then
     begin
       case event of
         REDRAWHEADERS:
@@ -2726,45 +2726,45 @@ begin
         end;
         REDRAWVIEW3D:
         begin
-          if sa^.spacetype=SPACE_VIEW3D then
+          if sa^.spacetype=SPACE_VIEW3D          then
           begin
             addqueue(sa^.win,REDRAW,1);
-            if val<>0 then
+            if val<>0             then
             addqueue(sa^.headwin,REDRAW,1);
           end;
         end;
         REDRAWVIEW3D_Z:
         begin
-          if sa^.spacetype=SPACE_VIEW3D then
+          if sa^.spacetype=SPACE_VIEW3D           then
           begin
             v3d:= sa^.spacedata.first;
-            if v3d^.drawtype=OB_SOLID then
+            if v3d^.drawtype=OB_SOLID            then
             begin
               addqueue(sa^.win,REDRAW,1);
-              if val<>0 then
+              if val<>0              then
               addqueue(sa^.headwin,REDRAW,1);
             end;
           end;
         end;
         REDRAWVIEWCAM:
         begin
-          if sa^.spacetype=SPACE_VIEW3D then
+          if sa^.spacetype=SPACE_VIEW3D          then
           begin
             v3d:= sa^.spacedata.first;
-            if v3d^.persp>1 then
+            if v3d^.persp>1             then
             addqueue(sa^.win,REDRAW,1);
           end;
         end;
         REDRAWINFO:
         begin
-          if sa^.spacetype=SPACE_INFO then
+          if sa^.spacetype=SPACE_INFO           then
           begin
             addqueue(sa^.headwin,REDRAW,1);
           end;
         end;
         REDRAWIMAGE:
         begin
-          if sa^.spacetype=SPACE_IMAGE then
+          if sa^.spacetype=SPACE_IMAGE          then
           begin
             addqueue(sa^.win,REDRAW,1);
             addqueue(sa^.headwin,REDRAW,1);
@@ -2772,26 +2772,26 @@ begin
         end;
         REDRAWIPO:
         begin
-          if sa^.spacetype=SPACE_IPO then
+          if sa^.spacetype=SPACE_IPO          then
           begin
 
             addqueue(sa^.headwin,REDRAW,1);
             addqueue(sa^.win,REDRAW,1);
-            if val<>0 then
+            if val<>0             then
             begin
               si:= sa^.spacedata.first;
               si^.blocktype:= val;
             end;
           end
           else
-          if sa^.spacetype=SPACE_OOPS then
+          if sa^.spacetype=SPACE_OOPS          then
           begin
             addqueue(sa^.win,REDRAW,1);
           end;
         end;
         REDRAWBUTSALL:
         begin
-          if sa^.spacetype=SPACE_BUTS then
+          if sa^.spacetype=SPACE_BUTS           then
           begin
             addqueue(sa^.win,REDRAW,1);
             addqueue(sa^.headwin,REDRAW,1);
@@ -2799,17 +2799,17 @@ begin
         end;
         REDRAWBUTSHEAD:
         begin
-          if sa^.spacetype=SPACE_BUTS then
+          if sa^.spacetype=SPACE_BUTS          then
           begin
             addqueue(sa^.headwin,REDRAW,1);
           end;
         end;
         REDRAWBUTSVIEW:
         begin
-          if sa^.spacetype=SPACE_BUTS then
+          if sa^.spacetype=SPACE_BUTS          then
           begin
             buts:= sa^.spacedata.first;
-            if buts^.mainb=BUTS_VIEW then
+            if buts^.mainb=BUTS_VIEW            then
             begin
               addqueue(sa^.win,REDRAW,1);
               addqueue(sa^.headwin,REDRAW,1);
@@ -2818,10 +2818,10 @@ begin
         end;
         REDRAWBUTSLAMP:
         begin
-          if sa^.spacetype=SPACE_BUTS then
+          if sa^.spacetype=SPACE_BUTS          then
           begin
             buts:= sa^.spacedata.first;
-            if buts^.mainb=BUTS_LAMP then
+            if buts^.mainb=BUTS_LAMP             then
             begin
               addqueue(sa^.win,REDRAW,1);
               addqueue(sa^.headwin,REDRAW,1);
@@ -2830,10 +2830,10 @@ begin
         end;
         REDRAWBUTSMAT:
         begin
-          if sa^.spacetype=SPACE_BUTS then
+          if sa^.spacetype=SPACE_BUTS           then
           begin
             buts:= sa^.spacedata.first;
-            if buts^.mainb=BUTS_MAT then
+            if buts^.mainb=BUTS_MAT            then
             begin
               addqueue(sa^.win,REDRAW,1);
               addqueue(sa^.headwin,REDRAW,1);
@@ -2842,10 +2842,10 @@ begin
         end;
         REDRAWBUTSTEX:
         begin
-          if sa^.spacetype=SPACE_BUTS then
+          if sa^.spacetype=SPACE_BUTS          then
           begin
             buts:= sa^.spacedata.first;
-            if buts^.mainb=BUTS_TEX then
+            if buts^.mainb=BUTS_TEX             then
             begin
               addqueue(sa^.win,REDRAW,1);
               addqueue(sa^.headwin,REDRAW,1);
@@ -2854,10 +2854,10 @@ begin
         end;
         REDRAWBUTSANIM:
         begin
-          if sa^.spacetype=SPACE_BUTS then
+          if sa^.spacetype=SPACE_BUTS          then
           begin
             buts:= sa^.spacedata.first;
-            if buts^.mainb=BUTS_ANIM then
+            if buts^.mainb=BUTS_ANIM             then
             begin
               addqueue(sa^.win,REDRAW,1);
               addqueue(sa^.headwin,REDRAW,1);
@@ -2866,10 +2866,10 @@ begin
         end;
         REDRAWBUTSWORLD:
         begin
-          if sa^.spacetype=SPACE_BUTS then
+          if sa^.spacetype=SPACE_BUTS           then
           begin
             buts:= sa^.spacedata.first;
-            if buts^.mainb=BUTS_WORLD then
+            if buts^.mainb=BUTS_WORLD             then
             begin
               addqueue(sa^.win,REDRAW,1);
               addqueue(sa^.headwin,REDRAW,1);
@@ -2878,10 +2878,10 @@ begin
         end;
         REDRAWBUTSRENDER:
         begin
-          if sa^.spacetype=SPACE_BUTS then
+          if sa^.spacetype=SPACE_BUTS           then
           begin
             buts:= sa^.spacedata.first;
-            if buts^.mainb=BUTS_RENDER then
+            if buts^.mainb=BUTS_RENDER              then
             begin
               addqueue(sa^.win,REDRAW,1);
               addqueue(sa^.headwin,REDRAW,1);
@@ -2890,10 +2890,10 @@ begin
         end;
         REDRAWBUTSEDIT:
         begin
-          if sa^.spacetype=SPACE_BUTS then
+          if sa^.spacetype=SPACE_BUTS          then
           begin
             buts:= sa^.spacedata.first;
-            if buts^.mainb=BUTS_EDIT then
+            if buts^.mainb=BUTS_EDIT             then
             begin
               addqueue(sa^.win,REDRAW,1);
               addqueue(sa^.headwin,REDRAW,1);
@@ -2902,7 +2902,7 @@ begin
         end;
         REDRAWBUTSGAME:
         begin
-          if sa^.spacetype=SPACE_BUTS then
+          if sa^.spacetype=SPACE_BUTS          then
           begin
             buts:= sa^.spacedata.first;
 
@@ -2916,11 +2916,11 @@ begin
         REDRAWBUTSRADIO:
         begin
           if sa^.spacetype=SPACE_BUTS
- then
+          then
           begin
             buts:= sa^.spacedata.first;
             if buts^.mainb=BUTS_RADIO
- then
+            then
             begin
               addqueue(sa^.win,REDRAW,1);
               addqueue(sa^.headwin,REDRAW,1);
@@ -2930,11 +2930,11 @@ begin
         REDRAWBUTSSCRIPT:
         begin
           if sa^.spacetype=SPACE_BUTS
- then
+          then
           begin
             buts:= sa^.spacedata.first;
             if buts^.mainb=BUTS_SCRIPT
- then
+            then
             begin
               addqueue(sa^.win,REDRAW,1);
               addqueue(sa^.headwin,REDRAW,1);
@@ -2944,25 +2944,25 @@ begin
         REDRAWDATASELECT:
         begin
           if sa^.spacetype=SPACE_FILE
- then
+          then
           begin
             sfile:= sa^.spacedata.first;
             if sfile^._type=FILE_MAIN
- then
+            then
             begin
               //freefilelist(sfile);
               addqueue(sa^.win,REDRAW,1);
             end;
           end
           else
-          if sa^.spacetype=SPACE_OOPS then
+          if sa^.spacetype=SPACE_OOPS          then
           begin
             addqueue(sa^.win,REDRAW,1);
           end;
         end;
         REDRAWSEQ:
         begin
-          if sa^.spacetype=SPACE_SEQ then
+          if sa^.spacetype=SPACE_SEQ           then
           begin
             addqueue(sa^.win,CHANGED,1);
             addqueue(sa^.win,REDRAW,1);
@@ -2971,21 +2971,21 @@ begin
         end;
         REDRAWOOPS:
         begin
-          if sa^.spacetype=SPACE_OOPS then
+          if sa^.spacetype=SPACE_OOPS           then
           begin
             addqueue(sa^.win,REDRAW,1);
           end;
         end;
         REDRAWPAINT:
         begin
-          if sa^.spacetype=SPACE_PAINT then
+          if sa^.spacetype=SPACE_PAINT          then
           begin
             addqueue(sa^.win,REDRAW,1);
           end;
         end;
         REDRAWTEXT:
         begin
-          if sa^.spacetype=SPACE_TEXT then
+          if sa^.spacetype=SPACE_TEXT          then
           begin
             addqueue(sa^.win,REDRAW,1);
           end;
@@ -3028,11 +3028,11 @@ end;
 //          REMAKEIPO:
 //          begin
 //            if v3d^.spacetype=SPACE_IPO
-// then
+//            then
 //            begin 
 //              si:= {pSpaceIpo(}v3d; 
 //              if si^.editipo<>nil
-// then
+//              then
 //              freeN(si^.editipo);
 //              si^.editipo:= 0;
 //              free_ipokey(@si^.ipokey);
@@ -3041,7 +3041,7 @@ end;
 //          OOPS_TEST:
 //          begin
 //            if v3d^.spacetype=SPACE_OOPS
-// then
+//            then
 //            begin 
 //              so:= {pSpaceOops(}v3d; 
 //              so.flag:= so.flag or (SO_TESTBLOCKS); 
@@ -3071,13 +3071,13 @@ end;
 //  do
 //  begin 
 //    if sa<>tempsa)and(sa^.spacetype=tempsa^.spacetype
-// then
+//    then
 //    begin 
 //      if sa^.spacetype=SPACE_VIEW3D
-// then
+//      then
 //      begin 
 //        if ( {pView3D(}sa^.spacedata.first).lay and ( {pView3D(}tempsa^.spacedata.first).lay
-// then
+//        then
 //        begin 
 //          areawinset(sa^.win); 
 //          sa^.windraw(); 
@@ -3085,14 +3085,14 @@ end;
 //      end;
 //      else
 //      if sa^.spacetype=SPACE_IPO
-// then
+//      then
 //      begin 
 //        areawinset(sa^.win); 
 //        sa^.windraw(); 
 //      end;
 //      else
 //      if sa^.spacetype=SPACE_SEQ
-// then
+//      then
 //      begin 
 //        areawinset(sa^.win); 
 //        sa^.windraw(); 
@@ -3101,7 +3101,7 @@ end;
 //    sa:= sa^.next; 
 //  end;
 //  if curarea<>tempsa
-// then
+//  then
 //  areawinset(tempsa^.win); 
 //  screen_swapbuffers(); 
 //end;
@@ -3120,31 +3120,31 @@ end;
 //  do
 //  begin 
 //    if sa<>tempsa)and((sa^.spacetype=tempsa^.spacetype)or(sa^.spacetype=type)
-// then
+//    then
 //    begin 
 //      if sa^.spacetype=SPACE_VIEW3D
-// then
+//      then
 //      begin 
 //        areawinset(sa^.win); 
 //        sa^.windraw(); 
 //      end;
 //      else
 //      if sa^.spacetype=SPACE_IPO
-// then
+//      then
 //      begin 
 //        areawinset(sa^.win); 
 //        sa^.windraw(); 
 //      end;
 //      else
 //      if sa^.spacetype=SPACE_SEQ
-// then
+//      then
 //      begin 
 //        areawinset(sa^.win); 
 //        sa^.windraw(); 
 //      end;
 //      else
 //      if sa^.spacetype=SPACE_BUTS
-// then
+//      then
 //      begin 
 //        areawinset(sa^.win); 
 //        sa^.windraw(); 
@@ -3153,7 +3153,7 @@ end;
 //    sa:= sa^.next; 
 //  end;
 //  if curarea<>tempsa
-// then
+//  then
 //  areawinset(tempsa^.win); 
 //  screen_swapbuffers(); 
 //end;
@@ -3172,14 +3172,14 @@ end;
 //  do
 //  begin 
 //    if sa^.headwin<>nil 
-// then
+//    then
 //    begin 
 //      areawinset(sa^.headwin); 
 //      defheadchange(); 
 //      sa^.headdraw(); 
 //    end;
 //    if sa^.win<>nil 
-// then
+//    then
 //    begin 
 //      areawinset(sa^.win); 
 //      sa^.windraw(); 
@@ -3187,7 +3187,7 @@ end;
 //    sa:= sa^.next; 
 //  end;
 //  if curarea<>tempsa
-// then
+//  then
 //  areawinset(tempsa^.win); 
 //  screen_swapbuffers(); 
 //end;

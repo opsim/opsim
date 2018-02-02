@@ -236,7 +236,7 @@ end;
 //  
 //  if {not}0=CreateDirectory(dirname,0{nil})
 //  then
-//  error('Unable to create directory'#13#10''); 
+//  error('Unable to create directory\n');
 //end;
 //
 //
@@ -334,7 +334,7 @@ end;
 //
 //function fop_backup(file: pchar;  from: pchar;  to: pchar): integer; 
 //begin
-//  sprintf(str,'/bin/su root -c '#39'cd %s; /bin/tar cf - "%s" | (/bin/cd %s; /bin/tar xf -)'#39'',from,file,to); 
+//  sprintf(str,'/bin/su root -c ''cd %s; /bin/tar cf - "%s" | (/bin/cd %s; /bin/tar xf -)''',from,file,to);
 //  begin
 //    result:= docmd(str); 
 //    exit;

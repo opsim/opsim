@@ -522,7 +522,7 @@ savesplines: integer = 1;
 //      end;
 //      else
 //      begin
-//        fprintf(stderr,'applytocharverts: bad obj font type'#13#10''); 
+//        fprintf(stderr,'applytocharverts: bad obj font type\n');
 //      end;
 //    end;{case?}
 //  end;
@@ -659,7 +659,7 @@ savesplines: integer = 1;
 //  if index<0
 //  then
 //  begin 
-//    fprintf(stderr,'Addchardata bad poop'#13#10''); 
+//    fprintf(stderr,'Addchardata bad poop\n');
 //    exit;
 //  end;
 //  cd:= fnt.my_chars+index; 
@@ -677,7 +677,7 @@ savesplines: integer = 1;
 //  if index<0
 //  then
 //  begin 
-//    fprintf(stderr,'Addcharmetrics bad poop'#13#10''); 
+//    fprintf(stderr,'Addcharmetrics bad poop\n');
 //    exit;
 //  end;
 //  cd:= fnt.my_chars+index; 
@@ -723,7 +723,7 @@ savesplines: integer = 1;
 //  if (ret:=fseek(f,0,2))<0
 //  then
 //  begin 
-//    fprintf(stderr,'sizeoffile: seek error'#13#10''); 
+//    fprintf(stderr,'sizeoffile: seek error\n');
 //    begin
 //      result:= (0); 
 //      exit;
@@ -733,7 +733,7 @@ savesplines: integer = 1;
 //  if fseek(f,pos,0)<0
 //  then
 //  begin 
-//    fprintf(stderr,'sizeoffile: seek error'#13#10''); 
+//    fprintf(stderr,'sizeoffile: seek error\n');
 //    begin
 //      result:= (0); 
 //      exit;
@@ -755,7 +755,7 @@ savesplines: integer = 1;
 //  if {not}0=of
 //  then
 //  begin 
-//    fprintf(stderr,'writeobjfnt: can'#39't open output file %s'#13#10'',name); 
+//    fprintf(stderr,'writeobjfnt: can''t open output file %s\n',name);
 //    begin
 //      result:= 0; 
 //      exit;
@@ -877,7 +877,7 @@ savesplines: integer = 1;
 //  if {not}0=inf
 //  then
 //  begin 
-//    fprintf(stderr,'fromtype1: can'#39't open input file %s'#13#10'',name); 
+//    fprintf(stderr,'fromtype1: can''t open input file %s\n',name);
 //    begin
 //      result:= (-1); 
 //      exit;
@@ -891,7 +891,7 @@ savesplines: integer = 1;
 //    if {not}0=newfgets(oneline,LINELEN,inf)
 //    then
 //    begin 
-//      fprintf(stderr,'fromtype1: no FontMatrix found'#13#10''); 
+//      fprintf(stderr,'fromtype1: no FontMatrix found\n');
 //      begin
 //        result:= (-1); 
 //        exit;
@@ -908,13 +908,13 @@ savesplines: integer = 1;
 //        if {not}0=cptr
 //        then
 //        begin 
-//          fprintf(stderr,'fromtype1: bad FontMatrix line'#13#10''); 
+//          fprintf(stderr,'fromtype1: bad FontMatrix line\n');
 //          begin
 //            result:= (-1); 
 //            exit;
 //          end;
 //        end;
-//        sscanf(cptr+1,'%f %f %f %f %f %f'#13#10'', and a, and b, and c, and d, and e, and f); 
+//        sscanf(cptr+1,'%f %f %f %f %f %f\n', and a, and b, and c, and d, and e, and f);
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //    end;
@@ -1033,7 +1033,7 @@ savesplines: integer = 1;
 //  if {not}0=inf
 //  then
 //  begin 
-//    fprintf(stderr,'fromtype1: can'#39't open input file'#13#10''); 
+//    fprintf(stderr,'fromtype1: can''t open input file\n');
 //    begin
 //      result:= (-1); 
 //      exit;
@@ -1051,7 +1051,7 @@ savesplines: integer = 1;
 //    if {not}0=newfgets(oneline,LINELEN,inf)
 //    then
 //    begin 
-//      fprintf(stderr,'fromtype1: no currentfile eexec found'#13#10''); 
+//      fprintf(stderr,'fromtype1: no currentfile eexec found\n');
 //      begin
 //        result:= (-1); 
 //        exit;
@@ -1202,7 +1202,7 @@ savesplines: integer = 1;
 //  if fakepos>fakemax
 //  then
 //  begin 
-//    fprintf(stderr,'fromtype1: unexpected eof'#13#10''); 
+//    fprintf(stderr,'fromtype1: unexpected eof\n');
 //    strcpy(start,'end'); 
 //  end;
 //end;
@@ -1300,7 +1300,7 @@ savesplines: integer = 1;
 //    if {not}0=fakefgets(oneline,LINELEN)
 //    then
 //    begin 
-//      fprintf(stderr,'fromtype1: no /Subrs found'#13#10''); 
+//      fprintf(stderr,'fromtype1: no /Subrs found\n');
 //      my_nsubrs:= 0; 
 //      fakefopen(); 
 //      break; {<= !!!b possible in "switch" - then remove this line}
@@ -1336,7 +1336,7 @@ savesplines: integer = 1;
 //    if k=MAXTRIES
 //    then
 //    begin 
-//      fprintf(stderr,'dup for subr %d not found in range'#13#10'',i); 
+//      fprintf(stderr,'dup for subr %d not found in range\n',i);
 //    end;
 //    (*exit(1);*)
 //    fakegettoken(tok); 
@@ -1347,7 +1347,7 @@ savesplines: integer = 1;
 //    if index<0)or(index>my_nsubrs
 //    then
 //    begin 
-//      fprintf(stderr,'bad Subr index %d'#13#10'',index); 
+//      fprintf(stderr,'bad Subr index %d\n',index);
 //    end;
 //    (*exit(1);*)
 //    fakegettoken(tok); 
@@ -1571,7 +1571,7 @@ savesplines: integer = 1;
 //  if pcsp<0
 //  then
 //  begin 
-//    fprintf(stderr,''#13#10'YUCK: pc stack under flow'#13#10''); 
+//    fprintf(stderr,'\nYUCK: pc stack under flow\n');
 //    pcsp:= 0; 
 //    begin
 //      result:= 0; 
@@ -1608,7 +1608,7 @@ savesplines: integer = 1;
 //  if sp<0
 //  then
 //  begin 
-//    fprintf(stderr,''#13#10'YUCK: stack under flow'#13#10''); 
+//    fprintf(stderr,'\nYUCK: stack under flow\n');
 //    sp:= 0; 
 //    begin
 //      result:= 0; 
@@ -1644,7 +1644,7 @@ savesplines: integer = 1;
 //  if retsp<0
 //  then
 //  begin 
-//    fprintf(stderr,''#13#10'YUCK: ret stack under flow'#13#10''); 
+//    fprintf(stderr,'\nYUCK: ret stack under flow\n');
 //    retsp:= 0; 
 //    begin
 //      result:= 0; 
@@ -1748,7 +1748,7 @@ savesplines: integer = 1;
 //  if coordpos>=7
 //  then
 //  begin 
-//    fprintf(stderr,'subr2: bad poop'#13#10''); 
+//    fprintf(stderr,'subr2: bad poop\n');
 //  end;
 //  (*exit(1);*)
 //  coordsave[coordpos][0]:= x; 
@@ -1775,7 +1775,7 @@ savesplines: integer = 1;
 //  if coordpos<>7
 //  then
 //  begin 
-//    fprintf(stderr,'subr0: bad poop'#13#10''); 
+//    fprintf(stderr,'subr0: bad poop\n');
 //  end;
 //  (*exit(1);*)
 //  x0:= coordsave[0][0]; 
@@ -1905,7 +1905,7 @@ savesplines: integer = 1;
 //  case cmd of
 //    WHAT0:
 //    begin
-//      fprintf(stderr,''#13#10'YUCK: WHAT0'#13#10''); 
+//      fprintf(stderr,'\nYUCK: WHAT0\n');
 //    end;
 //    HSTEM:
 //    begin
@@ -1961,7 +1961,7 @@ savesplines: integer = 1;
 //      if {not}0=subpc
 //      then
 //      begin 
-//        fprintf(stderr,''#13#10'YUCK no sub addr'#13#10''); 
+//        fprintf(stderr,'\nYUCK no sub addr\n');
 //      end;
 //      pushpc(pc); 
 //      pc:= subpc; 
@@ -2040,7 +2040,7 @@ savesplines: integer = 1;
 //      if 0
 //      then
 //      begin 
-//        printf('seac: %3d %3d %3d %3d %3d'#13#10'',pop(),pop(),pop(),pop(),pop()); 
+//        printf('seac: %3d %3d %3d %3d %3d\n',pop(),pop(),pop(),pop(),pop());
 //      end;
 //      else
 //      begin 
@@ -2084,7 +2084,7 @@ savesplines: integer = 1;
 //              case chardata[nshorts-1] of
 //                PO_RET:
 //                begin
-//                  printf('PO_RET in character disription ?'#13#10''); 
+//                  printf('PO_RET in character disription ?\n');
 //                  dec(nshorts); 
 //                end;
 //                PO_RETENDLOOP:
@@ -2096,7 +2096,7 @@ savesplines: integer = 1;
 //                  end;
 //                  else
 //                  begin 
-//                    printf('new character doesn'#39't start with PO_BGNLOOP ?'#13#10''); 
+//                    printf('new character doesn''t start with PO_BGNLOOP ?\n');
 //                  end;
 //                end;
 //                
@@ -2134,10 +2134,10 @@ savesplines: integer = 1;
 //    begin
 //      w:= pop(); 
 //      y:= pop(); 
-//      fprintf(stderr,'sbw: width: %d %d'#13#10'',w,y); 
+//      fprintf(stderr,'sbw: width: %d %d\n',w,y);
 //      y:= pop(); 
 //      x:= pop(); 
-//      fprintf(stderr,'sbw: side: %d %d'#13#10'',x,y); 
+//      fprintf(stderr,'sbw: side: %d %d\n',x,y);
 //      setwidth(w,x); 
 //      sbpoint(x,y); 
 //    end;
@@ -2574,7 +2574,7 @@ savesplines: integer = 1;
 //    if c=' '
 //    then
 //    begin 
-//      printf('faking space %d'#13#10'',i); 
+//      printf('faking space %d\n',i);
 //      fakechar(fnt,' ',400); 
 //    end;
 //  end;

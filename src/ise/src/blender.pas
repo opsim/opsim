@@ -1418,12 +1418,7 @@ implementation
 
 uses
 blendef,
-blenglob;
-
-////{$include "blender.h"}
-//type
-//Global = record
-//end;
+blenglob, object_;
 
 var
 versionstr: array [0..47] of char = (#14, #92, #240, #247, #43, #199, #126, #71, #69, #113, #64, #241, #115, #139, #242, #216, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0, #0);
@@ -1529,11 +1524,14 @@ end;
 procedure initglobals;
 begin
   bzero(@G,sizeof(Global));
-//  G.animspeed:= 4;
+
+  G.animspeed:= 4;
+
   G.main:= callocN(sizeof(Main),'initglobals');
   addtail(@G.mainbase,G.main);
-//  strcpy(G.ima,'//');
-//  strcpy(G.psx,'//');
+  strcpy(G.ima,'//');
+  strcpy(G.psx,'//');
+
   G.version:= 172;
 
   G.order:= 1;
@@ -1558,12 +1556,12 @@ begin
 
   sprintf(@versionstr[16],'%d',[G.version]);
 
-//  {$ifdef __sgi}
-//  initmoviepointers();
-//  (* define in iff.h *)
-//  {$endif}
-//  clear_workob();
-end;(* object.c *)
+  {$ifdef __sgi}
+  initmoviepointers();   (* define in iff.h *)
+  {$endif}
+
+  clear_workob(); (* object.c *)
+end;
 
 
 end.

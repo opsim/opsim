@@ -21,9 +21,10 @@
 (* graphics.h    feb 98 *)
 (*
  *
- * geschikt gemakt voor X en OpenGL
+ * geschikt gemaakt voor X en OpenGL
  *
  *)
+
 unit graphics;
 
 interface
@@ -31,7 +32,8 @@ interface
 uses
   GL, GLu, GLut;
 
-{$ifndef WINDOWS} (* Win32 handelt het ophalen van fonts anders af *)
+{$ifndef WINDOWS}
+  (* Win32 handelt het ophalen van fonts anders af *)
   { aanvulling op glut.h  }
 
     var

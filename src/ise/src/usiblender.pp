@@ -604,20 +604,22 @@ begin
           //end;
         end;
       end;
-    end
+    end;
     //else
     //  read_file(argv[a]);
+
+    inc(a);
   end;
 
   if G.background<>0 then
     exit_usiblender();
   setscreen(G.curscreen);
 
-  if G.main^.scene.first=nil then
-  begin
-    sce:= add_scene('1');
-    set_scene(sce);
-  end;
+  //if G.main^.scene.first=nil then
+  //begin
+  //  sce:= add_scene('1');
+  //  set_scene(sce);
+  //end;
 
   qenter(Q_FIRSTTIME,1);
 

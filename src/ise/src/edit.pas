@@ -85,7 +85,7 @@ uses
 //    freeN(pp); 
 //  end;
 //  else
-//  printf('error in popfirst'#13#10''); 
+//  printf('error in popfirst\n');
 //end;
 //
 //
@@ -104,7 +104,7 @@ uses
 //    freeN(pp); 
 //  end;
 //  else
-//  printf('error in poplast'#13#10''); 
+//  printf('error in poplast\n');
 //end;
 //
 //
@@ -127,7 +127,7 @@ uses
 //begin
 //  if ppmain.first<>0{nil} {<= !!!9} 
 //  then
-//  printf('pushpop not empty'#13#10''); 
+//  printf('pushpop not empty\n');
 //  free_pushpop(); 
 //end;
 //
