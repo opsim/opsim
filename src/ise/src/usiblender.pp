@@ -31,18 +31,7 @@ GL, GLU, GLUT,
 screen, blender, util, blenglob, cfuncs, blendef, graphics,
 drawobject, drawview, mywindow, Button, scene, drawscene,
 mydevice, toolbox, font;
-//{$include "blender.h"}
-//{$include "graphics.h"}
-//{$include "file.h"}
-//{$include "datatoc.h"}
-//{$ifdef __sgi}
-//{$include <sys/schedctl.h>}
-//{$endif}
-//{$include <signal.h>}
-//{$ifdef __FreeBSD__}
-//{$include <floatingpoint.h>}
-//{$include <sys/rtprio.h>}
-//{$endif}
+
 //{fullscreen: word; }{<= !!!5 external variable}
 //{borderless: word; }{<= !!!5 external variable}
 
@@ -197,28 +186,28 @@ begin
 
 end;
 
-//var {was static}
-//count: integer;
+var
+count: integer = 0;
 
 procedure breekaf(sig: integer);
 begin
-//  count:=0; 
-//  G.afbreek:= 2; 
-//  if sig=2 then
-//  begin 
-//    if G.renderd=LongBool(0) then
-//    begin 
-//      if count<>nil then
-//      exit(2); 
-//      printf('Press ^C again if once doesn't work\n');
-//    end;
-//    else
-//    begin 
-//      if count=20 then
-//      exit(2); 
-//    end;
-//    inc(count); 
-//  end;
+  G.afbreek:= 2;
+
+  if sig=2 then
+  begin
+    if G.renderd=0 then
+    begin
+      if count<>0 then
+      halt(2);
+      printf('Press ^C again if once doesn''t work\n');
+    end
+    else
+    begin
+      if count=20 then
+      halt(2);
+    end;
+    inc(count);
+  end;
 end;
 
 procedure savecore;
@@ -246,7 +235,6 @@ end;
 
 var
   sce: pScene;
-  {DNAstr: array [0..] of char; }{<= !!!5 external variable}
   a: integer;
   stax: integer;
   stay: integer;
@@ -255,13 +243,10 @@ var
   cp: pchar;
   tstr: array [0..Pred(100)] of char;
   dofork: smallint = 1;
-  {$ifdef WINDOWS}
-  {forceborderless: smallint; }{<= !!!5 external variable}(* To allow borderless on Windows *)
-  {$endif}
 
 (* deze mainfunktie alleen voor editor, background krijgt andere *)
 begin
-  {$ifdef __FreeBSD__}
+  {$ifdef FREEBSD}
   fpsetmask(0);
   {$endif}
   {$if defined(__sgi)}
@@ -289,16 +274,15 @@ begin
         end;
         'b':
         begin
-          //if strcmp(argv[a],'-badzr252')=0 then
-          //begin
+          if strcmp(argv[a],'-badzr252')=0 then
+          begin
           //  {badzr252: integer; }{<= !!!5 external variable}
           //  badzr252:= 1;
-          //  begin
           //    {!!!7 possible troubles with "for" =>}
           //    continue
-          //  end;
-          //end;
+          end;
           (* background met lage prioriteit *)
+
           {$ifdef __sgi}
           if schedctl(NDPRI,0,NDPLOMIN-2)=-1 then
           printf('no ndpri \n');
@@ -456,11 +440,11 @@ begin
     end;
 
     (* fork voordat X opstart *)
-    //{$if !defined(BEOS) and !defined(WINDOWS) and !defined(MESA31)}
-    //if dofork<>0 then
-    //  if fork() then
-    //    exit(0);
-    //{$endif}
+    {$if not defined(BEOS) and not defined(WINDOWS) and not defined(MESA31)}
+    if dofork<>0 then
+      if fork() then
+        exit(0);
+    {$endif}
 
     //read_key();     (* has debug mode! *)
     //start_python();

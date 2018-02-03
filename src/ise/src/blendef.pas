@@ -24,13 +24,13 @@ interface
 
 {$ifdef WINDOWS}
 {$else}
-{$ifndef __BeOS}
+{$ifndef BEOS}
 
   const
     O_BINARY = 0;
 {$endif}
 {$endif}
-{$ifdef __FreeBSD__}
+{$ifdef FREEBSD}
   {#define dlsym(handle, sym) dlsym(handle, "_" sym) }
 {$endif}
 {$ifdef WINDOWS}
@@ -107,7 +107,7 @@ interface
   { s_i= p_i[2]; p_i[2]= p_i[5]; p_i[5]= s_i; s_i= p_i[3]; p_i[3]= p_i[4]; p_i[4]= s_i;  }
   { #define SWITCH_INT(a)	char s_i, *p_i; p_i= (char *)&(a); s_i= p_i[0]; p_i[0]= p_i[3]; p_i[3]= s_i; s_i= p_i[1]; p_i[1]= p_i[2]; p_i[2]= s_i;  }
   { #define SWITCH_SHORT(a)	char s_i, *p_i; p_i= (char *)&(a); s_i= p_i[0]; p_i[0]= p_i[1]; p_i[1]= s_i;  }
-  { #if defined(__sgi) || defined(__SUN) || defined (__PPC__) }
+  { #if defined(__sgi) or defined(__SUN) or defined (__PPC__) }
   { /* big endian */ }
   { #define MAKE_ID2(c, d)		( (c)<<8 | (d) ) }
   { #define MOST_SIG_BYTE				0 }
@@ -123,22 +123,22 @@ interface
     SELECT = 1;
     ACTIVE = 2;
     NOT_YET = 0;
-  { #define TESTBASE(base)	( ((base)->flag & SELECT) && ((base)->lay & G.vd->lay) ) }
-  { #define TESTBASELIB(base)	( ((base)->flag & SELECT) && ((base)->lay & G.vd->lay) && ((base)->object->id.lib==0)) }
+  { #define TESTBASE(base)	( ((base)->flag & SELECT) and ((base)->lay & G.vd->lay) ) }
+  { #define TESTBASELIB(base)	( ((base)->flag & SELECT) and ((base)->lay & G.vd->lay) and ((base)->object->id.lib==0)) }
   function FIRSTBASE: pointer; //		G.scene->base.first }
   { #define LASTBASE		G.scene->base.last }
   { #define BASACT			(G.scene->basact) }
   { #define OBACT			(BASACT? BASACT->object: 0) }
-  { #define ID_NEW(a)		if( (a) && (a)->id.new ) (a)= (void *)(a)->id.new }
+  { #define ID_NEW(a)		if( (a) and (a)->id.new ) (a)= (void *)(a)->id.new }
   { #define ID_NEW_US(a)	if( (a)->id.new) (a)= (void *)(a)->id.new; (a)->id.us++; }
   { #define ID_NEW_US2(a)	if( ((ID *)a)->new) (a)= ((ID *)a)->new; ((ID *)a)->us++; }
   function CFRA: smallint; { #define	CFRA			(G.scene->r.cfra) }
   { #define	F_CFRA			((single)(G.scene->r.cfra)) }
   { #define	SFRA			(G.scene->r.sfra) }
   { #define	EFRA			(G.scene->r.efra) }
-  { #define ISPOIN(a, b, c)			( (a->b) && (a->c) ) }
-  { #define ISPOIN3(a, b, c, d)		( (a->b) && (a->c) && (a->d) ) }
-  { #define ISPOIN4(a, b, c, d, e)	( (a->b) && (a->c) && (a->d) && (a->e) ) }
+  { #define ISPOIN(a, b, c)			( (a->b) and (a->c) ) }
+  { #define ISPOIN3(a, b, c, d)		( (a->b) and (a->c) and (a->d) ) }
+  { #define ISPOIN4(a, b, c, d, e)	( (a->b) and (a->c) and (a->d) and (a->e) ) }
   { #define KNOTSU(nu)	    ( (nu)->orderu+ (nu)->pntsu+ (nu->orderu-1)*((nu)->flagu & 1) ) }
   { #define KNOTSV(nu)	    ( (nu)->orderv+ (nu)->pntsv+ (nu->orderv-1)*((nu)->flagv & 1) ) }
 
@@ -380,7 +380,7 @@ interface
     DL_NORS = 8;
   { #define DL_SURFINDEX(cyclu, cyclv, sizeu, sizev)	    \ }
   { \ }
-  { if( (cyclv)==0 && a==(sizev)-1) break;		    \ }
+  { if( (cyclv)==0 and a==(sizev)-1) break;		    \ }
   { if(cyclu) 						    \ }
   { p1= sizeu*a;					    \ }
   { p2= p1+ sizeu-1;				    \ }
@@ -395,7 +395,7 @@ interface
   { p3= p1+ sizeu;					    \ }
   { b= 1;						    \ }
   { 							    \ }
-  { if( (cyclv) && a==sizev-1) 			    \ }
+  { if( (cyclv) and a==sizev-1) 			    \ }
   { p3-= sizeu*sizev;				    \ }
   { p4-= sizeu*sizev;				    \ }
   {  }
@@ -1256,7 +1256,7 @@ ID_SCR = $5352; //MAKE_ID2('S', 'R') }
   {
   #endif
 
-  #if defined(__FreeBSD__) || defined(linux) || defined(__BeOS) || defined(WINDOWS)
+  #if defined(FREEBSD) or defined(linux) or defined(BEOS) or defined(WINDOWS)
    }
   { END BAD ZR  }
 
@@ -1530,19 +1530,19 @@ end;
 { #define ID_ID	MAKE_ID2('I', 'D') }
 { #define ID_SEQ	MAKE_ID2('S', 'Q') }
 
-//{TESTBASE(base) ( ((base)->flag & SELECT) && ((base)->lay & G.vd->lay) )}
+//{TESTBASE(base) ( ((base)->flag & SELECT) and ((base)->lay & G.vd->lay) )}
 //function TESTBASE(base: integer): integer; 
 //begin
 //  result:= (((base).flag and SELECT))and(((base).lay and G.vd.lay))
 //end;
 //
-//{TESTBASELIB(base) ( ((base)->flag & SELECT) && ((base)->lay & G.vd->lay) && ((base)->object->id.lib==0))}
+//{TESTBASELIB(base) ( ((base)->flag & SELECT) and ((base)->lay & G.vd->lay) and ((base)->object->id.lib==0))}
 //function TESTBASELIB(base: integer): integer; 
 //begin
 //  result:= (((base).flag and SELECT))and(((base).lay and G.vd.lay))and(((base).object.id.lib=0))
 //end;
 //
-//{ID_NEW(a)  if( (a) && (a)->id._new ) (a)= (void * )(a)->id._new}
+//{ID_NEW(a)  if( (a) and (a)->id._new ) (a)= (void * )(a)->id._new}
 //function ID_NEW(a: integer): integer; 
 //begin
 //  result:= if((a))and((a).id._new)(a):= {pinteger(}(a).id._new
@@ -1560,19 +1560,19 @@ end;
 //  result:= if(( {pID(}a)._new)((a):=( {pID(}a)._new;( {pID(}a).us{++} inc(us); ;)
 //end;
 //
-//{ISPOIN(a, b, c)   ( (a->b) && (a->c) )}
+//{ISPOIN(a, b, c)   ( (a->b) and (a->c) )}
 //function ISPOIN(a: integer; b: integer; c: integer): integer; 
 //begin
 //  result:= ((a.b))and((a.c))
 //end;
 //
-//{ISPOIN3(a, b, c, d)  ( (a->b) && (a->c) && (a->d) )}
+//{ISPOIN3(a, b, c, d)  ( (a->b) and (a->c) and (a->d) )}
 //function ISPOIN3(a: integer; b: integer; c: integer; d: integer): integer; 
 //begin
 //  result:= ((a.b))and((a.c))and((a.d))
 //end;
 //
-//{ISPOIN4(a, b, c, d, e) ( (a->b) && (a->c) && (a->d) && (a->e) )}
+//{ISPOIN4(a, b, c, d, e) ( (a->b) and (a->c) and (a->d) and (a->e) )}
 //function ISPOIN4(a: integer; b: integer; c: integer; d: integer; e: integer): integer; 
 //begin
 //  result:= ((a.b))and((a.c))and((a.d))and((a.e))
@@ -1590,7 +1590,7 @@ end;
 //  result:= ((nu).orderv+(nu).pntsv+(nu.orderv-1)*((nu).flagv and 1))
 //end;
 //
-//{DL_SURFINDEX(cyclu, cyclv, sizeu, sizev)                    if( (cyclv)==0 && a==(sizev)-1) break;          if(cyclu) {           p1= sizeu*a;          p2= p1+ sizeu-1;         p3= p1+ sizeu;          p4= p2+ sizeu;          b= 0;              }               else {           p2= sizeu*a;          p1= p2+1;          p4= p2+ sizeu;          p3= p1+ sizeu;          b= 1;              }               if( (cyclv) && a==sizev-1) {        p3-= sizeu*sizev;         p4-= sizeu*sizev;            }}
+//{DL_SURFINDEX(cyclu, cyclv, sizeu, sizev)                    if( (cyclv)==0 and a==(sizev)-1) break;          if(cyclu) {           p1= sizeu*a;          p2= p1+ sizeu-1;         p3= p1+ sizeu;          p4= p2+ sizeu;          b= 0;              }               else {           p2= sizeu*a;          p1= p2+1;          p4= p2+ sizeu;          p3= p1+ sizeu;          b= 1;              }               if( (cyclv) and a==sizev-1) {        p3-= sizeu*sizev;         p4-= sizeu*sizev;            }}
 //function DL_SURFINDEX(cyclu: integer; cyclv: integer; sizeu: integer; sizev: integer): integer; 
 //begin
 //  result:= if((cyclv)=0)and(a=(sizev)-1)break

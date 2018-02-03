@@ -956,20 +956,21 @@ function qtest: word;
 var
 event: word;
 begin
-  //{$if !defined(__BeOS) and !defined(WINDOWS)}
-  //	extern Display *__glutDisplay;
-  //
-  //	/* combinatie: deze werkt als oude qtest(). wel daarna screen_qread aanroepen */
-  //
-  //	if(event=myqtest()) return event;
-  //	return (XPending(__glutDisplay));
-  //{$else}
+  {$if not defined(BEOS) and not defined(WINDOWS)}
+  	extern Display *__glutDisplay;
 
-  	if(event=myqtest()) then exit(event);
+  	/* combinatie: deze werkt als oude qtest(). wel daarna screen_qread aanroepen */
+
+  	if(event=myqtest()) return event;
+  	return (XPending(__glutDisplay));
+  {$else}
+
+  	if(event=myqtest()) then 
+      exit(event);
   	//todo: uncomment
         //exit(glutqtest);
 
-  //{$endif}
+  {$endif}
 end;
 
 procedure qreset;
@@ -1925,7 +1926,7 @@ begin
 //      end;
 //      (*
 //         else if (scrmousex<2 or scrmousey<2 or
-//           abs(scrmousex - G.curscreen->sizex)<2||
+//           abs(scrmousex - G.curscreen->sizex)<2 or
 //           abs(scrmousey - G.curscreen->sizey)<2) {
 //          set_cursonedge(scrmousex, scrmousey);      
 //         }
@@ -5154,7 +5155,7 @@ begin
   ortho2(-0.5, {single(}G.curscreen^.sizex-0.5,-0.5, {single(}G.curscreen^.sizey-0.5);
 
   (* edges in mainwin *)
-  //{$if !defined(BEOS ) and !defined(WINDOWS) and !defined(PPC) and !defined(MESA31)}
+  //{$if not defined(BEOS ) and not defined(WINDOWS) and not defined(PPC) and not defined(MESA31)}
   //glDrawBuffer(GL_FRONT_AND_BACK);
   //{$endif}
 

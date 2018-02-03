@@ -46,7 +46,7 @@ interface
 //{$include <sys/time.h>  * struct timeval * }
 //{$endif}
 //
-//{$if !defined(__BeOS) && !defined(WINDOWS)}
+//{$if not defined(BEOS) and not defined(WINDOWS)}
 //{$include <sys/resource.h>  * struct rusage * }
 //{$endif}
 //
@@ -5921,7 +5921,7 @@ uses
 //      then
 //      begin 
 //        
-//        (* if(ob->infoflag && (R.flag & R_ANIMRENDER)) info_file(ob); *)
+//        (* if(ob->infoflag and (R.flag & R_ANIMRENDER)) info_file(ob); *)
 //        
 //        if ob.transflag and OB_DUPLI
 //        then
@@ -6620,7 +6620,7 @@ uses
 //
 //(* ~~~~~~~~~~~~~~~~ timer ~~~~~~~~~~~~~~~~~~~~~~ *)
 //
-//{$if !defined(__BeOS) && !defined(WINDOWS)}
+//{$if not defined(BEOS) and not defined(WINDOWS)}
 //
 //type
 //rusage = record

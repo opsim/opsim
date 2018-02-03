@@ -127,10 +127,10 @@ var
 ret: pchar;
 
 begin
-  {$ifdef __BeOS}
+  {$ifdef BEOS}
   exit('/boot/home/'); (* BeOS 4.5: doubleclick at icon doesnt give home env *)
 
-    {$elif !defined(WINDOWS)}
+    {$elif not defined(WINDOWS)}
     exit(getenv('HOME'));
     {$else}
     (* Windows *)

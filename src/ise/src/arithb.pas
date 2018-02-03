@@ -98,7 +98,7 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 (* ************************ FUNKTIES **************************** *)
 ////{$include <math.h>}
 ////{$include <sys/types.h>}
-//{$if !defined(__sgi) && !defined(WINDOWS)}
+//{$if not defined(__sgi) and not defined(WINDOWS)}
 ////{$include <sys/time.h>}
 ////{$include <unistd.h>}
 //{$endif}

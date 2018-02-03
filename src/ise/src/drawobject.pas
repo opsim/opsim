@@ -4778,7 +4778,7 @@ end;
 //        
 //        areawinset(sa.win); 
 //        
-//        {$if defined(__BeOS) || defined(WINDOWS) || defined(PPC) || defined(MESA31)}
+//        {$if defined(BEOS) or defined(WINDOWS) or defined(PPC) or defined(MESA31)}
 //        glDrawBuffer(GL_FRONT); 
 //        
 //        draw_object(base); 

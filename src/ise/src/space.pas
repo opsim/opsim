@@ -972,7 +972,7 @@ end;
 //          if G.qual and LR_ALTKEY
 //          then
 //          begin 
-//            (* if(G.obedit && G.obedit->type==OB_MESH) write_videoscape(); *)
+//            (* if(G.obedit and G.obedit->type==OB_MESH) write_videoscape(); *)
 //          end;
 //          else
 //          if G.qual and LR_CTRLKEY

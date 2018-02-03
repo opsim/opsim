@@ -376,7 +376,7 @@ uses
 //x1: smallint; 
 //y1: smallint; 
 //str: array [0..Pred(64)] of char; 
-//{$if defined(__sgi) || defined(__SUN)}
+//{$if defined(__sgi) or defined(__SUN)}
 //(* this is a dirty patch: XgetImage gets sometimes the backbuffer *)
 //begin
 //  {scrmousex: smallint; }{<= !!!5 external variable}

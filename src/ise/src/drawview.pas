@@ -488,8 +488,8 @@ begin
 
   glEnable(GL_LIGHT0);
 
-  {$if defined(__FreeBSD) or defined(linux)}
-  glDisable(GL_DITHER);          (* op sgi/sun hardware && 12 bits *)
+  {$if defined(FREEBSD) or defined(LINUX)}
+  glDisable(GL_DITHER);          (* op sgi/sun hardware and 12 bits *)
   {$endif}
 
   (* glLightModelfv(GL_LIGHT_MODEL_LOCAL_VIEWER, &one); *)
@@ -1213,7 +1213,7 @@ end;
 //tel: integer;
 // 
 //kleur: uint; 
-//{$if defined(WINDOWS) || defined(MESA31)}
+//{$if defined(WINDOWS) or defined(MESA31)}
 //begin
 //  
 //  tel:=1; 
@@ -1249,7 +1249,7 @@ end;
 //    end;
 //  end;
 //  
-//  {$if defined(__sgi) || defined(__SUN) || defined(__BeOS) || defined(WINDOWS) || defined(MESA31)}
+//  {$if defined(__sgi) or defined(__SUN) or defined(BEOS) or defined(WINDOWS) or defined(MESA31)}
 //  glDisable(GL_DITHER); 
 //  {$endif}
 //  
@@ -1317,7 +1317,7 @@ end;
 //  glDisable(GL_DEPTH_TEST); 
 //  
 //  
-//  {$if defined(__sgi) || defined(__SUN) || defined(__BeOS) || defined (WINDOWS) || defined(MESA31)}
+//  {$if defined(__sgi) or defined(__SUN) or defined(BEOS) or defined (WINDOWS) or defined(MESA31)}
 //  glEnable(GL_DITHER); 
 //  {$endif}
 //end;
@@ -1793,7 +1793,7 @@ end;
 //    G.zbuf:= LongBool(0); 
 //    glDisable(GL_DEPTH_TEST); 
 //  end;
-//  {$if defined(WINDOWS) || defined(MESA31)}
+//  {$if defined(WINDOWS) or defined(MESA31)}
 //  
 //  if G.f and (G_VERTEXPAINT or G_FACESELECT)
 // then
@@ -1998,7 +1998,7 @@ end;
 //function update_time: integer; 
 //var
 //time: integer; 
-//{$ifdef __BeOS}
+//{$ifdef BEOS}
 //begin
 //  
 //  

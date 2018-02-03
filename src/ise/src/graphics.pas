@@ -61,7 +61,7 @@ uses
 
 {$endif}
 
-//{$if !defined __BeOS and !defined WINDOWS}
+//{$if not defined BEOS and not defined WINDOWS}
 //  { patch voor struct Object  }
 //{$define _XtObject_h}
 //{$include <X11/Xlib.h>}

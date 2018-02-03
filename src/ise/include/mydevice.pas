@@ -65,7 +65,7 @@ interface
     Q_FIRSTTIME = $019;    
 
     { standard keyboard  }
-{$if defined(__BeOS) or defined(WINDOWS)}
+{$if defined(BEOS) or defined(WINDOWS)}
 
   const
     AKEY = 'a';    

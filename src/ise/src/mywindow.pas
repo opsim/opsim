@@ -449,7 +449,7 @@ endx: integer;
 endy: integer;
 begin
   glEnable(GL_SCISSOR_TEST);
-  //{$if !defined(BEOS) and !defined(WINDOWS)}
+  //{$if not defined(BEOS) and not defined(WINDOWS)}
   //glutSetWindow(win);
   //{$endif}
   sizex:= glutGet(GLUT_WINDOW_WIDTH);

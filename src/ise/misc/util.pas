@@ -54,8 +54,8 @@ interface
   { return type might be wrong }
   //function STREQ(str,a : longint) : longint;
 
-  { #define STREQ2(str, a, b)	( STREQ(str, a) || STREQ(str, b) ) }
-  { #define STREQ3(str, a, b, c)	( STREQ2(str, a, b) || STREQ(str, c) ) }
+  { #define STREQ2(str, a, b)	( STREQ(str, a) or STREQ(str, b) ) }
+  { #define STREQ3(str, a, b, c)	( STREQ2(str, a, b) or STREQ(str, c) ) }
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
   { return type might be wrong }

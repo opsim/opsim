@@ -39,7 +39,7 @@ uses
 //{$include "file.h"}
 //{$include "imasel.h"}
 //
-//{$if defined(WINDOWS) || defined MIPS1 || defined __BeOS}
+//{$if defined(WINDOWS) or defined MIPS1 or defined BEOS}
 
 procedure activate_fileselect(_type: integer;  title: pchar;  _file: pchar; func: retfunc);
 

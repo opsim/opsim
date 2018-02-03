@@ -35,15 +35,15 @@ interface
 //{$include "blender.h"}
 //{$include "storage.h"}
 //{$ifndef WINDOWS}
-//{$ifdef __FreeBSD__}
+//{$ifdef FREEBSD}
 //{$include <sys/param.h>}
 //{$include <sys/stat.h>}
 //{$include <sys/mount.h>}
 //{$else}
-//{$if defined(linux)}
+//{$if defined(LINUX)}
 //{$include <sys/vfs.h>}
 //{$else}
-//{$ifndef __BeOS}
+//{$ifndef BEOS}
 //{$include <sys/statfs.h>  }
 //{$endif}
 //{$endif}
