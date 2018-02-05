@@ -7,13 +7,13 @@
 OpSim is an open source Chemical Engineering Process Simulator with a user friendly drag-and-drop graphical user interface and an underlying high performance simulation engine. OpSim is cross-platform and runs equally well on Linux, Windows and Macintosh computers.
 
 ## Binaries
-If you would like to start using OpSim immediately please check out our [release](https://github.com/daar/opsim/releases) page. There you will find a fully containing zipfile suited for your platform. Please report any issues or ideas that you have to improve OpSim.
+If you would like to start using OpSim immediately please check out our [release](https://github.com/daar/opsim/releases) page. There you will find a fully containing zipfile suited for your platform. Please [report](https://github.com/daar/opsim/issues) any issues or ideas that you have to improve OpSim.
 
 ## Building and installation
 The following is a basic outline for compiling and installing OpSim...
 
   - To build you'll first need to setup a build environment. The procedure for this can vary depending on your OS so I'll only cover the high points...
-  - You'll need the latest stable version of the [Free Pascal Compiler](https://freepascal.org/)
+  - You'll need the [Free Pascal Compiler](https://freepascal.org/), version 3.0.4
   - OpSim uses [pmake](https://github.com/daar/pmake) to build the sources
   - Once you have a working build environment you can setup the build by creating a subfolder in the trunk (e.g. `build`) and running `pmake ..` for an out of source build
   - OpSim is designed to require a minimum set of dependencies. As of now only the readily available [OpenGL](http://www.opengl.org) is required.
