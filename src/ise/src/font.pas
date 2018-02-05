@@ -629,7 +629,7 @@ end;
 //do
 //begin 
 //  ascii:= {*}mem^; 
-//  if ascii=#13#10)or(ascii='\r'
+//  if ascii='\n')or(ascii='\r'
 //  then
 //  inc(cu.lines); 
 //end;
@@ -647,7 +647,7 @@ end;
 //do
 //begin 
 //  ascii:= cu.str[i]; 
-//  if ascii=#13#10)or(ascii='\r')or(ascii=0
+//  if ascii='\n')or(ascii='\r')or(ascii=0
 //  then
 //  begin 
 //    ct.xof:= xof; 
@@ -657,7 +657,7 @@ end;
 //    if linedist<1.0
 //    then
 //    begin 
-//      if i<slen)and((cu.str[i+1]='\r')or(cu.str[i+1]=#13#10)
+//      if i<slen)and((cu.str[i+1]='\r')or(cu.str[i+1]='\n')
 //      then
 //      yof:= yof - (linedist); 
 //      else

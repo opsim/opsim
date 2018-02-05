@@ -1094,7 +1094,7 @@ begin
 
     if curarea=nil then
     begin
-      printf('error in areawinar %d ,areawinset'#13#10,[win]);
+      printf('error in areawinar %d ,areawinset\n',[win]);
       exit;
     end;
 

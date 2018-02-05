@@ -3047,7 +3047,7 @@ end;
 //            end;
 //          end;
 //        end;
-//        #13#10,
+//        '\n',
 //        '\r':
 //        (* niet doen: rawkey afhandelen *)
 //        begin

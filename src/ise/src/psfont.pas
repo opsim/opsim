@@ -1178,7 +1178,7 @@ savesplines: integer = 1;
 //  cptr:= bindat+fakepos; 
 //  c:= {*}cptr^{++} inc(cptr); ; 
 //  inc(fakepos); 
-//  if c<>#13#10
+//  if c<>'\n'
 //  then
 //  begin 
 //    while isspace(c)
@@ -1194,7 +1194,7 @@ savesplines: integer = 1;
 //      c:= {*}cptr^{++} inc(cptr); ; 
 //      inc(fakepos); 
 //    end;
-//    if c=#13#10
+//    if c='\n'
 //    then
 //    dec(fakepos); 
 //  end;
