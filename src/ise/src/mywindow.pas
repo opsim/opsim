@@ -53,6 +53,8 @@ procedure getmouse(mval: psmallint);
 procedure my_put_frontbuffer_image;
 procedure my_get_frontbuffer_image(x: integer;  y: integer;  sx: integer;  sy: integer);
 
+function get_qual: smallint;
+
 procedure fmsetfont(_type: pinteger);
 procedure fmprstr(str: pchar);
 function fmgetstrwidth(handle: pinteger;  str: pchar): integer;
@@ -65,7 +67,7 @@ implementation
 
 uses
   GL, GLu, GLut,
-  blender, blenglob,
+  blender, blenglob, blendef,
   cfuncs;
 
 //(*     let op: winid's beginnen met 4, eerste 3 voor GL! *)
@@ -614,30 +616,25 @@ ov_y: integer;
 ov_sx: integer;
 ov_sy: integer;
 
-//function get_qual: smallint; 
-//var
-//retval: integer;
-// 
-//qual: integer;
-// 
-//begin
-//  retval:=nil; 
-//  qual:=glutGetQual(); 
-//  if qual and GLUT_ACTIVE_SHIFT
-// then
-//  retval:= retval or (LR_SHIFTKEY); 
-//  if qual and GLUT_ACTIVE_CTRL
-// then
-//  retval:= retval or (LR_CTRLKEY); 
-//  if qual and GLUT_ACTIVE_ALT
-// then
-//  retval:= retval or (LR_ALTKEY); 
-//  begin
-//    result:= retval; 
-//    exit;
-//  end;
-//end;
-//
+function get_qual: smallint;
+var
+retval: integer = 0;
+qual: integer;
+begin
+  qual:=glutGetModifiers();
+
+  if (qual and GLUT_ACTIVE_SHIFT) <> 0 then
+  retval:= retval or (LR_SHIFTKEY);
+
+  if (qual and GLUT_ACTIVE_CTRL) <> 0 then
+  retval:= retval or (LR_CTRLKEY);
+
+  if (qual and GLUT_ACTIVE_ALT) <> 0 then
+  retval:= retval or (LR_ALTKEY);
+
+  exit(retval);
+end;
+
 //function get_mbut: smallint; 
 //var
 //mval: integer;

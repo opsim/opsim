@@ -916,7 +916,9 @@ function qread(val: psmallint): word;
 begin
   if PtrUint(mainq)>PtrUint(@mainqueue ) then
   begin
-    mainq:= mainq - (2); {*}val^:=mainq[1];
+    mainq:= mainq - (2);
+
+    val^:=mainq[1];
       exit(mainq^);
   end;
 
@@ -926,19 +928,21 @@ end;
 procedure qenter(event: word;  val: smallint);
 var
 size: integer;
-end_: psmallint; (* avoid non-events: qtest()! *)
+end_: psmallint;
 begin
-
+  (* avoid non-events: qtest()! *)
   if event<>0 then
   begin
   end_:= @mainqueue[MAXQUEUE-2];
   if PtrUint(mainq)<PtrUint(end_) then
   begin
     size:= mainq-@mainqueue;
+
     if size<>0 then
     memmove(@mainqueue[2],@mainqueue[0],size);
     mainqueue[0]:=event;
     mainqueue[1]:= val;
+
     mainq:= mainq + (2);
   end;
 end;
@@ -1321,143 +1325,116 @@ end;
 //end;
 
 procedure defheadqread(sa: pScrArea);
-//var
-//tempsa: pScrArea;
-//fac: single;
-//event: word;
-//val: smallint; 
-//do_redraw: smallint;
-// 
-//do_change: smallint;
-// 
-//str: pchar; 
+var
+tempsa: pScrArea;
+fac: single;
+event: word;
+val: smallint;
+do_redraw: smallint = 0;
+do_change: smallint = 0;
+str: pchar;
 begin
-//  
-//  procedure do_py_head_event; 
-//  (* py_draw.c *)
-//  
-//  
-//  
-//  
-//  do_redraw:=nil; 
-//  do_change:=nil; 
-//  
-//  areawinset(sa^.headwin); 
-//  while sa^.hq<>sa^.headqueue
-//  do
-//  begin 
-//    sa^.hq:= sa^.hq - (2); 
-//    event:=  {word(}sa^.hq[0];
-//    val:= sa^.hq[1]; 
-//    if val<>nil 
-// then
-//    begin 
-//      if sa^.spacetype=SPACE_TEXT)and(sa^.headqread=do_py_head_event
-// then
-//      begin 
-//        (* exception for a running python script *)
-//        sa^.headqread(event,val); 
-//      end;
-//      else
-//      if event=LEFTMOUSE
-// then
-//      begin 
-//        FrontbufferButs(LongBool(1)); 
-//        event:= DoButtons(); 
-//        FrontbufferButs(LongBool(0)); 
-//        if event<>nil 
-// then
-//        begin 
-//          if event<1000
-// then
-//          do_headerbuttons(event); 
-//        end;
-//        (* er is waarschijnlijk in frontbuf getekend *)
-//        (* sa->win_swap= WIN_FRONT_OK; *)
-//        else
-//        begin 
-//          mywinset(G.curscreen^.mainwin); 
-//          if G.qual and LR_CTRLKEY
-// then
-//          glutPushWindow(); 
-//          else
-//          begin 
-//            glutPopWindow(); 
-//            glutDoWorkList(); 
-//            R.winpop:= 1; 
-//            (* flag: need pop *)
-//          end;
-//          areawinset(sa^.headwin); 
-//        end;
-//      end;
-//      else
-//      if event=MOUSEY
-// then
-//      begin 
-//        if U.flag and TOOLTIPS
-// then
-//        begin 
-//          str:= GetButTip(); 
-//          if str<>nil 
-// then
-//          begin 
-//            set_info_text(str); 
-//            allqueue(REDRAWINFO,1); 
-//          end;
-//        end;
-//      end;
-//      else
-//      if event=MIDDLEMOUSE
-// then
-//      begin 
-//        scrollheader(); 
-//        break; {<= !!!b possible in "switch" - then remove this line}
-//      end;
-//      else
-//      if event=RIGHTMOUSE
-// then
-//      begin 
-//        headmenu(sa); 
-//      end;
-//      else
-//      if event=REDRAW
-// then
-//      begin 
-//        do_redraw:= 1; 
-//      end;
-//      else
-//      if event=CHANGED
-// then
-//      begin 
-//        sa^.head_swap:=nil; 
-//        do_change:= 1; 
-//        do_redraw:= 1; 
-//      end;
-//      else
-//      if sa^.headqread<>nil 
-// then
-//      begin 
-//        sa^.headqread(event,val); 
-//      end;
-//      if winqueue_break<>nil 
-// then
-//      exit;
-//    end;
-//  end;
-//  tempsa:= areawinar[sa^.headwin]; (* test: bestaat window nog *)
-//  if tempsa=nil
-// then
-//  exit;
-//  (* dit onderscheid loopt niet lekker... *)
-//  if do_change)or(do_redraw
-// then
-//  begin 
-//    areawinset(sa^.headwin); 
-//    defheadchange(); 
-//    if sa^.headdraw<>nil 
-// then
-//    sa^.headdraw(); 
-//  end;
+  //areawinset(sa^.headwin);
+  //
+  //while sa^.hq<>sa^.headqueue do
+  //begin
+  //  sa^.hq:= sa^.hq - (2);
+  //
+  //  event:=  sa^.hq[0];
+  //  val:= sa^.hq[1];
+  //
+  //  if val<>0 then
+  //  begin
+  //    if (sa^.spacetype=SPACE_TEXT)and(sa^.headqread=do_py_head_event) then
+  //    begin
+  //      (* exception for a running python script *)
+  //      sa^.headqread(event,val);
+  //    end
+  //    else
+  //    if event=LEFTMOUSE then
+  //    begin
+  //      FrontbufferButs(1);
+  //      event:= DoButtons();
+  //      FrontbufferButs(0);
+  //
+  //      if event<>nil then
+  //      begin
+  //        if event<1000 then
+  //        do_headerbuttons(event);
+  //      end
+  //      (* er is waarschijnlijk in frontbuf getekend *)
+  //      (* sa->win_swap= WIN_FRONT_OK; *)
+  //      else
+  //      begin
+  //        mywinset(G.curscreen^.mainwin);
+  //        if G.qual and LR_CTRLKEY then
+  //        glutPushWindow()
+  //        else
+  //        begin
+  //          glutPopWindow();
+  //          glutDoWorkList();
+  //          R.winpop:= 1;
+  //          (* flag: need pop *)
+  //        end;
+  //        areawinset(sa^.headwin);
+  //      end;
+  //    end
+  //    else
+  //    if event=MOUSEY then
+  //    begin
+  //      if U.flag and TOOLTIPS then
+  //      begin
+  //        str:= GetButTip();
+  //        if str<>nil then
+  //        begin
+  //          set_info_text(str);
+  //          allqueue(REDRAWINFO,1);
+  //        end;
+  //      end;
+  //    end
+  //    else
+  //    if event=MIDDLEMOUSE then
+  //    begin
+  //      scrollheader();
+  //      break; {<= !!!b possible in "switch" - then remove this line}
+  //    end
+  //    else
+  //    if event=RIGHTMOUSE then
+  //    begin
+  //      headmenu(sa);
+  //    end
+  //    else
+  //    if event=REDRAW then
+  //    begin
+  //      do_redraw:= 1;
+  //    end
+  //    else
+  //    if event=CHANGED then
+  //    begin
+  //      sa^.head_swap:=0;
+  //      do_change:= 1;
+  //      do_redraw:= 1;
+  //    end
+  //    else
+  //    if sa^.headqread<>nil then
+  //    begin
+  //      sa^.headqread(event,val);
+  //    end;
+  //    if winqueue_break<>0 then
+  //    exit;
+  //  end;
+  //end;
+  //tempsa:= areawinar[sa^.headwin]; (* test: bestaat window nog *)
+  //if tempsa=nil then
+  //exit;
+  //(* dit onderscheid loopt niet lekker... *)
+  //if (do_change<>0)or(do_redraw<>0) then
+  //begin
+  //  areawinset(sa^.headwin);
+  //  defheadchange();
+  //  if sa^.headdraw<>nil then
+  //  sa^.headdraw();
+  //end;
 end;
 
 //function winqtest(sa: pScrArea): word;
@@ -1540,51 +1517,46 @@ begin
 end;
 
 procedure addqueue(win: smallint;  event: word;  val: smallint);
-//var
-//sa: pScrArea;
-//size: integer; 
-//end: psmallint; (* nieuwe events worden vooraan in het array gezet *)
+var
+sa: pScrArea;
+size: integer;
+_end: psmallint;
 begin
-//  
-//  
-//  sa:= areawinar[win]; 
-//  if sa<>nil 
-// then
-//  begin 
-//    if win=sa^.headwin
-// then
-//    begin 
-//    end:= sa^.headqueue+MAXQUEUE-2; 
-//    if  {integer(}sa^.hq< {integer(}end
-// then
-//    begin 
-//      size:= ( {integer(}sa^.hq)-( {integer(}sa^.headqueue);
-//      if size<>nil 
-// then
-//      memmove(sa^.headqueue+2,sa^.headqueue,size); 
-//      ( {pushort(}sa^.headqueue)[0]:=event;
-//      sa^.headqueue[1]:= val; 
-//      sa^.hq:= sa^.hq + (2); 
-//    end;
-//  end;
-//  else
-//  if win=sa^.win
-// then
-//  begin 
-//  end:= sa^.winqueue+MAXQUEUE-2; 
-//  if  {integer(}sa^.wq< {integer(}end
-// then
-//  begin 
-//    size:= ( {integer(}sa^.wq)-( {integer(}sa^.winqueue);
-//    if size<>nil 
-// then
-//    memmove(sa^.winqueue+2,sa^.winqueue,size); 
-//    ( {pushort(}sa^.winqueue)[0]:=event;
-//    sa^.winqueue[1]:= val; 
-//    sa^.wq:= sa^.wq + (2); 
-//  end;
-//end;
-//end;
+  (* nieuwe events worden vooraan in het array gezet *)
+  sa:= areawinar[win];
+
+  if sa<>nil then
+  begin
+    if win=sa^.headwin then
+    begin
+      _end:= sa^.headqueue+MAXQUEUE-2;
+
+      if  PtrUint(sa^.hq)< PtrUint(_end) then
+      begin
+        size:= PtrUint(sa^.hq)-PtrUint(sa^.headqueue);
+
+        if size<>0  then
+        memmove(sa^.headqueue+2,sa^.headqueue,size);
+        pword(sa^.headqueue)^:=event;
+        sa^.headqueue[1]:= val;
+        sa^.hq:= sa^.hq + (2);
+      end;
+  end
+  else
+  if win=sa^.win then
+  begin
+  _end:= sa^.winqueue+MAXQUEUE-2;
+  if  PtrUint(sa^.wq)< PtrUint(_end) then
+  begin
+    size:= PtrUint(sa^.wq)-PtrUint(sa^.winqueue);
+    if size<>0 then
+    memmove(sa^.winqueue+2,sa^.winqueue,size);
+    pword(sa^.winqueue)^:=event;
+    sa^.winqueue[1]:= val;
+    sa^.wq:= sa^.wq + (2);
+  end;
+end;
+end;
 end;
 
 var
@@ -1625,10 +1597,11 @@ begin
   exit(0);
 end;
 
-//procedure remake_qual; 
-//begin
-//  G.qual:= get_qual(); 
-//end;
+procedure remake_qual;
+begin
+  G.qual:= get_qual();
+end;
+
 //var
 //ext_load_str: array [0..Pred(256)] of char = (0,0); 
 //
@@ -1644,329 +1617,275 @@ ext_redraw: smallint =0;
 ext_inputchange: smallint =0;
 ext_mousemove: smallint =0;
 in_ext_qread: smallint =0;
-oldwin: integer;
+oldwin: integer = 0;
 
 function screen_qread(val: psmallint): word;
-//var
-//sa: pScrArea;
-//win: pbWindow; 
-//event: word;
-//newwin: smallint; 
-//rt: smallint; 
-//devs: array [0..1] of smallint;
-//vals: array [0..1] of smallint;
-//ww: integer;
-// 
-//sc: pbScreen; 
-//wx: integer; 
-//wy: integer; 
-//orx: integer; 
-//ory: integer; 
+var
+sa: pScrArea;
+win: pbWindow;
+event: word;
+newwin: smallint;
+rt: smallint;
+devs: array [0..1] of smallint;
+vals: array [0..1] of smallint;
+ww: integer;
+sc: pbScreen;
+wx: integer;
+wy: integer;
+orx: integer;
+ory: integer;
 begin
-//  oldwin:=nil; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  event:=nil; 
-//  if in_ext_qread=nil
-// then
-//  begin 
-//    if ext_inputchange<>nil 
-// then
-//    begin 
-//      {*}val^:=ext_inputchange; 
-//      ext_inputchange:=nil; 
-//      event:= INPUTCHANGE; 
-//    end;
-//    else
-//    if ext_redraw<>nil 
-// then
-//    begin 
-//      {*}val^:=ext_redraw; 
-//      ext_redraw:=nil; 
-//      event:= REDRAW; 
-//    end;
-//    else
-//    if ext_mousemove<>nil 
-// then
-//    begin 
-//      ext_mousemove:=nil; 
-//      event:= MOUSEY; 
-//    end;
-//    else
-//    if afterqueue<>afterq)and(qtest()=nil
-// then
-//    begin 
-//      {*}val^:=nil; 
-//      event:= AFTERQUEUE; 
-//    end;
-//  end;
-//  if event=nil
-// then
-//  begin 
-//    while myqtest()=nil
-//    do
-//    begin 
-//      ww:=nil; 
-//      processEventsAndTimeouts(); 
-//      glutDoWorkList(); 
-//      if myqtest()=nil
-// then
-//      usleep(1); 
-//    end;
-//    event:= qread(val); 
-//  end;
-//  (* if(event==nil) { *)
-//  (*  while(myqtest()==nil) { *)
-//  (*   if(qtest()) { *)
-//  (*    processEventsAndTimeouts(); *)
-//  (*    glutDoWorkList(); *)
-//  (*    if(myqtest()==nil) usleep(1); *)
-//  (*   } *)
-//  (*   if(myqtest()==nil) if(R.flag & R_RENDERING) return 0; *)
-//  (*  } *)
-//  (*  event= qread(val); *)
-//  (* } *)
-//  if G.curscreen=nil
-// then
-//  begin
-//    result:= event; 
-//    exit;
-//  end;
-//  if event=Q_FIRSTTIME
-// then
-//  begin 
-//    glutDoWorkList(); 
-//  end;
-//  else
-//  if event=RIGHTSHIFTKEY)or(event=LEFTSHIFTKEY
-// then
-//  begin 
-//    if {*}val^
-// then
-//    G.qual:= G.qual or (LR_SHIFTKEY); 
-//    else
-//    G.qual:= G.qual and ( not LR_SHIFTKEY); 
-//  end;
-//  else
-//  if event=RIGHTALTKEY)or(event=LEFTALTKEY
-// then
-//  begin 
-//    if {*}val^
-// then
-//    G.qual:= G.qual or (LR_ALTKEY); 
-//    else
-//    G.qual:= G.qual and ( not LR_ALTKEY); 
-//  end;
-//  else
-//  if event=RIGHTCTRLKEY)or(event=LEFTCTRLKEY
-// then
-//  begin 
-//    if {*}val^
-// then
-//    G.qual:= G.qual or (LR_CTRLKEY); 
-//    else
-//    G.qual:= G.qual and ( not LR_CTRLKEY); 
-//  end;
-//  else
-//  if event=WINFREEZE)or(event=WINTHAW
-// then
-//  begin 
-//    if (R.flag and R_RENDERING)=nil
-// then
-//    begin 
-//      if R.win<>nil 
-// then
-//      winclose(R.win); 
-//      R.win:=nil; 
-//      G.qual:=nil; 
-//    end;
-//  end;
-//  {$if 0}
-//  else
-//  if event=RESHAPE
-// then
-//  begin 
-//    if {*}val^=mainwin
-// then
-//    begin 
-//      
-//      
-//      
-//      
-//      
-//      init_my_mainwin(mainwin); 
-//      wx:= glutGet(GLUT_WINDOW_WIDTH); 
-//      wy:= glutGet(GLUT_WINDOW_HEIGHT); 
-//      orx:= glutGet(GLUT_WINDOW_X); 
-//      ory:= displaysizey-wy-glutGet(GLUT_WINDOW_Y); (* Minimizing on windows causes glut to set the
-//          * size to 0,  which means things go bonkers
-//          *)
-//      if wx=nil)or(wy=nil
-// then
-//      begin
-//        result:=nil; 
-//        exit;
-//      end;
-//      prefstax:= orx; 
-//      prefstay:= ory; 
-//      prefsizx:= wx; 
-//      prefsizy:= wy; 
-//      sc:= G.main.screen.first; 
-//      while sc
-//      do
-//      begin 
-//        test_scale_screen(sc); 
-//        sc:= sc^.id.next;
-//      end;
-//      testareas(); 
-//    end;
-//    event:=nil; 
-//  end;
-//  {$endif}
-//  else
-//  if event=INPUTCHANGE)or(event=REDRAW)or(event=DRAWEDGES
-// then
-//  begin 
-//    (* DRAWEDGES: komt vanuit setscreen, qual opnieuw berekenen *)
-//    if {*}val^=1
-// then
-//    remake_qual(); 
-//    if event=INPUTCHANGE)and(in_ext_qread=nil
-// then
-//    begin 
-//      if {*}val^
-// then
-//      begin 
-//        mywinset({*}val^); 
-//        G.curscreen^.winakt:= {*}val^; 
-//        oldwin:= {*}val^; 
-//      end;
-//      oldwin:=nil; 
-//    end;
-//    if event=REDRAW
-// then
-//    begin 
-//      (* kunstmatige mousy voor herberekenen winakt (als b.v. R.win naar achter gepusht *)
-//      qenter(MOUSEY,scrmousey); 
-//    end;
-//  end;
-//  else
-//  if event=MOUSEX)or(event=MOUSEY
-// then
-//  begin 
-//    if event=MOUSEY)and(in_ext_qread=nil)and((R.win=nil)or(G.curscreen^.winakt<>R.win)
-// then
-//    begin 
-//      (* testen waar muis staat *)
-//      newwin:=nil; 
-//      win:= swindowbase^.first; 
-//      while win
-//      do
-//      begin 
-//        if scrmousex>win.xmin)and(scrmousex<win.xmax
-// then
-//        begin 
-//          (* deze uitzondering betreft onderste en bovenste edge: voor edit cursonedge *)
-//          if (scrmousey=nil)and(scrmousey=win.ymin))or((scrmousey=G.curscreen^.endy)and(scrmousey=win.ymax)
-// then
-//          begin 
-//            if scrmousey>win.ymin)and(scrmousey<win.ymax
-// then
-//            begin 
-//              newwin:= win.id; 
-//              break; {<= !!!b possible in "switch" - then remove this line}
-//            end;
-//          end;
-//          else
-//          if scrmousey>=win.ymin)and(scrmousey<=win.ymax
-// then
-//          begin 
-//            newwin:= win.id; 
-//            break; {<= !!!b possible in "switch" - then remove this line}
-//          end;
-//        end;
-//        win:= win.next; 
-//      end;
-//      (* cursor *)
-//      if newwin<>oldwin
-// then
-//      begin 
-//        if newwin=nil
-// then
-//        begin 
-//          set_cursonedge(scrmousex,scrmousey); 
-//        end;
-//        else
-//        if oldwin=nil
-// then
-//        begin 
-//          cursonedge:=nil; 
-//        end;
-//        if newwin<>nil 
-// then
-//        begin 
-//          sa:= areawinar[newwin]; 
-//          if sa^.win=newwin
-// then
-//          glutSetCursor(sa^.cursor); 
-//          else
-//          glutSetCursor(CURSOR_STD); 
-//        end;
-//      end;
-//      else
-//      if newwin=nil)and(oldwin=nil
-// then
-//      begin 
-//        set_cursonedge(scrmousex,scrmousey); 
-//      end;
-//      (*
-//         else if (scrmousex<2 or scrmousey<2 or
-//           abs(scrmousex - G.curscreen->sizex)<2 or
-//           abs(scrmousey - G.curscreen->sizey)<2) {
-//          set_cursonedge(scrmousex, scrmousey);      
-//         }
-//      *)
-//      if newwin<>0
-// then
-//      begin 
-//        if newwin<>oldwin)or(G.curscreen^.winakt=nil
-// then
-//        begin 
-//          event:= INPUTCHANGE; {*}val^:=newwin; 
-//        end;
-//      end;
-//      oldwin:= newwin; 
-//    end;
-//  end;
-//  else
-//  if event=TIMER0
-// then
-//  begin 
-//    event:=nil; 
-//    if in_ext_qread=nil
-// then
-//    begin 
-//      write_autosave(); 
-//      autosavetime:=nil; 
-//    end;
-//  end;
-//  else
-//  if event=LOAD_FILE
-// then
-//  begin 
-//    event:=nil; 
-//    read_file(ext_load_str); 
-//    ext_load_str[0]:=nil; ; 
-//  end;
-//  begin
-//    result:= event; 
-//    exit;
-//  end;
+  event:=0;
+
+  if in_ext_qread=0 then
+  begin
+    if ext_inputchange<>0 then
+    begin
+      val^:=ext_inputchange;
+      ext_inputchange:=0;
+      event:= INPUTCHANGE;
+    end
+    else
+    if ext_redraw<>0 then
+    begin
+      val^:=ext_redraw;
+      ext_redraw:=0;
+      event:= REDRAW;
+    end
+    else
+    if ext_mousemove<>0 then
+    begin
+      ext_mousemove:=0;
+      event:= MOUSEY;
+    end
+    else
+    if (@afterqueue<>afterq)and(qtest()=0) then
+    begin
+      val^:=0;
+      event:= blendef.AFTERQUEUE;
+    end;
+  end;
+  if event=0 then
+  begin
+    while myqtest()=0 do
+    begin
+      ww:=0;
+      //processEventsAndTimeouts();
+      //glutDoWorkList();
+      if myqtest()=0 then
+      usleep(1);
+    end;
+    event:= qread(val);
+  end;
+
+  (* if(event==nil) { *)
+  (*  while(myqtest()==nil) { *)
+  (*   if(qtest()) { *)
+  (*    processEventsAndTimeouts(); *)
+  (*    glutDoWorkList(); *)
+  (*    if(myqtest()==nil) usleep(1); *)
+  (*   } *)
+  (*   if(myqtest()==nil) if(R.flag & R_RENDERING) return 0; *)
+  (*  } *)
+  (*  event= qread(val); *)
+  (* } *)
+
+  if G.curscreen=nil then
+  exit(event);
+
+  if event=Q_FIRSTTIME then
+  begin
+    //glutDoWorkList();
+  end
+  else
+  if (event=RIGHTSHIFTKEY)or(event=LEFTSHIFTKEY) then
+  begin
+    if val^<>0 then
+    G.qual:= G.qual or (LR_SHIFTKEY)
+    else
+    G.qual:= G.qual and ( not LR_SHIFTKEY);
+  end
+  else
+  if (event=RIGHTALTKEY)or(event=LEFTALTKEY) then
+  begin
+    if val^<>0 then
+    G.qual:= G.qual or (LR_ALTKEY)
+    else
+    G.qual:= G.qual and ( not LR_ALTKEY);
+  end
+  else
+  if (event=RIGHTCTRLKEY)or(event=LEFTCTRLKEY) then
+  begin
+    if val^<>0 then
+    G.qual:= G.qual or (LR_CTRLKEY)
+    else
+    G.qual:= G.qual and ( not LR_CTRLKEY);
+  end
+  else
+  if (event=WINFREEZE)or(event=WINTHAW) then
+  begin
+    //if (R.flag and R_RENDERING)=0 then
+    //begin
+    //  if R.win<>nil then
+    //  winclose(R.win);
+    //  R.win:=0;
+    //  G.qual:=0;
+    //end;
+  end
+  {$if 0}
+  else
+  if event=RESHAPE then
+  begin
+    if val^=mainwin then
+    begin
+      init_my_mainwin(mainwin);
+      wx:= glutGet(GLUT_WINDOW_WIDTH);
+      wy:= glutGet(GLUT_WINDOW_HEIGHT);
+      orx:= glutGet(GLUT_WINDOW_X);
+      ory:= displaysizey-wy-glutGet(GLUT_WINDOW_Y);
+
+      (* Minimizing on windows causes glut to set the
+          * size to 0,  which means things go bonkers
+          *)
+
+      if (wx=nil)or(wy=nil) then
+      begin
+        result:=nil;
+        exit;
+      end;
+
+      prefstax:= orx;
+      prefstay:= ory;
+      prefsizx:= wx;
+      prefsizy:= wy;
+      sc:= G.main.screen.first;
+      while sc <> nil do
+      begin
+        test_scale_screen(sc);
+        sc:= sc^.id.next;
+      end;
+      testareas();
+    end;
+    event:=nil;
+  end
+  {$endif}
+  else
+  if (event=INPUTCHANGE)or(event=REDRAW)or(event=DRAWEDGES) then
+  begin
+    (* DRAWEDGES: komt vanuit setscreen, qual opnieuw berekenen *)
+    if val^=1 then
+    remake_qual();
+
+    if (event=INPUTCHANGE)and(in_ext_qread=0) then
+    begin
+      if val^<>0 then
+      begin
+        mywinset(val^);
+        G.curscreen^.winakt:= val^;
+        oldwin:= val^;
+      end;
+      oldwin:=0;
+    end;
+
+    if event=REDRAW then
+    begin
+      (* kunstmatige mousy voor herberekenen winakt (als b.v. R.win naar achter gepusht *)
+      qenter(MOUSEY,scrmousey);
+    end;
+  end
+  else
+  if (event=MOUSEX)or(event=MOUSEY) then
+  begin
+    //if (event=MOUSEY)and(in_ext_qread=nil)and((R.win=nil)or(G.curscreen^.winakt<>R.win) then
+    //begin
+    //  (* testen waar muis staat *)
+    //  newwin:=nil;
+    //  win:= swindowbase^.first;
+    //  while win
+    //  do
+    //  begin
+    //    if (scrmousex>win.xmin)and(scrmousex<win.xmax) then
+    //    begin
+    //      (* deze uitzondering betreft onderste en bovenste edge: voor edit cursonedge *)
+    //      if (scrmousey=nil)and(scrmousey=win.ymin))or((scrmousey=G.curscreen^.endy)and(scrmousey=win.ymax) then
+    //      begin
+    //        if (scrmousey>win.ymin)and(scrmousey<win.ymax) then
+    //        begin
+    //          newwin:= win.id;
+    //          break; {<= !!!b possible in "switch" - then remove this line}
+    //        end;
+    //      end
+    //      else
+    //      if (scrmousey>=win.ymin)and(scrmousey<=win.ymax) then
+    //      begin
+    //        newwin:= win.id;
+    //        break; {<= !!!b possible in "switch" - then remove this line}
+    //      end;
+    //    end;
+    //    win:= win.next;
+    //  end;
+    //  (* cursor *)
+    //  if newwin<>oldwin then
+    //  begin
+    //    if newwin=nil then
+    //    begin
+    //      set_cursonedge(scrmousex,scrmousey);
+    //    end;
+    //    else
+    //    if oldwin=nil then
+    //    begin
+    //      cursonedge:=nil;
+    //    end;
+    //    if newwin<>nil then
+    //    begin
+    //      sa:= areawinar[newwin];
+    //      if sa^.win=newwin then
+    //      glutSetCursor(sa^.cursor)
+    //      else
+    //      glutSetCursor(CURSOR_STD);
+    //    end;
+    //  end;
+    //  else
+    //  if (newwin=nil)and(oldwin=nil) then
+    //  begin
+    //    set_cursonedge(scrmousex,scrmousey);
+    //  end;
+    //  (*
+    //     else if (scrmousex<2 or scrmousey<2 or
+    //       abs(scrmousex - G.curscreen->sizex)<2 or
+    //       abs(scrmousey - G.curscreen->sizey)<2) {
+    //      set_cursonedge(scrmousex, scrmousey);
+    //     }
+    //  *)
+    //  if newwin<>0 then
+    //  begin
+    //    if (newwin<>oldwin)or(G.curscreen^.winakt=nil) then
+    //    begin
+    //      event:= INPUTCHANGE; {*}val^:=newwin;
+    //    end;
+    //  end;
+    //  oldwin:= newwin;
+    //end;
+  end
+  else
+  if event=TIMER0 then
+  begin
+    event:=0;
+    if in_ext_qread=0 then
+    begin
+      //write_autosave();
+      //autosavetime:=0;
+    end;
+  end
+  else
+  if event=LOAD_FILE then
+  begin
+    //event:=0;
+    //read_file(ext_load_str);
+    //ext_load_str[0]:=#0;
+  end;
+
+  exit(event);
 end;
 
 //function special_qread(val: psmallint): word;
@@ -2294,17 +2213,17 @@ begin
   while sa <>nil  do
   begin
     if (sa^.win<>0)and((sa^.win_swap and WIN_FRONT_OK)=0) then
-    break; {<= !!!b possible in "switch" - then remove this line}
+    break;
 
     if (sa^.head_swap and WIN_FRONT_OK)=0 then
-    break; {<= !!!b possible in "switch" - then remove this line}
+    break;
 
     sa:= sa^.next;
   end;
   if sa=nil then
   exit;
 
-  (* printf("front not OK %d %d %d %d\n", sa->win, sa->win_swap, sa->headwin, sa->head_swap); *)
+  (* printf('front not OK %d %d %d %d\n', [sa^.win, sa^.win_swap, sa^.headwin, sa^.head_swap]); *)
   sa:= G.curscreen^.areabase.first;
   while sa<>nil   do
   begin
@@ -2471,12 +2390,12 @@ begin
     event:= screen_qread(@val);
     towin:= event;
 
-    //if ((G.f and G_DEBUG)<>0)and(event<>0)and(event<>MOUSEY) then
-    //begin
-    //  PRINT3(d,d,d,event,val,G.qual);
-    //  debugval:= 1;
-    //end;
-    //
+    if ((G.f and G_DEBUG)<>0)and(event<>0)and(event<>MOUSEY) then
+    begin
+      PRINT3('d','d','d',event,val,G.qual);
+      debugval:= 1;
+    end;
+
     //if event=LEFTMOUSE then
     //begin
     //  if val)and(cursonedge then
