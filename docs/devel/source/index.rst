@@ -12,10 +12,10 @@ Contents:
    :maxdepth: 1
 
    about
-   coding_standard
-   installing_dev_environment
-   committing_code
    architecture/index
+   installing_dev_environment
+   coding_standard
+   committing_code
    specifications
    pp_library
    release_cycle
@@ -27,4 +27,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

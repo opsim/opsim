@@ -1,58 +1,40 @@
 Procedures to send and commit code
 ==================================
 
-.. note:: Please, take very seriously that SourceForge provides no mechanism to delete permanently a piece of code previouslysent. SVN provides no means for removing this information, and since the repository is unrestricted for download (checkout)bySourceForge, then once the code is there it is free open source forever. Anyone can have it.
+.. note:: Please, take very seriously that GitHub provides no mechanism to delete permanently a piece of code previously committed. Git provides no means for removing this information, and since the repository is unrestricted for download, once the code is there it is free open source forever. Anyone can have it.
 
 Sending Third Party Code
 ------------------------
-Another important point is that if you have commit access to the repository, and receive directly from someone else a piece o code. Make sure that the contributor explicitly authorizes the publication. One manner to document this is by getting the clause "Please put on Source Forge. I understand that the code becomes Open Source and GPL" written in the email message containing the code. If necessary, kindly ask the contributor to resend it. Therefore, just for legal precaution and to insure every contributor is remembered, each source file might have a header. It was designed based on other open source projects, like Lazarus itself. The header contains among other information:
+Another important point is that if you have commit access to the repository, and receive directly from someone else a piece of code. Make sure that the contributor explicitly authorizes the publication. One way to document this is by getting the clause "I understand that the code becomes Open Source and GPL" written in the email message containing the code. If necessary, kindly ask the contributor to resend it. Therefore, just for legal precaution and to insure every contributor is remembered, each source file should have a header. The header contains among other things the following information:
 
-    - the date when the file was created (initial revision date); 
-    - a disclaimer; 
-    - and the list of authors (contributors) of that module.
+    - the GPL2 license information
+    - the date when the file was created (initial revision date)
+    - an abstract describing the function of the unit
+    - and the list of authors (contributors) of that module
 
-If you are about to create a new file (unit), feel free to borrow the header form an existent one and make the proper changes. For example, bellow is a sample header. This header pertains to the file ExtGraphics2.pas. It was a great contribution of a developer named Seppo because helps a lot to render the PFD images. I have just made a few improvements. 
+If you are about to create a new file (unit), feel free to add the header by using the tool ``addheader`` that is located in the ``tools`` directory.
 
-The first line “{ $Id$ }” is a SNV token that expands to information about the file.
+.. code-block:: bash
 
-.. code:: pascal
+   >addheader myunit.pas
 
-  { $Id$ }
-  { 
-    /***************************************************************************
-        Abstract: Painting routines for special objects. 
-		Initial Revision : 19/03/2006
-		Authors: 
-			- Seppo 
-			- Samuel Jorge Marques Cartaxo 
-			- Additional contributors...
-		** Some routines here are from the Lazarus Component 
-		   Library (unit ExtGraphics.pas). 
-		** New routines were added by Seppo. 
-		** Since the new routines were not included in the 
-		   Lazarus code base till now (current SVN checkout), 
-		   and to avoid conflicts with the original unit, 
-		   a different name was used.
-  ***************************************************************************/
-  ***************************************************************************** 
-  * 																		  *
-  * This file is part of the OpSim - OPEN SOURCE PROCESS SIMULATOR 			  * 
-  * 																		  * 
-  * See the file COPYING.GPL, included in this distribution, 				  * 
-  * for details about the copyright. 										  * 
-  * 																		  *
-  * This program is distributed in the hope that it will be useful, 		  * 
-  * but WITHOUT ANY WARRANTY; without even the implied warranty of 			  * 
-  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 					  * 
-  * 																		  * 
-  ***************************************************************************** }
 
-Basic Principles for Committing Code
-------------------------------------
+Basic rules before initializing a pull request
+----------------------------------------------
 
 For now, the rules for committing code to repository are fairly simple:
 
-  - Do not break the build. Your code should compile well and not contain visible 
-    defects. If your local code base compile but generates an access violation, 
-    then do not commit it. Fix first. 
+  - Do not break the build. Your code should compile well and not contain visible
+    defects. If your local code base compile but generates an access violation,
+    then do not commit it. Fix first.
   - If in doubt, pay attention to the first rule.
+
+
+About pull request
+------------------
+
+Pull requests let you tell others about changes you've pushed to a repository on GitHub. Once a pull request is opened, you can discuss and review the potential changes with collaborators and add follow-up commits before the changes are merged into the repository.
+
+.. note:: When working with pull requests, keep the following in mind: If you're working in the shared repository model, we recommend that you use a topic branch for your pull request. While you can send pull requests from any branch or commit, with a topic branch you can push follow-up commits if you need to update your proposed changes. When pushing commits to a pull request, don't force push. Force pushing can corrupt your pull request.
+
+After initializing a pull request, you'll see a review page that shows a high-level overview of the changes between your branch (the compare branch) and the repository's base branch. You can add a summary of the proposed changes, review the changes made by commits, add labels, milestones, and assignees, and @mention individual contributors or teams. For more information, see "`Creating a pull request <https://help.github.com/articles/creating-a-pull-request>`_".

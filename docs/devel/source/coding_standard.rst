@@ -8,11 +8,11 @@ The most important rules that developers need to adhere to are:
 
 Language and Encoding
 ---------------------
-There are some general conventions for OpSims code base.
+There are some general conventions for the OpSim code base.
 
 * Use American spelling for all doc-strings variable names and comments.
-* Use ASCII where possible, avoid special unicode characters such as '÷', '¶' or 'λ'.
-* Use UTF8 encoding for all source files where unicode characters are required. 
+* Use ASCII where possible, avoid special Unicode characters such as '÷', '¶' or 'λ'.
+* Use UTF8 encoding for all source files where Unicode characters are required.
 
 Naming
 ------
@@ -23,7 +23,7 @@ Naming
 
    // Don't:
    function find_conversion(uq: pUnitQuantity; unit_: string): pUnitConversion;
-   // Do: 
+   // Do:
    function UNC_conversion_get(uq: pUnitQuantity; unit_: string): pUnitConversion;
 
 * Local variables should be short and to the point.
@@ -37,13 +37,13 @@ Function / procedure arguments
 * variables of which function entry value is not used should be declared as an *out* parameter instead of a *var* parameter.
 
 * return arguments should be grouped at the end of the argument list.
-* *optionally*, put these arguments on a new line (especially when the argument list is already long and may be split across multiple lines anyway). 
+* *optionally*, put these arguments on a new line (especially when the argument list is already long and may be split across multiple lines anyway).
 
 .. code-block:: pascal
 
    // Don't:
    procedure Kelvin_to_Celcius(v: double; var temp: double);
- 
+
    // Do:
    procedure Kelvin_to_Celcius(v: double; out temp: double);
 
@@ -51,7 +51,7 @@ Operators and Statements
 ------------------------
 
 * C style operators are allowed to be used (\*=, +=, /= and -=)
-* Spaces should be used around assign operators (:=, +=, /= and so on), one space on each side of it: 
+* Spaces should be used around assign operators (:=, +=, /= and so on), one space on each side of it:
 
 .. code-block:: pascal
 
@@ -60,7 +60,7 @@ Operators and Statements
    // Do:
    foo := bar;
 
-Space should be used between statement and brace: 
+Space should be used between statement and brace:
 
 .. code-block:: pascal
 
@@ -69,7 +69,7 @@ Space should be used between statement and brace:
    // Do:
    if (ob = nil) then
 
-* The pointer qualifier is defined as type and is a lowercase *p*. 
+* The pointer qualifier is defined as type and is a lowercase *p*.
 
 .. code-block:: pascal
 
@@ -93,7 +93,7 @@ Case Statement
    begin
      ...
    end;
-   CHF_NUM: 
+   CHF_NUM:
      val(tok^.value, lmul, code);
    end;
    // Do:
@@ -102,7 +102,7 @@ Case Statement
      begin
        ...
      end;
-     CHF_NUM: 
+     CHF_NUM:
        val(tok^.value, lmul, code);
    end;
 
@@ -119,7 +119,7 @@ The *begin* and *end* keywords should always start on a new line.
     ...
   end;
   // Do:
-  procedure func; 
+  procedure func;
   begin
     ...
   end;
@@ -134,23 +134,23 @@ The *begin* and *end* keywords should always start on a new line.
        c := 2;
    end;
    // Do:
-   if a = b then 
+   if a = b then
    begin
      d := 1;
      ...
    end
-   else 
+   else
    begin
      c := 2;
    end;
 
 Do not skip the *begin* *end* keywords for executable sections when using nested *else* statements. Try to avoid skipping them altogether.
-   
+
 Indentation
 -----------
-* Use two spaces for indentation for each block. 
+* Use two spaces for indentation for each block.
 * The whole idea behind indentation is to clearly define where a block of control starts and ends. Always indent when needed - that is, after if, do, while statements, function declarations, and so on.
-* When defining an argument list over multiple lines, the lines preferable be indented with 8 spaces or align to the opening parenthesis for shorter functions. For example: 
+* When defining an argument list over multiple lines, the lines preferable be indented with 8 spaces or align to the opening parenthesis for shorter functions. For example:
 
 .. code-block:: pascal
 
@@ -158,7 +158,7 @@ Indentation
    procedure procedure_foo(arg1, arg2, ..., argN,
        argN + 1, ..., argM,
        argM + 1, argM + 2);
- 
+
    procedure procedure_foo_with_a_long_name_that_causes_a_lot_of_indent_alignment(arg1,
                                                                                   arg2,
                                                                                   arg3);
@@ -167,15 +167,15 @@ Indentation
                  arg1, arg2, ..., argN,
                  argN + 1, ..., argM,
                  argM + 1, argM + 2);
- 
+
    procedure short_procedure(arg1,
                              arg2,
                              arg3);
- 
+
    // --- 120 chars long --- //
 
-* When splitting if statement it's preferable to split it on disjunction operation and keeping wrapped conditions: 
- 
+* When splitting if statement it's preferable to split it on disjunction operation and keeping wrapped conditions:
+
 .. code-block:: pascal
 
    // in this case wrapped opening brace is reading easier
@@ -200,7 +200,7 @@ Compile-time directives
      a := 2;
      {$endif}
    end;
- 
+
    // Do:
    procedure test;
    begin
@@ -227,7 +227,7 @@ Compile-time directives
    {$ENDIF HAS_TAR_SUPPORT}
    {$ENDIF UNIX}
    {$ENDIF}
- 
+
    // Do:
    {$IFDEF MSWINDOWS}
      {$IFDEF HAS_TAR_SUPPORT}
@@ -251,7 +251,7 @@ In general, avoid trailing white-space.
 Breaking long lines
 -------------------
 * Lines should not be longer than 120 characters (columns) long.
-* Statements longer than 120 columns will be broken into sensible chunks. Descendants are always substantially shorter than the parent and are placed substantially to the right. The same applies to function headers with a long argument list. Long strings are as well broken into shorter strings. 
+* Statements longer than 120 columns will be broken into sensible chunks. Descendants are always substantially shorter than the parent and are placed substantially to the right. The same applies to function headers with a long argument list. Long strings are as well broken into shorter strings.
 
 Generally the only exceptions are for comments with example commands or URLs - to make cut and paste easier.
 
@@ -262,27 +262,27 @@ The other exception is for those rare cases where letting a line be longer (and 
 Comment style
 -------------
 * Comments should explain what the code is doing, not how. The how should be more or less obvious from the way the code is written.
- 
+
 .. code-block:: pascal
 
    // this is a line comment
-   
-   (* This is a block comment 
+
+   (* This is a block comment
     *)
 
-* When using multiline comments, markers (star character, '*') should be used in the beginning of every line of comment: 
+* When using multiline comments, markers (star character, '*') should be used in the beginning of every line of comment:
 
 .. code-block:: pascal
 
    // Don't:
-   (* Lorem ipsum dolor sit amet, 
+   (* Lorem ipsum dolor sit amet,
       consectetur adipiscing elit. *)
-      
+
    // Do:
-   (* Lorem ipsum dolor sit amet, 
+   (* Lorem ipsum dolor sit amet,
     * consectetur adipiscing elit. *)
 
-* An XXX marker should be used only in comments, describing usage of a non-obvious solution caused by some design limitations which better be resolved after rethinking of design. 
+* An XXX marker should be used only in comments, describing usage of a non-obvious solution caused by some design limitations which better be resolved after rethinking of design.
 
 .. code-block:: pascal
 
@@ -300,13 +300,13 @@ If you choose to write PasDoc comments, here's an example of a typical comment f
 
    {
      Define a new unit conversion.
-    
+
      \param quantity: the base unit this unit belongs to
      \param unit_: the name of the unit
      \param multiplier: multiplier, the base unit needs to be multiplied with
      \param bias: the value offset the base unit needs to be offset with
      \param flag: flag that determines the unit system so one can filter based on unit system in the UI
-   } 
+   }
    procedure UNC_define_conversion(
                 quantity, unit_  : string;
                 multiplier, bias : double;
@@ -320,4 +320,4 @@ In summary:
 
 * Use PasDoc comments to document the sourcecode.
 * Keep comments close to code.
-* Comments in header are optional but keep brief. 
+* Comments in header are optional but keep brief.

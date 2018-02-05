@@ -136,9 +136,9 @@ if html_theme == "sphinx_rtd_theme":
     # included in the title
     html_theme_options = {
     "display_version": False,
-    "canonical_url": "http://opsim.sourceforge.net/user-docs/html/",
+    "canonical_url": "http://docs.opsim.cc/devel",
     }
-	
+
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 html_title = 'OpSim Developers'
