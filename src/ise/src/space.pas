@@ -44,16 +44,15 @@ blender, blenglob, editipo, blendef, mywindow, mydevice;
 ////{$include "blender.h"}
 ////{$include "sequence.h"}
 ////{$include "graphics.h"}
-//
+
 //procedure defheaddraw; 
 //(* screen.c *)
-//
+
 //procedure force_draw; 
 
 procedure set_func_space(sa: pScrArea); forward;
 
 //implementation
-
 
 procedure drawemptyspace;
 begin
@@ -63,7 +62,7 @@ end;
 (* ************* SPACE: VIEW3D  ************* *)
 
 //procedure drawview3d; 
-//
+
 //procedure copy_view3d_lock(val: smallint); 
 //var
 //vd: pView3D; 
@@ -71,9 +70,7 @@ end;
 //sc: pbScreen; 
 //bit: integer; (* van G.scene naar andere views kopieeren *)
 //begin
-//  
-//  
-//  
+
 //  sc:= G.main.screen.first; 
 //  while sc
 //  do
@@ -144,7 +141,7 @@ end;
 //    sc:= sc^.id.next;
 //  end;
 //end;
-//
+
 //procedure handle_view3d_lock; 
 //begin
 //  if G.vd.localview=0)and(G.vd.scenelock)and(curarea.spacetype=SPACE_VIEW3D
@@ -156,31 +153,29 @@ end;
 //    copy_view3d_lock(REDRAW); 
 //  end;
 //end;
-//
+
 //procedure changeview3d; 
 //begin
 //  setwinmatrixview3d(0); 
 //end;(* 0= geen pick rect *)
-//
+
 //var {was static}
 //padevent: integer;
-// 
-//
+
 //procedure winqread3d(event: word;  val: smallint);
 //var
 //ob: pObject; 
 //curs: pfloat; 
 //doredraw: integer;
-// 
+
 //textedit: integer; 
 //pupval: integer; 
 //begin
-//  
+
 //  padevent:=0; 
-//  
+
 //  doredraw:=0; 
-//  
-//  
+
 //  if curarea.win=0
 //  then
 //  exit;
@@ -268,7 +263,7 @@ end;
 //        begin
 //          do_textedit(event,val); 
 //        end;
-//        
+
 //      end;{case?}
 //      if padevent<>nil 
 //      then
@@ -576,7 +571,7 @@ end;
 //          if G.obedit<>nil 
 //          then
 //          begin 
-//            
+
 //            function ELEM3{!!!3 unknown typedef}: if; 
 //            begin
 //              if G.qual and LR_SHIFTKEY
@@ -625,7 +620,7 @@ end;
 //          if G.obedit<>nil 
 //          then
 //          begin 
-//            
+
 //            function ELEM3{!!!3 unknown typedef}: if; 
 //            begin
 //              if G.qual and LR_ALTKEY
@@ -763,7 +758,7 @@ end;
 //          if G.obedit<>nil 
 //          then
 //          begin 
-//            
+
 //            function ELEM3{!!!3 unknown typedef}: if; 
 //            begin
 //              if G.qual and LR_SHIFTKEY
@@ -885,7 +880,7 @@ end;
 //            if G.obedit<>nil 
 //            then
 //            begin 
-//              
+
 //              function ELEM3{!!!3 unknown typedef}: if; 
 //              begin
 //                convert_to_triface(0); 
@@ -981,7 +976,7 @@ end;
 //            if G.obedit<>nil 
 //            then
 //            begin 
-//              
+
 //              function ELEM{!!!3 unknown typedef}: if; 
 //              begin
 //                switchdirectionNurb2(); 
@@ -1142,7 +1137,7 @@ end;
 //        doredraw:= 1; 
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //end;
@@ -1150,12 +1145,12 @@ end;
 //then
 //addqueue(curarea.win,REDRAW,1); 
 //end;
-//
+
 //procedure initview3d(sa: pScrArea);
 //var
 //vd: pView3D; 
 //begin
-//  
+
 //  vd:= callocN(sizeof(View3D),'initview3d'); 
 //  addhead(@sa^.spacedata,vd); 
 //  set_func_space(sa); 
@@ -1182,9 +1177,9 @@ end;
 //  vd.scenelock:= 1; 
 //end;
 //(* ******************** SPACE: IPO ********************** *)
-//
+
 //procedure drawipo; 
-//
+
 //procedure changeview2d; 
 //var
 //v2d: pView2D; 
@@ -1193,29 +1188,23 @@ end;
 //ymin: single; 
 //ymax: single; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  if G.v2d=0
 //  then
 //  exit;
 //  ortho2(G.v2d.cur.xmin,G.v2d.cur.xmax,G.v2d.cur.ymin,G.v2d.cur.ymax); 
 //  test_view2d(); 
 //end;
-//
+
 //procedure winqreadipo(event: word;  val: smallint);
 //var
 //ob: pObject; 
 //dx: single; 
 //dy: single; 
 //doredraw: integer;
-// 
+
 //begin
-//  
-//  
-//  
+
 //  doredraw:=0; 
 //  if curarea.win=0
 //  then
@@ -1403,19 +1392,19 @@ end;
 //        else
 //        del_ipo(); 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //  if doredraw<>nil 
 //  then
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
-//
+
 //procedure initipo(sa: pScrArea);
 //var
 //sipo: pSpaceIpo; 
 //begin
-//  
+
 //  sipo:= callocN(sizeof(SpaceIpo),'initipo'); 
 //  addhead(@sa^.spacedata,sipo); 
 //  set_func_space(sa); 
@@ -1445,8 +1434,6 @@ str: pchar;
 begin
 
 //  procedure reset_autosave; 
-
-
 
   glClearColor(0.5,0.5,0.5,0.0);
   glClear(GL_COLOR_BUFFER_BIT);
@@ -1503,7 +1490,7 @@ procedure winqreadinfospace(event: word;  val: smallint);
 var
 str: pchar;
 begin
-//  
+
 //  if val<>nil 
 //  then
 //  begin 
@@ -1537,16 +1524,16 @@ begin
 //          end;
 //        end;
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 end;
 
 //(* ******************** SPACE: BUTS ********************** *)
-//
+
 //procedure drawbutspace; 
 //(* buttons.c *)
-//
+
 //procedure changebutspace; 
 //var
 //v2d: pView2D; 
@@ -1555,18 +1542,14 @@ end;
 //ymin: single; 
 //ymax: single; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  if G.v2d=0
 //  then
 //  exit;
 //  test_view2d(); 
 //  ortho2(G.v2d.cur.xmin,G.v2d.cur.xmax,G.v2d.cur.ymin,G.v2d.cur.ymax); 
 //end;
-//
+
 //procedure winqreadbutspace(event: word;  val: smallint);
 //var
 //sa: pScrArea;
@@ -1575,13 +1558,9 @@ end;
 //dx: single; 
 //dy: single; 
 //doredraw: integer;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  doredraw:=0; 
 //  if curarea.win=0
 //  then
@@ -1680,7 +1659,7 @@ end;
 //  then
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
-//
+
 //procedure set_rects_butspace(buts: pSpaceButs); 
 //begin
 //  buts^.v2d.tot.xmin:= 0.0;
@@ -1699,12 +1678,12 @@ end;
 //  buts^.v2d.keeptot:= 1;
 //  (* buts space loopt van (0,0) tot (1280, 228) *)
 //end;
-//
+
 //procedure init_butspace(sa: pScrArea);
 //var
 //buts: pSpaceButs; 
 //begin
-//  
+
 //  buts:= callocN(sizeof(SpaceButs),'initbuts'); 
 //  addhead(@sa^.spacedata,buts); 
 //  set_func_space(sa); 
@@ -1713,13 +1692,13 @@ end;
 //  (* set_rects doet alleen defaults, zodat na het filezen de cur niet verandert *)
 //  buts^.v2d.cur:= buts^.v2d.tot;
 //end;
-//
+
 //procedure extern_set_butspace(fkey: integer); 
 //var
 //sa: pScrArea;
 //buts: pSpaceButs; (* als een ftoets ingedrukt: de dichtsbijzijnde buttonwindow wordt gezet *)
 //begin
-//  
+
 //  if curarea.spacetype=SPACE_BUTS
 //  then
 //  sa:= curarea; 
@@ -1775,9 +1754,9 @@ end;
 //  preview_changed(sa^.win); 
 //end;
 //(* ******************** SPACE: SEQUENCE ********************** *)
-//
+
 //procedure drawseqspace; 
-//
+
 //procedure winqreadsequence(event: word;  val: smallint);
 //var
 //sseq: pSpaceSeq; 
@@ -1785,20 +1764,16 @@ end;
 //dx: single; 
 //dy: single; 
 //doredraw: integer;
-// 
+
 //cfra: integer; 
 //first: integer; 
 //mval: array [0..1] of smallint;
 //begin
-//  
+
 //  {last_seq: pSequence; }{<= !!!5 external variable}
-//  
-//  
-//  
+
 //  doredraw:=0; 
-//  
-//  
-//  
+
 //  if curarea.win=0
 //  then
 //  exit;
@@ -2019,19 +1994,19 @@ end;
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        del_seq(); 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //  if doredraw<>nil 
 //  then
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
-//
+
 //procedure init_seqspace(sa: pScrArea);
 //var
 //sseq: pSpaceSeq; 
 //begin
-//  
+
 //  sseq:= callocN(sizeof(SpaceSeq),'initseqspace'); 
 //  addhead(@sa^.spacedata,sseq); 
 //  set_func_space(sa); 
@@ -2055,16 +2030,16 @@ end;
 //  (* seq space loopt van (0,8) tot (250, 0) *)
 //end;
 //(* ******************** SPACE: FILE ********************** *)
-//
+
 //procedure drawfilespace; 
-//
+
 //procedure winqreadfilespace{!!!3 unknown typedef}; 
-//
+
 //procedure init_filespace(sa: pScrArea);
 //var
 //sfile: pSpaceFile; 
 //begin
-//  
+
 //  sfile:= callocN(sizeof(SpaceFile),'initfilespace'); 
 //  addhead(@sa^.spacedata,sfile); 
 //  sfile^.dir[0]:= '/'; 
@@ -2073,14 +2048,14 @@ end;
 //  sfile^.spacetype:= SPACE_FILE; 
 //end;
 //(* ******************** SPACE: IMAGE ********************** *)
-//
+
 //procedure drawimagespace; 
-//
+
 //procedure winqreadimagespace(event: word;  val: smallint);
 //var
 //sima: pSpaceImage; 
 //begin
-//  
+
 //  if val=0
 //  then
 //  exit;
@@ -2146,15 +2121,15 @@ end;
 //    begin
 //      transform_tface_uv('s'); 
 //    end;
-//    
+
 //  end;{case?}
 //end;
-//
+
 //procedure init_imagespace(sa: pScrArea);
 //var
 //sima: pSpaceImage; 
 //begin
-//  
+
 //  sima:= callocN(sizeof(SpaceImage),'initimaspace'); 
 //  addhead(@sa^.spacedata,sima); 
 //  set_func_space(sa); 
@@ -2162,24 +2137,22 @@ end;
 //  sima.zoom:= 1; 
 //end;
 //(* ******************** SPACE: IMASEL ********************** *)
-//
+
 //procedure drawimasel; 
-//
+
 //procedure winqreadimasel{!!!3 unknown typedef}; 
 //(* alles naar imasel.c *)
 //(* ******************** SPACE: OOPS ********************** *)
-//
+
 //procedure drawoopsspace; 
-//
+
 //procedure winqreadoopsspace(event: word;  val: smallint);
 //var
 //soops: pSpaceOops; 
 //dx: single; 
 //dy: single; 
 //begin
-//  
-//  
-//  
+
 //  if val=0
 //  then
 //  exit;
@@ -2309,10 +2282,10 @@ end;
 //    begin
 //      do_layer_toets(-1); 
 //    end;
-//    
+
 //  end;{case?}
 //end;
-//
+
 //procedure init_v2d_oops(v2d: pView2D); 
 //begin
 //  v2d.tot.xmin:= -28.0; 
@@ -2332,12 +2305,12 @@ end;
 //  v2d.keeptot:= 0; 
 //  (* v2d->scroll= L_SCROLL+B_SCROLL; *)
 //end;
-//
+
 //procedure init_oopsspace(sa: pScrArea);
 //var
 //soops: pSpaceOops; 
 //begin
-//  
+
 //  soops:= callocN(sizeof(SpaceOops),'initoopsspace'); 
 //  addhead(@sa^.spacedata,soops); 
 //  set_func_space(sa); 
@@ -2347,9 +2320,9 @@ end;
 //end;
 //(* ******************** SPACE: PAINT ********************** *)
 //(* ******************** SPACE: Text ********************** *)
-//
+
 //procedure drawtextspace; 
-//
+
 //procedure winqreadtextspace{!!!3 unknown typedef}; 
 (* ******************** SPACE: ALGEMEEN ********************** *)
 
@@ -3004,14 +2977,11 @@ end;
 //v3d: pView3D; 
 //buts: pSpaceButs; 
 //si: pSpaceIpo;
-// 
+
 //so: pSpaceOops;
-// 
+
 //begin
-//  
-//  
-//  
-//  
+
 //  sc:= G.main.screen.first; 
 //  while sc
 //  do
@@ -3047,7 +3017,7 @@ end;
 //              so.flag:= so.flag or (SO_TESTBLOCKS); 
 //            end;
 //          end;
-//          
+
 //        end;{case?}
 //        v3d:= v3d^.next; 
 //      end;
@@ -3056,14 +3026,13 @@ end;
 //    sc:= sc^.id.next;
 //  end;
 //end;
-//
+
 //procedure force_draw; 
 //var
 //tempsa: pScrArea;
 //sa: pScrArea;
 //begin(* alle area's die (ongeveer) zelfde laten zien als curarea *)
-//  
-//  
+
 //  curarea.windraw(); 
 //  tempsa:= curarea; 
 //  sa:= G.curscreen.areabase.first; 
@@ -3105,14 +3074,13 @@ end;
 //  areawinset(tempsa^.win); 
 //  screen_swapbuffers(); 
 //end;
-//
+
 //procedure force_draw_plus(type: integer); 
 //var
 //tempsa: pScrArea;
 //sa: pScrArea;
 //begin(* alle area's die (ongeveer) zelfde laten zien als curarea EN areas van 'type' *)
-//  
-//  
+
 //  curarea.windraw(); 
 //  tempsa:= curarea; 
 //  sa:= G.curscreen.areabase.first; 
@@ -3157,14 +3125,13 @@ end;
 //  areawinset(tempsa^.win); 
 //  screen_swapbuffers(); 
 //end;
-//
+
 //procedure force_draw_all; 
 //var
 //tempsa: pScrArea;
 //sa: pScrArea;
 //begin(* alle area's die (ongeveer) zelfde laten zien als curarea EN areas van 'type' *)
-//  
-//  
+
 //  drawscreen(); 
 //  tempsa:= curarea; 
 //  sa:= G.curscreen.areabase.first; 
@@ -3191,5 +3158,5 @@ end;
 //  areawinset(tempsa^.win); 
 //  screen_swapbuffers(); 
 //end;
-//
+
 end.

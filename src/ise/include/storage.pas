@@ -66,33 +66,31 @@ interface
   { ******** storage.c  }
 
   //procedure adddirstrings;cdecl;
-  //
+
   //procedure builddir(dirname:Pchar; relname:Pchar);cdecl;
-  //
+
   //function compare(entry1:Pdirentry; entry2:Pdirentry):longint;cdecl;
-  //
+
   //function copy(cpy:Pchar; org:Pchar):smallint;cdecl;
-  //
+
   //function diskfree(dir:Pchar):double;cdecl;
-  //
+
   //function exist(name:Pchar):longint;cdecl;
-  //
+
   //function existo(name:Pchar):longint;cdecl;
-  //
+
   //procedure fastdir(on:longint);cdecl;
-  //
+
   //function filesize(file:longint):longint;cdecl;
-  //
+
   //procedure freedir;cdecl;
-  //
+
   //function getdir(dirname:Pchar; filelist:PPdirentry):uint;cdecl;
-  //
+
   //function getwdN(dir:Pchar):^char;cdecl;
-  //
+
   //function recurdir(name:Pchar):longint;cdecl;
 
-
 implementation
-
 
 end.

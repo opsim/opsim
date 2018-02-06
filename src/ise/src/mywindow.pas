@@ -84,7 +84,7 @@ mainwindow: bWindow;
 //var
 //win: pbWindow; 
 //begin
-//  
+
 //  if curswin<4
 // then
 //  begin 
@@ -99,7 +99,7 @@ mainwindow: bWindow;
 //  {*}x^:=win^.xmax-win^.xmin+1; 
 //  {*}y^:=win^.ymax-win^.ymin+1; 
 //end;
-//
+
 //procedure mygetorigin(x: pinteger;  y: pinteger); 
 //var
 //win: pbWindow; 
@@ -118,12 +118,12 @@ mainwindow: bWindow;
 //    end;
 //  end;
 //end;
-//
+
 //procedure mygetsuborigin(x: pinteger;  y: pinteger); 
 //var
 //win: pbWindow; 
 //begin
-//  
+
 //  if curswin=1
 // then
 //  begin 
@@ -139,14 +139,13 @@ mainwindow: bWindow;
 //    {*}y^:=win^.ymin; 
 //  end;
 //end;
-//
+
 //procedure myloadmatrix(mat: array [0..,0..3] of float);
 //var
 //win: pbWindow; 
 //mode: GLint; 
 //begin
-//  
-//  
+
 //  glLoadMatrixf(mat); 
 //  win:= swinarray[curswin]; 
 //  if win=nil
@@ -182,8 +181,7 @@ end;
 //win: pbWindow; 
 //mode: GLint; 
 //begin
-//  
-//  
+
 //  win:= swinarray[curswin]; 
 //  if win=nil
 // then
@@ -195,14 +193,13 @@ end;
 //  else
 //  Mat4CpyMat4(mat,win^.winmat); 
 //end;
-//
+
 //procedure mymultmatrixold(mat: array [0..,0..3] of float);
 //var
 //win: pbWindow; 
 //tmat: array [0..3,0..3] of float;
 //begin
-//  
-//  
+
 //  win:= swinarray[curswin]; 
 //  if win=nil
 // then
@@ -211,14 +208,13 @@ end;
 //  Mat4CpyMat4(win^.viewmat,tmat); 
 //  glLoadMatrixf(tmat); 
 //end;
-//
+
 //procedure mymultmatrix(mat: array [0..,0..3] of float);
 //var
 //win: pbWindow; 
 //tmat: array [0..3,0..3] of float;
 //begin
-//  
-//  
+
 //  glMultMatrixf(mat); 
 //  win:= swinarray[curswin]; 
 //  if win=nil
@@ -226,7 +222,7 @@ end;
 //  exit;
 //  glGetFloatv(GL_MODELVIEW_MATRIX, {pfloat(}win^.viewmat); 
 //end;
-//
+
 //procedure mygetsingmatrix(mat: array [0..,0..3] of float);
 //var
 //win: pbWindow; 
@@ -234,10 +230,7 @@ end;
 //matproj: array [0..3,0..3] of float;
 //mode: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  win:= swinarray[curswin]; 
 //  if win=nil
 // then
@@ -415,7 +408,7 @@ end;
 //var
 //win: pbWindow; 
 //begin
-//  
+
 //  glMatrixMode(GL_PROJECTION); 
 //  glLoadIdentity(); 
 //  glOrtho(x1,x2,y1,y2,n,f); 
@@ -425,12 +418,12 @@ end;
 //  glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}win^.winmat); 
 //  glMatrixMode(GL_MODELVIEW); 
 //end;
-//
+
 //procedure mywindow(x1: float;  x2: float;  y1: float;  y2: float;  n: float;  f: float); 
 //var
 //win: pbWindow; 
 //begin
-//  
+
 //  glMatrixMode(GL_PROJECTION); 
 //  glLoadIdentity(); 
 //  glFrustum(x1,x2,y1,y2,n,f); 
@@ -522,16 +515,15 @@ end;
 //begin
 //  glutBitmapCharacter( {pinteger(}fmtype,c); 
 //end;
-//
+
 //function fmstrwidth(str: pchar): integer; 
 //var
 //i: integer; 
 //len: integer; 
 //retval: integer;
-// 
+
 //begin
-//  
-//  
+
 //  retval:=nil; 
 //  if {not}0=fmtype
 // then
@@ -568,7 +560,7 @@ end;
 //procedure fminit; 
 //begin
 //end;
-//
+
 //function fmfindfont(name: pchar): pinteger; 
 //begin
 //  begin
@@ -576,7 +568,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function fmscalefont: pinteger; 
 //begin
 //  begin
@@ -584,12 +576,12 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure fmrotatepagematrix(degrees: float); 
 //begin
 //end;
 //(* *********************** PATTERNS ENZO ***************** *)
-//
+
 //procedure setlinestyle(nr: integer); 
 //begin
 //  if nr=nil
@@ -638,11 +630,11 @@ end;
 //function get_mbut: smallint; 
 //var
 //mval: integer;
-// 
+
 //qual: integer;
-// 
+
 //ret: smallint;
-// 
+
 //begin
 //  mval:=glutGetMouseButton(); 
 //  qual:=glutGetQual(); 
@@ -693,12 +685,12 @@ begin
   //TODO: check this code
 
   //ximage:= 1;
-  //
+
   //ov_x:= x;
   //ov_y:= y;
   //ov_sx:= sx;
   //ov_sy:= sy;
-  //
+
   //{$ifdef WINDOWS}
   //(* ander coordinatensysteem! *)
   //y:= (G.curscreen^.sizey-y);
@@ -707,7 +699,7 @@ begin
   //  y:= y - (curarea^.winrct.ymin);
   //end;
   //{$endif}
-  //
+
   //glutGetFrontBuffer(x,y,sx,sy);
 
   glReadBuffer(GL_FRONT);
@@ -724,18 +716,18 @@ begin
 end;
 
 {$ifdef BEOS}
-//
+
 //procedure glutNoBorder; 
 //begin
 //end;
-//
+
 //procedure usleep(val: uint); 
 //begin
 //  suspend_thread(0); 
 //  snooze(val); 
 //  resume_thread(0); 
 //end;
-//
+
 //function rawkey_beos(key: integer): integer; 
 //begin
 //  case key of
@@ -1493,7 +1485,7 @@ end;
 //  end;{case?}
 //end;
 {$endif}
-//
+
 //procedure sdrawXORline(x0: integer;  y0: integer;  x1: integer;  y1: integer); 
 //begin
 //  if x0=x1)and(y0=y1
@@ -1515,10 +1507,10 @@ end;
 //flags: array [0..3] of char;
 // (* automatische onthoud, max 4 lijnen *)
 //(* flush *)
-//
+
 //procedure sdrawXORline4(nr: integer;  x0: integer;  y0: integer;  x1: integer;  y1: integer); 
 //begin
-//  
+
 //  flags:=(0,0,0,0); (* automatische onthoud, max 4 lijnen *)
 //  (* flush *)
 //  if nr=-1
@@ -1582,7 +1574,7 @@ end;
 //darkGC: GC; 
 //lightGC: GC; 
 //contextdone: integer =nil; 
-//
+
 //procedure sdrawXORline(x0: integer;  y0: integer;  x1: integer;  y1: integer); 
 //begin
 //  {$ifdef MESA31}
@@ -1609,12 +1601,12 @@ end;
 //var {was static}
 //old: array [0..3,0..3] of smallint;
 //flags: array [0..3] of char;
-// 
+
 //{$ifdef MESA31}
-//
+
 //procedure sdrawXORline4(nr: integer;  x0: integer;  y0: integer;  x1: integer;  y1: integer); 
 //begin
-//  
+
 //  flags:=(0,0,0,0); 
 //  {$ifdef MESA31}
 //  {$endif}
@@ -1671,7 +1663,7 @@ end;
 //  glEnable(GL_DITHER); 
 //  {$endif}
 //end;
-//
+
 //procedure myContextSetup; 
 //const
 //str: pchar; 
@@ -1686,11 +1678,9 @@ end;
 //win_y: integer; 
 //Xqual: UINT; 
 //ret: smallint;
-// 
+
 //begin
-//  
-//  
-//  
+
 //  gcvals.font:=nil; 
 //  if xdraw=nil
 // then
@@ -1739,7 +1729,7 @@ end;
 //    curgc:= blackGC; 
 //    contextdone:= 1; 
 //  end;
-//  
+
 //  function get_qual: smallint; 
 //  var
 //  child: Window; 
@@ -1750,15 +1740,9 @@ end;
 //  win_y: integer; 
 //  Xqual: UINT; 
 //  ret: smallint;
-//   
+
 //  begin
-//    
-//    
-//    
-//    
-//    
-//    
-//    
+
 //    ret:=nil; 
 //    XQueryPointer(__glutDisplay,RootWindow(__glutDisplay,__glutScreen),@root, and child,@root_x,@root_y,@win_x,@win_y,@Xqual); 
 //    if Xqual and ShiftMask
@@ -1775,7 +1759,7 @@ end;
 //      exit;
 //    end;
 //  end
-//  
+
 //  function get_mbut: smallint; 
 //  var
 //  child: Window; 
@@ -1786,15 +1770,9 @@ end;
 //  win_y: integer; 
 //  Xqual: UINT; 
 //  ret: smallint;
-//   
+
 //  begin
-//    
-//    
-//    
-//    
-//    
-//    
-//    
+
 //    ret:=nil; 
 //    XQueryPointer(__glutDisplay,RootWindow(__glutDisplay,__glutScreen),@root, and child,@root_x,@root_y,@win_x,@win_y,@Xqual); 
 //    if Xqual and Button1Mask
@@ -1821,7 +1799,7 @@ end;
 //      exit;
 //    end;
 //  end;
-//  
+
 //  procedure getmouse(mval: psmallint); 
 //  var
 //  child: Window; 
@@ -1832,23 +1810,17 @@ end;
 //  win_y: integer; 
 //  Xqual: UINT; 
 //  begin
-//    
-//    
-//    
-//    
-//    
-//    
-//    
+
 //    XQueryPointer(__glutDisplay,RootWindow(__glutDisplay,__glutScreen),@root, and child,@root_x,@root_y,@win_x,@win_y,@Xqual); 
 //    mval[0]:= win_x; 
 //    mval[1]:= displaysizey-win_y; 
 //  end;
-//  
+
 //  procedure myCopySubBuffer(x: integer;  y: integer;  sx: integer;  sy: integer); 
 //  var
 //  id: smallint; 
 //  begin
-//    
+
 //    if xdraw=nil
 // then
 //    xdraw:= glXGetCurrentDrawable(); (* clip: erg belangrijk: 1 pixel teveel en X knalt eruit *)
@@ -1877,23 +1849,23 @@ end;
 //    mywinset(id); 
 //    {$endif}
 //  end;
-//  
+
 //  procedure glutGetFrontBuffer(a: integer;  b: integer;  c: integer;  d: integer); 
 //  begin
 //    (* fake function *)
 //  end;
-//  
+
 //  procedure glutPutFrontBuffer; 
 //  begin
 //    (* fake function *)
 //  end;
 //  (* ************ OVERDRAW SUPPORT ************* *)
-//  
+
 //  procedure my_put_frontbuffer_image; 
 //  var
 //  gc: GC; 
 //  begin
-//    
+
 //    if ximage)and(xdraw
 // then
 //    begin 
@@ -1905,7 +1877,7 @@ end;
 //      ximage:=nil; 
 //    end;
 //  end;
-//  
+
 //  procedure my_get_frontbuffer_image(x: integer;  y: integer;  sx: integer;  sy: integer); 
 //  var
 //  startx: integer; 
@@ -1913,10 +1885,7 @@ end;
 //  sizex: integer; 
 //  sizey: integer; 
 //  begin
-//    
-//    
-//    
-//    
+
 //    if xdraw=nil
 // then
 //    xdraw:= glXGetCurrentDrawable(); 

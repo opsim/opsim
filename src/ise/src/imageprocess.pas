@@ -39,13 +39,13 @@ procedure convert_rgba_to_abgr(size: integer;  rect: pcardinal);
 implementation
 
 //(* maakt premul 255 *)
-//
+
 //procedure keyalpha(doel: pchar); 
 //var
 //c: integer; 
 //div: smallint; 
 //begin
-//  
+
 //  div:= doel[3]; 
 //  c:= (doel[0] shl 8) div div; 
 //  if c>255
@@ -66,15 +66,15 @@ implementation
 //  else
 //  doel[2]:= c; 
 //end;
-//
+
 //(* vult bron onder doel in met alpha van doel*)
-//
+
 //procedure addalphaUnder(doel: pchar;  bron: pchar); 
 //var
 //c: integer; 
 //mul: integer; 
 //begin
-//  
+
 //  if doel[3]=255
 // then
 //  exit;
@@ -87,7 +87,7 @@ implementation
 //  end;
 //  mul:= 255-doel[3]; 
 //  c:= doel[0]+((mul*bron[0]) div 255); 
-//  
+
 //  if c>255
 // then
 //  doel[0]:= 255; 
@@ -113,9 +113,9 @@ implementation
 //  doel[3]:= c; 
 //  (* doel[0]= MAX2(doel[0], bron[0]); *)
 //end;
-//
+
 //(* gamma-gecorr: vult bron onder doel in met alpha van doel *)
-//
+
 //procedure addalphaUnderGamma(doel: pchar;  bron: pchar); 
 //var
 //tot: uint; 
@@ -125,10 +125,7 @@ implementation
 //mul: integer; 
 //(* hier doel[3]==0 of doel==255 afvangen gebeurt al in skylus *)
 //begin
-//  
-//  
-//  
-//  
+
 //  mul:= 256-doel[3]; 
 //  doe:= igamtab1[doel[0]]; 
 //  bro:= igamtab1[bron[0]]; 
@@ -159,16 +156,15 @@ implementation
 //  doel[3]:= c; 
 //  (* doel[0]= MAX2(doel[0], bron[0]); *)
 //end;
-//
-//
+
 //(* doel= bron over doel  *)
-//
+
 //procedure addalphaOver(doel: pchar;  bron: pchar); 
 //var
 //c: integer; 
 //mul: integer; 
 //begin
-//  
+
 //  if bron[3]=0
 // then
 //  exit;
@@ -181,7 +177,7 @@ implementation
 //  end;
 //  mul:= 255-bron[3]; 
 //  c:= ((mul*doel[0]) div 255)+bron[0]; 
-//  
+
 //  if c>255
 // then
 //  doel[0]:= 255; 
@@ -206,15 +202,15 @@ implementation
 //  else
 //  doel[3]:= c; 
 //end;
-//
+
 //(* telt bron bij doel *)
-//
+
 //procedure addalphaAdd(doel: pchar;  bron: pchar); 
 //var
 //c: integer; 
 //mul: integer; 
 //begin
-//  
+
 //  if doel[3]=0)or(bron[3]=255
 // then
 //  begin 
@@ -247,15 +243,15 @@ implementation
 //  else
 //  doel[3]:= c; 
 //end;
-//
+
 //(* telt bron bij doel *)
-//
+
 //procedure addalphaAddshort(doel: pushort;  bron: pushort); 
 //var
 //c: integer; 
 //mul: integer; 
 //begin
-//  
+
 //  if doel[3]=0
 // then
 //  begin 
@@ -288,7 +284,7 @@ implementation
 //  else
 //  doel[3]:= c; 
 //end;
-//
+
 //(* ALPHADDFAC: 
 // * 
 // *  Z= X alphaover Y:
@@ -299,16 +295,15 @@ implementation
 // *  1-Xa-fac+fac*Xa+fac <=> 
 // *  Xa*(fac-1)+1
 // *)
-//
-//
+
 //(* doel= bron over doel  *)
-//
+
 //procedure addalphaAddfac(doel: pchar;  bron: pchar;  addfac: char); 
 //var
 //c: integer; 
 //mul: integer; 
 //begin
-//  
+
 //  if doel[3]=0
 // then
 //  begin 
@@ -317,7 +312,7 @@ implementation
 //  end;
 //  mul:= 255-(bron[3]*(255-addfac)) div 255; 
 //  c:= ((mul*doel[0]) div 255)+bron[0]; 
-//  
+
 //  if c>255
 // then
 //  doel[0]:= 255; 
@@ -342,15 +337,15 @@ implementation
 //  else
 //  doel[3]:= c; 
 //end;
-//
+
 //(* doel= bron over doel  *)
-//
+
 //procedure addalphaAddfacshort(doel: pushort;  bron: pushort;  addfac: smallint); 
 //var
 //c: integer; 
 //mul: integer; 
 //begin
-//  
+
 //  if doel[3]=0
 // then
 //  begin 
@@ -383,13 +378,9 @@ implementation
 //  doel[3]:= $FFF0; 
 //  else
 //  doel[3]:= c; 
-//  
+
 //end;
-//
-//
-//
-//
-//
+
 //procedure clustered_dots(ibuf: pImBuf;  size: integer); 
 //var
 //fx: single;
@@ -406,18 +397,7 @@ implementation
 //rt: pchar; 
 //begin
 //  {rgb_to_bw: array [0..] of single; }{<= !!!5 external variable}
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  cspace(ibuf,rgb_to_bw); 
 //  halfsize:= 0.5*size; 
 //  fsize:= 256 div (halfsize*halfsize); 
@@ -447,9 +427,7 @@ implementation
 //    end;
 //  end;
 //end;
-//
-//
-//
+
 //procedure scalefastrect(recto: puint;  rectn: puint;  oldx: integer;  oldy: integer;  newx: integer;  newy: integer); 
 //var
 //rect: puint; 
@@ -461,13 +439,7 @@ implementation
 //stepx: integer; 
 //stepy: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  stepx:= (65536.0*(oldx-1.0) div (newx-1.0))+0.5; 
 //  stepy:= (65536.0*(oldy-1.0) div (newy-1.0))+0.5; 
 //  ofsy:= 32768; 
@@ -487,12 +459,10 @@ implementation
 //    end;
 //  end;
 //end;
-//
+
 //const
 //CMBB = MAKE_ID('C','M','B','B'); 
-//
-//
-//
+
 //procedure alpha_dither(sbuf: pImBuf;  mode: char); 
 //var
 //dp: pinteger; 
@@ -502,12 +472,7 @@ implementation
 //a: integer; 
 //rt: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if mode='r'
 // then
 //  begin 
@@ -572,28 +537,24 @@ implementation
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure no_isolated_pixels(sbuf: pImBuf;  max: integer); 
 //var
 //rt: puint; 
 //rt1: puint; 
 //iso: uint;
-// 
+
 //x: integer; 
 //y: integer; 
 //cp: pchar; 
 //begin
-//  
-//  
+
 //  iso:=0; 
-//  
-//  
-//  
+
 //  if sbuf.x<5)or(sbuf.y<5
 // then
 //  exit;
-//  
+
 //  rt:= sbuf.rect+sbuf.x; 
 //  for{while} y:=2 to Pred(sbuf.y) { y++}
 //  do
@@ -631,8 +592,7 @@ implementation
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure write_cmbb(sbuf: pImBuf;  str: pchar); 
 //var
 //vbuf: pImBuf; 
@@ -641,7 +601,7 @@ implementation
 //x: integer; 
 //y: integer; 
 //isdone: smallint;
-// 
+
 //minx: smallint; 
 //miny: smallint; 
 //maxx: smallint; 
@@ -649,25 +609,17 @@ implementation
 //size: smallint; 
 //rt: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  isdone:=0; 
-//  
-//  
-//  
-//  
-//  
+
 //  sbuf.cbits:= 6; 
 //  alpha_dither(sbuf,'r'); 
 //  (* diepte van tabel *)
-//  
+
 //  no_isolated_pixels(sbuf,128); 
-//  
+
 //  alpha_to_col0(2); 
-//  
+
 //  setdither(0); 
 //  (* 1: alleen alpha 0,  2: alpha<128 *)
 //  converttocmap(sbuf); 
@@ -748,7 +700,7 @@ implementation
 //  end;
 //  x:= CMBB; 
 //  write(file,@x,4); 
-//  
+
 //  size:= maxx-minx+1; 
 //  write(file,@size,2); 
 //  size:= maxy-miny+1; 
@@ -771,8 +723,6 @@ implementation
 //  close(file); 
 //end;
 
-
-
 procedure convert_rgba_to_abgr(size: integer;  rect: pcardinal);
 var
 cp: pchar;
@@ -793,6 +743,5 @@ begin
     dec(size);
   end;
 end;
-
 
 end.

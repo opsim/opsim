@@ -49,10 +49,7 @@ uses
 //alph: integer; 
 //rect: pchar; 
 //begin
-//  
-//  
-//  
-//  
+
 //  alph:= {!!!a type cast? =>} {integer(}(255.0*(1.0-bgpic.blend)); 
 //  rect:= {!!!a type cast? =>} {pchar(}bgpic.rect; 
 //  for{while} y:=0 to Pred(bgpic.yim) { y++}
@@ -71,7 +68,6 @@ uses
 //  end;
 //end;
 
-
 (* ******************************************** *)
 {$ifdef IRISGL}
 (* ******************************************** *)
@@ -81,8 +77,7 @@ uses
 //lmodel: array [0..] of single = (AMBIENT,1.0,1.0,1.0,LOCALVIEWER,0,TWOSIDE,0,LMNULL);
 //light: array [0..] of single = (LCOLOR,0.8,0.8,0.8,POSITION,-0.3,0.3,0.90,0.0,LMNULL);
 //blue_light: array [0..] of single = (LCOLOR,0.5,0.5,0.8,POSITION,0.2,0.1,-1.0,0.0,LMNULL);
-//
-//
+
 //procedure deflighting; 
 //begin
 //  lmdef(DEFMATERIAL,1,0,defmatgl); 
@@ -91,8 +86,7 @@ uses
 //  lmdef(DEFLIGHT,2,10,blue_light); 
 //  lmdef(DEFLMODEL,1,0,lmodel); 
 //end;
-//
-//
+
 //procedure bindlighting; 
 //begin
 //  lmcolor(LMC_COLOR); 
@@ -101,17 +95,14 @@ uses
 //  lmbind(LMODEL,1); 
 //  (* lmbind(LIGHT1, 2); *)
 //end;
-//
-//
+
 //procedure bindtexlighting; 
 //begin
 //  lmcolor(LMC_EMISSION); 
 //  lmbind(MATERIAL,2); 
 //  lmbind(LIGHT0,0); 
 //end;
-//
-//
-//
+
 //procedure two_sided(val: integer); 
 //begin
 //  if val)and(lmodel[7]=1.0
@@ -127,11 +118,10 @@ uses
 //  lmodel[7]:= 0.0; 
 //  lmdef(DEFLMODEL,1,0,lmodel); 
 //end;
-//
+
 //var {was static}
 //maxmat: integer = 1; 
-//
-//
+
 //procedure set_gl_material(nr: integer); 
 //begin
 //  if nr>maxmat
@@ -139,8 +129,7 @@ uses
 //  nr:= maxmat; 
 //  lmbind(MATERIAL,nr); 
 //end;
-//
-//
+
 //procedure def_gl_material(matnr: integer;  ma: pMaterial); 
 //begin
 //  if ma=0
@@ -168,24 +157,22 @@ uses
 //      defmatgl[9]:= ma.spec*ma.specr; 
 //      defmatgl[10]:= ma.spec*ma.specg; 
 //      defmatgl[11]:= ma.spec*ma.specb; 
-//      
+
 //    end;
 //  end;
-//  
+
 //  if matnr=0
 // then
 //  matnr:= 1; 
 //  lmdef(DEFMATERIAL,matnr,0,defmatgl); 
 //end;
-//
-//
+
 //procedure init_gl_materials(ob: pObject); 
 //var
 //ma: pMaterial; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  if ob.totcol=0
 // then
 //  begin 
@@ -203,16 +190,14 @@ uses
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure init_gl_stuff; 
 //begin
 //  glEnable(GL_DITHER); 
 //  deflighting(); 
 //  bindlighting(); 
 //end;
-//
-//
+
 //procedure lrectwriteRGBA(a: integer;  b: integer;  c: integer;  d: integer;  rect: puint); 
 //var
 //size: integer; 
@@ -220,15 +205,12 @@ uses
 //rt1: pchar; 
 //rt2: pchar; 
 //begin
-//  
-//  
-//  
-//  
+
 //  size:= (c-a+1)*(d-b+1); 
 //  rectt:= mallocN(size*4,'temprect'); 
 //  rt1:= {!!!a type cast? =>} {pchar(}rect; 
 //  rt2:= rectt; 
-//  
+
 //  while size{--} dec(size); >0
 //  do
 //  begin 
@@ -242,8 +224,7 @@ uses
 //  lrectwrite(a,b,c,d,rectt); 
 //  freeN(rectt); 
 //end;
-//
-//
+
 //procedure draw_bgpic; 
 //var
 //bgpic: pBGpic; 
@@ -264,23 +245,7 @@ uses
 //mval: array [0..1] of smallint; 
 //str: array [0..Pred(100)] of char; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  bgpic:= G.vd.bgpic; 
 //  if bgpic=0
 // then
@@ -331,7 +296,7 @@ uses
 //  freeN(bgpic.rect); 
 //  bgpic.rect:= 0; 
 //end;
-//
+
 //if G.vd.persp=2
 //then
 //begin 
@@ -372,7 +337,7 @@ uses
 //  xim:= xim div zoom; 
 //  yim:= yim div zoom; 
 //end;
-//
+
 //if bgpic.rect=0)or(zoom<>bgpic.zoom)or(xim<>bgpic.xim)or(yim<>bgpic.yim
 //then
 //begin 
@@ -385,12 +350,12 @@ uses
 //  bgpic.yim:= yim; 
 //  bgpic.zoom:= zoom; 
 //  setalpha_bgpic(bgpic); 
-//  
+
 //  (* convert_rgba_to_abgr(xim*yim,bgpic->rect); *)
 //end;
 //x2:= x1+zoom*(bgpic.xim-1); 
 //y2:= y1+zoom*(bgpic.yim-1); (* coordinaten hoe 't op scherm komt *)
-//
+
 //(* volledige clip? *)
 //if x2<curarea.winrct.xmin
 //then
@@ -448,19 +413,18 @@ uses
 //if yim<=0
 //then
 //exit;
-//
+
 //rectzoom(zoom,zoom); 
 //pixmode(PM_STRIDE,bgpic.xim); 
-//
+
 //(* geeft aan dat per scanline rectwriten, ibuf->x in de rect verder gelezen wordt *)
 //blendfunction(BF_SA,BF_MSA); 
-//
+
 //lrectwriteRGBA(x1,y1,x1+xim,y1+yim,rect); 
 //blendfunction(BF_ONE,BF_ZERO); 
 //rectzoom(1.0,1.0); 
 //pixmode(PM_STRIDE,0); 
 //end;
-
 
 (* ******************************************** *)
 {$else}
@@ -469,7 +433,6 @@ uses
 var
 light_pos1: array [0..3] of single = (-0.3,0.3,0.90,0.0);
 light_pos2: array [0..3] of single = (0.3,-0.3,-0.90,0.0);
-
 
 procedure init_gl_stuff;
 var
@@ -523,20 +486,17 @@ begin
   init_realtime_GL();   (* drawsector.c *)
 end;
 
-
-
 //procedure two_sided(val: integer); 
 //begin
 //  glLightModeliv(GL_LIGHT_MODEL_TWO_SIDE,(GLint* )@val); 
-//  
+
 //  (* twosided aan: geft errors bij x flip! *)
 //end;
-//
-//
+
 //procedure circf(x: single;  y: single;  rad: single);
 //var
 //qobj: pGLUquadricObj;
-// 
+
 //begin
 //  qobj:=gluNewQuadric(); 
 //  gluQuadricDrawStyle(qobj,GLU_FILL); 
@@ -546,12 +506,11 @@ end;
 //  glPopMatrix(); 
 //  gluDeleteQuadric(qobj); 
 //end;
-//
-//
+
 //procedure circ(x: single;  y: single;  rad: single);
 //var
 //qobj: pGLUquadricObj;
-// 
+
 //begin
 //  qobj:=gluNewQuadric(); 
 //  gluQuadricDrawStyle(qobj,GLU_SILHOUETTE); 
@@ -561,23 +520,21 @@ end;
 //  glPopMatrix(); 
 //  gluDeleteQuadric(qobj); 
 //end;
-//
+
 //(* ********** IN ONTWIKKELING ********** *)
-//
+
 //const
 //MAXMATBUF = 16; 
 //var
 //matbuf: array [0..Pred(MAXMATBUF),0..1,0..2] of single;
-//
-//
+
 //procedure init_gl_materials(ob: pObject); 
 //var
 //ma: pMaterial; 
 //a: integer; 
 //begin
 //  {defmaterial: Material; }{<= !!!5 external variable}
-//  
-//  
+
 //  if ob.totcol=0
 // then
 //  begin 
@@ -612,8 +569,7 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure set_gl_material(nr: integer); 
 //begin
 //  if nr<MAXMATBUF
@@ -627,9 +583,7 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
-//
+
 //procedure draw_bgpic; 
 //var
 //bgpic: pBGpic; 
@@ -651,24 +605,7 @@ end;
 //mval: array [0..1] of smallint; 
 //str: array [0..Pred(FILE_MAXDIR+FILE_MAXFILE)] of char; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  bgpic:= G.vd.bgpic; 
 //  if bgpic=0
 // then
@@ -719,7 +656,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //if bgpic.rect=0
 //then
 //begin 
@@ -728,7 +665,7 @@ end;
 //  bgpic.yim:= ima.ibuf.y; 
 //  setalpha_bgpic(bgpic); 
 //end;
-//
+
 //if G.vd.persp=2
 //then
 //begin 
@@ -772,15 +709,15 @@ end;
 //zoomy:= y2-y1; 
 //zoomy:= zoomy div ({!!!a type cast? =>} {single(}ima.ibuf.y);
 //glEnable(GL_BLEND); 
-//
+
 //if G.zbuf<>0 
 //then
 //glDisable(GL_DEPTH_TEST); 
 //glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA); 
-//
+
 //rectwrite_part(curarea.winrct.xmin,curarea.winrct.ymin,curarea.winrct.xmax,curarea.winrct.ymax,x1+curarea.winrct.xmin,y1+curarea.winrct.ymin,ima.ibuf.x,ima.ibuf.y,zoomx,zoomy,bgpic.rect); 
 //glBlendFunc(GL_ONE,GL_ZERO); 
-//
+
 //glDisable(GL_BLEND); 
 //if G.zbuf<>0 
 //then
@@ -791,8 +728,6 @@ end;
 {$endif}
 (* ******************************************** *)
 
-
-
 //procedure timestr(time: integer;  str: pchar); 
 //var
 //temp: single;
@@ -801,11 +736,7 @@ end;
 //sec: smallint; 
 //hun: smallint; 
 //begin(* formaat 00:00:00.00 (hr:min:sec) string moet 12 lang *)
-//  
-//  
-//  
-//  
-//  
+
 //  temp:= ({!!!a type cast? =>} {single(}time) div (100.0);
 //  min:= ffloor(temp div 60.0); 
 //  hr:= min div 60; 
@@ -821,9 +752,7 @@ end;
 //  sprintf(str,'%.2d:%.2d.%.2d',min,sec,hun); 
 //  str[11]:= 0; 
 //end;
-//
-//
-//
+
 //procedure drawgrid; 
 //var
 //wx: single;
@@ -838,16 +767,7 @@ end;
 //dy: single;
 //vec4: array [0..3] of single;
 //begin(* extern short bgpicmode; *)
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  vec4[0]:= vec4[1]:=vec4[2]:=0.0; 
 //  vec4[3]:= 1.0; 
 //  Mat4MulVec4fl(G.vd.persmat,vec4); 
@@ -863,10 +783,9 @@ end;
 //  vec4[2]:= 0.0; 
 //  vec4[3]:= 1.0; 
 //  Mat4MulVec4fl(G.vd.persmat,vec4); 
-//  
+
 //  (* ivm afrondfoutjes, grid op verkeerde plek *)
-//  
-//  
+
 //  fx:= vec4[0]; 
 //  fy:= vec4[1]; 
 //  fz:= vec4[2]; 
@@ -894,7 +813,7 @@ end;
 //  end;
 //  persp(0); 
 //  cpack($505050); 
-//  
+
 //  x:= x + ((wx)); 
 //  y:= y + ((wy)); 
 //  fx:= x div dx; 
@@ -907,14 +826,14 @@ end;
 //  end;
 //  fy:= y div dx; 
 //  fy:= y-dx*ffloor(fy); 
-//  
+
 //  while fy<curarea.winy
 //  do
 //  begin 
 //    fdrawline(0.0,fy,{!!!a type cast? =>} {single(}curarea.winx,fy);
 //    fy:= fy + (dx); 
 //  end;
-//  
+
 //  (* kruis in midden *)
 //  if G.vd.view=3
 // then
@@ -924,7 +843,7 @@ end;
 //  cpack($A0A0C0); 
 //  fdrawline(0.0,y,{!!!a type cast? =>} {single(}curarea.winx,y);
 //  (* x-as *)
-//  
+
 //  if G.vd.view=7
 // then
 //  cpack($A0D0A0); 
@@ -933,14 +852,12 @@ end;
 //  cpack($D0A0A0); 
 //  fdrawline(x,0.0,x,{!!!a type cast? =>} {single(}curarea.winy);
 //  (* z-as *)
-//  
+
 //  persp(1); 
-//  
+
 //  setlinestyle(0); 
 //end;
-//
-//
-//
+
 //procedure drawfloor; 
 //var
 //vd: pView3D; 
@@ -950,27 +867,22 @@ end;
 //b: integer; 
 //gridlines: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  vd:= curarea.spacedata.first; 
 //  vert[2]:= 0.0; 
-//  
+
 //  if vd.gridlines<3
 // then
 //  exit;
-//  
+
 //  gridlines:= vd.gridlines div 2; 
 //  grid:= gridlines*vd.grid; 
 //  cpack($404040); 
-//  
+
 //  for{while} a:=-gridlines to gridlines {a++}
 //  do
 //  begin 
-//    
+
 //    if a=0
 // then
 //    begin 
@@ -1022,9 +934,7 @@ end;
 //    glEnd(); 
 //  end;
 //end;
-//
-//
-//
+
 //procedure drawcursor; 
 //begin
 //  if G.f and G_PLAYANIM
@@ -1033,7 +943,7 @@ end;
 //  project_short(give_cursor(),@G.vd.mx); 
 //  G.vd.mxo:= G.vd.mx; 
 //  G.vd.myo:= G.vd.my; 
-//  
+
 //  if G.vd.mx<>3200
 // then
 //  begin 
@@ -1051,8 +961,7 @@ end;
 //    sdrawline(G.vd.mx,G.vd.my+5,G.vd.mx,G.vd.my+20); 
 //  end;
 //end;
-//
-//
+
 //procedure calc_viewborder; 
 //var
 //a: single;
@@ -1067,17 +976,7 @@ end;
 //imay: single;
 //width: single;
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  wx:= curarea.winx; 
 //  wy:= curarea.winy; 
 //  imax:= G.scene.r.xsch; 
@@ -1110,7 +1009,7 @@ end;
 //    y2:= 0.5*wy+0.25*width; 
 //    x1:= 0.5*wx-0.5*fac*imax; 
 //    x2:= 0.5*wx+0.5*fac*imax; 
-//    
+
 //  end;
 //  fac:= (1.41421+({!!!a type cast? =>} {single(}G.vd.camzoom) div 50.0);
 //  fac:= fac * (fac); 
@@ -1126,14 +1025,12 @@ end;
 //  G.vd.pr_ymin:= fceil(y1); 
 //  G.vd.pr_xmax:= fceil(x2); 
 //  G.vd.pr_ymax:= fceil(y2); 
-//  
-//  
+
 //  (* zoom van viewborder *)
-//  
+
 //  (* deze getallen voor renderdisplay *)
 //end;
-//
-//
+
 //procedure drawviewborder; 
 //var
 //fac: single;
@@ -1147,28 +1044,20 @@ end;
 //x4: single;
 //y4: single;
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  x1:= G.vd.pr_xmin; 
 //  y1:= G.vd.pr_ymin; 
 //  x2:= G.vd.pr_xmax; 
 //  y2:= G.vd.pr_ymax; 
 //  setlinestyle(3); 
-//  
+
 //  (* rand *)
 //  cpack(0); 
 //  glPolygonMode(GL_FRONT_AND_BACK,GL_LINE); 
 //  glRectf(x1+1,y1-1,x2+1,y2-1); 
 //  cpack($FFFFFF); 
 //  glRectf(x1,y1,x2,y2); 
-//  
+
 //  (* border *)
 //  if G.scene.r.mode and R_BORDER
 // then
@@ -1190,32 +1079,29 @@ end;
 //  y1:= y1 + (a); 
 //  y2:= y2 - (a); 
 //  cpack(0); 
-//  
+
 //  (* safetykader *)
-//  
-//  
-//  
+
 //  glRectf(x1+1,y1-1,x2+1,y2-1); 
 //  cpack($FFFFFF); 
 //  glRectf(x1,y1,x2,y2); 
 //  setlinestyle(0); 
-//  
+
 //  glPolygonMode(GL_FRONT_AND_BACK,GL_FILL); 
 //end;
-//
-//
+
 //type
 //Base = record
 //end;
-//
+
 //procedure backdrawview3d(test: integer); 
 //var
 //tel: integer;
-// 
+
 //kleur: uint; 
 //{$if defined(WINDOWS) or defined(MESA31)}
 //begin
-//  
+
 //  tel:=1; 
 //  if G.f and (G_VERTEXPAINT or G_FACESELECT)
 // then
@@ -1226,7 +1112,7 @@ end;
 //    exit;
 //  end;
 //  {$endif}
-//  
+
 //  if G.vd.flag and V3D_NEEDBACKBUFDRAW
 // then
 //  ; 
@@ -1248,11 +1134,11 @@ end;
 //      exit;
 //    end;
 //  end;
-//  
+
 //  {$if defined(__sgi) or defined(__SUN) or defined(BEOS) or defined(WINDOWS) or defined(MESA31)}
 //  glDisable(GL_DITHER); 
 //  {$endif}
-//  
+
 //  if G.vd.drawtype>OB_WIRE
 // then
 //  G.zbuf:= LongBool(1); 
@@ -1282,7 +1168,7 @@ end;
 //  end;
 //  else
 //  begin 
-//    
+
 //    base:= FIRSTBASE; 
 //    while base
 //    do
@@ -1315,19 +1201,17 @@ end;
 //  G.f:= G.f and ( not G_BACKBUFSEL); 
 //  G.zbuf:= LongBool(0); 
 //  glDisable(GL_DEPTH_TEST); 
-//  
-//  
+
 //  {$if defined(__sgi) or defined(__SUN) or defined(BEOS) or defined (WINDOWS) or defined(MESA31)}
 //  glEnable(GL_DITHER); 
 //  {$endif}
 //end;
-//
-//
+
 //procedure drawname(ob: pObject); 
 //var
 //str: array [0..Pred(8)] of char; 
 //begin
-//  
+
 //  cpack($404040); 
 //  glRasterPos3f(0.0,0.0,0.0); 
 //  str[0]:= ' '; 
@@ -1336,9 +1220,7 @@ end;
 //  fmprstr(str); 
 //  fmprstr(ob.id.name+2); 
 //end;
-//
-//
-//
+
 //procedure drawview3d_simul(make_disp: integer); 
 //var
 //ob: pObject; 
@@ -1352,24 +1234,17 @@ end;
 //flag: integer; 
 //(* hier doen: anders wordt in header getekend *)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  areawinset(curarea.win); 
 //  setwinmatrixview3d(0); 
-//  
+
 //  setviewmatrixview3d(); 
 //  (* 0= geen pick rect *)
-//  
+
 //  Mat4MulMat4(G.vd.persmat,G.vd.viewmat,curarea.winmat); 
 //  Mat4Invert(G.vd.persinv,G.vd.persmat); 
 //  Mat4Invert(G.vd.viewinv,G.vd.viewmat); 
-//  
+
 //  if G.vd.drawtype>OB_WIRE
 // then
 //  begin 
@@ -1388,7 +1263,7 @@ end;
 //    glClear(GL_COLOR_BUFFER_BIT); 
 //  end;
 //  loadmatrix(G.vd.viewmat); 
-//  
+
 //  (* extern: camera tekenen *)
 //  if G.vd.persp<>2
 // then
@@ -1409,7 +1284,7 @@ end;
 //  begin 
 //    ob:= G.sectorbuf[a].ob; 
 //    multmatrix(ob.obmat); 
-//    
+
 //    cpack($0); 
 //    drawsector(ob,MIN2(ob.dt,G.vd.drawtype),0); 
 //    loadmatrix(G.vd.viewmat); 
@@ -1493,7 +1368,7 @@ end;
 //        drawlife(ob,MIN2(ob.dt,G.vd.drawtype),0); 
 //        loadmatrix(G.vd.viewmat); 
 //      end;
-//      
+
 //      if lf.type=LF_DYNAMIC
 // then
 //      begin 
@@ -1543,8 +1418,7 @@ end;
 //    end;
 //  end;
 //  draw_tface_meshes_tra(); 
-//  
-//  
+
 //  if G.zbuf<>0 
 // then
 //  begin 
@@ -1563,12 +1437,11 @@ end;
 //    end;
 //  end;
 //  draw_gamedebug_info(); 
-//  
+
 //  (* life.c *)
 //  curarea.win_swap:= WIN_BACK_OK; 
 //end;
-//
-//
+
 //procedure drawview3d; 
 //var
 //base: pBase; 
@@ -1577,17 +1450,16 @@ end;
 //tbase: Base; 
 //(* altijd eerst original tekenen vanwege make_displist *)
 //begin
-//  
-//  
+
 //  setwinmatrixview3d(0); 
 //  setviewmatrixview3d(); 
 //  (* 0= geen pick rect *)
-//  
+
 //  Mat4MulMat4(G.vd.persmat,G.vd.viewmat,curarea.winmat); 
-//  
+
 //  Mat4Invert(G.vd.persinv,G.vd.persmat); 
 //  Mat4Invert(G.vd.viewinv,G.vd.viewmat); 
-//  
+
 //  if G.vd.drawtype>OB_WIRE
 // then
 //  begin 
@@ -1611,7 +1483,7 @@ end;
 //    glClear(GL_COLOR_BUFFER_BIT); 
 //  end;
 //  loadmatrix(G.vd.viewmat); 
-//  
+
 //  if G.vd.view=0)or(G.vd.persp<>0
 // then
 //  begin 
@@ -1635,7 +1507,7 @@ end;
 //  else
 //  begin 
 //    drawgrid(); 
-//    
+
 //    if G.vd.flag and V3D_DISPBGPIC
 // then
 //    begin 
@@ -1657,14 +1529,14 @@ end;
 //      begin 
 //        where_is_object(base.object); 
 //        cpack($404040); 
-//        
+
 //        draw_object(base); 
-//        
+
 //        if base.object.transflag and OB_DUPLI
 // then
 //        begin 
 //          {duplilist: ListBase; }{<= !!!5 external variable}
-//          
+
 //          tbase:= {*}base^; 
 //          tbase.flag:= OB_FROMDUPLI; 
 //          make_duplilist(G.scene.set,base.object); 
@@ -1696,7 +1568,7 @@ end;
 // then
 //    begin 
 //      where_is_object(base.object); 
-//      
+
 //      if LongBool(0))and(base.object.transflag and OB_DUPLI
 // then
 //      begin 
@@ -1704,7 +1576,7 @@ end;
 //        draw_object(base); 
 //        G.f:= G.f or (G_PICKSEL); 
 //        cpack($404040); 
-//        
+
 //        (* patchje: kleur blijft constant *)
 //        tbase.flag:= OB_FROMDUPLI; 
 //        make_duplilist(G.scene,base.object); 
@@ -1732,7 +1604,7 @@ end;
 //  while base
 //  do
 //  begin 
-//    
+
 //    function TESTBASE{!!!3 unknown typedef}: if; 
 //    begin
 //      draw_object(base); 
@@ -1773,8 +1645,7 @@ end;
 //    end;
 //    base:= base.next; 
 //  end;
-//  
-//  
+
 //  if G.scene.radio<>0 
 // then
 //  rad_drawall(); 
@@ -1794,21 +1665,20 @@ end;
 //    glDisable(GL_DEPTH_TEST); 
 //  end;
 //  {$if defined(WINDOWS) or defined(MESA31)}
-//  
+
 //  if G.f and (G_VERTEXPAINT or G_FACESELECT)
 // then
 //  begin 
 //    G.vd.flag:= G.vd.flag or (V3D_NEEDBACKBUFDRAW); 
 //    addafterqueue(curarea.win,BACKBUFDRAW,1); 
 //  end;
-//  
+
 //  {$else}
 //  G.vd.flag:= G.vd.flag or (V3D_NEEDBACKBUFDRAW); 
 //  addafterqueue(curarea.win,BACKBUFDRAW,1); 
 //  {$endif}
 //end;
-//
-//
+
 //procedure drawview3d_render; 
 //var
 //base: pBase; 
@@ -1818,9 +1688,7 @@ end;
 //tbase: Base; (* altijd eerst original tekenen vanwege make_displist *)
 //begin
 //  {v3d_windowmode: smallint; }{<= !!!5 external variable}
-//  
-//  
-//  
+
 //  winset(R.win); 
 //  v3d_windowmode:= 1; 
 //  setwinmatrixview3d(0); 
@@ -1831,17 +1699,17 @@ end;
 //  setviewmatrixview3d(); 
 //  glLoadMatrixf(G.vd.viewmat); 
 //  Mat4MulMat4(G.vd.persmat,G.vd.viewmat,R.winmat); 
-//  
+
 //  Mat4Invert(G.vd.persinv,G.vd.persmat); 
 //  Mat4Invert(G.vd.viewinv,G.vd.viewmat); 
-//  
+
 //  if G.vd.drawtype>OB_WIRE
 // then
 //  begin 
 //    G.zbuf:= LongBool(1); 
 //    glEnable(GL_DEPTH_TEST); 
 //  end;
-//  
+
 //  if G.scene.world<>0 
 // then
 //  glClearColor(G.scene.world.horr,G.scene.world.horg,G.scene.world.horb,0.0); 
@@ -1850,11 +1718,11 @@ end;
 //  glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT); 
 //  glLoadIdentity(); 
 //  loadmatrix(G.vd.viewmat); 
-//  
+
 //  G.f:= G.f or (G_SIMULATION); 
 //  do_all_ipos(); 
 //  (* abuse! to make sure it doesnt draw the helpstuff *)
-//  
+
 //  do_all_scripts(SCRIPT_FRAMECHANGED); 
 //  do_all_keys(); 
 //  do_all_ikas(); 
@@ -1867,7 +1735,7 @@ end;
 //    ob.ctime:= -123.456; 
 //    ob:= ob.id.next; 
 //  end;
-//  
+
 //  (* eerst set tekenen *)
 //  if G.scene.set<>0 
 // then
@@ -1881,7 +1749,7 @@ end;
 //      if G.vd.lay and base.lay
 // then
 //      begin 
-//        
+
 //        function ELEM3{!!!3 unknown typedef}: if; 
 //        else
 //        begin 
@@ -1892,7 +1760,7 @@ end;
 // then
 //          begin 
 //            {duplilist: ListBase; }{<= !!!5 external variable}
-//            
+
 //            tbase.flag:= OB_FROMDUPLI; 
 //            make_duplilist(G.scene.set,base.object); 
 //            ob:= duplilist.first; 
@@ -1918,7 +1786,7 @@ end;
 //    if G.vd.lay and base.lay
 // then
 //    begin 
-//      
+
 //      function ELEM3{!!!3 unknown typedef}: if; 
 //      else
 //      begin 
@@ -1958,17 +1826,17 @@ end;
 //  while base
 //  do
 //  begin 
-//    
+
 //    function TESTBASE{!!!3 unknown typedef}: if; 
 //    begin
-//      
+
 //      function ELEM3{!!!3 unknown typedef}: if; 
 //      else
 //      draw_object(base); 
 //    end
 //    base:= base.next; 
 //  end;
-//  
+
 //  if G.scene.radio<>0 
 // then
 //  rad_drawall(); 
@@ -1984,8 +1852,7 @@ end;
 //  ortho2(-0.5,{!!!a type cast? =>} {single(}R.winx-0.5,-0.5,{!!!a type cast? =>} {single(}R.winy-0.5);
 //  glLoadIdentity(); 
 //end;
-//
-//
+
 //var
 //tottime: double = 0.0; 
 //type
@@ -1993,15 +1860,13 @@ end;
 //end;
 //var {was static}
 //ltime: integer; 
-//
-//
+
 //function update_time: integer; 
 //var
 //time: integer; 
 //{$ifdef BEOS}
 //begin
-//  
-//  
+
 //  time:= glut_system_time() div 10000; 
 //  {$else}
 //  time:= times(@voidbuf); 
@@ -2013,8 +1878,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function speed_to_swaptime(speed: integer): double; 
 //begin
 //  case speed of
@@ -2091,8 +1955,7 @@ end;
 //    end;
 //  end;{case?}
 //end;
-//
-//
+
 //function key_to_swaptime(key: integer): double; 
 //begin
 //  case key of
@@ -2191,8 +2054,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function play_anim(mode: integer): integer; 
 //var
 //sa: pScrArea; 
@@ -2201,19 +2063,14 @@ end;
 //cfra: integer; 
 //cfraont: integer; 
 //event: word;
-// 
+
 //val: smallint; 
 //mval: array [0..1] of smallint; 
 //str: array [0..Pred(12)] of char; (* patch voor zeer oude scenes *)
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  event:=0; 
-//  
-//  
+
 //  if SFRA=0
 // then
 //  SFRA:= 1; 
@@ -2232,7 +2089,7 @@ end;
 //  G.f:= G.f or (G_PLAYANIM); 
 //  (* waitcursor(1); *)
 //  (* in sequence.c en view.c wordt dit afgevangen *)
-//  
+
 //  if G.scene.r.scemode and R_NETWORK
 // then
 //  begin 
@@ -2255,7 +2112,7 @@ end;
 //      do_all_keys(); 
 //      do_all_ikas(); 
 //      test_all_displists(); 
-//      
+
 //      sa:= G.curscreen.areabase.first; 
 //      while sa
 //      do
@@ -2277,7 +2134,7 @@ end;
 //        if mode<>0 
 // then
 //        begin 
-//          
+
 //          function ELEM{!!!3 unknown typedef}: if; 
 //          begin
 //            if sa.win)and(sa.windraw
@@ -2298,7 +2155,7 @@ end;
 //      do
 //      usleep(1); 
 //      screen_swapbuffers(); 
-//      
+
 //      tottime:= 0.0; 
 //      while qtest()
 //      do
@@ -2322,7 +2179,7 @@ end;
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    CFRA:= SFRA; 
 //  end;
-//  
+
 //  if event=SPACEKEY
 // then
 //  ; 
@@ -2331,7 +2188,7 @@ end;
 //  do_all_ipos(); 
 //  do_all_keys(); 
 //  do_all_ikas(); 
-//  
+
 //  if oldsa<>curarea
 // then
 //  areawinset(oldsa.win); 
@@ -2348,7 +2205,7 @@ end;
 //  (* speed button *)
 //  do_global_buttons(B_NEWFRAME); 
 //  (* vooropig *)
-//  
+
 //  if G.scene.r.scemode and R_NETWORK
 // then
 //  begin 

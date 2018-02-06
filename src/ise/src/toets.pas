@@ -19,7 +19,6 @@
  * ***** END GPL/BL DUAL LICENSE BLOCK *****
  *)
 
-
 (*  toets.c   mei 94     GRAPHICS
  * 
  *  Algemene toetsen, bijzondere in de space.c
@@ -43,10 +42,9 @@ uses
 
 //var {was static}
 //oldcamera: pObject;
-// 
+
 //perspo: integer;
-// 
-//
+
 //procedure persptoetsen(event: ushort); 
 //var
 //base: pBase; 
@@ -56,28 +54,22 @@ uses
 //q1: array [0..Pred(4)] of float; 
 //vec: array [0..Pred(3)] of float; 
 //dx: float;
-// 
+
 //dy: float;
-// 
+
 //ok: integer;
-// 
+
 //mval: array [0..Pred(2)] of smallint; 
 //rt2: smallint; 
 //rt3: smallint; 
 //begin
 //  oldcamera:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  dx:=0; 
 //  dy:=0; 
 //  perspo:=1; 
 //  ok:=0; 
-//  
-//  
+
 //  if G.qual and LR_SHIFTKEY
 //  then
 //  begin 
@@ -169,7 +161,7 @@ uses
 //    end;
 //    else
 //    begin 
-//      
+
 //      initgrabz(0.0,0.0,0.0); 
 //      if event=PAD6
 //      then
@@ -193,7 +185,7 @@ uses
 //  end;
 //  else
 //  begin 
-//    
+
 //    if event=PAD7
 //    then
 //    begin 
@@ -389,7 +381,7 @@ uses
 //        G.vd.view:= 0; 
 //      end;
 //    end;
-//    
+
 //    if G.vd.persp<2
 //    then
 //    perspo:= G.vd.persp; 
@@ -397,8 +389,7 @@ uses
 //  addqueue(curarea.win,REDRAW,1); 
 //  addqueue(curarea.headwin,REDRAW,1); 
 //end;
-//
-//
+
 //function untitled(name: pchar): integer; 
 //var
 //c: pchar; (*   c = strrchr(name, '/'); *)
@@ -421,7 +412,6 @@ uses
 //    exit;
 //  end;
 //end;
-
 
 function save_image_filesel_str(str: pchar): integer;
 begin
@@ -469,7 +459,6 @@ begin
   end;
 end;
 
-
 //function blenderqread(event: ushort;  val: smallint): integer; 
 //var
 //buts: pSpaceButs; 
@@ -479,7 +468,7 @@ end;
 //temp: puint; 
 //ok: integer; 
 //textspace: integer;
-// 
+
 //dir: array [0..Pred(FILE_MAXDIR)] of char; 
 //str: array [0..Pred(FILE_MAXFILE)] of char; 
 //sfile: pSpaceFile;
@@ -490,26 +479,20 @@ end;
 //begin(* hier alle algemene toetsafhandelingen (niet screen/window/space) *)
 //  (* return 0: niet aan andere queue's doorgeven *)
 //  {videosc_dir: array [0..] of char; }{<= !!!5 external variable}
-//  
+
 //  procedure read_file; 
-//  
+
 //  procedure write_file; 
-//  
+
 //  procedure write_image; 
-//  
+
 //  procedure write_videoscape; 
-//  
+
 //  procedure write_blendpsx; 
 //  {textediting: integer; }{<= !!!5 external variable}
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  textspace:=0; 
-//  
-//  
+
 //  if val=0
 //  then
 //  begin
@@ -521,13 +504,13 @@ end;
 //  begin
 //    result:= 1; 
 //    exit;
-//    
+
 //  end;
 //  if curarea)and(curarea.spacetype=SPACE_TEXT
 //  then
 //  textspace:= 1; 
 //  case event of
-//    
+
 //    F1KEY:
 //    begin
 //      if G.qual=0
@@ -669,7 +652,7 @@ end;
 //        then
 //        strcpy(str,ob.id.name); 
 //        activate_fileselect(FILE_MAIN,'DATA SELECT',str,0); 
-//        
+
 //        begin
 //          result:= 0; 
 //          exit;
@@ -839,7 +822,7 @@ end;
 //      end;
 //    end;
 //    RIGHTARROWKEY,
-//    
+
 //    UPARROWKEY:
 //    begin
 //      if textediting=0)and(textspace=0
@@ -946,11 +929,11 @@ end;
 //      end;
 //    end;
 //    BACKSPACEKEY:
-//    
+
 //    begin
 //    end;
 //    AKEY:
-//    
+
 //    begin
 //      if textediting=0)and(textspace=0
 //      then
@@ -1042,7 +1025,7 @@ end;
 //      end;
 //    end;
 //    NKEY:
-//    
+
 //    begin
 //      if textediting=0)and(textspace=0
 //      then
@@ -1116,9 +1099,7 @@ end;
 //        if G.qual and LR_CTRLKEY
 //        then
 //        begin 
-//          
-//          
-//          
+
 //          event:= pupmenu('10 Timer%t|draw|draw+swap'); 
 //          if event>0
 //          then
@@ -1246,6 +1227,5 @@ end;
 //  exit;
 //end;
 //end;
-
 
 end.

@@ -109,7 +109,6 @@ sp_nloops: integer;
  * interpreter globals
  *)
 
-
 mat: array [0..Pred(2),0..Pred(2)] of single;
 pcstack: array [0..Pred(100)] of pchar; 
 pc: pchar; 
@@ -132,7 +131,7 @@ savesplines: integer = 1;
 //	    '/percent', 	045,	0,
 //	    '/ampersand', 	046,	0,
 //	    '/quoteright', 	047,	0,
-//
+
 //	    '/parenleft', 	050,	0,
 //	    '/parenright', 	051,	0,
 //	    '/asterisk', 	052,	0,
@@ -141,7 +140,7 @@ savesplines: integer = 1;
 //	    '/hyphen', 		055,	0,
 //	    '/period', 		056,	0,
 //	    '/slash', 		057,	0,
-//
+
 //	    '/zero', 		060,	0,
 //	    '/one', 		061,	0,
 //	    '/two', 		062,	0,
@@ -150,7 +149,7 @@ savesplines: integer = 1;
 //	    '/five', 		065,	0,
 //	    '/six', 		066,	0,
 //	    '/seven', 		067,	0,
-//
+
 //	    '/eight', 		070,	0,
 //	    '/nine', 		071,	0,
 //	    '/colon', 		072,	0,
@@ -159,7 +158,7 @@ savesplines: integer = 1;
 //	    '/equal',	 	075,	0,
 //	    '/greater',	 	076,	0,
 //	    '/question', 	077,	0,
-//
+
 //	    '/at',	 	0100,	0,
 //	    '/A',	 	0101,	0,
 //	    '/B',	 	0102,	0,
@@ -168,7 +167,7 @@ savesplines: integer = 1;
 //	    '/E',	 	0105,	0,
 //	    '/F',	 	0106,	0,
 //	    '/G',	 	0107,	0,
-//
+
 //	    '/H',	 	0110,	0,
 //	    '/I',	 	0111,	0,
 //	    '/J',	 	0112,	0,
@@ -177,7 +176,7 @@ savesplines: integer = 1;
 //	    '/M',	 	0115,	0,
 //	    '/N',	 	0116,	0,
 //	    '/O',	 	0117,	0,
-//
+
 //	    '/P',	 	0120,	0,
 //	    '/Q',	 	0121,	0,
 //	    '/R',	 	0122,	0,
@@ -186,7 +185,7 @@ savesplines: integer = 1;
 //	    '/U',	 	0125,	0,
 //	    '/V',	 	0126,	0,
 //	    '/W',	 	0127,	0,
-//
+
 //	    '/X',	 	0130,	0,
 //	    '/Y',	 	0131,	0,
 //	    '/Z',	 	0132,	0,
@@ -195,7 +194,7 @@ savesplines: integer = 1;
 //	    '/bracketright', 	0135,	0,
 //	    '/asciicircum',	0136,	0,
 //	    '/underscore', 	0137,	0,
-//
+
 //	    '/quoteleft', 	0140,	0,
 //	    '/a',	 	0141,	0,
 //	    '/b',	 	0142,	0,
@@ -204,7 +203,7 @@ savesplines: integer = 1;
 //	    '/e', 		0145,	0,
 //	    '/f',		0146,	0,
 //	    '/g',	 	0147,	0,
-//
+
 //	    '/h',	 	0150,	0,
 //	    '/i',	 	0151,	0,
 //	    '/j',	 	0152,	0,
@@ -213,7 +212,7 @@ savesplines: integer = 1;
 //	    '/m', 		0155,	0,
 //	    '/n',		0156,	0,
 //	    '/o',	 	0157,	0,
-//
+
 //	    '/p',	 	0160,	0,
 //	    '/q',	 	0161,	0,
 //	    '/r',	 	0162,	0,
@@ -222,7 +221,7 @@ savesplines: integer = 1;
 //	    '/u',		0165,	0,
 //	    '/v', 		0166,	0,
 //	    '/w',		0167,	0,
-//
+
 //	    '/x',	 	0170,	0,
 //	    '/y',	 	0171,	0,
 //	    '/z',	 	0172,	0,
@@ -231,10 +230,9 @@ savesplines: integer = 1;
 //	    '/braceright',	0175,	0,
 //	    '/asciitilde', 	0176,	0,
 //	    '/',		0177,	0,
-//
-//
+
 //	    /* nonstandard defs */
-//
+
 //	'/quotedblleft',	0200,	0,
 //	    '/quotedblright',	0201,	0,
 //	    '/quotedblbase',	0202,	0,
@@ -243,7 +241,7 @@ savesplines: integer = 1;
 //	    '/guilsinglright',	0205,	0,
 //	    '/endash',		0206,	0,
 //	    '/dagger',		0207,	0,
-//
+
 //	    '/daggerdbl',	0210,	0,
 //	    '/trademark',	0211,	0,
 //	    '/bullet',		0212,	0,
@@ -252,9 +250,9 @@ savesplines: integer = 1;
 //	    '/OE',		0215,	0,
 //	    '/lslash',		0216,	0,
 //	    '/oe',		0217,	0,
-//
+
 //	    /* endnonstandard defs */
-//
+
 //	'/dotlessi',	0220,	0,
 //	    '/grave',		0221,	0,
 //	    '/acute',		0222,	0,
@@ -263,7 +261,7 @@ savesplines: integer = 1;
 //	    '/',		0225,	0,
 //	    '/breve',		0226,	0,
 //	    '/dotaccent',	0227,	0,
-//
+
 //	    '/',		0230,	0,
 //	    '/',		0231,	0,
 //	    '/ring',		0232,	0,
@@ -272,7 +270,7 @@ savesplines: integer = 1;
 //	    '/hungarumlaut',	0235,	0,
 //	    '/ogonek',		0236,	0,
 //	    '/caron',		0237,	0,
-//
+
 //	    '/',		0240,	0,
 //	    '/exclamdown',	0241,	0,
 //	    '/cent',		0242,	0,
@@ -281,7 +279,7 @@ savesplines: integer = 1;
 //	    '/yen',		0245,	0,
 //	    '/brokenbar',	0246,	0,
 //	    '/section',		0247,	0,
-//
+
 //	    '/dieresis',	0250,	0,
 //	    '/copyright',	0251,	0,
 //	    '/ordfeminine',	0252,	0,
@@ -290,7 +288,7 @@ savesplines: integer = 1;
 //	    '/hyphen',		0255,	0,
 //	    '/registered',	0256,	0,
 //	    '/macron',		0257,	0,
-//
+
 //	    '/degree',		0260,	0,
 //	    '/plusminus',	0261,	0,
 //	    '/twosuperior',	0262,	0,
@@ -299,7 +297,7 @@ savesplines: integer = 1;
 //	    '/mu',		0265,	0,
 //	    '/paragraph',	0266,	0,
 //	    '/periodcentered',	0267,	0,
-//
+
 //	    '/cedilla',		0270,	0,
 //	    '/onesuperior',	0271,	0,
 //	    '/ordmasculine',	0272,	0,
@@ -308,7 +306,7 @@ savesplines: integer = 1;
 //	    '/onehalf',		0275,	0,
 //	    '/threequarters',	0276,	0,
 //	    '/questiondown',	0277,	0,
-//
+
 //	    '/Agrave',		0300,	0,
 //	    '/Aacute',		0301,	0,
 //	    '/Acircumflex',	0302,	0,
@@ -317,7 +315,7 @@ savesplines: integer = 1;
 //	    '/Aring',		0305,	0,
 //	    '/AE',		0306,	0,
 //	    '/Ccedilla',	0307,	0,
-//
+
 //	    '/Egrave',		0310,	0,
 //	    '/Eacute',		0311,	0,
 //	    '/Ecircumflex',	0312,	0,
@@ -326,7 +324,7 @@ savesplines: integer = 1;
 //	    '/Iacute',		0315,	0,
 //	    '/Icircumflex',	0316,	0,
 //	    '/Idieresis',	0317,	0,
-//
+
 //	    '/Eth',		0320,	0,
 //	    '/Ntilde',		0321,	0,
 //	    '/Ograve',		0322,	0,
@@ -335,7 +333,7 @@ savesplines: integer = 1;
 //	    '/Otilde',		0325,	0,
 //	    '/Odieresis',	0326,	0,
 //	    '/multiply',	0327,	0,
-//
+
 //	    '/Oslash',		0330,	0,
 //	    '/Ugrave',		0331,	0,
 //	    '/Uacute',		0332,	0,
@@ -344,7 +342,7 @@ savesplines: integer = 1;
 //	    '/Yacute',		0335,	0,
 //	    '/Thorn',		0336,	0,
 //	    '/germandbls',	0337,	0,
-//
+
 //	    '/agrave',		0340,	0,
 //	    '/aacute',		0341,	0,
 //	    '/acircumflex',	0342,	0,
@@ -353,7 +351,7 @@ savesplines: integer = 1;
 //	    '/aring',		0345,	0,
 //	    '/ae',		0346,	0,
 //	    '/ccedilla',	0347,	0,
-//
+
 //	    '/egrave',		0350,	0,
 //	    '/eacute',		0351,	0,
 //	    '/ecircumflex',	0352,	0,
@@ -362,7 +360,7 @@ savesplines: integer = 1;
 //	    '/iacute',		0355,	0,
 //	    '/icircumflex',	0356,	0,
 //	    '/idieresis',	0357,	0,
-//
+
 //	    '/eth',		0360,	0,
 //	    '/ntilde',		0361,	0,
 //	    '/ograve',		0362,	0,
@@ -371,7 +369,7 @@ savesplines: integer = 1;
 //	    '/otilde',		0365,	0,
 //	    '/odieresis',	0366,	0,
 //	    '/divide',		0367,	0,
-//
+
 //	    '/oslash',		0370,	0,
 //	    '/ugrave',		0371,	0,
 //	    '/uacute',		0372,	0,
@@ -381,8 +379,7 @@ savesplines: integer = 1;
 //	    '/thorn',		0376,	0,
 //	    '/ydieresis',	0377,	0,
 //};
-//
-//
+
 //short STDvsISO [][2] = {
 //	0341, 0306, /* AE */
 //	0351, 0330, /* Oslash */
@@ -471,7 +468,7 @@ savesplines: integer = 1;
 //            begin
 //              exit;
 //            end;
-//            
+
 //          end;{case?}
 //          nverts:= {*}sptr^{++} inc(sptr); ; 
 //          while nverts{--} dec(nverts); 
@@ -516,7 +513,7 @@ savesplines: integer = 1;
 //            begin
 //              exit;
 //            end;
-//            
+
 //          end;{case?}
 //        end;
 //      end;
@@ -527,12 +524,9 @@ savesplines: integer = 1;
 //    end;{case?}
 //  end;
 //end;
-//
-//
-//
+
 //implementation
-//
-//
+
 //function chartoindex(fnt: pobjfnt;  c: integer): integer; 
 //begin
 //  if c<fnt.charmin
@@ -552,9 +546,7 @@ savesplines: integer = 1;
 //    exit;
 //  end;
 //end;
-//
-//
-//
+
 //function getchardesc(fnt: pobjfnt;  c: integer): pchardesc; 
 //var
 //index: integer; 
@@ -571,14 +563,13 @@ savesplines: integer = 1;
 //    exit;
 //  end;
 //end;
-//
+
 //var {was static}
 //xmin: integer; 
 //xmax: integer; 
 //ymin: integer; 
 //ymax: integer; 
-//
-//
+
 //function bboxcalc(v: array [0..Pred(2)] of smallint): integer; 
 //begin
 //  if v[0]<xmin
@@ -595,7 +586,7 @@ savesplines: integer = 1;
 //  ymax:= v[1]; 
 //end;
 //calccharbboxes(objfnt*fnt); 
-//
+
 //begin 
 //  var
 //  c: integer; 
@@ -624,17 +615,14 @@ savesplines: integer = 1;
 //    end;
 //  end;
 //end;
-//
-//
-//
+
 //function newobjfnt(type: integer;  charmin: integer;  charmax: integer;  fscale: integer): pobjfnt; 
 //var
 //fnt: pobjfnt; 
 //sptr: psmallint; 
 //i: integer; 
 //begin
-//  
-//  
+
 //  fnt:= {!!!a type cast? =>} {pobjfnt(}mallocN(sizeof(objfnt),'newobjfnt'); 
 //  fnt.freeaddr:= 0; 
 //  fnt.type:= type; 
@@ -650,8 +638,7 @@ savesplines: integer = 1;
 //  end;
 //end;
 //addchardata(objfnt*fnt,intc,short*data,intnshorts); 
-//
-//
+
 //begin 
 //  index: integer; 
 //  cd: pchardesc; 
@@ -669,7 +656,7 @@ savesplines: integer = 1;
 //  bcopy(data,cd.data,cd.datalen); 
 //end;
 //addcharmetrics(objfnt*fnt,intc,intmovex,intmovey); 
-//
+
 //begin 
 //  index: integer; 
 //  cd: pchardesc; 
@@ -685,8 +672,7 @@ savesplines: integer = 1;
 //  cd.movey:= movey; 
 //end;
 //fakechar(objfnt*fnt,intc,intwidth); 
-//
-//
+
 //begin 
 //  chardata: array [0..Pred(1)] of smallint; 
 //  chardata[0]:= PO_RET; 
@@ -694,8 +680,7 @@ savesplines: integer = 1;
 //  addcharmetrics(fnt,c,width,0); 
 //end;
 //freeobjfnt(objfnt*fnt); 
-//
-//
+
 //begin 
 //  i: integer; 
 //  cd: pchardesc; 
@@ -712,10 +697,9 @@ savesplines: integer = 1;
 //  freeN(fnt); 
 //end;
 //sizeoffile(FILE*f); 
-//
-//
+
 //(* END 5.2 *)
-//
+
 //begin 
 //  pos: integer; 
 //  ret: integer; 
@@ -745,7 +729,7 @@ savesplines: integer = 1;
 //  end;
 //end;
 //writeobjfnt(char*name,objfnt*fnt); 
-//
+
 //begin 
 //  of: pFILE; 
 //  i: integer; 
@@ -774,13 +758,11 @@ savesplines: integer = 1;
 //  end;
 //  fclose(of); 
 //end;
-//
-//
-//
+
 //function STDtoISO(c: smallint): smallint; 
 //var
 //i: smallint;
-// 
+
 //begin
 //  i:=(sizeof(STDvsISO) div (2*sizeof(short)))-1; 
 //  for{while}  downto 0 { i--}
@@ -798,23 +780,21 @@ savesplines: integer = 1;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //(*
 // * read the font matrix out of the font file
 // *
 // *)
-//
-//
+
 //function newfgets(s: pchar;  n: integer;  stream: pFILE): pchar; 
 //var
 //read: integer;
-// 
+
 //c: integer; 
 //p: pchar; 
 //begin
 //  read:=0; 
-//  
+
 //  p:= s; 
 //  while n>0
 //  do
@@ -852,8 +832,7 @@ savesplines: integer = 1;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function readfontmatrix(name: pchar;  mat: array [0..Pred(2),0..Pred(2)] of float): integer; 
 //var
 //inf: pFILE; 
@@ -866,13 +845,7 @@ savesplines: integer = 1;
 //f: float; 
 //(* open the input file *)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  inf:= fopen(name,'rb'); 
 //  if {not}0=inf
 //  then
@@ -883,7 +856,7 @@ savesplines: integer = 1;
 //      exit;
 //    end;
 //  end;
-//  
+
 //  (* look for the FontMatrix def *)
 //  while 1
 //  do
@@ -929,13 +902,12 @@ savesplines: integer = 1;
 //    exit;
 //  end;
 //end;
-//
+
 //(*
 // *  decryption subroutines
 // *
 // *)
-//
-//
+
 //function mdecrypt(cipher: char): char; 
 //var
 //plain: char; 
@@ -948,7 +920,7 @@ savesplines: integer = 1;
 //  end;
 //end;
 //decryptdata(unsignedchar*cptr,intn); 
-//
+
 //begin 
 //  while n{--} dec(n); 
 //  do
@@ -958,7 +930,7 @@ savesplines: integer = 1;
 //  end;
 //end;
 //decryptprogram(unsignedchar*buf,intlen); 
-//
+
 //begin 
 //  i: integer; 
 //  resetdecrypt(4330); 
@@ -976,14 +948,12 @@ savesplines: integer = 1;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //(*
 // * decode the eexec part of the file
 // *
 // *)
-//
-//
+
 //function decodetype1(inname: pchar;  outname: pchar): integer; 
 //var
 //inf: pFILE; 
@@ -998,15 +968,7 @@ savesplines: integer = 1;
 //hextab: array [0..Pred(256)] of char; 
 //(* make hex table *)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if {not}0=firsted
 //  then
 //  begin 
@@ -1043,7 +1005,7 @@ savesplines: integer = 1;
 //  hexdat:= (unsignedchar* )mallocN(totlen,'hexdat'); 
 //  bindat:= (unsignedchar* )mallocN(totlen,'bindat'); 
 //  (* allocate buffers *)
-//  
+
 //  (* look for eexec part of file *)
 //  while 1
 //  do
@@ -1065,11 +1027,11 @@ savesplines: integer = 1;
 //  mr:= 55665; 
 //  c:= getc(inf); 
 //  ungetc(c,inf); 
-//  
+
 //  (* initialize decryption variables *)
-//  
+
 //  (* first byte == 0 for binary data (???) *)
-//  
+
 //  if hextab[c]<>NOTHEX
 //  then
 //  begin 
@@ -1089,7 +1051,7 @@ savesplines: integer = 1;
 //      end;
 //    end;
 //    fclose(inf); 
-//    
+
 //    (* check number of hex bytes *)
 //    if hexbytes and 1
 //    then
@@ -1106,15 +1068,15 @@ savesplines: integer = 1;
 //      hptr:= hptr + (2); 
 //    end;
 //    decryptdata(bindat,datbytes); 
-//    
+
 //    (* decrypt the data *)
 //  end;
-//  
+
 //  else
 //  begin 
 //    datbytes:= fread(bindat,1,totlen,inf); 
 //    fclose(inf); 
-//    
+
 //    if (bindat[2] shl 8+bindat[3])=$800
 //    then
 //    begin 
@@ -1131,14 +1093,14 @@ savesplines: integer = 1;
 //        else
 //        c:= i; 
 //        memcpy(bptr,hptr,c); 
-//        
+
 //        bptr:= bptr + (2046); 
 //        hptr:= hptr + (2046+6); 
 //        i:= i - (2046+6); 
 //        datbytes:= datbytes - (6); 
 //      end;
 //      decryptdata(bindat+4,datbytes); 
-//      
+
 //      (* decrypt the data *)
 //    end;
 //    else
@@ -1146,30 +1108,29 @@ savesplines: integer = 1;
 //      decryptdata(bindat+6,datbytes); 
 //    end;
 //  end;
-//  
+
 //  {$ifdef DEBUG}
 //  outf:= fopen(outname,'wb'); 
 //  fwrite(bindat,datbytes,1,outf); 
 //  fclose(outf); 
 //  {$endif}
 //  freeN(hexdat); 
-//  
+
 //end;
 //fakefopen(); 
-//
+
 //(* 
 // * fake file reading funcs
 // *
 // *
 // *)
-//
+
 //begin 
 //  fakepos:= 0; 
 //  fakemax:= datbytes; 
 //end;
 //fakegettoken(unsignedchar*str); 
-//
-//
+
 //begin 
 //  c: integer; 
 //  cptr: pchar; 
@@ -1207,7 +1168,7 @@ savesplines: integer = 1;
 //  end;
 //end;
 //fakefgets(char*buf,intmax); 
-//
+
 //begin 
 //  cptr: pchar; 
 //  cptr:= (unsignedchar* )(bindat+fakepos); 
@@ -1235,8 +1196,7 @@ savesplines: integer = 1;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fakefread(n: integer): pchar; 
 //begin
 //  fakepos:= fakepos + (n); 
@@ -1246,7 +1206,7 @@ savesplines: integer = 1;
 //  end;
 //end;
 //applymat(floatmat[][2],float*x,float*y); 
-//
+
 //begin 
 //  var
 //  tx: float; 
@@ -1255,9 +1215,7 @@ savesplines: integer = 1;
 //  ty:= ((*x)*mat[1][0])+((*y)*mat[1][1]); {*}x^:=tx; 
 //  {*}y^:=ty; 
 //end;
-//
-//
-//
+
 //function loadpostcriptfont(filename: pchar): pobjfnt; 
 //var
 //i: integer; 
@@ -1270,14 +1228,7 @@ savesplines: integer = 1;
 //namelen: integer; 
 //cptr: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  fnt:= 0; 
 //  bindat:= 0; (* read the font matrix from the font *)
 //  if readfontmatrix(filename,mat)
@@ -1285,14 +1236,14 @@ savesplines: integer = 1;
 //  begin
 //    result:= (0); 
 //    exit;
-//    
+
 //    (* decode the font data *)
 //  end;
 //  decodetype1(filename,'/usr/tmp/type1.dec'); 
 //  fakefopen(); 
-//  
+
 //  (* open the input file *)
-//  
+
 //  (* look for the /Subrs def and get my_nsubrs *)
 //  while 1
 //  do
@@ -1317,7 +1268,7 @@ savesplines: integer = 1;
 //      end;
 //    end;
 //  end;
-//  
+
 //  (* read the Subrs in one by one *)
 //  for{while} i:=0 to Pred(my_nsubrs) { i++}
 //  do
@@ -1340,7 +1291,7 @@ savesplines: integer = 1;
 //    end;
 //    (*exit(1);*)
 //    fakegettoken(tok); 
-//    
+
 //    (* get the Subr index here *)
 //    index:= atoi(tok); 
 //    (* check to make sure it is in range *)
@@ -1351,17 +1302,17 @@ savesplines: integer = 1;
 //    end;
 //    (*exit(1);*)
 //    fakegettoken(tok); 
-//    
+
 //    (* get the number of bytes to read *)
 //    nread:= atoi(tok); 
 //    fakegettoken(tok); 
 //    my_sublen[index]:= nread; 
 //    my_subrs[index]:= fakefread(nread); 
 //    fakegettoken(tok); 
-//    
+
 //    (* read in the subroutine *)
 //  end;
-//  
+
 //  (* look for the CharStrings *)
 //  while 1
 //  do
@@ -1373,7 +1324,7 @@ savesplines: integer = 1;
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //  end;
 //  fakegettoken(tok); 
-//  
+
 //  fakegettoken(tok); 
 //  (* skip my_ncharscrings *)
 //  fakegettoken(tok); 
@@ -1383,83 +1334,83 @@ savesplines: integer = 1;
 //  fakegettoken(tok); 
 //  (* skip begin *)
 //  my_nchars:= 0; (* skip newline *)
-//  
+
 //  (* read the CharStrings one by one *)
 //  for{while} i:=0 to Pred(MAXCHARS) { i++}
 //  do
 //  begin 
-//    
+
 //    (* check for end *)
 //    fakegettoken(tok); 
 //    if lstrcmp(tok,'end')=0
 //    then
 //    break; {<= !!!b possible in "switch" - then remove this line}
-//    
+
 //    (* get the char name and allocate space for it *)
 //    namelen:= lstrlen(tok); 
 //    my_charname[i]:= {!!!a type cast? =>} {pchar(}mallocN(namelen+1,'my_charname'); 
 //    strcpy(my_charname[i],tok); 
 //    fakegettoken(tok); 
-//    
+
 //    (* get the number of bytes to read *)
 //    nread:= atoi(tok); 
 //    fakegettoken(tok); 
 //    my_charlen[i]:= nread; 
 //    my_chars[i]:= fakefread(nread); 
 //    fakegettoken(tok); 
-//    
+
 //    (* read in the char description *)
-//    
+
 //    (* skip the end of line *)
 //    fakegettoken(tok); 
 //    inc(my_nchars); 
 //  end;
 //  decryptall(); 
-//  
+
 //  (* decrypt the character descriptions *)
 //  setcharlist(); 
 //  makeobjfont(savesplines); 
-//  
+
 //  (* make the obj font *)
-//  
+
 //  if bindat<>0{nil} {<= !!!9} 
 //  then
 //  freeN(bindat); 
 //  (* system("rm /usr/tmp/type1.dec"); *)
-//  
+
 //  begin
 //    result:= (fnt); 
 //    exit;
 //  end;
 //end;
 //setcharlist(); 
-//
+
 //(*
 //main(argc, argv)
 //int argc;
 //char **argv;
 //{
 //    objfnt *fnt;
-//
+
 //    beztol = 5.0;
 //    savesplines = 0;
 //    fnt = 0;
-//    
+
 //    if(argc<3) {
 //  fprintf(stderr,"usage: fromtype1 type1font [font.of tol] [font.sf 0.0]\n");
 //  exit(1);
 //    }
-//
+
 //    if(argc>3) beztol = atof(argv[3]);
 //    if(beztol<0.0001) {
 //  savesplines = 1;
 //  beztol = 100.0;
 //    }
-//
+
 //    fnt = loadpostcriptfont(argv[1]);
 //    if (fnt) writeobjfnt(argv[2],fnt);
 //}
-//
+
 //*)
 //begin 
 //  name: pchar; 
@@ -1494,7 +1445,7 @@ savesplines: integer = 1;
 //  end;
 //end;
 //resetdecrypt(intn); 
-//
+
 //(*
 // * Decryption support
 // *
@@ -1504,7 +1455,7 @@ savesplines: integer = 1;
 //  mr:= n; 
 //end;
 //decryptall(); 
-//
+
 //begin 
 //  i: integer; 
 //  for{while} i:=0 to Pred(my_nsubrs) { i++}
@@ -1515,13 +1466,13 @@ savesplines: integer = 1;
 //  my_charlen[i]:= decryptprogram(my_chars[i],my_charlen[i]); 
 //end;
 //drawchar(intc); 
-//
+
 //(*
 // * run the character program 
 // *
 // *
 // *)
-//
+
 //begin 
 //  if savesplines<>0{nil} {<= !!!9} 
 //  then
@@ -1548,23 +1499,22 @@ savesplines: integer = 1;
 //  end;
 //end;
 //initpcstack(); 
-//
+
 //(*
 // * pc stack support
 // *
 // *)
-//
+
 //begin 
 //  pcsp:= 0; 
 //end;
 //pushpc(unsignedchar*pc); 
-//
+
 //begin 
 //  pcstack[pcsp]:= pc; 
 //  inc(pcsp); 
 //end;
-//
-//
+
 //function poppc: pchar; 
 //begin
 //  dec(pcsp); 
@@ -1584,17 +1534,17 @@ savesplines: integer = 1;
 //  end;
 //end;
 //initstack(); 
-//
+
 //(*
 // * Data stack support
 // *
 // *)
-//
+
 //begin 
 //  sp:= 0; 
 //end;
 //push(val); 
-//
+
 //var
 //val: integer; 
 //begin 
@@ -1602,7 +1552,7 @@ savesplines: integer = 1;
 //  inc(sp); 
 //end;
 //pop(); 
-//
+
 //begin 
 //  dec(sp); 
 //  if sp<0
@@ -1621,24 +1571,24 @@ savesplines: integer = 1;
 //  end;
 //end;
 //initretstack(); 
-//
+
 //(*
 // * call/return data stack
 // *
 // *)
-//
+
 //begin 
 //  retsp:= 0; 
 //end;
 //retpush(val); 
-//
+
 //val: integer; 
 //begin 
 //  retstack[retsp]:= val; 
 //  inc(retsp); 
 //end;
 //retpop(); 
-//
+
 //begin 
 //  dec(retsp); 
 //  if retsp<0
@@ -1657,12 +1607,12 @@ savesplines: integer = 1;
 //  end;
 //end;
 //runprog(); 
-//
+
 //(*
 // * Character interpreter
 // *
 // *)
-//
+
 //begin 
 //  v: integer; 
 //  w: integer; 
@@ -1728,19 +1678,19 @@ savesplines: integer = 1;
 //  end;
 //end;
 //subr1(); 
-//
+
 //(*
 // * execute the program:
 // *
 // *
 // *)
-//
+
 //begin 
 //  coordpos:= 0; 
 //  incusp:= 1; 
 //end;
 //subr2(); 
-//
+
 //begin 
 //  x: integer; 
 //  y: integer; 
@@ -1756,7 +1706,7 @@ savesplines: integer = 1;
 //  inc(coordpos); 
 //end;
 //subr0(); 
-//
+
 //begin 
 //  x0: integer; 
 //  y0: integer; 
@@ -1787,7 +1737,7 @@ savesplines: integer = 1;
 //  x3:= coordsave[3][0]; 
 //  y3:= coordsave[3][1]; 
 //  rcurveto(x1,y1,x1+x2,y1+y2,x1+x2+x3,y1+y2+y3); 
-//  
+
 //  x1:= coordsave[4][0]; 
 //  y1:= coordsave[4][1]; 
 //  x2:= coordsave[5][0]; 
@@ -1800,8 +1750,7 @@ savesplines: integer = 1;
 //  retpush(x0); 
 //  incusp:= 0; 
 //end;
-//
-//
+
 //procedure append_poly_offset(ofsx: smallint;  ofsy: smallint;  data: psmallint); 
 //var
 //nverts: integer; 
@@ -1809,7 +1758,7 @@ savesplines: integer = 1;
 //  if data=0
 //  then
 //  exit;
-//  
+
 //  while 1
 //  do
 //  begin 
@@ -1824,7 +1773,7 @@ savesplines: integer = 1;
 //      begin
 //        exit;
 //      end;
-//      
+
 //    end;{case?}
 //    nverts:= chardata[nshorts{++} inc(nshorts); ]:=*data{++} inc(data); ; 
 //    while nverts{--} dec(nverts); 
@@ -1835,19 +1784,17 @@ savesplines: integer = 1;
 //    end;
 //  end;
 //end;
-//
-//
-//
+
 //procedure append_spline_offset(ofsx: smallint;  ofsy: smallint;  data: psmallint); 
 //var
 //nverts: integer;
-// 
+
 //begin
 //  nverts:=0; 
 //  if data=0
 //  then
 //  exit;
-//  
+
 //  while 1
 //  do
 //  begin 
@@ -1866,9 +1813,9 @@ savesplines: integer = 1;
 //      begin
 //        exit;
 //      end;
-//      
+
 //    end;{case?}
-//    
+
 //    for{while}  downto Succ(0) { nverts--}
 //    do
 //    begin 
@@ -1878,8 +1825,7 @@ savesplines: integer = 1;
 //  end;
 //end;
 //docommand(intcmd); 
-//
-//
+
 //begin 
 //  x: integer; 
 //  y: integer; 
@@ -2048,7 +1994,7 @@ savesplines: integer = 1;
 //        c1:= STDtoISO(pop()); 
 //        cd:= getchardesc(fnt,c1); (* accent *)
 //        (* letter *)
-//        
+
 //        if cd<>0{nil} {<= !!!9} 
 //        then
 //        begin 
@@ -2076,7 +2022,7 @@ savesplines: integer = 1;
 //                begin
 //                  chardata[nshorts-1]:= SP_CLOSEPATH; 
 //                end;
-//                
+
 //              end;{case?}
 //            end;
 //            else
@@ -2099,20 +2045,20 @@ savesplines: integer = 1;
 //                    printf('new character doesn''t start with PO_BGNLOOP ?\n');
 //                  end;
 //                end;
-//                
+
 //              end;{case?}
 //            end;
 //          end;
 //          dy1:= pop(); 
 //          dx1:= pop()+sidebearing[c1]-sidebearing[c2]; 
 //          pop(); 
-//          
+
 //          (* i.p.v. the sidebearing[c1] moet misschen thesidebearing gebruikt worden *)
-//          
+
 //          fdx1:= dx1; 
 //          fdy1:= dy1; 
 //          applymat(mat, and fdx1, and fdy1); 
-//          
+
 //          dx1:= floor(fdx1); 
 //          dy1:= floor(fdy1); 
 //          if savesplines<>0{nil} {<= !!!9} 
@@ -2125,7 +2071,7 @@ savesplines: integer = 1;
 //            append_poly_offset(dx1,dy1,ndata); 
 //          end;
 //        end;
-//        
+
 //        (*printf("first: %d %d\n", cd->data[0], cd->data[1]);*)
 //        fflush(stdout); 
 //      end;
@@ -2185,7 +2131,7 @@ savesplines: integer = 1;
 //    (*fprintf(stderr,"\nYUCK bad instruction %d\n",cmd);*)
 //    begin
 //    end;
-//    
+
 //  end;{case?}
 //  if pc=0)or(cmd=ENDCHAR)or(cmd=WHAT0)or(cmd=SEAC
 //  then
@@ -2199,13 +2145,13 @@ savesplines: integer = 1;
 //    exit;
 //  end;
 //end;
-//
+
 //(* 
 // *    graphics follows 
 // *
 // *
 // *)
-//
+
 //startx: integer; 
 //starty: integer; 
 //curx: integer; 
@@ -2216,20 +2162,20 @@ savesplines: integer = 1;
 //dely: integer; 
 //started: integer; 
 //(* poly output stuff *)
-//
+
 //setwidth(intw,intx); 
 //begin 
 //  thecharwidth:= w; 
 //  thesidebearing:= x; 
 //end;
 //poly_beginchar(); 
-//
+
 //begin 
 //  npnts:= 0; 
 //  nloops:= 0; 
 //end;
 //poly_endchar(); 
-//
+
 //begin 
 //  if nloops=0
 //  then
@@ -2238,13 +2184,13 @@ savesplines: integer = 1;
 //  chardata[nshorts{++} inc(nshorts); ]:= PO_RETENDLOOP; 
 //end;
 //poly_close(); 
-//
+
 //begin 
 //  chardata[nvertpos]:= npnts; 
 //  npnts:= 0; 
 //end;
 //poly_pnt(floatx,floaty); 
-//
+
 //begin 
 //  v: array [0..Pred(3)] of smallint; 
 //  ix: integer; 
@@ -2271,18 +2217,18 @@ savesplines: integer = 1;
 //  chardata[nshorts{++} inc(nshorts); ]:= ix; 
 //  chardata[nshorts{++} inc(nshorts); ]:= iy; 
 //  inc(npnts); 
-//  
+
 //end;
 //spline_beginchar(); 
-//
+
 //(* spline output stuff *)
-//
+
 //begin 
 //  sp_npnts:= 0; 
 //  sp_nloops:= 0; 
 //end;
 //spline_endchar(); 
-//
+
 //begin 
 //  if sp_nloops=0
 //  then
@@ -2291,18 +2237,18 @@ savesplines: integer = 1;
 //  chardata[nshorts{++} inc(nshorts); ]:= SP_RETCLOSEPATH; 
 //end;
 //spline_close(); 
-//
+
 //begin 
 //  chardata[nshorts{++} inc(nshorts); ]:= SP_CLOSEPATH; 
 //  sp_npnts:= 0; 
 //  sp_nloops:= 0; 
 //end;
 //spline_line(floatx0,floaty0,floatx1,floaty1); 
-//
+
 //begin 
 //  applymat(mat,@x0,@y0); 
 //  applymat(mat,@x1,@y1); 
-//  
+
 //  if sp_npnts=0
 //  then
 //  begin 
@@ -2318,13 +2264,13 @@ savesplines: integer = 1;
 //  inc(sp_npnts); 
 //end;
 //spline_curveto(floatx0,floaty0,floatx1,floaty1,floatx2,floaty2,floatx3,floaty3); 
-//
+
 //begin 
 //  applymat(mat,@x0,@y0); 
 //  applymat(mat,@x1,@y1); 
 //  applymat(mat,@x2,@y2); 
 //  applymat(mat,@x3,@y3); 
-//  
+
 //  if sp_npnts=0
 //  then
 //  begin 
@@ -2343,41 +2289,40 @@ savesplines: integer = 1;
 //  chardata[nshorts{++} inc(nshorts); ]:= floor(y3); 
 //end;
 //getmove(int*x,int*y); 
-//
-//
+
 //begin 
 //  {*}x^:=delx; 
 //  {*}y^:=dely; 
 //end;
 //(*  printf("ingetmove\n"); *)
 //getpos(int*x,int*y); 
-//
+
 //begin 
 //  {*}x^:=curx; 
 //  {*}y^:=cury; 
 //end;
 //savestart(intx,inty); 
-//
+
 //begin 
 //  startx:= x; 
 //  starty:= y; 
 //  started:= 1; 
 //end;
 //sbpoint(intx,inty); 
-//
+
 //begin 
 //  curx:= x; 
 //  cury:= y; 
 //end;
 //moveto(intx,inty); 
-//
+
 //begin 
 //  curx:= x; 
 //  cury:= y; 
 //  savestart(curx,cury); 
 //end;
 //rmoveto(intx,inty); 
-//
+
 //begin 
 //  if incusp<>0{nil} {<= !!!9} 
 //  then
@@ -2393,15 +2338,14 @@ savesplines: integer = 1;
 //  end;
 //end;
 //drawline(floatx0,floaty0,floatx1,floaty1,floatdx0,floatdy0,floatdx1,floatdy1); 
-//
+
 //begin 
 //  if x0<>x1)or(y0<>y1
 //  then
 //  poly_pnt(x1,y1); 
 //end;
 //rlineto(intx,inty); 
-//
-//
+
 //begin 
 //  dx: float; 
 //  dy: float; 
@@ -2418,7 +2362,7 @@ savesplines: integer = 1;
 //  cury:= nexty; 
 //end;
 //closepath(); 
-//
+
 //begin 
 //  dx: float; 
 //  dy: float; 
@@ -2441,7 +2385,7 @@ savesplines: integer = 1;
 //  end;
 //end;
 //bezadapt(floatx0,floaty0,floatx1,floaty1,floatx2,floaty2,floatx3,floaty3,floatbeztol); 
-//
+
 //begin 
 //  ax0: float; 
 //  ay0: float; 
@@ -2496,17 +2440,16 @@ savesplines: integer = 1;
 //    bx3:= x3; 
 //    by3:= y3; 
 //    bezadapt(bx0,by0,bx1,by1,bx2,by2,bx3,by3,beztol); 
-//    
+
 //  end;
 //end;
 //drawbez(floatx0,floaty0,floatx1,floaty1,floatx2,floaty2,floatx3,floaty3); 
-//
+
 //begin 
 //  bezadapt(x0,y0,x1,y1,x2,y2,x3,y3,beztol); 
 //end;
 //rcurveto(intdx1,intdy1,intdx2,intdy2,intdx3,intdy3); 
-//
-//
+
 //begin 
 //  x0: integer; 
 //  y0: integer; 
@@ -2537,15 +2480,15 @@ savesplines: integer = 1;
 //  cury:= y3; 
 //end;
 //makeobjfont(intsavesplines); 
-//
+
 //(*
 // * saveobjfont -
 // *  save an object font.
 // *
 // *)
-//
+
 //(* generic routines *)
-//
+
 //begin 
 //  i: integer; 
 //  j: integer; 
@@ -2563,7 +2506,7 @@ savesplines: integer = 1;
 //    then
 //    begin 
 //      (*printf("decoding %s\n", ISOcharlist[i].name);*)
-//      
+
 //      nshorts:= 0; 
 //      drawchar(ISOcharlist[i].prog); 
 //      addchardata(fnt,c,chardata,nshorts); 

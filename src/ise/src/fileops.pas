@@ -35,8 +35,7 @@ uses
 //ffslash: pchar; 
 //fbslash: pchar; 
 //begin
-//  
-//  
+
 //  ffslash:= strchr(string,'/'); 
 //  fbslash:= strchr(string,#92); 
 //  if {not}0=ffslash
@@ -64,15 +63,13 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function last_slash(string: pchar): pchar; 
 //var
 //lfslash: pchar; 
 //lbslash: pchar; 
 //begin
-//  
-//  
+
 //  lfslash:= strrchr(string,'/'); 
 //  lbslash:= strrchr(string,#92); 
 //  if {not}0=lfslash
@@ -105,8 +102,7 @@ uses
 
 //var {was static}
 //str: array [0..Pred(MAXPATHLEN+12)] of char; 
-//
-//
+
 //function fop_delete(file: pchar;  dir: integer;  recursive: integer): integer; 
 //var
 //err: integer; 
@@ -133,14 +129,13 @@ uses
 //    then
 //    error('Unable to delete file'); 
 //  end;
-//  
+
 //  begin
 //    result:= err; 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fop_touch(file: pchar): integer; 
 //begin
 //  error('Touching files is unsupported on Windows'); 
@@ -149,8 +144,7 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fop_move(file: pchar;  to: pchar): integer; 
 //var
 //err: integer; 
@@ -159,14 +153,13 @@ uses
 //  if err<>0{nil} {<= !!!9} 
 //  then
 //  error('Unable to move file'); 
-//  
+
 //  begin
 //    result:= err; 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fop_copy(file: pchar;  to: pchar): integer; 
 //var
 //err: integer; 
@@ -175,14 +168,13 @@ uses
 //  if err<>0{nil} {<= !!!9} 
 //  then
 //  error('Unable to copy file!'); 
-//  
+
 //  begin
 //    result:= err; 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fop_link(file: pchar;  to: pchar): integer; 
 //begin
 //  error('Linking files is unsupported on Windows'); 
@@ -191,8 +183,7 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fop_backup(file: pchar;  from: pchar;  to: pchar): integer; 
 //begin
 //  error('Backing up files is unsupported on Windows'); 
@@ -202,7 +193,6 @@ uses
 //  end;
 //end;
 
-
 function fop_exists(_file: pchar): integer;
 begin
   if FileExists(_file) or DirectoryExists(_file) then
@@ -211,20 +201,17 @@ begin
     exit(0);
 end;
 
-
 //procedure fop_recurdir(dirname: pchar); 
 //var
 //lslash: pchar; 
 //tmp: array [0..Pred(MAXPATHLEN)] of char; 
 //err: integer; 
 //begin
-//  
-//  
-//  
+
 //  if fop_exists(dirname)
 //  then
 //  exit;
-//  
+
 //  strcpy(tmp,dirname); 
 //  lslash:= last_slash(tmp); 
 //  if {not}0=lslash
@@ -233,13 +220,12 @@ end;
 //  (* Split about the last slash and recurse *)
 //  {*}lslash^:=0; 
 //  fop_recurdir(tmp); 
-//  
+
 //  if {not}0=CreateDirectory(dirname,0{nil})
 //  then
 //  error('Unable to create directory\n');
 //end;
-//
-//
+
 //function fop_rename(from: pchar;  to: pchar): integer; 
 //begin
 //  if {not}0=fop_exists(from)
@@ -247,7 +233,7 @@ end;
 //  begin
 //    result:= 0; 
 //    exit;
-//    
+
 //  end;
 //  if fop_exists(to)
 //  then
@@ -268,8 +254,7 @@ end;
 
 //var {was static}
 //str: array [0..Pred(MAXPATHLEN+12)] of char; 
-//
-//
+
 //function fop_delete(file: pchar;  dir: integer;  recursive: integer): integer; 
 //begin
 //  if recursive<>0{nil} {<= !!!9} 
@@ -281,47 +266,43 @@ end;
 //  sprintf(str,'/bin/rmdir "%s"',file); 
 //  else
 //  sprintf(str,'/bin/rm -f "%s"',file); 
-//  
+
 //  begin
 //    result:= docmd(str); 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fop_touch(file: pchar): integer; 
 //begin
 //  sprintf(str,'/bin/touch %s',file); 
-//  
+
 //  begin
 //    result:= docmd(str); 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fop_move(file: pchar;  to: pchar): integer; 
 //begin
 //  sprintf(str,'/bin/mv -f %s %s',file,to); 
-//  
+
 //  begin
 //    result:= docmd(str); 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fop_copy(file: pchar;  to: pchar): integer; 
 //begin
 //  sprintf(str,'/bin/cp -rf "%s" %s',file,to); 
-//  
+
 //  begin
 //    result:= docmd(str); 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fop_link(file: pchar;  to: pchar): integer; 
 //begin
 //  sprintf(str,'/bin/ln -f %s %s',file,to); 
@@ -330,8 +311,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fop_backup(file: pchar;  from: pchar;  to: pchar): integer; 
 //begin
 //  sprintf(str,'/bin/su root -c ''cd %s; /bin/tar cf - "%s" | (/bin/cd %s; /bin/tar xf -)''',from,file,to);
@@ -340,8 +320,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function fop_exists(file: pchar): integer; 
 //begin
 //  begin
@@ -349,19 +328,17 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure fop_recurdir(dirname: pchar); 
 //var
 //lslash: pchar; 
 //tmp: array [0..Pred(MAXPATHLEN)] of char; 
 //begin
-//  
-//  
+
 //  if fop_exists(dirname)
 //  then
 //  exit;
-//  
+
 //  strcpy(tmp,dirname); 
 //  lslash:= last_slash(tmp); 
 //  if {not}0=lslash
@@ -370,11 +347,10 @@ end;
 //  (* Split about the last slash and recurse *)
 //  {*}lslash^:=0; 
 //  fop_recurdir(tmp); 
-//  
+
 //  mkdir(dirname,$1FF); 
 //end;
-//
-//
+
 //function fop_rename(from: pchar;  to: pchar): integer; 
 //begin
 //  if {not}0=fop_exists(from)
@@ -398,6 +374,5 @@ end;
 //end;
 
 {$endif}
-
 
 end.

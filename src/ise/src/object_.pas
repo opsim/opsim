@@ -58,12 +58,11 @@ begin
   workob.size[2]:=1.0;
 end;
 
-//
 //procedure copy_baseflags; 
 //var
 //base: pBase; 
 //begin
-//  
+
 //  base:= FIRSTBASE; 
 //  while base
 //  do
@@ -72,13 +71,12 @@ end;
 //    base:= base.next; 
 //  end;
 //end;
-//
-//
+
 //procedure copy_objectflags; 
 //var
 //base: pBase; 
 //begin
-//  
+
 //  base:= FIRSTBASE; 
 //  while base
 //  do
@@ -87,10 +85,9 @@ end;
 //    base:= base.next; 
 //  end;
 //end;
-//
-//
+
 //(* niet object zelf vrijgeven *)
-//
+
 //procedure free_object(ob: pObject); 
 //var
 //vd: pView3D; 
@@ -105,16 +102,7 @@ end;
 //a: integer; 
 //b: integer; (* specifieke data loskoppelen *)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if ob.data<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -251,8 +239,7 @@ end;
 //  end;
 //  do_realtimelight(0,0,0); 
 //end;
-//
-//
+
 //procedure free_object_fromscene(ob: pObject); 
 //var
 //vd: pView3D; 
@@ -270,22 +257,10 @@ end;
 //tex: pTex; 
 //a: integer; (* alle objecten aflopen: parents en bevels *)
 //nl: pNetLink;
-// 
+
 //next: pNetLink; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  obt:= G.main.object.first; 
 //  while obt
 //  do
@@ -308,7 +283,7 @@ end;
 //      then
 //      begin 
 //        nl:=obt.network.first; 
-//        
+
 //        while nl
 //        do
 //        begin 
@@ -322,7 +297,7 @@ end;
 //          nl:= next; 
 //        end;
 //      end;
-//      
+
 //      function ELEM{!!!3 unknown typedef}: if; 
 //      begin
 //        cu:= obt.data; 
@@ -374,7 +349,7 @@ end;
 //      end;
 //    end;
 //    mat:= mat.id.next; 
-//    
+
 //  end;
 //  tex:= G.main.tex.first; (* textures *)
 //  while tex
@@ -472,13 +447,12 @@ end;
 //    sc:= sc.id.next; 
 //  end;
 //end;
-//
-//
+
 //function exist_object(obtest: pObject): integer; 
 //var
 //ob: pObject; 
 //begin
-//  
+
 //  ob:= G.main.object.first; 
 //  while ob
 //  do
@@ -496,13 +470,12 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure add_camera; 
 //var
 //cam: pCamera; 
 //begin
-//  
+
 //  cam:= alloc_libblock(@G.main.camera,ID_CA,'Camera'); 
 //  cam.lens:= 35.0; 
 //  cam.clipsta:= 0.1; 
@@ -516,38 +489,35 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function copy_camera(cam: pCamera): pCamera; 
 //var
 //camn: pCamera; 
 //begin
-//  
+
 //  camn:= copy_libblock(cam); 
 //  id_us_plus({!!!a type cast? =>} {pID(}camn.ipo); 
 //  copy_scriptlink( and camn.scriptlink); 
-//  
+
 //  begin
 //    result:= camn; 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure make_local_camera(cam: pCamera); 
 //var
 //ob: pObject; 
 //camn: pCamera; 
 //local: integer;
-// 
+
 //lib: integer;
 // (* - zijn er alleen lib users: niet doen
 //  * - zijn er alleen locale users: flag zetten
 //  * - mixed: copy
 //  *)
 //begin
-//  
-//  
+
 //  local:=0; 
 //  lib:=0; (* - zijn er alleen lib users: niet doen
 //    * - zijn er alleen locale users: flag zetten
@@ -611,15 +581,12 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
-//
-//
+
 //procedure add_lamp; 
 //var
 //la: pLamp; 
 //begin
-//  
+
 //  la:= alloc_libblock(@G.main.lamp,ID_LA,'Lamp'); 
 //  la.r:= la.g:=la.b:=1.0; 
 //  la.haint:= la.energy:=1.0; 
@@ -640,15 +607,13 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function copy_lamp(la: pLamp): pLamp; 
 //var
 //lan: pLamp; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  lan:= copy_libblock(la); 
 //  for{while} a:=0 to Pred(8) { a++}
 //  do
@@ -663,28 +628,26 @@ end;
 //  end;
 //  id_us_plus({!!!a type cast? =>} {pID(}lan.ipo); 
 //  copy_scriptlink(@la.scriptlink); 
-//  
+
 //  begin
 //    result:= lan; 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure make_local_lamp(la: pLamp); 
 //var
 //ob: pObject; 
 //lan: pLamp; 
 //local: integer;
-// 
+
 //lib: integer;
 // (* - zijn er alleen lib users: niet doen
 //  * - zijn er alleen locale users: flag zetten
 //  * - mixed: copy
 //  *)
 //begin
-//  
-//  
+
 //  local:=0; 
 //  lib:=0; (* - zijn er alleen lib users: niet doen
 //    * - zijn er alleen locale users: flag zetten
@@ -748,21 +711,19 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure free_camera(ca: pCamera); 
 //begin
 //  free_scriptlink( and ca.scriptlink); 
 //end;
-//
-//
+
 //procedure free_lamp(la: pLamp); 
 //var
 //mtex: pMTex; 
 //a: integer; 
 //(* scriptlinks *)
 //begin
-//  
+
 //  free_scriptlink(@la.scriptlink); 
 //  for{while} a:=0 to Pred(8) { a++}
 //  do
@@ -777,8 +738,7 @@ end;
 //  end;
 //  la.ipo:= 0; 
 //end;
-//
-//
+
 //procedure add_wave; 
 //begin
 //  begin
@@ -786,10 +746,9 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //(* **************** VOORKEUR NAMEN ************** *)
-//
+
 //var
 //n_mesh: pchar = 0; 
 //n_curve: pchar = 0; 
@@ -798,14 +757,13 @@ end;
 //n_font: pchar = 0; 
 //n_lamp: pchar = 0; 
 //n_camera: pchar = 0; 
-//
-//
+
 //procedure set_obact_names(ob: pObject); 
 //begin
 //  if ob=0
 //  then
 //  exit;
-//  
+
 //  case ob.type of
 //    OB_MESH:
 //    begin
@@ -835,24 +793,20 @@ end;
 //    begin
 //      n_camera:= ob.id.name+2; 
 //    end;
-//    
+
 //  end;{case?}
 //end;
-//
-//
+
 //procedure clear_obact_names; 
 //begin
 //  n_mesh:= n_curve:=n_mball:=n_surf:=n_font:=n_lamp:=n_camera:=0; 
 //end;
-//
-//
-//
+
 //(* *************************************************** *)
-//
-//
+
 //(* algemene add: in G.scene, met layer uit area en default naam *)
 //(* maakt alle minimaal nodige datablokken aan, zonder vertices etc. *)
-//
+
 //function add_object(type: integer): pObject; 
 //var
 //ob: pObject; 
@@ -860,10 +814,7 @@ end;
 //curs: pfloat; 
 //name: array [0..Pred(32)] of char; 
 //begin
-//  
-//  
-//  
-//  
+
 //  G.f:= G.f and ( not (G_VERTEXPAINT+G_FACESELECT)); 
 //  setcursor_space(SPACE_VIEW3D,CURSOR_STD); 
 //  ob:= OBACT; (* de defaultnaam werkt (voorlopig) niet bij mesh, curve en surf (door add_prim) *)
@@ -958,7 +909,7 @@ end;
 //  curs:= give_cursor(); 
 //  VECCOPY(ob.loc,curs); 
 //  (* default object vars *)
-//  
+
 //  function ELEM{!!!3 unknown typedef}: if; 
 //  else
 //  begin 
@@ -1047,7 +998,7 @@ end;
 //    begin
 //      ob.data:= add_wave(); 
 //    end;
-//    
+
 //  end;{case?}
 //  (* aan de scene hangen *)
 //  base:= callocN(sizeof(Base),'add_base'); 
@@ -1076,21 +1027,19 @@ end;
 //  ob.flag:= ob.flag or (SELECT); 
 //  allqueue(REDRAWINFO,1); 
 //  (* 1, want header->win==0! *)
-//  
+
 //  begin
 //    result:= ob; 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function copy_object(ob: pObject): pObject; 
 //var
 //obn: pObject; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  obn:= copy_libblock(ob); 
 //  if ob.totcol<>0{nil} {<= !!!9} 
 //  then
@@ -1117,13 +1066,12 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure expand_local_object(ob: pObject); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  id_lib_extern({!!!a type cast? =>} {pID(}ob.ipo); 
 //  id_lib_extern({!!!a type cast? =>} {pID(}ob.data); 
 //  for{while} a:=0 to Pred(ob.totcol) { a++}
@@ -1132,24 +1080,21 @@ end;
 //    id_lib_extern({!!!a type cast? =>} {pID(}ob.mat[a]); 
 //  end;
 //end;
-//
-//
+
 //procedure make_local_object(ob: pObject); 
 //var
 //obn: pObject; 
 //sce: pScene; 
 //base: pBase; 
 //local: integer;
-// 
+
 //lib: integer;
 // (* - zijn er alleen lib users: niet doen
 //  * - zijn er alleen locale users: flag zetten
 //  * - mixed: copy
 //  *)
 //begin
-//  
-//  
-//  
+
 //  local:=0; 
 //  lib:=0; (* - zijn er alleen lib users: niet doen
 //    * - zijn er alleen locale users: flag zetten
@@ -1165,7 +1110,7 @@ end;
 //    ob.id.flag:= LIB_LOCAL; 
 //    new_id(0,{!!!a type cast? =>} {pID(}ob,0); 
 //  end;
-//  
+
 //  else
 //  begin 
 //    sce:= G.main.scene.first; 
@@ -1230,33 +1175,31 @@ end;
 //  end;
 //  expand_local_object(ob); 
 //end;
-//
+
 //(* *************** CALC ****************** *)
-//
+
 //(* er zit ook een tijdberekening in de drawobject() *)
-//
+
 //bluroffs: float = 0.0; 
 //no_speed_curve: integer = 0; 
-//
-//
+
 //procedure set_mblur_offs(blur: integer); 
 //begin
 //  bluroffs:= R.r.blurfac*({!!!a type cast? =>} {float(}blur); 
 //  bluroffs:= bluroffs div ({!!!a type cast? =>} {float(}R.r.osa); 
 //end;
-//
+
 //procedure disable_speed_curve(val: integer); 
 //begin
 //  no_speed_curve:= val; 
 //end;
-//
-//
+
 //function bsystem_time(ob: pObject;  par: pObject;  cfra: float;  ofs: float): float; 
 //var
 //sf: float; 
 //f: float; 
 //begin(* geeft float terug ( zie ook frame_to_float in ipo.c) *)
-//  
+
 //  if no_speed_curve=0
 //  then
 //  if ob)and(ob.ipo
@@ -1274,7 +1217,7 @@ end;
 //  cfra:= cfra + (bluroffs); 
 //  cfra:= cfra * (G.scene.r.framelen); 
 //  (* motion blur *)
-//  
+
 //  (* global time *)
 //  (* ofset frames *)
 //  if ob)and((ob.ipoflag and OB_OFFS_PARENT)
@@ -1290,18 +1233,16 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //(* no parent *)
-//
+
 //procedure object_to_mat3(ob: pObject;  mat: array [0..,0..Pred(3)] of float); 
 //var
 //smat: array [0..Pred(3),0..Pred(3)] of float; 
 //vec: array [0..Pred(3)] of float; 
 //rmat: array [0..Pred(3),0..Pred(3)] of float; 
 //begin
-//  
-//  
-//  
+
 //  if ob.ipo<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -1313,7 +1254,7 @@ end;
 //    vec[1]:= ob.size[1]+ob.dsize[1]; 
 //    vec[2]:= ob.size[2]+ob.dsize[2]; 
 //    SizeToMat3(vec,smat); 
-//    
+
 //  end;
 //  else
 //  begin 
@@ -1322,13 +1263,12 @@ end;
 //  end;
 //  Mat3MulMat3(mat,rmat,smat); 
 //end;
-//
-//
+
 //procedure object_to_mat4(ob: pObject;  mat: array [0..,0..Pred(4)] of float); 
 //var
 //tmat: array [0..Pred(3),0..Pred(3)] of float; 
 //begin
-//  
+
 //  object_to_mat3(ob,tmat); 
 //  Mat4CpyMat3(mat,tmat); 
 //  VECCOPY(mat[3],ob.loc); 
@@ -1340,11 +1280,9 @@ end;
 //    mat[3][2]:= mat[3][2] + (ob.dloc[2]); 
 //  end;
 //end;
-//
-//
+
 //enable_cu_speed: integer = 1; 
-//
-//
+
 //procedure ob_parcurve(ob: pObject;  par: pObject;  mat: array [0..,0..Pred(4)] of float); 
 //var
 //cu: pCurve; 
@@ -1355,13 +1293,7 @@ end;
 //x1: float; 
 //ctime: float; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  Mat4One(mat); 
 //  cu:= par.data; 
 //  if cu.path=0)or(cu.path.data=0
@@ -1388,17 +1320,17 @@ end;
 //    ctime:= ctime div (cu.pathlen); 
 //    CLAMP(ctime,0.0,1.0); 
 //  end;
-//  
+
 //  if where_on_path(par,ctime,vec,dir)
 //  then
 //  begin 
-//    
+
 //    if cu.flag and CU_FOLLOW
 //    then
 //    begin 
 //      quat:= vectoquat(dir,ob.trackflag,ob.upflag); 
 //      Normalise(dir); 
-//      
+
 //      q[0]:= fcos(0.5*vec[3]); 
 //      x1:= fsin(0.5*vec[3]); 
 //      q[1]:= -x1*dir[0]; 
@@ -1410,21 +1342,18 @@ end;
 //    VECCOPY(mat[3],vec); 
 //  end;
 //end;
-//
-//
+
 //procedure ob_parlimb(ob: pObject;  par: pObject;  mat: array [0..,0..Pred(4)] of float); 
 //var
 //ika: pIka; 
 //li: pLimb; 
 //cmat: array [0..Pred(3),0..Pred(3)] of float; 
 //ang: float;
-// 
+
 //cur: integer;
 // (* in lokale ob space *)
 //begin
-//  
-//  
-//  
+
 //  ang:=0.0; 
 //  cur:=0; (* in lokale ob space *)
 //  Mat4One(mat); 
@@ -1447,8 +1376,7 @@ end;
 //  mat[3][0]:= li.eff[0]; 
 //  mat[3][1]:= li.eff[1]; 
 //end;
-//
-//
+
 //procedure give_parvert(par: pObject;  nr: integer;  vec: pfloat); 
 //var
 //me: pMesh; 
@@ -1463,18 +1391,9 @@ end;
 //a: integer; 
 //count: integer; 
 //begin
-//  
-//  
-//  
+
 //  {editNurb: ListBase; }{<= !!!5 external variable}
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  vec[0]:= vec[1]:=vec[2]:=0.0; 
 //  if par.type=OB_MESH
 //  then
@@ -1521,7 +1440,7 @@ end;
 //    end;
 //  end;
 //  else
-//  
+
 //  function ELEM{!!!3 unknown typedef}: if; 
 //  begin
 //    cu:= par.data; 
@@ -1571,7 +1490,7 @@ end;
 //      nu:= nu.next; 
 //    end;
 //  end;
-//
+
 //  else
 //  if par.type=OB_IKA
 //  then
@@ -1599,8 +1518,7 @@ end;
 //  else
 //  exit;
 //end;
-//
-//
+
 //procedure ob_parvert3(ob: pObject;  par: pObject;  mat: array [0..,0..Pred(4)] of float); 
 //var
 //cmat: array [0..Pred(3),0..Pred(3)] of float; 
@@ -1615,17 +1533,9 @@ end;
 //par3: integer; 
 //(* in lokale ob space *)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  Mat4One(mat); 
-//  
+
 //  function ELEM3{!!!3 unknown typedef}: if; 
 //  begin
 //    give_parvert(par,ob.par1,v1); 
@@ -1647,35 +1557,31 @@ end;
 //    end;
 //  end
 //end;
-//
+
 //var
 //no_parent_ipo: integer = 0; 
-//
+
 //procedure set_no_parent_ipo(val: integer); 
 //begin
 //  no_parent_ipo:= val; 
 //end;
-//
+
 //var
 //timefac: float = 1.0; (* 50 Hz, dtime:2 *)
-//
-//
-//
+
 //procedure set_dtime(dtime: integer); 
 //begin
 //  timefac:= ({!!!a type cast? =>} {float(}dtime) div 2.0; 
 //end;
-//
+
 //var {was static}
 //during_script_flag: integer = 0; 
-//
-//
+
 //procedure disable_where_script(on: smallint); 
 //begin
 //  during_script_flag:= on; 
 //end;
-//
-//
+
 //function during_script: integer; 
 //begin
 //  begin
@@ -1683,8 +1589,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure where_is_object_time(ob: pObject;  ctime: float); 
 //var
 //par: pObject; 
@@ -1704,26 +1609,14 @@ end;
 //(* deze berekent alleen de directe relatie met de parent en track *)
 //(* hij is sneller, maar moet wel de timeoffs in de gaten houden *)
 //ika: pIka;
-// 
+
 //quat: pfloat; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if ob=0
 //  then
 //  exit;
-//  
+
 //  if ctime<>ob.ctime
 //  then
 //  begin 
@@ -1733,11 +1626,11 @@ end;
 //    begin 
 //      stime:= bsystem_time(ob,0,ctime,0.0); 
 //      calc_ipo(ob.ipo,stime); 
-//      
+
 //      execute_ipo({!!!a type cast? =>} {pID(}ob,ob.ipo); 
 //    end;
 //  end;
-//  
+
 //  if ob.type=OB_IKA
 //  then
 //  begin 
@@ -1746,7 +1639,7 @@ end;
 //    then
 //    where_is_object_time(ika.parent,ctime); 
 //  end;
-//  
+
 //  if ob.parent<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -1764,11 +1657,11 @@ end;
 //      where_is_object_time(par,ctime); 
 //    end;
 //    object_to_mat4(ob,obmat); 
-//    
+
 //    if ob.partype and PARSLOW
 //    then
 //    Mat4CpyMat4(slowmat,ob.obmat); 
-//    
+
 //    case ob.partype and PARTYPE of
 //      PAROBJECT:
 //      begin
@@ -1809,7 +1702,7 @@ end;
 //      begin
 //        Mat4One(totmat); 
 //      end;
-//      
+
 //    end;{case?}
 //    (* totaal *)
 //    Mat4MulSerie(tmat,totmat,ob.parentinv,0); 
@@ -1862,7 +1755,7 @@ end;
 //  if ob.track<>0{nil} {<= !!!9} 
 //  then
 //  begin 
-//    
+
 //    if ctime<>ob.track.ctime
 //    then
 //    where_is_object_time(ob.track,ctime); 
@@ -1886,18 +1779,14 @@ end;
 //    Mat4CpyMat4(tmat,ob.obmat); 
 //    Mat4MulMat34(ob.obmat,totmat,tmat); 
 //  end;
-//  
-//  
+
 //  if {not}0=during_script())and(ob.scriptlink.totscript
 //  then
 //  begin 
 //    do_pyscript(ob,SCRIPT_FRAMECHANGED); 
 //  end;
 //end;
-//
-//
-//
-//
+
 //procedure where_is_object(ob: pObject); 
 //begin(* deze zijn gememcopied *)
 //  if ob.flag and OB_FROMDUPLI
@@ -1905,9 +1794,7 @@ end;
 //  exit;
 //  where_is_object_time(ob,F_CFRA); 
 //end;
-//
-//
-//
+
 //procedure where_is_object_simul(ob: pObject); 
 //var
 //par: pObject; 
@@ -1930,19 +1817,7 @@ end;
 //mat: array [0..Pred(3),0..Pred(3)] of float; 
 //up: array [0..Pred(3)] of float; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  ipo:= ob.ipo; 
 //  ob.ipo:= 0; 
 //  if ob.parent<>0{nil} {<= !!!9} 
@@ -1950,12 +1825,11 @@ end;
 //  begin 
 //    par:= ob.parent; 
 //    object_to_mat4(ob,obmat); 
-//    
-//    
+
 //    if ob.partype and PARSLOW
 //    then
 //    Mat4CpyMat4(slowmat,ob.obmat); 
-//    
+
 //    case ob.partype and 15 of
 //      PAROBJECT:
 //      begin
@@ -1995,7 +1869,7 @@ end;
 //      begin
 //        Mat4One(totmat); 
 //      end;
-//      
+
 //    end;{case?}
 //    (* totaal *)
 //    Mat4MulSerie(tmat,totmat,ob.parentinv,0); 
@@ -2027,8 +1901,7 @@ end;
 //  if ob.track<>0{nil} {<= !!!9} 
 //  then
 //  begin 
-//    
-//    
+
 //    VecSubf(vec,ob.obmat[3],ob.track.obmat[3]); 
 //    up[0]:= 0.0; 
 //    up[1]:= 1.0; 
@@ -2038,17 +1911,15 @@ end;
 //    VECCOPY(ob.obmat[1],mat[1]); 
 //    VECCOPY(ob.obmat[2],mat[2]); 
 //  end;
-//  
+
 //  ob.ipo:= ipo; 
 //  (*  LET OP!!! *)
 //end;
-//
-//
-//
+
 //procedure what_does_parent1(par: pObject;  partype: integer;  par1: integer;  par2: integer;  par3: integer); 
 //begin
 //  clear_workob(); 
-//  
+
 //  Mat4One(workob.parentinv); 
 //  workob.parent:= par; 
 //  if par<>0{nil} {<= !!!9} 
@@ -2060,15 +1931,13 @@ end;
 //  workob.par3:= par3; 
 //  where_is_object(@workob); 
 //  (* LET OP: NIET ECHT NETJES *)
-//  
+
 //end;
-//
-//
-//
+
 //procedure what_does_parent(ob: pObject); 
 //begin
 //  clear_workob(); 
-//  
+
 //  Mat4One(workob.parentinv); 
 //  workob.parent:= ob.parent; 
 //  workob.track:= ob.track; 
@@ -2079,16 +1948,14 @@ end;
 //  workob.par2:= ob.par2; 
 //  workob.par3:= ob.par3; 
 //  where_is_object(@workob); 
-//  
-//  
+
 //end;
-//
-//
+
 //function unit_boundbox: pBoundBox; 
 //var
 //bb: pBoundBox; 
 //begin
-//  
+
 //  bb:= mallocN(sizeof(BoundBox),'bb'); 
 //  bb.vec[0][0]:= bb.vec[1][0]:=bb.vec[2][0]:=bb.vec[3][0]:=-1.0; 
 //  bb.vec[4][0]:= bb.vec[5][0]:=bb.vec[6][0]:=bb.vec[7][0]:=1.0; 
@@ -2096,14 +1963,13 @@ end;
 //  bb.vec[2][1]:= bb.vec[3][1]:=bb.vec[6][1]:=bb.vec[7][1]:=1.0; 
 //  bb.vec[0][2]:= bb.vec[3][2]:=bb.vec[4][2]:=bb.vec[7][2]:=-1.0; 
 //  bb.vec[1][2]:= bb.vec[2][2]:=bb.vec[5][2]:=bb.vec[6][2]:=1.0; 
-//  
+
 //  begin
 //    result:= bb; 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure minmax_object(ob: pObject;  min: pfloat;  max: pfloat); 
 //var
 //bb: BoundBox; 
@@ -2112,11 +1978,7 @@ end;
 //vec: array [0..Pred(3)] of float; 
 //a: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  case ob.type of
 //    OB_CURVE,
 //    OB_FONT,
@@ -2135,7 +1997,7 @@ end;
 //      end;
 //    end;
 //    OB_LIFE,
-//    
+
 //    OB_MESH,
 //    OB_SECTOR:
 //    begin
@@ -2162,19 +2024,16 @@ end;
 //    begin
 //      DO_MINMAX(ob.obmat[3],min,max); 
 //      VECCOPY(vec,ob.obmat[3]); 
-//      
+
 //      VecAddf(vec,vec,ob.size); 
 //      DO_MINMAX(vec,min,max); 
 //      VECCOPY(vec,ob.obmat[3]); 
-//      
+
 //      VecSubf(vec,vec,ob.size); 
 //      DO_MINMAX(vec,min,max); 
 //    end;
-//    
+
 //  end;{case?}
 //end;
-//
-//
-//
 
 end.

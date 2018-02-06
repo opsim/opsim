@@ -93,19 +93,19 @@ interface
 
   //  var
   //    charlist : array[0..(NASCII)-1] of pschar;cvar;external;
-  //
+
   //function fontname:^objfnt;
-  //
+
   //function readobjfnt:^objfnt;
-  //
+
   //function newobjfnt:^objfnt;
-  //
+
   //function fontstringwidth:single;
-  //
+
   //function getcharprog:^smallint;
-  //
+
   //function getchardesc:^chardesc;
-  //
+
   //function asciiname:^char;
 
 implementation

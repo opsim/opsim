@@ -19,7 +19,6 @@
  * ***** END GPL/BL DUAL LICENSE BLOCK *****
  *)
 
-
 (*  font.c      MIXED MODEL
  *
  *  maart 95
@@ -44,16 +43,16 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //{$include "objfnt.h"}
 //{$include "datatoc.h"}
 //{$include "file.h"}
-//
+
 //const
 //MAX_VF_CHARS = 256; 
-//
+
 //(* Nieuwe opzet voor vectorfont:
 // *
 // * geen PDrawfont meer, alles meteen naar Nurb en BezTriple
 // *
 // *)
-//
+
 //type
 //chartrans = record
 //xof: float; 
@@ -62,19 +61,18 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //linenr: smallint; 
 //charnr: smallint; 
 //end;
-//
+
 //procedure free_vfont(vf: pVFont); 
 //var
 //nu: pNurb; 
 //bezt: pBezTriple; 
 //i: integer; 
 //begin
-//  
-//  
+
 //  if vf=0
 //  then
 //  exit;
-//  
+
 //  for{while} i:=0 to Pred(MAX_VF_CHARS) { i++}
 //  do
 //  begin 
@@ -89,21 +87,19 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //      freeN(nu); 
 //    end;
 //  end;
-//  
+
 //  if vf.data.kern<>0{nil} {<= !!!9} 
 //  then
 //  freeN(vf.data.kern); 
 //  freeN(vf.data); 
 //end;
-//
-//
-//
+
 //type
 //Nurb = record
 //end;
 //BezTriple = record
 //end;
-//
+
 //function objfnt_to_vfont(fnt: pobjfnt;  vfont: pVFont): integer; 
 //var
 //vfd: pVFontData; 
@@ -121,30 +117,15 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //scale: float; 
 //dx: float; 
 //dy: float; 
-//
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if fnt=0
 //  then
 //  begin
 //    result:= (0); 
 //    exit;
-//    
+
 //  end;
 //  if fnt.type<>SP_TYPE
 //  then
@@ -167,15 +148,14 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //      vfd.width[i]:= scale*cd.movex; 
 //      _data:= data:=cd.data; 
 //      repeat
-//      
-//      
+
 //      begin 
 //        (* eerst even tellen *)
 //        _data:= data; 
 //        count:= 0; 
 //        ready:= stop:=LongBool(0); 
 //        repeat
-//        
+
 //        begin 
 //          case {*}data^{++} inc(data);  of
 //            SP_MOVETO:
@@ -208,18 +188,18 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //            begin
 //              stop:= LongBool(1); 
 //            end;
-//            
+
 //          end;{case?}
 //        end;
 //        until not {0=}(stop=LongBool(0));
-//        
+
 //        if last[0]=first[0])and(last[1]=first[1]
 //        then
 //        meet:= 1; 
 //        else
 //        meet:= LongBool(0); 
 //        (* is er meer dan 1 uniek punt ?*)
-//        
+
 //        if count-meet>0
 //        then
 //        begin 
@@ -237,7 +217,7 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //            nu.bezt:= bezt; 
 //            stop:= LongBool(0); 
 //            repeat
-//            
+
 //            (* punten inlezen *)
 //            begin 
 //              case {*}data^{++} inc(data);  of
@@ -283,11 +263,11 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //                begin
 //                  stop:= LongBool(1); 
 //                end;
-//                
+
 //              end;{case?}
 //            end;
 //            until not {0=}(stop=LongBool(0));
-//            
+
 //            if meet<>0{nil} {<= !!!9} 
 //            then
 //            begin 
@@ -339,7 +319,7 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //      until not {0=}(ready=LongBool(0));
 //    end;
 //  end;
-//  
+
 //  begin
 //    result:= (1); 
 //    exit;
@@ -361,13 +341,13 @@ begin
   //begin
   //  strcpy(di,name);
   //  splitdirstring(di,fi);
-  //
+
   //  vfont:= alloc_libblock(@G.main.vfont,ID_VF,fi);
   //  vfont.data:= callocN(sizeof(VFontData),'Vfontdata');
-  //
+
   //  ok:= objfnt_to_vfont(fnt,vfont);
   //  freeobjfnt(fnt);
-  //
+
   //  if ok<>0 then
   //  begin
   //    strncpy(vfont.name,name,sizeof(vfont.name));
@@ -412,13 +392,12 @@ end;
 //type
 //objfnt = record
 //end;
-//
+
 //procedure reload_vfont(vfont: pVFont); 
 //begin
-//  
-//  
+
 //  function loadpostcriptfont{!!!3 unknown typedef}: pobjfnt; 
-//  
+
 //  fnt:= loadpostcriptfont(vfont.name); 
 //  if fnt<>0{nil} {<= !!!9} 
 //  then
@@ -429,9 +408,7 @@ end;
 //  vfont.flag:= 0; 
 //  (* loaded *)
 //end;
-//
-//
-//
+
 //procedure buildchar(cu: pCurve;  ascii: uchar;  ofsx: float;  ofsy: float;  rot: float); 
 //var
 //bezt1: pBezTriple; 
@@ -447,16 +424,7 @@ end;
 //i: integer; 
 //(* maak een kopie op afstand ofsx, ofsy met shear*)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  fsize:= cu.fsize; 
 //  shear:= cu.shear; 
 //  si:= fsin(rot); 
@@ -481,7 +449,7 @@ end;
 //      i:= nu2.pntsu; 
 //      bezt2:= mallocstructN(structBezTriple,i,'duplichar_bezt2'); (* nu2->trim.first = 0; *)
 //      (* nu2->trim.last = 0; *)
-//      
+
 //      if bezt2=0
 //      then
 //      begin 
@@ -521,7 +489,7 @@ end;
 //          fp[6]:= co*x+si*fp[7]; 
 //          fp[7]:= -si*x+co*fp[7]; 
 //          inc(bezt2); 
-//          
+
 //        end;
 //      end;
 //      bezt2:= nu2.bezt; 
@@ -536,15 +504,14 @@ end;
 //        fp[6]:= (fp[6]+ofsx)*fsize; 
 //        fp[7]:= (fp[7]+ofsy)*fsize; 
 //        inc(bezt2); 
-//        
+
 //      end;
 //      addtail(@(cu.nurb),nu2); 
 //    end;
 //    nu1:= nu1.next; 
 //  end;
 //end;
-//
-//
+
 //type
 //chartrans = record
 //end;
@@ -593,13 +560,13 @@ end;
 //mem: puchar; 
 //(* opmerking: berekeningen altijd tot en met de '\0' van de string omdat
 //    de cursor op die plek moet kunnen staan *)
-//
+
 //if ob.type<>OB_FONT
 //then
 //begin
 //  result:= 0; 
 //  exit;
-//  
+
 //end;
 //cu:= ob.data; 
 //vfont:= cu.vfont; 
@@ -614,7 +581,7 @@ end;
 //begin
 //  result:= 0; 
 //  exit;
-//  
+
 //  (* aantal regels tellen *)
 //end;
 //mem:= cu.str; 
@@ -641,8 +608,7 @@ end;
 //xtrax:= 0.5*cu.spacing-0.5; 
 //linedist:= cu.linedist; 
 //(* bereken ofset en rotatie van iedere letter *)
-//
-//
+
 //for{while} i:=0 to slen { i++}
 //do
 //begin 
@@ -684,7 +650,7 @@ end;
 //    tabfac:= (xof-cu.xof+0.$1); 
 //    tabfac:= 2.0*fceil(tabfac div 2.0); 
 //    xof:= cu.xof+tabfac; 
-//    
+
 //  end;
 //  else
 //  begin 
@@ -693,7 +659,7 @@ end;
 //    ct.linenr:= lnr; 
 //    ct.charnr:= cnr{++} inc(cnr); ; 
 //    xof:= xof + (vfont.data.width[ascii]+xtrax); 
-//    
+
 //    if vfont.data.kern<>0{nil} {<= !!!9} 
 //    then
 //    begin 
@@ -714,7 +680,7 @@ end;
 //  end;
 //  inc(ct); 
 //end;
-//
+
 //(* met alle fontsettings plekken letters berekenen *)
 //if cu.spacemode<>CU_LEFT)and(lnr>1
 //then
@@ -777,7 +743,7 @@ end;
 //  if cucu.path<>0{nil} {<= !!!9} 
 //  then
 //  begin 
-//    
+
 //    Mat3CpyMat4(cmat,cu.textoncurve.obmat); 
 //    sizefac:= Normalise(cmat[0]) div cu.fsize; 
 //    minx:= miny:=1.0e20; 
@@ -859,14 +825,12 @@ end;
 //      yof:= ct.yof; 
 //      ct.xof:= vec[0]+si*yof; 
 //      ct.yof:= vec[1]+co*yof; 
-//      
-//      
+
 //    end;
 //    cucu.flag:= oldflag; 
 //  end;
 //end;
-//
-//
+
 //if mode=FO_CURSUP)or(mode=FO_CURSDOWN
 //then
 //begin 
@@ -929,7 +893,7 @@ end;
 //  f[6]:= cu.fsize*(-0.1*co+0.8*si+ct.xof); 
 //  f[7]:= cu.fsize*(0.1*si+0.8*co+ct.yof); 
 //end;
-//
+
 //if mode=0
 //then
 //begin 
@@ -945,9 +909,9 @@ end;
 //  end;
 //end;
 //freeN(linedata); 
-//
+
 //freeN(linedata2); 
-//
+
 //if mode=FO_DUPLI
 //then
 //begin 
@@ -957,24 +921,21 @@ end;
 //  end;
 //end;
 //freeN(chartransdata); 
-//
+
 //begin
 //  result:= 0; 
 //  exit;
 //end;
 //end;{case?}
-//
-//
+
 //(* ***************** DUPLI  ***************** *)
-//
-//
+
 //function find_family_object{!!!3 unknown typedef}: pObject; 
 //var
 //ob: pObject; 
 //flen: integer; 
 //begin
-//  
-//  
+
 //  if obar[ch]<>0{nil} {<= !!!9} 
 //  then
 //  begin
@@ -1001,12 +962,11 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //type
 //chartrans = record
 //end;
-//
+
 //procedure font_duplilist(par: pObject); 
 //var
 //ob: pObject; 
@@ -1024,27 +984,14 @@ end;
 //a: integer; 
 //begin
 //  {duplilist: ListBase; }{<= !!!5 external variable}
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  Mat4CpyMat4(pmat,par.obmat); 
 //  lay:= G.scene.lay; 
 //  if G.vd<>0{nil} {<= !!!9} 
 //  then
 //  lay:= G.vd.lay; 
 //  chartransdata:= text_to_curve(par,FO_DUPLI); (* in par staat een familienaam, deze gebruiken om objecten te vinden *)
-//  
+
 //  if chartransdata=0
 //  then
 //  exit;
@@ -1056,7 +1003,7 @@ end;
 //  yof:= cu.yof; 
 //  ct:= chartransdata; 
 //  set_displist_onlyzero(1); 
-//  
+
 //  while{for} 
 //  a:= 0; 
 //  {to} a<slen
@@ -1091,6 +1038,5 @@ end;
 //  set_displist_onlyzero(0); 
 //  freeN(chartransdata); 
 //end;
-
 
 end.

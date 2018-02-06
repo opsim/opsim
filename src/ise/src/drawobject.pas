@@ -116,7 +116,6 @@ begin
   end;
 end;
 
-
 //procedure tekenrect9(vec: pfloat;  rect: puint); 
 //var
 //dummy: char = #0;
@@ -129,7 +128,7 @@ end;
 //    glDrawPixels(9,9,GL_RGBA,GL_UNSIGNED_BYTE,rect);
 //  end;
 //end;
-//
+
 //procedure tekenrect4(vec: pfloat;  rect: puint); 
 //var
 //  dummy: char = #0;
@@ -142,12 +141,11 @@ end;
 //    glDrawPixels(4,4,GL_RGBA,GL_UNSIGNED_BYTE,rect); 
 //  end;
 //end;
-//
-//
+
 //procedure tekenrect3(vec: pfloat;  rect: puint); 
 //var
 //dummy: char;
-// 
+
 //begin
 //  dummy:=0; 
 //  if vec<>0{nil} {<= !!!9} 
@@ -159,8 +157,7 @@ end;
 //    glDrawPixels(3,3,GL_RGBA,GL_UNSIGNED_BYTE,rect); 
 //  end;
 //end;
-//
-//
+
 //procedure helpline(vec: pfloat); 
 //var
 //vecrot: array [0..2] of single;
@@ -171,14 +168,14 @@ end;
 //  if G.obedit<>0   then
 //  Mat4MulVecfl(G.obedit.obmat,vecrot); 
 //  getmouseco_areawin(mval); 
-//  
+
 //  project_short_noclip(vecrot,mval1); 
 //  persp(0); 
-//  
+
 //  glDrawBuffer(GL_FRONT); 
 //  cpack(0); 
 //  setlinestyle(3); 
-//  
+
 //  glBegin(GL_LINE_STRIP); 
 //  glVertex2sv(mval); 
 //  glVertex2sv(mval1); 
@@ -187,8 +184,7 @@ end;
 //  persp(1); 
 //  glDrawBuffer(GL_BACK);
 //end;
-//
-//
+
 //procedure drawaxes(size: single);
 //var
 //v1: array [0..2] of single;
@@ -196,16 +192,14 @@ end;
 //f800: single;
 //f125: single;
 //begin
-//  
-//  
-//  
+
 //  fmsetfont(G.font); 
 //  f125:= 0.125*size; 
 //  f800:= 0.8*size; 
 //  v1[0]:= v1[1]:=v1[2]:=v2[0]:=v2[1]:=v2[2]:=0.0; 
 //  v2[0]:= size; 
 //  LINE3F(v1,v2); 
-//  
+
 //  (* X-AS: pijl *)
 //  v1[0]:= f800; 
 //  v1[1]:= -f125; 
@@ -235,17 +229,16 @@ end;
 //  v1[0]:= f125; 
 //  LINE3F(v1,v2); 
 //  glRasterPos3f(0.0,0.0,size+f125); 
-//  
+
 //  fmprstr('z'); 
 //end;
-//
-//
+
 //procedure drawgourcube; 
 //var
 //vec: array [0..2] of single;
 //n: array [0..2] of single;
 //begin
-//  
+
 //  n[0]:= 0; 
 //  n[1]:= 0; 
 //  n[2]:= 0; 
@@ -259,7 +252,7 @@ end;
 //  n[0]:= 0; 
 //  glEnd(); 
 //  glBegin(GL_POLYGON); 
-//  
+
 //  n[1]:= -1.0; 
 //  glNormal3fv(n); 
 //  glVertex3fv(cube[0]); 
@@ -269,7 +262,7 @@ end;
 //  n[1]:= 0; 
 //  glEnd(); 
 //  glBegin(GL_POLYGON); 
-//  
+
 //  n[0]:= 1.0; 
 //  glNormal3fv(n); 
 //  glVertex3fv(cube[4]); 
@@ -279,7 +272,7 @@ end;
 //  n[0]:= 0; 
 //  glEnd(); 
 //  glBegin(GL_POLYGON); 
-//  
+
 //  n[1]:= 1.0; 
 //  glNormal3fv(n); 
 //  glVertex3fv(cube[7]); 
@@ -289,7 +282,7 @@ end;
 //  n[1]:= 0; 
 //  glEnd(); 
 //  glBegin(GL_POLYGON); 
-//  
+
 //  n[2]:= 1.0; 
 //  glNormal3fv(n); 
 //  glVertex3fv(cube[1]); 
@@ -299,7 +292,7 @@ end;
 //  n[2]:= 0; 
 //  glEnd(); 
 //  glBegin(GL_POLYGON); 
-//  
+
 //  n[2]:= -1.0; 
 //  glNormal3fv(n); 
 //  glVertex3fv(cube[7]); 
@@ -308,12 +301,11 @@ end;
 //  glVertex3fv(cube[3]); 
 //  glEnd(); 
 //end;
-//
-//
+
 //procedure drawcube; 
 //begin
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(cube[0]); 
 //  glVertex3fv(cube[1]); 
 //  glVertex3fv(cube[2]); 
@@ -326,30 +318,29 @@ end;
 //  glVertex3fv(cube[4]); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(cube[1]); 
 //  glVertex3fv(cube[5]); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(cube[2]); 
 //  glVertex3fv(cube[6]); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(cube[3]); 
 //  glVertex3fv(cube[7]); 
 //  glEnd(); 
 //end;
-//
-//
+
 //procedure drawcube_size(size: pfloat); 
 //begin
 //  glPushMatrix(); 
-//  
+
 //  glScalef(size[0],size[1],size[2]); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(cube[0]); 
 //  glVertex3fv(cube[1]); 
 //  glVertex3fv(cube[2]); 
@@ -362,25 +353,23 @@ end;
 //  glVertex3fv(cube[4]); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(cube[1]); 
 //  glVertex3fv(cube[5]); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(cube[2]); 
 //  glVertex3fv(cube[6]); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(cube[3]); 
 //  glVertex3fv(cube[7]); 
 //  glEnd(); 
 //  glPopMatrix(); 
 //end;
-//
-//
-//
+
 //procedure tekenshadbuflimits(la: pLamp;  mat: array [0..,0..3] of single);
 //var
 //sta: array [0..2] of single;
@@ -388,9 +377,7 @@ end;
 //lavec: array [0..2] of single;
 //s: array [0..1] of smallint;
 //begin
-//  
-//  
-//  
+
 //  lavec[0]:= -mat[2][0]; 
 //  lavec[1]:= -mat[2][1]; 
 //  lavec[2]:= -mat[2][2]; 
@@ -402,15 +389,12 @@ end;
 //end[1]:= mat[3][1]+la.clipend*lavec[1]; 
 //end[2]:= mat[3][2]+la.clipend*lavec[2]; 
 //glBegin(GL_LINE_STRIP); 
-//
-//
-//
-//
+
 //glVertex3fv(sta); 
 //glVertex3fv(end); 
 //glEnd(); 
 //glPointSize(3.0); 
-//
+
 //glBegin(GL_POINTS); 
 //cpack(0); 
 //glVertex3fv(sta); 
@@ -418,9 +402,7 @@ end;
 //glEnd(); 
 //glPointSize(1.0); 
 //end;
-//
-//
-//
+
 //void{!!!e unknown token}
 //lvec: pfloat; 
 //vvec: pfloat; 
@@ -442,25 +424,25 @@ end;
 //  Normalise(vvec); 
 //  Crossf(temp,vvec,lvec); 
 //  (* is dit de goede vector ? *)
-//  
+
 //  Crossf(plane,lvec,temp); 
 //  (* vergelijking van vlak door vvec en lvec *)
 //  Normalise(plane); 
 //  (* en dan het vlak loodrecht daarop en evenwijdig aan lvec *)
-//  
+
 //  q[1]:= plane[1]; 
 //  q[2]:= -plane[0]; 
 //  q[3]:= 0; 
 //  Normalise(@q[1]); 
-//  
+
 //  (* nu hebben we twee vergelijkingen: die van de kegel en die van het vlak, maar we hebben
 //   drie onbekenden We halen nu een onbekende weg door het vlak naar z=0 te roteren *)
 //  (* Ik heb geen flauw idee of dat mag, we moeten tenslotte twee oplossingen krijgen, maar we
 //   proberen het gewoon: vlak vector moet (0,0,1) worden*)
-//  
+
 //  (* roteer om uitproduct vector van (0,0,1) en vlakvector, inproduct graden *)
 //  (* volgens defenitie volgt dat uitproduct is (plane[1],-plane[0],0), en cos() = plane[2]);*)
-//  
+
 //  hoek:= safacos(plane[2]) div 2.0; 
 //  co:= fcos(hoek); 
 //  si:= fsqrt(1-co*co); 
@@ -469,17 +451,14 @@ end;
 //  q[2]:= q[2] * (si); 
 //  q[3]:= 0; 
 //  QuatToMat3(q,mat1); 
-//  
-//  
-//  
+
 //  vvec[0]:= lvec[0]; 
 //  vvec[1]:= lvec[1]; 
 //  vvec[2]:= lvec[2]; 
 //  Mat3One(mat2); 
-//  
+
 //  (* lampvector nu over acos(inp) graden roteren *)
-//  
-//  
+
 //  co:= inp; 
 //  si:= fsqrt(1-inp*inp); 
 //  mat2[0][0]:= co; 
@@ -487,24 +466,21 @@ end;
 //  mat2[0][1]:= si; 
 //  mat2[1][1]:= co; 
 //  Mat3MulMat3(mat3,mat2,mat1); 
-//  
+
 //  mat2[1][0]:= si; 
 //  mat2[0][1]:= -si; 
 //  Mat3MulMat3(mat4,mat2,mat1); 
-//  
+
 //  Mat3Transp(mat1); 
 //  Mat3MulMat3(mat2,mat1,mat3); 
-//  
+
 //  Mat3MulVecfl(mat2,lvec); 
 //  Mat3MulMat3(mat2,mat1,mat4); 
 //  Mat3MulVecfl(mat2,vvec); 
-//  
+
 //  exit;
 //end;
-//
-//
-//
-//
+
 //procedure drawlamp(ob: pObject); 
 //var
 //la: pLamp; 
@@ -515,13 +491,7 @@ end;
 //y: single;
 //z: single;
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  la:= ob.data; 
 //  vec[0]:= vec[1]:=vec[2]:=0.0; 
 //  setlinestyle(4); 
@@ -538,7 +508,7 @@ end;
 //    vvec[2]:= x*ob.obmat[2][0]+y*ob.obmat[2][1]+z*ob.obmat[2][2]; 
 //    y:= fcos(M_PI*la.spotsize div 360.0); 
 //    spotvolume(lvec,vvec,y); 
-//    
+
 //    x:= -la.dist; 
 //    lvec[0]:= lvec[0] * (x); 
 //    lvec[1]:= lvec[1] * (x); 
@@ -547,7 +517,7 @@ end;
 //    vvec[1]:= vvec[1] * (x); 
 //    vvec[2]:= vvec[2] * (x); 
 //    glBegin(GL_LINE_STRIP); 
-//    
+
 //    glVertex3fv(vvec); 
 //    glVertex3fv(vec); 
 //    glVertex3fv(lvec); 
@@ -555,7 +525,7 @@ end;
 //    z:= x*fsqrt(1.0-y*y); 
 //    x:= x * (y); 
 //    glTranslatef(0.0,0.0,x); 
-//    
+
 //    if la.mode and LA_SQUARE
 //    then
 //    begin 
@@ -576,7 +546,7 @@ end;
 //    circ(0.0,0.0,fabs(z)); 
 //  end;
 //  else
-//  
+
 //  function ELEM{!!!3 unknown typedef}: if; 
 //  begin
 //    glBegin(GL_LINE_STRIP); 
@@ -590,7 +560,7 @@ end;
 //    if la.mode and LA_SPHERE
 //    then
 //    begin 
-//      
+
 //      var
 //      tmat: array [0..3,0..3] of single;
 //      imat: array [0..3,0..3] of single;
@@ -599,7 +569,7 @@ end;
 //      Mat4Invert(imat,tmat); 
 //      drawcircball(vec,la.dist,imat); 
 //    end;
-//    
+
 //  end;
 //  loadmatrix(G.vd.viewmat); 
 //  VECCOPY(vec,ob.obmat[3]); 
@@ -615,15 +585,13 @@ end;
 //    tekenshadbuflimits(la,ob.obmat); 
 //  end;
 //end;
-//
-//
+
 //procedure draw_limit_line(sta: single;  end: single;  col: cardinal);
 //var
 //vec: array [0..1,0..2] of single;
 //mval: array [0..1] of smallint;
 //begin
-//  
-//  
+
 //  vec[0][0]:= 0.0; 
 //  vec[0][1]:= 0.0; 
 //  vec[0][2]:= -sta; 
@@ -631,9 +599,9 @@ end;
 //  vec[1][1]:= 0.0; 
 //  vec[1][2]:= -end; 
 //  LINE3F(vec[0],vec[1]); 
-//  
+
 //  glPointSize(3.0); 
-//  
+
 //  glBegin(GL_POINTS); 
 //  cpack(col); 
 //  glVertex3fv(vec[0]); 
@@ -641,9 +609,7 @@ end;
 //  glEnd(); 
 //  glPointSize(1.0); 
 //end;
-//
-//
-//
+
 //procedure drawcamera(ob: pObject); 
 //var
 //cam: pCamera; 
@@ -656,14 +622,7 @@ end;
 //depth: single;
 //mval: array [0..1] of smallint;
 //begin(* een staande piramide met (0,0,0) als top *)
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  cam:= ob.data; 
 //  glDisable(GL_LIGHTING); 
 //  glDisable(GL_CULL_FACE); 
@@ -691,7 +650,7 @@ end;
 //  vec[4][2]:= depth; 
 //  glBegin(GL_LINE_LOOP); 
 //  (* GLBUG: z niet op nul vanwege picking op entry *)
-//  
+
 //  glVertex3fv(vec[0]); 
 //  glVertex3fv(vec[1]); 
 //  glVertex3fv(vec[2]); 
@@ -700,16 +659,16 @@ end;
 //  glVertex3fv(vec[4]); 
 //  glEnd(); 
 //  glBegin(GL_LINES); 
-//  
+
 //  glVertex3fv(vec[2]); 
 //  glVertex3fv(vec[3]); 
 //  glEnd(); 
 //  glBegin(GL_LINES); 
-//  
+
 //  glVertex3fv(vec[4]); 
 //  glVertex3fv(vec[1]); 
 //  glEnd(); 
-//  
+
 //  if G.vd.persp>=2
 //  then
 //  exit;
@@ -719,11 +678,11 @@ end;
 //  (* pijl aan top *)
 //  vec[0][2]:= depth; 
 //  glBegin(GL_POLYGON); 
-//  
+
 //  vec[0][0]:= -0.2*cam.drawsize; 
 //  vec[0][1]:= cam.drawsize; 
 //  glVertex3fv(vec[0]); 
-//  
+
 //  vec[0][0]:= 0.2*cam.drawsize; 
 //  glVertex3fv(vec[0]); 
 //  vec[0][1]:= 1.6*cam.drawsize; 
@@ -732,7 +691,7 @@ end;
 //  glVertex3fv(vec[0]); 
 //  glEnd(); 
 //  glBegin(GL_POLYGON); 
-//  
+
 //  vec[0][0]:= -0.4*cam.drawsize; 
 //  vec[0][1]:= 1.6*cam.drawsize; 
 //  glVertex3fv(vec[0]); 
@@ -751,13 +710,13 @@ end;
 //    Mat4Ortho(vec); 
 //    multmatrix(vec); 
 //    Mat4SwapMat4(G.vd.persmat,tmat); 
-//    
+
 //    mygetsingmatrix(G.vd.persmat); 
-//    
+
 //    if cam.flag and CAM_SHOWLIMITS
 //    then
 //    draw_limit_line(cam.clipsta,cam.clipend,B_YELLOW); 
-//    
+
 //    if cam.flag and CAM_SHOWNETCLIP
 //    then
 //    draw_limit_line(cam.netsta,cam.netend,0); 
@@ -770,8 +729,7 @@ end;
 //    Mat4SwapMat4(G.vd.persmat,tmat); 
 //  end;
 //end;
-//
-//
+
 //procedure tekenvertslatt(sel: smallint); 
 //var
 //lt: pLattice; 
@@ -785,24 +743,16 @@ end;
 //wxt: integer; 
 //w: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  glPointSize(3.0); 
-//  
+
 //  if sel<>0{nil} {<= !!!9} 
 //  then
 //  cpack(B_YELLOW); 
 //  else
 //  cpack(B_PURPLE); 
 //  glBegin(GL_POINTS); 
-//  
+
 //  bp:= editLatt.def; 
 //  lt:= editLatt; 
 //  if lt.flag and LT_OUTSIDE
@@ -854,7 +804,7 @@ end;
 //  end;
 //  else
 //  begin 
-//    
+
 //    a:= editLatt.pntsu*editLatt.pntsv*editLatt.pntsw; 
 //    while a{--} dec(a); 
 //    do
@@ -872,8 +822,7 @@ end;
 //  glPointSize(1.0); 
 //  glEnd(); 
 //end;
-//
-//
+
 //procedure calc_lattverts; 
 //var
 //bp: pBPoint; 
@@ -883,11 +832,7 @@ end;
 //b: integer; 
 //sp: psmallint; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  Mat4SwapMat4(G.vd.persmat,mat); 
 //  mygetsingmatrix(G.vd.persmat); 
 //  bp:= editLatt.def; 
@@ -899,22 +844,18 @@ end;
 //    inc(bp); 
 //  end;
 //  Mat4SwapMat4(G.vd.persmat,mat); 
-//  
+
 //end;
-//
-//
-//
+
 //procedure calc_lattverts_ext; 
 //begin
 //  areawinset(curarea.win); 
-//  
+
 //  multmatrix(G.obedit.obmat); 
 //  calc_lattverts(); 
 //  loadmatrix(G.vd.viewmat); 
 //end;
-//
-//
-//
+
 //procedure drawlattice(ob: pObject); 
 //var
 //lt: pLattice; 
@@ -929,16 +870,7 @@ end;
 //vxt: integer; 
 //wxt: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  lt:= ob.data; 
 //  if ob=G.obedit
 //  then
@@ -991,7 +923,7 @@ end;
 //            if w)and((uxt)or(vxt)
 //            then
 //            begin 
-//              
+
 //              glBegin(GL_LINE_STRIP); 
 //              glVertex3fv((bp-dw).vec); 
 //              glVertex3fv(bp.vec); 
@@ -1000,7 +932,7 @@ end;
 //            if v)and((uxt)or(wxt)
 //            then
 //            begin 
-//              
+
 //              glBegin(GL_LINES); 
 //              glVertex3fv((bp-dv).vec); 
 //              glVertex3fv(bp.vec); 
@@ -1009,7 +941,7 @@ end;
 //            if u)and((vxt)or(wxt)
 //            then
 //            begin 
-//              
+
 //              glBegin(GL_LINES); 
 //              glVertex3fv(bpu.vec); 
 //              glVertex3fv(bp.vec); 
@@ -1041,7 +973,7 @@ end;
 //          if w<>0{nil} {<= !!!9} 
 //          then
 //          begin 
-//            
+
 //            glBegin(GL_LINES); 
 //            glVertex3fv((bp-dw).vec); 
 //            glVertex3fv(bp.vec); 
@@ -1050,7 +982,7 @@ end;
 //          if v<>0{nil} {<= !!!9} 
 //          then
 //          begin 
-//            
+
 //            glBegin(GL_LINES); 
 //            glVertex3fv((bp-dv).vec); 
 //            glVertex3fv(bp.vec); 
@@ -1059,7 +991,7 @@ end;
 //          if u<>0{nil} {<= !!!9} 
 //          then
 //          begin 
-//            
+
 //            glBegin(GL_LINES); 
 //            glVertex3fv(bpu.vec); 
 //            glVertex3fv(bp.vec); 
@@ -1084,22 +1016,21 @@ end;
 //    glEnable(GL_DEPTH_TEST); 
 //  end;
 //end;
-//
+
 //(* ***************** ******************** *)
-//
-//
+
 //procedure calc_meshverts; 
 //var
 //eve: pEditVert; 
 //mat: array [0..3,0..3] of single;
 //begin
-//  
+
 //  if G.edve.first=0
 //  then
 //  exit;
 //  eve:= G.edve.first; 
 //  Mat4SwapMat4(G.vd.persmat,mat); 
-//  
+
 //  mygetsingmatrix(G.vd.persmat); 
 //  eve:= G.edve.first; 
 //  while eve
@@ -1114,18 +1045,16 @@ end;
 //  end;
 //  Mat4SwapMat4(G.vd.persmat,mat); 
 //end;
-//
-//
+
 //procedure calc_meshverts_ext; 
 //begin
 //  areawinset(curarea.win); 
-//  
+
 //  multmatrix(G.obedit.obmat); 
 //  calc_meshverts(); 
 //  loadmatrix(G.vd.viewmat); 
 //end;
-//
-//
+
 //procedure calc_Nurbverts(nurb: pNurb); 
 //var
 //nu: pNurb; 
@@ -1137,13 +1066,7 @@ end;
 //b: integer; 
 //sp: psmallint; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  Mat4SwapMat4(G.vd.persmat,mat); 
 //  mygetsingmatrix(G.vd.persmat); 
 //  nu:= nurb; 
@@ -1178,28 +1101,25 @@ end;
 //    nu:= nu.next; 
 //  end;
 //  Mat4SwapMat4(G.vd.persmat,mat); 
-//  
+
 //end;
-//
-//
+
 //procedure calc_nurbverts_ext; 
 //begin
 //  areawinset(curarea.win); 
-//  
+
 //  multmatrix(G.obedit.obmat); 
 //  calc_Nurbverts(editNurb.first); 
 //  loadmatrix(G.vd.viewmat); 
 //end;
-//
-//
+
 //procedure tekenvertices(sel: smallint); 
 //var
 //eve: pEditVert; 
 //xs: smallint; 
 //ys: smallint; 
 //begin
-//  
-//  
+
 //  glPointSize(2.0); 
 //  if sel<>0{nil} {<= !!!9} 
 //  then
@@ -1220,19 +1140,16 @@ end;
 //  end;
 //  glEnd(); 
 //  glPointSize(1.0); 
-//  
+
 //end;
-//
-//
+
 //procedure tekenvertices_ext(mode: integer); 
 //var
 //tempsa: pScrArea; 
 //sa: pScrArea; 
 //vd: pView3D; 
 //begin
-//  
-//  
-//  
+
 //  if G.f and (G_FACESELECT+G_DRAWFACES)
 //  then
 //  begin 
@@ -1259,7 +1176,7 @@ end;
 //        areawinset(sa.win); 
 //        multmatrix(G.obedit.obmat); 
 //        calc_meshverts(); 
-//        
+
 //        if mode=0)or(mode=2
 //        then
 //        tekenvertices(0); 
@@ -1280,13 +1197,12 @@ end;
 //  then
 //  glEnable(GL_DEPTH_TEST); 
 //end;
-//
+
 //(* ************** DRAW DISPLIST ****************** *)
-//
+
 //draw_index_wire: integer = 1; 
 //index3_nors_incr: integer = 1; 
-//
-//
+
 //procedure drawDispListwire(dlbase: pListBase); 
 //var
 //dl: pDispList; 
@@ -1307,26 +1223,11 @@ end;
 //v4: pfloat; 
 //side: single;
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if dlbase=0
 //  then
 //  exit;
-//  
+
 //  dl:= dlbase.first; 
 //  while dl
 //  do
@@ -1379,7 +1280,7 @@ end;
 //          glBegin(GL_LINE_LOOP); 
 //          else
 //          glBegin(GL_LINE_STRIP); 
-//          
+
 //          while nr{--} dec(nr); 
 //          do
 //          begin 
@@ -1403,7 +1304,7 @@ end;
 //          then
 //          glBegin(GL_LINE_LOOP); 
 //          else
-//          
+
 //          glBegin(GL_LINE_STRIP); 
 //          while parts{--} dec(parts); 
 //          do
@@ -1429,7 +1330,7 @@ end;
 //          while parts{--} dec(parts); 
 //          do
 //          begin 
-//            
+
 //            glBegin(GL_LINE_STRIP); 
 //            glVertex3fv(data+3*index[0]); 
 //            glVertex3fv(data+3*index[1]); 
@@ -1450,7 +1351,7 @@ end;
 //          while parts{--} dec(parts); 
 //          do
 //          begin 
-//            
+
 //            glBegin(GL_LINE_STRIP); 
 //            glVertex3fv(data+3*index[0]); 
 //            glVertex3fv(data+3*index[1]); 
@@ -1463,13 +1364,12 @@ end;
 //          end;
 //        end;
 //      end;
-//      
+
 //    end;{case?}
 //    dl:= dl.next; 
 //  end;
 //end;
-//
-//
+
 //procedure drawDispListsolid(lb: pListBase;  ob: pObject); 
 //var
 //dl: pDispList; 
@@ -1497,29 +1397,7 @@ end;
 //col: array [0..2] of smallint;
 //cp: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if lb=0
 //  then
 //  exit;
@@ -1552,7 +1430,7 @@ end;
 //            glBegin(GL_QUAD_STRIP); 
 //            glVertex3fv(v2); 
 //            glVertex3fv(v4); 
-//            
+
 //            for{while}  to Pred(dl.nr) { b++}
 //            do
 //            begin 
@@ -1562,20 +1440,20 @@ end;
 //              v1:= v1 + (3); 
 //              v4:= v3; 
 //              v3:= v3 + (3); 
-//              
+
 //            end;
 //            glEnd(); 
 //          end;
 //        end;
 //        else
 //        begin 
-//          
+
 //          set_gl_material(dl.col+1); 
 //          (*    
 //              glBegin(GL_LINES);
 //              for(a=0; a<dl->parts*dl->nr; a++) {
 //               single nor[3];
-//               
+
 //               VECCOPY(nor, data+3*a);
 //               glVertex3fv(nor);
 //               VecAddf(nor, nor, ndata+3*a);
@@ -1600,7 +1478,7 @@ end;
 //            glVertex3fv(v2); 
 //            glNormal3fv(n4); 
 //            glVertex3fv(v4); 
-//            
+
 //            for{while}  to Pred(dl.nr) { b++}
 //            do
 //            begin 
@@ -1616,14 +1494,14 @@ end;
 //              n1:= n1 + (3); 
 //              n4:= n3; 
 //              n3:= n3 + (3); 
-//              
+
 //            end;
 //            glEnd(); 
 //          end;
 //        end;
 //      end;
 //      DL_INDEX3:
-//      
+
 //      begin
 //        parts:= dl.parts; 
 //        data:= dl.verts; 
@@ -1635,7 +1513,7 @@ end;
 //          while parts{--} dec(parts); 
 //          do
 //          begin 
-//            
+
 //            glBegin(GL_POLYGON); 
 //            glVertex3fv(data+3*index[0]); 
 //            glVertex3fv(data+3*index[1]); 
@@ -1646,7 +1524,7 @@ end;
 //        end;
 //        else
 //        begin 
-//          
+
 //          set_gl_material(dl.col+1); 
 //          (* voor poly's is er maar 1 normaal nodig *)
 //          if index3_nors_incr=0
@@ -1655,7 +1533,7 @@ end;
 //            while parts{--} dec(parts); 
 //            do
 //            begin 
-//              
+
 //              glBegin(GL_POLYGON); 
 //              glNormal3fv(ndata); 
 //              glVertex3fv(data+3*index[0]); 
@@ -1670,7 +1548,7 @@ end;
 //            while parts{--} dec(parts); 
 //            do
 //            begin 
-//              
+
 //              glBegin(GL_POLYGON); 
 //              ofs:= 3*index[0]; 
 //              glNormal3fv(ndata+ofs); 
@@ -1688,8 +1566,7 @@ end;
 //        end;
 //      end;
 //      DL_INDEX4:
-//      
-//      
+
 //      begin
 //        parts:= dl.parts; 
 //        data:= dl.verts; 
@@ -1701,7 +1578,7 @@ end;
 //          while parts{--} dec(parts); 
 //          do
 //          begin 
-//            
+
 //            glBegin(GL_POLYGON); 
 //            glVertex3fv(data+3*index[0]); 
 //            glVertex3fv(data+3*index[1]); 
@@ -1719,7 +1596,7 @@ end;
 //          while parts{--} dec(parts); 
 //          do
 //          begin 
-//            
+
 //            glBegin(GL_POLYGON); 
 //            ofs:= 3*index[0]; 
 //            glNormal3fv(ndata+ofs); 
@@ -1742,7 +1619,7 @@ end;
 //          end;
 //        end;
 //      end;
-//      
+
 //    end;{case?}
 //    dl:= dl.next; 
 //  end;
@@ -1755,8 +1632,7 @@ end;
 //    glDisable(GL_LIGHTING); 
 //  end;
 //end;
-//
-//
+
 //procedure drawDispListshaded(lb: pListBase;  ob: pObject); 
 //var
 //dl: pDispList; 
@@ -1778,7 +1654,7 @@ end;
 //v4: pfloat; 
 //side: single;
 //extverts: pfloat;
-// 
+
 //cdata: puint; 
 //c1: puint; 
 //c2: puint; 
@@ -1787,35 +1663,13 @@ end;
 //col: array [0..2] of smallint;
 //cp: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  extverts:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if lb=0
 //  then
 //  exit;
-//  
+
 //  glShadeModel(GL_SMOOTH); 
 //  dl:= lb.first; 
 //  dlob:= ob.disp.first; 
@@ -1829,12 +1683,12 @@ end;
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    case dl.type of
 //      DL_SURF:
-//      
+
 //      begin
 //        for{while} a:=0 to Pred(dl.parts) { a++}
 //        do
 //        begin 
-//          
+
 //          DL_SURFINDEX(dl.flag and 1,dl.flag and 2,dl.nr,dl.parts); 
 //          v1:= data+3*p1; 
 //          v2:= data+3*p2; 
@@ -1844,11 +1698,11 @@ end;
 //          c2:= cdata+p2; 
 //          c3:= cdata+p3; 
 //          c4:= cdata+p4; 
-//          
+
 //          for{while}  to Pred(dl.nr) { b++}
 //          do
 //          begin 
-//            
+
 //            glBegin(GL_POLYGON); 
 //            cp:= {!!!a type cast? =>} {pchar(}c1; 
 //            glColor3ub(cp[3],cp[2],cp[1]); 
@@ -1871,55 +1725,55 @@ end;
 //            inc(c1); 
 //            c4:= c3; 
 //            inc(c3); 
-//            
+
 //          end;
 //        end;
 //      end;
 //      DL_INDEX3:
-//      
+
 //      begin
 //        parts:= dl.parts; 
 //        index:= dl.index; 
 //        while parts{--} dec(parts); 
 //        do
 //        begin 
-//          
+
 //          glBegin(GL_POLYGON); 
 //          cp:= {!!!a type cast? =>} {pchar(}(cdata+index[0]); 
 //          glColor3ub(cp[3],cp[2],cp[1]); 
 //          glVertex3fv(data+3*index[0]); 
 //          cp:= {!!!a type cast? =>} {pchar(}(cdata+index[1]); 
 //          glColor3ub(cp[3],cp[2],cp[1]); 
-//          
+
 //          glVertex3fv(data+3*index[1]); 
 //          cp:= {!!!a type cast? =>} {pchar(}(cdata+index[2]); 
 //          glColor3ub(cp[3],cp[2],cp[1]); 
-//          
+
 //          glVertex3fv(data+3*index[2]); 
 //          glEnd(); 
 //          index:= index + (3); 
 //        end;
 //      end;
 //      DL_INDEX4:
-//      
+
 //      begin
 //        parts:= dl.parts; 
 //        index:= dl.index; 
 //        while parts{--} dec(parts); 
 //        do
 //        begin 
-//          
+
 //          glBegin(GL_POLYGON); 
 //          cp:= {!!!a type cast? =>} {pchar(}(cdata+index[0]); 
 //          glColor3ub(cp[3],cp[2],cp[1]); 
 //          glVertex3fv(data+3*index[0]); 
 //          cp:= {!!!a type cast? =>} {pchar(}(cdata+index[1]); 
 //          glColor3ub(cp[3],cp[2],cp[1]); 
-//          
+
 //          glVertex3fv(data+3*index[1]); 
 //          cp:= {!!!a type cast? =>} {pchar(}(cdata+index[2]); 
 //          glColor3ub(cp[3],cp[2],cp[1]); 
-//          
+
 //          glVertex3fv(data+3*index[2]); 
 //          if index[3]<>0{nil} {<= !!!9} 
 //          then
@@ -1932,16 +1786,14 @@ end;
 //          index:= index + (4); 
 //        end;
 //      end;
-//      
+
 //    end;{case?}
 //    dl:= dl.next; 
 //    dlob:= dlob.next; 
 //  end;
 //  glShadeModel(GL_FLAT); 
 //end;
-//
-//
-//
+
 //procedure drawmeshsolid(ob: pObject;  nors: pfloat); 
 //var
 //me: pMesh; 
@@ -1951,19 +1803,19 @@ end;
 //mface: pMFace; 
 //evl: pEditVlak; 
 //extverts: pfloat;
-// 
+
 //v1: pfloat; 
 //v2: pfloat; 
 //v3: pfloat; 
 //v4: pfloat; 
 //glmode: integer; 
 //setsmooth: integer;
-// 
+
 //a: integer; 
 //start: integer; 
 //end: integer; 
 //matnr: integer;
-// 
+
 //vertexpaint: integer; 
 //i: integer; 
 //no: array [0..2] of smallint;
@@ -1972,38 +1824,21 @@ end;
 //n3: psmallint; 
 //n4: psmallint; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  extverts:=0; 
-//  
-//  
-//  
-//  
-//  
+
 //  setsmooth:=0; 
-//  
-//  
-//  
+
 //  matnr:=-1; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  vertexpaint:= (G.f and (G_VERTEXPAINT+G_FACESELECT)))and((ob=OBACT); 
 //  me:= get_mesh(ob); 
 //  if me=0
 //  then
 //  exit;
-//  
+
 //  glShadeModel(GL_FLAT); 
-//  
+
 //  if (G.f and G_BACKBUFSEL)=0
 //  then
 //  begin 
@@ -2019,10 +1854,10 @@ end;
 //  tface:= 0; 
 //  mvert:= me.mvert; 
 //  a:= me.totface; 
-//  
+
 //  if{!!!e unknown token}
 //  glEnable(GL_CULL_FACE); 
-//  
+
 //  if ob=G.obedit)or((G.obedit)and(ob.data=G.obedit.data)
 //  then
 //  begin 
@@ -2052,7 +1887,7 @@ end;
 //        end;
 //        else
 //        begin 
-//          
+
 //          glBegin(GL_TRIANGLES); 
 //          glNormal3fv(evl.n); 
 //          glVertex3fv(evl.v1.co); 
@@ -2081,7 +1916,7 @@ end;
 //  end;
 //  else
 //  begin 
-//    
+
 //    start:= 0; 
 //  end:= me.totface; 
 //  set_buildvars(ob,@start, and end); 
@@ -2309,7 +2144,7 @@ end;
 //end;
 //if{!!!e unknown token}
 //glDisable(GL_CULL_FACE); 
-//
+
 //if G.f and G_BACKBUFSEL
 //then
 //begin 
@@ -2317,9 +2152,7 @@ end;
 //end;
 //glDisable(GL_LIGHTING); 
 //end;
-//
-//
-//
+
 //procedure drawmeshshaded(ob: pObject;  col1: puint;  col2: puint); 
 //var
 //me: pMesh; 
@@ -2328,7 +2161,7 @@ end;
 //tface: pTFace; 
 //dl: pDispList; 
 //extverts: pfloat;
-// 
+
 //v1: pfloat; 
 //v2: pfloat; 
 //v3: pfloat; 
@@ -2340,22 +2173,9 @@ end;
 //cp1: pchar; 
 //cp2: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  extverts:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  glShadeModel(GL_SMOOTH); 
 //  glDisable(GL_LIGHTING); 
 //  me:= ob.data; 
@@ -2390,7 +2210,7 @@ end;
 //then
 //extverts:= dl.verts; 
 //glBegin(GL_QUADS); 
-//
+
 //cp1:= {!!!a type cast? =>} {pchar(}col1; 
 //if col2<>0{nil} {<= !!!9} 
 //then
@@ -2435,7 +2255,7 @@ end;
 //        else
 //        v4:= 0; 
 //      end;
-//      
+
 //      if tface<>0{nil} {<= !!!9} 
 //      then
 //      begin 
@@ -2446,8 +2266,7 @@ end;
 //        glDisable(GL_CULL_FACE); 
 //      end;
 //      glColor3ub(cp1[3],cp1[2],cp1[1]); 
-//      
-//      
+
 //      glVertex3fv(v1); 
 //      glColor3ub(cp1[7],cp1[6],cp1[5]); 
 //      glVertex3fv(v2); 
@@ -2464,7 +2283,7 @@ end;
 //      if twoside<>0{nil} {<= !!!9} 
 //      then
 //      begin 
-//        
+
 //        glColor3ub(cp2[11],cp2[10],cp2[9]); 
 //        glVertex3fv(v3); 
 //        glColor3ub(cp2[7],cp2[6],cp2[5]); 
@@ -2492,13 +2311,11 @@ end;
 //then
 //glDisable(GL_CULL_FACE); 
 //end;
-//
-//
-//
+
 //procedure drawDispList(ob: pObject;  dt: integer); 
 //var
 //lb: pListBase;
-// 
+
 //dl: pDispList; 
 //me: pMesh; 
 //se: pSector; 
@@ -2506,10 +2323,7 @@ end;
 //solid: integer; 
 //begin
 //  lb:=0; 
-//  
-//  
-//  
-//  
+
 //  solid:= (dt>OB_WIRE); 
 //  case ob.type of
 //    OB_MESH,
@@ -2683,13 +2497,13 @@ end;
 //      end;
 //    end;
 //    OB_MBALL:
-//    
+
 //    begin
 //      lb:= @ob.disp; 
 //      if lb.first=0
 //      then
 //      makeDispList(ob); 
-//      
+
 //      if solid<>0{nil} {<= !!!9} 
 //      then
 //      begin 
@@ -2712,14 +2526,12 @@ end;
 //      else
 //      drawDispListwire(lb); 
 //    end;
-//    
+
 //  end;{case?}
 //end;
-//
+
 //(* ******************************** *)
-//
-//
-//
+
 //procedure draw_particle_system(ob: pObject;  paf: pPartEff); 
 //var
 //pa: pParticle; 
@@ -2729,12 +2541,7 @@ end;
 //vec1: array [0..2] of single;
 //a: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  pa:= paf.keys; 
 //  if pa=0
 //  then
@@ -2753,11 +2560,11 @@ end;
 //  ptime:= 0.0; 
 //  ctime:= bsystem_time(ob,0,{!!!a type cast? =>} {single(}CFRA,ptime);
 //  glPointSize(1.0); 
-//  
+
 //  if paf.stype<>PAF_VECT
 //  then
 //  glBegin(GL_POINTS); 
-//  
+
 //  while{for} 
 //  a:= 0; 
 //  {to} a<paf.totpart
@@ -2778,7 +2585,7 @@ end;
 //          where_is_particle(paf,pa,ctime,vec); 
 //          where_is_particle(paf,pa,ctime+1.0,vec1); 
 //          glBegin(GL_LINE_STRIP); 
-//          
+
 //          glVertex3fv(vec); 
 //          glVertex3fv(vec1); 
 //          glEnd(); 
@@ -2795,9 +2602,7 @@ end;
 //  then
 //  glEnd(); 
 //end;
-//
-//
-//
+
 //procedure draw_static_particle_system(ob: pObject;  paf: pPartEff); 
 //var
 //pa: pParticle; 
@@ -2808,13 +2613,7 @@ end;
 //vec1: array [0..2] of single;
 //a: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  pa:= paf.keys; 
 //  if pa=0
 //  then
@@ -2829,7 +2628,7 @@ end;
 //  if paf.stype<>PAF_VECT
 //  then
 //  glBegin(GL_POINTS); 
-//  
+
 //  while{for} 
 //  a:= 0; 
 //  {to} a<paf.totpart
@@ -2856,7 +2655,7 @@ end;
 //      begin 
 //        where_is_particle(paf,pa,ctime+1,vec); 
 //        glBegin(GL_LINE_STRIP); 
-//        
+
 //        glVertex3fv(vec); 
 //        glVertex3fv(vec1); 
 //        glEnd(); 
@@ -2873,9 +2672,7 @@ end;
 //  then
 //  glEnd(); 
 //end;
-//
-//
-//
+
 //procedure drawmeshwire(ob: pObject); 
 //var
 //se: pSector; 
@@ -2895,41 +2692,23 @@ end;
 //f3: pfloat; 
 //f4: pfloat; 
 //extverts: pfloat;
-// 
+
 //a: integer; 
 //start: integer; 
 //end: integer; 
 //test: integer; 
 //colbcol: integer;
-// 
+
 //ok: integer; 
 //se: pSector;
-// 
+
 //lf: pLife;
-// 
+
 //begin
 //  {editbutsize: single; }{<= !!!5 external variable}(* buttons.c *)
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  extverts:=0; 
-//  
-//  
-//  
-//  
+
 //  colbcol:=0; 
 //  me:= get_mesh(ob); 
 //  if ob=G.obedit)or((G.obedit)and(ob.data=G.obedit.data)
@@ -2970,7 +2749,7 @@ end;
 //    end;
 //    eed:= G.eded.first; 
 //    glBegin(GL_LINES); 
-//    
+
 //    while eed
 //    do
 //    begin 
@@ -2987,7 +2766,7 @@ end;
 //    then
 //    exit;
 //    calc_meshverts(); 
-//    
+
 //    if G.zbuf<>0{nil} {<= !!!9} 
 //    then
 //    glDisable(GL_DEPTH_TEST); 
@@ -2996,14 +2775,14 @@ end;
 //    if G.zbuf<>0{nil} {<= !!!9} 
 //    then
 //    glEnable(GL_DEPTH_TEST); 
-//    
+
 //    if G.f and G_DRAWNORMALS
 //    then
 //    begin 
 //      (* normals *)
 //      cpack($DDDD22); 
 //      glBegin(GL_LINES); 
-//      
+
 //      evl:= G.edvl.first; 
 //      while evl
 //      do
@@ -3017,7 +2796,7 @@ end;
 //          else
 //          CalcCent3f(fvec,evl.v1.co,evl.v2.co,evl.v3.co); 
 //          glVertex3fv(fvec); 
-//          
+
 //          fvec[0]:= fvec[0] + (editbutsize*evl.n[0]); 
 //          fvec[1]:= fvec[1] + (editbutsize*evl.n[1]); 
 //          fvec[2]:= fvec[2] + (editbutsize*evl.n[2]); 
@@ -3025,7 +2804,7 @@ end;
 //        end;
 //        evl:= evl.next; 
 //      end;
-//      
+
 //      if me.flag and ME_SMESH
 //      then
 //      begin 
@@ -3082,7 +2861,7 @@ end;
 //          end;
 //          else
 //          begin 
-//            
+
 //            CalcCent3f(cent,evl.v1.co,evl.v2.co,evl.v3.co); 
 //            glBegin(GL_LINE_LOOP); 
 //            VecMidf(fvec,cent,evl.v1.co); 
@@ -3410,7 +3189,7 @@ end;
 //end;
 //end;
 //end;
-//
+
 //nurbcol: array [0..Pred(8)] of cardinal = (0,$9090,$409030,$603080,0,$40fff0,$40c033,$A090F0); 
 //void{!!!e unknown token}
 //nu: pNurb; 
@@ -3445,13 +3224,13 @@ end;
 //          fp:= bezt.vec[0]; 
 //          cpack(col[bezt.h1]); 
 //          glBegin(GL_LINE_STRIP); 
-//          
+
 //          glVertex3fv(fp); 
 //          glVertex3fv(fp+3); 
 //          glEnd(); 
 //          cpack(col[bezt.h2]); 
 //          glBegin(GL_LINE_STRIP); 
-//          
+
 //          glVertex3fv(fp+3); 
 //          glVertex3fv(fp+6); 
 //          glEnd(); 
@@ -3463,7 +3242,7 @@ end;
 //          fp:= bezt.vec[0]; 
 //          cpack(col[bezt.h1]); 
 //          glBegin(GL_LINE_STRIP); 
-//          
+
 //          glVertex3fv(fp); 
 //          glVertex3fv(fp+3); 
 //          glEnd(); 
@@ -3475,7 +3254,7 @@ end;
 //          fp:= bezt.vec[1]; 
 //          cpack(col[bezt.h2]); 
 //          glBegin(GL_LINE_STRIP); 
-//          
+
 //          glVertex3fv(fp); 
 //          glVertex3fv(fp+3); 
 //          glEnd(); 
@@ -3485,7 +3264,7 @@ end;
 //    end;
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //nu: pNurb; 
 //sel: smallint; 
@@ -3497,7 +3276,7 @@ end;
 //  if nu.hide<>0{nil} {<= !!!9} 
 //  then
 //  exit;
-//  
+
 //  if sel<>0{nil} {<= !!!9} 
 //  then
 //  cpack(B_YELLOW); 
@@ -3508,7 +3287,7 @@ end;
 //  if (nu.type and 7)=1
 //  then
 //  begin 
-//    
+
 //    bezt:= nu.bezt; 
 //    a:= nu.pntsu; 
 //    while a{--} dec(a); 
@@ -3550,8 +3329,7 @@ end;
 //  glEnd(); 
 //  glPointSize(1.0); 
 //end;
-//
-//
+
 //procedure draw_editnurb(ob: pObject;  nurb: pNurb;  sel: integer); 
 //var
 //nu: pNurb; 
@@ -3561,12 +3339,7 @@ end;
 //b: integer; 
 //ofs: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  nu:= nurb; 
 //  while nu
 //  do
@@ -3586,9 +3359,9 @@ end;
 //            then
 //            glBegin(GL_LINE_LOOP); 
 //            else
-//            
+
 //            glBegin(GL_LINE_STRIP); 
-//            
+
 //            while{for} 
 //            a:= 0; 
 //            {to} a<nu.pntsu
@@ -3599,7 +3372,7 @@ end;
 //            begin 
 //              glVertex3fv(bp.vec); 
 //            end;
-//            
+
 //            if nu.flagu and 1
 //            then
 //            glEnd(); 
@@ -3608,7 +3381,7 @@ end;
 //          end;
 //        end;
 //        CU_NURBS:
-//        
+
 //        begin
 //          bp:= nu.bp; 
 //          for{while} b:=0 to Pred(nu.pntsv) { b++}
@@ -3662,7 +3435,7 @@ end;
 //          then
 //          begin 
 //            (* surface *)
-//            
+
 //            ofs:= nu.pntsu; 
 //            for{while} b:=0 to Pred(nu.pntsu) { b++}
 //            do
@@ -3712,16 +3485,15 @@ end;
 //              end;
 //            end;
 //          end;
-//          
+
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //    nu:= nu.next; 
 //  end;
 //end;
-//
-//
+
 //procedure drawnurb(ob: pObject;  nurb: pNurb;  dt: integer); 
 //var
 //cu: pCurve; 
@@ -3743,21 +3515,7 @@ end;
 //(* eerst handles niet select *)
 //begin
 //  {editbutsize: single; }{<= !!!5 external variable}(* buttons.c *)
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  nu:= nurb; 
 //  while nu
 //  do
@@ -3774,9 +3532,9 @@ end;
 //  cu:= ob.data; 
 //  drawDispList(ob,dt); 
 //  draw_editnurb(ob,nurb,0); 
-//  
+
 //  draw_editnurb(ob,nurb,1); 
-//  
+
 //  if cu.flag and CU_3D
 //  then
 //  begin 
@@ -3805,7 +3563,7 @@ end;
 //        vec[2]:= bevp.z+editbutsize*bevp.mat[0][2]; 
 //        glVertex3fv(vec); 
 //        glEnd(); 
-//        
+
 //        inc(bevp); 
 //        a:= skip; 
 //        while a{--} dec(a); 
@@ -3817,12 +3575,11 @@ end;
 //      end;
 //      bl:= bl.next; 
 //      nu:= nu.next; 
-//      
+
 //    end;
 //  end;
 //  calc_Nurbverts(nurb); 
-//  
-//  
+
 //  if G.zbuf<>0{nil} {<= !!!9} 
 //  then
 //  glDisable(GL_DEPTH_TEST); 
@@ -3847,21 +3604,19 @@ end;
 //  then
 //  glEnable(GL_DEPTH_TEST); 
 //end;
-//
-//
+
 //procedure tekentextcurs; 
 //begin
 //  cpack(0); 
 //  glBegin(GL_POLYGON); 
-//  
+
 //  glVertex2fv(G.textcurs[0]); 
 //  glVertex2fv(G.textcurs[1]); 
 //  glVertex2fv(G.textcurs[2]); 
 //  glVertex2fv(G.textcurs[3]); 
 //  glEnd(); 
 //end;
-//
-//
+
 //procedure drawcircball(cent: pfloat;  rad: single;  tmat: array [0..,0..3] of single);
 //var
 //si: single;
@@ -3873,16 +3628,9 @@ end;
 //vy: array [0..2] of single;
 //a: integer; 
 //tot: integer;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  tot:=32; 
 //  VECCOPY(vx,tmat[0]); 
 //  VECCOPY(vy,tmat[1]); 
@@ -3908,8 +3656,7 @@ end;
 //  end;
 //  glEnd(); 
 //end;
-//
-//
+
 //procedure drawmball(ob: pObject;  dt: integer); 
 //var
 //mb: pMetaBall; 
@@ -3917,12 +3664,9 @@ end;
 //imat: array [0..3,0..3] of single;
 //tmat: array [0..3,0..3] of single;
 //code: integer;
-// 
+
 //begin
-//  
-//  
-//  
-//  
+
 //  code:=1; 
 //  mb:= ob.data; 
 //  if ob=G.obedit
@@ -3940,7 +3684,7 @@ end;
 //    ml:= mb.elems.first; 
 //  end;
 //  getmatrix(tmat); 
-//  
+
 //  Mat4Invert(imat,tmat); 
 //  Normalise(imat[0]); 
 //  Normalise(imat[1]); 
@@ -3966,19 +3710,17 @@ end;
 //    ml:= ml.next; 
 //  end;
 //end;
-//
-//
-//
+
 //procedure drawboundbox(ob: pObject); 
 //var
 //me: pMesh; 
 //bb: pBoundBox;
-// 
+
 //vec: pfloat; 
 //begin
-//  
+
 //  bb:=0; 
-//  
+
 //  if ob.type=OB_MESH
 //  then
 //  begin 
@@ -3991,7 +3733,7 @@ end;
 //    end;
 //  end;
 //  else
-//  
+
 //  function ELEM3{!!!3 unknown typedef}: if; 
 //  begin
 //    bb:= ({!!!a type cast? =>} {pCurve(}ob.data).bb; 
@@ -4015,7 +3757,7 @@ end;
 //    end;
 //  end;
 //  else
-//  
+
 //  function ELEM{!!!3 unknown typedef}: if; 
 //  begin
 //    me:= get_mesh(ob); 
@@ -4033,7 +3775,7 @@ end;
 //  exit;
 //  vec:= bb.vec[0]; 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(vec); 
 //  glVertex3fv(vec+3); 
 //  glVertex3fv(vec+6); 
@@ -4046,23 +3788,22 @@ end;
 //  glVertex3fv(vec+12); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(vec+3); 
 //  glVertex3fv(vec+15); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(vec+6); 
 //  glVertex3fv(vec+18); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(vec+9); 
 //  glVertex3fv(vec+21); 
 //  glEnd(); 
 //end;
-//
-//
+
 //procedure drawtexspace(ob: pObject); 
 //var
 //me: pMesh; 
@@ -4073,13 +3814,7 @@ end;
 //loc: pfloat; 
 //size: pfloat; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if ob.type=OB_MESH
 //  then
 //  begin 
@@ -4088,7 +3823,7 @@ end;
 //    loc:= me.loc; 
 //  end;
 //  else
-//  
+
 //  function ELEM3{!!!3 unknown typedef}: if; 
 //  begin
 //    cu:= ob.data; 
@@ -4112,10 +3847,10 @@ end;
 //  bb.vec[0][2]:= bb.vec[3][2]:=bb.vec[4][2]:=bb.vec[7][2]:=loc[2]-size[2]; 
 //  bb.vec[1][2]:= bb.vec[2][2]:=bb.vec[5][2]:=bb.vec[6][2]:=loc[2]+size[2]; 
 //  setlinestyle(2); 
-//  
+
 //  vec:= bb.vec[0]; 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(vec); 
 //  glVertex3fv(vec+3); 
 //  glVertex3fv(vec+6); 
@@ -4128,28 +3863,26 @@ end;
 //  glVertex3fv(vec+12); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(vec+3); 
 //  glVertex3fv(vec+15); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(vec+6); 
 //  glVertex3fv(vec+18); 
 //  glEnd(); 
 //  glBegin(GL_LINE_STRIP); 
-//  
+
 //  glVertex3fv(vec+9); 
 //  glVertex3fv(vec+21); 
 //  glEnd(); 
 //  setlinestyle(0); 
 //end;
-//
-//
+
 //var {was static}
 //warning_recursive: integer;
-// 
-//
+
 //procedure draw_object(base: pBase); 
 //var
 //paf: pPartEff; 
@@ -4161,48 +3894,38 @@ end;
 //ce: pCfraElem; 
 //cfraont: single;
 //axsize: single;
-// 
+
 //rect: puint; 
 //col: cardinal;
-// 
+
 //sel: integer; 
 //drawtype: integer; 
 //colindex: integer;
-// 
+
 //ipoflag: integer; 
 //dt: smallint; 
 //dtx: smallint; 
 //zbufoff: smallint;
-// 
+
 //str: array [0..3] of char;
 //temp: array [0..Pred(7),0..2] of single;
 //ma: pMaterial;
-// 
+
 //ma: pMaterial;
-// 
+
 //nl: pNetLink;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  axsize:=1.0; 
-//  
+
 //  col:=0; 
 //  warning_recursive:=0; 
-//  
-//  
+
 //  colindex:=0; 
-//  
-//  
-//  
+
 //  zbufoff:=0; 
-//  
+
 //  ob:= base.object; 
 //  (* keys tekenen? *)
 //  if base=BASACT)or((base.flag and (SELECT+BA_WASSEL))
@@ -4228,7 +3951,7 @@ end;
 //        ob.ipoflag:= ob.ipoflag and ( not OB_OFFS_OB); 
 //        set_no_parent_ipo(1); 
 //        disable_speed_curve(1); 
-//        
+
 //        if (ob.ipoflag and OB_DRAWKEYSEL)=0
 //        then
 //        begin 
@@ -4262,7 +3985,7 @@ end;
 //          ce:= ce.next; 
 //        end;
 //        set_no_parent_ipo(0); 
-//        
+
 //        disable_speed_curve(0); 
 //        base.flag:= sel; 
 //        ob.ipoflag:= ipoflag; 
@@ -4273,15 +3996,14 @@ end;
 //        G.vd.drawtype:= drawtype; 
 //        freelistN( and elems); 
 //        warning_recursive:= 0; 
-//        
+
 //      end;
 //    end;
 //  end;
 //  multmatrix(ob.obmat); 
 //  (* patch? kinderen met timeoffs verprutsen ouders. Hoe los je dat op! *)
 //  (* if( ((int)ob->ctime) != F_CFRA) where_is_object(ob); *)
-//  
-//  
+
 //  (* welke wire kleur *)
 //  if (G.f and (G_BACKBUFSEL+G_PICKSEL))=0
 //  then
@@ -4374,7 +4096,7 @@ end;
 //  if dt>=OB_WIRE
 //  then
 //  begin 
-//    
+
 //    if dt>OB_SOLID
 //    then
 //    if G.f and G_BACKBUFSEL
@@ -4398,7 +4120,7 @@ end;
 //      dt:= OB_WIRE; 
 //    end;
 //  end;
-//  
+
 //  if (G.f and G_DRAW_EXT))and(dt>OB_WIRE
 //  then
 //  begin 
@@ -4407,12 +4129,12 @@ end;
 //      begin
 //        drawmball(ob,dt); 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //  else
 //  begin 
-//    
+
 //    case ob.type of
 //      OB_MESH:
 //      begin
@@ -4581,7 +4303,7 @@ end;
 //      end;
 //    end;{case?}
 //  end;
-//  
+
 //  (* draw extra: na gewone draw ivm makeDispList *)
 //  if dtx<>0{nil} {<= !!!9} 
 //  then
@@ -4626,12 +4348,11 @@ end;
 //    drawDispListwire(@ob.disp); 
 //  end;
 //  loadmatrix(G.vd.viewmat); 
-//  
-//  
+
 //  if zbufoff<>0{nil} {<= !!!9} 
 //  then
 //  glDisable(GL_DEPTH_TEST); 
-//  
+
 //  if warning_recursive<>0{nil} {<= !!!9} 
 //  then
 //  exit;
@@ -4644,7 +4365,7 @@ end;
 //  if G.f and G_SIMULATION
 //  then
 //  exit;
-//  
+
 //  if (G.f and (G_BACKBUFSEL+G_PICKSEL))=0
 //  then
 //  begin 
@@ -4739,17 +4460,14 @@ end;
 //    glEnd(); 
 //  end;
 //end;
-//
-//
+
 //procedure draw_object_ext(base: pBase); 
 //var
 //tempsa: pScrArea; 
 //sa: pScrArea; 
 //vd: pView3D; 
 //begin
-//  
-//  
-//  
+
 //  if G.vd=0
 //  then
 //  exit;
@@ -4775,16 +4493,16 @@ end;
 //      if base.lay and vd.lay
 //      then
 //      begin 
-//        
+
 //        areawinset(sa.win); 
-//        
+
 //        {$if defined(BEOS) or defined(WINDOWS) or defined(PPC) or defined(MESA31)}
 //        glDrawBuffer(GL_FRONT); 
-//        
+
 //        draw_object(base); 
 //        sa.win_swap:= WIN_FRONT_OK; 
 //        {$else}
-//        
+
 //        if sa.win_swap=WIN_EQUAL
 //        then
 //        glDrawBuffer(GL_FRONT_AND_BACK); 
@@ -4804,7 +4522,7 @@ end;
 //  areawinset(tempsa.win); 
 //  G.f:= G.f and ( not G_DRAW_EXT); 
 //  glDrawBuffer(GL_BACK); 
-//  
+
 //  if G.zbuf<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -4812,6 +4530,5 @@ end;
 //    glDisable(GL_DEPTH_TEST); 
 //  end;
 //end;
-
 
 end.

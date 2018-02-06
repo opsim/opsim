@@ -41,7 +41,7 @@ const
 IPOTHRESH = 0.9; 
 
 //procedure transform_ipo(mode: integer); 
-//
+
 //procedure make_ipokey; 
 
 procedure free_ipokey(lb: pListBase); 
@@ -166,10 +166,10 @@ space, ipo;
 //      else
 //      strcpy(str,'EffZ'); 
 //    end;
-//    
+
 //  end;{case?}
 //end;
-//
+
 //procedure getname_mat_ei(nr: integer;  str: pchar); 
 //begin
 //  str[0]:= 0; 
@@ -229,7 +229,7 @@ space, ipo;
 //      begin
 //        strcpy(str,'Var'); 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //  else
@@ -311,11 +311,11 @@ space, ipo;
 //      begin
 //        strcpy(str,'HaSize'); 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //end;
-//
+
 //procedure getname_world_ei(nr: integer;  str: pchar); 
 //begin
 //  str[0]:= 0; 
@@ -375,7 +375,7 @@ space, ipo;
 //      begin
 //        strcpy(str,'Var'); 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //  else
@@ -445,11 +445,11 @@ space, ipo;
 //      begin
 //        strcpy(str,'StarSi'); 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //end;
-//
+
 //procedure getname_seq_ei(nr: integer;  str: pchar); 
 //begin
 //  str[0]:= 0; 
@@ -458,10 +458,10 @@ space, ipo;
 //    begin
 //      strcpy(str,'Fac'); 
 //    end;
-//    
+
 //  end;{case?}
 //end;
-//
+
 //procedure getname_cu_ei(nr: integer;  str: pchar); 
 //begin
 //  str[0]:= 0; 
@@ -470,10 +470,10 @@ space, ipo;
 //    begin
 //      strcpy(str,'Speed'); 
 //    end;
-//    
+
 //  end;{case?}
 //end;
-//
+
 //procedure getname_key_ei(nr: integer;  str: pchar); 
 //begin
 //  str[0]:= 0; 
@@ -485,7 +485,7 @@ space, ipo;
 //  end;
 //  sprintf(str,'Key %d',nr); 
 //end;
-//
+
 //procedure getname_la_ei(nr: integer;  str: pchar); 
 //begin
 //  str[0]:= 0; 
@@ -545,7 +545,7 @@ space, ipo;
 //      begin
 //        strcpy(str,'Var'); 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //  else
@@ -591,11 +591,11 @@ space, ipo;
 //      begin
 //        strcpy(str,'HaInt'); 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //end;
-//
+
 //procedure getname_cam_ei(nr: integer;  str: pchar); 
 //begin
 //  str[0]:= 0; 
@@ -612,15 +612,15 @@ space, ipo;
 //    begin
 //      strcpy(str,'ClEnd'); 
 //    end;
-//    
+
 //  end;{case?}
 //end;
-//
+
 //function find_ipocurve(ipo: pIpo;  adrcode: integer): pIpoCurve; 
 //var
 //icu: pIpoCurve; 
 //begin
-//  
+
 //  if ipo=0
 // then
 //  begin
@@ -644,23 +644,20 @@ space, ipo;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure boundbox_ipocurve(icu: pIpoCurve); 
 //var
 //bezt: pBezTriple; 
 //bp: pBPoint; 
 //vec: array [0..2] of single;
-// 
+
 //min: array [0..2] of single;
 //max: array [0..2] of single;
 //a: integer; 
 //begin
-//  
-//  
+
 //  vec:=(0.0,0.0,0.0); 
-//  
-//  
-//  
+
 //  if icu.totvert<>nil 
 // then
 //  begin 
@@ -730,14 +727,14 @@ space, ipo;
 //    icu.totrct.ymax:= 1.0; 
 //  end;
 //end;
-//
+
 //procedure boundbox_ipo(ipo: pIpo;  bb: prctf); 
 //var
 //icu: pIpoCurve; 
 //first: integer;
-// 
+
 //begin
-//  
+
 //  first:=1; 
 //  icu:= ipo.curve.first; 
 //  while icu
@@ -755,7 +752,7 @@ space, ipo;
 //    icu:= icu.next; 
 //  end;
 //end;
-//
+
 //procedure editipo_changed(doredraw: integer); 
 //var
 //ei: pEditIpo; 
@@ -766,17 +763,11 @@ space, ipo;
 //dy: single; 
 //a: integer; 
 //first: integer;
-// 
+
 //ob: pObject;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  first:=1; 
 //  ei:= G.sipo^.editipo;
 //  if ei=0
@@ -915,7 +906,7 @@ space, ipo;
 // then
 //  make_ipokey(); 
 //end;
-//
+
 //procedure scale_editipo; 
 //var
 //ei: pEditIpo; 
@@ -925,12 +916,7 @@ space, ipo;
 //a: integer; 
 //b: integer; 
 //begin(* komt uit buttons, scale met G.sipo->tot rect *)
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  facx:= (G.sipo^.tot.xmax-G.sipo^.tot.xmin) div (G.sipo^.v2d.tot.xmax-G.sipo^.v2d.tot.xmin);
 //  facy:= (G.sipo^.tot.ymax-G.sipo^.tot.ymin) div (G.sipo^.v2d.tot.ymax-G.sipo^.v2d.tot.ymin);
 //  ei:= G.sipo^.editipo;
@@ -945,7 +931,7 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
 //      bezt:= ei.icu.bezt; 
@@ -966,7 +952,7 @@ space, ipo;
 //  editipo_changed(1); 
 //  allqueue(REDRAWIPO,0); 
 //end;
-//
+
 //function get_ipo_to_edit{!!!3 unknown typedef}: pIpo; 
 //var
 //ob: pObject; 
@@ -978,12 +964,7 @@ space, ipo;
 //ca: pCamera; 
 //begin
 //  {last_seq: pSequence; }{<= !!!5 external variable}
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  {*}from^:=0; 
 //  ob:= OBACT; 
 //  if G.sipo^.blocktype=ID_OB
@@ -1134,16 +1115,14 @@ space, ipo;
 //    exit;
 //  end;
 //end;
-//
+
 //function ipo_rainbow(cur: integer;  tot: integer): uint; 
 //var
 //fac: single; 
 //dfac: single; 
 //sat: single; 
 //begin
-//  
-//  
-//  
+
 //  dfac:= 1.0 div ( {single(}tot+1.0); (* deze berekening zorgt voor twee verschillende cycles regenboogkleuren *)
 //  if cur<tot div 2
 // then
@@ -1159,7 +1138,7 @@ space, ipo;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure make_ob_editipo(ob: pObject;  si: pSpaceIpo); 
 //var
 //ei: pEditIpo; 
@@ -1167,10 +1146,7 @@ space, ipo;
 //len: integer; 
 //colipo: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  ei:= si^.editipo:=callocN(OB_TOTIPO*sizeof(EditIpo),'editipo');
 //  si^.totipo:= OB_TOTIPO; if{!!!e unknown token}
 //  colipo:= 1; 
@@ -1220,14 +1196,13 @@ space, ipo;
 //    inc(ei); 
 //  end;
 //end;
-//
+
 //procedure make_seq_editipo(si: pSpaceIpo); 
 //var
 //ei: pEditIpo; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  ei:= si^.editipo:=callocN(SEQ_TOTIPO*sizeof(EditIpo),'editipo');
 //  si^.totipo:= SEQ_TOTIPO;
 //  for{while} a:=0 to Pred(SEQ_TOTIPO) { a++}
@@ -1247,14 +1222,13 @@ space, ipo;
 //    inc(ei); 
 //  end;
 //end;
-//
+
 //procedure make_cu_editipo(si: pSpaceIpo); 
 //var
 //ei: pEditIpo; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  ei:= si^.editipo:=callocN(CU_TOTIPO*sizeof(EditIpo),'editipo');
 //  si^.totipo:= CU_TOTIPO;
 //  for{while} a:=0 to Pred(CU_TOTIPO) { a++}
@@ -1274,16 +1248,14 @@ space, ipo;
 //    inc(ei); 
 //  end;
 //end;
-//
+
 //procedure make_key_editipo(si: pSpaceIpo); 
 //var
 //key: pKey; 
 //ei: pEditIpo; 
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  ei:= si^.editipo:=callocN(KEY_TOTIPO*sizeof(EditIpo),'editipo');
 //  si^.totipo:= KEY_TOTIPO;
 //  for{while} a:=0 to Pred(KEY_TOTIPO) { a++}
@@ -1316,7 +1288,7 @@ space, ipo;
 //    ei.flag:= ei.flag or (IPO_VISIBLE); 
 //  end;
 //end;
-//
+
 //function texchannel_to_adrcode(channel: integer): integer; 
 //begin
 //  case channel of
@@ -1389,7 +1361,7 @@ space, ipo;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure make_mat_editipo(si: pSpaceIpo); 
 //var
 //ei: pEditIpo; 
@@ -1399,12 +1371,7 @@ space, ipo;
 //a: integer; 
 //len: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if si^.from=0
 // then
 //  exit;
@@ -1456,7 +1423,7 @@ space, ipo;
 //    inc(ei); 
 //  end;
 //end;
-//
+
 //procedure make_world_editipo(si: pSpaceIpo); 
 //var
 //ei: pEditIpo; 
@@ -1466,12 +1433,7 @@ space, ipo;
 //a: integer; 
 //len: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if si^.from=0
 // then
 //  exit;
@@ -1522,14 +1484,13 @@ space, ipo;
 //    inc(ei); 
 //  end;
 //end;
-//
+
 //procedure make_lamp_editipo(si: pSpaceIpo); 
 //var
 //ei: pEditIpo; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  ei:= si^.editipo:=callocN(LA_TOTIPO*sizeof(EditIpo),'editipo');
 //  si^.totipo:= LA_TOTIPO;
 //  for{while} a:=0 to Pred(LA_TOTIPO) { a++}
@@ -1553,14 +1514,13 @@ space, ipo;
 //    inc(ei); 
 //  end;
 //end;
-//
+
 //procedure make_camera_editipo(si: pSpaceIpo); 
 //var
 //ei: pEditIpo; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  ei:= si^.editipo:=callocN(CAM_TOTIPO*sizeof(EditIpo),'editipo');
 //  si^.totipo:= CAM_TOTIPO;
 //  for{while} a:=0 to Pred(CAM_TOTIPO) { a++}
@@ -1578,7 +1538,7 @@ space, ipo;
 //    inc(ei); 
 //  end;
 //end;
-//
+
 //procedure make_editipo; 
 //var
 //ei: pEditIpo; 
@@ -1587,11 +1547,7 @@ space, ipo;
 //rf: prctf; 
 //a: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  if G.sipo^.editipo<>nil
 // then
 //  freeN(G.sipo^.editipo);
@@ -1722,7 +1678,7 @@ space, ipo;
 //      G.v2d.cur.ymax:= 100.0; 
 //    end;
 //    else
-//    
+
 //    function ELEM4{!!!3 unknown typedef}: if; 
 //    begin
 //      G.v2d.cur.xmin:= -0.1; 
@@ -1750,14 +1706,13 @@ space, ipo;
 //    end;
 //  end;
 //end;
-//
+
 //procedure test_editipo; 
 //var
 //ipo: pIpo; 
 //from: pID; 
 //begin
-//  
-//  
+
 //  if G.sipo^.editipo=0
 // then
 //  make_editipo(); 
@@ -1781,7 +1736,7 @@ space, ipo;
 //totipo_vertsel: integer; 
 //totipo_key: integer; 
 //totipo_keysel: integer; 
-//
+
 //procedure get_status_editipo; 
 //var
 //ei: pEditIpo; 
@@ -1791,12 +1746,7 @@ space, ipo;
 //a: integer; 
 //b: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  totipo_vis:= 0; 
 //  totipo_sel:= 0; 
 //  totipo_edit:= 0; 
@@ -1893,7 +1843,7 @@ space, ipo;
 //    end;
 //  end;
 //end;
-//
+
 //procedure update_editipo_flags; 
 //var
 //ei: pEditIpo; 
@@ -1901,10 +1851,7 @@ space, ipo;
 //flag: uint; 
 //a: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
@@ -1955,18 +1902,17 @@ space, ipo;
 //    end;
 //  end;
 //end;
-//
+
 //procedure set_editflag_editipo; 
 //var
 //ei: pEditIpo; 
 //a: integer; 
 //tot: integer;
-// 
+
 //ok: integer;
 // (* van showkey direkt door naar editen geselecteerde punten *)
 //begin
-//  
-//  
+
 //  tot:=0; 
 //  ok:=0; (* van showkey direkt door naar editen geselecteerde punten *)
 //  if G.sipo^.showkey<>nil
@@ -2036,7 +1982,7 @@ space, ipo;
 //  end;
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
-//
+
 //procedure swap_selectall_editipo; 
 //var
 //ob: pObject; 
@@ -2047,15 +1993,9 @@ space, ipo;
 //a: integer; 
 //b: integer; 
 //sel: integer;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  sel:=0; 
 //  deselectall_key(); 
 //  get_status_editipo(); 
@@ -2110,7 +2050,7 @@ space, ipo;
 //    for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //    do
 //    begin 
-//      
+
 //      function ISPOIN3{!!!3 unknown typedef}: if; 
 //      begin
 //        bezt:= ei.icu.bezt; 
@@ -2156,18 +2096,16 @@ space, ipo;
 //  end;
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
-//
+
 //procedure swap_visible_editipo; 
 //var
 //ei: pEditIpo; 
 //ob: pObject; 
 //a: integer; 
 //sel: integer;
-// 
+
 //begin
-//  
-//  
-//  
+
 //  sel:=0; 
 //  get_status_editipo(); 
 //  G.sipo^.rowbut:= 0;
@@ -2201,7 +2139,7 @@ space, ipo;
 //  end;
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
-//
+
 //procedure deselectall_editipo; 
 //var
 //ei: pEditIpo; 
@@ -2211,14 +2149,9 @@ space, ipo;
 //a: integer; 
 //b: integer; 
 //sel: integer;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  sel:=0; 
 //  deselectall_key(); 
 //  get_status_editipo(); 
@@ -2257,7 +2190,7 @@ space, ipo;
 //    for{while} a:=0 to G.sipo^.totipo - 1 { a++}
 //    do
 //    begin 
-//      
+
 //      function ISPOIN3{!!!3 unknown typedef}: if; 
 //      begin
 //        bezt:= ei.icu.bezt; 
@@ -2291,7 +2224,7 @@ space, ipo;
 //  end;
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
-//
+
 //function findnearest_ipovert{!!!3 unknown typedef}: smallint; 
 //var
 //ei: pEditIpo; 
@@ -2300,22 +2233,17 @@ space, ipo;
 //a: integer; 
 //b: integer; 
 //dist: smallint;
-// 
+
 //temp: smallint; 
 //mval: array [0..1] of smallint;
 //hpoint: smallint;
-// 
+
 //begin(* selected krijgen een nadeel *)
 //  (* in icu en (bezt of bp) wordt nearest weggeschreven *)
 //  (* return 0 1 2: handlepunt *)
-//  
-//  
-//  
-//  
-//  
+
 //  dist:=100; 
-//  
-//  
+
 //  hpoint:=0; {*}icu^:=0; 
 //  {*}bezt^:=0; 
 //  {*}bp^:=0; 
@@ -2329,7 +2257,7 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN3{!!!3 unknown typedef}: if; 
 //    begin
 //      if ei.icu.bezt<>nil 
@@ -2421,7 +2349,7 @@ space, ipo;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure move_to_frame; 
 //var
 //ei: pEditIpo; 
@@ -2431,14 +2359,9 @@ space, ipo;
 //a: integer; 
 //b: integer; 
 //ob: pObject;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if G.sipo^.editipo=0
 // then
 //  exit;
@@ -2451,11 +2374,11 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    var
 //    ob: pObject;
-//     
+
 //    begin
 //      if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
 // then
@@ -2498,7 +2421,7 @@ space, ipo;
 //  end;
 //end;
 //(* *********************************** *)
-//
+
 //procedure do_ipowin_buts(event: smallint); 
 //begin
 //  if (G.qual and LR_SHIFTKEY)=0
@@ -2517,7 +2440,7 @@ space, ipo;
 //    allqueue(REDRAWVIEW3D,0); 
 //  end;
 //end;
-//
+
 //procedure do_ipo_selectbuttons; 
 //var
 //ei: pEditIpo; 
@@ -2526,11 +2449,7 @@ space, ipo;
 //nr: integer; 
 //mval: array [0..1] of smallint;
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  if G.sipo^.showkey<>nil
 // then
 //  exit;
@@ -2584,16 +2503,15 @@ space, ipo;
 //  end;
 //end;
 //(* ******************************************* *)
-//
+
 //function get_editipo: pEditIpo; 
 //var
 //ei: pEditIpo; 
 //a: integer; 
 //sel: integer;
-// 
+
 //begin
-//  
-//  
+
 //  sel:=0; 
 //  get_status_editipo(); 
 //  if totipo_edit>1
@@ -2649,7 +2567,7 @@ space, ipo;
 //    exit;
 //  end;
 //end;
-//
+
 //function get_ipo(from: pID;  make: integer): pIpo; 
 //var
 //ob: pObject; 
@@ -2661,16 +2579,9 @@ space, ipo;
 //la: pLamp; 
 //ca: pCamera; 
 //ipo: pIpo;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  ipo:=0; 
 //  if GS(from.name)=ID_OB
 // then
@@ -2812,11 +2723,11 @@ space, ipo;
 //    exit;
 //  end;
 //end;
-//
+
 //function get_ipocurve(from: pID;  adrcode: integer): pIpoCurve; 
 //var
 //ipo: pIpo;
-// 
+
 //icu: pIpoCurve;
 // (* return 0 als lib *)
 //(* ook testen of ipo en ipocurve bestaan *)
@@ -2856,7 +2767,7 @@ space, ipo;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure insert_vert_ipo(icu: pIpoCurve;  x: single;  y: single); 
 //var
 //bp: pBPoint; 
@@ -2868,14 +2779,7 @@ space, ipo;
 //h2: integer; 
 //str: array [0..Pred(20)] of char; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if icu.bp<>nil 
 // then
 //  begin 
@@ -2961,7 +2865,7 @@ space, ipo;
 //    end;
 //  end;
 //end;
-//
+
 //procedure add_vert_ipo; 
 //var
 //ei: pEditIpo; 
@@ -2970,11 +2874,7 @@ space, ipo;
 //val: integer; 
 //mval: array [0..1] of smallint;
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
 // then
 //  exit;
@@ -3019,7 +2919,7 @@ space, ipo;
 //  editipo_changed(1); 
 //  (* voor zekerheid: als icu 0 was, of maar 1 curve visible *)
 //end;
-//
+
 //procedure add_duplicate_editipo; 
 //var
 //ob: pObject; 
@@ -3032,15 +2932,7 @@ space, ipo;
 //a: integer; 
 //b: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  get_status_editipo(); 
 //  if totipo_vertsel=0
 // then
@@ -3054,7 +2946,7 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN3{!!!3 unknown typedef}: if; 
 //    begin
 //      if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
@@ -3114,7 +3006,7 @@ space, ipo;
 //  end;
 //  transform_ipo('g'); 
 //end;
-//
+
 //procedure remove_doubles_ipo; 
 //var
 //ei: pEditIpo; 
@@ -3129,17 +3021,7 @@ space, ipo;
 //a: integer; 
 //b: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
@@ -3149,7 +3031,7 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN3{!!!3 unknown typedef}: if; 
 //    begin
 //      mode:= 0; (* OF de curve is selected OF in editmode OF in keymode *)
@@ -3240,7 +3122,7 @@ space, ipo;
 //  (* maakt ook ipokeys opnieuw! *)
 //  deselectall_editipo(); 
 //end;
-//
+
 //procedure join_ipo; 
 //var
 //ob: pObject; 
@@ -3256,18 +3138,7 @@ space, ipo;
 //a: integer; 
 //b: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  get_status_editipo(); 
 //  mode:= pupmenu('Join %t|All Selected %x1|Selected doubles %x2'); 
 //  if mode=2
@@ -3290,7 +3161,7 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN3{!!!3 unknown typedef}: if; 
 //    begin
 //      if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
@@ -3410,7 +3281,7 @@ space, ipo;
 //  end;
 //  deselectall_editipo(); 
 //end;
-//
+
 //procedure ipo_snapmenu; 
 //var
 //icu: pIpoCurve; 
@@ -3424,15 +3295,7 @@ space, ipo;
 //ok2: smallint; 
 //seq: pSequence; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  event:= pupmenu('Snap %t|Horizontal %x1|To next %x2|To frame %x3|To current frame%x4'); 
 //  if event<1
 // then
@@ -3447,7 +3310,7 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN3{!!!3 unknown typedef}: if; 
 //    var
 //    seq: pSequence; 
@@ -3529,7 +3392,7 @@ space, ipo;
 //                if G.sipo^.blocktype=ID_SEQ
 // then
 //                begin 
-//                  
+
 //                  seq:=  {pSequence(}G.sipo^.from;
 //                  if seq<>nil 
 // then
@@ -3555,13 +3418,13 @@ space, ipo;
 //  end;
 //  editipo_changed(1); 
 //end;
-//
+
 //procedure mouse_select_ipo; 
 //var
 //ob: pObject; 
 //ei: pEditIpo; 
 //actei: pEditIpo;
-// 
+
 //icu: pIpoCurve; 
 //ik: pIpoKey; 
 //actik: pIpoKey; 
@@ -3570,7 +3433,7 @@ space, ipo;
 //key: pKey; 
 //kb: pKeyBlock; 
 //actkb: pKeyBlock;
-// 
+
 //x: single; 
 //y: single; 
 //dist: single; 
@@ -3583,28 +3446,11 @@ space, ipo;
 //xo: smallint; 
 //yo: smallint; 
 //begin
-//  
-//  
+
 //  actei:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  actkb:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if G.sipo^.editipo=0
 // then
 //  exit;
@@ -3880,7 +3726,7 @@ space, ipo;
 //    end;
 //  end;
 //end;
-//
+
 //procedure sethandles_ipo(code: integer); 
 //var
 //ei: pEditIpo; 
@@ -3888,14 +3734,11 @@ space, ipo;
 //a: integer; 
 //b: integer; 
 //ok: integer;
-// 
+
 //begin(* code==1: set autohandle *)
 //  (* code==2: set vectorhandle *)
 //  (* als code==3 (HD_ALIGN) toggelt het, vectorhandles worden HD_FREE *)
-//  
-//  
-//  
-//  
+
 //  ok:=0; 
 //  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
 // then
@@ -3912,7 +3755,7 @@ space, ipo;
 //    inc(ei); 
 //    do
 //    begin 
-//      
+
 //      function ISPOIN4{!!!3 unknown typedef}: if; 
 //      begin
 //        bezt:= ei.icu.bezt; 
@@ -3955,7 +3798,7 @@ space, ipo;
 //    inc(ei); 
 //    do
 //    begin 
-//      
+
 //      function ISPOIN4{!!!3 unknown typedef}: if; 
 //      begin
 //        bezt:= ei.icu.bezt; 
@@ -3990,7 +3833,7 @@ space, ipo;
 //    inc(ei); 
 //    do
 //    begin 
-//      
+
 //      function ISPOIN4{!!!3 unknown typedef}: if; 
 //      begin
 //        bezt:= ei.icu.bezt; 
@@ -4012,7 +3855,7 @@ space, ipo;
 //  end;
 //  editipo_changed(1); 
 //end;
-//
+
 //procedure set_ipotype; 
 //var
 //ei: pEditIpo; 
@@ -4021,11 +3864,7 @@ space, ipo;
 //a: integer; 
 //event: smallint; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
 // then
 //  exit;
@@ -4080,7 +3919,7 @@ space, ipo;
 //    inc(ei); 
 //    do
 //    begin 
-//      
+
 //      function ISPOIN3{!!!3 unknown typedef}: if; 
 //      begin
 //        if event=1
@@ -4097,7 +3936,7 @@ space, ipo;
 //  end;
 //  addqueue(curarea.win,REDRAW,1); 
 //end;
-//
+
 //procedure borderselect_ipo; 
 //var
 //ei: pEditIpo; 
@@ -4112,17 +3951,7 @@ space, ipo;
 //ok: integer; 
 //mval: array [0..1] of smallint;
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  get_status_editipo(); 
 //  val:= get_border(@rect,3); 
 //  if val<>nil 
@@ -4173,7 +4002,7 @@ space, ipo;
 //      inc(ei); 
 //      do
 //      begin 
-//        
+
 //        function ISPOIN3{!!!3 unknown typedef}: if; 
 //        begin
 //          if ei.icu.bezt<>nil 
@@ -4229,7 +4058,7 @@ space, ipo;
 //    addqueue(curarea.win,REDRAW,1); 
 //  end;
 //end;
-//
+
 //procedure del_ipo; 
 //var
 //ei: pEditIpo; 
@@ -4245,18 +4074,7 @@ space, ipo;
 //del: integer; 
 //event: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  get_status_editipo(); 
 //  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
 // then
@@ -4284,7 +4102,7 @@ space, ipo;
 //    if G.sipo^.showkey=0)and(totipo_edit=0
 // then
 //    begin 
-//      
+
 //      function ISPOIN3{!!!3 unknown typedef}: if; 
 //      begin
 //        del:= 1; 
@@ -4292,7 +4110,7 @@ space, ipo;
 //    end;
 //    else
 //    begin 
-//      
+
 //      function ISPOIN{!!!3 unknown typedef}: if; 
 //      begin
 //        if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
@@ -4373,7 +4191,7 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
 //      if G.sipo^.showkey)or((ei.flag and IPO_EDIT)
@@ -4445,12 +4263,12 @@ space, ipo;
 //var
 //ipocopybuf: ListBase = (0,0); 
 //totipocopybuf: integer = 0; 
-//
+
 //procedure free_ipocopybuf; 
 //var
 //icu: pIpoCurve; 
 //begin
-//  
+
 //  while icu:=ipocopybuf.first
 //  do
 //  begin 
@@ -4465,16 +4283,14 @@ space, ipo;
 //  end;
 //  totipocopybuf:= 0; 
 //end;
-//
+
 //procedure copy_editipo; 
 //var
 //ei: pEditIpo; 
 //icu: pIpoCurve; 
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  if G.sipo^.showkey<>nil
 // then
 //  begin 
@@ -4491,7 +4307,7 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
 //      if (ei.flag and IPO_EDIT))or((ei.flag and IPO_SELECT)
@@ -4519,7 +4335,7 @@ space, ipo;
 // then
 //  error('Copybuf is empty'); 
 //end;
-//
+
 //procedure paste_editipo; 
 //var
 //ei: pEditIpo; 
@@ -4527,10 +4343,7 @@ space, ipo;
 //a: integer; 
 //ok: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  if G.sipo^.showkey<>nil
 // then
 //  exit;
@@ -4622,14 +4435,13 @@ space, ipo;
 //    editipo_changed(1); 
 //  end;
 //end;
-//
+
 //procedure set_exprap_ipo(mode: integer); 
 //var
 //ei: pEditIpo; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
 // then
 //  exit;
@@ -4643,7 +4455,7 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
 //      if (ei.flag and IPO_EDIT))or((ei.flag and IPO_SELECT))or((G.sipo^.showkey)
@@ -4655,7 +4467,7 @@ space, ipo;
 //  end;
 //  editipo_changed(1); 
 //end;
-//
+
 //function find_other_handles(eicur: pEditIpo;  ctime: single;  {!!!3 unknown typedef}): integer; 
 //var
 //ei: pEditIpo; 
@@ -4663,15 +4475,12 @@ space, ipo;
 //a: integer; 
 //b: integer; 
 //c: integer;
-// 
+
 //totvert: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  c:=1; 
-//  
+
 //  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
@@ -4720,7 +4529,7 @@ space, ipo;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure set_speed_editipo(speed: single); 
 //var
 //ei: pEditIpo; 
@@ -4734,18 +4543,9 @@ space, ipo;
 //b: integer; 
 //totvert: integer; 
 //didit: integer;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  didit:=0; 
 //  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
 // then
@@ -4760,7 +4560,7 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
 //      bezt:= ei.icu.bezt; 
@@ -4816,7 +4616,7 @@ space, ipo;
 //  editipo_changed(1); 
 //  allqueue(REDRAWIPO,0); 
 //end;
-//
+
 //procedure insertkey(id: pID;  adrcode: integer); 
 //var
 //icu: pIpoCurve; 
@@ -4826,12 +4626,7 @@ space, ipo;
 //cfra: single; 
 //type: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if id<>nil 
 // then
 //  begin 
@@ -4861,7 +4656,7 @@ space, ipo;
 //    end;
 //  end;
 //end;
-//
+
 //procedure insertkey_editipo; 
 //var
 //ei: pEditIpo; 
@@ -4877,20 +4672,9 @@ space, ipo;
 //tot: integer; 
 //event: smallint; 
 //ob: pObject;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if G.sipo^.showkey<>nil
 // then
 //  event:= pupmenu('Insert KeyVertices %t|Current frame %x1|Selected Keys %x2'); 
@@ -4908,11 +4692,11 @@ space, ipo;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    var
 //    ob: pObject;
-//     
+
 //    begin
 //      ok:= 0; 
 //      if G.sipo^.showkey<>nil
@@ -5016,7 +4800,7 @@ space, ipo;
 //  allqueue(REDRAWIPO,0); 
 //  allspace(REMAKEIPO,0); 
 //end;
-//
+
 //procedure common_insertkey; 
 //var
 //base: pBase; 
@@ -5032,20 +4816,9 @@ space, ipo;
 //event: integer; 
 //menustr: array [0..Pred(256)] of char; 
 //ika: pIka;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if curarea.spacetype=SPACE_IPO
 // then
 //  begin 
@@ -5336,11 +5109,11 @@ space, ipo;
 //    while base
 //    do
 //    begin 
-//      
+
 //      function TESTBASELIB{!!!3 unknown typedef}: if; 
 //      var
 //      ika: pIka;
-//       
+
 //      begin
 //        id:=  {pID(}(base.object); (* alle curves in ipo deselect *)
 //        if base.object.ipo<>nil 
@@ -5435,8 +5208,7 @@ end;
 //ik: pIpoKey; 
 //ikn: pIpoKey; 
 //begin
-//  
-//  
+
 //  ik:= lb.first; 
 //  while ik
 //  do
@@ -5474,7 +5246,7 @@ end;
 // then
 //  ikn.flag:= 1; 
 //end;
-//
+
 //procedure make_ipokey_spec(lb: pListBase;  ipo: pIpo); 
 //var
 //icu: pIpoCurve; 
@@ -5486,16 +5258,9 @@ end;
 //desel: integer; 
 //totvert: integer; 
 //totcu: integer;
-// 
+
 //begin(* deze fie is voor PSXipo maken. *)
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  totcu:=0; 
 //  if ipo=0)or(lb=0
 // then
@@ -5533,7 +5298,7 @@ end;
 //    icu:= icu.next; 
 //  end;
 //end;
-//
+
 //procedure make_ipokey; 
 //var
 //ei: pEditIpo; 
@@ -5547,16 +5312,7 @@ end;
 //desel: integer; 
 //totvert: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  lb:= @G.sipo^.ipokey;
 //  free_ipokey(lb); 
 //  ei:= G.sipo^.editipo;
@@ -5571,7 +5327,7 @@ end;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
 //      bezt:= ei.icu.bezt; 
@@ -5644,7 +5400,7 @@ end;
 //  end;
 //  get_status_editipo(); 
 //end;
-//
+
 //procedure make_ipokey_transform(ob: pObject;  lb: pListBase;  sel: integer); 
 //var
 //icu: pIpoCurve; 
@@ -5653,17 +5409,13 @@ end;
 //adrcode: integer; 
 //ok: integer; 
 //dloc: integer;
-// 
+
 //drot: integer;
-// 
+
 //dsize: integer;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  dloc:=0; 
 //  drot:=0; 
 //  dsize:=0; 
@@ -5700,7 +5452,7 @@ end;
 //        begin
 //          dsize:= 1; 
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //    icu:= icu.next; 
@@ -5750,7 +5502,7 @@ end;
 // then
 //          ok:= 1; 
 //        end;
-//        
+
 //      end;{case?}
 //      if ok<>nil 
 // then
@@ -5783,14 +5535,13 @@ end;
 //  end;
 //end;
 //(* na verplaatsen vertices *)
-//
+
 //procedure update_ipokey_val; 
 //var
 //ik: pIpoKey; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  ik:= G.sipo^.ipokey.first;
 //  while ik
 //  do
@@ -5808,23 +5559,22 @@ end;
 //    ik:= ik.next; 
 //  end;
 //end;
-//
+
 //procedure set_tob_old(old: pfloat;  poin: pfloat); 
 //begin
 //  old[0]:= *(poin); 
 //  old[3]:= *(poin-3); 
 //  old[6]:= *(poin+3); 
 //end;
-//
+
 //procedure set_ipo_pointers_transob(ik: pIpoKey;  tob: pTransOb); 
 //var
 //bezt: pBezTriple; 
 //a: integer; 
 //delta: integer;
-// 
+
 //begin
-//  
-//  
+
 //  delta:=0; 
 //  tob.locx:= tob.locy:=tob.locz:=0; 
 //  tob.rotx:= tob.roty:=tob.rotz:=0; 
@@ -5894,7 +5644,7 @@ end;
 //        begin
 //          tob.sizez:= @(bezt.vec[1][1]); 
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //  end;
@@ -5933,7 +5683,7 @@ end;
 // then
 //  tob.flag:= tob.flag or (TOB_IPODROT); 
 //end;
-//
+
 //procedure nextkey(elems: pListBase;  dir: integer); 
 //var
 //ik: pIpoKey; 
@@ -5941,10 +5691,7 @@ end;
 //a: integer; 
 //totsel: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  if dir=1
 // then
 //  ik:= elems.last; 
@@ -5999,11 +5746,11 @@ end;
 //    ik.flag:= 1; 
 //  end;
 //end;
-//
+
 //function float_to_frame(frame: single): integer; 
 //var
 //to: integer;
-// 
+
 //begin
 //  to:= {integer(}frame; 
 //  if frame-to>0.5
@@ -6015,16 +5762,14 @@ end;
 //  end;
 //end;
 //(* alleen extern aanroepen vanuit view3d queue *)
-//
+
 //procedure movekey_ipo(dir: integer); 
 //var
 //ik: pIpoKey; 
 //toframe: single; 
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  if G.sipo^.showkey=0
 // then
 //  exit;
@@ -6062,7 +5807,7 @@ end;
 //  allspace(REMAKEIPO,0); 
 //end;
 //(* alleen extern aanroepen vanuit view3d queue *)
-//
+
 //procedure movekey_obipo(dir: integer); 
 //var
 //base: pBase; 
@@ -6074,22 +5819,15 @@ end;
 //a: integer; 
 //totsel: integer; 
 //toframe: single;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  toframe:=CFRA; 
 //  base:= FIRSTBASE; 
 //  while base
 //  do
 //  begin 
-//    
+
 //    function TESTBASE{!!!3 unknown typedef}: if; 
 //    begin
 //      ob:= base.object; 
@@ -6141,14 +5879,13 @@ end;
 //  allspace(REMAKEIPO,0); 
 //end;
 //(* aanroepen vanuit ipo queue *)
-//
+
 //procedure nextkey_ipo(dir: integer); 
 //var
 //ik: pIpoKey; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  if G.sipo^.showkey=0
 // then
 //  exit;
@@ -6172,7 +5909,7 @@ end;
 //  allqueue(REDRAWVIEW3D,0); 
 //end;
 //(* alleen extern aanroepen vanuit view3d queue *)
-//
+
 //procedure nextkey_obipo(dir: integer); 
 //var
 //base: pBase; 
@@ -6184,18 +5921,12 @@ end;
 //a: integer; 
 //totsel: integer; (* problem: this doesnt work when you mix dLoc keys with Loc keys *)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  base:= FIRSTBASE; 
 //  while base
 //  do
 //  begin 
-//    
+
 //    function TESTBASE{!!!3 unknown typedef}: if; 
 //    begin
 //      ob:= base.object; 
@@ -6232,7 +5963,7 @@ end;
 //  allqueue(REDRAWIPO,0); 
 //end;
 //(* **************************************************** *)
-//
+
 //procedure remake_ipo_transverts(transmain: pTransVert;  dvec: pfloat;  tot: integer); 
 //var
 //ei: pEditIpo; 
@@ -6242,12 +5973,7 @@ end;
 //a: integer; 
 //b: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  ei:= G.sipo^.editipo;
 //  while{for} 
 //  a:= 0; 
@@ -6257,7 +5983,7 @@ end;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
 //      if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
@@ -6281,7 +6007,7 @@ end;
 //  inc(ei); 
 //  do
 //  begin 
-//    
+
 //    function ISPOIN{!!!3 unknown typedef}: if; 
 //    begin
 //      if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
@@ -6343,7 +6069,7 @@ end;
 //    tv.oldloc[1]:= tv.loc[1]-dvec[1]; 
 //  end;
 //end;
-//
+
 //procedure transform_ipo(mode: integer); 
 //var
 //ei: pEditIpo; 
@@ -6352,9 +6078,9 @@ end;
 //transmain: pTransVert; 
 //tv: pTransVert; 
 //xref: single;
-// 
+
 //yref: single;
-// 
+
 //dx: single; 
 //dy: single; 
 //dvec: array [0..1] of single;
@@ -6366,15 +6092,15 @@ end;
 //size: array [0..1] of single;
 //sizefac: single; 
 //tot: integer;
-// 
+
 //a: integer; 
 //b: integer; 
 //firsttime: integer;
-// 
+
 //afbreek: integer;
-// 
+
 //midtog: integer;
-// 
+
 //dosort: integer; 
 //proj: integer; 
 //event: word; 
@@ -6388,41 +6114,16 @@ end;
 //yc: smallint; 
 //str: array [0..31] of char;
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  xref:=1.0; 
 //  yref:=1.0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  tot:=0; 
-//  
-//  
+
 //  firsttime:=1; 
 //  afbreek:=0; 
 //  midtog:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
 // then
 //  exit;
@@ -6450,7 +6151,7 @@ end;
 //    inc(ei); 
 //    do
 //    begin 
-//      
+
 //      function ISPOIN{!!!3 unknown typedef}: if; 
 //      begin
 //        if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
@@ -6523,7 +6224,7 @@ end;
 //    inc(ei); 
 //    do
 //    begin 
-//      
+
 //      function ISPOIN3{!!!3 unknown typedef}: if; 
 //      begin
 //        if ei.icu.bezt)and(ei.icu.ipo=IPO_BEZ
@@ -6546,7 +6247,7 @@ end;
 //    inc(ei); 
 //    do
 //    begin 
-//      
+
 //      function ISPOIN3{!!!3 unknown typedef}: if; 
 //      begin
 //        if ei.icu.bezt<>nil 
@@ -6695,7 +6396,7 @@ end;
 //      inc(ei); 
 //      do
 //      begin 
-//        
+
 //        function ISPOIN{!!!3 unknown typedef}: if; 
 //        begin(* let op: als de tijd verkeerd is: niet de handles corrigeren *)
 //          if test_time_ipocurve(ei.icu)
@@ -6887,7 +6588,7 @@ end;
 //    inc(ei); 
 //    do
 //    begin 
-//      
+
 //      function ISPOIN{!!!3 unknown typedef}: if; 
 //      begin
 //        if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
@@ -6914,7 +6615,7 @@ end;
 //    inc(ei); 
 //    do
 //    begin 
-//      
+
 //      function ISPOIN{!!!3 unknown typedef}: if; 
 //      begin
 //        if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
@@ -6929,11 +6630,11 @@ end;
 //  editipo_changed(1); 
 //  freeN(transmain); 
 //end;
-//
+
 //procedure clever_numbuts_ipo; 
 //var
 //bezt: pBezTriple;
-// 
+
 //bezt1: pBezTriple; 
 //key: pKey; 
 //kb: pKeyBlock; 
@@ -6942,20 +6643,16 @@ end;
 //a: integer; 
 //b: integer; 
 //scale10: integer;
-// 
+
 //totbut: integer;
-// 
+
 //begin
 //  bezt:=0; 
-//  
-//  
-//  
+
 //  single{!!!e unknown token},
 //  delta[3]{!!!e unknown token},
 //  old[3]{!!!e unknown token}; 
-//  
-//  
-//  
+
 //  scale10:=0; 
 //  totbut:=2; 
 //  if G.sipo^.ipo)and(G.sipo^.ipo.id.lib
@@ -6986,7 +6683,7 @@ end;
 //    inc(ei); 
 //    do
 //    begin 
-//      
+
 //      function ISPOIN{!!!3 unknown typedef}: if; 
 //      begin
 //        if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
@@ -7051,7 +6748,7 @@ end;
 //      inc(ei); 
 //      do
 //      begin 
-//        
+
 //        function ISPOIN{!!!3 unknown typedef}: if; 
 //        begin
 //          if (ei.flag and IPO_EDIT))or(G.sipo^.showkey
@@ -7090,7 +6787,7 @@ end;
 //      inc(ei); 
 //      do
 //      begin 
-//        
+
 //        function ISPOIN{!!!3 unknown typedef}: if; 
 //        begin
 //          sort_time_ipocurve(ei.icu); 
@@ -7148,14 +6845,13 @@ end;
 //    end;
 //  end;
 //end;
-//
+
 //procedure filter_sampledata(data: pfloat;  sfra: integer;  efra: integer); 
 //var
 //da: pfloat; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  da:= data+1; 
 //  while{for} 
 //  a:= sfra+1; 
@@ -7168,7 +6864,7 @@ end;
 //    da[0]:= 0.25*da[-1]+0.5*da[0]+0.25*da[1]; 
 //  end;
 //end;
-//
+
 //procedure sampledata_to_ipocurve(data: pfloat;  sfra: integer;  efra: integer;  icu: pIpoCurve); 
 //var
 //bezt: pBezTriple; 
@@ -7176,10 +6872,7 @@ end;
 //a: integer; 
 //tot: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  filter_sampledata(data,sfra,efra); 
 //  filter_sampledata(data,sfra,efra); 
 //  icu.ipo:= IPO_LIN; 
@@ -7224,14 +6917,14 @@ end;
 //    end;
 //  end;
 //end;
-//
+
 //procedure ipo_record; 
 //var
 //ei: pEditIpo; 
 //ei1: pEditIpo;
-// 
+
 //ei2: pEditIpo;
-// 
+
 //sa: pScrArea;
 //oldarea: pScrArea;
 //ipo: pIpo; 
@@ -7245,9 +6938,9 @@ end;
 //type: integer; 
 //a: integer; 
 //afbreek: integer;
-// 
+
 //firsttime: integer;
-// 
+
 //cfrao: integer; 
 //cfra: integer; 
 //sfra: integer; 
@@ -7268,35 +6961,13 @@ end;
 //    * CTRL start record
 //    *)
 //  {tottime: double; }{<= !!!5 external variable}
-//  
+
 //  ei1:=0; 
 //  ei2:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  afbreek:=0; 
 //  firsttime:=1; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if G.sipo^.from=0
 // then
 //  exit;
@@ -7491,7 +7162,7 @@ end;
 //          begin
 //            afbreek:= 1; 
 //          end;
-//          
+
 //        end;{case?}
 //      end;
 //      if afbreek<>nil 
@@ -7566,5 +7237,5 @@ end;
 //  freeN(data1); 
 //  freeN(data2); 
 //end;
-//
+
 end.

@@ -1344,151 +1344,151 @@ uses
 //begin
 //  result:= dlsym(handle,'_'sym)
 //end;
-//
+
 //{usleep(x) Sleep(x)}
 //function usleep(x: integer): integer; 
 //begin
 //  result:= Sleep(x)
 //end;
-//
+
 //{freeN(x) {freeN(x); x=NULL;}}
 //function freeN(x: integer): integer; 
 //begin
 //  result:= (freeN(x);x:=0{nil};)
 //end;
-//
+
 //{COREDUMP(n)   {static int times=0; if(times++ == n) abort();}}
 //function COREDUMP(n: integer): integer; 
 //begin
 //  result:= (staticinttimes:=0;if(times{++} inc(times); =n)abort();)
 //end;
-//
+
 //{VECCOPY(v1,v2)   {*(v1)= *(v2); *(v1+1)= *(v2+1); *(v1+2)= *(v2+2);}}
 //function VECCOPY(v1: integer; v2: integer): integer; 
 //begin
 //  result:= (*(v1):=*(v2);*(v1+1):=*(v2+1);*(v1+2):=*(v2+2);)
 //end;
-//
+
 //{QUATCOPY(v1,v2)  {*(v1)= *(v2); *(v1+1)= *(v2+1); *(v1+2)= *(v2+2); *(v1+3)= *(v2+3);}}
 //function QUATCOPY(v1: integer; v2: integer): integer; 
 //begin
 //  result:= (*(v1):=*(v2);*(v1+1):=*(v2+1);*(v1+2):=*(v2+2);*(v1+3):=*(v2+3);)
 //end;
-//
+
 //{INPR(v1, v2)  ( (v1)[0]*(v2)[0] + (v1)[1]*(v2)[1] + (v1)[2]*(v2)[2] )}
 //function INPR(v1: integer; v2: integer): integer; 
 //begin
 //  result:= ((v1)[0]*(v2)[0]+(v1)[1]*(v2)[1]+(v1)[2]*(v2)[2])
 //end;
-//
+
 //{CLAMP(a, b, c)  if((a)<(b)) (a)=(b); else if((a)>(c)) (a)=(c)}
 //function CLAMP(a: integer; b: integer; c: integer): integer; 
 //begin
 //  result:= if((a)<(b))(a):=(b)
 //end;
-//
+
 //{CLAMPIS(a, b, c) ((a)<(b) ? (b) : (a)>(c) ? (c) : (a))}
 //function CLAMPIS(a: integer; b: integer; c: integer): integer; 
 //begin
 //  result:= ((a)<(b) {was ?}if then (b) {was :}else (a)>(c) {was ?}if then (c) {was :}else (a))
 //end;
-//
+
 //{CLAMPTEST(a, b, c) if((b)<(c)) {CLAMP(a, b, c);} else {CLAMP(a, c, b);}}
 //function CLAMPTEST(a: integer; b: integer; c: integer): integer; 
 //begin
 //  result:= if((b)<(c))(CLAMP(a,b,c);)else(CLAMP(a,c,b);)
 //end;
-//
+
 //{IS_EQ(a,b) ((fabs((double)(a)-(b)) >= (double) FLT_EPSILON) ? 0 : 1)}
 //function IS_EQ(a: integer; b: integer): integer; 
 //begin
 //  result:= ((fabs( {double(}(a)-(b))>= {double(}FLT_EPSILON) {was ?}if then 0 {was :}else 1)
 //end;
-//
+
 //{INIT_MINMAX(min, max) (min)[0]= (min)[1]= (min)[2]= 1.0e30; (max)[0]= (max)[1]= (max)[2]= -1.0e30;}
 //function INIT_MINMAX(min: integer; max: integer): integer; 
 //begin
 //  result:= (min)[0]:=(min)[1]:=(min)[2]:=1.0e30
 //end;
-//
+
 //{DO_MINMAX(vec, min, max) if( (min)[0]>(vec)[0] ) (min)[0]= (vec)[0];          if( (min)[1]>(vec)[1] ) (min)[1]= (vec)[1];          if( (min)[2]>(vec)[2] ) (min)[2]= (vec)[2];          if( (max)[0]<(vec)[0] ) (max)[0]= (vec)[0];          if( (max)[1]<(vec)[1] ) (max)[1]= (vec)[1];          if( (max)[2]<(vec)[2] ) (max)[2]= (vec)[2]; #define DO_MINMAX2(vec, min, max) if( (min)[0]>(vec)[0] ) (min)[0]= (vec)[0];          if( (min)[1]>(vec)[1] ) (min)[1]= (vec)[1];          if( (max)[0]<(vec)[0] ) (max)[0]= (vec)[0];          if( (max)[1]<(vec)[1] ) (max)[1]= (vec)[1];}
 //function DO_MINMAX(vec: integer; min: integer; max: integer): integer; 
 //begin
 //  result:= if((min)[0]>(vec)[0])(min)[0]:=(vec)[0]
 //end;
-//
+
 //{MINSIZE(val, size) ( ((val)>=0.0) ? (((val)<(size)) ? (size): (val)) : ( ((val)>(-size)) ? (-size) : (val)))}
 //function MINSIZE(val: integer; size: integer): integer; 
 //begin
 //  result:= (((val)>=0.0) {was ?}if then (((val)<(size)) {was ?}if then (size) {was :}else (val)) {was :}else (((val)>(-size)) {was ?}if then (-size) {was :}else (val)))
 //end;
-//
+
 //{BTST(a,b) ( ( (a) & 1<<(b) )!=0 )}
 //function BTST(a: integer; b: integer): integer; 
 //begin
 //  result:= (((a) and 1 shl (b))<>0)
 //end;
-//
+
 //{BCLR(a,b) ( (a) & ~(1<<(b)) )}
 //function BCLR(a: integer; b: integer): integer; 
 //begin
 //  result:= ((a) and  not (1 shl (b)))
 //end;
-//
+
 //{BSET(a,b) ( (a) | 1<<(b) )}
 //function BSET(a: integer; b: integer): integer; 
 //begin
 //  result:= ((a) or 1 shl (b))
 //end;
-//
+
 //{BROW(min, max) (((max)>=31? 0xFFFFFFFF: (1<<(max+1))-1) - ((min)? ((1<<(min))-1):0) )}
 //function BROW(min: integer; max: integer): integer; 
 //begin
 //  result:= (((max)>=31 {was ?}if then $FFFFFFFF {was :}else (1 shl (max+1))-1)-((min) {was ?}if then ((1 shl (min))-1) {was :}else 0))
 //end;
-//
+
 //{COPY_4(a,b)  *((int * )(a))= *((int * )(b))}
 //function COPY_4(a: integer; b: integer): integer; 
 //begin
 //  result:= *( {pinteger(}(a)):=*( {pinteger(}(b))
 //end;
-//
+
 //{COPY_8(a,b)  *((byte8 * )(a))= *((byte8 * )(b))}
 //function COPY_8(a: integer; b: integer): integer; 
 //begin
 //  result:= *( {pbyte8(}(a)):=*( {pbyte8(}(b))
 //end;
-//
+
 //{COPY_12(a,b) *((byte12 * )(a))= *((byte12 * )(b))}
 //function COPY_12(a: integer; b: integer): integer; 
 //begin
 //  result:= *( {pbyte12(}(a)):=*( {pbyte12(}(b))
 //end;
-//
+
 //{COPY_16(a,b) *((byte16 * )(a))= *((byte16 * )(b))}
 //function COPY_16(a: integer; b: integer): integer; 
 //begin
 //  result:= *( {pbyte16(}(a)):=*( {pbyte16(}(b))
 //end;
-//
+
 //{LONGCOPY(a, b, c) {int lcpc=c, *lcpa=(int * )a, *lcpb=(int * )b; while(lcpc-->0) *(lcpa++)= *(lcpb++);}}
 //function LONGCOPY(a: integer; b: integer; c: integer): integer; 
 //begin
 //  result:= (intlcpc:=c,*lcpa:= {pinteger(}a,*lcpb:= {pinteger(}b;while(lcpc{--} dec(lcpc); >0)*(lcpa{++} inc(lcpa); ):=*(lcpb{++} inc(lcpb); );)
 //end;
-//
+
 //{SWITCH_LONGINT(a) {char s_i, *p_i; p_i= (char * )&(a);         s_i= p_i[0]; p_i[0]= p_i[7]; p_i[7]= s_i; s_i= p_i[1]; p_i[1]= p_i[6]; p_i[6]= s_i;         s_i= p_i[2]; p_i[2]= p_i[5]; p_i[5]= s_i; s_i= p_i[3]; p_i[3]= p_i[4]; p_i[4]= s_i; }}
 //function SWITCH_LONGINT(a: integer): integer; 
 //begin
 //  result:= (chars_i,*p_i;p_i:=(char* )@(a);s_i:=p_i[0];p_i[0]:=p_i[7];p_i[7]:=s_i;s_i:=p_i[1];p_i[1]:=p_i[6];p_i[6]:=s_i;s_i:=p_i[2];p_i[2]:=p_i[5];p_i[5]:=s_i;s_i:=p_i[3];p_i[3]:=p_i[4];p_i[4]:=s_i;)
 //end;
-//
+
 //{SWITCH_INT(a) {char s_i, *p_i; p_i= (char * )&(a); s_i= p_i[0]; p_i[0]= p_i[3]; p_i[3]= s_i; s_i= p_i[1]; p_i[1]= p_i[2]; p_i[2]= s_i; }}
 //function SWITCH_INT(a: integer): integer; 
 //begin
 //  result:= (chars_i,*p_i;p_i:=(char* )@(a);s_i:=p_i[0];p_i[0]:=p_i[3];p_i[3]:=s_i;s_i:=p_i[1];p_i[1]:=p_i[2];p_i[2]:=s_i;)
 //end;
-//
+
 //{SWITCH_SHORT(a) {char s_i, *p_i; p_i= (char * )&(a); s_i= p_i[0]; p_i[0]= p_i[1]; p_i[1]= s_i; }}
 //function SWITCH_SHORT(a: integer): integer; 
 //begin
@@ -1535,107 +1535,107 @@ end;
 //begin
 //  result:= (((base).flag and SELECT))and(((base).lay and G.vd.lay))
 //end;
-//
+
 //{TESTBASELIB(base) ( ((base)->flag & SELECT) and ((base)->lay & G.vd->lay) and ((base)->object->id.lib==0))}
 //function TESTBASELIB(base: integer): integer; 
 //begin
 //  result:= (((base).flag and SELECT))and(((base).lay and G.vd.lay))and(((base).object.id.lib=0))
 //end;
-//
+
 //{ID_NEW(a)  if( (a) and (a)->id._new ) (a)= (void * )(a)->id._new}
 //function ID_NEW(a: integer): integer; 
 //begin
 //  result:= if((a))and((a).id._new)(a):= {pinteger(}(a).id._new
 //end;
-//
+
 //{ID_NEW_US(a) if( (a)->id._new) {(a)= (void * )(a)->id._new; (a)->id.us++;}}
 //function ID_NEW_US(a: integer): integer; 
 //begin
 //  result:= if((a).id._new)((a):= {pinteger(}(a).id._new;(a).id.us{++} inc(id.us); ;)
 //end;
-//
+
 //{ID_NEW_US2(a) if( ((ID * )a)->new) {(a)= ((ID * )a)->new; ((ID * )a)->us++;}}
 //function ID_NEW_US2(a: integer): integer; 
 //begin
 //  result:= if(( {pID(}a)._new)((a):=( {pID(}a)._new;( {pID(}a).us{++} inc(us); ;)
 //end;
-//
+
 //{ISPOIN(a, b, c)   ( (a->b) and (a->c) )}
 //function ISPOIN(a: integer; b: integer; c: integer): integer; 
 //begin
 //  result:= ((a.b))and((a.c))
 //end;
-//
+
 //{ISPOIN3(a, b, c, d)  ( (a->b) and (a->c) and (a->d) )}
 //function ISPOIN3(a: integer; b: integer; c: integer; d: integer): integer; 
 //begin
 //  result:= ((a.b))and((a.c))and((a.d))
 //end;
-//
+
 //{ISPOIN4(a, b, c, d, e) ( (a->b) and (a->c) and (a->d) and (a->e) )}
 //function ISPOIN4(a: integer; b: integer; c: integer; d: integer; e: integer): integer; 
 //begin
 //  result:= ((a.b))and((a.c))and((a.d))and((a.e))
 //end;
-//
+
 //{KNOTSU(nu)     ( (nu)->orderu+ (nu)->pntsu+ (nu->orderu-1)*((nu)->flagu & 1) )}
 //function KNOTSU(nu: integer): integer; 
 //begin
 //  result:= ((nu).orderu+(nu).pntsu+(nu.orderu-1)*((nu).flagu and 1))
 //end;
-//
+
 //{KNOTSV(nu)     ( (nu)->orderv+ (nu)->pntsv+ (nu->orderv-1)*((nu)->flagv & 1) )}
 //function KNOTSV(nu: integer): integer; 
 //begin
 //  result:= ((nu).orderv+(nu).pntsv+(nu.orderv-1)*((nu).flagv and 1))
 //end;
-//
+
 //{DL_SURFINDEX(cyclu, cyclv, sizeu, sizev)                    if( (cyclv)==0 and a==(sizev)-1) break;          if(cyclu) {           p1= sizeu*a;          p2= p1+ sizeu-1;         p3= p1+ sizeu;          p4= p2+ sizeu;          b= 0;              }               else {           p2= sizeu*a;          p1= p2+1;          p4= p2+ sizeu;          p3= p1+ sizeu;          b= 1;              }               if( (cyclv) and a==sizev-1) {        p3-= sizeu*sizev;         p4-= sizeu*sizev;            }}
 //function DL_SURFINDEX(cyclu: integer; cyclv: integer; sizeu: integer; sizev: integer): integer; 
 //begin
 //  result:= if((cyclv)=0)and(a=(sizev)-1)break
 //end;
-//
+
 //{DYNA_REF(ma)  (ma->mirr)}
 //function DYNA_REF(ma: integer): integer; 
 //begin
 //  result:= (ma.mirr)
 //end;
-//
+
 //{DYNA_FH_DIST(ma) (ma->mirg)}
 //function DYNA_FH_DIST(ma: integer): integer; 
 //begin
 //  result:= (ma.mirg)
 //end;
-//
+
 //{DYNA_FH_INT(ma)  (ma->mirb)}
 //function DYNA_FH_INT(ma: integer): integer; 
 //begin
 //  result:= (ma.mirb)
 //end;
-//
+
 //{DYNA_FH_FRICT(ma) (ma->specr)}
 //function DYNA_FH_FRICT(ma: integer): integer; 
 //begin
 //  result:= (ma.specr)
 //end;
-//
+
 //{DYNA_FH_XYFRICT(ma) (ma->emit)}
 //function DYNA_FH_XYFRICT(ma: integer): integer; 
 //begin
 //  result:= (ma.emit)
 //end;
-//
+
 //{DYNA_LAY(ma)  (ma->}
 //function DYNA_LAY(ma: integer): integer; 
 //begin
 //  result:= (ma.
 //end;
-//
+
 //{GS(a) ( *((short * )(a)))}
 //function GS(a: integer): integer; 
 //begin
 //  result:= (*( {psmallint(}(a)))
 //end;
-//
+
 end.

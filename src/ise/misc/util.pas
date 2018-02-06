@@ -232,7 +232,6 @@ interface
   { argument types are unknown }
   function MEMNEXT(x : longint) : pMemHead;
 
-
     //var
     //  totblock : longint;cvar;external;
     //  mem_in_use : longint;cvar;external;
@@ -286,7 +285,6 @@ interface
   //function tcode_to_string(len:longint):pchar;
 
 { UTIL_H  }
-
 
 implementation
 
@@ -588,13 +586,9 @@ end;
 //nume: word; 
 //i: smallint; 
 //found: smallint;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  found:=LongBool(0); 
 //  len2:= len:=lstrlen(string); 
 //  if len>6 then
@@ -689,17 +683,16 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure stringenc(string: pchar;  kop: pchar;  staart: pchar;  numlen: word;  pic: integer); 
 //var
 //numstr: array [0..9] of char;
-// 
+
 //len: word; 
 //i: word; 
 //begin
 //  numstr:=#0; 
-//  
-//  
+
 //  strcpy(string,kop); 
 //  if pic>0)or(numlen=4 then
 //  begin 
@@ -712,7 +705,7 @@ end;
 //  end;
 //  strcat(string,staart); 
 //end;
-//
+
 //procedure newname(name: pchar;  add: integer); 
 //var
 //head: array [0..127] of char;
@@ -722,15 +715,11 @@ end;
 //i: integer; 
 //exp: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  pic:= stringdec(name,head,tail, and digits); (* gaan we van 100 -> 99 of van 10 naar 9 *)
 //  if add<0)and(digits<4)and(digits>0 then
 //  begin 
-//    
-//    
+
 //    exp:= 1; 
 //    for{while} i:=digits downto Succ(1) { i--}
 //    do
@@ -829,10 +818,10 @@ end;
 //type
 //Link = record
 //end;
-//
+
 //procedure freelinkN(listbase: pListBase;  vlink: pinteger);
 //begin
-//  
+
 //  if link=nil then
 //  exit;
 //  if listbase=nil then
@@ -928,10 +917,10 @@ end;
 //type
 //Link = record
 //end;
-//
+
 //procedure freelist(listbase: pListBase);
 //begin
-//  
+
 //  if listbase=nil then
 //  exit;
 //  link:= listbase^.first; 
@@ -972,9 +961,9 @@ end;
 //var
 //link: pLink; 
 //count: integer;
-// 
+
 //begin
-//  
+
 //  count:=nil; 
 //  if listbase<>nil  then
 //  begin 
@@ -1001,10 +990,7 @@ end;
 //len: integer; 
 //ok: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  if pipe(fspipe) then
 //  begin
 //    result:= (0); 
@@ -1034,7 +1020,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function stringselect(title: pchar;  file: pchar): smallint; 
 //var
 //buf: array [0..199] of char;
@@ -1042,10 +1028,7 @@ end;
 //len: integer; 
 //ok: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  if pipe(fspipe) then
 //  begin
 //    result:= (0); 
@@ -1422,7 +1405,7 @@ end;
 //var
 //buf: array [0..7] of char;
 //begin
-//  
+
 //  if i<10 then
 //  sprintf(buf,'0%d',i); 
 //  else
@@ -1431,15 +1414,13 @@ end;
 //end;
 //var {was static}
 //str: array [0..63] of char;
-//
+
 //function tcode_to_string(len: integer): pchar; 
 //var
 //i: integer; 
 //rlen: integer; 
 //begin
-//  
-//  
-//  
+
 //  if len<0 then
 //  begin 
 //    strcpy(str,'- '); 
@@ -1477,22 +1458,21 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function string_to_tcode(str: pchar): integer; 
 //var
 //i: integer; 
 //val: array [0..3] of integer;
 //tcode: integer;
-// 
+
 //j: integer;
-// 
+
 //string: array [0..63] of char;
 //begin
-//  
-//  
+
 //  tcode:=nil; 
 //  j:=nil; 
-//  
+
 //  strcpy(string,str); 
 //  while{for} 
 //  i:=nil; 
@@ -1531,17 +1511,16 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function strnmatch(s1: pchar;  s2: pchar): integer; 
 //var
 //i: integer;
-// 
+
 //c1: char; 
 //c2: char; 
 //begin
 //  i:=nil; 
-//  
-//  
+
 //  if s1=nil then
 //  begin
 //    result:= (0); 
@@ -1571,14 +1550,13 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function file_size(name: pchar): integer; 
 //var
 //file: integer; 
 //size: integer; 
 //begin
-//  
-//  
+
 //  if name=nil then
 //  begin
 //    result:= (0); 
@@ -1597,16 +1575,14 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure load_to_mem(name: pchar); 
 //var
 //file: integer; 
 //size: integer; 
 //mem: pchar; 
 //begin
-//  
-//  
-//  
+
 //  if name=nil then
 //  begin
 //    result:= (0); 
@@ -1643,7 +1619,7 @@ end;
 
 //procedure Sginap(Ticks: integer); 
 //begin
-//  
+
 //  timeout.tv_sec:= Ticks div 100; 
 //  timeout.tv_usec:= Ticks*10000-timeout.tv_sec*1000000; 
 //  select(0,0,0,0,@timeout); 
@@ -1656,314 +1632,314 @@ end;
 //begin
 //  result:=  {px(}malloc((y)*sizeof(x))
 //end;
-//
+
 //{callocstruct(x,y) (x* )calloc((y), sizeof(x))}
 //function callocstruct(x: integer; y: integer): integer;
 //begin
 //  result:=  {px(}calloc((y),sizeof(x))
 //end;
-//
+
 //{mallocstructN(x,y,name) (x* )mallocN((y)* sizeof(x),name)}
 //function mallocstructN(x: integer; y: integer; name: integer): integer;
 //begin
 //  result:=  {px(}mallocN((y)*sizeof(x),name)
 //end;
-//
+
 //{callocstructN(x,y,name) (x* )callocN((y)* sizeof(x),name)}
 //function callocstructN(x: integer; y: integer; name: integer): integer;
 //begin
 //  result:=  {px(}callocN((y)*sizeof(x),name)
 //end;
-//
+
 //{RMK(x)}
 //function RMK(x: integer): integer;
 //begin
 //end;
-//
+
 //{ELEM(a, b, c)  ( (a)==(b) or (a)==(c) )}
 //function ELEM(a: integer; b: integer; c: integer): integer;
 //begin
 //  result:= ((a)=(b))or((a)=(c))
 //end;
-//
+
 //{ELEM3(a, b, c, d) ( ELEM(a, b, c) or (a)==(d) )}
 //function ELEM3(a: integer; b: integer; c: integer; d: integer): integer;
 //begin
 //  result:= (ELEM(a,b,c))or((a)=(d))
 //end;
-//
+
 //{ELEM4(a, b, c, d, e) ( ELEM(a, b, c) or ELEM(a, d, e) )}
 //function ELEM4(a: integer; b: integer; c: integer; d: integer; e: integer): integer;
 //begin
 //  result:= (ELEM(a,b,c))or(ELEM(a,d,e))
 //end;
-//
+
 //{ELEM5(a, b, c, d, e, f) ( ELEM(a, b, c) or ELEM3(a, d, e, f) )}
 //function ELEM5(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer): integer;
 //begin
 //  result:= (ELEM(a,b,c))or(ELEM3(a,d,e,f))
 //end;
-//
+
 //{ELEM6(a, b, c, d, e, f, g) ( ELEM(a, b, c) or ELEM4(a, d, e, f, g) )}
 //function ELEM6(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer; g: integer): integer;
 //begin
 //  result:= (ELEM(a,b,c))or(ELEM4(a,d,e,f,g))
 //end;
-//
+
 //{ELEM7(a, b, c, d, e, f, g, h) ( ELEM3(a, b, c, d) or ELEM4(a, e, f, g, h) )}
 //function ELEM7(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer; g: integer; h: integer): integer;
 //begin
 //  result:= (ELEM3(a,b,c,d))or(ELEM4(a,e,f,g,h))
 //end;
-//
+
 //{ELEM8(a, b, c, d, e, f, g, h, i) ( ELEM4(a, b, c, d, e) or ELEM4(a, f, g, h, i) )}
 //function ELEM8(a: integer; b: integer; c: integer; d: integer; e: integer; f: integer; g: integer; h: integer; i: integer): integer;
 //begin
 //  result:= (ELEM4(a,b,c,d,e))or(ELEM4(a,f,g,h,i))
 //end;
-//
+
 //{STREQ(str, a)  ( strcmp((str), (a))==nil )}
 //function STREQ(str: integer; a: integer): integer;
 //begin
 //  result:= (lstrcmp((str),(a))=nil)
 //end;
-//
+
 //{STREQ2(str, a, b) ( STREQ(str, a) or STREQ(str, b) )}
 //function STREQ2(str: integer; a: integer; b: integer): integer;
 //begin
 //  result:= (STREQ(str,a))or(STREQ(str,b))
 //end;
-//
+
 //{STREQ3(str, a, b, c) ( STREQ2(str, a, b) or STREQ(str, c) )}
 //function STREQ3(str: integer; a: integer; b: integer; c: integer): integer;
 //begin
 //  result:= (STREQ2(str,a,b))or(STREQ(str,c))
 //end;
-//
+
 //{MIN2(x,y)  ( (x)<(y) ? (x) : (y) )}
 //function MIN2(x: integer; y: integer): integer;
 //begin
 //  result:= ((x)<(y) {was ?}if then (x) {was :}else (y))
 //end;
-//
+
 //{MIN3(x,y,z)  MIN2( MIN2((x),(y)) , (z) )}
 //function MIN3(x: integer; y: integer; z: integer): integer;
 //begin
 //  result:= MIN2(MIN2((x),(y)),(z))
 //end;
-//
+
 //{MIN4(x,y,z,a)  MIN2( MIN2((x),(y)) , MIN2((z),(a)) )}
 //function MIN4(x: integer; y: integer; z: integer; a: integer): integer;
 //begin
 //  result:= MIN2(MIN2((x),(y)),MIN2((z),(a)))
 //end;
-//
+
 //{MAX2(x,y)  ( (x)>(y) ? (x) : (y) )}
 //function MAX2(x: integer; y: integer): integer;
 //begin
 //  result:= ((x)>(y) {was ?}if then (x) {was :}else (y))
 //end;
-//
+
 //{MAX3(x,y,z)  MAX2( MAX2((x),(y)) , (z) )}
 //function MAX3(x: integer; y: integer; z: integer): integer;
 //begin
 //  result:= MAX2(MAX2((x),(y)),(z))
 //end;
-//
+
 //{MAX4(x,y,z,a)  MAX2( MAX2((x),(y)) , MAX2((z),(a)) )}
 //function MAX4(x: integer; y: integer; z: integer; a: integer): integer;
 //begin
 //  result:= MAX2(MAX2((x),(y)),MAX2((z),(a)))
 //end;
-//
+
 //{SWAP(type, a, b) { type sw_ap; sw_ap=(a); (a)=(b); (b)=sw_ap; }}
 //function SWAP(type: integer; a: integer; b: integer): integer;
 //begin
 //  result:= (typesw_ap;sw_ap:=(a);(a):=(b);(b):=sw_ap;)
 //end;
-//
+
 //{ABS(x) ((x) < 0 ? -(x) : (x))}
 //function ABS(x: integer): integer;
 //begin
 //  result:= ((x)<0 {was ?}if then -(x) {was :}else (x))
 //end;
-//
+
 //{GL(x) ( *((int * )(x)))}
 //function GL(x: integer): integer;
 //begin
 //  result:= (*( {pinteger(}(x)))
 //end;
-//
+
 //{GL(x) (((word * )(x))[0] << 16 | ((word * )(x))[1])}
 //function GL(x: integer): integer;
 //begin
 //  result:= (( {pword(}(x))[0] shl 16 or ( {pword(}(x))[1])
 //end;
-//
+
 //{GS(x) (((uchar * )(x))[0] << 8 | ((uchar * )(x))[1])}
 //function GS(x: integer): integer;
 //begin
 //  result:= (( {puchar(}(x))[0] shl 8 or ( {puchar(}(x))[1])
 //end;
-//
+
 //{GSS(x) (((uchar * )(x))[1] << 8 | ((uchar * )(x))[0])}
 //function GSS(x: integer): integer;
 //begin
 //  result:= (( {puchar(}(x))[1] shl 8 or ( {puchar(}(x))[0])
 //end;
-//
+
 //{SWAP_L(x) (((x << 24) & 0xff000000) | ((x << 8) & 0xff0000) | ((x >> 8) & 0xff00) | ((x >> 24) & 0xff))}
 //function SWAP_L(x: integer): integer;
 //begin
 //  result:= (((x shl 24) and $ff000000) or ((x shl 8) and $ff0000) or ((x shr 8) and $ff00) or ((x shr 24) and $ff))
 //end;
-//
+
 //{SWAP_S(x) (((x << 8) & 0xff00) | ((x >> 8) & 0xff))}
 //function SWAP_S(x: integer): integer;
 //begin
 //  result:= (((x shl 8) and $ff00) or ((x shr 8) and $ff))
 //end;
-//
+
 //{SWAP_SHORT(x) (((unsigned short) (x) << 8) | ((unsigned short) (x) >> 8))}
 //function SWAP_SHORT(x: integer): integer;
 //begin
 //  result:= (((unsignedshort)(x) shl 8) or ((unsignedshort)(x) shr 8))
 //end;
-//
+
 //{SWAP_LONG(x) (((x) << 24) | (((x) & 0xff00) << 8) | (((x) >> 8) & 0xff00) | (((x) >> 24) & 0xff))}
 //function SWAP_LONG(x: integer): integer;
 //begin
 //  result:= (((x) shl 24) or (((x) and $ff00) shl 8) or (((x) shr 8) and $ff00) or (((x) shr 24) and $ff))
 //end;
-//
+
 //{ENDIAN_NOP(x) (x)}
 //function ENDIAN_NOP(x: integer): integer;
 //begin
 //  result:= (x)
 //end;
-//
+
 //{GET_BIG_LONG(x) (((uchar * ) (x))[0] << 24 | ((uchar * ) (x))[1] << 16 | ((uchar * ) (x))[2] << 8 | ((uchar * ) (x))[3])}
 //function GET_BIG_LONG(x: integer): integer;
 //begin
 //  result:= (( {puchar(}(x))[0] shl 24 or ( {puchar(}(x))[1] shl 16 or ( {puchar(}(x))[2] shl 8 or ( {puchar(}(x))[3])
 //end;
-//
+
 //{GET_LITTLE_LONG(x) (((uchar * ) (x))[3] << 24 | ((uchar * ) (x))[2] << 16 | ((uchar * ) (x))[1] << 8 | ((uchar * ) (x))[0])}
 //function GET_LITTLE_LONG(x: integer): integer;
 //begin
 //  result:= (( {puchar(}(x))[3] shl 24 or ( {puchar(}(x))[2] shl 16 or ( {puchar(}(x))[1] shl 8 or ( {puchar(}(x))[0])
 //end;
-//
+
 //{MAKE_ID(a,b,c,d) ( (int)(a)<<24 | (int)(b)<<16 | (c)<<8 | (d) )}
 //function MAKE_ID(a: integer; b: integer; c: integer; d: integer): integer;
 //begin
 //  result:= ( {integer(}(a) shl 24 or  {integer(}(b) shl 16 or (c) shl 8 or (d))
 //end;
-//
+
 //{MAKE_ID(a,b,c,d) ( (int)(d)<<24 | (int)(c)<<16 | (b)<<8 | (a) )}
 //function MAKE_ID(a: integer; b: integer; c: integer; d: integer): integer;
 //begin
 //  result:= ( {integer(}(d) shl 24 or  {integer(}(c) shl 16 or (b) shl 8 or (a))
 //end;
-//
+
 //{NEW(x) (x* )mallocN(sizeof(x),# x)}
 //function NEW(x: integer): integer;
 //begin
 //  result:=  {px(}mallocN(sizeof(x),x)
 //end;
-//
+
 //{CLN(x) (x* )callocN(sizeof(x),# x)}
 //function CLN(x: integer): integer;
 //begin
 //  result:=  {px(}callocN(sizeof(x),x)
 //end;
-//
+
 //{PRINT(d, var1) printf(# var1 ":%" # d "\n", var1)}
 //function PRINT(d: integer; var1: integer): integer;
 //begin
 //  result:= printf(var1':%'
 //  {$ d "\n", var1)}
 //end;
-//
+
 //{PRINT2(d, e, var1, var2) printf(# var1 ":%" # d " " # var2 ":%" # e "\n", var1, var2)}
 //function PRINT2(d: integer; e: integer; var1: integer; var2: integer): integer;
 //begin
 //  result:= printf(var1':%'
 //  {$ d " " # var2 ":%" # e "\n", var1, var2)}
 //end;
-//
+
 //{PRINT3(d, e, f, var1, var2, var3) printf(# var1 ":%" # d " " # var2 ":%" # e " " # var3 ":%" # f "\n", var1, var2, var3)}
 //function PRINT3(d: integer; e: integer; f: integer; var1: integer; var2: integer; var3: integer): integer;
 //begin
 //  result:= printf(var1':%'
 //  {$ d " " # var2 ":%" # e " " # var3 ":%" # f "\n", var1, var2, var3)}
 //end;
-//
+
 //{PRINT4(d, e, f, g, var1, var2, var3, var4) printf(# var1 ":%" # d " " # var2 ":%" # e " " # var3 ":%" # f " " # var4 ":%" # g "\n", var1, var2, var3, var4)}
 //function PRINT4(d: integer; e: integer; f: integer; g: integer; var1: integer; var2: integer; var3: integer; var4: integer): integer;
 //begin
 //  result:= printf(var1':%'
 //  {$ d " " # var2 ":%" # e " " # var3 ":%" # f " " # var4 ":%" # g "\n", var1, var2, var3, var4)}
 //end;
-//
+
 //{NEW(x) (x* )mallocN(sizeof(x),"x")}
 //function NEW(x: integer): integer;
 //begin
 //  result:=  {px(}mallocN(sizeof(x),'x')
 //end;
-//
+
 //{CLN(x) (x* )callocN(sizeof(x),"x")}
 //function CLN(x: integer): integer;
 //begin
 //  result:=  {px(}callocN(sizeof(x),'x')
 //end;
-//
+
 //{PRINT(d, var1) printf(# var1 ":%" # d "\n", var1)}
 //function PRINT(d: integer; var1: integer): integer;
 //begin
 //  result:= printf(var1':%'
 //  {$ d "\n", var1)}
 //end;
-//
+
 //{PRINT2(d, e, var1, var2) printf(# var1 ":%" # d " " # var2 ":%" # e "\n", var1, var2)}
 //function PRINT2(d: integer; e: integer; var1: integer; var2: integer): integer;
 //begin
 //  result:= printf(var1':%'
 //  {$ d " " # var2 ":%" # e "\n", var1, var2)}
 //end;
-//
+
 //{PRINT3(d, e, f, var1, var2, var3) printf(# var1 ":%" # d " " # var2 ":%" # e " " # var3 ":%" # f "\n", var1, var2, var3)}
 //function PRINT3(d: integer; e: integer; f: integer; var1: integer; var2: integer; var3: integer): integer;
 //begin
 //  result:= printf(var1':%'
 //  {$ d " " # var2 ":%" # e " " # var3 ":%" # f "\n", var1, var2, var3)}
 //end;
-//
+
 //{PRINT4(d, e, f, g, var1, var2, var3, var4) printf(# var1 ":%" # d " " # var2 ":%" # e " " # var3 ":%" # f " " # var4 ":%" # g "\n", var1, var2, var3, var4)}
 //function PRINT4(d: integer; e: integer; f: integer; g: integer; var1: integer; var2: integer; var3: integer; var4: integer): integer;
 //begin
 //  result:= printf(var1':%'
 //  {$ d " " # var2 ":%" # e " " # var3 ":%" # f " " # var4 ":%" # g "\n", var1, var2, var3, var4)}
 //end;
-//
+
 //{MEMNEXT(x) ((MemHead * )(((char * ) x) - ((char * ) & (((MemHead * )0)->next))))}
 //function MEMNEXT(x: integer): integer;
 //begin
 //  result:= ( {pMemHead(}(( {pchar(}x)-((char* ) and (( {pMemHead(}0).next))))
 //end;
-//
+
 //{malloc(x) mallocN(x,"debug")}
 //function malloc(x: integer): integer;
 //begin
 //  result:= mallocN(x,'debug')
 //end;
-//
+
 //{free(x) freeN(x)}
 //function free(x: integer): integer;
 //begin
 //  result:= freeN(x)
 //end;
-//
+
 //{calloc(x,y) callocN((x)*(y),"debug")}
 //function calloc(x: integer; y: integer): integer;
 //begin

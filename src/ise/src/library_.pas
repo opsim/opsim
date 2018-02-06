@@ -64,7 +64,7 @@ cfuncs;
 //    end;
 //  end;
 //end;
-//
+
 //procedure id_us_plus(id: pID); 
 //begin
 //  if id<>nil 
@@ -255,12 +255,7 @@ end;
 //cp: pchar; 
 //cpn: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  id:= rt; 
 //  lb:= wich_libbase(G.main,GS(id.name)); 
 //  idn:= alloc_libblock(lb,GS(id.name),id.name+2); 
@@ -280,15 +275,15 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure free_library(lib: pLibrary); 
 //begin
 //end;
-//
+
 //procedure free_libblock(lb: pListBase;  idv: pinteger); 
 //var
 //id: pID;
-// 
+
 //begin
 //  id:=idv; 
 //  case GS(id.name) of
@@ -381,18 +376,18 @@ end;
 //    begin
 //      free_text( {pText(}id);
 //    end;
-//    
+
 //  end;{case?}
 //  remlink(lb,id); 
 //  freeN(id); 
 //  allspace(OOPS_TEST,0); 
 //end;
 //(* test users *)
-//
+
 //procedure free_libblock_us(lb: pListBase;  idv: pinteger); 
 //var
 //id: pID;
-// 
+
 //begin
 //  id:=idv; 
 //  dec(id.us); 
@@ -414,14 +409,13 @@ end;
 //    free_libblock(lb,id); 
 //  end;
 //end;
-//
+
 //procedure free_liblist(lb: pListBase); 
 //var
 //id: pID; 
 //nid: pID; 
 //begin
-//  
-//  
+
 //  id:= lb.first; 
 //  while id
 //  do
@@ -431,14 +425,13 @@ end;
 //    id:= nid; 
 //  end;
 //end;
-//
+
 //procedure free_main(lb: pListBase;  main: pMain); 
 //var
 //lbarray: array [0..Pred(30)] of pListBase; 
 //a: integer; 
 //begin(* ook aanroepen bij file inlezen, erase all, etc *)
-//  
-//  
+
 //  a:= set_listbasepointers(main,lbarray); 
 //  while a{--} dec(a); 
 //  do
@@ -463,10 +456,10 @@ end;
 //type
 //Main = record
 //end;
-//
+
 //procedure free_mainlist; 
 //begin
-//  
+
 //  main:= G.mainbase.first; 
 //  while main
 //  do
@@ -476,16 +469,14 @@ end;
 //    main:= nmain; 
 //  end;
 //end;
-//
+
 //procedure add_main_to_main(main: pMain;  from: pMain); 
 //var
 //lbarray: array [0..Pred(30)] of pListBase; 
 //fromarray: array [0..Pred(30)] of pListBase; 
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  a:= set_listbasepointers(main,lbarray); 
 //  a:= set_listbasepointers(from,fromarray); 
 //  while a{--} dec(a); 
@@ -494,14 +485,13 @@ end;
 //    addlisttolist(lbarray[a],fromarray[a]); 
 //  end;
 //end;
-//
+
 //procedure join_main; 
 //var
 //main: pMain; 
 //nmain: pMain; 
 //begin
-//  
-//  
+
 //  main:= G.main.next; 
 //  while main
 //  do
@@ -513,7 +503,7 @@ end;
 //    main:= nmain; 
 //  end;
 //end;
-//
+
 //procedure split_libdata(lb: pListBase;  first: pMain); 
 //var
 //lbn: pListBase; 
@@ -521,10 +511,7 @@ end;
 //idnext: pID; 
 //main: pMain; 
 //begin
-//  
-//  
-//  
-//  
+
 //  id:= lb.first; 
 //  while id
 //  do
@@ -554,7 +541,7 @@ end;
 //    id:= idnext; 
 //  end;
 //end;
-//
+
 //procedure split_main; 
 //var
 //lbarray: array [0..Pred(30)] of pListBase; 
@@ -563,11 +550,7 @@ end;
 //lib: pLibrary; 
 //a: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  if G.mainbase.first<>G.mainbase.last
 //  then
 //  begin 
@@ -595,14 +578,13 @@ end;
 //    end;
 //  end;
 //end;
-//
+
 //function find_main(dir: pchar): pMain; 
 //var
 //main: pMain; 
 //lib: pLibrary; 
 //begin
-//  
-//  
+
 //  main:= G.mainbase.first; 
 //  while main
 //  do
@@ -636,18 +618,16 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function count_mainblocks_flag(main: pMain;  flag: integer): integer; 
 //var
 //lbarray: array [0..Pred(30)] of pListBase; 
 //id: pID; 
 //a: integer; 
 //tot: integer;
-// 
+
 //begin
-//  
-//  
-//  
+
 //  tot:=0; 
 //  a:= set_listbasepointers(main,lbarray); 
 //  while a{--} dec(a); 
@@ -670,14 +650,13 @@ end;
 //end;
 //(* ***************** ID ************************ *)
 //(* type: "OB" of "MA" etc *)
-//
+
 //function find_id(type: pchar;  name: pchar): pID; 
 //var
 //id: pID; 
 //lb: pListBase; 
 //begin
-//  
-//  
+
 //  lb:= wich_libbase(G.main,GS(type)); 
 //  id:= lb.first; 
 //  while id
@@ -696,20 +675,19 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure IDnames_to_pupstring_nr{!!!3 unknown typedef}; 
 //var
 //id: pID; 
 //fake: integer; 
 //len: integer;
-// 
+
 //count: integer; 
 //extra: array [0..Pred(8)] of char; 
 //begin(* string naderhand vrijgeven *)
-//  
-//  
+
 //  len:=50; 
-//  
+
 //  {*}nr^:=-1; 
 //  extra[3]:= 0; 
 //  id:= lb.first; 
@@ -786,27 +764,25 @@ end;
 //  then
 //  (*str)[len-1]:=0; 
 //end;
-//
+
 //procedure IDnames_to_pupstring{!!!3 unknown typedef}; 
 //begin
 //  IDnames_to_pupstring_nr(str,lb,link,nr,MAX_IDPUP); 
 //end;
-//
+
 //procedure IPOnames_to_pupstring{!!!3 unknown typedef}; 
 //var
 //id: pID; 
 //ipo: pIpo; 
 //fake: integer; 
 //len: integer;
-// 
+
 //count: integer; 
 //extra: array [0..Pred(8)] of char; 
 //begin(* string naderhand vrijgeven *)
-//  
-//  
-//  
+
 //  len:=30; 
-//  
+
 //  {*}nr^:=-1; 
 //  extra[5]:= 0; 
 //  id:= lb.first; 
@@ -889,16 +865,14 @@ end;
 //  then
 //  (*str)[len-1]:=0; 
 //end;
-//
+
 //function has_id_number(id: pID): integer; 
 //var
 //a: integer; 
 //len: integer; 
 //name: pchar; 
 //begin
-//  
-//  
-//  
+
 //  name:= id.name+2; 
 //  len:= lstrlen(name); 
 //  if len<2
@@ -1106,9 +1080,7 @@ end;
 //id: pID; 
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  a:= set_listbasepointers(G.main,lbarray); 
 //  while a{--} dec(a); 
 //  do
@@ -1123,23 +1095,20 @@ end;
 //    end;
 //  end;
 //end;
-//
+
 //procedure all_local; 
 //var
 //lbarray: array [0..Pred(30)] of pListBase; 
 //tempbase: ListBase;
-// 
+
 //id: pID; 
 //idn: pID; 
 //idp: pID; 
 //a: integer; 
 //begin
-//  
+
 //  tempbase:=(0,0); 
-//  
-//  
-//  
-//  
+
 //  a:= set_listbasepointers(G.main,lbarray); 
 //  while a{--} dec(a); 
 //  do
@@ -1190,16 +1159,14 @@ end;
 //    end;
 //  end;
 //end;
-//
+
 //procedure test_idbutton(name: pchar); 
 //var
 //lb: pListBase; 
 //id: pID; 
 //idtest: pID; 
 //begin(* vanuit buttons: als naam al bestaat: new_id aanroepen *)
-//  
-//  
-//  
+
 //  lb:= wich_libbase(G.main,GS(name-2)); 
 //  if lb=0
 //  then
@@ -1220,14 +1187,13 @@ end;
 //  then
 //  sort_alpha_id(lb,idtest); 
 //end;
-//
+
 //procedure rename_id(id: pID;  name: pchar); 
 //var
 //lb: pListBase; 
 //idtest: pID; 
 //begin
-//  
-//  
+
 //  strncpy(id.name+2,name,21); 
 //  lb:= wich_libbase(G.main,GS(id.name)); 
 //  new_id(lb,id,name); 

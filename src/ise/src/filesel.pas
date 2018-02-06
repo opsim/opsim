@@ -38,7 +38,7 @@ uses
 //{$include "graphics.h"}
 //{$include "file.h"}
 //{$include "imasel.h"}
-//
+
 //{$if defined(WINDOWS) or defined MIPS1 or defined BEOS}
 
 procedure activate_fileselect(_type: integer;  title: pchar;  _file: pchar; func: retfunc);
@@ -57,7 +57,7 @@ uses
 //  end;
 //end;
 //{$ifdef MIPS1}
-//
+
 //procedure usleep(val: integer); 
 //begin
 //  sginap(val); 
@@ -66,33 +66,31 @@ uses
 //{$else}
 //{$include <fnmatch.h>}
 //{$endif}
-//
+
 //{$ifndef WINDOWS}
 //{$include <sys/param.h>}
 //{$endif}
-//
+
 //const
 //FILESELHEAD = 60; 
 //FILESEL_DY = 16; 
-//
+
 //NOTACTIVE = 0; 
 //ACTIVATE = 1; 
 //INACTIVATE = 2; 
-//
-//
+
 //function STARTSWITH(x: integer; y: integer): integer; {<= !!!6 unknown macro}
-//
-//
+
 //procedure library_to_filelist(sfile: pSpaceFile); 
-//
+
 //procedure main_to_filelist(sfile: pSpaceFile); 
 
 function code_to_groupname(code: integer): pchar; forward;
 
 //procedure filesel_select_objects(sfile: pSpaceFile); 
-//
+
 //procedure active_file_object(sfile: pSpaceFile); 
-//
+
 //(* globals *)
 
 var
@@ -111,15 +109,13 @@ var
 //fsmenu: pchar = 0; 
 //otherarea: pScrArea; 
 //(* ******************* SORT ******************* *)
-//
-//
+
 //function compare: integer; 
 //(* storage.c *)
-//
-//
+
 //function compare_date(entry1: pdirentry;  entry2: pdirentry): integer; 
 //begin(* type is gelijk aan stat.st_mode *)
-//  
+
 //  if S_ISDIR(entry1.type)
 //  then
 //  begin 
@@ -169,7 +165,7 @@ var
 //  begin
 //    result:= (1); 
 //    exit;
-//    
+
 //    (*
 //     if ( entry1->s.st_ctime < entry2->s.st_ctime) return 1;
 //     if ( entry1->s.st_ctime > entry2->s.st_ctime) return -1;
@@ -193,11 +189,10 @@ var
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function compare_size(entry1: pdirentry;  entry2: pdirentry): integer; 
 //begin(* type is gelijk aan stat.st_mode *)
-//  
+
 //  if S_ISDIR(entry1.type)
 //  then
 //  begin 
@@ -247,7 +242,7 @@ var
 //  begin
 //    result:= (1); 
 //    exit;
-//    
+
 //  end;
 //  if entry1.s.st_size<entry2.s.st_size
 //  then
@@ -267,28 +262,25 @@ var
 //    exit;
 //  end;
 //end;
-//
-//
+
 //(* **************************************** *)
-//
-//
+
 //procedure clear_global_filesel_vars; 
 //begin
 //  selecting:= 0; 
 //end;
-//
-//
+
 //procedure addfilename_to_fsmenu(name: pchar); 
 //var
 //temp: pchar; 
 //len: integer; 
 //begin
-//  
+
 //  len:= lstrlen(name); 
 //  if len=0
 //  then
 //  exit;
-//  
+
 //  if fsmenu<>0{nil} {<= !!!9} 
 //  then
 //  len:= len + (lstrlen(fsmenu)); 
@@ -312,14 +304,13 @@ var
 //    strcpy(fsmenu,name); 
 //  end;
 //end;
-//
-//
+
 //procedure filesel_statistics(sfile: pSpaceFile;  totfile: pinteger;  selfile: pinteger;  totlen: pfloat;  sellen: pfloat); 
 //var
 //a: integer; 
 //len: integer; 
 //begin
-//  
+
 //  {*}totfile^:=*selfile:=0; 
 //  {*}totlen^:=*sellen:=0; 
 //  if sfile^.filelist=0
@@ -333,8 +324,7 @@ var
 //    begin 
 //      (*totfile)++; 
 //      len:= sfile^.filelist[a].s.st_size; (*totlen)+=(len div 1048576.0); 
-//      
-//      
+
 //      if sfile^.filelist[a].flags and ACTIVE
 //      then
 //      begin 
@@ -344,21 +334,20 @@ var
 //    end;
 //  end;
 //end;
-//
+
 //{$ifdef __sgi}
-//
+
 //procedure workspacecommand(sfile: pSpaceFile); 
 //var
 //pipein: pFILE; 
 //pipeout: pFILE; 
 //pipestart: smallint;
-// 
+
 //cmd: array [0..Pred(512)] of char; 
 //begin
-//  
-//  
+
 //  pipestart:=LongBool(0); 
-//  
+
 //  if sfile^.file[0]<>0
 //  then
 //  begin 
@@ -384,7 +373,7 @@ var
 //        fprintf(pipeout,'LEADER=%s/%s\n',sfile^.dir,sfile^.file);
 //        fprintf(pipeout,'SELECTED=%s/%s\n',sfile^.dir,sfile^.file);
 //        fprintf(pipeout,'ARGC=1\n');
-//        
+
 //        while fscanf(pipein,' %511[^\n]\n',cmd)<>EOF
 //        do
 //        begin 
@@ -426,11 +415,9 @@ var
 //  end;
 //end;
 //{$endif}
-//
-//
+
 //(* *************** HULPFUNKTIES ******************* *)
-//
-//
+
 //procedure char_switch(string: pchar;  from: char;  to: char); 
 //begin
 //  while {*}string^<>0
@@ -442,13 +429,12 @@ var
 //    inc(string); 
 //  end;
 //end;
-//
+
 //(* This is a really ugly function... its purpose is to
 // * take the space file name and clean it up, replacing
 // * excess file entry stuff (like /tmp/../tmp/../)
 // *)
-//
-//
+
 //procedure checkdir(dir: pchar); 
 //var
 //a: smallint; 
@@ -456,9 +442,7 @@ var
 //eind: pchar; 
 //tmp: array [0..Pred(FILE_MAXDIR+FILE_MAXFILE)] of char; 
 //begin
-//  
-//  
-//  
+
 //  make_file_string(tmp,dir,); 
 //  strcpy(dir,tmp); 
 //  {$ifdef WINDOWS}
@@ -470,7 +454,7 @@ var
 //    dir[1]:= 0; 
 //    exit;
 //  end;
-//  
+
 //  while start:=strstr(dir,'\..\')
 //  do
 //  begin 
@@ -486,21 +470,21 @@ var
 //    end;
 //    strcpy(dir+a,eind); 
 //  end;
-//  
+
 //  while start:=strstr(dir,'\.\')
 //  do
 //  begin 
 //    eind:= start+lstrlen('\.\')-1; 
 //    strcpy(start,eind); 
 //  end;
-//  
+
 //  while start:=strstr(dir,'\\')
 //  do
 //  begin 
 //    eind:= start+lstrlen('\\')-1; 
 //    strcpy(start,eind); 
 //  end;
-//  
+
 //  if a:=lstrlen(dir)
 //  then
 //  begin 
@@ -513,7 +497,7 @@ var
 //    end;
 //  end;
 //  strcat(dir,'\'); 
-//  
+
 //  {$else}
 //  if dir[0]='.'
 //  then
@@ -538,21 +522,21 @@ var
 //    end;
 //    strcpy(dir+a,eind); 
 //  end;
-//  
+
 //  while start:=strstr(dir,'/./')
 //  do
 //  begin 
 //    eind:= start+lstrlen('/./')-1; 
 //    strcpy(start,eind); 
 //  end;
-//  
+
 //  while start:=strstr(dir,'//')
 //  do
 //  begin 
 //    eind:= start+lstrlen('//')-1; 
 //    strcpy(start,eind); 
 //  end;
-//  
+
 //  if a:=lstrlen(dir)
 //  then
 //  begin 
@@ -568,21 +552,20 @@ var
 //    end;
 //  end;
 //  strcat(dir,'/'); 
-//  
+
 //  {$endif}
 //end;
-//
+
 //type
 //direntry = record
 //end;
-//
+
 //procedure test_flags_file(sfile: pSpaceFile); 
 //var
 //num: integer; 
 //mval: array [0..Pred(2)] of smallint; 
 //begin
-//  
-//  
+
 //  file:= sfile^.filelist; 
 //  while{for} 
 //  num:= 0; 
@@ -633,20 +616,18 @@ var
 //    end;
 //  end;
 //end;
-//
-//
+
 //type
 //direntry = record
 //end;
-//
+
 //procedure sort_filelist(sfile: pSpaceFile); 
 //var
 //num: integer; 
 //act: integer;
-// 
+
 //begin
-//  
-//  
+
 //  act:=0; 
 //  case sfile^.sort of
 //    FILE_SORTALPHA:
@@ -665,7 +646,7 @@ var
 //    begin
 //      qsort(sfile^.filelist,sfile^.totfile,sizeof(structdirentry),{!!!a type cast? =>} {pinteger(}compare); 
 //    end;
-//    
+
 //  end;{case?}
 //  sfile^.act:= -1; 
 //  file:= sfile^.filelist; 
@@ -680,9 +661,7 @@ var
 //    file.flags:= file.flags and ( not HILITE); 
 //  end;
 //end;
-//
-//
-//
+
 //procedure read_dir(sfile: pSpaceFile); 
 //var
 //num: integer; 
@@ -693,8 +672,7 @@ var
 //  {files: pdirentry; }{<= !!!5 external variable}(* storage.c *)
 //  {actnum: integer; }{<= !!!5 external variable}
 //  {totnum: integer; }{<= !!!5 external variable}(* storage.c *)
-//  
-//  
+
 //  sfile^.act:= -1; 
 //  if sfile^.type=FILE_MAIN
 //  then
@@ -714,7 +692,7 @@ var
 //  actnum:= totnum:=0; 
 //  files:= 0; 
 //  hide_dot_files(sfile^.flag and FILE_HIDE_DOT); 
-//  
+
 //  (* als actnum een waarde heeft (aantal files) wordt vrijgegeven *)
 //  getwdN(wdir); 
 //  sfile^.totfile:= getdir(sfile^.dir,@(sfile^.filelist)); 
@@ -745,7 +723,6 @@ var
 //  filetoname:= 0; 
 //end;
 
-
 procedure freefilelist(sfile: pSpaceFile);
 var
 num: integer;
@@ -768,14 +745,13 @@ begin
   sfile^.filelist:= nil;
 end;
 
-
 //procedure make_exist(dir: pchar); 
 //var
 //a: integer; 
 //tmp: array [0..Pred(FILE_MAXDIR+FILE_MAXFILE)] of char; 
 //{$ifdef WINDOWS}
 //begin
-//  
+
 //  char_switch(dir,'/',#92); 
 //  {$else}
 //  char_switch(dir,#92,'/'); 
@@ -827,13 +803,12 @@ end;
 //  end;
 //  {$endif}
 //end;
-//
-//
+
 //procedure split_dirfile(string: pchar;  dir: pchar;  file: pchar); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  dir[0]:= 0; 
 //  file[0]:= 0; 
 //  {$ifdef WINDOWS}
@@ -863,7 +838,7 @@ end;
 //    then
 //    begin 
 //      strcpy(file,string+lstrlen(dir)); 
-//      
+
 //      if strrchr(file,#92)
 //      then
 //      strcpy(file,strrchr(file,#92)+1); 
@@ -914,12 +889,12 @@ end;
 //      strcpy(string,dir); 
 //    end;
 //    make_exist(dir); 
-//    
+
 //    if S_ISDIR(exist(dir))
 //    then
 //    begin 
 //      strcpy(file,string+lstrlen(dir)); 
-//      
+
 //      if strrchr(file,'/')
 //      then
 //      strcpy(file,strrchr(file,'/')+1); 
@@ -949,9 +924,7 @@ end;
 //  end;
 //  {$endif}
 //end;
-//
-//
-//
+
 //procedure split_sfile(sfile: pSpaceFile;  s1: pchar); 
 //var
 //a: smallint; 
@@ -959,12 +932,10 @@ end;
 //dir: array [0..Pred(FILE_MAXDIR)] of char; 
 //file: array [0..Pred(FILE_MAXFILE)] of char; 
 //begin
-//  
-//  
-//  
+
 //  strcpy(string,s1); 
 //  split_dirfile(string,dir,file); 
-//  
+
 //  if sfile^.filelist<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -979,19 +950,17 @@ end;
 //  strcpy(sfile^.file,file); 
 //  make_file_string(sfile^.dir,dir,); 
 //end;
-//
-//
-//
+
 //procedure parent(sfile: pSpaceFile); 
 //var
 //a: smallint; 
 //dir: pchar; (* als databrowse: geen parent *)
 //begin
-//  
+
 //  if sfile^.type=FILE_MAIN)and(sfile^.returnfunc
 //  then
 //  exit;
-//  
+
 //  dir:= sfile^.dir; 
 //  {$ifdef WINDOWS}
 //  if a:=lstrlen(dir)
@@ -1077,23 +1046,22 @@ end;
 //  make_exist(sfile^.dir); 
 //  (* to be sure *)
 //  freefilelist(sfile); 
-//  
+
 //  sfile^.ofs:= 0; 
 //  addqueue(curarea^.win,REDRAW,1); 
 //end;
-//
+
 //type
 //direntry = record
 //end;
-//
+
 //procedure swapselect_file(sfile: pSpaceFile); 
 //var
 //num: integer; 
 //act: integer;
-// 
+
 //begin
-//  
-//  
+
 //  act:=0; 
 //  file:= sfile^.filelist; 
 //  while{for} 
@@ -1127,13 +1095,12 @@ end;
 //    file.flags:= file.flags or (ACTIVE); 
 //  end;
 //end;
-//
-//
+
 //function find_active_file(sfile: pSpaceFile;  x: smallint;  y: smallint): integer; 
 //var
 //ofs: integer; 
 //begin
-//  
+
 //  if y>textrct.ymax
 //  then
 //  y:= textrct.ymax; 
@@ -1150,11 +1117,9 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //(* ********************** DRAW ******************************* *)
-//
-//
+
 //procedure calc_file_rcts(sfile: pSpaceFile); 
 //var
 //tot: integer; 
@@ -1164,12 +1129,7 @@ end;
 //start: float; 
 //totfile: float; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  scrollrct.xmin:= 15; 
 //  scrollrct.xmax:= 35; 
 //  scrollrct.ymin:= 10; 
@@ -1212,7 +1172,7 @@ end;
 //  collumwidth:= (textrct.xmax-textrct.xmin) div sfile^.collums; 
 //  totfile:= sfile^.totfile+0.5; 
 //  tot:= FILESEL_DY*totfile; 
-//  
+
 //  if tot<>0{nil} {<= !!!9} 
 //  then
 //  fac:= ({!!!a type cast? =>} {float(}sfile^.collums*(scrollrct.ymax-scrollrct.ymin)) div ({!!!a type cast? =>} {float(}tot); 
@@ -1243,13 +1203,11 @@ end;
 //  bar.ymin:= bar.ymax-fac*h; 
 //  pixels_to_ofs:= (totfile) div {!!!a type cast? =>} {float(}(h+3); 
 //  page_ofs:= fac*totfile; 
-//  
-//  
+
 //end;
-//
+
 //filescrollselect: integer = 0; 
-//
-//
+
 //procedure draw_filescroll(sfile: pSpaceFile); 
 //begin
 //  if scrollrct.ymin+10>=scrollrct.ymax
@@ -1258,27 +1216,24 @@ end;
 //  cpack($707070); 
 //  glRecti(scrollrct.xmin,scrollrct.ymin,scrollrct.xmax,scrollrct.ymax); 
 //  EmbossBox2(scrollrct.xmin-2,scrollrct.ymin-2,scrollrct.xmax+2,scrollrct.ymax+1,1,$404040,$A0A0A0); 
-//  
+
 //  cpack($909090); 
-//  
+
 //  glRecti(bar.xmin,bar.ymin,bar.xmax,bar.ymax); 
 //  EmbossBox2(bar.xmin-2,bar.ymin-2,bar.xmax+2,bar.ymax+2,filescrollselect,$404040,$A0A0A0); 
-//  
+
 //end;
-//
-//
+
 //procedure regelrect(col: uint;  x: integer;  y: integer); 
 //begin
 //  cpack(col); 
 //  glRects(x-17,y-3,x+collumwidth-21,y+11); 
 //end;
-//
-//
-//
+
 //procedure printregel(sfile: pSpaceFile;  files: pdirentry;  x: integer;  y: integer); 
 //var
 //boxcol: uint;
-// 
+
 //s: pchar; 
 //begin
 //  boxcol:=0; 
@@ -1295,15 +1250,15 @@ end;
 //    begin
 //      boxcol:= ($C07070); 
 //    end;
-//    
+
 //  end;{case?}
-//  
+
 //  if boxcol<>0{nil} {<= !!!9} 
 //  then
 //  begin 
 //    regelrect(boxcol,x,y); 
 //  end;
-//  
+
 //  if files.flags and BLENDERFILE
 //  then
 //  begin 
@@ -1337,7 +1292,7 @@ end;
 //  else
 //  cpack($0); 
 //  fmsetfont(G.font); 
-//  
+
 //  s:= files.string; 
 //  if s<>0{nil} {<= !!!9} 
 //  then
@@ -1347,12 +1302,12 @@ end;
 //    x:= x + (sfile^.maxnamelen+100); 
 //    glRasterPos2i(x-fmgetstrwidth(G.font,files.size),y); 
 //    (* glutFontDraw(files->relname, x, y); *)
-//    
+
 //    fmprstr(files.size); 
-//    
+
 //    if sfile^.flag and FILE_SHOWSHORT
 //    then
-//    
+
 //    {$ifndef WINDOWS}
 //    exit;
 //    (* rwx rwx rwx *)
@@ -1391,21 +1346,19 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
-//
+
 //function calc_filesel_regel(sfile: pSpaceFile;  nr: integer;  valx: pinteger;  valy: pinteger): integer; 
 //var
 //val: integer; 
 //coll: integer; 
 //begin(* sco van de de regel *)
-//  
+
 //  nr:= nr - (sfile^.ofs); 
 //  val:= (textrct.ymax-textrct.ymin) div FILESEL_DY; 
 //  coll:= nr div val; 
 //  nr:= nr - (coll*val); {*}valy^:=textrct.ymax-FILESEL_DY+3-nr*FILESEL_DY; 
 //  {*}valx^:=coll*collumwidth+textrct.xmin+20; 
-//  
+
 //  (* aantal regels in de hoogte *)
 //  if nr<0)or(coll>sfile^.collums
 //  then
@@ -1418,28 +1371,27 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //type
 //direntry = record
 //end;
-//
+
 //procedure set_active_file(sfile: pSpaceFile;  act: integer); 
 //var
 //num: integer; 
 //redraw: integer;
-// 
+
 //newflag: integer; 
 //old: integer;
-// 
+
 //new: integer;
-// 
+
 //x: integer; 
 //y: integer; 
 //begin
-//  
-//  
+
 //  redraw:=0; 
-//  
+
 //  old:=0; 
 //  new:=0; 
 //  file:= sfile^.filelist; 
@@ -1503,12 +1455,10 @@ end;
 //  if redraw=2
 //  then
 //  begin 
-//    
-//    
+
 //    glDrawBuffer(GL_FRONT); 
 //    glScissor(curarea^.winrct.xmin,curarea^.winrct.ymin,curarea^.winx-12,curarea^.winy); 
-//    
-//    
+
 //    if calc_filesel_regel(sfile,old,@x,@y)
 //    then
 //    begin 
@@ -1525,7 +1475,7 @@ end;
 //    (* myCopySubBuffer(x+curarea->winrct.xmin-20, y+curarea->winrct.ymin-4, collumwidth, FILESEL_DY+7); *)
 //    glScissor(curarea^.winrct.xmin,curarea^.winrct.ymin,curarea^.winx,curarea^.winy); 
 //    glDrawBuffer(GL_BACK); 
-//    
+
 //  end;
 //  else
 //  if redraw<>0{nil} {<= !!!9} 
@@ -1535,12 +1485,11 @@ end;
 //  end;
 //  {$endif}
 //end;
-//
-//
+
 //type
 //direntry = record
 //end;
-//
+
 //procedure draw_filetext(sfile: pSpaceFile); 
 //var
 //a: integer; 
@@ -1549,17 +1498,11 @@ end;
 //coll: integer; 
 //mval: array [0..Pred(2)] of smallint; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if textrct.ymin+10>=textrct.ymax
 //  then
 //  exit;
-//  
-//  
+
 //  (* kader *)
 //  cpack($686868); 
 //  glRecti(textrct.xmin,textrct.ymin,textrct.xmax,textrct.ymax); 
@@ -1579,7 +1522,7 @@ end;
 //    sdrawline(x+1,textrct.ymin,x+1,textrct.ymax); 
 //  end;
 //  fmsetfont(G.font); 
-//  
+
 //  (* de teksten *)
 //  if sfile^.filelist=0
 //  then
@@ -1614,13 +1557,12 @@ end;
 //    printregel(sfile,files,x,y); 
 //  end;
 //  EmbossBox2(textrct.xmin-2,textrct.ymin-2,textrct.xmax+2,textrct.ymax+2,1,$303030,$C0C0C0); 
-//  
+
 //  (* wissen tekenfoutjes, tekst teveel aan de rechterkant: *)
 //  glColor3f(.5625,.5625,.5625); 
 //  glRecti(textrct.xmax+2,textrct.ymin,textrct.xmax+10,textrct.ymax); 
 //end;
-//
-//
+
 //procedure drawfilespace; 
 //var
 //sfile: pSpaceFile; 
@@ -1628,9 +1570,7 @@ end;
 //mval: array [0..Pred(2)] of smallint; 
 //naam: array [0..Pred(20)] of char; 
 //begin
-//  
-//  
-//  
+
 //  glClearColor(.5625,.5625,.5625,0.0); 
 //  glClear(GL_COLOR_BUFFER_BIT); 
 //  sfile:= curarea^.spacedata.first; 
@@ -1649,13 +1589,13 @@ end;
 //  else
 //  calc_file_rcts(sfile); 
 //  sprintf(naam,'win %d',curarea^.win); 
-//  
+
 //  (* HEADER *)
 //  DefButBlock(naam,curarea^.win,G.font,10,6,4); 
 //  SetButLock(sfile^.type=FILE_MAIN)and(sfile^.returnfunc,0{nil}); 
-//  
+
 //  DefBut(TEX,1,,textrct.xmin,filebuty1,textrct.xmax-textrct.xmin,21,sfile^.file,0.0,{!!!a type cast? =>} {float(}FILE_MAXFILE-1,0,0); 
-//  
+
 //  DefBut(TEX,2,,textrct.xmin,filebuty2,textrct.xmax-textrct.xmin,21,sfile^.dir,0.0,{!!!a type cast? =>} {float(}FILE_MAXFILE-1,0,0); 
 //  SetButShape(2); 
 //  if fsmenu<>0{nil} {<= !!!9} 
@@ -1663,16 +1603,14 @@ end;
 //  DefBut(MENU or SHO,3,fsmenu,scrollrct.xmin,filebuty1,scrollrct.xmax-scrollrct.xmin,21,@sfile^.menu,0,0,0,0); 
 //  DefButt(BUT,4,'P',scrollrct.xmin,filebuty2,scrollrct.xmax-scrollrct.xmin,21,0,0,0,0,0,'Move to the parent directory (PKEY)'); 
 //  draw_filescroll(sfile); 
-//  
-//  
+
 //  draw_filetext(sfile); 
 //  addqueue(curarea^.headwin,REDRAW,1); 
 //  (* andere diskfree etc ? *)
 //  curarea^.win_swap:= WIN_BACK_OK; 
-//  
+
 //end;
-//
-//
+
 //procedure do_filescroll(sfile: pSpaceFile); 
 //var
 //fac: float; 
@@ -1682,12 +1620,7 @@ end;
 //oldy: smallint; 
 //yo: smallint; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  tot:= FILESEL_DY*sfile^.totfile; 
 //  if tot<>0{nil} {<= !!!9} 
 //  then
@@ -1695,11 +1628,11 @@ end;
 //  else
 //  fac:= 1.0; 
 //  calc_file_rcts(sfile); 
-//  
+
 //  filescrollselect:= 1; 
 //  glDrawBuffer(GL_FRONT); 
 //  (* voor mooiigheid *)
-//  
+
 //  EmbossBox2(bar.xmin-2,bar.ymin-2,bar.xmax+2,bar.ymax+2,filescrollselect,$404040,$A0A0A0); 
 //  glDrawBuffer(GL_BACK); 
 //  getmouseco_areawin(mval); 
@@ -1734,12 +1667,11 @@ end;
 //  end;
 //  filescrollselect:= 0; 
 //  glDrawBuffer(GL_FRONT); 
-//  
+
 //  (* voor mooiigheid *)
 //  EmbossBox2(bar.xmin-2,bar.ymin-2,bar.xmax+2,bar.ymax+2,filescrollselect,$404040,$A0A0A0); 
 //  glDrawBuffer(GL_BACK); 
 //end;
-
 
 procedure activate_fileselect(_type: integer;  title: pchar;  _file: pchar; func: retfunc);
 var
@@ -1819,7 +1751,7 @@ begin
   begin
     //(* FILE_BLENDER *)
     //split_sfile(sfile,name); (* test ook de filelist *)
-    //
+
     //(* vrijgeven: filelist en libfiledata kloppen niet meer *)
     //if sfile^.libfiledata<>nil  then
     //freeN(sfile^.libfiledata);
@@ -1829,9 +1761,8 @@ begin
   filetoname:= 1;
 end;
 
-
 //procedure activate_imageselect(type: integer;  title: pchar;  file: pchar;  
-//
+
 //procedure func{!!!3 unknown typedef}; 
 //); 
 //var
@@ -1840,10 +1771,7 @@ end;
 //dir: array [0..Pred(FILE_MAXDIR)] of char; 
 //name: array [0..Pred(FILE_MAXFILE)] of char; 
 //begin
-//  
-//  
-//  
-//  
+
 //  if curarea=0
 //  then
 //  exit;
@@ -1862,10 +1790,10 @@ end;
 //  addqueue(curarea^.win,CHANGED,1); 
 //  name[2]:= 0; 
 //  strcpy(name,file); 
-//  
+
 //  simasel:= curarea^.spacedata.first; 
 //  simasel.returnfunc:= func; 
-//  
+
 //  if convertstringcode(name)
 //  then
 //  simasel.mode:= simasel.mode or (IMS_STRINGCODE); 
@@ -1879,12 +1807,9 @@ end;
 //  strncpy(simasel.title,title,23); 
 //end;
 //(* filetoname= 1; *)
-//
-//
-//
-//
+
 //procedure activate_databrowse(id: pID;  idcode: integer;  fromcode: integer;  retval: integer;  
-//
+
 //procedure func{!!!3 unknown typedef}; 
 //); 
 //var
@@ -1892,9 +1817,7 @@ end;
 //sfile: pSpaceFile; 
 //str: array [0..Pred(32)] of char; 
 //begin
-//  
-//  
-//  
+
 //  if id=0
 //  then
 //  begin 
@@ -1911,13 +1834,12 @@ end;
 //  sfile^.retval:= retval; 
 //  sfile^.ipotype:= fromcode; 
 //end;
-//
-//
+
 //procedure filesel_prevspace; 
 //var
 //sfile: pSpaceFile; 
 //begin
-//  
+
 //  sfile:= curarea^.spacedata.first; 
 //  if sfile^.next<>0{nil} {<= !!!9} 
 //  then
@@ -1926,20 +1848,19 @@ end;
 //    addtail( and curarea^.spacedata,sfile); 
 //    sfile:= curarea^.spacedata.first; 
 //    newspace(curarea,sfile^.spacetype); 
-//    
+
 //  end;
 //  else
 //  newspace(curarea,SPACE_INFO); 
 //end;
-//
-//
+
 //function countselect(sfile: pSpaceFile): integer; 
 //var
 //a: integer; 
 //count: integer;
-// 
+
 //begin
-//  
+
 //  count:=0; 
 //  for{while} a:=0 to Pred(sfile^.totfile) { a++}
 //  do
@@ -1955,15 +1876,14 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function getotherdir: integer; 
 //var
 //sa: pScrArea; 
 //sfile: pSpaceFile;
-// 
+
 //begin
-//  
+
 //  sfile:=0; 
 //  sa:= G.curscreen.areabase.first; 
 //  while sa
@@ -2006,8 +1926,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure reread_other_fs; 
 //var
 //sfile: pSpaceFile; (* oppassen: alleen aanroepen als getotherdir goed is afgelopen *)
@@ -2016,9 +1935,7 @@ end;
 //  freefilelist(sfile); 
 //  addqueue(otherarea.win,REDRAW,1); 
 //end;
-//
-//
-//
+
 //procedure free_filesel_spec(dir: pchar); 
 //var
 //sc: pbScreen; 
@@ -2027,10 +1944,7 @@ end;
 //len: integer; 
 //str: array [0..Pred(FILE_MAXDIR+FILE_MAXFILE)] of char; (* dir moet eindigen op '/' *)
 //begin(* alle filesels met 'dir' worden vrijgegeven *)
-//  
-//  
-//  
-//  
+
 //  strcpy(str,dir); 
 //  len:= lstrlen(str); 
 //  while len)and(str[len-1]<>'/'
@@ -2067,24 +1981,20 @@ end;
 //    sc:= sc.id.next; 
 //  end;
 //end;
-//
-//
+
 //type
 //direntry = record
 //end;
-//
+
 //procedure filesel_execute(sfile: pSpaceFile); 
 //var
 //a: integer; 
 //menup: psmallint; 
 //name: array [0..Pred(FILE_MAXDIR)] of char; 
 //begin
-//  
-//  
-//  
-//  
+
 //  filesel_prevspace(); 
-//  
+
 //  if sfile^.type=FILE_LOADLIB
 //  then
 //  begin 
@@ -2166,27 +2076,26 @@ end;
 //      then
 //      makestringcode(name); 
 //      sfile^.returnfunc(name); 
-//      
+
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure do_filesel_buttons(event: smallint;  sfile: pSpaceFile); 
 //var
 //butname: array [0..Pred(FILE_MAXDIR)] of char; 
 //i: integer; 
 //match: integer;
-// 
+
 //begin
-//  
+
 //  if event=1
 //  then
 //  begin 
 //    if strchr(sfile^.file,'*'))or(strchr(sfile^.file,'?'))or(strchr(sfile^.file,'[')
 //    then
 //    begin 
-//      
+
 //      match:=LongBool(0); 
 //      for{while} i:=2 to Pred(sfile^.totfile) { i++}
 //      do
@@ -2214,7 +2123,7 @@ end;
 //    (* reuse the butname variable *)
 //    checkdir(sfile^.dir); 
 //    make_file_string(butname,sfile^.dir,); 
-//    
+
 //    (* strip the trailing slash if its a real dir *)
 //    if lstrlen(butname)<>1
 //    then
@@ -2260,8 +2169,7 @@ end;
 //  then
 //  parent(sfile); 
 //end;
-//
-//
+
 //function docmd(cmd: pchar): integer; 
 //var
 //file: integer; 
@@ -2269,9 +2177,7 @@ end;
 //size: integer; 
 //val: smallint; 
 //begin
-//  
-//  
-//  
+
 //  if qtest()
 //  then
 //  begin 
@@ -2289,17 +2195,17 @@ end;
 //   if(fslog[0]==0) {
 //    sprintf(fslog, "/tmp/fslog%d", getpid());
 //   }
-//  
+
 //   strcpy(string, cmd);
 //   strcat(string, " 1>/dev/null 2>>");
 //   strcat(string, fslog);
-//  
+
 //   remove(fslog);
 //  *)
-//  
+
 //  err:= system(cmd); 
 //  waitcursor(0); 
-//  
+
 //  (*
 //   if (err = system(string)){
 //    if (file = open(fslog, O_BINARY|O_RDONLY)){
@@ -2312,15 +2218,13 @@ end;
 //   }
 //   remove(fslog);
 //  *)
-//  
+
 //  begin
 //    result:= (err); 
 //    exit;
 //  end;
 //end;
-//
-//
-//
+
 //procedure databrowse_replace(sfile: pSpaceFile); 
 //var
 //old: pMaterial; 
@@ -2328,10 +2232,7 @@ end;
 //i: integer; 
 //str: array [0..Pred(128)] of char; 
 //begin
-//  
-//  
-//  
-//  
+
 //  if lstrcmp(sfile^.dir,'Material/')=0
 //  then
 //  begin 
@@ -2365,14 +2266,13 @@ end;
 //  end;
 //  addqueue(curarea^.win,REDRAW,1); 
 //end;
-//
-//
+
 //procedure fs_fake_users(sfile: pSpaceFile); 
 //var
 //id: pID; 
 //a: integer; (* alleen bij F4 DATABROWSE *)
 //begin
-//  
+
 //  if sfile^.returnfunc<>0{nil} {<= !!!9} 
 //  then
 //  exit;
@@ -2403,8 +2303,7 @@ end;
 //  freefilelist(sfile); 
 //  addqueue(curarea^.win,REDRAW,1); 
 //end;
-//
-//
+
 //procedure make_file_string(string: pchar;  dir: pchar;  file: pchar); 
 //var
 //lslash: pchar; (* Get the file name, chop everything past the last slash (ie. the filename) *)
@@ -2414,7 +2313,7 @@ end;
 //  exit;
 //  (* We don't want any NULLs *)
 //  string[0]:= 0; (* ton *)
-//  
+
 //  (* Resolve relative references *)
 //  if dir[0]='/')and(dir[1]='/'
 //  then
@@ -2425,11 +2324,11 @@ end;
 //    then
 //    *(lslash+1):=0; 
 //    dir:= dir + (2); 
-//    
+
 //    (* Skip over the relative reference *)
 //  end;
 //  strcat(string,dir); 
-//  
+
 //  (* Make sure string ends in one (and only one) slash *)
 //  if string[lstrlen(string)-1]<>'/')and(string[lstrlen(string)-1]<>#92
 //  then
@@ -2446,22 +2345,21 @@ end;
 //  char_switch(string,#92,'/'); 
 //  {$endif}
 //end;
-//
+
 //type
 //tms = record
 //end;
 //var {was static}
 //acto: integer;
-// 
+
 //prevtime: integer;
-// 
-//
+
 //procedure winqreadfilespace(event: ushort;  val: smallint); 
 //var
 //sfile: pSpaceFile; 
 //act: integer; 
 //do_draw: integer;
-// 
+
 //i: integer; 
 //test: integer; 
 //newtime: integer; 
@@ -2475,20 +2373,9 @@ end;
 //begin
 //  acto:=0; 
 //  prevtime:=0; 
-//  
-//  
-//  
+
 //  do_draw:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  sfile:= curarea^.spacedata.first; 
 //  if sfile=0
 //  then
@@ -2515,12 +2402,12 @@ end;
 //  exit;
 //  calc_file_rcts(sfile); 
 //  getmouseco_areawin(mval); 
-//  
+
 //  (* om hangen te voorkomen *)
 //  if selecting)and({not}0=(get_mbut()@R_MOUSE)
 //  then
 //  selecting:= 0; 
-//  
+
 //  if val<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -2602,7 +2489,7 @@ end;
 //        if act>=0)and(act<sfile^.totfile
 //        then
 //        begin 
-//          
+
 //          if sfile^.filelist[act].flags and ACTIVE
 //          then
 //          begin 
@@ -2652,7 +2539,7 @@ end;
 //            break; {<= !!!b possible in "switch" - then remove this line}
 //          end;
 //        end;
-//        
+
 //        acto:= act; 
 //      end;
 //      PAGEUPKEY:
@@ -2701,7 +2588,7 @@ end;
 //        if sfile^.type=FILE_MAIN
 //        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
-//        
+
 //        if {not}0=countselect(sfile)
 //        then
 //        begin 
@@ -2720,7 +2607,7 @@ end;
 //          error('Same directories'); 
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
-//        
+
 //        if event=BKEY
 //        then
 //        sprintf(str,'Backup to %s',otherdir); 
@@ -2739,7 +2626,7 @@ end;
 //        if {not}0=okee(str)
 //        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
-//        
+
 //        for{while} i:=0 to Pred(sfile^.totfile) { i++}
 //        do
 //        begin 
@@ -2747,7 +2634,7 @@ end;
 //          then
 //          begin 
 //            make_file_string(str,sfile^.dir,sfile^.filelist[i].relname); 
-//            
+
 //            if event=BKEY
 //            then
 //            ret:= fop_backup(sfile^.filelist[i].relname,sfile^.dir,otherdir); 
@@ -2801,7 +2688,7 @@ end;
 //          error('No files selected'); 
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
-//        
+
 //        if event=TKEY
 //        then
 //        sprintf(str,'Touch'); 
@@ -2820,7 +2707,7 @@ end;
 //          then
 //          begin 
 //            make_file_string(str,sfile^.dir,sfile^.filelist[i].relname); 
-//            
+
 //            if event=TKEY
 //            then
 //            ret:= fop_touch(str); 
@@ -2838,7 +2725,7 @@ end;
 //              else
 //              ret:= fop_delete(str,0,0); 
 //            end;
-//            
+
 //            if ret<>0{nil} {<= !!!9} 
 //            then
 //            begin 
@@ -2853,7 +2740,7 @@ end;
 //        freefilelist(sfile); 
 //      end;
 //      PKEY:
-//      
+
 //      begin
 //        if G.qual and LR_SHIFTKEY
 //        then
@@ -2866,7 +2753,7 @@ end;
 //        parent(sfile); 
 //      end;
 //      IKEY:
-//      
+
 //      begin
 //        if sfile^.type=FILE_MAIN
 //        then
@@ -2923,7 +2810,7 @@ end;
 //      begin
 //        if sfile^.type=FILE_MAIN
 //        then
-//        
+
 //        {$ifdef WINDOWS}
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        strcpy(sfile^.dir,'\'); 
@@ -2950,7 +2837,7 @@ end;
 //        then
 //        filesel_execute(sfile); 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //  else
@@ -2970,20 +2857,16 @@ end;
 //    then
 //    active_file_object(sfile); 
 //  end;
-//  
+
 //  if do_draw<>0{nil} {<= !!!9} 
 //  then
 //  addqueue(curarea^.win,REDRAW,1); 
 //end;
-//
-//
-//
-//
+
 //(* ************* LIBRARY FILESEL ******************* *)
-//
+
 //libdir: array [0..Pred(100)] of integer; 
-//
-//
+
 //function groupname_to_code(group: pchar): integer; 
 //begin
 //  if strncmp(group,'Scene',5)=0
@@ -3106,7 +2989,6 @@ end;
 //  end;
 //end;
 
-
 function code_to_groupname(code: integer): pchar;
 var
   str: pchar;
@@ -3137,20 +3019,19 @@ begin
   exit(str);
 end;
 
-
 //function count_libfiles(sfile: pSpaceFile;  idcode: integer): integer; 
 //var
 //bhead: pBHead; 
 //tot: integer;
-// 
+
 //afbreek: integer;
-// 
+
 //fd: pchar; 
 //begin
-//  
+
 //  tot:=0; 
 //  afbreek:=0; 
-//  
+
 //  fd:= sfile^.libfiledata; 
 //  while afbreek=0
 //  do
@@ -3170,24 +3051,22 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
-//
+
 //function count_libdirs(sfile: pSpaceFile): integer; 
 //var
 //bhead: pBHead; 
 //tot: integer;
-// 
+
 //a: integer; 
 //afbreek: integer;
-// 
+
 //fd: pchar; 
 //begin
-//  
+
 //  tot:=0; 
-//  
+
 //  afbreek:=0; 
-//  
+
 //  libdir[0]:= 0; 
 //  fd:= sfile^.libfiledata; 
 //  while afbreek=0
@@ -3236,8 +3115,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function is_a_library(sfile: pSpaceFile;  dir: pchar;  group: pchar): integer; 
 //var
 //len: integer; 
@@ -3245,8 +3123,7 @@ end;
 //begin(* return ok als een blenderfile, in dir staat de filenaam,
 //    * in group het type libdata
 //    *)
-//  
-//  
+
 //  strcpy(dir,sfile^.dir); 
 //  len:= lstrlen(dir); 
 //  if len<7
@@ -3265,7 +3142,7 @@ end;
 //  dir[len-1]:= 0; 
 //  fd:= (strrchr(dir,'/')>strrchr(dir,#92)) {was ?}if  then strrchr(dir,'/') {was :}else strrchr(dir,#92); 
 //  (* Find the last slash *)
-//  
+
 //  if fd=0
 //  then
 //  begin
@@ -3295,8 +3172,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure library_to_filelist(sfile: pSpaceFile); 
 //var
 //bhead: pBHead; 
@@ -3316,20 +3192,7 @@ end;
 //str: pchar; 
 //(* naam testen *)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  ok:= is_a_library(sfile,dir,group); 
 //  if ok=0
 //  then
@@ -3444,7 +3307,7 @@ end;
 //  end;
 //  else
 //  begin 
-//    
+
 //    (* files maken *)
 //    idcode:= groupname_to_code(group); 
 //    sfile^.totfile:= count_libfiles(sfile,idcode); 
@@ -3473,10 +3336,10 @@ end;
 //        id:= {!!!a type cast? =>} {pID(}(bhead+1); 
 //        sfile^.filelist[actual].relname:= strdup(id.name+2); 
 //        inc(actual); 
-//        
+
 //      end;
 //      fd:= fd + (bhead.len+sizeof(BHead)); 
-//      
+
 //    end;
 //    qsort(sfile^.filelist,sfile^.totfile,sizeof(structdirentry),{!!!a type cast? =>} {pinteger(}compare); 
 //  end;
@@ -3490,10 +3353,9 @@ end;
 //    sfile^.maxnamelen:= len; 
 //  end;
 //end;
-//
+
 //(* ******************* DATA SELECT ********************* *)
-//
-//
+
 //procedure filesel_select_objects(sfile: pSpaceFile); 
 //var
 //ob: pObject; 
@@ -3501,9 +3363,7 @@ end;
 //sce: pScene; 
 //a: integer; (* alleen bij F4 DATABROWSE *)
 //begin
-//  
-//  
-//  
+
 //  if sfile^.returnfunc<>0{nil} {<= !!!9} 
 //  then
 //  exit;
@@ -3524,7 +3384,7 @@ end;
 //        ob.flag:= ob.flag and ( not SELECT); 
 //      end;
 //    end;
-//    
+
 //    base:= FIRSTBASE; 
 //    while base
 //    do
@@ -3552,12 +3412,11 @@ end;
 //        sce.r.scemode:= sce.r.scemode and ( not R_BG_RENDER); 
 //      end;
 //    end;
-//    
+
 //    allqueue(REDRAWBUTSRENDER,0); 
 //  end;
 //end;
-//
-//
+
 //procedure active_file_object(sfile: pSpaceFile); 
 //var
 //ob: pObject; 
@@ -3565,9 +3424,7 @@ end;
 //sce: pScene; 
 //a: integer; (* alleen bij F4 DATABROWSE *)
 //begin
-//  
-//  
-//  
+
 //  if sfile^.returnfunc<>0{nil} {<= !!!9} 
 //  then
 //  exit;
@@ -3594,12 +3451,11 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
+
 //type
 //direntry = record
 //end;
-//
+
 //procedure main_to_filelist(sfile: pSpaceFile); 
 //var
 //id: pID; 
@@ -3616,19 +3472,7 @@ end;
 //fd: pchar; 
 //str: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if sfile^.dir[0]='/'
 //  then
 //  sfile^.dir[0]:= 0; 
@@ -3676,7 +3520,7 @@ end;
 //  end;
 //  else
 //  begin 
-//    
+
 //    (* files maken *)
 //    idcode:= groupname_to_code(sfile^.dir); 
 //    lb:= wich_libbase(G.main,idcode); 
@@ -3814,11 +3658,7 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
-//
-//
-//
+
 //{STARTSWITH(x, y) (strncmp(x, y, sizeof(x) - 1) == 0)}
 //function STARTSWITH(x: integer; y: integer): integer; 
 //begin

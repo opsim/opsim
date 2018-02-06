@@ -68,7 +68,6 @@ begin
   exit(1);
 end;
 
-
 procedure union_rctf(rct1: prctf;  rct2: prctf); 
 begin
   if rct1^.xmin>rct2^.xmin then
@@ -81,7 +80,6 @@ begin
   rct1^.ymax:= rct2^.ymax; 
 end;
 
-
 procedure init_rctf(rect: prctf;  xmin: single;  xmax: single;  ymin: single;  ymax: single); 
 begin
   rect^.xmin:= xmin; 
@@ -89,7 +87,6 @@ begin
   rect^.ymin:= ymin; 
   rect^.ymax:= ymax; 
 end;
-
 
 function isect_rctf(src1: prctf;  src2: prctf;  dest: prctf): integer; 
 var

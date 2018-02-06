@@ -19,7 +19,6 @@
  * ***** END GPL/BL DUAL LICENSE BLOCK *****
  *)
 
-
 (* edit.c  mei 94  GRAPHICS
  *
  *
@@ -69,12 +68,12 @@ uses
 //  pp^.len:= len;
 //  memcpy(pp^.data,data,len); 
 //end;
-//
+
 //procedure popfirst(data: pinteger); 
 //var
 //pp: pPushPop; 
 //begin
-//  
+
 //  pp:= ppmain.first; 
 //  if pp<>0{nil} {<= !!!9} 
 //  then
@@ -87,13 +86,12 @@ uses
 //  else
 //  printf('error in popfirst\n');
 //end;
-//
-//
+
 //procedure poplast(data: pinteger); 
 //var
 //pp: pPushPop; 
 //begin
-//  
+
 //  pp:= ppmain.last; 
 //  if pp<>0{nil} {<= !!!9} 
 //  then
@@ -106,13 +104,12 @@ uses
 //  else
 //  printf('error in poplast\n');
 //end;
-//
-//
+
 //procedure free_pushpop; 
 //var
 //pp: pPushPop; 
 //begin
-//  
+
 //  while pp:=ppmain.first
 //  do
 //  begin 
@@ -121,8 +118,7 @@ uses
 //    freeN(pp); 
 //  end;
 //end;
-//
-//
+
 //procedure pushpop_test; 
 //begin
 //  if ppmain.first<>0{nil} {<= !!!9} 
@@ -130,12 +126,11 @@ uses
 //  printf('pushpop not empty\n');
 //  free_pushpop(); 
 //end;
-//
+
 //(* ************************************************ *)
-//
+
 //{$ifdef IRISGL}
-//
-//
+
 //function get_border(rect: prcti;  col: smallint): integer; 
 //var
 //winmat: array [0..3,0..3] of float;
@@ -144,7 +139,7 @@ uses
 //fac1: float; 
 //fac2: float; 
 //retval: integer;
-// 
+
 //event: word;
 //mval: array [0..1] of smallint;
 //mvalo: array [0..3] of smallint;
@@ -153,19 +148,9 @@ uses
 //y1: smallint; 
 //str: array [0..Pred(64)] of char; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  retval:=1; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  areawinset(curarea.win); 
 //  drawmode(PUPDRAW); 
 //  initgrabz(0.0,0.0,0.0); 
@@ -179,7 +164,7 @@ uses
 //  color(col); 
 //  sboxs(0,mvalo[1],curarea.winx,mvalo[1]); 
 //  sboxs(mvalo[0],0,mvalo[0],curarea.winy); 
-//  
+
 //  while LongBool(1)
 //  do
 //  begin 
@@ -232,7 +217,7 @@ uses
 //  color(0); 
 //  sboxs(0,mvalo[1],curarea.winx,mvalo[1]); 
 //  sboxs(mvalo[0],0,mvalo[0],curarea.winy); 
-//  
+
 //  if retval<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -343,9 +328,9 @@ uses
 //    end;
 //  end;
 //  drawmode(NORMALDRAW); 
-//  
+
 //  loadmatrix(viewmat); 
-//  
+
 //  (* restore matrices *)
 //  mmode(MPROJECTION); 
 //  loadmatrix(winmat); 
@@ -358,17 +343,16 @@ uses
 //    exit;
 //  end;
 //end;
-//
+
 //{$else}
-//
-//
+
 //function get_border(rect: prcti;  col: smallint): integer; 
 //var
 //dvec: array [0..3] of float;
 //fac1: float; 
 //fac2: float; 
 //retval: integer;
-// 
+
 //event: word;
 //mval: array [0..1] of smallint;
 //mvalo: array [0..3] of smallint;
@@ -381,25 +365,18 @@ uses
 //begin
 //  {scrmousex: smallint; }{<= !!!5 external variable}
 //  {scrmousey: smallint; }{<= !!!5 external variable}
-//  
-//  
-//  
+
 //  retval:=1; 
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  my_get_frontbuffer_image(0,0,1,1); 
 //  my_put_frontbuffer_image(); 
 //  {$endif}
 //  winset(G.curscreen.mainwin); 
-//  
+
 //  glReadBuffer(GL_FRONT); 
 //  (* pietsje groter, 1 pixel aan de rand *)
 //  glDrawBuffer(GL_FRONT); 
-//  
+
 //  if curarea.spacetype=SPACE_IPO
 //  then
 //  my_get_frontbuffer_image(20+curarea.winrct.xmin,30+curarea.winrct.ymin,300,22); 
@@ -411,9 +388,9 @@ uses
 //  initgrabz(0.0,0.0,0.0); 
 //  getmouseco_areawin(mvalo); 
 //  sdrawXORline4(0,0,mvalo[1],curarea.winx,mvalo[1]); 
-//  
+
 //  sdrawXORline4(1,mvalo[0],0,mvalo[0],curarea.winy); 
-//  
+
 //  while LongBool(1)
 //  do
 //  begin 
@@ -425,7 +402,7 @@ uses
 //    if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1]
 //    then
 //    begin 
-//      
+
 //      sdrawXORline4(0,0,mval[1],curarea.winx,mval[1]); 
 //      sdrawXORline4(1,mval[0],0,mval[0],curarea.winy); 
 //      mvalo[0]:= mval[0]; 
@@ -473,7 +450,7 @@ uses
 //    y1:= mval[1]; 
 //    getmouseco_areawin(mvalo); 
 //    sdrawXORline4(0,x1,y1,x1,mvalo[1]); 
-//    
+
 //    sdrawXORline4(1,x1,mvalo[1],mvalo[0],mvalo[1]); 
 //    sdrawXORline4(2,mvalo[0],mvalo[1],mvalo[0],y1); 
 //    sdrawXORline4(3,mvalo[0],y1,x1,y1); 
@@ -484,14 +461,14 @@ uses
 //      if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1]
 //      then
 //      begin 
-//        
+
 //        sdrawXORline4(0,x1,y1,x1,mval[1]); 
 //        sdrawXORline4(1,x1,mval[1],mval[0],mval[1]); 
 //        sdrawXORline4(2,mval[0],mval[1],mval[0],y1); 
 //        sdrawXORline4(3,mval[0],y1,x1,y1); 
 //        mvalo[0]:= mval[0]; 
 //        mvalo[1]:= mval[1]; 
-//        
+
 //      end;
 //      event:= extern_qread(@val); 
 //      persp(1); 
@@ -529,13 +506,13 @@ uses
 //        glColor3f(0.4375,0.4375,0.4375); 
 //        glRecti(0,10,250,20); 
 //        glColor3f(0.0,0.0,0.0); 
-//        
+
 //        if G.vd.persp=0
 //        then
 //        begin 
 //          window_to_3d(dvec,mvalo[0]-x1,mvalo[1]-y1); 
 //          glRasterPos2i(10,10); 
-//          
+
 //          sprintf(str,'X %.4f  Y %.4f  Z %.4f  Dia %.4f',dvec[0],dvec[1],dvec[2],fsqrt(dvec[0]*dvec[0]+dvec[1]*dvec[1]+dvec[2]*dvec[2])); 
 //          fmprstr(str); 
 //        end;
@@ -564,7 +541,7 @@ uses
 //        areamouseco_to_ipoco(mval,dvec,dvec+1); 
 //        areamouseco_to_ipoco(mvalo+2,dvec+2,dvec+3); 
 //        glRasterPos2i(30,30); 
-//        
+
 //        sprintf(str,'Time: %.4f  Y %.4f',dvec[0]-dvec[2],dvec[1]-dvec[3]); 
 //        fmprstr(str); 
 //      end;
@@ -593,13 +570,12 @@ uses
 //      retval:= 0; 
 //    end;
 //  end;
-//  
-//  
+
 //  (* wissen *)
 //  if event<>BKEY
 //  then
 //  begin 
-//    
+
 //    function ELEM{!!!3 unknown typedef}: if; 
 //    begin
 //      my_put_frontbuffer_image(); 
@@ -607,7 +583,7 @@ uses
 //  end;
 //  glDrawBuffer(GL_BACK); 
 //  persp(1); 
-//  
+
 //  if event=BKEY)and(G.obedit)and(curarea.spacetype=SPACE_VIEW3D
 //  then
 //  circle_select(); 
@@ -616,23 +592,20 @@ uses
 //    exit;
 //  end;
 //end;
-//
+
 //{$endif}
-//
-//
+
 //procedure count_object(ob: pObject;  sel: integer); 
 //var
 //me: pMesh; 
 //cu: pCurve; 
 //se: pSector; 
 //tot: integer;
-// 
+
 //totf: integer;
-// 
+
 //begin
-//  
-//  
-//  
+
 //  tot:=0; 
 //  totf:=0; 
 //  case ob.type of
@@ -691,7 +664,7 @@ uses
 //        G.totfacesel:= G.totfacesel + (totf); 
 //      end;
 //    end;
-//    
+
 //  end;{case?}
 //end;
 
@@ -785,7 +758,7 @@ begin
       //      if bezt.f3<>0            then
       //      inc(G.totvertsel);
       //      inc(bezt);
-      //
+
       //      dec(a);
       //    end;
       //  end;
@@ -800,7 +773,7 @@ begin
       //      then
       //      inc(G.totvertsel);
       //      inc(bp);
-      //
+
       //      dec(a);
       //    end;
       //  end;
@@ -830,7 +803,7 @@ begin
       //  if (bp.f1 and 1) <> 0        then
       //  inc(G.totvertsel);
       //  inc(bp);
-      //
+
       //  dec(a);
       //end;
     end;
@@ -906,19 +879,7 @@ end;
 //  {transvmain: pTransVert; }{<= !!!5 external variable}
 //  {tottrans: integer; }{<= !!!5 external variable}
 //  {originmat: array [0..2,0..2] of float; }{<= !!!5 external variable}(* object.c *)
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  event:= pupmenu('SNAP %t|Sel -> Grid%x1|Sel -> Curs%x2|Curs-> Grid%x3|Curs-> Sel%x4'); 
 //  gridf:= G.vd.grid; 
 //  curs:= give_cursor(); 
@@ -926,7 +887,7 @@ end;
 //  then
 //  begin 
 //    (* sel->grid  sel->curs  *)
-//    
+
 //    if G.obedit<>0{nil} {<= !!!9} 
 //    then
 //    begin 
@@ -966,7 +927,7 @@ end;
 //        Mat3MulVecfl(imat,vec); 
 //        VECCOPY(tv.loc,vec); 
 //      end;
-//      
+
 //      freeN(transvmain); 
 //      transvmain:= 0; if{!!!e unknown token}
 //      makeDispList(G.obedit); 
@@ -1071,7 +1032,7 @@ end;
 //      end;
 //      freeN(transvmain); 
 //      transvmain:= 0; 
-//      
+
 //    end;
 //    else
 //    begin 

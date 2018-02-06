@@ -19,7 +19,6 @@
  * ***** END GPL/BL DUAL LICENSE BLOCK *****
  *)
 
-
 (*  toolbox.c GRAPHICS
  *
  *  feb 93
@@ -45,7 +44,6 @@ blenglob, util, graphics, Button, mywindow, screen, mydevice;
 //{$include "screen.h"}
 //{$include "render.h"}
 
-
 (*   ********  NOTES  *********** *****************************
  
  - Toolbox items zelf invullen
@@ -56,7 +54,6 @@ blenglob, util, graphics, Button, mywindow, screen, mydevice;
  
  ***************************** *****************************
 *)
-
 
 var
 //tbwinmat: array [0..Pred(4),0..Pred(4)] of float; 
@@ -82,10 +79,9 @@ oldcursor: smallint = 0;
 //tbval: integer; 
 //var {was static}
 //p50: array [0..] of GLubyte = ($aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,); 
-//
+
 //(* *********** PC PATCH ************* *)
-//
-//
+
 //procedure ColorFunc(i: integer);
 //begin
 //  if i=TBOXBLACK then
@@ -99,12 +95,11 @@ oldcursor: smallint = 0;
 //  else
 //  glColor3ub(0,0,0); 
 //end;
-//
+
 //{$ifdef glIndexi}
 //{$undef glIndexi}
 //{$endif}
-//
-//
+
 //function glIndexi(i: integer): integer; {<= !!!6 unknown macro}
 
 (* *********** ANSI COMPATIBLE **************** *)
@@ -122,11 +117,11 @@ end;
 //  tbstr1:= 0; 
 //  tbfunc:= 0; 
 //  tbval:= 0; (* afhankelijk van tbmain worden vars gezet *)
-//  
+
 //  (* HOOFDMENU ITEMS LINKS *)
 //  if x=0 then
 //  begin 
-//    
+
 //    case y of
 //      0:
 //      begin
@@ -177,7 +172,7 @@ end;
 //      begin
 //        tbstr:= 'FILE'; 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //  else
@@ -187,7 +182,7 @@ end;
 //      if(G.obedit) {
 //       addmode= G.obedit->type;
 //      }
-//      
+
 //    *)
 //    (* VIEW TOPICS *)
 //    if tbmain=1 then
@@ -253,11 +248,11 @@ end;
 //          tbstr:= ; 
 //          tbstr1:= ; 
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //    else
-//    
+
 //    (* EDIT TOPICS *)
 //    if tbmain=2 then
 //    begin 
@@ -322,15 +317,15 @@ end;
 //          tbstr:= 'Quit'; 
 //          tbstr1:= 'q'; 
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //    else
-//    
+
 //    (* ADD TOPICS *)
 //    if tbmain=0 then
 //    begin 
-//      
+
 //      if addmode=0 then
 //      begin 
 //        case y of
@@ -435,7 +430,7 @@ end;
 //            tbstr1:= 'A'; 
 //            tbval:= OB_LATTICE; 
 //          end;
-//          
+
 //        end;{case?}
 //        if tbstr1)and(tbstr1[0]='A' then
 //        tbfunc:= (void(* )())add_object_draw; 
@@ -513,7 +508,7 @@ end;
 //            tbstr:= '>Duplicate'; 
 //            tbstr1:= 'D'; 
 //          end;
-//          
+
 //        end;{case?}
 //        if tbstr1)and(tbstr1[0]='A' then
 //        tbfunc:= add_primitiveMesh; 
@@ -588,7 +583,7 @@ end;
 //            tbstr:= '>Duplicate'; 
 //            tbstr1:= 'D'; 
 //          end;
-//          
+
 //        end;{case?}
 //        if tbstr1)and(tbstr1[0]='A' then
 //        tbfunc:= add_primitiveNurb; 
@@ -662,7 +657,7 @@ end;
 //            tbstr:= '>Duplicate'; 
 //            tbstr1:= 'D'; 
 //          end;
-//          
+
 //        end;{case?}
 //        if tbstr1)and(tbstr1[0]='A' then
 //        tbfunc:= add_primitiveCurve; 
@@ -732,7 +727,7 @@ end;
 //            tbstr:= 'Duplicate'; 
 //            tbstr1:= 'D'; 
 //          end;
-//          
+
 //        end;{case?}
 //        if tbstr1)and(tbstr1[0]='A' then
 //        tbfunc:= add_primitiveMball; 
@@ -803,7 +798,7 @@ end;
 //          tbstr:= 'Image Aspect'; 
 //          tbstr1:= 'a|v'; 
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //    else
@@ -871,11 +866,11 @@ end;
 //          tbstr:= 'Convert menu'; 
 //          tbstr1:= 'a|c'; 
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //    else
-//    
+
 //    (* mesh TOPICS *)
 //    if tbmain=5 then
 //    begin 
@@ -940,7 +935,7 @@ end;
 //          tbstr:= ; 
 //          tbstr1:= ; 
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //    else
@@ -1008,7 +1003,7 @@ end;
 //          tbstr:= 'PrintWeights'; 
 //          tbstr1:= 'w'; 
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //    else
@@ -1076,11 +1071,11 @@ end;
 //          tbstr:= ; 
 //          tbstr1:= ; 
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //    else
-//    
+
 //    (* RENDER TOPICS *)
 //    if tbmain=8 then
 //    begin 
@@ -1145,7 +1140,7 @@ end;
 //          tbstr:= ; 
 //          tbstr1:= ; 
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //    else
@@ -1223,7 +1218,7 @@ end;
 //          tbstr:= 'Quit Blender'; 
 //          tbstr1:= 'q'; 
 //        end;
-//        
+
 //      end;{case?}
 //    end;
 //  end;
@@ -1231,11 +1226,9 @@ end;
 
 (* ******************** INIT ************************** *)
 
-
 procedure dummy;
 begin
 end;
-
 
 procedure bgnpupdraw(startx: integer;  starty: integer;  endx: integer;  endy: integer);
 begin
@@ -1263,7 +1256,6 @@ begin
   tbfontyofs:= (TBOXH-11) div 2; (* toolbox, hier stond ooit getheigh *)
 end;
 
-
 procedure endpupdraw;
 var
 x: integer;
@@ -1280,7 +1272,6 @@ begin
 end;
 
 (* ********************************************** *)
-
 
 //procedure asciitoraw(ch: integer;  event: pushort;  qual: pushort); 
 //begin
@@ -1396,19 +1387,18 @@ end;
 //    begin
 //      {*}event^:=ZKEY; 
 //    end;
-//    
+
 //  end;{case?}
 //end;
-//
-//
+
 //procedure tbox_execute; 
 //var
 //event: ushort;
-// 
+
 //qual1: ushort;
-// 
+
 //qual2: ushort;
-// 
+
 //begin(* als tbfunc: functie aanroepen *)
 //  (* als tbstr1 is een string: value tbval in queue stopen *)
 //  event:=0; 
@@ -1496,7 +1486,7 @@ end;
 //            begin
 //              event:= F9KEY; 
 //            end;
-//            
+
 //          end;{case?}
 //        end;
 //        else
@@ -1560,7 +1550,7 @@ end;
 //          begin
 //            event:= F12KEY; 
 //          end;
-//          
+
 //        end;{case?}
 //      end;
 //    end;
@@ -1586,8 +1576,6 @@ begin
   getmouseco_sc(mval);
 end;
 
-
-
 //procedure tbox_setmain(val: integer); 
 //begin
 //  tbmain:= val; 
@@ -1596,8 +1584,7 @@ end;
 //    addmode:= G.obedit.type; 
 //  end;
 //end;
-//
-//
+
 //procedure bgntoolbox; 
 //var
 //xmax: smallint; 
@@ -1606,19 +1593,17 @@ end;
 //begin
 //  {displaysizex: integer; }{<= !!!5 external variable}
 //  {displaysizey: integer; }{<= !!!5 external variable}
-//  
-//  
-//  
+
 //  xmax:= G.curscreen.sizex; 
 //  ymax:= G.curscreen.sizey; 
 //  tbox_getmouse(mval); 
-//  
+
 //  if mval[0]<95 then
 //  mval[0]:= 95; 
 //  if mval[0]>xmax-95 then
 //  mval[0]:= xmax-95; 
 //  warp_pointer(mval[0],mval[1]); 
-//  
+
 //  tbx1:= mval[0]-tbmemx; 
 //  tby1:= mval[1]-tbmemy; 
 //  if tbx1<10 then
@@ -1638,15 +1623,14 @@ end;
 //    tby1:= tby2-TBOXY; 
 //  end;
 //  bgnpupdraw(tbx1,tby1,tbx2,tby2); 
-//  
+
 //end;
-//
-//
+
 //procedure endtoolbox; 
 //var
 //mval: array [0..Pred(2)] of smallint; 
 //begin
-//  
+
 //  tbox_getmouse(mval); 
 //  if mval[0]>tbx1)and(mval[0]<tbx2 then
 //  if mval[1]>tby1)and(mval[1]<tby2 then
@@ -1719,8 +1703,6 @@ begin
   end;
 end;
 
-
-
 //procedure tbox_drawelem_body{!!!3 unknown typedef}; 
 //var
 //x1: integer; 
@@ -1730,12 +1712,7 @@ end;
 //len1: integer; 
 //len2: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if x=0 then
 //  begin 
 //    x1:= tbx1; 
@@ -1751,8 +1728,7 @@ end;
 //  y2:= y1+TBOXH-1; 
 //  tbox_embossbox(x1,y1,x2,y2,type); 
 //end;
-//
-//
+
 //procedure tbox_drawelem_text{!!!3 unknown typedef}; 
 //var
 //x1: integer; 
@@ -1762,12 +1738,7 @@ end;
 //len1: integer; 
 //len2: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if x=0 then
 //  begin 
 //    x1:= tbx1; 
@@ -1828,9 +1799,7 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
-//
+
 //void{!!!e unknown token}
 //x: integer; 
 //y: integer; 
@@ -1839,11 +1808,11 @@ end;
 //  (* type: 0=menu, 1=menusel, 2=topic, 3=topicsel *)
 //  (* gesplitst: op SGI loopt de Xdraw achter op de OpenGL draw
 //      en een Xfush helpt niet *)
-//  
+
 //  tbox_drawelem_body(x,y,type); 
 //  tbox_drawelem_text(x,y,type); 
 //end;
-//
+
 //void{!!!e unknown token}
 //x: pinteger; 
 //y: pinteger; 
@@ -1863,8 +1832,7 @@ end;
 //  if {*}y^>TBOXEL-1 then
 //  {*}y^:=TBOXEL-1; 
 //end;
-//
-//
+
 //procedure drawtoolbox; 
 //var
 //x: integer; 
@@ -1873,12 +1841,9 @@ end;
 //acty: integer; 
 //type: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  tbox_getactive( and actx, and acty); 
-//  
+
 //  (* de background *)
 //  for{while} x:=0 to Pred(2) { x++}
 //  do
@@ -1900,7 +1865,7 @@ end;
 //      tbox_drawelem_body(x,y,type); 
 //    end;
 //  end;
-//  
+
 //  (* de text *)
 //  for{while} x:=0 to Pred(2) { x++}
 //  do
@@ -1923,9 +1888,7 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
-//
+
 //procedure toolbox; 
 //var
 //actx: integer; 
@@ -1936,28 +1899,22 @@ end;
 //val: smallint; 
 //mval: array [0..Pred(2)] of smallint; 
 //xo: smallint;
-// 
+
 //yo: smallint;
 // (* geen overdraw, dus... *)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  xo:=-1; 
 //  yo:=0; (* geen overdraw, dus... *)
 //  if R.win)and(R.win=G.curscreen.winakt then
 //  exit;
-//  
+
 //  bgntoolbox(); 
 //  drawtoolbox(); 
 //  (* 
 //    * De aktieve window wordt in queue terug gestopt.
 //    *)
-//  
+
 //  while 1
 //  do
 //  begin 
@@ -2045,7 +2002,7 @@ end;
 //end;
 //end;
 //endtoolbox(); 
-//
+
 //end;
 
 (* ************************************  *)
@@ -2083,7 +2040,6 @@ begin
     fmprstr(title);
   end;
   glIndexi(TBOXBLACK);
-
 
   starty:= yold;
   for{while} a:=aold to Pred(items) { a++}
@@ -2280,9 +2236,9 @@ begin
 //        begin
 //          value:= 3;
 //          act:= 1;
-//
+
 //        end;
-//
+
 //      end;
 //      TWOKEY:
 //      begin
@@ -2290,9 +2246,9 @@ begin
 //        begin
 //          value:= 3;
 //          act:= 2;
-//
+
 //        end;
-//
+
 //      end;
 //      THREEKEY:
 //      begin
@@ -2300,9 +2256,9 @@ begin
 //        begin
 //          value:= 3;
 //          act:= 3;
-//
+
 //        end;
-//
+
 //      end;
 //      FOURKEY:
 //      begin
@@ -2310,9 +2266,9 @@ begin
 //        begin
 //          value:= 3;
 //          act:= 4;
-//
+
 //        end;
-//
+
 //      end;
 //      FIVEKEY:
 //      begin
@@ -2320,9 +2276,9 @@ begin
 //        begin
 //          value:= 3;
 //          act:= 5;
-//
+
 //        end;
-//
+
 //      end;
 //      SIXKEY:
 //      begin
@@ -2330,9 +2286,9 @@ begin
 //        begin
 //          value:= 3;
 //          act:= 6;
-//
+
 //        end;
-//
+
 //      end;
 //      SEVENKEY:
 //      begin
@@ -2340,9 +2296,9 @@ begin
 //        begin
 //          value:= 3;
 //          act:= 7;
-//
+
 //        end;
-//
+
 //      end;
 //      EIGHTKEY:
 //      begin
@@ -2350,9 +2306,9 @@ begin
 //        begin
 //          value:= 3;
 //          act:= 8;
-//
+
 //        end;
-//
+
 //      end;
 //      NINEKEY:
 //      begin
@@ -2360,9 +2316,9 @@ begin
 //        begin
 //          value:= 3;
 //          act:= 9;
-//
+
 //        end;
-//
+
 //      end;
 //      ZEROKEY:
 //      begin
@@ -2370,9 +2326,9 @@ begin
 //        begin
 //          value:= 3;
 //          act:= 10;
-//
+
 //        end;
-//
+
 //      end;
 //      DOWNARROWKEY:
 //      begin
@@ -2383,7 +2339,7 @@ begin
 //        my_put_frontbuffer_image();
 //        my_get_frontbuffer_image(startx,starty-1,endx-startx+1,endy-starty+6);
 //        pupmenu_draw(startx,starty,endx,endy,items,title,spoin,1);
-//
+
 //      end;
 //    end;
 //    UPARROWKEY:
@@ -2393,10 +2349,10 @@ begin
 //        starty:= starty - (TBOXH);
 //      endy:= endy - (TBOXH);
 //      my_put_frontbuffer_image();
-//
+
 //      my_get_frontbuffer_image(startx,starty-1,endx-startx+1,endy-starty+6);
 //      pupmenu_draw(startx,starty,endx,endy,items,title,spoin,1);
-//
+
 //    end;
 //  end;
 //  ESCKEY,
@@ -2406,7 +2362,7 @@ begin
 //    if val<>0 then
 //    value:= 1;
 //  end;
-//
+
 //end;{case?}
 end
 else
@@ -2472,8 +2428,6 @@ end;
 exit(-1);
 end;
 
-
-
 function confirm(title: pchar;  item: pchar): smallint;
 var
 ret: smallint;
@@ -2497,20 +2451,16 @@ begin
   exit(0);
 end;
 
-
-
 //procedure notice(str: pchar); 
 //begin
 //  confirm(,str); 
 //end;
-//
-//
-//
+
 //function saveover(str: pchar): integer; 
 //var
 //file: integer; 
 //begin
-//  
+
 //  if G.f and G_DISABLE_OK then
 //  begin
 //    result:= 1; 
@@ -2534,8 +2484,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function okee(str: pchar): smallint; 
 //begin
 //  if G.f and G_DISABLE_OK then
@@ -2548,7 +2497,6 @@ end;
 //    exit;
 //  end;
 //end;
-
 
 procedure error(str: pchar);
 var
@@ -2567,12 +2515,11 @@ begin
   confirm('',str1);
 end;
 
-
 //procedure errorstr(str1: pchar;  str2: pchar;  str3: pchar); 
 //var
 //str: array [0..Pred(256)] of char; 
 //begin
-//  
+
 //  if str1)and(lstrlen(str1)>79 then
 //  str1[79]:= 0; 
 //  if str2)and(lstrlen(str2)>79 then
@@ -2580,7 +2527,7 @@ end;
 //  if str3)and(lstrlen(str3)>79 then
 //  str3[79]:= 0; 
 //  strcpy(str,'ERROR '); 
-//  
+
 //  if str1<>0 then
 //  strcat(str,str1); 
 //  strcat(str,' '); 
@@ -2589,7 +2536,7 @@ end;
 //  strcat(str,' '); 
 //  if str3<>0 then
 //  strcat(str,str3); 
-//  
+
 //  if G.background<>0 then
 //  begin 
 //    printf('ERROR %s\n',str);
@@ -2597,10 +2544,9 @@ end;
 //  end;
 //  confirm(,str); 
 //end;
-//
+
 //(* ****************** EXTRAATJE **************** *)
-//
-//
+
 //function button(var: psmallint;  min: smallint;  max: smallint;  str: pchar): smallint; 
 //var
 //toets: ushort; 
@@ -2612,21 +2558,14 @@ end;
 //val: smallint; 
 //mval: array [0..Pred(2)] of smallint; 
 //ret: smallint;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  ret:=0; 
 //  if min>max then
 //  min:= max; 
 //  getmouseco_sc(mval); 
-//  
+
 //  if mval[0]<150 then
 //  mval[0]:= 150; 
 //  if mval[1]<30 then
@@ -2636,26 +2575,26 @@ end;
 //  if mval[1]>980 then
 //  mval[1]:= 980; 
 //  winset(G.curscreen.mainwin); 
-//  
+
 //  x1:= mval[0]-150; 
 //  x2:= mval[0]+20; 
 //  y1:= mval[1]-20; 
 //  y2:= mval[1]+20; 
 //  glIndexi(1); 
-//  
+
 //  bgnpupdraw(x1,y1,x2,y2); 
 //  glColor3ub(160,160,160); 
-//  
+
 //  glRecti(x1,y1,x2,y2); 
 //  (* LGREY *)
 //  glColor3ub(0,0,0); 
 //  sdrawbox(x1,y1,x2,y2); 
 //  DefButBlock('button',G.curscreen.mainwin,G.font,2,10,2); 
-//  
+
 //  DefBut(NUM or SHO,4001,str,x1+5,y1+10,125,20,var,{!!!a type cast? =>} {float(}min,{!!!a type cast? =>} {float(}max,0,0); 
-//  
+
 //  DefBut(BUT,4002,'OK',x1+136,y1+10,25,20,0,0,0,0,0); 
-//  
+
 //  while LongBool(1)
 //  do
 //  begin 
@@ -2670,10 +2609,10 @@ end;
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //      getmouseco_sc(mval); 
-//      
+
 //      if mval[0]<x1-40)or(mval[0]>x2+40)or(mval[1]<y1-30)or(mval[1]>y2+30 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
-//      
+
 //      if toets=LEFTMOUSE then
 //      begin 
 //        FrontbufferButs(LongBool(1)); 
@@ -2690,10 +2629,10 @@ end;
 //    usleep(1); 
 //  end;
 //  until not {0=}(get_mbut()@L_MOUSE);
-//  
+
 //  FreeButBlock('button'); 
 //  remake_qual(); 
-//  
+
 //endpupdraw(); 
 //(* in Button.c zit geen extern_qread *)
 //areawinset(curarea.win); 
@@ -2702,11 +2641,10 @@ end;
 //  exit;
 //end;
 //end;
-//
+
 //var {was static}
 //oldlay: uint;
-// 
-//
+
 //procedure do_mlayer_toets(event: integer;  lay: puint); 
 //begin
 //  oldlay:=1; 
@@ -2740,10 +2678,7 @@ end;
 //    {*}lay^:=(1 shl event); 
 //  end;
 //end;
-//
-//
-//
-//
+
 //function movetolayer_buts(lay: puint): integer; 
 //var
 //oldlay: uint; 
@@ -2756,34 +2691,23 @@ end;
 //y1: integer; 
 //y2: integer; 
 //sizex: integer;
-// 
+
 //sizey: integer;
-// 
+
 //toets: ushort; 
 //oldmap: array [0..Pred(4),0..Pred(3)] of smallint; 
 //val: smallint; 
 //mval: array [0..Pred(2)] of smallint; 
 //ret: smallint;
-// 
+
 //str: array [0..Pred(12)] of char; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  sizex:=160; 
 //  sizey:=30; 
-//  
-//  
-//  
-//  
+
 //  ret:=0; 
-//  
+
 //  if G.vd.localview<>0 then
 //  begin 
 //    error('Not in localview '); 
@@ -2793,7 +2717,7 @@ end;
 //    end;
 //  end;
 //  getmouseco_sc(mval); 
-//  
+
 //  if mval[0]<sizex div 2 then
 //  mval[0]:= sizex div 2; 
 //  if mval[1]<sizey div 2 then
@@ -2803,14 +2727,14 @@ end;
 //  if mval[1]>G.curscreen.sizey-sizey div 2 then
 //  mval[1]:= G.curscreen.sizey-sizey div 2; 
 //  winset(G.curscreen.mainwin); 
-//  
+
 //  x1:= mval[0]-sizex div 2; 
 //  x2:= mval[0]+sizex div 2; 
 //  y1:= mval[1]-sizey div 2; 
 //  y2:= mval[1]+sizey div 2; 
 //  bgnpupdraw(x1,y1,x2,y2); 
 //  DefButBlock('button',G.curscreen.mainwin,G.font,32,10,2); 
-//  
+
 //  dx:= (sizex-5) div 12; 
 //  dy:= sizey div 2; 
 //  for{while} a:=0 to Pred(10) { a++}
@@ -2823,7 +2747,7 @@ end;
 //  end;
 //  x1:= x1 - (5); 
 //  DefBut(BUT,4000,'OK',x1+10*dx+10,y1,2*dx,2*dy,0,0,0,0,0); 
-//  
+
 //  while LongBool(1)
 //  do
 //  begin 
@@ -2948,22 +2872,22 @@ end;
 //    usleep(1); 
 //  end;
 //  until not {0=}(get_mbut()@L_MOUSE);
-//  
+
 //  FreeButBlock('button'); 
 //endpupdraw(); 
-//
+
 //areawinset(curarea.win); 
 //begin
 //  result:= ret; 
 //  exit;
 //end;
 //end;
-//
+
 //(* ********************** CLEVER_NUMBUTS ******************** *)
-//
+
 //const
 //MAXNUMBUTS = 24; 
-//
+
 //var
 //numbuts: array [0..Pred(MAXNUMBUTS)] of VarStruct; 
 //numbpoin: array [0..Pred(MAXNUMBUTS)] of pinteger; 
@@ -2971,25 +2895,24 @@ end;
 //var {was static}
 //last: pchar;
 // (* avoid ugly updates! *)
-//
-//
+
 //procedure draw_numbuts_tip(str: pchar;  x1: integer;  y1: integer;  x2: integer;  y2: integer); 
 //var
 //temp: integer; 
 //begin
 //  last:=0; (* avoid ugly updates! *)
-//  
+
 //  if str=last then
 //  exit;
 //  last:= str; 
 //  if str=0 then
 //  exit;
-//  
+
 //  glColor3ub(160,160,160); 
 //  glRecti(x1+4,y2-36,x2-4,y2-16); 
 //  (* MGREY *)
 //  cpack($0); 
-//  
+
 //  temp:= 0; 
 //  while fmgetstrwidth(G.fonts,str+temp)>(x2-x1-24)
 //  do
@@ -2998,8 +2921,7 @@ end;
 //  glRasterPos2i(x1+16,y2-30); 
 //  fmprstr(str+temp); 
 //end;
-//
-//
+
 //function do_clever_numbuts(name: pchar;  tot: integer;  winevent: integer): integer; 
 //var
 //varstr: pVarStruct; 
@@ -3018,31 +2940,17 @@ end;
 //val: smallint; 
 //mval: array [0..Pred(2)] of smallint; 
 //ret: smallint;
-// 
+
 //str: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  ret:=0; 
-//  
+
 //  if tot<=0)or(tot>MAXNUMBUTS then
 //  begin
 //    result:= 0; 
 //    exit;
-//    
+
 //  end;
 //  getmouseco_sc(mval); 
 //  sizex:= 235; 
@@ -3058,7 +2966,7 @@ end;
 //  if mval[1]>G.curscreen.sizey-sizey div 2 then
 //  mval[1]:= G.curscreen.sizey-sizey div 2; 
 //  winset(G.curscreen.mainwin); 
-//  
+
 //  x1:= mval[0]-sizex div 2; 
 //  x2:= mval[0]+sizex div 2; 
 //  y1:= mval[1]-sizey div 2; 
@@ -3073,12 +2981,12 @@ end;
 //  DefBut(LABEL,0,name,x1+5,y2-21,sizex-60,19,0,1.0,0.0,0,0); 
 //  (* LET OP: TEX BUTTON UITZONDERING *)
 //  (* WAARSCHUWING: ALLEEN EEN ENKELE BITJES-BUTTON MOGELIJK: ER WORDT OP KOPIEDATA GEWERKT! *)
-//  
+
 //  (* 0.0 op eind: geen clear *)
 //  if name[0]='A')and(name[7]='O' then
 //  DefBut(LABEL,0,'Rotations in degrees!',x1+5,y2-36,sizex-60,19,0,0.0,0.0,0,0); 
 //  varstr:= @numbuts[0]; (* 0.0 op eind: geen clear *)
-//  
+
 //  while{for} 
 //  a:= 0; 
 //  {to} a<tot
@@ -3098,10 +3006,10 @@ end;
 //    end;
 //  end;
 //  DefButt(BUT,4000,'OK',x1+sizex-40,y1+15,25,sizey-50,0,0,0,0,0,'OK: Assign Values'); 
-//  
+
 //  draw_numbuts_tip(0,0,0,0,0); 
 //  (* init *)
-//  
+
 //  while LongBool(1)
 //  do
 //  begin 
@@ -3111,7 +3019,7 @@ end;
 //      if toets=ESCKEY then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      else
-//      
+
 //      function ELEM{!!!3 unknown typedef}: if; 
 //      begin
 //        ret:= 1; 
@@ -3149,10 +3057,10 @@ end;
 //    end;
 //  end;
 //  until not {0=}(get_mbut()@L_MOUSE);
-//  
+
 //  FreeButBlock('button'); 
 //endpupdraw(); 
-//
+
 //areawinset(curarea.win); 
 //remake_qual(); 
 //(* in Button.c zit geen extern_qread *)
@@ -3206,15 +3114,14 @@ end;
 //  exit;
 //end;
 //end;
-//
-//
+
 //procedure add_numbut(nr: integer;  type: integer;  str: pchar;  min: float;  max: float;  poin: pinteger;  tip: pchar); 
 //var
 //fp: pfloat; 
 //begin
 //  if nr>=MAXNUMBUTS then
 //  exit;
-//  
+
 //  numbuts[nr].type:= type; 
 //  strcpy(numbuts[nr].name,str); 
 //  numbuts[nr].min:= min; 
@@ -3228,23 +3135,19 @@ end;
 //  *({!!!a type cast? =>} {psmallint(}(numbdata+nr)):=*({!!!a type cast? =>} {psmallint(}poin); 
 //  if strncmp(numbuts[nr].name,'Rot',3)=0 then
 //  begin 
-//    
+
 //    fp:= {!!!a type cast? =>} {pfloat(}(numbdata+nr); 
 //    fp[0]:= 180.0*fp[0] div M_PI; 
 //  end;
 //end;
-//
-//
-//
+
 //procedure clever_numbuts; 
 //var
 //ob: pObject; 
 //lim: float; 
 //str: array [0..Pred(128)] of char; 
 //begin
-//  
-//  
-//  
+
 //  if curarea.spacetype=SPACE_VIEW3D then
 //  begin 
 //    lim:= 1000.0*MAX2(1.0,G.vd.grid); 
@@ -3283,31 +3186,27 @@ end;
 //    clever_numbuts_seq(); 
 //  end;
 //end;
-//
-//
-//
+
 //procedure replace_names_but; 
 //var
 //ima: pImage;
-// 
+
 //len: smallint; 
 //tot: smallint;
-// 
+
 //old: array [0..Pred(64)] of char; 
 //new: array [0..Pred(64)] of char; 
 //temp: array [0..Pred(80)] of char; 
 //begin
 //  ima:=G.main.image.first; 
-//  
+
 //  tot:=0; 
-//  
-//  
-//  
+
 //  strcpy(old,'/'); 
 //  strcpy(new,'/'); 
 //  add_numbut(0,TEX,'Old:',0,63,old,0); 
 //  add_numbut(1,TEX,'New:',0,63,new,0); 
-//  
+
 //  if do_clever_numbuts('Replace image name',2,REDRAW) then
 //  begin 
 //    len:= lstrlen(old); 
@@ -3328,16 +3227,15 @@ end;
 //      ima:= ima.id.next; 
 //    end;
 //    sprintf(temp,'Replaced %d names',tot); 
-//    
+
 //    notice(temp); 
 //  end;
 //end;
-//
-//
+
 //{glIndexi(i) ColorFunc(i)}
 //function glIndexi(i: integer): integer; 
 //begin
 //  result:= ColorFunc(i)
 //end;
-//
+
 end.

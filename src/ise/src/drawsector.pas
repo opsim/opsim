@@ -31,28 +31,28 @@ unit drawsector;
 interface
 
 //{$ifndef FREE}
-//
+
 //{$include "blender.h"}
 //{$include "graphics.h"}
 //{$include "sector.h"}
-//
+
 //{$if defined(GL_EXT_texture_object)}
-//
+
 //function glBindTexture(A: integer; B: integer): integer; {<= !!!6 unknown macro}
-//
+
 //function glGenTextures(A: integer; B: integer): integer; {<= !!!6 unknown macro}
-//
+
 //function glDeleteTextures(A: integer; B: integer): integer; {<= !!!6 unknown macro}
-//
+
 //function glPolygonOffset(A: integer; B: integer): integer; {<= !!!6 unknown macro}
-//
+
 //{$else}
-//
+
 //const
 //GL_FUNC_ADD_EXT = GL_FUNC_ADD; 
 //(* #define GL_FUNC_REVERSE_SUBTRACT_EXT GL_FUNC_REVERSE_SUBTRACT *)
 //(* #define GL_POLYGON_OFFSET_EXT   GL_POLYGON_OFFSET *)
-//
+
 //{$endif}
 
 procedure init_realtime_GL;
@@ -84,17 +84,14 @@ uses
 //heigth: smallint; 
 //len: smallint; 
 //(* de juiste offset in rectot *)
-//
+
 //begin
-//  
-//  
-//  
-//  
+
 //  rt:= ibuf.rect+(starty*ibuf.x+startx); 
 //  len:= (endx-startx); 
 //  heigth:= (endy-starty); 
 //  rp:= rect; 
-//  
+
 //  for{while} y:=0 to Pred(heigth) { y++}
 //  do
 //  begin 
@@ -103,9 +100,7 @@ uses
 //    rp:= rp + (len); 
 //  end;
 //end;
-//
-//
-//
+
 //procedure free_realtime_image(ima: pImage); 
 //begin
 //  if ima.bindcode<>0 
@@ -122,17 +117,16 @@ uses
 //    ima.repbind:= 0; 
 //  end;
 //end;
-//
-//
+
 //procedure make_repbind(ima: pImage); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  if ima=0)or(ima.ibuf=0
 // then
 //  exit;
-//  
+
 //  if ima.repbind<>0 
 // then
 //  begin 
@@ -147,13 +141,12 @@ uses
 //    ima.repbind:= callocN(sizeof(int)*ima.totbind,'repbind'); 
 //  end;
 //end;
-//
+
 //var {was static}
 //alphamode: integer;
-// 
+
 //lasttface: pTFace;
-// 
-//
+
 //function set_tpage(tface: pTFace): integer; 
 //var
 //ima: pImage; 
@@ -168,13 +161,7 @@ uses
 //begin
 //  alphamode:=-1; 
 //  lasttface:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if tface=0
 // then
 //  begin 
@@ -235,14 +222,13 @@ uses
 //  end;
 //  ima:= tface.tpage; 
 //  tilemode:= tface.mode and TF_TILES; 
-//  
-//  
+
 //  if ima=curpage)and(curtile=tface.tile)and(tilemode=curmode
 // then
 //  begin
 //    result:= ima<>0; 
 //    exit;
-//    
+
 //  end;
 //  if tilemode<>curmode
 // then
@@ -256,9 +242,9 @@ uses
 //    else
 //    glLoadMatrixf(texmat1); 
 //    glMatrixMode(GL_MODELVIEW); 
-//    
+
 //  end;
-//  
+
 //  if ima=0)or(ima.ok=0
 // then
 //  begin 
@@ -271,11 +257,11 @@ uses
 //      exit;
 //    end;
 //  end;
-//  
+
 //  if ima.ibuf=0
 // then
 //  begin 
-//    
+
 //    strcpy(str,ima.name); 
 //    convertstringcode(str); 
 //    ima.ibuf:= loadiffname(str,LI_rect); 
@@ -287,14 +273,14 @@ uses
 //      curpage:= 0; 
 //      curmode:= tilemode; 
 //      glDisable(GL_TEXTURE_2D); 
-//      
+
 //      begin
 //        result:= 0; 
 //        exit;
 //      end;
 //    end;
 //  end;
-//  
+
 //  if ima.tpageflag and IMA_TWINANIM
 // then
 //  curtile:= ima.lastframe; 
@@ -342,7 +328,7 @@ uses
 //      rect:= ima.ibuf.rect; 
 //    end;
 //  end;
-//  
+
 //  if {*}bind^=0
 // then
 //  begin 
@@ -355,7 +341,7 @@ uses
 //      PRINT2(d,d,curtile,tilemode); 
 //    end;
 //    glBindTexture(GL_TEXTURE_2D,*bind); 
-//    
+
 //    if tilemode<>0 
 // then
 //    glPixelStorei(GL_UNPACK_ROW_LENGTH,ima.ibuf.x); 
@@ -366,7 +352,7 @@ uses
 //    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); 
 //    (* glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); *)
 //    (* glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); *)
-//    
+
 //    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR); 
 //    glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE); 
 //  end;
@@ -375,15 +361,13 @@ uses
 //  glEnable(GL_TEXTURE_2D); 
 //  curpage:= ima; 
 //  curmode:= tilemode; 
-//  
+
 //  begin
 //    result:= 1; 
 //    exit;
 //  end;
 //end;
-//
-//
-//
+
 //procedure get_co_portal(se: pSector;  type: integer;  ofs: pfloat;  cent: pfloat); 
 //begin
 //  cent[0]:= cent[1]:=cent[2]:=0.0; 
@@ -397,7 +381,7 @@ uses
 //    cent[0]:= -0.98*se.size[0]; 
 //    cent[1]:= cent[1] + (ofs[0]); 
 //    cent[2]:= cent[2] + (ofs[1]); 
-//    
+
 //  end;
 //  else
 //  if type=PO_YPOS)or(type=PO_YNEG
@@ -410,8 +394,7 @@ uses
 //    cent[1]:= -0.98*se.size[1]; 
 //    cent[0]:= cent[0] + (ofs[0]); 
 //    cent[2]:= cent[2] + (ofs[1]); 
-//    
-//    
+
 //  end;
 //  else
 //  if type=PO_ZPOS)or(type=PO_ZNEG
@@ -424,12 +407,10 @@ uses
 //    cent[2]:= -0.98*se.size[2]; 
 //    cent[0]:= cent[0] + (ofs[0]); 
 //    cent[1]:= cent[1] + (ofs[1]); 
-//    
-//    
+
 //  end;
 //end;
-//
-//
+
 //procedure draw_portal(se: pSector;  po: pPortal;  act: integer); 
 //var
 //cent: array [0..2] of single; 
@@ -440,13 +421,7 @@ uses
 //cox: integer; 
 //coy: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  size:= 0.1*MAX3(se.size[0],se.size[1],se.size[2]); 
 //  if size>0.5
 // then
@@ -471,7 +446,7 @@ uses
 //    coy:= 1; 
 //  end;
 //  glGetFloatv(GL_CURRENT_COLOR,col); 
-//  
+
 //  if G.f and G_BACKBUFSEL
 // then
 //  ; 
@@ -486,7 +461,7 @@ uses
 //  cent[cox]:= cent[cox] + (0.$5); 
 //  cent[coy]:= cent[coy] - (0.$5); 
 //  glBegin(GL_POLYGON); 
-//  
+
 //  glVertex3fv(cent); 
 //  cent[coy]:= cent[coy] + (size); 
 //  glVertex3fv(cent); 
@@ -499,7 +474,7 @@ uses
 //  if G.f and G_BACKBUFSEL
 // then
 //  exit;
-//  
+
 //  if act<>0 
 // then
 //  glColor3ub(255,255,255); 
@@ -524,20 +499,18 @@ uses
 //  cent[cox]:= cent[cox] + (size); 
 //  glEnd(); 
 //  glColor3f(col[0],col[1],col[2]); 
-//  
+
 //end;
-//
-//
+
 //procedure spack(ucol: uint); 
 //var
 //cp: pchar;
-// 
+
 //begin
 //  cp:=(char* )@ucol; 
 //  glColor3ub(cp[3],cp[2],cp[1]); 
 //end;
-//
-//
+
 //procedure draw_hide_tfaces(ob: pObject;  me: pMesh); 
 //var
 //tface: pTFace; 
@@ -548,21 +521,15 @@ uses
 //v4: pfloat; 
 //a: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if me=0)or(me.tface=0
 // then
 //  exit;
-//  
+
 //  mface:= me.mface; 
 //  tface:= me.tface; 
 //  cpack($0); 
-//  
+
 //  setlinestyle(1); 
 //  while{for} 
 //  a:= me.totface; 
@@ -582,7 +549,7 @@ uses
 //    if (tface.flag and TF_HIDE)
 // then
 //    begin 
-//      
+
 //      v1:= (me.mvert+mface.v1).co; 
 //      v2:= (me.mvert+mface.v2).co; 
 //      v3:= (me.mvert+mface.v3).co; 
@@ -603,9 +570,7 @@ uses
 //  end;
 //  setlinestyle(0); 
 //end;
-//
-//
-//
+
 //procedure draw_tfaces3D(ob: pObject;  me: pMesh); 
 //var
 //mface: pMFace; 
@@ -616,17 +581,11 @@ uses
 //v4: pfloat; 
 //a: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if me=0)or(me.tface=0
 // then
 //  exit;
-//  
+
 //  glDisable(GL_DEPTH_TEST); 
 //  mface:= me.mface; 
 //  tface:= me.tface; 
@@ -679,7 +638,7 @@ uses
 //      glVertex3fv(v4); 
 //      glEnd(); 
 //      cpack($FFFFFF); 
-//      
+
 //      setlinestyle(1); 
 //      glBegin(GL_LINE_LOOP); 
 //      glVertex3fv(v1); 
@@ -712,7 +671,7 @@ uses
 //    if (tface.flag and ACTIVE))and((tface.flag and SELECT)
 // then
 //    begin 
-//      
+
 //      v1:= (me.mvert+mface.v1).co; 
 //      v2:= (me.mvert+mface.v2).co; 
 //      v3:= (me.mvert+mface.v3).co; 
@@ -755,26 +714,24 @@ uses
 //      glVertex3fv(v4); 
 //      glEnd(); 
 //      setlinestyle(0); 
-//      
+
 //    end;
 //  end;
 //  glEnable(GL_DEPTH_TEST); 
-//  
+
 //end;
-//
+
 //rvecmat: array [0..2,0..2] of single; 
 //rcolmat: array [0..2,0..2] of single; 
 //punopoin: array [0..3] of psmallint; 
 //var {was static}
 //lampar: array [0..Pred(24)] of pObject; 
 //totlamp: integer;
-// 
+
 //curlamp: integer;
-// 
+
 //need_init: integer;
-// 
-//
-//
+
 //function do_realtimelight(ob: pObject;  tface: pTFace;  col: pfloat): integer; 
 //var
 //la: pLamp; 
@@ -784,19 +741,14 @@ uses
 //a: integer; 
 //cp: pchar; 
 //base: pBase;
-// 
+
 //(* lamp array aanlegen *)
 //begin
-//  
+
 //  totlamp:=0; 
 //  curlamp:=0; 
 //  need_init:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if G.vd=0
 // then
 //  begin
@@ -844,7 +796,7 @@ uses
 //          end;
 //        end;
 //        else
-//        
+
 //        function ELEM{!!!3 unknown typedef}: if; 
 //        begin
 //          where_is_object(base.object); 
@@ -884,7 +836,7 @@ uses
 //        rvecmat[curlamp][1]:= lampar[a].obmat[2][1]; 
 //        rvecmat[curlamp][2]:= lampar[a].obmat[2][2]; 
 //        Mat4Mul3Vecfl(ob.imat,rvecmat[curlamp]); 
-//        
+
 //        Normalise(rvecmat[curlamp]); 
 //        rcolmat[curlamp][0]:= la.energy*la.r div 32767.0; 
 //        rcolmat[curlamp][1]:= la.energy*la.g div 32767.0; 
@@ -953,7 +905,7 @@ uses
 //        end;
 //      end;
 //    end;
-//    
+
 //  end;
 //  else
 //  begin 
@@ -988,7 +940,7 @@ uses
 //    exit;
 //  end;
 //end;
-//
+
 //type
 //tra_ob = record
 //next: ptra_ob; 
@@ -998,15 +950,14 @@ uses
 //dt: integer; 
 //end;
 //tra_ob = tra_ob; 
-//
+
 //const
 //MAX_TRA_OB = 64; 
-//
+
 //var {was static}
 //tot_tra_ob: integer = 0; 
 //tra_ob_ar: array [0..Pred(MAX_TRA_OB)] of tra_ob; 
-//
-//
+
 //procedure add_tra_object(ob: pObject;  me: pMesh;  dt: integer); 
 //begin
 //  if tot_tra_ob>=MAX_TRA_OB
@@ -1017,9 +968,9 @@ uses
 //  tra_ob_ar[tot_tra_ob].dt:= dt; 
 //  inc(tot_tra_ob); 
 //end;
-//
+
 //(* maximum dt: precies volgens ingestelde waardes *)
-//
+
 //procedure draw_tface_mesh(ob: pObject;  me: pMesh;  dt: integer); 
 //var
 //lf: pLife; 
@@ -1039,31 +990,16 @@ uses
 //islight: smallint; 
 //istex: smallint; 
 //istra: smallint;
-// 
+
 //cp: pchar; 
 //se: pSector;
-// 
+
 //lf: pLife;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  istra:=0; 
-//  
+
 //  if me=0
 // then
 //  exit;
@@ -1074,14 +1010,13 @@ uses
 //  lf:= 0; 
 //  glShadeModel(GL_SMOOTH); 
 //  glGetFloatv(GL_CURRENT_COLOR,coli); 
-//  
-//  
+
 //  (* als meshes uit lib gelezen zijn en alleen mcol hebben: *)
 //  if me.tface=0
 // then
 //  make_tfaces(me); 
 //  islight:= do_realtimelight(ob,0,0); 
-//  
+
 //  (* de ob color *)
 //  if ob.type=OB_SECTOR
 // then
@@ -1174,7 +1109,7 @@ uses
 //        else
 //        punopoin[3]:= 0; 
 //      end;
-//      
+
 //      if mode and TF_TWOSIDE
 // then
 //      begin 
@@ -1184,7 +1119,7 @@ uses
 //      begin 
 //        glEnable(GL_CULL_FACE); 
 //      end;
-//      
+
 //      if istex)and((mode and TF_TEX)
 // then
 //      begin 
@@ -1199,7 +1134,7 @@ uses
 //            glBegin(GL_POLYGON); 
 //            glTexCoord2sv(tface.uv[0]); 
 //            glColor3fv(col[0]); 
-//            
+
 //            glVertex3fv(v1); 
 //            glTexCoord2sv(tface.uv[1]); 
 //            if mode and TF_GOUR
@@ -1227,7 +1162,7 @@ uses
 //            glBegin(GL_POLYGON); 
 //            glTexCoord2sv(tface.uv[0]); 
 //            spack(tface.col[0]); 
-//            
+
 //            glVertex3fv(v1); 
 //            glTexCoord2sv(tface.uv[1]); 
 //            if mode and TF_GOUR
@@ -1254,7 +1189,7 @@ uses
 //        else
 //        begin 
 //          (* waarschuwings polygoon *)
-//          
+
 //          glBegin(GL_POLYGON); 
 //          cpack($FF00FF); 
 //          glVertex3fv(v1); 
@@ -1301,7 +1236,7 @@ uses
 //        end;
 //        else
 //        begin 
-//          
+
 //          cp:= (char* )@(tface.col[0]); 
 //          glColor3ub(cp[3],cp[2],cp[1]); 
 //          glVertex3fv(v1); 
@@ -1334,7 +1269,7 @@ uses
 //    set_tpage(0); 
 //    (* textures uitzetten *)
 //  end;
-//  
+
 //  else
 //  begin 
 //    (* alle niet-texture polys *)
@@ -1371,7 +1306,7 @@ uses
 //      begin 
 //        glEnable(GL_CULL_FACE); 
 //      end;
-//      
+
 //      if mode and TF_OBCOL
 // then
 //      tface.col[0]:= obcol; 
@@ -1431,7 +1366,7 @@ uses
 //        if mode and TF_GOUR
 // then
 //        begin 
-//          
+
 //          glColor3ub(cp[3],cp[2],cp[1]); 
 //          glVertex3fv(v1); 
 //          glColor3ub(cp[7],cp[6],cp[5]); 
@@ -1463,7 +1398,7 @@ uses
 //  glShadeModel(GL_FLAT); 
 //  glDisable(GL_CULL_FACE); 
 //  draw_hide_tfaces(ob,me); 
-//  
+
 //  if ob=OBACT)and((G.f and G_FACESELECT)
 // then
 //  begin 
@@ -1471,8 +1406,7 @@ uses
 //  end;
 //  glColor3f(coli[0],coli[1],coli[2]); 
 //end;
-//
-//
+
 //procedure draw_tface_meshes_tra; 
 //var
 //ob: pObject; 
@@ -1496,46 +1430,27 @@ uses
 //islight: smallint; 
 //cp: pchar; 
 //se: pSector;
-// 
+
 //tmp: pchar; 
 //c: char; 
 //lf: pLife;
-// 
+
 //vec: array [0..2] of single; 
 //mat: array [0..3,0..3] of single; 
 //len: single; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if G.vd.drawtype<>OB_TEXTURE
 // then
 //  exit;
-//  
+
 //  glDepthMask(0); 
 //  glShadeModel(GL_SMOOTH); 
 //  glGetFloatv(GL_CURRENT_COLOR,coli); 
 //  glCullFace(GL_BACK); 
-//  
+
 //  glEnable(GL_CULL_FACE); 
-//  
+
 //  for{while} t:=0 to Pred(tot_tra_ob) { t++}
 //  do
 //  begin 
@@ -1543,7 +1458,7 @@ uses
 //    me:= tra_ob_ar[t].me; 
 //    dt:= tra_ob_ar[t].dt; 
 //    multmatrix(ob.obmat); 
-//    
+
 //    if me=0
 // then
 //    exit;
@@ -1563,8 +1478,7 @@ uses
 //    if ob.type=OB_LIFE
 // then
 //    begin 
-//      
-//      
+
 //      lf:=ob.data; 
 //      obcol:= rgb_to_mcol(lf.r,lf.g,lf.b); 
 //    end;
@@ -1648,7 +1562,7 @@ uses
 //              if lf<>0 
 // then
 //              begin 
-//                
+
 //                glBegin(GL_POLYGON); 
 //                glTexCoord2sv(tface.uv[0]); 
 //                spack(tface.col[0]); 
@@ -1714,8 +1628,7 @@ uses
 // then
 //            begin 
 //              (* actually halo! *)
-//              
-//              
+
 //              glPushMatrix(); 
 //              getmatrix(mat); 
 //              len:= fsqrt(mat[0][0]*mat[0][0]+mat[1][1]*mat[1][1]+mat[2][2]*mat[2][2]); 
@@ -1726,7 +1639,7 @@ uses
 //              mat[0][3]:= mat[1][3]:=mat[2][3]:=0.0; 
 //              mat[3][3]:= 1.0; 
 //              loadmatrix(mat); 
-//              
+
 //              glBegin(GL_POLYGON); 
 //              glTexCoord2sv(tface.uv[0]); 
 //              spack(tface.col[0]); 
@@ -1790,15 +1703,14 @@ uses
 //  (* textures uitzetten *)
 //  tot_tra_ob:= 0; 
 //  glDepthMask(1); 
-//  
-//  
+
 //  glShadeModel(GL_FLAT); 
 //  glDisable(GL_CULL_FACE); 
 //  glColor3f(coli[0],coli[1],coli[2]); 
 //end;
-//
+
 //(* col: restore van ghost *)
-//
+
 //procedure drawsector(ob: pObject;  dt: integer;  col: uint); 
 //var
 //obedit: pObject; 
@@ -1807,11 +1719,7 @@ uses
 //a: integer; 
 //flag: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  se:= ob.data; 
 //  if se.flag and SE_GHOST_OTHER
 // then
@@ -1841,11 +1749,11 @@ uses
 //      cpack(col); 
 //    end;
 //  end;
-//  
+
 //  if se.flag and SE_SHOW_TEXMESH
 // then
 //  begin 
-//    
+
 //    if ob=G.obedit
 // then
 //    drawmeshwire(ob); 
@@ -1872,7 +1780,7 @@ uses
 //  end;
 //  else
 //  begin 
-//    
+
 //    if G.f and G_SIMULATION
 // then
 //    ; 
@@ -1909,7 +1817,7 @@ uses
 //        end;
 //      end;
 //    end;
-//    
+
 //    if dt>OB_SOLID
 // then
 //    dt:= OB_SOLID; (* shaded bij dynamesh: werkt niet *)
@@ -1952,15 +1860,13 @@ end;
 //procedure sector_simulate; 
 //var
 //cam: pCamera;
-// 
+
 //params: array [0..Pred(5)] of single; 
 //loc: array [0..2] of single; 
 //rot: array [0..2] of single; 
 //begin
 //  cam:=0; 
-//  
-//  
-//  
+
 //  if G.scene.camera=0)or(G.scene.camera.type<>OB_CAMERA
 // then
 //  begin 
@@ -1968,7 +1874,7 @@ end;
 //    exit;
 //  end;
 //  VECCOPY(loc,G.scene.camera.loc); 
-//  
+
 //  (* soms is de aktieve camera niet in een sector *)
 //  VECCOPY(rot,G.scene.camera.rot); 
 //  G.f:= G.f or (G_SIMULATION); 
@@ -1993,7 +1899,7 @@ end;
 //    end;
 //  end;
 //  waitcursor(1); 
-//  
+
 //  while LongBool(1)
 //  do
 //  begin 
@@ -2014,40 +1920,38 @@ end;
 //    G.simulf:= 0; 
 //  end;
 //  waitcursor(0); 
-//  
+
 //  glDisable(GL_FOG); 
-//  
+
 //  G.f:= G.f and ( not G_SIMULATION); 
 //  allqueue(REDRAWVIEW3D,0); 
-//  
+
 //  allqueue(REDRAWBUTSALL,0); 
 //  VECCOPY(G.scene.camera.loc,loc); 
 //  (* soms is de aktieve camera niet in een sector *)
 //  VECCOPY(G.scene.camera.rot,rot); 
 //end;
-//
-//
+
 //{$endif}
-//
-//
+
 //{glBindTexture(A,B)     glBindTextureEXT(A,B)}
 //function glBindTexture(A: integer; B: integer): integer; 
 //begin
 //  result:= glBindTextureEXT(A,B)
 //end;
-//
+
 //{glGenTextures(A,B)     glGenTexturesEXT(A,B)}
 //function glGenTextures(A: integer; B: integer): integer; 
 //begin
 //  result:= glGenTexturesEXT(A,B)
 //end;
-//
+
 //{glDeleteTextures(A,B)  glDeleteTexturesEXT(A,B)}
 //function glDeleteTextures(A: integer; B: integer): integer; 
 //begin
 //  result:= glDeleteTexturesEXT(A,B)
 //end;
-//
+
 //{glPolygonOffset(A,B)  glPolygonOffsetEXT(A,B)}
 //function glPolygonOffset(A: integer; B: integer): integer; 
 //begin

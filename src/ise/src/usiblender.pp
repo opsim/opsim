@@ -162,13 +162,13 @@ begin
   (* IKONEN INLADEN *)
 
   //bbuf:= loadiffmem(datatoc_blenderbuttons, LI_rect);
-  //
+
   //if bbuf=nil then
   //begin
   //  printf('Can''t load buttonimage\n');
   //  exit(0);
   //end;
-  //
+
   //DefButIcon(0,bbuf.rect,bbuf.x,bbuf.y,20,21);
   //bbuf.rect:= nil;
   //freeImBuf(bbuf);
@@ -182,7 +182,6 @@ var
 pat: array [0..15] of word;
 x: word;
 begin
-
 
 end;
 
@@ -216,7 +215,7 @@ procedure savecore;
 //tstr: array [0..Pred(FILE_MAXFILE)] of char; 
 begin
 //  {noBlog: integer; }{<= !!!5 external variable}
-//  
+
 //  procedure write_file; 
 //  noBlog:= 1; 
 //  strcpy(scestr,G.sce); 
@@ -342,7 +341,6 @@ begin
 {$endif}
 	printf ('  -p <sx> <sy> <w> <h>\tOpen with lower left corner at <sx>, <sy>\n');
 	printf ('                      \tand width and height <w>, <h>\n');
-
 
 	printf ('\nMisc options:\n');
 	printf ('  -f\t\tPrevent forking in foreground mode\n');

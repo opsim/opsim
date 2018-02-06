@@ -215,184 +215,184 @@ var
 { mywindow.c  }
 
 //function get_qual:smallint;
-//
+
 //function get_mbut:smallint;
-//
+
 //procedure myglClearColor(a:single; b:single; c:single; d:single);
-//
+
 //procedure custom_cursor(data1:Pchar; data2:Pchar; size:longint);
-//
+
 //procedure drawmode(mode:longint);
-//
+
 //function fmfindfont(name:Pchar):plongint;
-//
+
 //function fmgetstrwidth(handle:pointer; str:Pchar):longint;
-//
+
 //procedure fminit;
-//
+
 //procedure fmprstr(str:Pchar);
-//
+
 //procedure fmrotatepagematrix(degrees:single);
-//
+
 //function fmscalefont:plongint;
-//
+
 //procedure fmsetfont(_type:pointer);
-//
+
 //function getbutton(val:longint):smallint;
-//
+
 //procedure getmouse(mval:Psmallint);
-//
+
 //function getqual:smallint;
-//
+
 //function give_new_winid:longint;
-//
+
 //procedure init_my_mainwin(win:longint);
-//
+
 //procedure loadmatrix_win(var mat:array[0..3] of single; swin:longint);
-//
+
 //procedure myContextSetup;
-//
+
 //procedure myCopySubBuffer(x:longint; y:longint; sx:longint; sy:longint);
-//
+
 //procedure myXcolor(col:longint);
-//
+
 //procedure myXdrawline(x1:longint; y1:longint; x2:longint; y2:longint);
-//
+
 //procedure myXrect(x1:longint; y1:longint; x2:longint; y2:longint);
-//
+
 //procedure myXrectf(x1:longint; y1:longint; x2:longint; y2:longint);
-//
+
 //procedure my_get_frontbuffer_image(x:longint; y:longint; sx:longint; sy:longint);
-//
+
 //procedure my_put_frontbuffer_image;
-//
+
 //procedure mygetmatrix(mat:Parray[0..3] of single);
-//
+
 //procedure mygetorigin(x:Plongint; y:Plongint);
-//
+
 //procedure mygetsingmatrix(mat:Parray[0..3] of single);
-//
+
 //procedure mygetsize(x:Plongint; y:Plongint);
-//
+
 //procedure mygetsuborigin(x:Plongint; y:Plongint);
-//
+
 //procedure myloadmatrix(mat:Parray[0..3] of single);
-//
+
 //procedure mymultmatrix(mat:Parray[0..3] of single);
-//
+
 //procedure myortho(x1:single; x2:single; y1:single; y2:single; n:single;
 //            f:single);
-//
+
 //procedure myortho2(x1:single; x2:single; y1:single; y2:single);
-//
+
 //procedure myswapbuffers;
-//
+
 //function myswinopen(winid:longint; xmin:longint; xmax:longint; ymin:longint; ymax:longint):longint;
-//
+
 //procedure mywinclose(winid:longint);
-//
+
 //procedure mywindow(x1:single; x2:single; y1:single; y2:single; n:single;
 //            f:single);
-//
+
 //function mywinexist(wid:longint):longint;
-//
+
 //procedure mywinposition(swin:longint; xmin:longint; xmax:longint; ymin:longint; ymax:longint);
-//
+
 //{ let op: andere syntax  }
 //procedure mywinset(wid:longint);
-//
+
 //procedure overdrawdump;
-//
+
 //procedure screendump;
-//
+
 //procedure sdrawXORline(x0:longint; y0:longint; x1:longint; y1:longint);
-//
+
 //procedure sdrawXORline4(nr:longint; x0:longint; y0:longint; x1:longint; y1:longint);
-//
+
 //procedure setlinestyle(nr:longint);
-//
+
 //procedure setvaluator(dev:smallint; a:smallint; b:smallint; c:smallint);
-//
+
 //procedure write_screendump(name:Pchar);
-//
+
 //{ screen.c  }
 //procedure addafterqueue(win:smallint; event:word; val:smallint);
 
 procedure addqueue(win:smallint; event:word; val:smallint);
 
 //function addscreen(name:Pchar):^bScreen;
-//
+
 //{ gebruik de setprefsize(); als je anders dan fullscreen wilt  }
 //function afterqtest:longint;
-//
+
 //procedure append_afterqueue;
-//
+
 //procedure area_fullscreen;
-//
+
 //{ met curarea  }
 //procedure areawinset(win:smallint);
-//
+
 //procedure calc_arearcts(sa:pScrArea);
-//
+
 //procedure closeareawin(sa:pScrArea);
-//
+
 //procedure closeheadwin(sa:pScrArea);
-//
+
 //function closest_bigger_area:^ScrArea;
-//
+
 //procedure copy_areadata(sa1:pScrArea; sa2:pScrArea);
-//
+
 //procedure copy_screen(to:PbScreen; from:PbScreen);
-//
+
 //procedure decodekeytab;
-//
+
 //function default_foursplit:^bScreen;
-//
+
 //function default_twosplit:^bScreen;
-//
+
 //procedure defheadchange;
 
 procedure defheaddraw;
 
 //procedure defheadqread(sa:pScrArea);
-//
+
 //procedure defwinchange;
-//
+
 //procedure defwindraw;
-//
+
 //procedure defwinmat;
-//
+
 //procedure defwinqread(sa:pScrArea);
-//
+
 //procedure del_area(sa:pScrArea);
-//
+
 //procedure do_the_glut_funcs;
-//
+
 //procedure drawedge(x1:smallint; y1:smallint; x2:smallint; y2:smallint);
-//
+
 //procedure drawscredge(se:PScrEdge);
-//
+
 //procedure drawscreen;
-//
+
 //procedure duplicate_screen;
-//
+
 //procedure editsplitpoint;
-//
+
 //function ext_qtest:smallint;
-//
+
 //{ extern      word special_qread(short *val);  }
 function extern_qread(val: psmallint): word;
 
 //function findcurarea:^ScrArea;
-//
+
 //function findscredge(v1:PScrVert; v2:PScrVert):^ScrEdge;
-//
+
 //procedure free_screen(sc:PbScreen);
 
 procedure getdisplaysize;
 
 //procedure getmouseco_areawin(mval:Psmallint);
-//
+
 //{ interne area coordinaten  }
 //procedure getmouseco_headwin(mval:Psmallint);
 
@@ -401,11 +401,11 @@ procedure getmouseco_sc(mval:psmallint);
 
 //{ screen coordinaten  }
 //procedure header_back_to_front(sa:pScrArea);
-//
+
 //procedure header_front_to_back(sa:pScrArea);
-//
+
 //procedure headerbox(selcol:longint; width:longint);
-//
+
 //procedure headmenu(sa:pScrArea);
 
 procedure init_screen_cursors;
@@ -413,75 +413,75 @@ procedure init_screen_cursors;
 procedure initscreen;
 
 //procedure inputchangefunc(state:longint);
-//
+
 //function is_allowed_to_change_screen(_new:PbScreen):longint;
-//
+
 //function isqueued(dev:smallint):smallint;
-//
+
 //procedure joinarea(sa:pScrArea);
-//
+
 //procedure keyboardfunc(key:uchar; x:longint; y:longint);
-//
+
 //procedure markdirty_all;
-//
+
 //procedure mousefunc(button:longint; state:longint; x:longint; y:longint);
-//
+
 //procedure mousemovefunc(x:longint; y:longint);
-//
+
 //procedure moveareas;
-//
+
 //function myqtest:word;
-//
+
 //function mywinopen(mode:longint; posx:smallint; posy:smallint; sizex:smallint; sizey:smallint):longint;
-//
+
 //procedure openareawin(sa:pScrArea);
-//
+
 //procedure openheadwin(sa:pScrArea);
 
 procedure qenter(event:word; val:smallint);
 
 //function qread(val:Psmallint):word;
-//
+
 //procedure qreset;
-//
+
 //function qtest:word;
-//
+
 //procedure rawkeyfunc(key:longint; val:longint; y:longint);
-//
+
 //procedure redraw1func;
-//
+
 //procedure redraw2func;
-//
+
 //procedure remake_qual;
-//
+
 //procedure removedouble_scredges;
-//
+
 //procedure removedouble_scrverts;
-//
+
 //procedure removenotused_scredges;
-//
+
 //procedure removenotused_scrverts;
-//
+
 //procedure reset_autosave;
-//
+
 //procedure reshapefunc(x:longint; y:longint);
-//
+
 //procedure rgbmul(col:Puint; mul:longint);
-//
+
 //function screen_qread(val:Psmallint):word;
-//
+
 //procedure screen_swapbuffers;
-//
+
 //procedure screenmain;
-//
+
 //procedure scrollheader;
-//
+
 //function select_area(spacetype:longint):longint;
-//
+
 //procedure set_cursonedge(mx:smallint; my:smallint);
-//
+
 //procedure setcursor_space(spacetype:longint; cur:smallint);
-//
+
 //procedure setdisplaysize(ex:longint; ey:longint);
 
 procedure setprefsize(stax, stay, sizx, sizy:longint);
@@ -493,15 +493,15 @@ procedure setscreen(sc:pbScreen);
 procedure start_autosave(val:longint); cdecl;
 
 //procedure tempcursor(curs:longint);
-//
+
 //function test_edge_area(sa:pScrArea; se:PScrEdge):^ScrArea;
-//
+
 //procedure test_scale_screen(sc:PbScreen);
-//
+
 //procedure testareas;
-//
+
 //function testsplitpoint(sa:pScrArea; dir:char; fac:single):smallint;
-//
+
 //procedure visiblefunc(dummy:longint);
 
 procedure waitcursor(val:longint);
@@ -509,68 +509,68 @@ procedure waitcursor(val:longint);
 procedure wich_cursor(sa:pScrArea);
 
 //procedure window_front_to_back(sa:pScrArea);
-//
+
 //{ space.c  }
 //procedure allqueue(event:word; val:smallint);
-//
+
 //procedure allspace(event:word; val:smallint);
-//
+
 //procedure changebutspace;
-//
+
 //procedure changeview2d;
-//
+
 //procedure changeview3d;
-//
+
 //procedure copy_view3d_lock(val:smallint);
-//
+
 //procedure drawemptyspace;
-//
+
 //procedure drawinfospace;
-//
+
 //procedure duplicatespacelist(lb1:pListBase; lb2:pListBase);
-//
+
 //procedure extern_set_butspace(fkey:longint);
-//
+
 //procedure force_draw;
-//
+
 //procedure freespacelist(lb:pListBase);
-//
+
 //procedure handle_view3d_lock;
-//
+
 //procedure init_butspace(sa:pScrArea);
-//
+
 //procedure init_filespace(sa:pScrArea);
-//
+
 //procedure init_imagespace(sa:pScrArea);
-//
+
 //procedure init_oopsspace(sa:pScrArea);
-//
+
 //procedure init_seqspace(sa:pScrArea);
-//
+
 //procedure init_v2d_oops(v2d:PView2D);
-//
+
 //procedure initipo(sa:pScrArea);
-//
+
 //procedure initview3d(sa:pScrArea);
-//
+
 //procedure newspace(sa:pScrArea; _type:longint);
-//
+
 //procedure set_func_space(sa:pScrArea);
-//
+
 //procedure set_rects_butspace(buts:PSpaceButs);
-//
+
 //procedure winqread3d(event:word; val:smallint);
-//
+
 //procedure winqreadbutspace(event:word; val:smallint);
-//
+
 //procedure winqreadimagespace(event:word; val:smallint);
-//
+
 //procedure winqreadinfospace(event:word; val:smallint);
-//
+
 //procedure winqreadipo(event:word; val:smallint);
-//
+
 //procedure winqreadoopsspace(event:word; val:smallint);
-//
+
 //procedure winqreadsequence(event:word; val:smallint);
 
 var
@@ -644,33 +644,33 @@ autosavetime: integer;
 (* ********* Funkties *********** *)
 
 //procedure getdisplaysize; 
-//
+
 //function default_foursplit: pbScreen; 
-//
+
 //function default_twosplit: pbScreen; 
-//
+
 //function findscredge(v1: pScrVert;  v2: pScrVert): pScrEdge; 
-//
+
 //procedure setscreen(sc: pbScreen); 
 
 procedure drawscreen; forward;
 
 //procedure initscreen; 
-//
+
 //procedure moveareas; 
-//
+
 //procedure scrollheader; 
-//
+
 //procedure testareas; 
-//
+
 //procedure area_fullscreen; 
-//
+
 //procedure addqueue(win: smallint;  event: word;  val: smallint);
-//
+
 //procedure editsplitpoint; 
-//
+
 //procedure splitarea(sa: pScrArea;  dir: char;  fac: single);
-//
+
 //procedure joinarea(sa: pScrArea);
 
 procedure select_connected_scredge(sc: pbScreen;  edge: pScrEdge); forward;
@@ -680,7 +680,6 @@ procedure select_connected_scredge(sc: pbScreen;  edge: pScrEdge); forward;
 //vert_ptr_bits: array [0..] of word = ($0180,$0180,$0180,$0ff0,$07e0,$03c0,$0180,$0,$0,$0180,$03c0,$07e0,$0ff0,$0180,$0180,$0180,$03c0,$03c0,$1ff8,$1ff8,$1ff8,$0ff0,$07e0,$03c0,$03c0,$07e0,$0ff0,$1ff8,$1ff8,$1ff8,$03c0,$03c0,);
 //win_ptr_bits: array [0..] of word = ($0000,$0180,$0180,$0180,$0000,$89b3,$fdb3,$fdb7,$b5bf,$b5bb,$85b3,$0000,$0180,$0180,$0180,$0000,$03c0,$03c0,$03c0,$03c0,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$03c0,$03c0,$03c0,$03c0);
 //implementation
-
 
 procedure init_screen_cursors;
 begin
@@ -701,7 +700,7 @@ begin
     (* only once: for time-cursor *)
     //if (R.flag and R_RENDERING) <> 0 then
     //exit;
-    //
+
     //if (R.win<>nil)and(R.win=G.curscreen^.winakt) then
     //begin
     //  oldwin:= G.curscreen^.winakt;
@@ -731,7 +730,7 @@ end;
 //var
 //sa: pScrArea;
 //begin
-//  
+
 //  if G.curscreen=nil
 // then
 //  exit;
@@ -777,9 +776,7 @@ end;
 //sa: pScrArea;
 //oldwin: integer; 
 //begin
-//  
-//  
-//  
+
 //  sc:= G.main.screen.first; 
 //  while sc
 //  do
@@ -822,15 +819,7 @@ end;
 //begin
 //  {$ifdef __sgi}
 //  {hash: array [0..Pred(512)] of char; }{<= !!!5 external variable}
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  file:= open('/.Bcode',O_BINARY or O_RDONLY); 
 //  if file=-1
 // then
@@ -870,7 +859,6 @@ end;
 
 (* *********  IN/OUT  ************* *)
 
-
 procedure getmouseco_sc(mval: psmallint);  (* screen coordinaten *)
 begin
   if G.curscreen=nil then
@@ -883,7 +871,7 @@ begin
 end;
 
 //(* interne area coordinaten *)
-//
+
 //procedure getmouseco_areawin(mval: psmallint); 
 //begin
 //  getmouseco_sc(mval); 
@@ -895,7 +883,7 @@ end;
 //  end;
 //end;
 //(* interne area coordinaten *)
-//
+
 //procedure getmouseco_headwin(mval: psmallint); 
 //begin
 //  getmouseco_sc(mval); 
@@ -1015,31 +1003,28 @@ end;
 //var
 //se: pScrEdge; 
 //se1: pScrEdge;
-// 
+
 //se2: pScrEdge;
-// 
+
 //se3: pScrEdge;
-// 
+
 //se4: pScrEdge;
-// 
+
 //dist: single;
 //mindist: single;
-// 
+
 //vec1: array [0..1] of single;
 //vec2: array [0..1] of single;
 //vec3: array [0..1] of single;
 //begin
-//  
+
 //  se1:=nil; 
 //  se2:=nil; 
 //  se3:=nil; 
 //  se4:=nil; 
-//  
+
 //  mindist:=100.0; 
-//  
-//  
-//  
-//  
+
 //  function PdistVL2Dfl: single;
 //  vec1[0]:= mx; 
 //  vec1[1]:= my; 
@@ -1263,7 +1248,7 @@ end;
 //var
 //ofs: single;
 //begin
-//  
+
 //  if curarea^.headchange<>nil 
 // then
 //  begin 
@@ -1298,12 +1283,12 @@ end;
 //  ortho2(-0.5,curarea^.winrct.xmax-curarea^.winrct.xmin-0.5,-0.5,curarea^.winrct.ymax-curarea^.winrct.ymin-0.5); 
 //  glLoadIdentity(); 
 //end;
-//
+
 //procedure headmenu(sa: pScrArea);
 //var
 //fac: single;
 //begin
-//  
+
 //  if curarea^.full<>nil 
 // then
 //  begin 
@@ -1335,14 +1320,14 @@ do_change: smallint = 0;
 str: pchar;
 begin
   //areawinset(sa^.headwin);
-  //
+
   //while sa^.hq<>sa^.headqueue do
   //begin
   //  sa^.hq:= sa^.hq - (2);
-  //
+
   //  event:=  sa^.hq[0];
   //  val:= sa^.hq[1];
-  //
+
   //  if val<>0 then
   //  begin
   //    if (sa^.spacetype=SPACE_TEXT)and(sa^.headqread=do_py_head_event) then
@@ -1356,7 +1341,7 @@ begin
   //      FrontbufferButs(1);
   //      event:= DoButtons();
   //      FrontbufferButs(0);
-  //
+
   //      if event<>nil then
   //      begin
   //        if event<1000 then
@@ -1450,14 +1435,14 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure winqdelete(sa: pScrArea);
 //begin
 //  if sa^.wq<>sa^.winqueue
 // then
 //  sa^.wq:= sa^.wq - (2); 
 //end;
-//
+
 //procedure winqclear(sa: pScrArea);
 //begin
 //  if sa^.wq:=sa^.winqueue
@@ -1567,7 +1552,7 @@ afterq: psmallint = @afterqueue;
 //var
 //poin: integer; 
 //begin
-//  
+
 //  poin:=  {integer(}afterqueue;
 //  poin:= poin + (6*(MAXQUEUE-1)); 
 //  if  {integer(}afterq<poin
@@ -1578,7 +1563,7 @@ afterq: psmallint = @afterqueue;
 //    afterq:= afterq + (3); 
 //  end;
 //end;
-//
+
 //procedure append_afterqueue; 
 //begin
 //  while afterqueue<>afterq
@@ -1604,7 +1589,7 @@ end;
 
 //var
 //ext_load_str: array [0..Pred(256)] of char = (0,0); 
-//
+
 //procedure add_readfile_event(filename: pchar); 
 //begin
 //  qenter(LOAD_FILE,1); 
@@ -1892,7 +1877,7 @@ end;
 //var
 //event: word;
 //begin(* simul alternatief voor extern_qread *)
-//  
+
 //  in_ext_qread:= 1; 
 //  event:= screen_qread(val); 
 //  in_ext_qread:=nil; (* niet zo net, wel zo handig (zie screen_qread) *)
@@ -2000,7 +1985,7 @@ begin
   end;
 end;
 //(* BePatch! glutGetFrontbuffer is defined by glDrawBuffer! In fact the name is wrong... *)
-//
+
 //procedure header_front_to_back_glut(sa: pScrArea);
 //begin
 //  glDrawBuffer(GL_FRONT); 
@@ -2010,7 +1995,7 @@ end;
 //  glutPutFrontBuffer(); 
 //  sa^.head_swap:= WIN_EQUAL; 
 //end;
-//
+
 //procedure window_front_to_back_glut(sa: pScrArea);
 //begin
 //  glDrawBuffer(GL_FRONT); 
@@ -2020,7 +2005,7 @@ end;
 //  glutPutFrontBuffer(); 
 //  sa^.win_swap:= WIN_EQUAL; 
 //end;
-//
+
 //procedure header_back_to_front_glut(sa: pScrArea);
 //begin
 //  glDrawBuffer(GL_BACK); 
@@ -2032,7 +2017,7 @@ end;
 //  sa^.head_swap:= WIN_EQUAL; 
 //end;
 //(* sgi *)
-//
+
 //procedure header_front_to_back_ogl(sa: pScrArea);
 //begin
 //  glReadBuffer(GL_FRONT); 
@@ -2041,7 +2026,7 @@ end;
 //  sa^.head_swap:= WIN_EQUAL; 
 //  glReadBuffer(GL_BACK); 
 //end;
-//
+
 //procedure window_front_to_back_ogl(sa: pScrArea);
 //begin
 //  glReadBuffer(GL_FRONT); 
@@ -2050,7 +2035,7 @@ end;
 //  sa^.win_swap:= WIN_EQUAL; 
 //  glReadBuffer(GL_BACK); 
 //end;
-//
+
 //procedure header_back_to_front_ogl(sa: pScrArea);
 //begin
 //  glDrawBuffer(GL_FRONT); 
@@ -2059,17 +2044,17 @@ end;
 //  sa^.head_swap:= WIN_EQUAL; 
 //  glDrawBuffer(GL_BACK); 
 //end;
-//
+
 //procedure screen_swapbuffers_OGL; 
 //var
 //sa: pScrArea;
 //doswap: integer;
-// 
+
 //headswap: integer;
-// 
+
 //oldwin: integer; (* test op swap *)
 //begin
-//  
+
 //  doswap:=nil; 
 //  headswap:=nil; 
 //  sa:= G.curscreen^.areabase.first; 
@@ -2128,17 +2113,17 @@ end;
 // then
 //  areawinset(oldwin); 
 //end;
-//
+
 //procedure screen_swapbuffers_GLUT; 
 //var
 //sa: pScrArea;
 //doswap: integer;
-// 
+
 //headswap: integer;
-// 
+
 //oldwin: integer; (* test op swap *)
 //begin
-//  
+
 //  doswap:=nil; 
 //  headswap:=nil; 
 //  sa:= G.curscreen^.areabase.first; 
@@ -2673,8 +2658,7 @@ end;
 //sa: pScrArea;
 //mval: array [0..1] of smallint;
 //begin
-//  
-//  
+
 //  getmouseco_sc(mval); 
 //  sa:= G.curscreen^.areabase.first; 
 //  while sa
@@ -2854,9 +2838,7 @@ end;
 //se: pScrEdge; 
 //sa: pScrArea; (* ga ervan uit dat de edges goed zijn *)
 //begin
-//  
-//  
-//  
+
 //  se:= G.curscreen^.edgebase.first; 
 //  while se
 //  do
@@ -3126,7 +3108,6 @@ temph: rcti; (* testen of header er moet zijn, of weg moet, of verplaatst *)
 (* testen of window er moet zijn, of weg moet, of verplaatst *)
 begin
 
-
   sa:= G.curscreen^.areabase.first;
   while sa <>nil  do
   begin
@@ -3206,13 +3187,13 @@ end;
 //function test_edge_area(sa: pScrArea;  se: pScrEdge): pScrArea;
 //var
 //se1: pScrEdge;
-// 
+
 //se2: pScrEdge;
-// 
+
 //se3: pScrEdge;
-// 
+
 //se4: pScrEdge;
-// 
+
 //begin(* test of edge in area ligt, zo niet, 
 //      vind een area die 'm wel heeft *)
 //  se1:=nil; 
@@ -3258,12 +3239,12 @@ end;
 //    (* is keurig 0 als niet gevonden *)
 //  end;
 //end;
-//
+
 //function closest_bigger_area: pScrArea;
 //var
 //sa: pScrArea;
 //big: pScrArea;
-// 
+
 //cent: array [0..2] of single;
 //vec: array [0..2] of single;
 //len: single;
@@ -3271,19 +3252,14 @@ end;
 //len2: single;
 //len3: single;
 //dist: single;
-// 
+
 //mval: array [0..1] of smallint;
 //begin
-//  
+
 //  big:=nil; 
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  dist:=1000; 
-//  
+
 //  getmouseco_sc(mval); 
 //  cent[0]:= mval[0]; 
 //  cent[1]:= mval[1]; 
@@ -3780,11 +3756,11 @@ begin
 end;
 
 (* niet screen zelf vrijgeven *)
-//
+
 //procedure free_screen(sc: pbScreen); 
 //var
 //sa: pScrArea;
-// 
+
 //begin
 //  sa:=nil; 
 //  freelistN(@sc^.vertbase);
@@ -3903,10 +3879,7 @@ end;
 //new: pScrArea;
 //old: pScrArea;
 //begin(* deze funktie toggelt: als area full is wordt de parent weer zichtbaar *)
-//  
-//  
-//  
-//  
+
 //  if curarea^.full<>nil 
 // then
 //  begin 
@@ -3962,7 +3935,7 @@ end;
 //    wich_cursor(new); 
 //  end;
 //end;
-//
+
 //procedure copy_screen(to: pbScreen;  from: pbScreen); 
 //var
 //s1: pScrVert; 
@@ -4017,14 +3990,13 @@ end;
 //    s1:= s1.next; 
 //  end;
 //end;
-//
+
 //procedure duplicate_screen; 
 //var
 //sc: pbScreen; 
 //oldscreen: pbScreen; 
 //begin
-//  
-//  
+
 //  if G.curscreen^.full<>nil 
 // then
 //  exit;
@@ -4045,25 +4017,24 @@ end;
 //sa2: pScrArea;
 //san: pScrArea;
 //up: pScrArea;
-// 
+
 //down: pScrArea;
-// 
+
 //right: pScrArea;
-// 
+
 //left: pScrArea;
-// 
+
 //setest: pScrEdge; 
 //val: smallint;
-// 
+
 //str: array [0..Pred(64)] of char; (* welke edge? *)
 //begin
-//  
-//  
+
 //  up:=nil; 
 //  down:=nil; 
 //  right:=nil; 
 //  left:=nil; 
-//  
+
 //  val:=nil; 
 //  if curedge=nil
 // then
@@ -4324,25 +4295,20 @@ end;
 //fac: single;
 //event: word;
 //ok: smallint;
-// 
+
 //val: smallint; 
 //split: smallint; 
 //mval: array [0..1] of smallint;
 //mvalo: array [0..1] of smallint;
-// 
+
 //col: array [0..2] of smallint;
 //dir: char; 
 //begin
-//  
-//  
-//  
+
 //  ok:=nil; 
-//  
-//  
-//  
+
 //  mvalo:=(-1010,-1010); 
-//  
-//  
+
 //  sa:= test_edge_area(curarea,curedge); 
 //  if sa=nil
 // then
@@ -4507,9 +4473,9 @@ end;
 //vec3: array [0..1] of single;
 //dist: integer; 
 //mindist: integer;
-// 
+
 //event: word;
-// 
+
 //val: smallint; 
 //split: smallint; 
 //mval: array [0..1] of smallint;
@@ -4524,31 +4490,12 @@ end;
 //col: array [0..2] of smallint;
 //dir: char; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  function PdistVL2Dfl: single;
-//  
-//  
-//  
-//  
+
 //  mindist:=1 shl 30; 
 //  event:=nil; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if curarea^.full<>nil 
 // then
 //  exit;
@@ -4736,14 +4683,13 @@ end;
 //  glDrawBuffer(GL_BACK); 
 //  qenter(DRAWEDGES,1); 
 //end;
-//
+
 //procedure scrollheader; 
 //var
 //mval: array [0..1] of smallint;
 //mvalo: array [0..1] of smallint;
 //begin
-//  
-//  
+
 //  if curarea^.headbutlen<curarea^.winx
 // then
 //  begin 
@@ -4781,27 +4727,23 @@ end;
 //    usleep(2); 
 //  end;
 //end;
-//
+
 //function select_area(spacetype: integer): integer; 
 //var
 //sa: pScrArea;
 //sact: pScrArea;
 //win: pbWindow; 
 //tot: integer;
-// 
+
 //event: word;
 //val: smallint; 
 //mval: array [0..1] of smallint;
 //begin(* vanuit editroutines aanroepen, als er meer area's
 //    * zijn van type 'spacetype' kan er een area aangegeven worden
 //    *)
-//  
-//  
-//  
+
 //  tot:=nil; 
-//  
-//  
-//  
+
 //  sa:= G.curscreen^.areabase.first; 
 //  while sa
 //  do
@@ -5065,7 +5007,6 @@ end;
 var {was static}
 firsttime: integer = 1;
 
-
 procedure drawscreen;
 var
 se: pScrEdge;
@@ -5112,10 +5053,7 @@ end;
 //vd: pView3D; 
 //tel: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  sc:= addscreen('screen'); 
 //  splitarea( {pScrArea(}sc^.areabase.first,'h',0.25);
 //  splitarea( {pScrArea(}sc^.areabase.last,'h',0.49);

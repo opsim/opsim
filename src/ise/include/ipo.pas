@@ -180,61 +180,61 @@ blender, util;
     CAM_END = 3;
 
   //{ drawipo.c  }
-  //
+
   //function select_proj_ipo(rectf:Prctf; event:longint):pEditIpo;
-  //
+
   //{ editipo.c  }
   //function get_ipo_to_edit(from:PPID):^Ipo;
-  //
+
   //procedure set_speed_editipo(speed:single);
-  //
+
   //function find_ipocurve(ipo:PIpo; adrcode:longint):^IpoCurve;
-  //
+
   //procedure editipo_changed(doredraw:longint);
-  //
+
   //function ipo_rainbow(cur:longint; tot:longint):cardinal;
-  //
+
   //function get_editipo:^EditIpo;
-  //
+
   //function get_ipo(from:PID; make:longint):^Ipo;
-  //
+
   //procedure free_ipokey(lb:pListBase);
-  //
+
   //procedure insertkey(id:PID; adrcode:longint);
-  //
+
   //procedure make_ipokey_spec(lb:pListBase; ipo:PIpo);
-  //
+
   //procedure make_ipokey_transform(ob:PObject; lb:pListBase; sel:longint);
-  //
+
   //procedure nextkey(elems:pListBase; dir:longint);
-  //
+
   //procedure set_ipo_pointers_transob(ik:PIpoKey; tob:PTransOb);
-  //
+
   //{ ipo.c  }
   //function frame_to_float(cfra:longint):single;
-  //
+
   //procedure calc_ipo(_para1:PIpo; _para2:single);
-  //
+
   //function calc_ipo_time(_para1:PIpo; _para2:single):single;
-  //
+
   //function add_ipo(name:Pchar; idcode:longint):^Ipo;
-  //
+
   //function read_ipo_poin(poin:pointer; _type:longint):single;
-  //
+
   //procedure write_ipo_poin(poin:pointer; _type:longint; val:single);
-  //
+
   //function get_ipo_poin(id:PID; icu:PIpoCurve; _type:Plongint):pointer;
-  //
+
   //function copy_ipo(ipo:PIpo):^Ipo;
-  //
+
   //procedure correct_bezpart(v1:Psingle; v2:Psingle; v3:Psingle; v4:Psingle);
-  //
+
   //function calc_ipo_spec(ipo:PIpo; adrcode:longint; ctime:Psingle):longint;
-  //
+
   //procedure make_local_obipo(ipo:PIpo);
-  //
+
   //procedure do_ob_ipo(ob:PObject);
-  //
+
   //procedure do_mat_ipo(ma:PMaterial);
 
 //{$endif}

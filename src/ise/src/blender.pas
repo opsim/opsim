@@ -144,7 +144,6 @@ pLibrary = ^_Library;
     end;
 { tot, idblock en filedata zijn voor lezen en schrijven  }
 
-
   _Library = record
       id : ID;
       idblock : pID;
@@ -1431,14 +1430,13 @@ versionfstr: array [0..23] of char; (* voor files *)
 //var
 //main: pMain;
 //begin
-//
+
 //  freestructDNA_all();
 //  free_mainlist();
 //  (* genfile.c *)
 //  freeImBufdata();
 //  (* library.c *)
 //end;(* imbuf lib *)
-
 
 procedure addlisttolist(list1: pListBase;  list2: pListBase);
 begin
@@ -1488,7 +1486,7 @@ end;
 //var
 //memh: pMemHead;
 //begin
-//
+
 //  if mem=0 then
 //  begin
 //    result:= 0;
@@ -1562,6 +1560,5 @@ begin
 
   clear_workob(); (* object.c *)
 end;
-
 
 end.

@@ -98,12 +98,12 @@ blender, blendef, blenglob, fileops;
 //nr: integer; 
 //end;
 //OldNew = OldNew; 
-//
+
 //{compflags: pchar; }{<= !!!5 external variable}(* genfile.c *)
 //{cur_sdna: SDNA; }{<= !!!5 external variable}
-//
+
 //procedure read_libraries; 
-//
+
 //var
 //datablocks: pOldNew = 0; 
 //libblocks: pOldNew = 0; 
@@ -113,14 +113,12 @@ blender, blendef, blenglob, fileops;
 //maxlibcount: integer = 1024; 
 //pointerlen: integer; 
 //{switch_endian: integer; }{<= !!!5 external variable}(* genfile.c *)
-//
+
 //disable_newlibadr: pinteger;
 
 (* ******************************************* *)
 
 //{bprogname: array [0..] of char; }{<= !!!5 external variable}(* usiblender.c *)
-
-
 
 function gethome: pchar;
 var
@@ -164,13 +162,12 @@ end;
 
 (* ************ DIV ****************** *)
 
-
 //function testextensie(str: pchar;  ext: pchar): integer; 
 //var
 //a: smallint; 
 //b: smallint; 
 //begin
-//  
+
 //  a:= lstrlen(str); 
 //  b:= lstrlen(ext); 
 //  if a=0)or(b=0)or(b>=a
@@ -196,7 +193,6 @@ end;
 //    exit;
 //  end;
 //end;
-
 
 function convertstringcode(str: pchar): integer;
 var
@@ -235,15 +231,13 @@ begin
   exit(ret);
 end;
 
-
 //procedure makestringcode(str: pchar); 
 //var
 //slash: pchar; 
 //len: char; 
 //temp: array [0..Pred(FILE_MAXDIR)] of char; 
 //begin
-//  
-//  
+
 //  strcpy(temp,G.sce); 
 //  slash:= (strrchr(temp,'/')>strrchr(temp,#92)) {was ?}if  then strrchr(temp,'/') {was :}else strrchr(temp,#92); 
 //  (* Find the last slash *)
@@ -266,8 +260,7 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure splitdirstring(di: pchar;  fi: pchar); 
 //var
 //slash: pchar; (* Find the last slash *)
@@ -280,9 +273,7 @@ end;
 //    *(slash+1):=0; 
 //  end;
 //end;
-//
-//
-//
+
 //procedure mallocNN(len: integer;  str: pchar); 
 //begin
 //  PRINT2(d,s,len,str); 
@@ -292,21 +283,20 @@ end;
 //  end;
 //end;
 //(* #define mallocN(a, b) mallocNN(a, b) *)
-//
+
 //(* ************** AFHANDELING OUDE POINTERS ******************* *)
-//
+
 //(* met dynamische malloc
 // * (0, 1) doorgeven herinitialiseert en geeft ongebruikte blokken vrij
 // * (0, 0) doorgeven geeft alles vrij 
 // *)
-//
+
 //procedure add_data_adr(old: pinteger;  new: pinteger); 
 //var
 //temp: pOldNew; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  if old=0
 //  then
 //  begin 
@@ -357,16 +347,16 @@ end;
 //    inc(datacount); 
 //  end;
 //end;
-//
+
 //(* met dynamische malloc
 // * (0, 0) doorgeven geeft alles vrij
 // * Zet aantal users al op 1!!!
 // *)
-//
+
 //procedure add_lib_adr(old: pinteger;  new: pinteger); 
 //var
 //temp: pOldNew;
-// 
+
 //a: integer; (* onderscheid tussen twee gevallen:
 //  * 
 //  * 1. lib obj's in locale scene, ob->parent  (old is uit library)
@@ -415,15 +405,14 @@ end;
 //    inc(libcount); 
 //  end;
 //end;
-//
+
 //(* alleen direkte datablokken *)
 //type
 //OldNew = record
 //end;
 //var {was static}
 //lastone: integer;
-// 
-//
+
 //procedure newadr(adr: pinteger); 
 //begin
 //  lastone:=0; 
@@ -469,21 +458,20 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //(* alleen Lib datablokken *)
 //type
 //OldNew = record
 //end;
 //var {was static}
 //lastone: integer;
-// 
-//
+
 //procedure newlibadr(lib: pinteger;  adr: pinteger); 
 //var
 //id: pID; (* ook testen op lib: lib==id->lib) *)
 //begin
 //  lastone:=0; 
-//  
+
 //  if adr<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -536,21 +524,20 @@ end;
 //      inc(lastone); 
 //    end;
 //  end;
-//  
-//  
+
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
 //end;
-//
+
 //(* hoogt usernummer op *)
-//
+
 //procedure newlibadr_us(lib: pinteger;  adr: pinteger); 
 //var
 //id: pID; 
 //begin
-//  
+
 //  id:= newlibadr(lib,adr); 
 //  if id<>0{nil} {<= !!!9} 
 //  then
@@ -562,28 +549,26 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //(* alleen Lib datablokken *)
 //type
 //OldNew = record
 //end;
 //var {was static}
 //lastone: integer;
-// 
-//
+
 //procedure newlibadr_us_type(type: smallint;  adr: pinteger); 
 //var
 //id: pID; 
 //begin
 //  lastone:=0; 
-//  
-//  
+
 //  if adr<>0{nil} {<= !!!9} 
 //  then
 //  begin 
 //    (* op goed geluk: eerst het volgende blok doen *)
 //    (* als je dit weglaat gaat newcarou.blend mis *)
-//    
+
 //    if lastone<libcount-1
 //    then
 //    begin 
@@ -629,26 +614,24 @@ end;
 //      inc(lastone); 
 //    end;
 //  end;
-//  
-//  
+
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
 //end;
-//
+
 //type
 //OldNew = record
 //end;
-//
+
 //procedure change_libadr(old: pinteger;  new: pinteger); 
 //var
 //id: pID; 
 //lastone: integer;
-// 
+
 //begin
-//  
-//  
+
 //  lastone:=0; 
 //  onew:= libblocks; 
 //  while lastone<libcount
@@ -669,13 +652,10 @@ end;
 //    inc(lastone); 
 //  end;
 //end;
-//
-//
-//
+
 //(* ********** END OUDE POINTERS ****************** *)
 //(* ********** READ FILE ****************** *)
-//
-//
+
 //procedure switch_endian_structs(bhead: pBHead); 
 //var
 //oldlen: integer; 
@@ -683,10 +663,7 @@ end;
 //spo: psmallint; 
 //data: pchar; 
 //begin
-//  
-//  
-//  
-//  
+
 //  blocks:= bhead.nr; 
 //  data:= {!!!a type cast? =>} {pchar(}(bhead+1); 
 //  spo:= old_sdna.structs[bhead.SDNAnr]; 
@@ -698,12 +675,11 @@ end;
 //    data:= data + (oldlen); 
 //  end;
 //end;
-//
-//
+
 //procedure read_struct(bh: pBHead); 
 //var
 //temp: pinteger;
-// 
+
 //begin
 //  temp:=0; 
 //  if bh.len<>0{nil} {<= !!!9} 
@@ -712,7 +688,7 @@ end;
 //    if bh.SDNAnr)and(switch_endian
 //    then
 //    switch_endian_structs(bh); 
-//    
+
 //    if compflags[bh.SDNAnr]<>0{nil} {<= !!!9} 
 //    then
 //    begin 
@@ -728,15 +704,13 @@ end;
 //  end;
 //  add_data_adr(bh.old,temp); 
 //end;
-//
-//
+
 //procedure newstructname(bh: pBHead); 
 //var
 //sp: psmallint; 
 //name: pchar; 
 //begin(* rijtje hardcoded uitzonderingen *)
-//  
-//  
+
 //  sp:= old_sdna.structs[bh.SDNAnr]; 
 //  if lstrcmp('Screen',old_sdna.types[sp[0]])=0
 //  then
@@ -744,13 +718,11 @@ end;
 //    bh.SDNAnr:= findstruct_nr(@old_sdna,'bScreen'); 
 //  end;
 //end;
-//
-//
-//
+
 //procedure read_libstruct(bh: pBHead); 
 //var
 //temp: pinteger;
-// 
+
 //begin
 //  temp:=0; 
 //  if bh.len<>0{nil} {<= !!!9} 
@@ -763,33 +735,32 @@ end;
 //    then
 //    begin 
 //      (* flag==0: bestaat niet meer *)
-//      
+
 //      temp:= mallocN(bh.len,'read_libstruct'); 
 //      memcpy(temp,(bh+1),bh.len); 
-//      
+
 //      if compflags[bh.SDNAnr]=2
 //      then
 //      reconstruct(bh.SDNAnr,bh.nr,@temp); 
 //    end;
 //  end;
 //  add_lib_adr(bh.old,temp); 
-//  
-//  
+
 //  begin
 //    result:= temp; 
 //    exit;
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //bh: pBHead; void{!!!e unknown token}{*}data^; 
 //begin 
 //  (* dubbele pointer ivm reconstruct *)
-//  
+
 //  if bh.len<>0{nil} {<= !!!9} 
 //  then
 //  begin 
-//    
+
 //    if bh.SDNAnr)and(switch_endian
 //    then
 //    switch_endian_structs(bh); 
@@ -805,20 +776,19 @@ end;
 //    end;
 //  end;
 //end;
-//
+
 //(* alleen direkte data *)
-//
+
 //procedure link_list(lb: pListBase); 
 //var
 //ln: pLink; 
 //prev: pLink; 
 //begin
-//  
-//  
+
 //  if lb.first=0
 //  then
 //  exit;
-//  
+
 //  lb.first:= newadr(lb.first); 
 //  ln:= lb.first; 
 //  prev:= 0; 
@@ -832,8 +802,7 @@ end;
 //  end;
 //  lb.last:= prev; 
 //end;
-//
-//
+
 //procedure test_pointer_array{!!!3 unknown typedef}; 
 //var
 //lpoin: pDWORDLONG; 
@@ -848,10 +817,7 @@ end;
 //(* mat is still 'old_sdna' *)
 //begin
 //  {$ifdef WIN32}
-//  
-//  
-//  
-//  
+
 //  if {*}mat^
 //  then
 //  begin 
@@ -891,10 +857,9 @@ end;
 //    end;
 //  end;
 //end;
-//
+
 //(* ************ READ scriptlinks *************** *)
-//
-//
+
 //procedure lib_link_scriptlink(id: pID;  slink: pScriptLink); 
 //var
 //i: integer; 
@@ -905,8 +870,7 @@ end;
 //    slink.scripts[i]:= newlibadr(id.lib,slink.scripts[i]); 
 //  end;
 //end;
-//
-//
+
 //procedure direct_link_scriptlink(slink: pScriptLink); 
 //var
 //a: integer; 
@@ -916,7 +880,7 @@ end;
 //  if switch_endian<>0{nil} {<= !!!9} 
 //  then
 //  begin 
-//    
+
 //    for{while} a:=0 to Pred(slink.totscript) { a++}
 //    do
 //    begin 
@@ -924,15 +888,14 @@ end;
 //    end;
 //  end;
 //end;
-//
+
 //(* ************ READ voorbeeld ***************** *)
-//
-//
+
 //procedure lib_link_vb(main: pMain); 
 //var
 //me: pMesh; 
 //begin
-//  
+
 //  me:= main.mesh.first; 
 //  while me
 //  do
@@ -945,25 +908,22 @@ end;
 //    me:= me.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //me: pMesh; 
 //begin 
-//  
+
 //end;
-//
+
 //(* ************ READ IKA ***************** *)
-//
-//
+
 //procedure lib_link_ika(main: pMain); 
 //var
 //ika: pIka; 
 //a: integer; 
 //def: pDeform; 
 //begin
-//  
-//  
-//  
+
 //  ika:= main.ika.first; 
 //  while ika
 //  do
@@ -985,30 +945,27 @@ end;
 //    ika:= ika.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //ika: pIka; 
 //begin 
 //  link_list(@ika.limbbase); 
 //  ika.def:= newadr(ika.def); 
-//  
+
 //  (* afvangen fout uit V.138 en ouder *)
 //  if ika.def=0
 //  then
 //  ika.totdef:= 0; 
 //end;
-//
-//
+
 //(* ************ READ CAMERA ***************** *)
-//
-//
+
 //procedure lib_link_camera(main: pMain); 
 //var
 //ca: pCamera; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  ca:= main.camera.first; 
 //  while ca
 //  do
@@ -1018,27 +975,26 @@ end;
 //    begin 
 //      ca.ipo:= newlibadr_us(ca.id.lib,ca.ipo); 
 //      lib_link_scriptlink( and ca.id, and ca.scriptlink); 
-//      
+
 //      ca.id.flag:= ca.id.flag - (LIB_NEEDLINK); 
 //    end;
 //    ca:= ca.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //ca: pCamera; 
 //begin 
 //  direct_link_scriptlink( and ca.scriptlink); 
 //end;
-//
+
 //(* ************ READ Life ***************** *)
-//
-//
+
 //procedure lib_link_life(main: pMain); 
 //var
 //lf: pLife; 
 //begin
-//  
+
 //  lf:= main.life.first; 
 //  while lf
 //  do
@@ -1050,12 +1006,12 @@ end;
 //      lf.dynamesh:= newlibadr_us(lf.id.lib,lf.dynamesh); 
 //      lf.texmesh:= newlibadr_us(lf.id.lib,lf.texmesh); 
 //      lf.id.flag:= lf.id.flag - (LIB_NEEDLINK); 
-//      
+
 //    end;
 //    lf:= lf.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //lf: pLife; 
 //begin 
@@ -1072,19 +1028,16 @@ end;
 //    inc(sn); 
 //  end;
 //end;
-//
+
 //(* ************ READ Sector ***************** *)
-//
-//
+
 //procedure lib_link_sector(main: pMain); 
 //var
 //se: pSector; 
 //po: pPortal; 
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  se:= main.sector.first; 
 //  while se
 //  do
@@ -1108,23 +1061,22 @@ end;
 //    se:= se.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //se: pSector; 
 //begin 
-//  
+
 //  (* portals *)
 //  se.portals:= newadr(se.portals); 
 //end;
-//
+
 //(* ************ READ LATTICE ***************** *)
-//
-//
+
 //procedure lib_link_latt(main: pMain); 
 //var
 //lt: pLattice; 
 //begin
-//  
+
 //  lt:= main.latt.first; 
 //  while lt
 //  do
@@ -1139,26 +1091,23 @@ end;
 //    lt:= lt.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //lt: pLattice; 
 //begin 
 //  lt.def:= newadr(lt.def); 
-//  
+
 //end;
-//
+
 //(* ************ READ LAMP ***************** *)
-//
-//
+
 //procedure lib_link_lamp(main: pMain); 
 //var
 //la: pLamp; 
 //mtex: pMTex; 
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  la:= main.lamp.first; 
 //  while la
 //  do
@@ -1166,7 +1115,7 @@ end;
 //    if la.id.flag and LIB_NEEDLINK
 //    then
 //    begin 
-//      
+
 //      for{while} a:=0 to Pred(8) { a++}
 //      do
 //      begin 
@@ -1185,7 +1134,7 @@ end;
 //    la:= la.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //la: pLamp; 
 //begin 
@@ -1197,15 +1146,14 @@ end;
 //    la.mtex[a]:= newadr(la.mtex[a]); 
 //  end;
 //end;
-//
+
 //(* ************ READ keys ***************** *)
-//
-//
+
 //procedure lib_link_key(main: pMain); 
 //var
 //key: pKey; 
 //begin
-//  
+
 //  key:= main.key.first; 
 //  while key
 //  do
@@ -1220,7 +1168,7 @@ end;
 //    key:= key.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //key: pKey; 
 //begin 
@@ -1238,17 +1186,15 @@ end;
 //    kb:= kb.next; 
 //  end;
 //end;
-//
+
 //(* ************ READ mball ***************** *)
-//
-//
+
 //procedure lib_link_mball(main: pMain); 
 //var
 //mb: pMetaBall; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  mb:= main.mball.first; 
 //  while mb
 //  do
@@ -1261,38 +1207,34 @@ end;
 //      mb.mat[a]:= newlibadr_us(mb.id.lib,mb.mat[a]); 
 //      mb.ipo:= newlibadr_us(mb.id.lib,mb.ipo); 
 //      mb.id.flag:= mb.id.flag - (LIB_NEEDLINK); 
-//      
-//      
+
 //    end;
 //    mb:= mb.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //mb: pMetaBall; 
 //begin 
-//  
+
 //  mb.mat:= newadr(mb.mat); 
 //  test_pointer_array((void** )@mb.mat); 
 //  link_list(@(mb.elems)); 
-//  
+
 //  mb.disp.first:= mb.disp.last:=0; 
 //  mb.bb:= 0; 
-//  
+
 //end;
-//
+
 //(* ************ READ WORLD ***************** *)
-//
-//
+
 //procedure lib_link_world(main: pMain); 
 //var
 //wrld: pWorld; 
 //mtex: pMTex; 
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  wrld:= main.world.first; 
 //  while wrld
 //  do
@@ -1313,13 +1255,13 @@ end;
 //        end;
 //      end;
 //      lib_link_scriptlink(@wrld.id,@wrld.scriptlink); 
-//      
+
 //      wrld.id.flag:= wrld.id.flag - (LIB_NEEDLINK); 
 //    end;
 //    wrld:= wrld.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //wrld: pWorld; 
 //begin 
@@ -1331,16 +1273,14 @@ end;
 //    wrld.mtex[a]:= newadr(wrld.mtex[a]); 
 //  end;
 //end;
-//
-//
+
 //(* ************ READ IPO ***************** *)
-//
-//
+
 //procedure lib_link_ipo(main: pMain); 
 //var
 //ipo: pIpo; 
 //begin
-//  
+
 //  ipo:= main.ipo.first; 
 //  while ipo
 //  do
@@ -1353,7 +1293,7 @@ end;
 //    ipo:= ipo.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //ipo: pIpo; 
 //begin 
@@ -1368,9 +1308,9 @@ end;
 //    icu:= icu.next; 
 //  end;
 //end;
-//
+
 //(* ************ READ VFONT ***************** *)
-//
+
 //void{!!!e unknown token}
 //vf: pVFont; 
 //begin 
@@ -1379,17 +1319,15 @@ end;
 //  vf.flag:= 1; 
 //  (* NEEDLOAD *)
 //end;
-//
+
 //(* ************ READ TEXT ****************** *)
-//
-//
+
 //procedure lib_link_text(main: pMain); 
 //var
 //text: pText; 
 //tmp: pTextLine; 
 //begin
-//  
-//  
+
 //  text:= main.text.first; 
 //  while text
 //  do
@@ -1402,13 +1340,12 @@ end;
 //    text:= text.id.next; 
 //  end;
 //end;
-//
-//
+
 //procedure print_text(text: pText); 
 //var
 //line: pTextLine; 
 //begin
-//  
+
 //  printf('-- Text: %s (%d)--\n',text.id.name,text.nlines);
 //  line:= text.lines.first; 
 //  while line
@@ -1420,7 +1357,7 @@ end;
 //  printf('Main cursor: %x %d\n',text.curl,text.curc);
 //  printf('Selection cursor: %x %d\n',text.sell,text.selc);
 //end;
-//
+
 //void{!!!e unknown token}
 //text: pText; 
 //begin 
@@ -1437,7 +1374,7 @@ end;
 //  end;
 //  else
 //  begin 
-//    
+
 //    if text.lines.first=0
 //    then
 //    exit;
@@ -1462,15 +1399,14 @@ end;
 //  text.id.us:= 1; 
 //  (*  print_text (text); *)
 //end;
-//
+
 //(* ************ READ IMAGE ***************** *)
-//
-//
+
 //procedure lib_link_image(main: pMain); 
 //var
 //ima: pImage; 
 //begin
-//  
+
 //  ima:= main.image.first; 
 //  while ima
 //  do
@@ -1483,7 +1419,7 @@ end;
 //    ima:= ima.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //ima: pImage; 
 //begin 
@@ -1497,18 +1433,15 @@ end;
 //  ima.bindcode:= 0; 
 //  ima.ok:= 1; 
 //end;
-//
-//
+
 //(* ************ READ CURVE ***************** *)
-//
-//
+
 //procedure lib_link_curve(main: pMain); 
 //var
 //cu: pCurve; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  cu:= main.curve.first; 
 //  while cu
 //  do
@@ -1525,13 +1458,12 @@ end;
 //      cu.ipo:= newlibadr_us(cu.id.lib,cu.ipo); 
 //      cu.key:= newlibadr_us(cu.id.lib,cu.key); 
 //      cu.id.flag:= cu.id.flag - (LIB_NEEDLINK); 
-//      
-//      
+
 //    end;
 //    cu:= cu.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //cu: pCurve; 
 //begin 
@@ -1566,15 +1498,14 @@ end;
 //  end;
 //  cu.bb:= 0; 
 //end;
-//
+
 //(* ************ READ TEX ***************** *)
-//
-//
+
 //procedure lib_link_texture(main: pMain); 
 //var
 //tex: pTex; 
 //begin
-//  
+
 //  tex:= main.tex.first; 
 //  while tex
 //  do
@@ -1592,7 +1523,7 @@ end;
 //    tex:= tex.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //tex: pTex; 
 //begin 
@@ -1613,21 +1544,16 @@ end;
 //    tex.env.ok:= 0; 
 //  end;
 //end;
-//
-//
-//
+
 //(* ************ READ MATERIAL ***************** *)
-//
-//
+
 //procedure lib_link_material(main: pMain); 
 //var
 //ma: pMaterial; 
 //mtex: pMTex; 
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  ma:= main.mat.first; 
 //  while ma
 //  do
@@ -1648,13 +1574,13 @@ end;
 //        end;
 //      end;
 //      lib_link_scriptlink(@ma.id,@ma.scriptlink); 
-//      
+
 //      ma.id.flag:= ma.id.flag - (LIB_NEEDLINK); 
 //    end;
 //    ma:= ma.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //ma: pMaterial; 
 //begin 
@@ -1668,10 +1594,9 @@ end;
 //  ma.ren:= 0; 
 //  (* mag niet blijven hangen, maarja *)
 //end;
-//
+
 //(* ************ READ MESH ***************** *)
-//
-//
+
 //procedure lib_link_mesh(main: pMain); 
 //var
 //me: pMesh; 
@@ -1679,10 +1604,7 @@ end;
 //ima: pImage; 
 //a: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  me:= main.mesh.first; 
 //  while me
 //  do
@@ -1730,7 +1652,7 @@ end;
 //    me:= me.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //mesh: pMesh; 
 //begin 
@@ -1747,24 +1669,21 @@ end;
 //  mesh.dface:= 0; 
 //  mesh.orco:= 0; 
 //end;
-//
+
 //(* ************ READ OBJECT ***************** *)
-//
-//
+
 //procedure lib_link_object(main: pMain); 
 //var
 //ob: pObject; 
 //nl: pNetLink; 
 //poin: pinteger; 
 //warn: integer;
-// 
+
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  warn:=0; 
-//  
+
 //  ob:= main.object.first; 
 //  while ob
 //  do
@@ -1802,7 +1721,7 @@ end;
 //        nl:= nl.next; 
 //      end;
 //      lib_link_scriptlink(@ob.id,@ob.scriptlink); 
-//      
+
 //    end;
 //    ob:= ob.id.next; 
 //  end;
@@ -1810,17 +1729,17 @@ end;
 //  then
 //  error('WARNING IN CONSOLE'); 
 //end;
-//
+
 //void{!!!e unknown token}
 //ob: pObject; 
 //begin 
 //  paf: pPartEff; 
 //  ob.disp.first:= ob.disp.last:=0; 
 //  direct_link_scriptlink(@ob.scriptlink); 
-//  
+
 //  ob.mat:= newadr(ob.mat); 
 //  test_pointer_array((void** )@ob.mat); 
-//  
+
 //  link_list(@ob.effect); 
 //  paf:= ob.effect.first; 
 //  while paf
@@ -1838,14 +1757,13 @@ end;
 //    paf:= paf.next; 
 //  end;
 //  link_list(@ob.network); 
-//  
+
 //  ob.bb:= 0; 
-//  
+
 //end;
-//
+
 //(* ************ READ SCENE ***************** *)
-//
-//
+
 //procedure lib_link_scene(main: pMain); 
 //var
 //sce: pScene; 
@@ -1855,12 +1773,7 @@ end;
 //seq: pSequence; 
 //a: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  sce:= main.scene.first; 
 //  while sce
 //  do
@@ -1879,7 +1792,7 @@ end;
 //      begin 
 //        next:= base.next; 
 //        base.object:= newlibadr_us_type(ID_OB,base.object); (* base->object= newlibadr_us(sce->id.lib, base->object); *)
-//        
+
 //        if base.object=0
 //        then
 //        begin 
@@ -1914,8 +1827,7 @@ end;
 //    sce:= sce.id.next; 
 //  end;
 //end;
-//
-//
+
 //procedure link_recurs_seq(lb: pListBase); 
 //var
 //seq: pSequence; 
@@ -1931,7 +1843,7 @@ end;
 //    seq:= seq.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //sce: pScene; 
 //begin 
@@ -1944,7 +1856,7 @@ end;
 //  link_list(@(sce.base)); 
 //  sce.basact:= newadr(sce.basact); 
 //  sce.radio:= newadr(sce.radio); 
-//  
+
 //  if sce.ed<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -2022,17 +1934,16 @@ end;
 //        if seq.len>0
 //        then
 //        seq.strip.stripdata:= callocN(seq.len*sizeof(StripElem),'stripelem'); 
-//        
+
 //      end;
 //    end;
 //    END_SEQ{!!!e unknown token}
 //  end;
 //  direct_link_scriptlink(@sce.scriptlink); 
 //end;
-//
+
 //(* ************ READ SCREEN ***************** *)
-//
-//
+
 //procedure lib_link_screen(main: pMain); 
 //var
 //sc: pbScreen; 
@@ -2046,22 +1957,13 @@ end;
 //sfile: pSpaceFile; 
 //oops: pOops; 
 //sima: pSpaceImage;
-// 
+
 //st: pSpaceText;
-// 
+
 //so: pSpaceOops;
 // (* patch als deze in oude files zit *)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  sc:= main.screen.first; 
 //  while sc
 //  do
@@ -2083,7 +1985,7 @@ end;
 //          if v3d.spacetype=SPACE_VIEW3D
 //          then
 //          begin 
-//            
+
 //            v3d.camera:= newlibadr(sc.id.lib,v3d.camera); 
 //            if v3d.bgpic<>0{nil} {<= !!!9} 
 //            then
@@ -2187,7 +2089,7 @@ end;
 //    sc:= sc.id.next; 
 //  end;
 //end;
-//
+
 //void{!!!e unknown token}
 //sc: pbScreen; 
 //begin 
@@ -2264,18 +2166,17 @@ end;
 //    sa.cursor:= CURSOR_STD; 
 //    sa.headqueue:= sa.hq:=sa.winqueue:=sa.wq:=0; 
 //    set_func_space(sa); 
-//    
+
 //    sa:= sa.next; 
 //    (* space.c *)
 //  end;
 //  test_scale_screen(sc); 
-//  
+
 //  (* vertices en offset *)
 //end;
-//
+
 //(* ********** READ LIBRARY *************** *)
-//
-//
+
 //void{!!!e unknown token}
 //lib: pLibrary; 
 //begin 
@@ -2283,9 +2184,9 @@ end;
 //  newmain:= callocN(sizeof(Main),'directlink'); 
 //  addtail(@G.mainbase,newmain); 
 //  newmain.curlib:= lib; 
-//  
+
 //end;
-//
+
 //void{!!!e unknown token}
 //main: pMain; 
 //begin 
@@ -2298,11 +2199,9 @@ end;
 //    lib:= lib.id.next; 
 //  end;
 //end;
-//
-//
+
 //(* ************** ALG & MAIN ******************** *)
-//
-//
+
 //function read_libblock(main: pMain;  bhead: pBHead;  flag: integer): integer; 
 //var
 //id: pID; 
@@ -2312,9 +2211,7 @@ end;
 //begin(* deze routine leest libblock en direkte data. Met linkfunkties
 //    * alles aan elkaar hangen.
 //    *)
-//  
-//  
-//  
+
 //  if bhead.code=ID_ID
 //  then
 //  begin 
@@ -2326,7 +2223,7 @@ end;
 //  begin 
 //    lb:= wich_libbase(main,bhead.code); 
 //  end;
-//  
+
 //  if lb=0
 //  then
 //  begin 
@@ -2361,7 +2258,7 @@ end;
 //  skipdata:= bhead.len+sizeof(BHead); 
 //  fd:= fd + (bhead.len+sizeof(BHead)); 
 //  bhead:= {!!!a type cast? =>} {pBHead(}fd; 
-//  
+
 //  (* alle data inlezen *)
 //  while bhead.code=DATA
 //  do
@@ -2371,7 +2268,7 @@ end;
 //    fd:= fd + (bhead.len+sizeof(BHead)); 
 //    bhead:= {!!!a type cast? =>} {pBHead(}fd; 
 //  end;
-//  
+
 //  (* pointers directe data goedzetten *)
 //  case GS(id.name) of
 //    ID_SCR:
@@ -2458,7 +2355,7 @@ end;
 //    begin
 //      direct_link_camera(id); 
 //    end;
-//    
+
 //  end;{case?}
 //  (* vrijgeven, herinitialiseren *)
 //  add_data_adr(0,(void* )1); 
@@ -2467,15 +2364,13 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure link_global(fg: pFileGlobal); 
 //begin
 //  R.displaymode:= fg.displaymode; 
 //  R.winpos:= fg.winpos; 
 //  strcpy(G.psx,fg.psx); 
-//  
-//  
+
 //  G.curscreen:= newlibadr(0,fg.curscreen); 
 //  if G.curscreen=0
 //  then
@@ -2489,8 +2384,7 @@ end;
 //  G.sima:= 0; 
 //  G.sipo:= 0; 
 //end;
-//
-//
+
 //procedure vcol_to_fcol(me: pMesh); 
 //var
 //mface: pMFace; 
@@ -2499,10 +2393,7 @@ end;
 //mcolmain: puint; 
 //a: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  if me.totface=0)or(me.mcol=0
 //  then
 //  exit;
@@ -2526,15 +2417,13 @@ end;
 //  freeN(me.mcol); 
 //  me.mcol:= {!!!a type cast? =>} {pMCol(}mcolmain; 
 //end;
-//
-//
+
 //procedure oldstyle_events(lf: pLife); 
 //var
 //sn: pSensor; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  sn:= lf.sensors; 
 //  a:= lf.totsens; 
 //  while a{--} dec(a); 
@@ -2571,13 +2460,12 @@ end;
 //        sn.force:= -sn.force; 
 //        sn.action:= SN_Z_ROT; 
 //      end;
-//      
+
 //    end;{case?}
 //    inc(sn); 
 //  end;
 //end;
-//
-//
+
 //procedure do_versions(main: pMain); 
 //var
 //tex: pTex; 
@@ -2587,11 +2475,11 @@ end;
 //a: integer; 
 //b: integer; 
 //me: pMesh; (* mcol is veranderd *)
-//
+
 //lf: pLife;
-// 
+
 //se: pSector;
-// 
+
 //sc: pbScreen; 
 //sa: pScrArea; 
 //vd: pView3D; 
@@ -2599,14 +2487,14 @@ end;
 //sn: pSensor; (* nieuwe variabele: gridlines *)
 //lf: pLife; 
 //sn: pSensor; (* sensor omgebouwd *)
-//
+
 //lf: pLife; 
 //cam: pCamera; 
 //nl: pNetLink; (* nieuwe variabele *)
 //me: pMesh;
-// 
+
 //me: pMesh;
-// 
+
 //mvert: pMVert; 
 //mface: pMFace; 
 //a: integer; 
@@ -2632,38 +2520,34 @@ end;
 //tex: pTex; 
 //tex: pTex; (* r-g-b-fac in texure *)
 //me: pMesh;
-// 
+
 //me: pMesh;
-// 
+
 //tface: pTFace; 
 //ika: pIka;
-// 
+
 //def: pDeform; 
 //nr: integer; 
 //cp: pchar; 
 //me: pMesh;
-// 
+
 //sc: pbScreen;
-// 
+
 //sa: pScrArea; 
 //sipo: pSpaceIpo; 
 //ob: pObject;
-// 
+
 //paf: pPartEff; 
 //sc: pbScreen;
-// 
+
 //sa: pScrArea; 
 //st: pSpaceText; 
 //begin(* PAS OP: pointers van libdata zijn nog niet omgezet *)
-//  
-//  
-//  
-//  
-//  
+
 //  if main.versionfile=100
 //  then
 //  begin 
-//    
+
 //    (* tex->extend en tex->imageflag veranderd: *)
 //    tex:= main.tex.first; 
 //    while tex
@@ -2830,10 +2714,7 @@ end;
 //  if main.versionfile<=109
 //  then
 //  begin 
-//    
-//    
-//    
-//    
+
 //    sc:= main.screen.first; 
 //    while sc
 //    do
@@ -2879,7 +2760,7 @@ end;
 //  if main.versionfile<=110
 //  then
 //  begin 
-//    
+
 //    lf:= main.life.first; 
 //    while lf
 //    do
@@ -2914,8 +2795,7 @@ end;
 //  if main.versionfile<=111
 //  then
 //  begin 
-//    
-//    
+
 //    cam:= main.camera.first; 
 //    while cam
 //    do
@@ -2973,9 +2853,7 @@ end;
 //  then
 //  begin 
 //    me:=main.mesh.first; 
-//    
-//    
-//    
+
 //    while me
 //    do
 //    begin 
@@ -3008,8 +2886,7 @@ end;
 //  if main.versionfile<=115
 //  then
 //  begin 
-//    
-//    
+
 //    lf:= main.life.first; 
 //    while lf
 //    do
@@ -3035,10 +2912,7 @@ end;
 //  if main.versionfile<=116
 //  then
 //  begin 
-//    
-//    
-//    
-//    
+
 //    lf:= main.life.first; 
 //    while lf
 //    do
@@ -3099,9 +2973,7 @@ end;
 //  if main.versionfile<=117
 //  then
 //  begin 
-//    
-//    
-//    
+
 //    lf:= main.life.first; 
 //    while lf
 //    do
@@ -3134,10 +3006,7 @@ end;
 //  then
 //  begin 
 //    (* incl 118 *)
-//    
-//    
-//    
-//    
+
 //    lf:= main.life.first; 
 //    while lf
 //    do
@@ -3174,7 +3043,7 @@ end;
 //      ma:= ma.id.next; 
 //    end;
 //  end;
-//  
+
 //  (* eentje overgeslagen voor bug in freeware versie *)
 //  if main.versionfile<=121
 //  then
@@ -3215,14 +3084,12 @@ end;
 //    (* bug uit inventor lezer: node ambientColor werd niet herkend *)
 //    (* bugje uit toolbox: clear loc= alt-g *)
 //  end;
-//  
+
 //  if main.versionfile<=130
 //  then
 //  begin 
 //    (* openGL en GLUT *)
-//    
-//    
-//    
+
 //    sc:= main.screen.first; 
 //    while sc
 //    do
@@ -3298,7 +3165,7 @@ end;
 //      tex:= tex.id.next; 
 //    end;
 //  end;
-//  
+
 //  if main.versionfile<=135
 //  then
 //  begin 
@@ -3359,7 +3226,7 @@ end;
 //  if main.versionfile<=153
 //  then
 //  begin 
-//    
+
 //    sce:= main.scene.first; 
 //    while sce
 //    do
@@ -3373,7 +3240,7 @@ end;
 //  if main.versionfile<=163
 //  then
 //  begin 
-//    
+
 //    sce:= main.scene.first; 
 //    while sce
 //    do
@@ -3395,16 +3262,14 @@ end;
 //      me:= me.id.next; 
 //    end;
 //  end;
-//  
+
 //  if main.versionfile<=165
 //  then
 //  begin 
 //    me:=main.mesh.first; 
-//    
+
 //    ika:=main.ika.first; 
-//    
-//    
-//    
+
 //    while ika
 //    do
 //    begin 
@@ -3505,7 +3370,7 @@ end;
 //      me:= me.id.next; 
 //    end;
 //  end;
-//  
+
 //  if main.versionfile<=169
 //  then
 //  begin 
@@ -3523,8 +3388,7 @@ end;
 //  then
 //  begin 
 //    sc:=main.screen.first; 
-//    
-//    
+
 //    while sc
 //    do
 //    begin 
@@ -3548,12 +3412,12 @@ end;
 //      sc:= sc.id.next; 
 //    end;
 //  end;
-//  
+
 //  if main.versionfile<=170
 //  then
 //  begin 
 //    ob:=main.object.first; 
-//    
+
 //    while ob
 //    do
 //    begin 
@@ -3567,13 +3431,12 @@ end;
 //      ob:= ob.id.next; 
 //    end;
 //  end;
-//  
+
 //  if main.versionfile<=171
 //  then
 //  begin 
 //    sc:=main.screen.first; 
-//    
-//    
+
 //    while sc
 //    do
 //    begin 
@@ -3603,15 +3466,11 @@ end;
 //    end;
 //  end;
 //end;(* onder in blender.c de nummers wijzigen! *)
-//
-//
-//
-//
+
 //procedure lib_link_all(main: pMain); 
 //begin
 //  lib_link_screen(main); 
-//  
-//  
+
 //  lib_link_scene(main); 
 //  lib_link_object(main); 
 //  lib_link_curve(main); 
@@ -3629,25 +3488,22 @@ end;
 //  lib_link_sector(main); 
 //  lib_link_life(main); 
 //  lib_link_mesh(main); 
-//  
+
 //  lib_link_library(main); 
 //  (* als laatste: tpage images met users op nul *)
-//  
+
 //end;(* alleen users goedzetten *)
-//
-//
-//
-//
+
 //function read_file_dna(filedata: pchar;  filelen: integer): integer; 
 //var
 //bhead: pBHead; 
 //afbreek: integer;
-// 
+
 //fd: pchar; 
 //begin
-//  
+
 //  afbreek:=0; 
-//  
+
 //  freestructDNA(@old_sdna); 
 //  fd:= filedata; 
 //  while filelen>0)and(afbreek<>3
@@ -3661,7 +3517,7 @@ end;
 //    if bhead.code=DNA1
 //    then
 //    begin 
-//      
+
 //      old_sdna.data:= mallocN(bhead.len,'sdna'); 
 //      memcpy(old_sdna.data,fd+sizeof(BHead),bhead.len); 
 //      afbreek:= afbreek + (1); 
@@ -3669,7 +3525,7 @@ end;
 //    fd:= fd + (bhead.len+sizeof(BHead)); 
 //    filelen:= filelen - (bhead.len+sizeof(BHead)); 
 //  end;
-//  
+
 //  if afbreek=3
 //  then
 //  begin 
@@ -3693,28 +3549,22 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure reconstruct_bheads{!!!3 unknown typedef}; 
 //var
 //bhead8: pBHead8; 
 //bhead4: pBHead4; 
 //totbh: integer;
-// 
+
 //len: integer; 
 //filelenn: integer; 
 //fd: pchar; 
 //fdn: pchar; 
 //filedatan: pchar; 
 //begin
-//  
-//  
+
 //  totbh:=0; 
-//  
-//  
-//  
-//  
-//  
+
 //  if pointerlen=4
 //  then
 //  begin 
@@ -3810,21 +3660,18 @@ end;
 //    end;
 //  end;
 //  freeN({*}filedata^); 
-//  
+
 //  {*}filedata^:=filedatan; 
 //  {*}filelen^:=filelenn; 
 //end;
-//
-//
+
 //procedure switch_endian_bhead4(filedata: pchar;  filelen: integer); 
 //var
 //bhead: pBHead4; 
 //fd: pchar; 
 //str: array [0..Pred(5)] of char; 
 //begin
-//  
-//  
-//  
+
 //  str[4]:= 0; 
 //  fd:= filedata; 
 //  while filelen>0
@@ -3838,26 +3685,23 @@ end;
 //    if bhead.code=ENDB
 //    then
 //    break; {<= !!!b possible in "switch" - then remove this line}
-//    
+
 //    SWITCH_INT(bhead.len); 
 //    SWITCH_INT(bhead.SDNAnr); 
 //    SWITCH_INT(bhead.nr); 
 //    fd:= fd + (bhead.len+sizeof(BHead4)); 
 //    filelen:= filelen - (bhead.len+sizeof(BHead4)); 
-//    
+
 //  end;
 //end;
-//
-//
+
 //procedure switch_endian_bhead8(filedata: pchar;  filelen: integer); 
 //var
 //bhead: pBHead8; 
 //fd: pchar; 
 //str: array [0..Pred(5)] of char; 
 //begin
-//  
-//  
-//  
+
 //  str[4]:= 0; 
 //  fd:= filedata; 
 //  while filelen>0
@@ -3871,17 +3715,16 @@ end;
 //    if bhead.code=ENDB
 //    then
 //    break; {<= !!!b possible in "switch" - then remove this line}
-//    
+
 //    SWITCH_INT(bhead.len); 
 //    SWITCH_INT(bhead.SDNAnr); 
 //    SWITCH_INT(bhead.nr); 
 //    fd:= fd + (bhead.len+sizeof(BHead8)); 
 //    filelen:= filelen - (bhead.len+sizeof(BHead8)); 
-//    
+
 //  end;
 //end;
-//
-//
+
 //function openblenderfile(name: pchar;  filelen: pinteger): pchar; 
 //var
 //len: integer; 
@@ -3892,13 +3735,7 @@ end;
 //filedata: pchar; 
 //str: array [0..Pred(16)] of char; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  len:= lstrlen(name); 
 //  if len<6
 //  then
@@ -3911,7 +3748,7 @@ end;
 //  begin
 //    result:= 0; 
 //    exit;
-//    
+
 //  end;
 //  if strstr(name,'.blend')
 //  then
@@ -3928,7 +3765,7 @@ end;
 //    end;
 //    {*}filelen^:=filesize(file); 
 //    read(file,str,12); 
-//    
+
 //    if strncmp(str,'BLENDER',7)<>0
 //    then
 //    begin 
@@ -3974,11 +3811,11 @@ end;
 //      else
 //      switch_endian_bhead8(filedata,*filelen); 
 //    end;
-//    
+
 //    if pointerlen<>sizeof(void* )
 //    then
 //    reconstruct_bheads( and filedata,filelen); 
-//    
+
 //    (* op zoek naar SDNA *)
 //    if read_file_dna(filedata,*filelen)
 //    then
@@ -4006,8 +3843,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure read_file(dir: pchar); 
 //var
 //bhead: pBHead; 
@@ -4027,22 +3863,7 @@ end;
 //filedata: pchar; 
 //fd: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  waitcursor(1); 
 //  filedata:= openblenderfile(dir, and filelen); 
 //  if filedata<>0{nil} {<= !!!9} 
@@ -4128,13 +3949,12 @@ end;
 //      if ok<>0{nil} {<= !!!9} 
 //      then
 //      break; {<= !!!b possible in "switch" - then remove this line}
-//      
+
 //      fd:= fd + (skipdata); 
 //      filelen:= filelen - (skipdata); 
 //    end;
 //    freeN(filedata); 
-//    
-//    
+
 //    if ok=0
 //    then
 //    begin 
@@ -4149,8 +3969,7 @@ end;
 //    link_global(fg); 
 //    add_data_adr(0,0); 
 //    (* als laatste *)
-//    
-//    
+
 //    (* losslingerende blokken vrijgeven *)
 //    add_lib_adr(0,0); 
 //    vf:= G.main.vfont.first; (* VECTORFONTS *)
@@ -4193,7 +4012,7 @@ end;
 //        object_wave(ob); 
 //      end;
 //      ob:= ob.id.next; 
-//      
+
 //    end;
 //    freeN(fg); 
 //    if G.background=0
@@ -4214,7 +4033,7 @@ end;
 //  if G.background=0
 //  then
 //  waitcursor(0); 
-//  
+
 //  if G.f and G_SCENESCRIPT
 //  then
 //  begin 
@@ -4225,14 +4044,13 @@ end;
 //    do_pyscript(G.scene,SCRIPT_ONLOAD); 
 //  end;
 //end;
-//
-//
+
 //procedure inst_file(name: pchar;  data: pchar;  size: integer); 
 //var
 //fname: array [0..Pred(MAXPATHLEN)] of char; 
 //fp: pFILE; 
 //begin
-//  
+
 //  make_file_string(fname,gethome(),name); 
 //  fp:= fopen(fname,'wb'); 
 //  if fp=0{nil}
@@ -4243,11 +4061,10 @@ end;
 //    exit(1); 
 //  end;
 //  fwrite(data,size,1,fp); 
-//  
+
 //  fclose(fp); 
 //end;
-//
-//
+
 //function read_homefile: integer; 
 //var
 //file: integer; 
@@ -4257,11 +4074,7 @@ end;
 //tstr: array [0..Pred(FILE_MAXDIR+FILE_MAXFILE)] of char; 
 //scestr: array [0..Pred(FILE_MAXDIR)] of char; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  home:= gethome(); 
 //  if home<>0{nil} {<= !!!9} 
 //  then
@@ -4275,7 +4088,7 @@ end;
 //    else
 //    close(file); 
 //    make_file_string(tstr,home,'.Bfs'); 
-//    
+
 //    file:= open(tstr,O_BINARY or O_RDONLY); 
 //    if file<0
 //    then
@@ -4283,7 +4096,7 @@ end;
 //    else
 //    close(file); 
 //    make_file_string(tstr,home,'.B.blend'); 
-//    
+
 //    file:= open(tstr,O_BINARY or O_RDONLY); 
 //    if file<0
 //    then
@@ -4325,9 +4138,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
-//
+
 //procedure read_autosavefile; 
 //var
 //file: integer; 
@@ -4336,37 +4147,32 @@ end;
 //tmp2: array [0..Pred(32)] of char; 
 //save_over: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  strcpy(scestr,G.sce); 
 //  sprintf(tmp2,'%d.blend',abs(getpid())); 
 //  (* even bewaren *)
 //  make_file_string(tstr,U.tempdir,tmp2); 
 //  save_over:= G.save_over; 
 //  read_file(tstr); 
-//  
+
 //  G.save_over:= save_over; 
 //  strcpy(G.sce,scestr); 
 //end;
-//
-//
+
 //(* ************* APPEND LIBRARY ************** *)
-//
+
 //bheadlib: pBHead; 
-//
-//
+
 //function find_bhead(old: pinteger;  filedata: pchar): pBHead; 
 //var
 //bhead: pBHead; 
 //afbreek: integer;
-// 
+
 //fd: pchar; 
 //begin
-//  
+
 //  afbreek:=0; 
-//  
+
 //  bheadlib:= 0; 
 //  if old=0
 //  then
@@ -4401,17 +4207,14 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function is_yet_read(main: pMain;  bhead: pBHead): pID; 
 //var
 //lb: pListBase; 
 //idtest: pID; 
 //id: pID; 
 //begin
-//  
-//  
-//  
+
 //  idtest:= {!!!a type cast? =>} {pID(}(bhead+1); 
 //  lb:= wich_libbase(main,GS(idtest.name)); 
 //  if lb<>0{nil} {<= !!!9} 
@@ -4435,21 +4238,19 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure expand_doit(main: pMain;  filedata: pchar;  old: pinteger); 
 //var
 //bhead: pBHead; 
 //lib: pLibrary; 
 //id: pID; 
 //begin
-//  
-//  
+
 //  bhead:= find_bhead(old,filedata); 
 //  if bhead<>0{nil} {<= !!!9} 
 //  then
 //  begin 
-//    
+
 //    (* andere library? *)
 //    if bhead.code=ID_ID
 //    then
@@ -4492,32 +4293,28 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure expand_key(main: pMain;  filedata: pchar;  key: pKey); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  expand_doit(main,filedata,key.ipo); 
 //end;
-//
-//
-//
+
 //procedure expand_texture(main: pMain;  filedata: pchar;  tex: pTex); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  expand_doit(main,filedata,tex.ima); 
 //end;
-//
-//
+
 //procedure expand_material(main: pMain;  filedata: pchar;  ma: pMaterial); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  for{while} a:=0 to Pred(8) { a++}
 //  do
 //  begin 
@@ -4530,13 +4327,12 @@ end;
 //  end;
 //  expand_doit(main,filedata,ma.ipo); 
 //end;
-//
-//
+
 //procedure expand_lamp(main: pMain;  filedata: pchar;  la: pLamp); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  for{while} a:=0 to Pred(8) { a++}
 //  do
 //  begin 
@@ -4549,45 +4345,39 @@ end;
 //  end;
 //  expand_doit(main,filedata,la.ipo); 
 //end;
-//
-//
+
 //procedure expand_lattice(main: pMain;  filedata: pchar;  lt: pLattice); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  expand_doit(main,filedata,lt.ipo); 
 //  expand_doit(main,filedata,lt.key); 
 //end;
-//
-//
+
 //procedure expand_sector(main: pMain;  filedata: pchar;  se: pSector); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  expand_doit(main,filedata,se.dynamesh); 
 //  expand_doit(main,filedata,se.texmesh); 
 //end;
-//
-//
+
 //procedure expand_life(main: pMain;  filedata: pchar;  lf: pLife); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  expand_doit(main,filedata,lf.dynamesh); 
 //  expand_doit(main,filedata,lf.texmesh); 
 //end;
-//
-//
-//
-//
+
 //procedure expand_world(main: pMain;  filedata: pchar;  wrld: pWorld); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  for{while} a:=0 to Pred(8) { a++}
 //  do
 //  begin 
@@ -4600,27 +4390,24 @@ end;
 //  end;
 //  expand_doit(main,filedata,wrld.ipo); 
 //end;
-//
-//
-//
+
 //procedure expand_mball(main: pMain;  filedata: pchar;  mb: pMetaBall); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  for{while} a:=0 to Pred(mb.totcol) { a++}
 //  do
 //  begin 
 //    expand_doit(main,filedata,mb.mat[a]); 
 //  end;
 //end;
-//
-//
+
 //procedure expand_curve(main: pMain;  filedata: pchar;  cu: pCurve); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  for{while} a:=0 to Pred(cu.totcol) { a++}
 //  do
 //  begin 
@@ -4632,15 +4419,13 @@ end;
 //  expand_doit(main,filedata,cu.bevobj); 
 //  expand_doit(main,filedata,cu.textoncurve); 
 //end;
-//
-//
+
 //procedure expand_mesh(main: pMain;  filedata: pchar;  me: pMesh); 
 //var
 //a: integer; 
 //tface: pTFace; 
 //begin
-//  
-//  
+
 //  for{while} a:=0 to Pred(me.totcol) { a++}
 //  do
 //  begin 
@@ -4663,13 +4448,12 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure expand_object(main: pMain;  filedata: pchar;  ob: pObject); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  expand_doit(main,filedata,ob.data); 
 //  expand_doit(main,filedata,ob.ipo); 
 //  for{while} a:=0 to Pred(ob.totcol) { a++}
@@ -4678,13 +4462,12 @@ end;
 //    expand_doit(main,filedata,ob.mat[a]); 
 //  end;
 //end;
-//
-//
+
 //procedure expand_scene(main: pMain;  filedata: pchar;  sce: pScene); 
 //var
 //base: pBase; 
 //begin
-//  
+
 //  base:= sce.base.first; 
 //  while base
 //  do
@@ -4695,26 +4478,22 @@ end;
 //  expand_doit(main,filedata,sce.camera); 
 //  expand_doit(main,filedata,sce.world); 
 //end;
-//
-//
+
 //procedure expand_camera(main: pMain;  filedata: pchar;  ca: pCamera); 
 //begin
 //  expand_doit(main,filedata,ca.ipo); 
-//  
+
 //end;
-//
-//
+
 //procedure expand_main(main: pMain;  filedata: pchar); 
 //var
 //lbarray: array [0..Pred(30)] of pListBase; 
 //id: pID; 
 //a: integer; 
 //doit: integer;
-// 
+
 //begin
-//  
-//  
-//  
+
 //  doit:=1; 
 //  if filedata=0
 //  then
@@ -4792,9 +4571,9 @@ end;
 //            begin
 //              expand_camera(main,filedata,{!!!a type cast? =>} {pCamera(}id); 
 //            end;
-//            
+
 //          end;{case?}
-//          
+
 //          doit:= 1; 
 //          id.flag:= id.flag - (LIB_TEST); 
 //        end;
@@ -4803,25 +4582,23 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure give_base_to_objects(sce: pScene;  lb: pListBase); 
 //var
 //ob: pObject; 
 //base: pBase; 
 //ok: integer; (* alle objects die LIB_EXTERN en LIB_NEEDLINK zijn, een base geven *)
 //begin
-//  
-//  
+
 //  ob:= lb.first; 
 //  while ob
 //  do
 //  begin 
-//    
+
 //    if ob.id.us=0
 //    then
 //    begin 
-//      
+
 //      if ob.id.flag and LIB_NEEDLINK
 //      then
 //      begin 
@@ -4836,16 +4613,14 @@ end;
 //          ob.id.us:= 1; 
 //          ob.id.flag:= ob.id.flag - (LIB_INDIRECT); 
 //          ob.id.flag:= ob.id.flag or (LIB_EXTERN); 
-//          
+
 //        end;
 //      end;
 //    end;
 //    ob:= ob.id.next; 
 //  end;
 //end;
-//
-//
-//
+
 //procedure append_named_part(sfile: pSpaceFile;  main: pMain;  name: pchar;  idcode: integer); 
 //var
 //ob: pObject; 
@@ -4853,15 +4628,12 @@ end;
 //bhead: pBHead; 
 //id: pID; 
 //afbreek: integer;
-// 
+
 //fd: pchar; 
 //begin
-//  
-//  
-//  
-//  
+
 //  afbreek:=0; 
-//  
+
 //  fd:= sfile.libfiledata; 
 //  while afbreek=0
 //  do
@@ -4916,20 +4688,18 @@ end;
 //    fd:= fd + (bhead.len+sizeof(BHead)); 
 //  end;
 //end;
-//
-//
+
 //procedure append_id_part(filedata: pchar;  main: pMain;  id: pID); 
 //var
 //bhead: pBHead; 
 //idread: pID; 
 //afbreek: integer;
-// 
+
 //fd: pchar; 
 //begin
-//  
-//  
+
 //  afbreek:=0; 
-//  
+
 //  fd:= filedata; 
 //  while afbreek=0
 //  do
@@ -4955,10 +4725,9 @@ end;
 //    fd:= fd + (bhead.len+sizeof(BHead)); 
 //  end;
 //end;
-//
-//
+
 //(* append aan G.scene *)
-//
+
 //procedure library_append(sfile: pSpaceFile); 
 //var
 //main: pMain; 
@@ -4967,19 +4736,14 @@ end;
 //cu: pCurve; 
 //a: integer; 
 //totsel: integer;
-// 
+
 //idcode: integer; 
 //dir: array [0..Pred(FILE_MAXDIR)] of char; 
 //group: array [0..Pred(32)] of char; (* is er sprake van een library? *)
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  totsel:=0; 
-//  
-//  
+
 //  if is_a_library(sfile,dir,group)=0
 //  then
 //  begin 
@@ -5046,7 +4810,7 @@ end;
 //  (* mains maken *)
 //  main:= find_main(dir); 
 //  idcode:= groupname_to_code(group); (* welke moeten wij hebben? *)
-//  
+
 //  if totsel=0
 //  then
 //  begin 
@@ -5072,13 +4836,11 @@ end;
 //  vf:= G.main.vfont.first; 
 //  (* losse objects aan G.scene hangen deze hebben nog een linkflag
 //      moet na lib_link ivm gelinkte scenes (ob->us==0) *)
-//  
+
 //  (* indirecte objects kunnen geen kwaad *)
 //  (* als je deze terugzet, denk aan de 'need_link' flag: doe een find naar 'give_base_to' *)
 //  (* give_base_to_objects(G.scene, &(G.main->object)); *)
-//  
-//  
-//  
+
 //  (* VECTORFONTS *)
 //  while vf
 //  do
@@ -5115,7 +4877,7 @@ end;
 //  end;
 //  set_displist_onlyzero(0); 
 //  add_data_adr(0,0); 
-//  
+
 //  (* losslingerende blokken vrijgeven *)
 //  add_lib_adr(0,0); 
 //  strcpy(G.lib,sfile.dir); 
@@ -5134,7 +4896,7 @@ end;
 //    error('Linking not suported, data is appended'); 
 //    all_local(); 
 //  end;
-//  
+
 //  (* voorlopige patch om te voorkomen dat de switch_endian 2x gebeurt *)
 //  if switch_endian<>0{nil} {<= !!!9} 
 //  then
@@ -5147,10 +4909,9 @@ end;
 //    end;
 //  end;
 //end;
-//
+
 //(* ************* READ LIBRARY ************** *)
-//
-//
+
 //procedure read_libraries; 
 //var
 //main: pMain; 
@@ -5160,21 +4921,14 @@ end;
 //lbarray: array [0..Pred(30)] of pListBase; 
 //a: integer; 
 //doit: integer;
-// 
+
 //tot: integer; 
 //filelen: integer; 
 //filedata: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  doit:=1; 
-//  
-//  
-//  
+
 //  while doit
 //  do
 //  begin 
@@ -5183,7 +4937,7 @@ end;
 //    while main
 //    do
 //    begin 
-//      
+
 //      disable_newlibadr:= (void* )1; 
 //      tot:= count_mainblocks_flag(main,LIB_READ); 
 //      if tot<>0{nil} {<= !!!9} 
@@ -5235,7 +4989,7 @@ end;
 //      end;
 //      disable_newlibadr:= 0; 
 //      expand_main(main,main.curlib.filedata); 
-//      
+
 //      main:= main.next; 
 //    end;
 //  end;
@@ -5272,7 +5026,7 @@ end;
 //    then
 //    do_versions(main); 
 //    main:= main.next; 
-//    
+
 //  end;
 //  join_main(); 
 //end;

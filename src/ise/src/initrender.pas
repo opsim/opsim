@@ -19,7 +19,6 @@
  * ***** END GPL/BL DUAL LICENSE BLOCK *****
  *)
 
-
 (*  initrender.c        RENDER
  *
  *  april 95
@@ -41,15 +40,15 @@ interface
 //{$include <math.h>}
 //{$include <stdio.h>}
 //{$include <limits.h>}
-//
+
 //{$ifndef WINDOWS}
 //{$include <sys/time.h>  * struct timeval * }
 //{$endif}
-//
+
 //{$if not defined(BEOS) and not defined(WINDOWS)}
 //{$include <sys/resource.h>  * struct rusage * }
 //{$endif}
-//
+
 //(* uit render.c *)
 //{fmask: array [0..Pred(256)] of float; }{<= !!!5 external variable}
 //{centLut: array [0..Pred(16)] of float; }{<= !!!5 external variable}
@@ -61,9 +60,9 @@ interface
 //{cmask: array [0..Pred(256)] of char; }{<= !!!5 external variable}
 //{centmask: pchar; }{<= !!!5 external variable}
 //(* hieruit *)
-//
+
 //procedure setpanorot(part: integer); 
-//
+
 //var
 //defmaterial: Material; 
 //pa: smallint; (* pa is globaal part ivm print *)
@@ -72,7 +71,6 @@ interface
 //panophi: float = 0.0; 
 //qscount: integer; 
 //(* ********************* *********************** *)
-//
 
 procedure screendump;
 
@@ -90,10 +88,9 @@ uses
 //  ma:=  and defmaterial; 
 //  init_material( and defmaterial); 
 //  init_render_material(ma); 
-//  
+
 //end;
-//
-//
+
 //procedure init_render_data; 
 //begin
 //  bzero(@R,sizeof(Render)); 
@@ -106,11 +103,9 @@ uses
 //  R.bloha:= (HaloRen** )callocN(sizeof(void* )*(MAXVERT shr 8),'Bloha'); 
 //  R.la:= (LampRen** )mallocN(MAXLAMP*sizeof(void* ),'renderlamparray'); 
 //  init_def_material(); 
-//  
-//  
+
 //end;
-//
-//
+
 //procedure free_render_data; 
 //begin
 //  freeN(R.blove); 
@@ -134,13 +129,11 @@ uses
 //  R.rectz:= 0; 
 //  R.rectspare:= 0; 
 //end_render_material( and defmaterial); 
-//
+
 //end;
-//
-//
+
 //(* ****************** JITTER *********************** *)
-//
-//
+
 //procedure jitterate1(jit1: pfloat;  jit2: pfloat;  num: integer;  rad1: float); 
 //var
 //i: integer; 
@@ -154,15 +147,7 @@ uses
 //y: float; 
 //len: float; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  while{for} 
 //  i:= 2*num-2; 
 //  {to} i>=0
@@ -237,12 +222,11 @@ uses
 //    y:= y - (floor(y)); 
 //    jit2[i]:= x; 
 //    jit2[i+1]:= y; 
-//    
+
 //  end;
 //  memcpy(jit1,jit2,2*num*sizeof(float)); 
 //end;
-//
-//
+
 //procedure jitterate2(jit1: pfloat;  jit2: pfloat;  num: integer;  rad2: float); 
 //var
 //i: integer; 
@@ -254,13 +238,7 @@ uses
 //x: float; 
 //y: float; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  while{for} 
 //  i:= 2*num-2; 
 //  {to} i>=0
@@ -305,7 +283,7 @@ uses
 //        if fabs(vecy)<rad2
 //        then
 //        dvecy:= dvecy + (vecy*rad2); 
-//        
+
 //      end;
 //    end;
 //    x:= x - (dvecx div 2); 
@@ -314,12 +292,11 @@ uses
 //    y:= y - (floor(y)); 
 //    jit2[i]:= x; 
 //    jit2[i+1]:= y; 
-//    
+
 //  end;
 //  memcpy(jit1,jit2,2*num*sizeof(float)); 
 //end;
-//
-//
+
 //procedure initjit(jit: pfloat;  num: integer); 
 //var
 //jit2: pfloat; 
@@ -329,21 +306,17 @@ uses
 //rad3: float; 
 //i: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  if num=0
 //  then
 //  exit;
-//  
+
 //  jit2:= mallocN(12+2*sizeof(float)*num,'initjit'); 
 //  rad1:= 1.0 div fsqrt({!!!a type cast? =>} {float(}num); 
 //  rad2:= 1.0 div ({!!!a type cast? =>} {float(}num); 
 //  rad3:= fsqrt({!!!a type cast? =>} {float(}num) div ({!!!a type cast? =>} {float(}num); 
 //  srand48(31415926+num); 
-//  
+
 //  x:= 0; 
 //  while{for} 
 //  i:= 0; 
@@ -357,7 +330,7 @@ uses
 //    x:= x + (rad3); 
 //    x:= x - (floor(x)); 
 //  end;
-//  
+
 //  for{while} i:=0 to Pred(24) { i++}
 //  do
 //  begin 
@@ -366,41 +339,36 @@ uses
 //    jitterate2(jit,jit2,num,rad2); 
 //  end;
 //  freeN(jit2); 
-//  
+
 //end;
-//
+
 //var {was static}
 //lastjit: integer;
-// 
-//
+
 //procedure init_render_jit(nr: integer); 
 //begin
 //  lastjit:=0; 
 //  if lastjit=nr
 //  then
 //  exit;
-//  
+
 //  bzero(jit,64*2*4); 
 //  initjit(jit[0],nr); 
 //  lastjit:= nr; 
-//  
-//  
+
 //end;
 //(* ****************** GAMMA, MASKERS en LUTS **************** *)
-//
-//
+
 //function calc_weight(weight: pfloat;  i: integer;  j: integer): float; 
 //var
 //x: float; 
 //y: float; 
 //dist: float; 
 //totw: float;
-// 
+
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  totw:=0.0; 
 //  for{while} a:=0 to Pred(R.osa) { a++}
 //  do
@@ -409,7 +377,7 @@ uses
 //    y:= jit[a][1]-0.5+j; 
 //    dist:= fsqrt(x*x+y*y); 
 //    weight[a]:= 0.0; 
-//    
+
 //    if R.r.mode and R_GAUSS
 //    then
 //    begin 
@@ -427,21 +395,19 @@ uses
 //      weight[a]:= 1.0; 
 //    end;
 //    totw:= totw + (weight[a]); 
-//    
-//    
+
 //  end;
 //  begin
 //    result:= totw; 
 //    exit;
 //  end;
 //end;
-//
+
 //var {was static}
 //firsttime: integer;
-// 
+
 //lastgamma: float;
-// 
-//
+
 //procedure init_filt_mask; 
 //var
 //gamma: float; 
@@ -462,20 +428,7 @@ uses
 //begin
 //  firsttime:=1; 
 //  lastgamma:=0.0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if firsttime<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -523,14 +476,13 @@ uses
 //    gamtab:= mallocN(65536*sizeof(short),'initGaus2'); 
 //    igamtab1:= mallocN(256*sizeof(short),'initGaus2'); 
 //    igamtab2:= mallocN(65536*sizeof(short),'initGaus2'); 
-//    
-//    
+
 //  end;
-//  
+
 //  if R.r.alphamode=R_ALPHAKEY
 //  then
 //  gamma:= 1.0; (* ??? *)
-//  
+
 //  if R.r.mode and R_GAMMA
 //  then
 //  gamma:= 2.0; 
@@ -555,7 +507,7 @@ uses
 //      then
 //      val:= powf(val,igamma); 
 //      gamtab[a]:= (65535.99*val); 
-//      
+
 //    end;
 //    (* inv gamtab1 : in byte, uit short *)
 //    for{while} a:=1 to 256 { a++}
@@ -574,7 +526,7 @@ uses
 //        igamtab1[a-1]:= (65535.0*powf(val,gamma))-1; 
 //      end;
 //    end;
-//    
+
 //    (* inv gamtab2 : in short, uit short *)
 //    for{while} a:=0 to Pred(65536) { a++}
 //    do
@@ -587,10 +539,10 @@ uses
 //      else
 //      val:= powf(val,gamma); 
 //      igamtab2[a]:= 65535.0*val; 
-//      
+
 //    end;
 //  end;
-//  
+
 //  if firsttime<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -603,7 +555,7 @@ uses
 //  begin 
 //    fmask[a]:= ({!!!a type cast? =>} {float(}cmask[a])*val; 
 //  end;
-//  
+
 //  for{while} a:=0 to Pred(9) {a++}
 //  do
 //  begin 
@@ -621,7 +573,7 @@ uses
 //      totw:= totw + (calc_weight(weight,i,j)); 
 //    end;
 //  end;
-//  
+
 //  for{while} j:=-1 to Pred(2) { j++}
 //  do
 //  begin 
@@ -629,16 +581,16 @@ uses
 //    do
 //    begin 
 //      (* bereken ahv jit met ofset de gewichten *)
-//      
+
 //      bzero(weight,32*2); 
 //      calc_weight(weight,i,j); 
-//      
+
 //      for{while} a:=0 to Pred(16) { a++}
 //      do
 //      shweight[a]:= weight[a]*(65535.0 div totw); 
 //      m1:= mask1[3*(j+1)+i+1]; 
 //      m2:= mask2[3*(j+1)+i+1]; 
-//      
+
 //      for{while} a:=0 to Pred(256) { a++}
 //      do
 //      begin 
@@ -698,7 +650,7 @@ uses
 //  fpy1:= mallocN(256*sizeof(float),'initgauss4'); 
 //  fpy2:= mallocN(256*sizeof(float),'initgauss4'); 
 //  (* centmask: de juiste subpixel ofset per masker *)
-//  
+
 //  for{while} a:=0 to Pred(256) { a++}
 //  do
 //  begin 
@@ -769,7 +721,7 @@ uses
 //      fpy2[a]:= fpy2[a] + (jit[15][1]); 
 //    end;
 //  end;
-//  
+
 //  for{while} a:=(1 shl R.osa)-1 downto Succ(0) { a--}
 //  do
 //  begin 
@@ -780,14 +732,12 @@ uses
 //    centmask[a]:= i; 
 //  end;
 //  freeN(fpx1); 
-//  
+
 //  freeN(fpx2); 
 //  freeN(fpy1); 
 //  freeN(fpy2); 
 //end;
-//
-//
-//
+
 //procedure free_filt_mask; 
 //var
 //a: integer; 
@@ -802,30 +752,26 @@ uses
 //  freeN(igamtab1); 
 //  freeN(igamtab2); 
 //  freeN(centmask); 
-//  
+
 //end;
-//
+
 //(* ************** INFO FILES ******************* *)
-//
-//
-//
+
 //procedure make_info_file_string(string: pchar;  frame: integer); 
 //var
 //len: integer; 
 //i: integer; 
 //num: array [0..Pred(8)] of char; 
 //begin
-//  
-//  
+
 //  if string=0
 //  then
 //  exit;
-//  
+
 //  strcpy(string,G.scene.r.pic); 
 //  convertstringcode(string); 
 //  strcat(string,'info/'); 
-//  
-//  
+
 //  (* dir testen, desnoods maken *)
 //  if exist(string)=0
 //  then
@@ -834,7 +780,7 @@ uses
 //  end;
 //  len:= lstrlen(string); 
 //  i:= 4-sprintf(num,'%d',frame); 
-//  
+
 //  for{while}  downto Succ(0) { i--}
 //  do
 //  begin 
@@ -844,22 +790,21 @@ uses
 //  string[len]:= 0; 
 //  strcat(string,num); 
 //end;
-//
-//
+
 //function panotestclip(v: pfloat): integer; 
 //var
 //abs4: float; 
 //c: smallint;
-// 
+
 //begin(* gebruiken voor halo's en info's *)
-//  
+
 //  c:=0; 
 //  if (R.r.mode and R_PANORAMA)=0
 //  then
 //  begin
 //    result:= testclip(v); 
 //    exit;
-//    
+
 //  end;
 //  abs4:= fabs(v[3]); 
 //  if v[2]<-abs4
@@ -890,9 +835,7 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
-//
+
 //function info_calc_schermco(vec: pfloat;  sco: pfloat): integer; 
 //var
 //si: float; 
@@ -901,22 +844,18 @@ uses
 //hoco: array [0..Pred(4)] of float; 
 //xpartsfac: float; 
 //pa: integer;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  pa:=0; 
 //  xpartsfac:= 0.5 div {!!!a type cast? =>} {float(}R.r.xparts; 
 //  sco[0]:= sco[1]:=sco[2]:=0.0; 
 //  projectverto(vec,hoco); 
-//  
+
 //  (* eerst de normale versie *)
 //  hoco[3]:= hoco[3] * (2.0); 
 //  (* clipgrens iets ruimer *)
-//  
+
 //  if testclip(hoco)=0
 //  then
 //  begin 
@@ -926,12 +865,12 @@ uses
 //    sco[2]:= (1.0+hoco[2] div hoco[3]); 
 //    (* antieke schermco's *)
 //  end;
-//  
+
 //  (* elk part testen *)
 //  if R.r.mode and R_PANORAMA
 //  then
 //  begin 
-//    
+
 //    for{while} pa:=0 to Pred(R.r.xparts) { pa++}
 //    do
 //    begin 
@@ -942,33 +881,30 @@ uses
 //      v1[1]:= vec[1]; 
 //      v1[2]:= -si*vec[0]+co*vec[2]; 
 //      projectverto(v1,hoco); 
-//      
-//      
-//      
+
 //      hoco[3]:= hoco[3] * (2.0); (* clipgrens iets ruimer *)
-//      
+
 //      if testclip(hoco)=0
 //      then
 //      begin 
-//        
+
 //        hoco[3]:= hoco[3] div (2.0); 
 //        sco[0]:= 0.5+xpartsfac*(hoco[0] div hoco[3])+pa*2.0*xpartsfac-(R.r.xparts-1)*xpartsfac; 
 //        sco[1]:= 0.5-0.5*(hoco[1] div hoco[3]); 
 //        sco[2]:= (1.0+hoco[2] div hoco[3]); 
 //        (* clipgrens iets ruimer *)
-//        
+
 //        (* antieke schermco's *)
 //      end;
 //    end;
 //  end;
-//  
+
 //  begin
 //    result:= 1; 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure info_calc_drot(ob: pObject;  co: pfloat); 
 //var
 //vec1: array [0..Pred(3)] of float; 
@@ -977,15 +913,12 @@ uses
 //co1: float; 
 //co2: float; 
 //begin
-//  
-//  
-//  
-//  
+
 //  {*}co^:=0.0; 
 //  VECCOPY(vec1,ob.obmat[2]); 
-//  
+
 //  pushdata(ob,sizeof(Object)); 
-//  
+
 //  dec(CFRA); 
 //  do_ob_ipo(ob); 
 //  where_is_object(ob); 
@@ -993,7 +926,7 @@ uses
 //  poplast(ob); 
 //  inc(CFRA); 
 //  len:= Normalise(vec1); 
-//  
+
 //  if len<0.$1
 //  then
 //  exit;
@@ -1001,12 +934,12 @@ uses
 //  if len<0.$1
 //  then
 //  exit;
-//  
+
 //  (* co= INPR(vec1, vec2); *)
-//  
+
 //  co1:= fatan2(vec1[1],vec1[0]); 
 //  co2:= fatan2(vec2[1],vec2[0]); {*}co^:=-co1+co2; 
-//  
+
 //  if {*}co^>M_PI
 //  then
 //  {*}co^-=2.0*M_PI; 
@@ -1015,12 +948,10 @@ uses
 //  then
 //  {*}co^+=2.0*M_PI; 
 //end;
-//
-//
+
 //var {was static}
 //fp: pFILE;
-// 
-//
+
 //procedure info_file(ob: pObject); 
 //var
 //mat: array [0..Pred(4),0..Pred(4)] of float; 
@@ -1032,9 +963,7 @@ uses
 //    * van deze functie staat kopie in writefile.c (Mdec versie)
 //    *)
 //  fp:=0; 
-//  
-//  
-//  
+
 //  if LongBool(1))or(ob=0
 //  then
 //  begin 
@@ -1044,7 +973,7 @@ uses
 //    fp:= 0; 
 //    exit;
 //  end;
-//  
+
 //  if fp=0
 //  then
 //  begin 
@@ -1059,53 +988,49 @@ uses
 //  if fp=0
 //  then
 //  exit;
-//  
+
 //  if ob.infostart>CFRA
 //  then
 //  exit;
 //  if ob.infoend<>0)and(ob.infoend<CFRA
 //  then
 //  exit;
-//  
+
 //  fprintf(fp,'NAME\n%s\n',ob.id.name+2); 
-//  
+
 //  if ob.infoflag and OB_INFO_LOC
 //  then
 //  fprintf(fp,'LOC\n%f %f %f\n',ob.obmat[3][0],ob.obmat[3][1],ob.obmat[3][2]); 
-//  
+
 //  if ob.infoflag and OB_INFO_SCO
 //  then
 //  begin 
-//    
+
 //    Mat4MulMat4(mat,ob.obmat,R.viewmat); 
 //    info_calc_schermco(mat[3],vec1); 
 //    fprintf(fp,'SCO\n%f %f %f\n',vec1[0],vec1[1],vec1[2]); 
 //  end;
-//  
+
 //  if ob.infoflag and OB_INFO_DROT
 //  then
 //  begin 
-//    
+
 //    info_calc_drot(ob, and co); 
 //    fprintf(fp,'DROT\n%f\n',co); 
-//    
+
 //  end;
 //end;
-//
-//
-//
+
 //(* ************** END INFO FILES ******************* *)
-//
-//
+
 //(* ~~~~~~~~~~~~~~~~~ADD~~~~~~~~~~~~~~~~~~~~~ *)
-//
-//
+
 //function addvert(nr: integer): pVertRen; 
 //var
 //v: pVertRen; 
 //a: integer; 
 //begin
-//  
+
 //  if nr<0)or(nr>MAXVERT
 //  then
 //  begin 
@@ -1129,14 +1054,13 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function addhalo(nr: integer): pHaloRen; 
 //var
 //h: pHaloRen; 
 //a: integer; 
 //begin
-//  
+
 //  if nr<0)or(nr>MAXVERT
 //  then
 //  begin 
@@ -1160,14 +1084,13 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function addvlak(nr: integer): pVlakRen; 
 //var
 //v: pVlakRen; 
 //a: integer; 
 //begin
-//  
+
 //  if nr<0)or(nr>MAXVLAK
 //  then
 //  begin 
@@ -1191,8 +1114,7 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function inithalo(ma: pMaterial;  vec: pfloat;  vec1: pfloat;  orco: pfloat;  hasize: float;  vectsize: float): pHaloRen; 
 //var
 //har: pHaloRen; 
@@ -1210,21 +1132,13 @@ uses
 //  {Tr: float; }{<= !!!5 external variable}
 //  {Tg: float; }{<= !!!5 external variable}
 //  {Tb: float; }{<= !!!5 external variable}
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if hasize=0
 //  then
 //  begin
 //    result:= 0; 
 //    exit;
-//    
+
 //  end;
 //  projectverto(vec,hoco); 
 //  if hoco[3]=0.0
@@ -1246,15 +1160,15 @@ uses
 //  end;
 //  har:= addhalo(R.tothalo{++} inc(R.tothalo); ); 
 //  VECCOPY(har.co,vec); 
-//  
+
 //  har.hasize:= hasize; 
 //  (* projectvert wordt in zbufvlaggen gedaan ivm parts/border/pano *)
-//  
+
 //  (* halovect *)
 //  if vec1<>0{nil} {<= !!!9} 
 //  then
 //  begin 
-//    
+
 //    har.type:= har.type or (HA_VECT); 
 //    zn:= hoco[3]; 
 //    har.xs:= 0.5*R.rectx*(hoco[0] div zn); 
@@ -1262,7 +1176,7 @@ uses
 //    har.zs:= $7FFFFF*(1.0+hoco[2] div zn); 
 //    xn:= har.xs-0.5*R.rectx*(hoco1[0] div hoco1[3]); 
 //    yn:= har.ys-0.5*R.recty*(hoco1[1] div hoco1[3]); 
-//    
+
 //    if xn=0.0)or((xn=0.0)and(yn=0.0)
 //    then
 //    zn:= 0.0; 
@@ -1273,11 +1187,10 @@ uses
 //    zn:= VecLenf(vec1,vec); 
 //    har.hasize:= vectsize*zn+(1.0-vectsize)*hasize; 
 //    VecSubf(har.no,vec,vec1); 
-//    
-//    
+
 //    Normalise(har.no); 
 //  end;
-//  
+
 //  if ma.mode and MA_HALO_XALPHA
 //  then
 //  har.type:= har.type or (HA_XALPHA); 
@@ -1289,7 +1202,7 @@ uses
 //  har.mat:= ma.ren; 
 //  har.hard:= ma.har; 
 //  har.seed:= ma.ren.seed1 mod 256; 
-//  
+
 //  if ma.mode and MA_STAR
 //  then
 //  har.starpoints:= ma.starc; 
@@ -1302,20 +1215,20 @@ uses
 //  if ma.mode and MA_HALO_FLARE
 //  then
 //  har.flarec:= ma.flarec; 
-//  
+
 //  if ma.mtex[0]<>0{nil} {<= !!!9} 
 //  then
 //  begin 
-//    
+
 //    if (ma.mode and MA_HALOTEX)
 //    then
 //    har.tex:= 1; 
 //    else
 //    begin 
-//      
+
 //      mtex:= ma.mtex[0]; 
 //      VECCOPY(texvec,vec); 
-//      
+
 //      if mtex.texco and TEXCO_NORM
 //      then
 //      begin 
@@ -1339,10 +1252,10 @@ uses
 //        end;
 //      end;
 //      externtex(mtex,texvec); 
-//      
+
 //      yn:= Tin*mtex.colfac; 
 //      zn:= Tin*mtex.varfac; 
-//      
+
 //      if mtex.mapto and MAP_COL
 //      then
 //      begin 
@@ -1358,33 +1271,31 @@ uses
 //      end;
 //    end;
 //  end;
-//  
+
 //  begin
 //    result:= har; 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function initstar(vec: pfloat;  hasize: float): pHaloRen; 
 //var
 //har: pHaloRen; 
 //zn: float; 
 //hoco: array [0..Pred(4)] of float; 
 //begin
-//  
-//  
+
 //  projectverto(vec,hoco); 
 //  if (R.r.mode and R_PANORAMA))or(testclip(hoco)=0
 //  then
 //  begin 
 //    har:= addhalo(R.tothalo{++} inc(R.tothalo); ); 
 //    VECCOPY(har.co,vec); 
-//    
+
 //    (* projectvert wordt in zbufvlaggen overgedaan ivm parts *)
 //    har.hasize:= hasize; 
 //    har.zd:= 0.0; 
-//    
+
 //    begin
 //      result:= har; 
 //      exit;
@@ -1395,8 +1306,7 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure add_render_lamp(ob: pObject;  doshadbuf: integer); 
 //var
 //ver: pVertRen; 
@@ -1416,21 +1326,7 @@ uses
 //c: integer; 
 //b: pchar; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if R.totlamp>=MAXLAMP
 //  then
 //  begin 
@@ -1441,15 +1337,15 @@ uses
 //  lar:= {!!!a type cast? =>} {pLampRen(}callocN(sizeof(LampRen),'lampren'); 
 //  R.la[R.totlamp{++} inc(R.totlamp); ]:= lar; 
 //  Mat4MulMat4(mat,ob.obmat,R.viewmat); 
-//  
+
 //  Mat4Invert(ob.imat,mat); 
 //  Mat3CpyMat4(lar.imat,ob.imat); 
-//  
+
 //  lar.type:= la.type; 
 //  lar.mode:= la.mode; 
 //  lar.energy:= la.energy; 
 //  lar.energy:= la.energy*R.wrld.exposure; 
-//  
+
 //  if la.mode and LA_NEG
 //  then
 //  lar.energy:= -lar.energy; 
@@ -1457,7 +1353,7 @@ uses
 //  lar.vec[1]:= -mat[2][1]; 
 //  lar.vec[2]:= -mat[2][2]; 
 //  Normalise(lar.vec); 
-//  
+
 //  lar.co[0]:= mat[3][0]; 
 //  lar.co[1]:= mat[3][1]; 
 //  lar.co[2]:= mat[3][2]; 
@@ -1471,25 +1367,22 @@ uses
 //  lar.spotsi:= fcos(M_PI*la.spotsize div 360.0); 
 //  lar.spotbl:= (1.0-lar.spotsi)*la.spotblend; 
 //  memcpy(lar.mtex,la.mtex,8*4); 
-//  
-//  
+
 //  lar.lay:= ob.lay; 
 //  lar.ld1:= la.att1; 
 //  lar.ld2:= la.att2; 
-//  
-//  
-//  
+
 //  if lar.type=LA_SPOT
 //  then
 //  begin 
-//    
+
 //    Normalise(lar.imat[0]); 
 //    Normalise(lar.imat[1]); 
 //    Normalise(lar.imat[2]); 
 //    xn:= safacos(lar.spotsi); 
 //    xn:= fsin(xn) div fcos(xn); 
 //    lar.spottexfac:= 1.0 div (xn); 
-//    
+
 //    if lar.mode and LA_ONLYSHADOW
 //    then
 //    begin 
@@ -1502,11 +1395,9 @@ uses
 //      lar.mode:= lar.mode - (LA_ONLYSHADOW); 
 //    end;
 //  end;
-//  
-//  
+
 //  (* imat bases *)
-//  
-//  
+
 //  (* flag zetten voor spothalo en initvars *)
 //  if la.type=LA_SPOT)and((la.mode and LA_HALO)
 //  then
@@ -1519,20 +1410,20 @@ uses
 //      lar.sh_invcampos[1]:= -lar.co[1]; 
 //      lar.sh_invcampos[2]:= -lar.co[2]; 
 //      Mat3MulVecfl(lar.imat,lar.sh_invcampos); 
-//      
+
 //      (* camerapos (0,0,0) roteren rondom lamp *)
 //      hoek:= safacos(lar.spotsi); 
 //      xn:= lar.spotsi; 
 //      yn:= fsin(hoek); 
 //      lar.sh_zfac:= yn div xn; 
 //      lar.sh_invcampos[2]:= lar.sh_invcampos[2] * (lar.sh_zfac); 
-//      
+
 //      (* z factor, zodat het volume genormaliseerd is *)
 //      (* alvast goed scalen *)
-//      
+
 //    end;
 //  end;
-//  
+
 //  for{while} c:=0 to Pred(6) { c++}
 //  do
 //  begin 
@@ -1553,7 +1444,7 @@ uses
 //      end;
 //    end;
 //  end;
-//  
+
 //  if R.r.mode and R_SHADOW
 //  then
 //  if lar.mode and LA_SHAD
@@ -1566,10 +1457,9 @@ uses
 //    initshadowbuf(lar,la,ob.obmat); 
 //  end;
 //  lar.org:= dupallocN(lar); 
-//  
+
 //end;
-//
-//
+
 //procedure defaultlamp; 
 //var
 //lar: pLampRen; 
@@ -1581,14 +1471,13 @@ uses
 //  lar.vec[1]:= -R.viewmat[2][1]; 
 //  lar.vec[2]:= -R.viewmat[2][2]; 
 //  Normalise(lar.vec); 
-//  
+
 //  lar.r:= 1.0; 
 //  lar.g:= 1.0; 
 //  lar.b:= 1.0; 
 //  lar.lay:= 65535; 
 //end;
-//
-//
+
 //procedure split_u_renderfaces(startvlak: integer;  startvert: integer;  usize: integer;  plek: integer;  cyclu: integer); 
 //var
 //vlr: pVlakRen; 
@@ -1597,10 +1486,7 @@ uses
 //a: integer; 
 //v: integer; 
 //begin
-//  
-//  
-//  
-//  
+
 //  if cyclu<>0{nil} {<= !!!9} 
 //  then
 //  cyclu:= 1; 
@@ -1623,56 +1509,51 @@ uses
 //    vlr.v2:= {!!!a type cast? =>} {pVertRen(}(vlr.v2.sticky); 
 //  end;
 //end;
-//
-//
-//
+
 //procedure split_v_renderfaces(startvlak: integer;  startvert: integer;  usize: integer;  vsize: integer;  plek: integer;  cyclu: integer;  cyclv: integer); 
 //var
 //vlr: pVlakRen; 
 //v1: pVertRen;
-// 
+
 //v2: pVertRen; 
 //a: integer; 
 //vert: integer; 
 //vlak: integer; 
 //ofs: integer; 
 //begin
-//  
+
 //  v1:=0; 
-//  
-//  
-//  
-//  
+
 //  if vsize<2
 //  then
 //  exit;
-//  
+
 //  (* loop betreffende vlakken af en maak dubbels *)
 //  (* omdat (evt) split_u al gedaan is kan niet met vertex->sticky pointers worden gewerkt  *)
 //  (* want vlakken delen al geen punten meer *)
-//  
+
 //  if plek+cyclu=usize
 //  then
 //  plek:= -1; 
 //  vlak:= startvlak+(plek+cyclu); 
 //  ofs:= (usize-1+cyclu); 
-//  
+
 //  for{while} a:=1 to Pred(vsize) { a++}
 //  do
 //  begin 
-//    
+
 //    vlr:= addvlak(vlak); 
 //    if vlr.v1=0
 //    then
 //    exit;
 //    (* OEPS, als niet cyclic *)
-//    
+
 //    v1:= addvert(R.totvert{++} inc(R.totvert); ); {*}v1^:=*(vlr.v1); 
 //    vlr.v1:= v1; 
-//    
+
 //    (* vlr= addvlak(vlak+1); *)
 //    (* vlr->v1= v1; *)
-//    
+
 //    if a>1
 //    then
 //    begin 
@@ -1686,7 +1567,7 @@ uses
 //      else
 //      vlr.v4:= v1; 
 //    end;
-//    
+
 //    if a=vsize-1
 //    then
 //    begin 
@@ -1703,13 +1584,10 @@ uses
 //      end;
 //    end;
 //    vlak:= vlak + (ofs); 
-//    
+
 //  end;
 //end;
-//
-//
-//
-//
+
 //function give_render_material(ob: pObject;  nr: integer): pMaterial; 
 //var
 //temp: pObject; 
@@ -1724,18 +1602,17 @@ uses
 //      ob:= temp; 
 //    end;
 //  end;
-//  
+
 //  begin
 //    result:= give_current_material(ob,nr); 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure init_render_surf(ob: pObject); 
 //var
 //nu: pNurb;
-// 
+
 //cu: pCurve; 
 //displist: ListBase; 
 //dl: pDispList; 
@@ -1757,7 +1634,7 @@ uses
 //a: integer; 
 //b: integer; 
 //need_orco: integer;
-// 
+
 //startvlak: integer; 
 //startvert: integer; 
 //p1: integer; 
@@ -1765,45 +1642,22 @@ uses
 //p3: integer; 
 //p4: integer; 
 //ika: pIka;
-// 
+
 //begin
 //  nu:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  need_orco:=0; 
-//  
-//  
-//  
-//  
-//  
+
 //  cu:= ob.data; 
 //  nu:= cu.nurb.first; 
 //  if nu=0
 //  then
 //  exit;
-//  
+
 //  Mat4MulMat4(mat,ob.obmat,R.viewmat); 
 //  Mat4Invert(ob.imat,mat); 
 //  bzero(matar,4*32); 
-//  
+
 //  (* material array *)
 //  matar[0]:=  and defmaterial; 
 //  for{while} a:=0 to Pred(ob.totcol) { a++}
@@ -1819,7 +1673,7 @@ uses
 //      need_orco:= 1; 
 //    end;
 //  end;
-//  
+
 //  if ob.parent)and((ob.parent.type=OB_IKA)or(ob.parent.type=OB_LATTICE)
 //  then
 //  need_orco:= 1; 
@@ -1841,7 +1695,7 @@ uses
 //      dl.verts:= callocN(len*3*sizeof(float),'makeDispList01'); 
 //      addtail( and displist,dl); 
 //      (* makeNurbfaces wil nullen *)
-//      
+
 //      dl.parts:= nu.resolu; 
 //      dl.nr:= nu.resolv; 
 //      dl.col:= nu.mat_nr; 
@@ -1849,7 +1703,7 @@ uses
 //      data:= dl.verts; 
 //      dl.type:= DL_SURF; 
 //      (* andersom want makeNurbfaces gaat zo *)
-//      
+
 //      if nu.flagv and 1
 //      then
 //      dl.flag:= dl.flag or (1); (* ook andersom ! *)
@@ -1857,11 +1711,11 @@ uses
 //      then
 //      dl.flag:= dl.flag or (2); 
 //      makeNurbfaces(nu,data); 
-//      
+
 //    end;
 //    nu:= nu.next; 
 //  end;
-//  
+
 //  if ob.parent)and(ob.parent.type=OB_LATTICE
 //  then
 //  begin 
@@ -1870,7 +1724,7 @@ uses
 //    while dl
 //    do
 //    begin 
-//      
+
 //      fp:= dl.verts; 
 //      len:= dl.nr*dl.parts; 
 //      while{for} 
@@ -1882,7 +1736,7 @@ uses
 //      do
 //      calc_latt_deform(fp); 
 //      dl:= dl.next; 
-//      
+
 //    end;
 //  end_latt_deform(); 
 //end;
@@ -1895,7 +1749,7 @@ uses
 //  while dl
 //  do
 //  begin 
-//    
+
 //    fp:= dl.verts; 
 //    len:= dl.nr*dl.parts; 
 //    while{for} 
@@ -1907,7 +1761,7 @@ uses
 //    do
 //    calc_skel_deform(ika,fp); 
 //    dl:= dl.next; 
-//    
+
 //  end;
 //end;
 //dl:= displist.first; 
@@ -1935,11 +1789,11 @@ uses
 //      data:= data + (3); 
 //    end;
 //    startvlak:= R.totvlak; 
-//    
+
 //    for{while} a:=0 to Pred(dl.parts) { a++}
 //    do
 //    begin 
-//      
+
 //      DL_SURFINDEX(dl.flag and 1,dl.flag and 2,dl.nr,dl.parts); 
 //      p1:= p1 + (startvert); 
 //      p2:= p2 + (startvert); 
@@ -1975,7 +1829,7 @@ uses
 //          end;
 //        end;
 //        VecAddf(v1.n,v1.n,n1); 
-//        
+
 //        VecAddf(v2.n,v2.n,n1); 
 //        VecAddf(v3.n,v3.n,n1); 
 //        VecAddf(v4.n,v4.n,n1); 
@@ -1983,10 +1837,10 @@ uses
 //        inc(p3); 
 //        p2:= p1; 
 //        inc(p1); 
-//        
+
 //      end;
 //    end;
-//    
+
 //    for{while} a:=startvert to Pred(R.totvert) { a++}
 //    do
 //    begin 
@@ -1994,27 +1848,25 @@ uses
 //      Normalise(ver.n); 
 //    end;
 //  end;
-//  
-//  
+
 //  dl:= dl.next; 
 //end;
 //freedisplist( and displist); 
 //end;
-//
-//
+
 //procedure init_render_curve(ob: pObject); 
 //var
 //ika: pIka;
-// 
+
 //lt: pLattice;
-// 
+
 //cu: pCurve; 
 //ver: pVertRen; 
 //vlr: pVlakRen; 
 //vlr1: pVlakRen; 
 //dlbev: ListBase; 
 //nu: pNurb;
-// 
+
 //dlb: pDispList; 
 //dl: pDispList; 
 //bl: pBevList; 
@@ -2044,54 +1896,23 @@ uses
 //ofs: integer; 
 //end: integer; 
 //need_orco: integer;
-// 
+
 //firststartvert: integer; 
 //index: pinteger; 
 //begin
 //  ika:=0; 
 //  lt:=0; 
-//  
-//  
-//  
-//  
-//  
+
 //  nu:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  need_orco:=0; 
-//  
+
 //  cu:= ob.data; 
 //  nu:= cu.nurb.first; 
 //  if nu=0
 //  then
 //  exit;
-//  
+
 //  (* displist testen *)
 //  if cu.disp.first=0
 //  then
@@ -2100,23 +1921,22 @@ uses
 //  if cu.disp.first=0
 //  then
 //  exit;
-//  
+
 //  if dl.type<>DL_INDEX3
 //  then
 //  begin 
 //    curve_to_filledpoly(cu, and cu.disp); 
 //  end;
-//  
+
 //  if cu.bev.first=0
 //  then
 //  makeBevelList(ob); 
 //  firststartvert:= R.totvert; 
 //  Mat4MulMat4(mat,ob.obmat,R.viewmat); 
-//  
-//  
+
 //  Mat4Invert(ob.imat,mat); 
 //  bzero(matar,4*32); 
-//  
+
 //  (* material array *)
 //  matar[0]:=  and defmaterial; 
 //  for{while} a:=0 to Pred(ob.totcol) { a++}
@@ -2134,13 +1954,13 @@ uses
 //  end;
 //  dlbev.first:= dlbev.last:=0; 
 //  (* bevelcurve in displist *)
-//  
+
 //  if cu.ext1<>0.0)or(cu.ext2<>0.0)or(cu.bevobj<>0
 //  then
 //  begin 
 //    makebevelcurve(ob, and dlbev); 
 //  end;
-//  
+
 //  (* uv orco's? aantal punten tellen en malloccen *)
 //  if need_orco)and((cu.flag and CU_UV_ORCO)
 //  then
@@ -2166,7 +1986,7 @@ uses
 //      end;
 //      fp:= cu.orco:=mallocN(3*sizeof(float)*totvert,'cu->orco'); 
 //      bl:= cu.bev.first; 
-//      
+
 //      while bl
 //      do
 //      begin 
@@ -2197,7 +2017,7 @@ uses
 //      end;
 //    end;
 //  end;
-//  
+
 //  if ob.parent)and(ob.parent.type=OB_LATTICE
 //  then
 //  begin 
@@ -2216,22 +2036,22 @@ uses
 //  bl:= cu.bev.first; 
 //  nu:= cu.nurb.first; 
 //  (* keypos doen? NOTITIE: pas op : orco's *)
-//  
+
 //  (* effect op text? *)
-//  
+
 //  (* boundboxclip nog doen *)
-//  
+
 //  (* polyzijvlakken:  met bevellist werken *)
-//  
+
 //  while bl
 //  do
 //  begin 
-//    
+
 //    if dlbev.first<>0{nil} {<= !!!9} 
 //    then
 //    begin 
 //      (* anders alleen een poly *)
-//      
+
 //      dlb:= dlbev.first; (* bevel lus *)
 //      while dlb
 //      do
@@ -2244,13 +2064,13 @@ uses
 //        while b{--} dec(b); 
 //        do
 //        begin 
-//          
+
 //          bevp:= {!!!a type cast? =>} {pBevPoint(}(bl+1); 
 //          a:= bl.nr; 
 //          while a{--} dec(a); 
 //          do
 //          begin 
-//            
+
 //            if cu.flag and CU_3D
 //            then
 //            begin 
@@ -2258,15 +2078,15 @@ uses
 //              vec[1]:= fp1[2]; 
 //              vec[2]:= 0.0; 
 //              Mat3MulVecfl(bevp.mat,vec); 
-//              
+
 //              fp[0]:= bevp.x+vec[0]; 
 //              fp[1]:= bevp.y+vec[1]; 
 //              fp[2]:= bevp.z+vec[2]; 
-//              
+
 //            end;
 //            else
 //            begin 
-//              
+
 //              fp[0]:= bevp.x+(widfac+fp1[1])*bevp.sina; 
 //              fp[1]:= bevp.y+(widfac+fp1[1])*bevp.cosa; 
 //              fp[2]:= bevp.z+fp1[2]; 
@@ -2281,7 +2101,7 @@ uses
 //        startvert:= R.totvert; 
 //        nr:= dlb.nr*bl.nr; 
 //        (* rendervertices maken *)
-//        
+
 //        while nr{--} dec(nr); 
 //        do
 //        begin 
@@ -2298,14 +2118,14 @@ uses
 //          fp:= fp + (3); 
 //        end;
 //        startvlak:= R.totvlak; 
-//        
+
 //        for{while} a:=0 to Pred(dlb.nr) { a++}
 //        do
 //        begin 
-//          
+
 //          frontside:= (a>=dlb.nr div 2); 
 //          DL_SURFINDEX(bl.poly>0,dlb.type=DL_POLY,bl.nr,dlb.nr); 
-//          
+
 //          p1:= p1 + (startvert); 
 //          p2:= p2 + (startvert); 
 //          p3:= p3 + (startvert); 
@@ -2313,7 +2133,7 @@ uses
 //          for{while}  to Pred(bl.nr) { b++}
 //          do
 //          begin 
-//            
+
 //            vlr:= addvlak(R.totvlak{++} inc(R.totvlak); ); 
 //            vlr.v1:= addvert(p2); 
 //            vlr.v2:= addvert(p1); 
@@ -2325,11 +2145,11 @@ uses
 //            vlr.ec:= vlr.ec + (ME_V1V2); 
 //            vlr.flag:= nu.flag; 
 //            vlr.lay:= ob.lay; 
-//            
+
 //            (* dit is niet echt wetenschappelijk: de vertices
 //                   * 2, 3 en 4 geven betere puno's dan 1 2 3: voor en achterkant anders!!
 //                   *)
-//            
+
 //            if frontside<>0{nil} {<= !!!9} 
 //            then
 //            vlr.len:= CalcNormFloat(vlr.v2.co,vlr.v3.co,vlr.v4.co,vlr.n); 
@@ -2340,13 +2160,10 @@ uses
 //            inc(p3); 
 //            p2:= p1; 
 //            inc(p1); 
-//            
-//            
-//            
+
 //          end;
 //        end;
-//        
-//        
+
 //        (* dubbele punten maken: POLY SPLITSEN *)
 //        if dlb.nr=4)and(cu.bevobj=0
 //        then
@@ -2363,14 +2180,14 @@ uses
 //          split_v_renderfaces(startvlak,startvert,bl.nr,dlb.nr,a,bl.poly>0,dlb.type=DL_POLY); 
 //          inc(bevp); 
 //        end;
-//        
+
 //        (* puntnormalen *)
 //        for{while} a:=startvlak to Pred(R.totvlak) { a++}
 //        do
 //        begin 
 //          vlr:= addvlak(a); 
 //          VecAddf(vlr.v1.n,vlr.v1.n,vlr.n); 
-//          
+
 //          VecAddf(vlr.v3.n,vlr.v3.n,vlr.n); 
 //          VecAddf(vlr.v2.n,vlr.v2.n,vlr.n); 
 //          VecAddf(vlr.v4.n,vlr.v4.n,vlr.n); 
@@ -2405,25 +2222,24 @@ uses
 //        end;
 //        dlb:= dlb.next; 
 //        freeN(data); 
-//        
-//        
+
 //      end;
 //    end;
-//    
+
 //    bl:= bl.next; 
 //    nu:= nu.next; 
 //  end;
-//  
+
 //  if dlbev.first<>0{nil} {<= !!!9} 
 //  then
 //  begin 
 //    freedisplist( and dlbev); 
 //  end;
-//  
+
 //  if cu.flag and CU_PATH
 //  then
 //  exit;
-//  
+
 //  (* uit de displist kunnen de vulvlakken worden gehaald *)
 //  dl:= cu.disp.first; 
 //  while dl
@@ -2432,15 +2248,14 @@ uses
 //    if dl.type=DL_INDEX3
 //    then
 //    begin 
-//      
+
 //      startvert:= R.totvert; 
 //      data:= dl.verts; 
 //      n[0]:= ob.imat[0][2]; 
 //      n[1]:= ob.imat[1][2]; 
 //      n[2]:= ob.imat[2][2]; 
 //      Normalise(n); 
-//      
-//      
+
 //      while{for} 
 //      a:= 0; 
 //      {to} a<dl.nr
@@ -2449,12 +2264,12 @@ uses
 //      data:= data + (3); 
 //      do
 //      begin 
-//        
+
 //        ver:= addvert(R.totvert{++} inc(R.totvert); ); 
 //        VECCOPY(ver.co,data); 
 //        Mat4MulVecfl(mat,ver.co); 
 //        VECCOPY(ver.n,n); 
-//        
+
 //      end;
 //      startvlak:= R.totvlak; 
 //      index:= dl.index; 
@@ -2466,38 +2281,38 @@ uses
 //      index:= index + (3); 
 //      do
 //      begin 
-//        
+
 //        vlr:= addvlak(R.totvlak{++} inc(R.totvlak); ); 
 //        vlr.v1:= addvert(startvert+index[0]); 
 //        vlr.v2:= addvert(startvert+index[1]); 
 //        vlr.v3:= addvert(startvert+index[2]); 
 //        vlr.v4:= 0; 
 //        VECCOPY(vlr.n,n); 
-//        
+
 //        vlr.mface:= 0; 
 //        vlr.mat:= matar[dl.col]; 
 //        vlr.puno:= 0; 
 //        vlr.flag:= 0; 
 //        vlr.ec:= 0; 
 //        vlr.lay:= ob.lay; 
-//        
+
 //      end;
 //    end;
-//    
+
 //    dl:= dl.next; 
 //  end;
-//  
+
 //  if lt<>0{nil} {<= !!!9} 
 //  then
 //  begin 
 //  end_latt_deform(); 
 //end;
-//
+
 //if need_orco<>0{nil} {<= !!!9} 
 //then
 //begin 
 //  (* de domme methode: snel vervangen; rekening houden met keys! *)
-//  
+
 //  VECCOPY(size,cu.size); 
 //  nr:= R.totvert-firststartvert; 
 //  if nr<>0{nil} {<= !!!9} 
@@ -2524,30 +2339,29 @@ uses
 //        ver:= addvert(firststartvert{++} inc(firststartvert); ); 
 //        ver.orco:= fp; 
 //        VECCOPY(fp,ver.co); 
-//        
+
 //        Mat4MulVecfl(ob.imat,fp); 
 //        fp[0]:= (fp[0]-cu.loc[0]) div size[0]; 
 //        fp[1]:= (fp[1]-cu.loc[1]) div size[1]; 
 //        fp[2]:= (fp[2]-cu.loc[2]) div size[2]; 
 //        fp:= fp + (3); 
-//        
+
 //      end;
 //    end;
 //  end;
 //end;
 //end;
-//
-//
+
 //procedure render_particle_system(ob: pObject;  paf: pPartEff); 
 //var
 //pa: pParticle;
-// 
+
 //har: pHaloRen;
-// 
+
 //ma: pMaterial;
-// 
+
 //mtex: pMTex;
-// 
+
 //xn: float; 
 //yn: float; 
 //zn: float; 
@@ -2562,25 +2376,13 @@ uses
 //nor: array [0..Pred(3)] of float; 
 //a: integer; 
 //mat_nr: integer;
-// 
+
 //begin
 //  pa:=0; 
 //  har:=0; 
 //  ma:=0; 
 //  mtex:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  mat_nr:=1; 
 //  pa:= paf.keys; 
 //  if pa=0
@@ -2597,15 +2399,15 @@ uses
 //  then
 //  ma:=  and defmaterial; 
 //  Mat4MulMat4(mat,ob.obmat,R.viewmat); 
-//  
+
 //  Mat4Invert(ob.imat,mat); 
 //  Mat4Invert(mat,R.viewmat); 
 //  (* hoort zo, voor imat texture *)
-//  
+
 //  Mat3CpyMat4(imat,mat); 
 //  (* particles hebben geen ob transform meer *)
 //  R.flag:= R.flag or (R_HALO); 
-//  
+
 //  if ob.ipoflag and OB_OFFS_PARTICLE
 //  then
 //  ptime:= ob.sf; 
@@ -2621,14 +2423,14 @@ uses
 //  pa:= pa + (paf.totkey); 
 //  do
 //  begin 
-//    
+
 //    if ctime>pa.time
 //    then
 //    begin 
 //      if ctime<pa.time+pa.lifetime
 //      then
 //      begin 
-//        
+
 //        (* let op: ook nog de normaal van de particle berekenen *)
 //        if paf.stype=PAF_VECT)or(ma.mode and MA_HALO_SHADE
 //        then
@@ -2643,7 +2445,7 @@ uses
 //          where_is_particle(paf,pa,ctime,vec); 
 //          Mat4MulVecfl(R.viewmat,vec); 
 //        end;
-//        
+
 //        if pa.mat_nr<>mat_nr
 //        then
 //        begin 
@@ -2653,7 +2455,7 @@ uses
 //          then
 //          ma:=  and defmaterial; 
 //        end;
-//        
+
 //        if ma.ipo<>0{nil} {<= !!!9} 
 //        then
 //        begin 
@@ -2663,7 +2465,7 @@ uses
 //          execute_ipo({!!!a type cast? =>} {pID(}ma,ma.ipo); 
 //        end;
 //        hasize:= ma.hasize; 
-//        
+
 //        if ma.mode and MA_HALOPUNO
 //        then
 //        begin 
@@ -2674,10 +2476,10 @@ uses
 //          nor[1]:= imat[1][0]*xn+imat[1][1]*yn+imat[1][2]*zn; 
 //          nor[2]:= imat[2][0]*xn+imat[2][1]*yn+imat[2][2]*zn; 
 //          Normalise(nor); 
-//          
+
 //          (* transpose ! *)
 //          VECCOPY(view,vec); 
-//          
+
 //          Normalise(view); 
 //          zn:= nor[0]*view[0]+nor[1]*view[1]+nor[2]*view[2]; 
 //          if zn>=0.0
@@ -2686,7 +2488,7 @@ uses
 //          else
 //          hasize:= hasize * (zn*zn*zn*zn); 
 //        end;
-//        
+
 //        if paf.stype=PAF_VECT
 //        then
 //        har:= inithalo(ma,vec,vec1,pa.co,hasize,paf.vectsize); 
@@ -2705,19 +2507,17 @@ uses
 //    inc(ma.ren.seed1); 
 //  end;
 //end;
-//
-//
-//
+
 //procedure render_static_particle_system(ob: pObject;  paf: pPartEff); 
 //var
 //pa: pParticle;
-// 
+
 //har: pHaloRen;
-// 
+
 //ma: pMaterial;
-// 
+
 //mtex: pMTex;
-// 
+
 //xn: float; 
 //yn: float; 
 //zn: float; 
@@ -2733,26 +2533,13 @@ uses
 //nor: array [0..Pred(3)] of float; 
 //a: integer; 
 //mat_nr: integer;
-// 
+
 //begin
 //  pa:=0; 
 //  har:=0; 
 //  ma:=0; 
 //  mtex:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  mat_nr:=1; 
 //  pa:= paf.keys; 
 //  if pa=0
@@ -2769,13 +2556,13 @@ uses
 //  then
 //  ma:=  and defmaterial; 
 //  Mat4MulMat4(mat,ob.obmat,R.viewmat); 
-//  
+
 //  Mat4Invert(ob.imat,mat); 
 //  Mat3CpyMat4(imat,ob.imat); 
 //  (* hoort zo, voor imat texture *)
-//  
+
 //  R.flag:= R.flag or (R_HALO); 
-//  
+
 //  if ob.ipoflag and OB_OFFS_PARTICLE
 //  then
 //  ptime:= ob.sf; 
@@ -2791,7 +2578,7 @@ uses
 //  pa:= pa + (paf.totkey); 
 //  do
 //  begin 
-//    
+
 //    where_is_particle(paf,pa,pa.time,vec1); 
 //    Mat4MulVecfl(mat,vec1); 
 //    mtime:= pa.time+pa.lifetime+paf.staticstep-1; 
@@ -2818,7 +2605,7 @@ uses
 //        where_is_particle(paf,pa,ctime,vec); 
 //        Mat4MulVecfl(mat,vec); 
 //      end;
-//      
+
 //      if pa.mat_nr<>mat_nr
 //      then
 //      begin 
@@ -2828,7 +2615,7 @@ uses
 //        then
 //        ma:=  and defmaterial; 
 //      end;
-//      
+
 //      if ma.ipo<>0{nil} {<= !!!9} 
 //      then
 //      begin 
@@ -2838,7 +2625,7 @@ uses
 //        execute_ipo({!!!a type cast? =>} {pID(}ma,ma.ipo); 
 //      end;
 //      hasize:= ma.hasize; 
-//      
+
 //      if ma.mode and MA_HALOPUNO
 //      then
 //      begin 
@@ -2849,10 +2636,10 @@ uses
 //        nor[1]:= imat[1][0]*xn+imat[1][1]*yn+imat[1][2]*zn; 
 //        nor[2]:= imat[2][0]*xn+imat[2][1]*yn+imat[2][2]*zn; 
 //        Normalise(nor); 
-//        
+
 //        (* transpose ! *)
 //        VECCOPY(view,vec); 
-//        
+
 //        Normalise(view); 
 //        zn:= nor[0]*view[0]+nor[1]*view[1]+nor[2]*view[2]; 
 //        if zn>=0.0
@@ -2861,7 +2648,7 @@ uses
 //        else
 //        hasize:= hasize * (zn*zn*zn*zn); 
 //      end;
-//      
+
 //      if paf.stype=PAF_VECT
 //      then
 //      har:= inithalo(ma,vec,vec1,pa.co,hasize,paf.vectsize); 
@@ -2880,10 +2667,7 @@ uses
 //    inc(ma.ren.seed1); 
 //  end;
 //end;
-//
-//
-//
-//
+
 //procedure make_render_halos(ob: pObject;  me: pMesh;  ma: pMaterial;  extverts: pfloat); 
 //var
 //har: pHaloRen; 
@@ -2906,24 +2690,7 @@ uses
 //a: integer; 
 //ok: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  Mat4MulMat4(mat,ob.obmat,R.viewmat); 
 //  Mat3CpyMat4(imat,ob.imat); 
 //  R.flag:= R.flag or (R_HALO); 
@@ -2932,15 +2699,13 @@ uses
 //  start:= 0; 
 //end:= me.totvert; 
 //set_buildvars(ob,@start, and end); 
-//
-//
-//
+
 //mvert:= mvert + (start); 
 //if extverts<>0{nil} {<= !!!9} 
 //then
 //extverts:= extverts + (3*start); 
 //ma.ren.seed1:= ma.seed1; 
-//
+
 //while{for} 
 //a:= start; 
 //{to} a<end
@@ -2965,7 +2730,7 @@ uses
 //      VECCOPY(vec,mvert.co); 
 //    end;
 //    Mat4MulVecfl(mat,vec); 
-//    
+
 //    if ma.mode and MA_HALOPUNO
 //    then
 //    begin 
@@ -2976,10 +2741,10 @@ uses
 //      nor[1]:= imat[1][0]*xn+imat[1][1]*yn+imat[1][2]*zn; 
 //      nor[2]:= imat[2][0]*xn+imat[2][1]*yn+imat[2][2]*zn; 
 //      Normalise(nor); 
-//      
+
 //      (* transpose ! *)
 //      VECCOPY(view,vec); 
-//      
+
 //      Normalise(view); 
 //      zn:= nor[0]*view[0]+nor[1]*view[1]+nor[2]*view[2]; 
 //      if zn>=0.0
@@ -2988,24 +2753,23 @@ uses
 //      else
 //      hasize:= hasize * (zn*zn*zn*zn); 
 //    end;
-//    
+
 //    if orco<>0{nil} {<= !!!9} 
 //    then
 //    har:= inithalo(ma,vec,0,orco,hasize,0); 
 //    else
 //    inithalo(ma,vec,0,mvert.co,hasize,0); 
 //  end;
-//  
+
 //  if orco<>0{nil} {<= !!!9} 
 //  then
 //  orco:= orco + (3); 
 //  inc(ma.ren.seed1); 
 //end;
 //end;
-//
+
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
-//
-//
+
 //function contrpuntnormr(n: pfloat;  puno: pfloat): integer; 
 //var
 //inp: float; 
@@ -3022,9 +2786,7 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
-//
+
 //procedure normalenrender(startvert: integer;  startvlak: integer); 
 //var
 //vlr: pVlakRen; 
@@ -3049,29 +2811,9 @@ uses
 //y: smallint; 
 //z: smallint; 
 //z1: psmallint;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  z1:=0; 
 //  if R.totvlak=0)or(R.totvert=0
 //  then
@@ -3079,7 +2821,7 @@ uses
 //  if startvert=R.totvert)or(startvlak=R.totvlak
 //  then
 //  exit;
-//  
+
 //  adrco:= {!!!a type cast? =>} {pfloat(}callocN(12+4*sizeof(float)*(R.totvlak-startvlak),'normalen1'); 
 //  tfl:= adrco; 
 //  (* berekenen cos hoeken en puntmassa's *)
@@ -3092,8 +2834,7 @@ uses
 //    adrve3:= vlr.v3; 
 //    adrve4:= vlr.v4; 
 //    VecSubf(n1,adrve2.co,adrve1.co); 
-//    
-//    
+
 //    Normalise(n1); 
 //    VecSubf(n2,adrve3.co,adrve2.co); 
 //    Normalise(n2); 
@@ -3106,7 +2847,7 @@ uses
 //      *(tfl{++} inc(tfl); ):=safacos(-n1[0]*n2[0]-n1[1]*n2[1]-n1[2]*n2[2]); 
 //      *(tfl{++} inc(tfl); ):=safacos(-n2[0]*n3[0]-n2[1]*n3[1]-n2[2]*n3[2]); 
 //    end;
-//    
+
 //    else
 //    begin 
 //      VecSubf(n3,adrve4.co,adrve3.co); 
@@ -3118,16 +2859,16 @@ uses
 //      *(tfl{++} inc(tfl); ):=safacos(-n2[0]*n3[0]-n2[1]*n3[1]-n2[2]*n3[2]); 
 //      *(tfl{++} inc(tfl); ):=safacos(-n3[0]*n4[0]-n3[1]*n4[1]-n3[2]*n4[2]); 
 //    end;
-//    
+
 //  end;
-//  
+
 //  (* alle puntnormalen leegmaken *)
 //  for{while} a:=startvert to Pred(R.totvert) { a++}
 //  do
 //  begin 
 //    ver:= addvert(a); 
 //    ver.n[0]:= ver.n[1]:=ver.n[2]:=0.0; 
-//    
+
 //  end;
 //  tfl:= adrco; 
 //  (* berekenen normalen en optellen bij puno's *)
@@ -3141,7 +2882,7 @@ uses
 //    adrve4:= vlr.v4; 
 //    temp:= adrve1.n; 
 //    fac:= *(tfl{++} inc(tfl); ); 
-//    
+
 //    if vlr.flag and R_NOPUNOFLIP
 //    then
 //    ; 
@@ -3173,7 +2914,7 @@ uses
 //    fac:= -fac; *(temp{++} inc(temp); )+=fac*vlr.n[0]; 
 //    *(temp{++} inc(temp); )+=fac*vlr.n[1]; 
 //    *(temp)+=fac*vlr.n[2]; 
-//    
+
 //    if adrve4<>0{nil} {<= !!!9} 
 //    then
 //    begin 
@@ -3190,16 +2931,16 @@ uses
 //      *(temp)+=fac*vlr.n[2]; 
 //    end;
 //  end;
-//  
+
 //  (* normaliseren puntnormalen *)
 //  for{while} a:=startvert to Pred(R.totvert) { a++}
 //  do
 //  begin 
 //    ver:= addvert(a); 
 //    Normalise(ver.n); 
-//    
+
 //  end;
-//  
+
 //  (* puntnormaal omklap-vlaggen voor bij shade *)
 //  for{while} a:=startvlak to Pred(R.totvlak) { a++}
 //  do
@@ -3236,18 +2977,18 @@ uses
 //    end;
 //  end;
 //  freeN(adrco); 
-//  
+
 //end;
-//
+
 //(* *********** Auto Smooth *********** *)
-//
+
 //type
 //ASvert = record
 //totface: integer; 
 //faces: ListBase; 
 //end;
 //ASvert = ASvert; 
-//
+
 //ASface = record
 //next: pASface; 
 //prev: pASface; 
@@ -3255,17 +2996,14 @@ uses
 //nver: array [0..Pred(4)] of pVertRen; 
 //end;
 //ASface = ASface; 
-//
-//
+
 //procedure as_addvert(v1: pVertRen;  vlr: pVlakRen); 
 //var
 //asv: pASvert; 
 //asf: pASface; 
 //a: integer; 
 //begin
-//  
-//  
-//  
+
 //  if v1=0{nil}
 //  then
 //  exit;
@@ -3300,32 +3038,27 @@ uses
 //    inc(asv.totface); 
 //  end;
 //end;
-//
-//
+
 //procedure as_freevert(ver: pVertRen); 
 //var
 //asv: pASvert; 
 //asf: pASface; 
 //a: integer; 
 //begin
-//  
-//  
+
 //  asv:= ver.svert; 
 //  freelistN( and asv.faces); 
 //  freeN(asv); 
 //  ver.svert:= 0{nil}; 
 //end;
-//
-//
+
 //function as_testvertex(vlr: pVlakRen;  ver: pVertRen;  asv: pASvert;  thresh: float): integer; 
 //var
 //asf: pASface; 
 //inp: float; 
 //a: integer; 
 //begin(* return 1: vertex needs a copy *)
-//  
-//  
-//  
+
 //  if vlr=0
 //  then
 //  begin
@@ -3358,17 +3091,14 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function as_findvertex(vlr: pVlakRen;  ver: pVertRen;  asv: pASvert;  thresh: float): pVertRen; 
 //var
 //asf: pASface; 
 //inp: float; 
 //a: integer; 
 //begin(* return when new vertex already was made *)
-//  
-//  
-//  
+
 //  asf:= asv.faces.first; 
 //  while asf
 //  do
@@ -3402,8 +3132,7 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure autosmooth(startvert: integer;  startvlak: integer;  degr: integer); 
 //var
 //asv: pASvert; 
@@ -3412,22 +3141,15 @@ uses
 //v1: pVertRen; 
 //vlr: pVlakRen; 
 //vertbase: ListBase;
-// 
+
 //thresh: float; 
 //a: integer; 
 //b: integer; 
 //totvert: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  vertbase:=(0,0); 
-//  
-//  
-//  
-//  
+
 //  thresh:= fcos(M_PI*({!!!a type cast? =>} {float(}degr) div 180.0); (* initialize *)
 //  for{while} a:=startvert to Pred(R.totvert) { a++}
 //  do
@@ -3504,11 +3226,9 @@ uses
 //    as_freevert(ver); 
 //  end;
 //end;
-//
-//
+
 //(* ************************************ *)
-//
-//
+
 //procedure make_orco_s_mesh(ob: pObject); 
 //var
 //me: pMesh; 
@@ -3520,13 +3240,7 @@ uses
 //tot: integer; 
 //begin
 //  {workob: Object; }{<= !!!5 external variable}
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  clear_workob(); 
 //  me:= ob.data; 
 //  workob.data:= me; 
@@ -3539,12 +3253,12 @@ uses
 //  lbo:= me.disp; 
 //  me.disp.first:= me.disp.last:=0; 
 //  makeDispList(@workob); 
-//  
+
 //  (* make the s-mesh *)
 //  do_ob_key(ob); 
 //  (* restore the original mesh *)
 //  freedisplist(@workob.disp); 
-//  
+
 //  lb:= me.disp; 
 //  me.disp:= lbo; 
 //  tot:= 0; 
@@ -3579,10 +3293,7 @@ uses
 //  end;
 //  freedisplist(@lb); 
 //end;
-//
-//
-//
-//
+
 //procedure init_render_s_mesh(ob: pObject); 
 //var
 //me: pMesh; 
@@ -3603,13 +3314,13 @@ uses
 //data: pfloat; 
 //nors: pfloat; 
 //orco: pfloat;
-// 
+
 //n1: array [0..Pred(3)] of float; 
 //flen: float; 
 //a: integer; 
 //b: integer; 
 //need_orco: integer;
-// 
+
 //startvlak: integer; 
 //startvert: integer; 
 //p1: integer; 
@@ -3617,41 +3328,18 @@ uses
 //p3: integer; 
 //p4: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  orco:=0; 
-//  
-//  
-//  
-//  
+
 //  need_orco:=0; 
-//  
-//  
-//  
-//  
-//  
+
 //  me:= ob.data; 
 //  Mat4MulMat4(mat,ob.obmat,R.viewmat); 
-//  
+
 //  Mat4Invert(ob.imat,mat); 
 //  Mat3CpyMat4(imat,ob.imat); 
 //  bzero(matar,4*32); 
-//  
+
 //  (* material array *)
 //  matar[0]:=  and defmaterial; 
 //  for{while} a:=0 to Pred(ob.totcol) { a++}
@@ -3681,7 +3369,7 @@ uses
 //    make_orco_s_mesh(ob); 
 //    orco:= me.orco; 
 //  end;
-//  
+
 //  while dl
 //  do
 //  begin 
@@ -3720,11 +3408,11 @@ uses
 //        nors:= nors + (3); 
 //      end;
 //      startvlak:= R.totvlak; 
-//      
+
 //      for{while} a:=0 to Pred(dl.parts) { a++}
 //      do
 //      begin 
-//        
+
 //        DL_SURFINDEX(dl.flag and 1,dl.flag and 2,dl.nr,dl.parts); 
 //        p1:= p1 + (startvert); 
 //        p2:= p2 + (startvert); 
@@ -3753,23 +3441,22 @@ uses
 //            vlr.ec:= ME_V1V2+ME_V2V3; 
 //            vlr.flag:= ME_SMOOTH; 
 //            vlr.puno:= 0; 
-//            
+
 //            (* vlr->flag |= R_NOPUNOFLIP; *)
 //          end;
 //          p4:= p3; 
 //          inc(p3); 
 //          p2:= p1; 
 //          inc(p1); 
-//          
+
 //        end;
 //      end;
 //    end;
-//    
+
 //    dl:= dl.next; 
 //  end;
 //end;
-//
-//
+
 //procedure init_render_mesh(ob: pObject); 
 //var
 //mface: pMFace; 
@@ -3791,7 +3478,7 @@ uses
 //imat: array [0..Pred(3),0..Pred(3)] of float; 
 //mat: array [0..Pred(4),0..Pred(4)] of float; 
 //extverts: pfloat;
-// 
+
 //orco: pfloat; 
 //v1: pfloat; 
 //v2: pfloat; 
@@ -3802,7 +3489,7 @@ uses
 //ok: integer; 
 //do_puno: integer; 
 //need_orco: integer;
-// 
+
 //totvlako: integer; 
 //totverto: integer; 
 //vertofs: integer; 
@@ -3810,45 +3497,15 @@ uses
 //end: integer; 
 //flipnorm: integer; 
 //warning: integer;
-// 
+
 //eff: pEffect;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  extverts:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  need_orco:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  warning:=0; 
 //  me:= ob.data; 
 //  if me.flag and ME_SMESH
@@ -3857,7 +3514,7 @@ uses
 //    init_render_s_mesh(ob); 
 //    exit;
 //  end;
-//  
+
 //  if paf:=give_parteff(ob)
 //  then
 //  begin 
@@ -3870,9 +3527,9 @@ uses
 //  end;
 //  do_puno:= object_deform(ob); 
 //  Mat4MulMat4(mat,ob.obmat,R.viewmat); 
-//  
+
 //  (* object_deform changes imat *)
-//  
+
 //  Mat4Invert(ob.imat,mat); 
 //  Mat3CpyMat4(imat,ob.imat); 
 //  if me.totvert=0
@@ -3885,7 +3542,7 @@ uses
 //  extverts:= dl.verts; 
 //  totvlako:= R.totvlak; 
 //  totverto:= R.totvert; 
-//  
+
 //  if me.key<>0{nil} {<= !!!9} 
 //  then
 //  do_puno:= 1; 
@@ -3902,7 +3559,7 @@ uses
 //      eff:= eff.next; 
 //    end;
 //  end;
-//  
+
 //  if me.orco=0
 //  then
 //  begin 
@@ -3935,7 +3592,7 @@ uses
 //  if ma=0
 //  then
 //  ma:=  and defmaterial; 
-//  
+
 //  if ma.mode and MA_HALO
 //  then
 //  begin 
@@ -3943,7 +3600,7 @@ uses
 //  end;
 //  else
 //  begin 
-//    
+
 //    while{for} 
 //    a:= 0; 
 //    {to} a<me.totvert
@@ -3952,7 +3609,7 @@ uses
 //    inc(mvert); 
 //    do
 //    begin 
-//      
+
 //      ver:= addvert(R.totvert{++} inc(R.totvert); ); 
 //      if extverts<>0{nil} {<= !!!9} 
 //      then
@@ -3992,9 +3649,9 @@ uses
 //    end;
 //    flipnorm:= -1; 
 //    vertofs:= R.totvert-me.totvert; (* nog doen bij keys: de juiste lokale textu coordinaat *)
-//    
+
 //    (* Testen of er een flip in de matrix zit: dan vlaknormaal ook flippen *)
-//    
+
 //    (* vlakken in volgorde colblocks *)
 //    while{for} 
 //    a1:= 0; 
@@ -4003,7 +3660,7 @@ uses
 //    inc(a1); 
 //    do
 //    begin 
-//      
+
 //      ma:= give_render_material(ob,a1+1); 
 //      if ma=0
 //      then
@@ -4026,11 +3683,11 @@ uses
 //          end;
 //        end;
 //      end;
-//      
+
 //      if ok<>0{nil} {<= !!!9} 
 //      then
 //      begin 
-//        
+
 //        start:= 0; 
 //      end:= me.totface; 
 //      set_buildvars(ob,@start, and end); 
@@ -4045,15 +3702,15 @@ uses
 //      inc(mface); 
 //      do
 //      begin 
-//        
+
 //        if mface.mat_nr=a1
 //        then
 //        begin 
-//          
+
 //          if mface.v3<>0{nil} {<= !!!9} 
 //          then
 //          begin 
-//            
+
 //            vlr:= addvlak(R.totvlak{++} inc(R.totvlak); ); 
 //            vlr.v1:= addvert(vertofs+mface.v1); 
 //            vlr.v2:= addvert(vertofs+mface.v2); 
@@ -4087,7 +3744,7 @@ uses
 //              if ob.infoflag and OB_INFO_HOTSPOT
 //              then
 //              begin 
-//                
+
 //                *((char* )@vlr.lay):=ob.infostart; 
 //                vlr.flag:= vlr.flag or (R_CMAPCODE); 
 //                if ob.infoend=0
@@ -4095,7 +3752,7 @@ uses
 //                vlr.flag:= vlr.flag or (R_VISIBLE); 
 //              end;
 //            end;
-//            
+
 //            if vlr.len=0
 //            then
 //            dec(R.totvlak); 
@@ -4105,7 +3762,7 @@ uses
 //              then
 //              begin 
 //                (* per object 1 x testen *)
-//                
+
 //                v1:= (me.mvert+mface.v1).co; 
 //                v2:= (me.mvert+mface.v2).co; 
 //                v3:= (me.mvert+mface.v3).co; 
@@ -4127,7 +3784,7 @@ uses
 //                vlr.n[1]:= -vlr.n[1]; 
 //                vlr.n[2]:= -vlr.n[2]; 
 //              end;
-//              
+
 //              if vertcol<>0{nil} {<= !!!9} 
 //              then
 //              vlr.vcol:= vertcol+4*a; 
@@ -4137,7 +3794,7 @@ uses
 //              if vlr.v4<>0{nil} {<= !!!9} 
 //              then
 //              begin 
-//                
+
 //                if ma.mode and MA_WIRE
 //                then
 //                ; 
@@ -4194,8 +3851,7 @@ uses
 //            vlr.flag:= mface.flag; 
 //            vlr.ec:= ME_V1V2; 
 //            vlr.lay:= ob.lay; 
-//            
-//            
+
 //          end;
 //        end;
 //      end;
@@ -4211,14 +3867,12 @@ uses
 //if do_puno<>0{nil} {<= !!!9} 
 //then
 //normalenrender(totverto,totvlako); 
-//
+
 //if warning<>0{nil} {<= !!!9} 
 //then
 //printf('WARNING: ob %s with vertcol, non-flat squares\n',ob.id.name+2); 
 //end;
-//
-//
-//
+
 //procedure init_render_mball(ob: pObject); 
 //var
 //mb: pMetaBall; 
@@ -4248,39 +3902,15 @@ uses
 //startvert: integer; 
 //index: pinteger; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  Mat4MulMat4(mat,ob.obmat,R.viewmat); 
 //  Mat4Invert(ob.imat,mat); 
 //  Mat3CpyMat4(imat,ob.imat); 
-//  
+
 //  if has_id_number({!!!a type cast? =>} {pID(}ob)
 //  then
 //  exit;
-//  
+
 //  ma:= give_render_material(ob,1); 
 //  if ma=0
 //  then
@@ -4296,12 +3926,12 @@ uses
 //  then
 //  remlink(@ob.disp,dlo); 
 //  makeDispList(ob); 
-//  
+
 //  dl:= ob.disp.first; 
 //  if dl=0
 //  then
 //  exit;
-//  
+
 //  startvert:= R.totvert; 
 //  data:= dl.verts; 
 //  nors:= dl.nors; 
@@ -4314,7 +3944,7 @@ uses
 //  nors:= nors + (3); 
 //  do
 //  begin 
-//    
+
 //    ver:= addvert(R.totvert{++} inc(R.totvert); ); 
 //    VECCOPY(ver.co,data); 
 //    Mat4MulVecfl(mat,ver.co); 
@@ -4325,11 +3955,11 @@ uses
 //    ver.n[1]:= imat[1][0]*xn+imat[1][1]*yn+imat[1][2]*zn; 
 //    ver.n[2]:= imat[2][0]*xn+imat[2][1]*yn+imat[2][2]*zn; 
 //    Normalise(ver.n); 
-//    
+
 //    (* rendernormalen zijn omgekeerd *)
-//    
+
 //    (* transpose ! *)
-//    
+
 //    if need_orco<>0{nil} {<= !!!9} 
 //    then
 //    ver.orco:= data; 
@@ -4344,7 +3974,7 @@ uses
 //  index:= index + (4); 
 //  do
 //  begin 
-//    
+
 //    vlr:= addvlak(R.totvlak{++} inc(R.totvlak); ); 
 //    vlr.v1:= addvert(startvert+index[0]); 
 //    vlr.v2:= addvert(startvert+index[1]); 
@@ -4358,8 +3988,7 @@ uses
 //    vlr.ec:= 0; 
 //    vlr.lay:= ob.lay; 
 //    (* rendernormalen zijn omgekeerd *)
-//    
-//    
+
 //    (* mball -helaas- altijd driehoeken maken omdat vierhoeken erg onregelmatig zijn *)
 //    if index[3]<>0{nil} {<= !!!9} 
 //    then
@@ -4370,7 +3999,7 @@ uses
 //      vlr.len:= CalcNormFloat(vlr1.v3.co,vlr1.v2.co,vlr1.v1.co,vlr1.n); 
 //    end;
 //  end;
-//  
+
 //  if need_orco<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -4380,7 +4009,7 @@ uses
 //    then
 //    addhead(@ob.disp,dlo); 
 //  end;
-//  
+
 //  else
 //  begin 
 //    freedisplist(@ob.disp); 
@@ -4389,12 +4018,12 @@ uses
 //    addtail(@ob.disp,dlo); 
 //  end;
 //end;
-//
+
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
 //(* ook homoco's *)
-//
+
 //procedure setzbufvlaggen(
-//
+
 //procedure projectfunc{!!!3 unknown typedef}; 
 //); 
 //var
@@ -4412,18 +4041,7 @@ uses
 //a: integer; 
 //doit: integer; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  si:= fsin(panophi); 
 //  co:= fcos(panophi); 
 //  for{while} a:=0 to Pred(R.totvert) {a++}
@@ -4447,9 +4065,9 @@ uses
 //    end;
 //    projectfunc(vec,ver.ho); 
 //    ver.clip:= testclip(ver.ho); 
-//    
+
 //  end;
-//  
+
 //  for{while} a:=0 to Pred(R.tothalo) { a++}
 //  do
 //  begin 
@@ -4470,9 +4088,9 @@ uses
 //      VECCOPY(vec,har.co); 
 //    end;
 //    projectfunc(vec,hoco); 
-//    
+
 //    hoco[3]:= hoco[3] * (2.0); 
-//    
+
 //    if panotestclip(hoco)
 //    then
 //    begin 
@@ -4487,7 +4105,7 @@ uses
 //      har.zs:= $7FFFFF*(1.0+hoco[2] div zn); 
 //      vec[0]:= vec[0] + (har.hasize); 
 //      projectfunc(vec,hoco); 
-//      
+
 //      vec[0]:= vec[0] - (har.hasize); 
 //      zn:= hoco[3]; 
 //      har.rad:= fabs(har.xs-0.5*R.rectx*(1.0+hoco[0] div zn)); 
@@ -4504,25 +4122,22 @@ uses
 //      har.maxy:= har.ys+har.rad div R.ycor; 
 //      vec[2]:= vec[2] - (har.hasize); 
 //      projectfunc(vec,hoco); 
-//      
-//      
-//      
+
 //      (* de Zd is bij pano nog steeds verkeerd: zie testfile in blenderbugs/halo+pano.blend *)
-//      
+
 //      (* z is negatief, wordt anders geclipt *)
 //      zn:= hoco[3]; 
 //      zn:= fabs(har.zs-$7FFFFF*(1.0+hoco[2] div zn)); 
 //      har.zd:= CLAMPIS(zn,0,INT_MAX); 
-//      
+
 //      (* if( har->zs < 2*har->zd) { *)
 //      (* PRINT2(d, d, har->zs, har->zd); *)
 //      (* har->alfa= har->mat->alpha * ((float)(har->zs))/(float)(2*har->zd); *)
 //      (* } *)
-//      
+
 //    end;
 //  end;
-//  
-//  
+
 //  (* vlaggen op 0 zetten als eruit geclipt *)
 //  for{while} a:=0 to Pred(R.totvlak) { a++}
 //  do
@@ -4552,7 +4167,7 @@ uses
 //      if vlr.v1.clip and vlr.v2.clip and vlr.v3.clip
 //      then
 //      vlr.flag:= vlr.flag and ( not R_VISIBLE); 
-//      
+
 //    end;
 //  end;
 //end;
@@ -4568,9 +4183,7 @@ uses
 //     qs= qs->next;
 // }
 // *)
-//
-//
-//
+
 //function verghalo(x1: phalosort;  x2: phalosort): integer; 
 //begin
 //  if x1.z<x2.z
@@ -4591,23 +4204,22 @@ uses
 //    exit;
 //  end;
 //end;
-//
-//
+
 //type
 //halosort = record
 //end;
-//
+
 //procedure sort_halos; 
 //var
 //har: pHaloRen; 
 //a: integer; 
 //begin
-//  
+
 //  HaloRen{!!!e unknown token}{*}bloha^; 
 //  if R.tothalo=0
 //  then
 //  exit;
-//  
+
 //  (* datablok maken met halopointers, sorteren *)
 //  haso:= hablock:=mallocN(sizeof(structhalosort)*R.tothalo,'hablock'); 
 //  for{while} a:=0 to Pred(R.tothalo) { a++}
@@ -4623,19 +4235,18 @@ uses
 //    inc(haso); 
 //  end;
 //  qsort(hablock,R.tothalo,sizeof(structhalosort),{!!!a type cast? =>} {pinteger(}verghalo); 
-//  
+
 //  bloha:= R.bloha; 
 //  R.bloha:= (HaloRen** )callocN(sizeof(void* )*(MAXVERT shr 8),'Bloha'); 
 //  haso:= hablock; 
 //  (* opnieuw samenstellen van R.bloha *)
-//  
-//  
+
 //  for{while} a:=0 to Pred(R.tothalo) { a++}
 //  do
 //  begin 
 //    har:= addhalo(a); {*}har^:=*(haso.har); 
 //    inc(haso); 
-//    
+
 //  end;
 //  a:= 0; 
 //  (* vrijgeven *)
@@ -4648,42 +4259,36 @@ uses
 //  freeN(bloha); 
 //  freeN(hablock); 
 //end;
-//
-//
+
 //var {was static}
 //alpha: float;
-// 
+
 //(* part==0 alles initialiseren *)
-//
-//
+
 //procedure setpanorot(part: integer); 
 //begin
 //  {panovco: float; }{<= !!!5 external variable}
 //  {panovsi: float; }{<= !!!5 external variable}
 //  alpha:=1.0; 
 //  (* part==0 alles initialiseren *)
-//  
+
 //  if part=0
 //  then
 //  begin 
-//    
+
 //    alpha:= ({!!!a type cast? =>} {float(}R.r.xsch) div R.viewfac; 
 //    alpha:= 2.0*fatan(alpha div 2.0); 
 //  end;
 //  panophi:= -0.5*(R.r.xparts-1)*alpha+part*alpha; 
 //  panovsi:= fsin(-panophi); 
 //  panovco:= fcos(-panophi); 
-//  
-//  
+
 //  (* we roteren alles om de y-as met phi graden *)
-//  
-//  
-//  
+
 //end;
-//
+
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
-//
-//
+
 //procedure make_existing_file(name: pchar); 
 //var
 //di: array [0..Pred(FILE_MAXDIR)] of char; 
@@ -4691,12 +4296,10 @@ uses
 //i: integer; 
 //len: integer; 
 //begin
-//  
-//  
-//  
+
 //  strcpy(di,name); 
 //  splitdirstring(di,fi); 
-//  
+
 //  (* exist testen *)
 //  if exist(di)=0
 //  then
@@ -4704,29 +4307,28 @@ uses
 //    recurdir(di); 
 //  end;
 //end;
-//
+
 //type
 //ImBuf = record
 //end;
-//
+
 //procedure schrijfplaatje(name: pchar); 
 //var
 //temprect: puint;
-// 
+
 //i: integer; 
 //flags: integer; 
 //str: array [0..Pred(FILE_MAXDIR+FILE_MAXFILE)] of char; 
 //(* Staat RGBA aan? Zo ja: gebruik alphakanaal voor kleur 0 *)
 //begin
 //  {rgb_to_bw: array [0..] of float; }{<= !!!5 external variable}
-//  
+
 //  function alpha_to_col0{!!!3 unknown typedef}: integer; 
-//  
+
 //  temprect:=0; 
-//  
-//  
+
 //  alpha_to_col0(LongBool(0)); 
-//  
+
 //  if R.r.planes=32
 //  then
 //  begin 
@@ -4738,8 +4340,7 @@ uses
 //    (* uitsluitend met 0 alpha -> col 0 *)
 //    alpha_to_col0(1); 
 //  end;
-//  
-//  
+
 //  function ELEM{!!!3 unknown typedef}: if; 
 //  begin
 //    strcpy(str,R.r.ftype); 
@@ -4759,13 +4360,13 @@ uses
 //    end;
 //    setdither(2); 
 //  end
-//  
+
 //  if ibuf=0
 //  then
 //  begin 
 //    ibuf:= allocImBuf(R.rectx,R.recty,R.r.planes,0,0); 
 //  end;
-//  
+
 //  if ibuf<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -4773,7 +4374,7 @@ uses
 //    if R.r.planes=8
 //    then
 //    cspace(ibuf,rgb_to_bw); 
-//    
+
 //    if R.r.imtype=R_IRIS
 //    then
 //    begin 
@@ -4854,9 +4455,7 @@ uses
 //      G.afbreek:= 1; 
 //    end;
 //    freeImBuf(ibuf); 
-//    
-//    
-//    
+
 //    function ELEM{!!!3 unknown typedef}: if; 
 //    begin
 //      freeN(R.rectot); 
@@ -4868,15 +4467,14 @@ uses
 //    G.afbreek:= 1; 
 //  end;
 //end;
-//
-//
+
 //procedure write_image(name: pchar); 
 //var
 //str: array [0..Pred(256)] of char; 
 //begin(* vanuit filesel *)
 //  strcpy(str,name); 
 //  convertstringcode(str); 
-//  
+
 //  if saveover(str)
 //  then
 //  begin 
@@ -4892,17 +4490,17 @@ uses
 //    waitcursor(0); 
 //  end;
 //end;
-//
+
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
-//
+
 //(* #pragma optimize("", off) *)
-//
+
 //procedure setwindowclip(mode: integer;  jmode: integer); 
 //var
 //cam: pCamera;
-// 
+
 //la: pLamp;
-// 
+
 //lens: float; 
 //fac: float; 
 //minx: float; 
@@ -4918,31 +4516,23 @@ uses
 //  {holoofs: float; }{<= !!!5 external variable}(* render.c *)
 //  cam:=0; 
 //  la:=0; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if G.scene.camera=0
 //  then
 //  exit;
-//  
+
 //  afmx:= R.afmx; 
 //  afmy:= R.afmy; 
 //  if mode<>0{nil} {<= !!!9} 
 //  then
 //  begin 
-//    
+
 //    if G.scene.camera.type=OB_LAMP
 //    then
 //    begin 
 //      la:= G.scene.camera.data; 
 //      lens:= 35.0; (* fac= fcos( PI*((float)(256- la->spsi))/512.0 ); *)
-//      
+
 //      (* phi= facos(fac); *)
 //      (* lens= 16.0*fac/fsin(phi); *)
 //      R{!!!e unknown token}.:=0.1; 
@@ -4961,7 +4551,7 @@ uses
 //    begin 
 //      lens:= 16.0; 
 //    end;
-//    
+
 //    if (R.r.xasp*afmx)>=(R.r.yasp*afmy)
 //    then
 //    begin 
@@ -4979,14 +4569,13 @@ uses
 //      (* R. niet doen *)
 //    end;
 //    R.pixsize:= R. div R.viewfac; 
-//    
-//    
+
 //  end;
 //  minx:= R.xstart+.5; 
 //  miny:= R.ycor*(R.ystart+.5); 
 //  maxx:= R.xend+.4999; 
 //  maxy:= R.ycor*(R.yend+.4999); 
-//  
+
 //  if R.flag and R_SEC_FIELD
 //  then
 //  begin 
@@ -5008,9 +4597,9 @@ uses
 //  begin 
 //    xd:= jit[jmode mod R.osa][0]; 
 //    yd:= R.ycor*jit[jmode mod R.osa][1]; 
-//    
+
 //  end;
-//  
+
 //  if G.special1 and G_HOLO
 //  then
 //  begin 
@@ -5030,7 +4619,7 @@ uses
 //        holoofs:= -fac; 
 //        minx:= minx - (fac); 
 //        maxx:= maxx - (fac); 
-//        
+
 //      end;
 //    end;
 //  end;
@@ -5038,23 +4627,22 @@ uses
 //  maxx:= R.pixsize*(maxx+xd); 
 //  miny:= R.pixsize*(miny+yd); 
 //  maxy:= R.pixsize*(maxy+yd); 
-//  
+
 //  if R.r.mode and R_ORTHO
 //  then
 //  begin 
 //    (* hier de  &  vermenigvuldigen is voldoende! *)
-//    
+
 //    i_window(minx,maxx,miny,maxy,R.,100.0*R.,R.winmat); 
 //  end;
 //  else
 //  i_window(minx,maxx,miny,maxy,R.,R.,R.winmat); 
 //end;
-//
+
 //(* #pragma optimize("", on) *)
-//
-//
+
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
-//
+
 //procedure initparts; 
 //var
 //nr: smallint; 
@@ -5070,17 +4658,7 @@ uses
 //yminb: smallint; 
 //ymaxb: smallint; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if R.r.mode and R_BORDER
 //  then
 //  begin 
@@ -5088,7 +4666,7 @@ uses
 //    xmaxb:= R.r.border.xmax*R.rectx; 
 //    yminb:= R.r.border.ymin*R.recty; 
 //    ymaxb:= R.r.border.ymax*R.recty; 
-//    
+
 //    if xminb<0
 //    then
 //    xminb:= 0; 
@@ -5111,14 +4689,13 @@ uses
 //  xparts:= R.r.xparts; 
 //  yparts:= R.r.yparts; 
 //  (* voor border *)
-//  
+
 //  for{while} nr:=0 to Pred(xparts*yparts) {nr++}
 //  do
 //  allparts[nr][0]:= -1; 
 //  xpart:= R.rectx div xparts; 
 //  ypart:= R.recty div yparts; (* array leegmaken *)
-//  
-//  
+
 //  (* als border: testen of aantal parts minder kan *)
 //  if R.r.mode and R_BORDER
 //  then
@@ -5133,13 +4710,13 @@ uses
 //    yparts:= a; 
 //    xpart:= (xmaxb-xminb) div xparts; 
 //    ypart:= (ymaxb-yminb) div yparts; 
-//    
+
 //  end;
-//  
+
 //  for{while} nr:=0 to Pred(xparts*yparts) { nr++}
 //  do
 //  begin 
-//    
+
 //    if R.r.mode and R_PANORAMA
 //    then
 //    begin 
@@ -5173,10 +4750,10 @@ uses
 //    end;
 //  end;
 //end;
-//
+
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
 //(* return 0 als geen goede part *)
-//
+
 //function setpart(nr: smallint): smallint; 
 //var
 //xd: smallint; 
@@ -5184,15 +4761,13 @@ uses
 //xpart: smallint; 
 //ypart: smallint; 
 //begin
-//  
-//  
-//  
+
 //  if allparts[nr][0]=-1
 //  then
 //  begin
 //    result:= 0; 
 //    exit;
-//    
+
 //  end;
 //  R.xstart:= allparts[nr][0]-R.afmx; 
 //  R.ystart:= allparts[nr][1]-R.afmy; 
@@ -5205,9 +4780,9 @@ uses
 //    exit;
 //  end;
 //end;
-//
+
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
-//
+
 //procedure addparttorect(nr: smallint;  part: pPart); 
 //var
 //rt: puint; 
@@ -5216,12 +4791,9 @@ uses
 //heigth: smallint; 
 //len: smallint; 
 //(* de juiste offset in rectot *)
-//
+
 //begin
-//  
-//  
-//  
-//  
+
 //  rt:= R.rectot+(allparts[nr][1]*R.rectx+allparts[nr][0]); 
 //  rp:= part.rect; 
 //  len:= (allparts[nr][2]-allparts[nr][0]); 
@@ -5234,10 +4806,9 @@ uses
 //    rp:= rp + (len); 
 //  end;
 //end;
-//
-//
+
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
-//
+
 //procedure freeroteerscene; 
 //var
 //base: pBase; 
@@ -5254,20 +4825,9 @@ uses
 //v: integer; 
 //ctile: pchar; 
 //(* VRIJGEVEN *)
-//
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  for{while} a:=0 to Pred(R.totlamp) { a++}
 //  do
 //  begin 
@@ -5334,8 +4894,7 @@ uses
 //  while ob
 //  do
 //  begin 
-//    
-//    
+
 //    function ELEM3{!!!3 unknown typedef}: if; 
 //    begin
 //      cu:= ob.data; 
@@ -5374,21 +4933,19 @@ uses
 //    ob:= ob.id.next; 
 //  end;
 //end_render_textures(); 
-//
+
 //end_render_materials(); 
 //R.totvlak:= R.totvert:=R.totlamp:=R.tothalo:=0; 
-//
+
 //end;
-//
-//
+
 //{hash: array [0..Pred(512)] of char; }{<= !!!5 external variable}
 //(* - er moet een 'vast' aantal sterren gegenereerd worden tussen  en .
 // * - alle sterren moeten bij voorkeur op de  liggen en uitsluitend in
 // *   helderheid / kleur verschillen.
 // * - 
 // *)
-//
-//
+
 //procedure make_stars(wire: integer); 
 //var
 //har: pHaloRen; 
@@ -5415,44 +4972,23 @@ uses
 //ez: integer; 
 //maxjit: integer; 
 //done: integer;
-// 
+
 //seed: array [0..Pred(3)] of ushort; 
 //camera: pCamera; 
 //first: integer;
-// 
+
 //tx: float; 
 //ty: float; 
 //tz: float; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  float{!!!e unknown token},
 //  ,
 //  force{!!!e unknown token},
 //  alpha{!!!e unknown token}; 
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  done:=0; 
-//  
-//  
+
 //  first:=LongBool(1); 
 //  if wire<>0{nil} {<= !!!9} 
 //  then
@@ -5466,17 +5002,15 @@ uses
 //  (* om de hoeveel een ster ? *)
 //  (* hoeveel mag een ster verschuiven (uitgedrukt in grid eenheden) *)
 //  (* hoeveel mag een kleur veranderen *)
-//  
-//  
-//  
+
 //  (* afmeting sterren *)
-//  
+
 //  (* minimale vrije ruimte *)
-//  
+
 //  if stargrid<=0.10
 //  then
 //  exit;
-//  
+
 //  if wire=0
 //  then
 //  R.flag:= R.flag or (R_HALO); 
@@ -5484,8 +5018,7 @@ uses
 //  stargrid:= stargrid * (1.0); 
 //  Mat4Invert(mat,R.viewmat); 
 //  (* tekent er minder *)
-//  
-//  
+
 //  camera:= G.scene.camera.data; 
 //  clipend:= camera.clipend; 
 //  sx:= ((mat[3][0]-clipend) div stargrid)-maxrand; 
@@ -5501,13 +5034,9 @@ uses
 //    * x = -z | +z,
 //    * y = -z | +z
 //    *)
-//  
-//  
+
 //  (* omzetten naar grid coordinaten *)
-//  
-//  
-//  
-//  
+
 //  if wire<>0{nil} {<= !!!9} 
 //  then
 //  begin 
@@ -5519,7 +5048,7 @@ uses
 //    glBegin(GL_POINTS); 
 //    {$endif}
 //  end;
-//  
+
 //  while{for} 
 //  x:= sx; 
 //  fx:= sx*stargrid; 
@@ -5547,7 +5076,7 @@ uses
 //      fz:= fz + (stargrid); 
 //      do
 //      begin 
-//        
+
 //        srand48((hash[z and $ff] shl 24)+(hash[y and $ff] shl 16)+(hash[x and $ff] shl 8)); 
 //        vec[0]:= fx+(hlfrand*drand48())-dblrand; 
 //        vec[1]:= fy+(hlfrand*drand48())-dblrand; 
@@ -5566,19 +5095,17 @@ uses
 //        begin 
 //          Mat4MulVecfl(R.viewmat,vec); 
 //          begin 
-//            
+
 //            (* in vec staan globale coordinaten
 //                  * bereken afstand tot de kamera
 //                  * en bepaal aan de hand daarvan de alpha
 //                  *)
-//            
-//            
-//            
+
 //            tx:= vec[0]; 
 //            ty:= vec[1]; 
 //            tz:= vec[2]; 
 //            alpha:= fsqrt(tx*tx+ty*ty+tz*tz); 
-//            
+
 //            if alpha>=clipend
 //            then
 //            alpha:= 0.0; 
@@ -5599,14 +5126,13 @@ uses
 //              alpha:= 1.0-alpha; 
 //            end;
 //          end;
-//          
-//          
+
 //          if alpha<>0.0
 //          then
 //          begin 
 //            fac:= force*drand48(); 
 //            har:= initstar(vec,fac); 
-//            
+
 //            if har<>0{nil} {<= !!!9} 
 //            then
 //            begin 
@@ -5623,7 +5149,7 @@ uses
 //              har.hard:= 32; 
 //              har.type:= har.type or (HA_ONLYSKY); 
 //              inc(done); 
-//              
+
 //            end;
 //          end;
 //        end;
@@ -5638,11 +5164,11 @@ uses
 //      then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
-//    
+
 //    if done>MAXVERT
 //    then
 //    break; {<= !!!b possible in "switch" - then remove this line}
-//    
+
 //    if test_break()
 //    then
 //    break; {<= !!!b possible in "switch" - then remove this line}
@@ -5657,8 +5183,7 @@ uses
 //glEnd(); 
 //{$endif}
 //end;
-//
-//
+
 //procedure init_render_object(ob: pObject); 
 //var
 //mat: array [0..Pred(4),0..Pred(4)] of float; 
@@ -5688,8 +5213,7 @@ uses
 //    Mat4Invert(ob.imat,mat); 
 //  end;
 //end;
-//
-//
+
 //procedure holoview; 
 //var
 //cam: pCamera; 
@@ -5698,14 +5222,11 @@ uses
 //fy: float; 
 //fz: float; 
 //begin
-//  
-//  
-//  
-//  
+
 //  if G.scene=0)or(G.scene.camera=0
 //  then
 //  exit;
-//  
+
 //  if G.scene.camera.type=OB_CAMERA
 //  then
 //  begin 
@@ -5718,13 +5239,11 @@ uses
 //      dist:= cam.hololen*fsqrt(fy*fy+fz*fz); 
 //      fac:= (CFRA-SFRA) div ({!!!a type cast? =>} {float(}(EFRA-SFRA)); 
 //      G.scene.camera.loc[0]:= -dist+2*fac*dist; 
-//      
-//      
+
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure set_normalflags; 
 //var
 //vlr: pVlakRen; 
@@ -5734,11 +5253,7 @@ uses
 //zn: float; 
 //a1: integer; (* KLAP NORMAAL EN SNIJ PROJECTIE *)
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  for{while} a1:=0 to Pred(R.totvlak) { a1++}
 //  do
 //  begin 
@@ -5757,7 +5272,7 @@ uses
 //    end;
 //    else
 //    begin 
-//      
+
 //      vec[0]:= vlr.v1.co[0]; 
 //      vec[1]:= vlr.v1.co[1]; 
 //      vec[2]:= vlr.v1.co[2]; 
@@ -5782,11 +5297,10 @@ uses
 //    vlr.snproj:= 1; 
 //    else
 //    vlr.snproj:= 2; 
-//    
+
 //  end;
 //end;
-//
-//
+
 //procedure roteerscene; 
 //var
 //base: pBase; 
@@ -5805,30 +5319,17 @@ uses
 //cu: pCurve; 
 //begin
 //  {slurph_opt: integer; }{<= !!!5 external variable}(* key.c *)
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if G.scene.camera=0
 //  then
 //  exit;
-//  
+
 //  O.dxwin[0]:= 0.5 div {!!!a type cast? =>} {float(}R.r.xsch; 
 //  O.dywin[1]:= 0.5 div {!!!a type cast? =>} {float(}R.r.ysch; 
 //  slurph_opt:= 0; 
 //  R.totvlak:= R.totvert:=R.totlamp:=R.tothalo:=0; 
 //  do_all_ipos(); 
-//  
-//  
-//  
+
 //  do_all_scripts(SCRIPT_FRAMECHANGED); 
 //  do_all_keys(); 
 //  do_all_ikas(); 
@@ -5841,12 +5342,12 @@ uses
 //    ob.ctime:= -123.456; 
 //    ob:= ob.id.next; 
 //  end;
-//  
+
 //  (* cameranetwerk? *)
 //  if R.r.scemode and R_NETWORK
 //  then
 //  render_frame_to_camera(); 
-//  
+
 //  if G.special1 and G_HOLO
 //  then
 //  holoview(); 
@@ -5863,18 +5364,18 @@ uses
 //    base:= base.next; 
 //  end;
 //  Mat4CpyMat4(R.viewinv,G.scene.camera.obmat); 
-//  
+
 //  Mat4Ortho(R.viewinv); 
 //  Mat4Invert(R.viewmat,R.viewinv); 
-//  
+
 //  (* is niet netjes: nu is de viewinv ongelijk aan de viewmat. voor Texco's enzo. Beter doen! *)
 //  if R.r.mode and R_ORTHO
 //  then
 //  R.viewmat[3][2]:= R.viewmat[3][2] * (100.0); 
 //  setwindowclip(1,-1); 
-//  
+
 //  ob:= G.main.object.first; (*  geen jit:(-1) *)
-//  
+
 //  (* imatflags wissen *)
 //  while ob
 //  do
@@ -5883,13 +5384,13 @@ uses
 //    ob:= ob.id.next; 
 //  end;
 //  init_render_world(); 
-//  
+
 //  init_render_textures(); 
 //  (* moet eerst ivm ambient *)
 //  init_render_materials(); 
 //  ob:= G.main.object.first; 
 //  (* MAAK RENDERDATA *)
-//  
+
 //  (* elk object maar 1 x renderen *)
 //  while ob
 //  do
@@ -5898,7 +5399,7 @@ uses
 //    ob:= ob.id.next; 
 //  end;
 //  lay:= G.scene.lay; 
-//  
+
 //  (* layers: in foreground current 3D window renderen *)
 //  if G.vd<>0{nil} {<= !!!9} 
 //  then
@@ -5914,15 +5415,15 @@ uses
 //    ; 
 //    else
 //    begin 
-//      
+
 //      where_is_object(ob); 
-//      
+
 //      if (base.lay and lay))or((ob.type=OB_LAMP)and((base.lay and G.scene.lay))
 //      then
 //      begin 
-//        
+
 //        (* if(ob->infoflag and (R.flag & R_ANIMRENDER)) info_file(ob); *)
-//        
+
 //        if ob.transflag and OB_DUPLI
 //        then
 //        begin 
@@ -5941,12 +5442,12 @@ uses
 //            then
 //            begin 
 //              (* exception, in background render it doesnt make the displist *)
-//              
+
 //              function ELEM{!!!3 unknown typedef}: if; 
 //              var
 //              cu: pCurve; 
 //              begin
-//                
+
 //                cu:= obd.data; 
 //                if cu.disp.first=0
 //                then
@@ -5972,19 +5473,19 @@ uses
 //        else
 //        init_render_object(ob); 
 //      end;
-//      
+
 //      else
 //      begin 
 //        Mat4MulMat4(mat,ob.obmat,R.viewmat); 
 //        Mat4Invert(ob.imat,mat); 
 //      end;
 //      ob.flag:= ob.flag and ( not OB_DO_IMAT); 
-//      
+
 //    end;
 //    if test_break()
 //    then
 //    break; {<= !!!b possible in "switch" - then remove this line}
-//    
+
 //    if base.next=0)and(G.scene.set)and(base=G.scene.base.last
 //    then
 //    begin 
@@ -5993,7 +5494,7 @@ uses
 //    end;
 //    else
 //    base:= base.next; 
-//    
+
 //  end;
 //  info_file(0); 
 //  (* infofile sluiten *)
@@ -6005,30 +5506,29 @@ uses
 //    if ob.flag and OB_DO_IMAT
 //    then
 //    begin 
-//      
+
 //      ob.flag:= ob.flag and ( not OB_DO_IMAT); 
 //      Mat4MulMat4(mat,ob.obmat,R.viewmat); 
-//      
+
 //      Mat4Invert(ob.imat,mat); 
 //    end;
 //    ob:= ob.id.next; 
 //  end;
 //  sort_halos(); 
-//  
-//  
+
 //  if R.wrld.mode and WO_STARS
 //  then
 //  make_stars(0); 
 //  slurph_opt:= 1; 
-//  
+
 //  if test_break()
 //  then
 //  exit;
-//  
+
 //  (* if(R.totlamp==0) defaultlamp(); *)
 //  set_normalflags(); 
 //end;
-//
+
 //(* cmapcode handleiding:
 // * 
 // * 
@@ -6037,9 +5537,7 @@ uses
 // * - ob->infosta == hotspot nr
 // * - ob->infoend == don't render
 // *)
-//
-//
-//
+
 //procedure add_cmapcode; 
 //var
 //ibuf: pImBuf; 
@@ -6048,41 +5546,35 @@ uses
 //rt: puint; 
 //name: array [0..Pred(256)] of char; 
 //begin
-//  
-//  
-//  
-//  
+
 //  temprect:= R.rectot; 
 //  if temprect=0
 //  then
 //  exit;
-//  
+
 //  len:= R.rectx*R.recty; 
 //  R.rectot:= callocN(sizeof(int)*len,'rectcmap'); 
 //  zbufferall_cmapcode(); 
-//  
+
 //  rt:= R.rectot; 
 //  ibuf:= allocImBuf(R.rectx,R.recty,8,0,0); 
 //  ibuf.rect:= R.rectot; 
 //  sprintf(name,'%scode%04d',G.scene.r.pic,CFRA); 
-//  
+
 //  (* kleurnummers als cmap wegschrijven *)
-//  
-//  
-//  
+
 //  saveiff(ibuf,name,IB_rect); 
-//  
+
 //  printf('Saved: %s\n',name); 
 //  freeImBuf(ibuf); 
-//  
+
 //  freeN(R.rectot); 
 //  R.rectot:= temprect; 
 //end;
-//
+
 //var {was static}
 //blurrect: puint;
-// 
-//
+
 //procedure add_to_blurbuf(blur: integer); 
 //var
 //tot: integer; 
@@ -6093,11 +5585,7 @@ uses
 //rtb: pchar; 
 //begin
 //  blurrect:=0; 
-//  
-//  
-//  
-//  
-//  
+
 //  if blur<0
 //  then
 //  begin 
@@ -6126,7 +5614,7 @@ uses
 //  then
 //  begin 
 //    (* accumuleren *)
-//    
+
 //    facr:= 256 div (R.osa-blur); 
 //    facb:= 256-facr; 
 //    if R.rectot<>0{nil} {<= !!!9} 
@@ -6141,7 +5629,7 @@ uses
 //        if *({!!!a type cast? =>} {puint(}rtb)<>*({!!!a type cast? =>} {puint(}rtr)
 //        then
 //        begin 
-//          
+
 //          if R.r.mode and R_GAMMA
 //          then
 //          begin 
@@ -6178,11 +5666,10 @@ uses
 //    end;
 //  end;
 //end;
-//
-//
+
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
 //(* hierbinnen de PART en FIELD lussen *)
-//
+
 //procedure render; 
 //var
 //part: pPart; 
@@ -6202,26 +5689,13 @@ uses
 //parts: smallint; (* pa is globaal ivm print *)
 //(* ZR ADDED THIS *)
 //border_buf: puint;
-// 
+
 //border_x: uint;
-// 
+
 //border_y: uint;
-// 
+
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  border_buf:=0{nil}; 
 //  border_x:=0{nil}; 
 //  border_y:=0{nil}; 
@@ -6234,8 +5708,7 @@ uses
 //    R.rectot:= 0; 
 //  end;
 //  (* END BAD ZR *)
-//  
-//  
+
 //  if R.rectz<>0{nil} {<= !!!9} 
 //  then
 //  freeN(R.rectz); 
@@ -6243,7 +5716,7 @@ uses
 //  fields:= 1; 
 //  parts:= R.r.xparts*R.r.yparts; 
 //  (* FIELDLUS *)
-//  
+
 //  if R.r.mode and R_FIELDS
 //  then
 //  begin 
@@ -6254,13 +5727,13 @@ uses
 //    R.r.yasp:= R.r.yasp * (2); 
 //    R.ycor:= ({!!!a type cast? =>} {float(}R.r.yasp) div ({!!!a type cast? =>} {float(}R.r.xasp); 
 //    (* fieldrecten *)
-//    
+
 //  end;
-//  
+
 //  for{while} fi:=0 to Pred(fields) { fi++}
 //  do
 //  begin 
-//    
+
 //    (* INIT *)
 //    srand48(2*CFRA+fi); 
 //    R.vlaknr:= -1; 
@@ -6277,7 +5750,7 @@ uses
 //    while blur{--} dec(blur); 
 //    do
 //    begin 
-//      
+
 //      (* WINDOW *)
 //      R.rectx:= R.r.xsch; 
 //      R.recty:= R.r.ysch; 
@@ -6289,15 +5762,15 @@ uses
 //      then
 //      set_mblur_offs(R.osa-blur); 
 //      initparts(); 
-//      
+
 //      setpart(0); 
 //      (* altijd doen ivm border *)
 //      init_render_display(); 
 //      clear_render_display(); 
 //      set_timecursor(CFRA); 
-//      
+
 //      (* ROTEERSCENE *)
-//      
+
 //      if R.rectot<>0{nil} {<= !!!9} 
 //      then
 //      freeN(R.rectot); 
@@ -6307,8 +5780,7 @@ uses
 //      freeN(R.rectz); 
 //      R.rectz:= 0; 
 //      roteerscene(); 
-//      
-//      
+
 //      (* SCHADUWBUFFER *)
 //      for{while} a:=0 to Pred(R.totlamp) { a++}
 //      do
@@ -6321,17 +5793,17 @@ uses
 //        makeshadowbuf(R.la[a]); 
 //      end;
 //      make_envmaps(); 
-//      
+
 //      (* ENVIRONMENT MAPS *)
 //      R.parts.first:= R.parts.last:=0; (* PARTS *)
 //      for{while} pa:=0 to Pred(parts) { pa++}
 //      do
 //      begin 
-//        
+
 //        if test_break()
 //        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
-//        
+
 //        if pa<>0{nil} {<= !!!9} 
 //        then
 //        begin 
@@ -6340,23 +5812,23 @@ uses
 //          then
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
-//        
+
 //        if R.r.mode and R_MBLUR
 //        then
 //        setwindowclip(0,blur); 
 //        else
 //        setwindowclip(0,-1); 
-//        
+
 //        if R.r.mode and R_PANORAMA
 //        then
 //        setpanorot(pa); 
 //        setzbufvlaggen(projectverto); 
-//        
+
 //        (* HOMOGENE COORDINATEN EN ZBUF EN CLIP OPT (per part) *)
 //        if test_break()
 //        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
-//        
+
 //        (* ZBUFFER & SHADE *)
 //        R.rectot:= {!!!a type cast? =>} {puint(}callocN(sizeof(int)*R.rectx*R.recty,'rectot'); 
 //        R.rectz:= {!!!a type cast? =>} {puint(}mallocN(sizeof(int)*R.rectx*R.recty,'rectz'); 
@@ -6365,7 +5837,7 @@ uses
 //        printrenderinfo(R.osa-blur); 
 //        else
 //        printrenderinfo(-1); 
-//        
+
 //        if R.r.mode and R_OSA
 //        then
 //        zbufshadeDA(); 
@@ -6374,7 +5846,7 @@ uses
 //        if test_break()
 //        then
 //        break; {<= !!!b possible in "switch" - then remove this line}
-//        
+
 //        (* uitzondering *)
 //        if (R.r.mode and R_BORDER))and((R.r.mode and R_MOVIECROP)
 //        then
@@ -6385,20 +5857,20 @@ uses
 //          if parts>1)or((R.r.mode and R_BORDER)
 //          then
 //          begin 
-//            
+
 //            part:= callocN(sizeof(Part),'part'); 
 //            addtail(@R.parts,part); 
 //            part.rect:= R.rectot; 
 //            R.rectot:= 0; 
 //            freeN(R.rectz); 
-//            
+
 //            R.rectz:= 0; 
 //          end;
 //        end;
 //      end;
-//      
+
 //      (* PARTS SAMENVOEGEN OF BORDER INVOEGEN *)
-//      
+
 //      (* uitzondering: crop *)
 //      if (R.r.mode and R_BORDER))and((R.r.mode and R_MOVIECROP)
 //      then
@@ -6440,7 +5912,7 @@ uses
 //            if part=0
 //            then
 //            break; {<= !!!b possible in "switch" - then remove this line}
-//            
+
 //            if R.r.mode and R_PANORAMA
 //            then
 //            begin 
@@ -6453,7 +5925,7 @@ uses
 //            end;
 //            addparttorect(pa,part); 
 //            part:= part.next; 
-//            
+
 //          end;
 //          part:= R.parts.first; 
 //          while part
@@ -6465,36 +5937,36 @@ uses
 //          freelistN(@R.parts); 
 //        end;
 //      end;
-//      
+
 //      if R.flag and R_HALO
 //      then
 //      begin 
 //        add_halo_flare(); 
 //      end;
-//      
+
 //      if R.r.scemode and R_HOTSPOT
 //      then
 //      begin 
 //        add_cmapcode(); 
 //      end;
-//      
+
 //      if R.r.mode and R_MBLUR
 //      then
 //      begin 
 //        add_to_blurbuf(blur); 
 //      end;
 //      freeroteerscene(); 
-//      
+
 //      (* EINDE (blurlus) *)
-//      
+
 //      if test_break()
 //      then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //    add_to_blurbuf(-1); 
-//    
+
 //    (* definitief vrijgeven *)
-//    
+
 //    (* FIELD AFHANDELEN *)
 //    if R.r.mode and R_FIELDS
 //    then
@@ -6506,12 +5978,12 @@ uses
 //      R.rectf1:= R.rectot; 
 //      R.rectot:= 0; 
 //    end;
-//    
+
 //    if test_break()
 //    then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //  end;
-//  
+
 //  (* FIELDS SAMENVOEGEN *)
 //  if R.r.mode and R_FIELDS
 //  then
@@ -6524,7 +5996,7 @@ uses
 //    then
 //    freeN(R.rectot); 
 //    R.rectot:= {!!!a type cast? =>} {puint(}mallocN(sizeof(int)*R.rectx*R.recty,'rectot'); (* komt voor bij afbreek *)
-//    
+
 //    if test_break()=0
 //    then
 //    begin 
@@ -6541,7 +6013,7 @@ uses
 //        rt2:= R.rectf2; 
 //      end;
 //      len:= 4*R.rectx; 
-//      
+
 //      while{for} 
 //      a:= 0; 
 //      {to} a<R.recty
@@ -6558,11 +6030,11 @@ uses
 //      end;
 //    end;
 //  end;
-//  
+
 //  (* R.rectx= R.r.xsch; *)
 //  (* if(R.r.mode & R_PANORAMA) R.rectx*= R.r.xparts; *)
 //  (* R.recty= R.r.ysch; *)
-//  
+
 //  (* als border: wel de skybuf doen *)
 //  if R.r.mode and R_BORDER
 //  then
@@ -6588,14 +6060,13 @@ uses
 //    end;
 //  end;
 //  set_mblur_offs(0); 
-//  
-//  
+
 //  (* VRIJGEVEN *)
-//  
+
 //  (* zbuf test *)
-//  
+
 //  (* don't free R.rectz, only when its size is not the same as R.rectot *)
-//  
+
 //  if R.rectz)and(parts=1)and((R.r.mode and R_FIELDS)=0
 //  then
 //  ; 
@@ -6606,7 +6077,7 @@ uses
 //    freeN(R.rectz); 
 //    R.rectz:= 0; 
 //  end;
-//  
+
 //  if R.rectf1<>0{nil} {<= !!!9} 
 //  then
 //  freeN(R.rectf1); 
@@ -6616,12 +6087,11 @@ uses
 //  freeN(R.rectf2); 
 //  R.rectf2:= 0; 
 //end;
-//
-//
+
 //(* ~~~~~~~~~~~~~~~~ timer ~~~~~~~~~~~~~~~~~~~~~~ *)
-//
+
 //{$if not defined(BEOS) and not defined(WINDOWS)}
-//
+
 //type
 //rusage = record
 //end;
@@ -6629,39 +6099,36 @@ uses
 //end;
 //timezone = record
 //end;
-//
-//
+
 //procedure start_timer; 
 //begin
 //  getrusage(RUSAGE_SELF,@rus1); 
 //  gettimeofday(@tval1,@rt); 
 //end;
-//
+
 //type
 //timezone = record
 //end;
-//
+
 //procedure end_timer(real: pinteger;  cpu: pinteger); 
 //var
 //rt1: integer; 
 //rt2: integer; 
 //begin(* in hondersten van seconde *)
-//  
-//  
+
 //  getrusage(RUSAGE_SELF,@rus2); 
 //  gettimeofday(@tval2,@rt); 
 //  rt1:= 100*rus1.ru_utime.tv_sec+rus1.ru_utime.tv_usec div 10000; 
 //  rt1:= rt1 + (100*rus1.ru_stime.tv_sec+rus1.ru_stime.tv_usec div 10000); 
 //  rt2:= 100*rus2.ru_utime.tv_sec+rus2.ru_utime.tv_usec div 10000; 
 //  rt2:= rt2 + (100*rus2.ru_stime.tv_sec+rus2.ru_stime.tv_usec div 10000); 
-//  
-//  
+
 //  if cpu<>0{nil} {<= !!!9} 
 //  then
 //  {*}cpu^:=rt2-rt1; 
 //  rt1:= 100*tval1.tv_sec+tval1.tv_usec div 10000; 
 //  rt2:= 100*tval2.tv_sec+tval2.tv_usec div 10000; 
-//  
+
 //  if real<>0{nil} {<= !!!9} 
 //  then
 //  {*}real^:=rt2-rt1; 
@@ -6673,26 +6140,25 @@ uses
 //  end;
 //  {$endif}
 //end;
-//
+
 //{$else}
-//
+
 //{$ifdef WINDOWS}
 //var {was static}
 //old_time: integer; 
 //type
 //tms = record
 //end;
-//
-//
+
 //procedure start_timer; 
 //begin
 //  old_time:= times(@voidbuf); 
 //end;
-//
+
 //type
 //tms = record
 //end;
-//
+
 //procedure end_timer(real: pinteger;  cpu: pinteger); 
 //begin
 //  {*}real^:=(times(@voidbuf)-old_time) div 10; 
@@ -6704,14 +6170,12 @@ uses
 //(* BeOS *)
 //var {was static}
 //old_time: integer; 
-//
-//
+
 //procedure start_timer; 
 //begin
 //  old_time:= glut_system_time(); 
 //end;
-//
-//
+
 //procedure end_timer(real: pinteger;  cpu: pinteger); 
 //begin{*}real^:=(glut_system_time()-old_time) div 10000; 
 //  if cpu<>0{nil} {<= !!!9} 
@@ -6720,26 +6184,24 @@ uses
 //end;
 //{$endif}
 //{$endif}
-//
+
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
-//
-//
-//
+
 //procedure initrender; 
 //var
 //bima: pImage; 
 //name: array [0..Pred(256)] of char; (* scenedata naar R *)
 //cam: pCamera;
-// 
+
 //begin
-//  
+
 //  {usegamtab: ushort; }{<= !!!5 external variable}
 //  R.r:= G.scene.r; 
 //  R.rectx:= R.r.xsch; 
 //  R.recty:= R.r.ysch; (* voor zekerheid: bij voortijdige return *)
-//  
+
 //  (* MAG ER WEL WORDEN GERENDERD *)
-//  
+
 //  (* verboden combinatie *)
 //  if (R.r.mode and R_BORDER))and((R.r.mode and R_PANORAMA)
 //  then
@@ -6748,7 +6210,7 @@ uses
 //    G.afbreek:= 1; 
 //    exit;
 //  end;
-//  
+
 //  if R.r.xparts*R.r.yparts>64
 //  then
 //  begin 
@@ -6756,7 +6218,7 @@ uses
 //    G.afbreek:= 1; 
 //    exit;
 //  end;
-//  
+
 //  if R.r.yparts>1)and((R.r.mode and R_PANORAMA)
 //  then
 //  begin 
@@ -6764,7 +6226,7 @@ uses
 //    G.afbreek:= 1; 
 //    exit;
 //  end;
-//  
+
 //  (* BACKBUF TESTEN *)
 //  if (R.r.bufflag and 1))and((G.scene.r.scemode and R_OGL)=0
 //  then
@@ -6774,7 +6236,7 @@ uses
 //    begin 
 //      strcpy(name,R.r.backbuf); 
 //      convertstringcode(name); 
-//      
+
 //      if R.backbuf<>0{nil} {<= !!!9} 
 //      then
 //      begin 
@@ -6784,7 +6246,7 @@ uses
 //      else
 //      bima:= 0; 
 //      R.backbuf:= add_image(name); 
-//      
+
 //      if bima)and(bima.id.us<1
 //      then
 //      begin 
@@ -6801,7 +6263,7 @@ uses
 //  end;
 //  usegamtab:= 0; 
 //  (* zie hieronder *)
-//  
+
 //  if R.r.mode and (R_OSA or R_MBLUR)
 //  then
 //  begin 
@@ -6810,9 +6272,9 @@ uses
 //    then
 //    R.osa:= 16; 
 //    init_render_jit(R.osa); 
-//    
+
 //    init_filt_mask(); 
-//    
+
 //    (* wordt af en toe tijdelijk op nul gezet, o.a. in transp zbuf *)
 //    if R.r.mode and R_GAMMA
 //    then
@@ -6829,13 +6291,12 @@ uses
 //  R.afmx:= R.r.xsch div 2; 
 //  R.afmy:= R.r.ysch div 2; 
 //  (* WINDOW *)
-//  
-//  
+
 //  (* when rendered without camera object *)
 //  (* it has to done here because of envmaps *)
 //  R{!!!e unknown token}.:=0.1; 
 //  R{!!!e unknown token}.:=1000.0; 
-//  
+
 //  if R.afmx<1)or(R.afmy<1
 //  then
 //  begin 
@@ -6844,8 +6305,7 @@ uses
 //  end;
 //  R.ycor:= ({!!!a type cast? =>} {float(}R.r.yasp) div ({!!!a type cast? =>} {float(}R.r.xasp); 
 //  start_timer(); 
-//  
-//  
+
 //  if R.r.scemode and R_DOSEQ
 //  then
 //  begin 
@@ -6858,7 +6318,7 @@ uses
 //    if test_break()=0
 //    then
 //    do_render_seq(); 
-//    
+
 //    (* displayen *)
 //    if R.rectot<>0{nil} {<= !!!9} 
 //    then
@@ -6875,7 +6335,7 @@ uses
 //    freeN(R.rectot); 
 //    R.rectot:= {!!!a type cast? =>} {puint(}callocN(sizeof(int)*R.rectx*R.recty,'rectot'); 
 //    init_render_display(); 
-//    
+
 //    printrenderinfo(-1); 
 //    (* without this, it doesn't display well at SGI. GLUT! *)
 //    if R.win<>0{nil} {<= !!!9} 
@@ -6888,7 +6348,7 @@ uses
 //  end;
 //  else
 //  begin 
-//    
+
 //    if G.scene.camera=0
 //    then
 //    G.scene.camera:= find_camera(); 
@@ -6899,7 +6359,7 @@ uses
 //    end;
 //    else
 //    begin 
-//      
+
 //      if G.scene.camera.type=OB_CAMERA
 //      then
 //      begin 
@@ -6909,7 +6369,7 @@ uses
 //        R.r.mode:= R.r.mode or (R_ORTHO); 
 //      end;
 //      render(); 
-//      
+
 //    end;
 //    (* keert terug met complete rect xsch-ysch *)
 //  end;
@@ -6923,7 +6383,7 @@ uses
 //  else
 //  close_render_display(); 
 //end_timer(@G.time,@G.cputime); 
-//
+
 //(* TIJD berekenen *)
 //printrenderinfo(-1); 
 //R.osatex:= 0; 
@@ -6932,14 +6392,13 @@ uses
 //(* variabelen weer goed *)
 //(* bij cubemap *)
 //end;
-//
-//
+
 //procedure exit_render_stuff; 
 //begin
 //  if G.afbreek=1
 //  then
 //  exit;
-//  
+
 //  (* in de gaten houden: backgroundrender !!! *)
 //  if G.background<>0{nil} {<= !!!9} 
 //  then
@@ -6948,30 +6407,27 @@ uses
 //    then
 //    init_render_camera_network(); 
 //  end;
-//  
+
 //  if G.scene.r.imtype=R_MDEC
 //  then
 //  make_mdec_movies(); 
 //end;
-//
-//
-//
-//
+
 //procedure animrender; 
 //var
 //cfrao: integer; 
 //name: array [0..Pred(256)] of char; 
 //begin
-//  
+
 //  if G.scene=0
 //  then
 //  exit;
-//  
+
 //  (* scenedata naar R: (voor backbuf, R.rectx enz) *)
 //  R.r:= G.scene.r; 
 //  cfrao:= CFRA; 
 //  (* START ANIMLUS overal wordt NIET de cfra uit R.r gebruikt: ivm rest blender *)
-//  
+
 //  if G.scene.r.scemode and R_OGL
 //  then
 //  R.r.mode:= R.r.mode and ( not R_PANORAMA); 
@@ -6991,7 +6447,7 @@ uses
 //    {$endif}
 //  end;
 //  else
-//  
+
 //  function ELEM3{!!!3 unknown typedef}: if; 
 //  begin
 //    R.rectx:= (R.r.size*R.r.xsch) div 100; 
@@ -7004,23 +6460,22 @@ uses
 //    end;
 //    start_avi(); 
 //  end
-//  
-//  
+
 //  (* in de gaten houden: backgroundrender !!! *)
 //  (* if(R.r.scemode & R_NETWORK) init_render_camera_network(); *)
-//  
+
 //  for{while} CFRA:=SFRA to EFRA { CFRA++}
 //  do
 //  begin 
-//    
+
 //    R.flag:= R_ANIMRENDER; 
 //    initrender(); 
-//    
+
 //    (* SCHRIJF PLAATJE *)
 //    if test_break()=0
 //    then
 //    begin 
-//      
+
 //      if R.r.imtype=R_MOVIE
 //      then
 //      {$ifdef __sgi}
@@ -7043,19 +6498,19 @@ uses
 //        printf('Saved: %s',name); 
 //      end;
 //      timestr(G.cputime,name); 
-//      
+
 //      printf(' Time: %s (%.2f)\n',name,({!!!a type cast? =>} {float(}(G.time-G.cputime)) div 100); 
 //      fflush(stdout); 
 //    end;
 //    (* nodig voor renderd !! *)
-//    
+
 //    if G.afbreek=1
 //    then
 //    break; {<= !!!b possible in "switch" - then remove this line}
-//    
+
 //  end;
 //  CFRA:= cfrao; 
-//  
+
 //  (* restoren tijd *)
 //  if R.r.mode and (R_FIELDS or R_MBLUR)
 //  then
@@ -7064,7 +6519,7 @@ uses
 //    do_all_keys(); 
 //    do_all_ikas(); 
 //  end;
-//  
+
 //  if R.r.imtype=R_MOVIE
 //  then
 //  {$ifdef __sgi}
@@ -7073,7 +6528,7 @@ uses
 //  {$endif}
 //end;
 //else
-//
+
 //function ELEM3{!!!3 unknown typedef}: if; 
 //begin
 //end_avi(); 
@@ -7082,9 +6537,8 @@ uses
 //then
 //exit_render_stuff(); 
 //end;(* voor end_camera_net *)
-//
+
 //(* if(R.r.scemode & R_NETWORK) end_render_camera_network(); *)
-//
 
 (* *************************************************** *)
 (* ******************* Screendumps ******************** *)
@@ -7095,7 +6549,6 @@ dumpsx: integer;
 dumpsy: integer;
 dumptype: integer;
 
-
 procedure write_screendump(name: pchar);
 //var
 //ibuf: pImBuf;
@@ -7104,7 +6557,7 @@ begin
   begin
     //strcpy(G.ima,name);
     //convertstringcode(name);
-    //
+
     //if saveover(name) then
     //begin
     //  waitcursor(1);
@@ -7132,7 +6585,7 @@ begin
     //  else
     //  ibuf.ftype:= TGA;
     //  saveiff(ibuf,name,IB_rect);
-    //
+
     //  freeImBuf(ibuf);
     //  waitcursor(0);
     //end;
@@ -7140,7 +6593,6 @@ begin
     //dumprect:= nil;
   end;
 end;
-
 
 procedure screendump;
 var
@@ -7198,6 +6650,5 @@ begin
     activate_fileselect(FILE_SPECIAL,imstr,G.ima,@write_screendump);
   end;
 end;
-
 
 end.

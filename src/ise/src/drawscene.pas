@@ -67,9 +67,9 @@ begin
   //  end;
   //  sc:= sc^.id.next;
   //end;
-  //
+
   //copy_view3d_lock(0);  (* space.c *)
-  //
+
   //(* zijn er camera's in de views die niet in de scene zitten? *)
   //sc:= G.main.screen.first;
   //while sc <>nil  do
@@ -109,8 +109,6 @@ begin
   allqueue(REDRAWDATASELECT,0); (* doet remake *)
 end;
 
-
-
 (* ********************************************************* *)
 
 //bdata: array [0..Pred(129)] of char; 
@@ -120,13 +118,12 @@ end;
 //{hash: array [0..] of char; }{<= !!!5 external variable}
 //ihash: array [0..Pred(512)] of char; 
 //warnc: array [0..Pred(55)] of char = (147,70,30,200,118,32,126,68,13,198,249,28,134,116,122,199,53,178,167,64,43,168,212,59,29,239,46,204,69,55,125,180,9,255,133,106,81,205,101,141,111,176,155,246,242,163,86,38,197,95,51,196,31,159,20); 
-//
-//
+
 //procedure hashdecode(len: integer;  strout: pchar;  strin: pchar;  key1: char;  key2: char;  key3: char;  key4: char); 
 //var
 //a: integer; 
 //begin
-//  
+
 //  a:= len; 
 //  while a{--} dec(a); 
 //  do
@@ -145,33 +142,30 @@ end;
 //    strout[a]:= strout[a]-key1+key2-key3+key4-hash[a]; 
 //  end;
 //end;
-//
-//
-//
+
 //function MGS(x: integer): integer; {<= !!!6 unknown macro}
-//
-//
+
 //procedure mark3(str2: pchar); 
 //begin
 //  (* int val;
 //   char *a, *b;
-//   
+
 //   a= (str2+20);
 //   b= (str2+62);
-//   
+
 //   val = MGS(a+1) * MGS(b+4) - MGS(a+4) * MGS(b+2);
 //  *)
 //end;
-//
+
 //(* checksum *)
-//
+
 //function mark5(str2: pchar): integer; 
 //var
 //a: smallint; 
 //test: smallint;
-// 
+
 //begin
-//  
+
 //  test:=0; 
 //  for{while} a:=0 to Pred(126) { a++}
 //  do
@@ -181,8 +175,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function testc: integer; 
 //begin
 //  if ((ihash[cdata[2]]-cdata[27]) and 255)=106
@@ -196,8 +189,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function errorc: integer; 
 //begin
 //  if testc()
@@ -212,13 +204,12 @@ end;
 //    exit;
 //  end;
 //end;
-//
-//
+
 //procedure init_fp; 
 //var
 //a: integer; 
 //begin
-//  
+
 //  cfunc[0]:= testc; 
 //  cfunc[1]:= errorc; 
 //  for{while} a:=2 to Pred(64) { a++}
@@ -227,30 +218,27 @@ end;
 //    cfunc[a]:= errorc; 
 //  end;
 //end;
-//
-//
+
 //procedure decode_256(strout: pchar;  strin: pchar); 
 //var
 //a: integer; 
 //inval: integer; 
 //begin
-//  
-//  
+
 //  for{while} a:=0 to Pred(128) { a++}
 //  do
 //  begin 
 //    strout[a]:= (strin[ihash[2*a]]-'a')+16*(strin[ihash[2*a+1]]-'a'); 
 //  end;
 //end;
-//
-//
+
 //procedure remove_enters(name: pchar;  len: integer); 
 //var
 //a: integer; 
 //b: integer;
-// 
+
 //begin
-//  
+
 //  b:=0; 
 //  for{while} a:=0 to Pred(len) { a++}
 //  do
@@ -265,8 +253,7 @@ end;
 //    end;
 //  end;
 //end;
-//
-//
+
 //procedure read_key; 
 //var
 //a: integer; 
@@ -276,18 +263,13 @@ end;
 //name: array [0..Pred(320)] of char; 
 //temp: array [0..Pred(320)] of char; 
 //begin
-//  
+
 //  procedure add_radio; 
-//  
+
 //  procedure draw_prop_circle; 
-//  
+
 //  procedure scriptbuts; 
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  init_fp(); 
 //  bzero(bdata,128); 
 //  bzero(cdata,128); 
@@ -378,8 +360,7 @@ end;
 //    hashdecode(55,warnc,warnc,12,96,86,5); 
 //  end;
 //end;
-//
-//
+
 //{MGS(x) (((uchar * )(x))[0] << 8 | ((uchar * )(x))[1])}
 //function MGS(x: integer): integer; 
 //begin

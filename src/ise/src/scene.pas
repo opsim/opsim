@@ -106,7 +106,6 @@ begin
   exit(sce);
 end;
 
-
 //function copy_scene(sce: pScene;  level: integer): pScene; 
 //var
 //scen: pScene; 
@@ -121,18 +120,18 @@ end;
 //la: pLamp; 
 //a: integer;
 //begin
-//
+
 //  (* level 0: alle objects shared
 //   * level 1: alle objectdata shared
 //   * level 2: volledige kopie
 //   *)
-//
+
 //  (* level 0 *)
 //  scen:= copy_libblock(sce); 
 //  duplicatelist(@(scen.base),@(sce^.base));
-//
+
 //  clear_id_newpoins();
-//
+
 //  id_us_plus(pID(scen.world));
 //  id_us_plus(pID(scen.set));
 //  scen.ed:= 0; 
@@ -159,7 +158,7 @@ end;
 //  G.scene:= scen; 
 //  single_object_users(0); 
 //  ID_NEW(G.scene.camera); 
-//  
+
 //  (*  camera *)
 //  (* level 2 *)
 //  if level>=2
@@ -176,22 +175,20 @@ end;
 //    single_tex_users_expand(); 
 //  end;
 //  clear_id_newpoins(); 
-//  
+
 //  copy_scriptlink(@sce^.scriptlink); 
-//  
-//  
+
 //  begin
 //    result:= scen; 
 //    exit;
 //  end;
 //end;
-//
-//
+
 //function object_in_scene(ob: pObject;  sce: pScene): integer; 
 //var
 //base: pBase; 
 //begin
-//  
+
 //  base:= sce^.base.first; 
 //  while base
 //  do
@@ -209,7 +206,6 @@ end;
 //    exit;
 //  end;
 //end;
-
 
 procedure sort_baselist(sce: pScene);
 var
@@ -290,8 +286,6 @@ begin
   end;
 end;
 
-
-
 procedure set_scene_bg(sce: pScene);
 var
 base: pBase;
@@ -326,14 +320,12 @@ begin
   //do_all_ikas();
 end;
 
-
 //procedure set_scene_name(name: pchar); 
 //var
 //sce: pScene; 
 //str: array [0..Pred(128)] of char; 
 //begin
-//  
-//  
+
 //  sce:= G.main.scene.first; 
 //  while sce
 //  do
@@ -349,22 +341,21 @@ end;
 //  sprintf(str,'Can''t find scene: %s',name); 
 //  error(str); 
 //end;
-//
+
 //(* used by metaballs
 // * doesnt return the original duplicated object, only dupli's
 // *)
 //var {was static}
 //dupob: pObject; 
 //fase: integer; 
-//
+
 //function next_object(val: integer;  {!!!3 unknown typedef}): integer; 
 //var
 //run_again: integer;
 // (* init *)
 //begin
 //  {duplilist: ListBase; }{<= !!!5 external variable}
-//  
-//  
+
 //  run_again:=1; (* init *)
 //  if val=0
 // then
@@ -466,6 +457,5 @@ end;
 //    exit;
 //  end;
 //end;
-
 
 end.

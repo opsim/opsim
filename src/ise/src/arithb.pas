@@ -107,15 +107,14 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //SMALL_NUMBER = 1.e-8; 
 //{$ifdef WINDOWS}
 ////{$include <stdlib.h>}
-//
+
 //implementation
-//
-//
+
 //procedure srand48(s: uint); 
 //begin
 //  srand(s); 
 //end;
-//
+
 //function drand48: single; 
 //begin
 //  begin
@@ -124,7 +123,7 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  end;
 //end;
 //{$endif}
-//
+
 //function safacos(fac: single): single; 
 //begin
 //  if fac<=-1.0 then
@@ -144,7 +143,7 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //    exit;
 //  end;
 //end;
-//
+
 //function safsqrt(fac: single): single; 
 //begin
 //  if fac<=0.0 then
@@ -157,12 +156,12 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //    exit;
 //  end;
 //end;
-//
+
 //function Normalise(n: pfloat): single; 
 //var
 //d: single; 
 //begin
-//  
+
 //  d:= n[0]*n[0]+n[1]*n[1]+n[2]*n[2]; (* FLT_EPSILON is too large! A larger value causes normalise errors in a scaled down utah teapot *)
 //  if d>0.$1 then
 //  begin 
@@ -181,14 +180,14 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //    exit;
 //  end;
 //end;
-//
+
 //procedure Crossf(c: pfloat;  a: pfloat;  b: pfloat); 
 //begin
 //  c[0]:= a[1]*b[2]-a[2]*b[1]; 
 //  c[1]:= a[2]*b[0]-a[0]*b[2]; 
 //  c[2]:= a[0]*b[1]-a[1]*b[0]; 
 //end;
-//
+
 //function Inpf(v1: pfloat;  v2: pfloat): single; 
 //begin
 //  begin
@@ -362,11 +361,11 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  det: single; 
 //  mat1: array [0..2,0..2] of single;
 //  mat2: array [0..2,0..2] of single;
-//  
+
 //  procedure Mat3Inv; 
-//  
+
 //  procedure Mat3CpyMat4; 
-//  
+
 //  procedure Mat4CpyMat3; 
 //  Mat3CpyMat4(mat2,m2); 
 //  Mat3Inv(mat1,mat2); 
@@ -503,7 +502,7 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  i: integer; 
 //  j: integer; 
 //  det: single; 
-//  
+
 //  function det4x4: single; 
 //  (* calculate the adjoint matrix *)
 //  Mat4Adj(out,in); 
@@ -527,7 +526,7 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  a: smallint; 
 //  b: smallint; 
 //  det: single; 
-//  
+
 //  procedure Mat3Adj; 
 //  (* eerst adjoint *)
 //  Mat3Adj(m1,m2); 
@@ -982,22 +981,22 @@ end;
 //  vec[1]:= x*mat[1][0]+y*mat[1][1]+mat[1][2]*vec[2]; 
 //  vec[2]:= x*mat[2][0]+y*mat[2][1]+mat[2][2]*vec[2]; 
 //end;
-//
+
 //procedure Mat3MulFloat(m: pfloat;  f: single); 
 //var
 //i: integer; 
 //begin
-//  
+
 //  for{while} i:=0 to Pred(9) {i++}
 //  do
 //  m[i]:= m[i] * (f); 
 //end;
-//
+
 //procedure Mat4MulFloat(m: pfloat;  f: single); 
 //var
 //i: integer; 
 //begin
-//  
+
 //  for{while} i:=0 to Pred(12) {i++}
 //  do
 //  m[i]:= m[i] * (f); 
@@ -1042,7 +1041,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function FloatCompare(v1: pfloat;  v2: pfloat;  limit: single): integer; 
 //begin
 //  if fabs(v1[0]-v2[0])<limit then
@@ -1188,9 +1187,9 @@ end;
 //wmat: array [0..,0..2] of single;
 //q: pfloat; 
 //begin 
-//  
+
 //  procedure Mat3Ortho; 
-//  
+
 //  procedure NormalQuat; 
 //  tr: double; 
 //  s: double; 
@@ -1241,7 +1240,7 @@ end;
 //wmat: array [0..,0..2] of single;
 //q: pfloat; 
 //begin 
-//  
+
 //  procedure Mat3Ortho; 
 //  mat: array [0..2,0..2] of single;
 //  matr: array [0..2,0..2] of single;
@@ -1311,7 +1310,7 @@ end;
 //end;
 //var {was static}
 //q1: array [0..3] of single;
-//
+
 //function vectoquat(vec: pfloat;  axis: smallint;  upflag: smallint): pfloat; 
 //var
 //up: array [0..2] of single;
@@ -1327,18 +1326,7 @@ end;
 //z2: single; 
 //len1: single; (* eerst roteer naar as *)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  if axis>2 then
 //  begin 
 //    x2:= vec[0]; 
@@ -1447,7 +1435,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure VecUpMat3old(vec: pfloat;  mat: array [0..,0..2] of single;  axis: smallint);
 //var
 //inp: single; 
@@ -1457,10 +1445,7 @@ end;
 //coz: smallint; (* up varieeren heeft geen zin, is eigenlijk helemaal geen up!
 //  *)
 //begin
-//  
-//  
-//  
-//  
+
 //  up[0]:= 0.0; 
 //  up[1]:= 0.0; 
 //  up[2]:= 1.0; 
@@ -1517,7 +1502,7 @@ end;
 //  Normalise( {pfloat(}mat[coy]); 
 //  Crossf(mat[cox],mat[coy],mat[coz]); 
 //end;
-//
+
 //procedure VecUpMat3(vec: pfloat;  mat: array [0..,0..2] of single;  axis: smallint);
 //var
 //inp: single; 
@@ -1527,9 +1512,7 @@ end;
 //  * zie VecUpMat3old
 //  *)
 //begin
-//  
-//  
-//  
+
 //  if axis=0 then
 //  begin 
 //    cox:= 0; 
@@ -1612,16 +1595,14 @@ end;
 //  matrix[3][2]:= -(+) div Zdelta; 
 //  (* note: negate Z *)
 //end;
-//
+
 //procedure i_window(left: single;  right: single;  bottom: single;  top: single;  {!!!3 unknown typedef}); 
 //var
 //Xdelta: single; 
 //Ydelta: single; 
 //Zdelta: single; 
 //begin
-//  
-//  
-//  
+
 //  Xdelta:= right-left; 
 //  Ydelta:= top-bottom; 
 //  Zdelta:= -; 
@@ -1719,7 +1700,7 @@ end;
 //        mat[0][col]:= temp[col]; 
 //      end;
 //    end;
-//    
+
 //  end;{case?}
 //end;
 //i_polarview(dist,azimuth,incidence,twist,Vm); 
@@ -1735,7 +1716,7 @@ end;
 //  i_rotate(-incidence,'x',Vm); 
 //  i_rotate(-azimuth,'z',Vm); 
 //end;
-//
+
 //procedure i_lookat(vx: single;  vy: single;  vz: single;  px: single;  py: single;  pz: single;  twist: single;  mat: array [0..,0..3] of single);
 //var
 //sine: single; 
@@ -1747,14 +1728,7 @@ end;
 //dz: single; 
 //mat1: array [0..3,0..3] of single;
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  Mat4One(mat); 
 //  Mat4One(mat1); 
 //  i_rotate(-twist,'z',mat); 
@@ -1803,7 +1777,7 @@ end;
 //  i_multmatrix(mat1,mat); 
 //  i_translate(-vx,-vy,-vz,mat); 
 //end;(* translate viewpoint to origin *)
-//
+
 //(* ************************************************  *)
 //void{!!!e unknown token}
 //mat: array [0..,0..2] of single;
@@ -1849,16 +1823,14 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function VecLenf(v1: pfloat;  v2: pfloat): single; 
 //var
 //x: single; 
 //y: single; 
 //z: single; 
 //begin
-//  
-//  
-//  
+
 //  x:= v1[0]-v2[0]; 
 //  y:= v1[1]-v2[1]; 
 //  z:= v1[2]-v2[2]; 
@@ -1894,7 +1866,7 @@ end;
 //  v[1]:= 0.5*(v1[1]+v2[1]); 
 //  v[2]:= 0.5*(v1[2]+v2[2]); 
 //end;
-//
+
 //procedure VecMulf(v1: pfloat;  f: single); 
 //begin
 //  v1[0]:= v1[0] * (f); 
@@ -1940,14 +1912,13 @@ end;
 //  n[2]:= n1[0]*n2[1]-n1[1]*n2[0]; 
 //  Normalise(n); 
 //end;
-//
+
 //function CalcNormFloat(v1: pfloat;  v2: pfloat;  v3: pfloat;  n: pfloat): single; 
 //var
 //n1: array [0..2] of single;
 //n2: array [0..2] of single;
 //begin
-//  
-//  
+
 //  n1[0]:= v1[0]-v2[0]; 
 //  n2[0]:= v2[0]-v3[0]; 
 //  n1[1]:= v1[1]-v2[1]; 
@@ -1962,14 +1933,13 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function CalcNormFloat4(v1: pfloat;  v2: pfloat;  v3: pfloat;  v4: pfloat;  n: pfloat): single; 
 //var
 //n1: array [0..2] of single;
 //n2: array [0..2] of single;
 //begin(* real cross! *)
-//  
-//  
+
 //  n1[0]:= v1[0]-v3[0]; 
 //  n1[1]:= v1[1]-v3[1]; 
 //  n1[2]:= v1[2]-v3[2]; 
@@ -1984,21 +1954,21 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure CalcCent3f(cent: pfloat;  v1: pfloat;  v2: pfloat;  v3: pfloat); 
 //begin
 //  cent[0]:= 0.33333*(v1[0]+v2[0]+v3[0]); 
 //  cent[1]:= 0.33333*(v1[1]+v2[1]+v3[1]); 
 //  cent[2]:= 0.33333*(v1[2]+v2[2]+v3[2]); 
 //end;
-//
+
 //procedure CalcCent4f(cent: pfloat;  v1: pfloat;  v2: pfloat;  v3: pfloat;  v4: pfloat); 
 //begin
 //  cent[0]:= 0.25*(v1[0]+v2[0]+v3[0]+v4[0]); 
 //  cent[1]:= 0.25*(v1[1]+v2[1]+v3[1]+v4[1]); 
 //  cent[2]:= 0.25*(v1[2]+v2[2]+v3[2]+v4[2]); 
 //end;
-//
+
 //function Sqrt3f(f: single): single; 
 //begin
 //  if f=0.0 then
@@ -2017,7 +1987,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function Sqrt3d(d: double): double; 
 //begin
 //  if d=0.0 then
@@ -2038,14 +2008,13 @@ end;
 //end;
 //(* afstand v1 tot lijn v2-v3 *)
 //(* met formule van Hesse :GEEN LIJNSTUK! *)
-//
+
 //function DistVL2Dfl(v1: pfloat;  v2: pfloat;  v3: pfloat): single; 
 //var
 //a: array [0..1] of single;
 //deler: single; 
 //begin
-//  
-//  
+
 //  a[0]:= v2[1]-v3[1]; 
 //  a[1]:= v3[0]-v2[0]; 
 //  deler:= fsqrt(a[0]*a[0]+a[1]*a[1]); 
@@ -2060,7 +2029,7 @@ end;
 //  end;
 //end;
 //(* PointDist: WEL LIJNSTUK *)
-//
+
 //function PdistVL2Dfl(v1: pfloat;  v2: pfloat;  v3: pfloat): single; 
 //var
 //labda: single; 
@@ -2068,10 +2037,7 @@ end;
 //pt: array [0..1] of single;
 //len: single; 
 //begin
-//  
-//  
-//  
-//  
+
 //  rc[0]:= v3[0]-v2[0]; 
 //  rc[1]:= v3[1]-v2[1]; 
 //  len:= rc[0]*rc[0]+rc[1]*rc[1]; 
@@ -2108,7 +2074,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function AreaF2Dfl(v1: pfloat;  v2: pfloat;  v3: pfloat): single; 
 //begin
 //  begin
@@ -2117,7 +2083,7 @@ end;
 //  end;
 //end;
 //(* only convex Quadrilaterals *)
-//
+
 //function AreaQ3Dfl(v1: pfloat;  v2: pfloat;  v3: pfloat;  v4: pfloat): single; 
 //var
 //len: single; 
@@ -2125,10 +2091,7 @@ end;
 //vec2: array [0..2] of single;
 //n: array [0..2] of single;
 //begin
-//  
-//  
-//  
-//  
+
 //  VecSubf(vec1,v2,v1); 
 //  VecSubf(vec2,v4,v1); 
 //  Crossf(n,vec1,vec2); 
@@ -2143,7 +2106,7 @@ end;
 //  end;
 //end;
 //(* Triangles *)
-//
+
 //function AreaT3Dfl(v1: pfloat;  v2: pfloat;  v3: pfloat): single; 
 //var
 //len: single; 
@@ -2151,10 +2114,7 @@ end;
 //vec2: array [0..2] of single;
 //n: array [0..2] of single;
 //begin
-//  
-//  
-//  
-//  
+
 //  VecSubf(vec1,v3,v2); 
 //  VecSubf(vec2,v1,v2); 
 //  Crossf(n,vec1,vec2); 
@@ -2164,11 +2124,11 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function MAX2(x: integer; y: integer): integer; {<= !!!6 unknown macro}
-//
+
 //function MAX3(x: integer; y: integer; z: integer): integer; {<= !!!6 unknown macro}
-//
+
 //function AreaPoly3Dfl(nr: integer;  verts: pfloat;  normal: pfloat): single; 
 //var
 //x: single; 
@@ -2180,18 +2140,11 @@ end;
 //prev: pfloat; 
 //a: integer; 
 //px: integer;
-// 
+
 //py: integer;
 // (* first: find dominant axis: 0==X, 1==Y, 2==Z *)
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  px:=0; 
 //  py:=1; (* first: find dominant axis: 0==X, 1==Y, 2==Z *)
 //  x:= fabs(normal[0]); 
@@ -2366,16 +2319,16 @@ end;
 //  eul[2]:= fatan2(sin2,cos2); 
 //  PRINT3(f,f,f,eul[0],eul[1],eul[2]); 
 //end;
-//
+
 //procedure QuatToEul(quat: pfloat;  eul: pfloat); 
 //var
 //mat: array [0..2,0..2] of single;
 //begin
-//  
+
 //  QuatToMat3(quat,mat); 
 //  Mat3ToEul(mat,eul); 
 //end;
-//
+
 //procedure EulToQuat(eul: pfloat;  quat: pfloat); 
 //var
 //ti: single; 
@@ -2392,19 +2345,7 @@ end;
 //sc: single; 
 //ss: single; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  ti:= eul[0]*0.5; 
 //  tj:= eul[1]*0.5; 
 //  th:= eul[2]*0.5; 
@@ -2423,7 +2364,7 @@ end;
 //  quat[2]:= cj*ss+sj*cc; 
 //  quat[3]:= cj*cs-sj*sc; 
 //end;
-//
+
 //procedure VecRotToMat3(vec: pfloat;  phi: single;  mat: array [0..,0..2] of single);
 //var
 //vx: single; 
@@ -2435,14 +2376,7 @@ end;
 //co: single; 
 //si: single; 
 //begin(* rotatie van phi radialen rond vec *)
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  vx:= vec[0]; 
 //  vy:= vec[1]; 
 //  vz:= vec[2]; 
@@ -2461,7 +2395,7 @@ end;
 //  mat[2][1]:= vy*vz*(1.0-co)-vx*si; 
 //  mat[2][2]:= vz2+co*(1.0-vz2); 
 //end;
-//
+
 //procedure euler_rot(beul: pfloat;  ang: single;  axis: char); 
 //var
 //eul: array [0..2] of single;
@@ -2469,10 +2403,7 @@ end;
 //mat2: array [0..2,0..2] of single;
 //totmat: array [0..2,0..2] of single;
 //begin
-//  
-//  
-//  
-//  
+
 //  eul[0]:= eul[1]:=eul[2]:=0.0; 
 //  if axis='x' then
 //  eul[0]:= ang; 
@@ -2591,7 +2522,7 @@ end;
 //  if c[2]<0 then
 //  c[2]:= 0; 
 //end;
-//
+
 //procedure hsv_to_rgb(h: single;  s: single;  v: single;  r: pfloat;  g: pfloat;  b: pfloat); 
 //var
 //i: integer; 
@@ -2600,11 +2531,7 @@ end;
 //q: single; 
 //t: single; 
 //begin
-//  
-//  
-//  
-//  
-//  
+
 //  h:= h * (360.0); 
 //  if s=0)and(0 then
 //  begin 
@@ -2659,11 +2586,11 @@ end;
 //        {*}g^:=p; 
 //        {*}b^:=q; 
 //      end;
-//      
+
 //    end;{case?}
 //  end;
 //end;
-//
+
 //procedure rgb_to_hsv(r: single;  g: single;  b: single;  lh: pfloat;  ls: pfloat;  lv: pfloat); 
 //var
 //h: single; 
@@ -2676,15 +2603,7 @@ end;
 //gc: single; 
 //bc: single; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  cmax:= r; 
 //  cmin:= r; 
 //  cmax:= (g>cmax {was ?}if then g {was :}else cmax);
@@ -2727,7 +2646,7 @@ end;
 //(* Bij afspraak is cpack een getal dat als 0xFFaa66 of zo kan worden uitgedrukt. Is dus gevoelig voor endian. 
 // * Met deze define wordt het altijd goed afgebeeld
 // *)
-//
+
 //function hsv_to_cpack(h: single;  s: single;  v: single): uint; 
 //var
 //r: smallint; 
@@ -2738,13 +2657,7 @@ end;
 //bf: single; 
 //col: uint; 
 //begin
-//  
-//  
-//  
-//  
-//  
-//  
-//  
+
 //  hsv_to_rgb(h,s,v,@rf,@gf, and bf); 
 //  r:= rf*255.0; 
 //  g:= gf*255.0; 
@@ -2755,16 +2668,14 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //function rgb_to_cpack(r: single;  g: single;  b: single): uint; 
 //var
 //ir: integer; 
 //ig: integer; 
 //ib: integer; 
 //begin
-//  
-//  
-//  
+
 //  ir:= ffloor(255.0*r); 
 //  if ir<0 then
 //  ir:= 0; 
@@ -2788,7 +2699,7 @@ end;
 //    exit;
 //  end;
 //end;
-//
+
 //procedure cpack_to_rgb(col: uint;  r: pfloat;  g: pfloat;  b: pfloat); 
 //begin{*}r^:=((col) and $FF); 
 //  {*}r^ div =255.0; 
@@ -2961,7 +2872,7 @@ end;
 //  qsortNN(poin,n); 
 //end;
 //(* ********** PREFAB QSORT: qsortN2(int *data, int nr) , sorteert setjes van 2 ints (bv. edges) ********* *)
-//
+
 //function VERGLONG2(e1: integer; e2: integer): integer; {<= !!!6 unknown macro}
 //int{!!!e unknown token}
 //poin: pinteger; 
@@ -3070,19 +2981,19 @@ end;
 //    end;
 //  end;
 //end;
-//
+
 //{MAX2(x,y)  ( (x)>(y) ? (x) : (y) )}
 //function MAX2(x: integer; y: integer): integer; 
 //begin
 //  result:= ((x)>(y) {was ?}if then (x) {was :}else (y))
 //end;
-//
+
 //{MAX3(x,y,z)  MAX2( MAX2((x),(y)) , (z) )}
 //function MAX3(x: integer; y: integer; z: integer): integer; 
 //begin
 //  result:= MAX2(MAX2((x),(y)),(z))
 //end;
-//
+
 //{VERGLONG2(e1, e2) ( (e1[0] > e2[0])? 1 : ( (e1[0] < e2[0]) ? -1 : ( (e1[1] > e2[1]) ? 1 : ( (e1[1] < e2[1]) ? -1 : 0 ) ) ) )}
 //function VERGLONG2(e1: integer; e2: integer): integer; 
 //begin

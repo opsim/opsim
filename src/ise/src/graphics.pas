@@ -197,31 +197,31 @@ implementation
   //  begin
   //    GLUT_BITMAP_HELVETICAB_8:=@(glutBitmapHelveticaBold8);
   //  end;
-  //
+
   //{ was #define dname def_expr }
   //function GLUT_BITMAP_HELVETICAB_10 : longint; { return type might be wrong }
   //  begin
   //    GLUT_BITMAP_HELVETICAB_10:=@(glutBitmapHelveticaBold10);
   //  end;
-  //
+
   //{ was #define dname def_expr }
   //function GLUT_BITMAP_HELVETICAB_12 : longint; { return type might be wrong }
   //  begin
   //    GLUT_BITMAP_HELVETICAB_12:=@(glutBitmapHelveticaBold12);
   //  end;
-//
+
 //  { was #define dname def_expr }
 //  function GLUT_BITMAP_SCREEN_12 : longint; { return type might be wrong }
 //    begin
 //      GLUT_BITMAP_SCREEN_12:=@(glutBitmapScreen12);
 //    end;
-//
+
 //  { was #define dname def_expr }
 //  function GLUT_BITMAP_SCREEN_15 : longint; { return type might be wrong }
 //    begin
 //      GLUT_BITMAP_SCREEN_15:=@(glutBitmapScreen15);
 //    end;
-//
+
   { was #define dname(params) para_def_expr }
   { argument types are unknown }
   { return type might be wrong }
@@ -295,25 +295,25 @@ end;
 //begin
 //  result:= (4*a+3)
 //end;
-//
+
 //{cpack(x) glColor3ub( ((x)&0xFF), (((x)>>8)&0xFF), (((x)>>16)&0xFF) )}
 //function cpack(x: integer): integer; 
 //begin
 //  result:= glColor3ub(((x) and $FF),(((x) shr 8) and $FF),(((x) shr 16) and $FF))
 //end;
-//
+
 //{glMultMatrixf(x)  glMultMatrixf( (single * )(x))}
 //function glMultMatrixf(x: integer): integer; 
 //begin
 //  result:= glMultMatrixf( {pfloat(}(x))
 //end;
-//
+
 //{glLoadMatrixf(x)  glLoadMatrixf( (single * )(x))}
 //function glLoadMatrixf(x: integer): integer; 
 //begin
 //  result:= glLoadMatrixf( {pfloat(}(x))
 //end;
-//
+
 //{lrectwrite(a, b, c, d, rect) {glRasterPos2i(a,  b);glDrawPixels((c)-(a)+1, (d)-(b)+1, GL_RGBA, GL_UNSIGNED_BYTE,  rect);}}
 //function lrectwrite(a: integer; b: integer; c: integer; d: integer; rect: integer): integer; 
 //begin
