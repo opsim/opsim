@@ -418,12 +418,10 @@ savesplines: integer = 1;
 //  sptr: psmallint; 
 //  nverts: integer; 
 //  index:= chartoindex(fnt,c); 
-//  if index<0
-//  then
+//  if index<0 then
 //  exit;
 //  cd:= fnt.my_chars+index; 
-//  if cd.data<>0{nil} {<= !!!9} 
-//  then
+//  if cd.data<>0 then
 //  begin 
 //    sptr:= cd.data; 
 //    case fnt.type of
@@ -529,14 +527,12 @@ savesplines: integer = 1;
 
 //function chartoindex(fnt: pobjfnt;  c: integer): integer; 
 //begin
-//  if c<fnt.charmin
-//  then
+//  if c<fnt.charmin then
 //  begin
 //    result:= -1; 
 //    exit;
 //  end;
-//  if c>fnt.charmax
-//  then
+//  if c>fnt.charmax then
 //  begin
 //    result:= -1; 
 //    exit;
@@ -552,8 +548,7 @@ savesplines: integer = 1;
 //index: integer; 
 //begin
 //  index:= chartoindex(fnt,c); 
-//  if index<0
-//  then
+//  if index<0 then
 //  begin
 //    result:= 0; 
 //    exit;
@@ -572,17 +567,13 @@ savesplines: integer = 1;
 
 //function bboxcalc(v: array [0..Pred(2)] of smallint): integer; 
 //begin
-//  if v[0]<xmin
-//  then
+//  if v[0]<xmin then
 //  xmin:= v[0]; 
-//  if v[1]<ymin
-//  then
+//  if v[1]<ymin then
 //  ymin:= v[1]; 
-//  if v[0]>xmax
-//  then
+//  if v[0]>xmax then
 //  xmax:= v[0]; 
-//  if v[1]>ymax
-//  then
+//  if v[1]>ymax then
 //  ymax:= v[1]; 
 //end;
 //calccharbboxes(objfnt*fnt); 
@@ -598,8 +589,7 @@ savesplines: integer = 1;
 //    xmax:= ymax:=-NOBBOX; 
 //    applytocharverts(fnt,c,bboxcalc); 
 //    cd:= getchardesc(fnt,c); 
-//    if xmin=NOBBOX
-//    then
+//    if xmin=NOBBOX then
 //    begin 
 //      cd.llx:= NOBBOX; 
 //      cd.lly:= NOBBOX; 
@@ -643,8 +633,7 @@ savesplines: integer = 1;
 //  index: integer; 
 //  cd: pchardesc; 
 //  index:= chartoindex(fnt,c); 
-//  if index<0
-//  then
+//  if index<0 then
 //  begin 
 //    fprintf(stderr,'Addchardata bad poop\n');
 //    exit;
@@ -661,8 +650,7 @@ savesplines: integer = 1;
 //  index: integer; 
 //  cd: pchardesc; 
 //  index:= chartoindex(fnt,c); 
-//  if index<0
-//  then
+//  if index<0 then
 //  begin 
 //    fprintf(stderr,'Addcharmetrics bad poop\n');
 //    exit;
@@ -688,8 +676,7 @@ savesplines: integer = 1;
 //  for{while} i:=0 to Pred(fnt.my_nchars) { i++}
 //  do
 //  begin 
-//    if cd.data<>0{nil} {<= !!!9} 
-//    then
+//    if cd.data<>0 then
 //    freeN(cd.data); 
 //    inc(cd); 
 //  end;
@@ -704,8 +691,7 @@ savesplines: integer = 1;
 //  pos: integer; 
 //  ret: integer; 
 //  pos:= ftell(f); 
-//  if (ret:=fseek(f,0,2))<0
-//  then
+//  if (ret:=fseek(f,0,2))<0 then
 //  begin 
 //    fprintf(stderr,'sizeoffile: seek error\n');
 //    begin
@@ -714,8 +700,7 @@ savesplines: integer = 1;
 //    end;
 //  end;
 //  ret:= ftell(f); 
-//  if fseek(f,pos,0)<0
-//  then
+//  if fseek(f,pos,0)<0 then
 //  begin 
 //    fprintf(stderr,'sizeoffile: seek error\n');
 //    begin
@@ -736,8 +721,7 @@ savesplines: integer = 1;
 //  magic: integer; 
 //  calccharbboxes(fnt); 
 //  of:= fopen(name,'wb'); 
-//  if {not}0=of
-//  then
+//  if {not}0=of then
 //  begin 
 //    fprintf(stderr,'writeobjfnt: can''t open output file %s\n',name);
 //    begin
@@ -752,8 +736,7 @@ savesplines: integer = 1;
 //  for{while} i:=0 to Pred(fnt.my_nchars) { i++}
 //  do
 //  begin 
-//    if fnt.my_chars[i].datalen>0
-//    then
+//    if fnt.my_chars[i].datalen>0 then
 //    fwrite(fnt.my_chars[i].data,fnt.my_chars[i].datalen,1,of); 
 //  end;
 //  fclose(of); 
@@ -768,8 +751,7 @@ savesplines: integer = 1;
 //  for{while}  downto 0 { i--}
 //  do
 //  begin 
-//    if STDvsISO[i][0]=c
-//    then
+//    if STDvsISO[i][0]=c then
 //    begin
 //      result:= (STDvsISO[i][1]); 
 //      exit;
@@ -800,11 +782,9 @@ savesplines: integer = 1;
 //  do
 //  begin 
 //    c:= getc(stream); 
-//    if c=EOF
-//    then
+//    if c=EOF then
 //    begin 
-//      if read=0
-//      then
+//      if read=0 then
 //      begin
 //        result:= (0); 
 //        exit;
@@ -815,8 +795,7 @@ savesplines: integer = 1;
 //        exit;
 //      end;
 //    end;
-//    if c=10)or(c=13
-//    then
+//    if c=10)or(c=13 then
 //    begin 
 //      {*}p^:=0; 
 //      begin
@@ -847,8 +826,7 @@ savesplines: integer = 1;
 //begin
 
 //  inf:= fopen(name,'rb'); 
-//  if {not}0=inf
-//  then
+//  if {not}0=inf then
 //  begin 
 //    fprintf(stderr,'fromtype1: can''t open input file %s\n',name);
 //    begin
@@ -861,8 +839,7 @@ savesplines: integer = 1;
 //  while 1
 //  do
 //  begin 
-//    if {not}0=newfgets(oneline,LINELEN,inf)
-//    then
+//    if {not}0=newfgets(oneline,LINELEN,inf) then
 //    begin 
 //      fprintf(stderr,'fromtype1: no FontMatrix found\n');
 //      begin
@@ -871,15 +848,12 @@ savesplines: integer = 1;
 //      end;
 //    end;
 //    cptr:= strchr(oneline,'/'); 
-//    if cptr<>0{nil} {<= !!!9} 
-//    then
+//    if cptr<>0 then
 //    begin 
-//      if strncmp(cptr,'/FontMatrix',11)=0
-//      then
+//      if strncmp(cptr,'/FontMatrix',11)=0 then
 //      begin 
 //        cptr:= strchr(cptr,'['); 
-//        if {not}0=cptr
-//        then
+//        if {not}0=cptr then
 //        begin 
 //          fprintf(stderr,'fromtype1: bad FontMatrix line\n');
 //          begin
@@ -937,8 +911,7 @@ savesplines: integer = 1;
 //  for{while} i:=0 to Pred(len) { i++}
 //  do
 //  begin 
-//    if i<SKIP
-//    then
+//    if i<SKIP then
 //    mdecrypt(buf[i]); 
 //    else
 //    buf[i-SKIP]:= mdecrypt(buf[i]); 
@@ -969,22 +942,18 @@ savesplines: integer = 1;
 //(* make hex table *)
 //begin
 
-//  if {not}0=firsted
-//  then
+//  if {not}0=firsted then
 //  begin 
 //    for{while} i:=0 to Pred(256) { i++}
 //    do
 //    begin 
-//      if i>='0')and(i<='9'
-//      then
+//      if i>='0')and(i<='9' then
 //      hextab[i]:= i-'0'; 
 //      else
-//      if i>='a')and(i<='f'
-//      then
+//      if i>='a')and(i<='f' then
 //      hextab[i]:= 10+i-'a'; 
 //      else
-//      if i>='A')and(i<='F'
-//      then
+//      if i>='A')and(i<='F' then
 //      hextab[i]:= 10+i-'A'; 
 //      else
 //      hextab[i]:= NOTHEX; 
@@ -992,8 +961,7 @@ savesplines: integer = 1;
 //  end;
 //  inf:= fopen(inname,'rb'); 
 //  (* open input file *)
-//  if {not}0=inf
-//  then
+//  if {not}0=inf then
 //  begin 
 //    fprintf(stderr,'fromtype1: can''t open input file\n');
 //    begin
@@ -1010,8 +978,7 @@ savesplines: integer = 1;
 //  while 1
 //  do
 //  begin 
-//    if {not}0=newfgets(oneline,LINELEN,inf)
-//    then
+//    if {not}0=newfgets(oneline,LINELEN,inf) then
 //    begin 
 //      fprintf(stderr,'fromtype1: no currentfile eexec found\n');
 //      begin
@@ -1020,8 +987,7 @@ savesplines: integer = 1;
 //      end;
 //    end;
 //    oneline[16]:= 0; 
-//    if lstrcmp(oneline,'currentfile eexe')=0
-//    then
+//    if lstrcmp(oneline,'currentfile eexe')=0 then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //  end;
 //  mr:= 55665; 
@@ -1032,8 +998,7 @@ savesplines: integer = 1;
 
 //  (* first byte == 0 for binary data (???) *)
 
-//  if hextab[c]<>NOTHEX
-//  then
+//  if hextab[c]<>NOTHEX then
 //  begin 
 //    (* read all the hex bytes into the hex buffer *)
 //    hexbytes:= 0; 
@@ -1044,8 +1009,7 @@ savesplines: integer = 1;
 //      while {*}hptr^
 //      do
 //      begin 
-//        if hextab[{*}hptr^]<>NOTHEX
-//        then
+//        if hextab[{*}hptr^]<>NOTHEX then
 //        hexdat[hexbytes{++} inc(hexbytes); ]:= {*}hptr^; 
 //        inc(hptr); 
 //      end;
@@ -1053,8 +1017,7 @@ savesplines: integer = 1;
 //    fclose(inf); 
 
 //    (* check number of hex bytes *)
-//    if hexbytes and 1
-//    then
+//    if hexbytes and 1 then
 //    dec(hexbytes); 
 //    datbytes:= hexbytes div 2; 
 //    hptr:= hexdat; 
@@ -1077,8 +1040,7 @@ savesplines: integer = 1;
 //    datbytes:= fread(bindat,1,totlen,inf); 
 //    fclose(inf); 
 
-//    if (bindat[2] shl 8+bindat[3])=$800
-//    then
+//    if (bindat[2] shl 8+bindat[3])=$800 then
 //    begin 
 //      (* order data (remove 6 bytes headers) *)
 //      i:= datbytes; 
@@ -1087,8 +1049,7 @@ savesplines: integer = 1;
 //      while i>0
 //      do
 //      begin 
-//        if i>2046
-//        then
+//        if i>2046 then
 //        c:= 2046; 
 //        else
 //        c:= i; 
@@ -1139,8 +1100,7 @@ savesplines: integer = 1;
 //  cptr:= bindat+fakepos; 
 //  c:= {*}cptr^{++} inc(cptr); ; 
 //  inc(fakepos); 
-//  if c<>'\n'
-//  then
+//  if c<>'\n' then
 //  begin 
 //    while isspace(c)
 //    do
@@ -1155,13 +1115,11 @@ savesplines: integer = 1;
 //      c:= {*}cptr^{++} inc(cptr); ; 
 //      inc(fakepos); 
 //    end;
-//    if c='\n'
-//    then
+//    if c='\n' then
 //    dec(fakepos); 
 //  end;
 //  {*}str^:=0; 
-//  if fakepos>fakemax
-//  then
+//  if fakepos>fakemax then
 //  begin 
 //    fprintf(stderr,'fromtype1: unexpected eof\n');
 //    strcpy(start,'end'); 
@@ -1177,15 +1135,13 @@ savesplines: integer = 1;
 //  begin 
 //    {*}buf^{++} inc(buf); :=*cptr; 
 //    inc(fakepos); 
-//    if {*}cptr^=10)or(*cptr=13
-//    then
+//    if {*}cptr^=10)or(*cptr=13 then
 //    begin
 //      result:= 1; 
 //      exit;
 //    end;
 //    inc(cptr); 
-//    if fakepos>fakemax
-//    then
+//    if fakepos>fakemax then
 //    begin
 //      result:= 0; 
 //      exit;
@@ -1231,8 +1187,7 @@ savesplines: integer = 1;
 
 //  fnt:= 0; 
 //  bindat:= 0; (* read the font matrix from the font *)
-//  if readfontmatrix(filename,mat)
-//  then
+//  if readfontmatrix(filename,mat) then
 //  begin
 //    result:= (0); 
 //    exit;
@@ -1248,8 +1203,7 @@ savesplines: integer = 1;
 //  while 1
 //  do
 //  begin 
-//    if {not}0=fakefgets(oneline,LINELEN)
-//    then
+//    if {not}0=fakefgets(oneline,LINELEN) then
 //    begin 
 //      fprintf(stderr,'fromtype1: no /Subrs found\n');
 //      my_nsubrs:= 0; 
@@ -1257,11 +1211,9 @@ savesplines: integer = 1;
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //    cptr:= strchr(oneline,'/'); 
-//    if cptr<>0{nil} {<= !!!9} 
-//    then
+//    if cptr<>0 then
 //    begin 
-//      if strncmp(cptr,'/Subrs',6)=0
-//      then
+//      if strncmp(cptr,'/Subrs',6)=0 then
 //      begin 
 //        my_nsubrs:= atoi(cptr+6); 
 //        break; {<= !!!b possible in "switch" - then remove this line}
@@ -1280,12 +1232,10 @@ savesplines: integer = 1;
 //    do
 //    begin 
 //      fakegettoken(tok); 
-//      if lstrcmp(tok,'dup')=0
-//      then
+//      if lstrcmp(tok,'dup')=0 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
-//    if k=MAXTRIES
-//    then
+//    if k=MAXTRIES then
 //    begin 
 //      fprintf(stderr,'dup for subr %d not found in range\n',i);
 //    end;
@@ -1295,8 +1245,7 @@ savesplines: integer = 1;
 //    (* get the Subr index here *)
 //    index:= atoi(tok); 
 //    (* check to make sure it is in range *)
-//    if index<0)or(index>my_nsubrs
-//    then
+//    if index<0)or(index>my_nsubrs then
 //    begin 
 //      fprintf(stderr,'bad Subr index %d\n',index);
 //    end;
@@ -1319,8 +1268,7 @@ savesplines: integer = 1;
 //  begin 
 //    fakegettoken(tok); 
 //    cptr:= strchr(tok,'/'); 
-//    if cptr)and(lstrcmp(cptr,'/CharStrings')=0
-//    then
+//    if cptr)and(lstrcmp(cptr,'/CharStrings')=0 then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //  end;
 //  fakegettoken(tok); 
@@ -1342,8 +1290,7 @@ savesplines: integer = 1;
 
 //    (* check for end *)
 //    fakegettoken(tok); 
-//    if lstrcmp(tok,'end')=0
-//    then
+//    if lstrcmp(tok,'end')=0 then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 
 //    (* get the char name and allocate space for it *)
@@ -1373,8 +1320,7 @@ savesplines: integer = 1;
 
 //  (* make the obj font *)
 
-//  if bindat<>0{nil} {<= !!!9} 
-//  then
+//  if bindat<>0 then
 //  freeN(bindat); 
 //  (* system("rm /usr/tmp/type1.dec"); *)
 
@@ -1424,15 +1370,13 @@ savesplines: integer = 1;
 //  do
 //  begin 
 //    name:= my_charname[j]; 
-//    if name<>0{nil} {<= !!!9} 
-//    then
+//    if name<>0 then
 //    begin 
 //      found:= 0; 
 //      for{while} i:=0 to Pred(NASCII) { i++}
 //      do
 //      begin 
-//        if ISOcharlist[i].name)and((lstrcmp(name,ISOcharlist[i].name)=0)
-//        then
+//        if ISOcharlist[i].name)and((lstrcmp(name,ISOcharlist[i].name)=0) then
 //        begin 
 //          ISOcharlist[i].prog:= j; 
 //          found:= 1; 
@@ -1474,8 +1418,7 @@ savesplines: integer = 1;
 // *)
 
 //begin 
-//  if savesplines<>0{nil} {<= !!!9} 
-//  then
+//  if savesplines<>0 then
 //  begin 
 //    spline_beginchar(); 
 //  end;
@@ -1488,8 +1431,7 @@ savesplines: integer = 1;
 //  initretstack(); 
 //  pc:= my_chars[c]; 
 //  runprog(); 
-//  if savesplines<>0{nil} {<= !!!9} 
-//  then
+//  if savesplines<>0 then
 //  begin 
 //    spline_endchar(); 
 //  end;
@@ -1518,8 +1460,7 @@ savesplines: integer = 1;
 //function poppc: pchar; 
 //begin
 //  dec(pcsp); 
-//  if pcsp<0
-//  then
+//  if pcsp<0 then
 //  begin 
 //    fprintf(stderr,'\nYUCK: pc stack under flow\n');
 //    pcsp:= 0; 
@@ -1555,8 +1496,7 @@ savesplines: integer = 1;
 
 //begin 
 //  dec(sp); 
-//  if sp<0
-//  then
+//  if sp<0 then
 //  begin 
 //    fprintf(stderr,'\nYUCK: stack under flow\n');
 //    sp:= 0; 
@@ -1591,8 +1531,7 @@ savesplines: integer = 1;
 
 //begin 
 //  dec(retsp); 
-//  if retsp<0
-//  then
+//  if retsp<0 then
 //  begin 
 //    fprintf(stderr,'\nYUCK: ret stack under flow\n');
 //    retsp:= 0; 
@@ -1622,49 +1561,42 @@ savesplines: integer = 1;
 //  do
 //  begin 
 //    v:= {*}pc^{++} inc(pc); ; 
-//    if v>=0)and(v<=31
-//    then
+//    if v>=0)and(v<=31 then
 //    begin 
-//      if v=12
-//      then
+//      if v=12 then
 //      begin 
 //        w:= {*}pc^{++} inc(pc); ; 
 //        cmd:= 256+w; 
 //      end;
 //      else
 //      cmd:= v; 
-//      if {not}0=docommand(cmd)
-//      then
+//      if {not}0=docommand(cmd) then
 //      begin 
 //        exit;
 //      end;
 //    end;
 //    else
-//    if v>=32)and(v<=246
-//    then
+//    if v>=32)and(v<=246 then
 //    begin 
 //      num:= v-139; 
 //      push(num); 
 //    end;
 //    else
-//    if v>=247)and(v<=250
-//    then
+//    if v>=247)and(v<=250 then
 //    begin 
 //      w:= {*}pc^{++} inc(pc); ; 
 //      num:= (v-247)*256+w+108; 
 //      push(num); 
 //    end;
 //    else
-//    if v>=251)and(v<=254
-//    then
+//    if v>=251)and(v<=254 then
 //    begin 
 //      w:= {*}pc^{++} inc(pc); ; 
 //      num:= -(v-251)*256-w-108; 
 //      push(num); 
 //    end;
 //    else
-//    if v=255
-//    then
+//    if v=255 then
 //    begin 
 //      num:= {*}pc^{++} inc(pc); ; 
 //      num:= num shl (8); 
@@ -1695,8 +1627,7 @@ savesplines: integer = 1;
 //  x: integer; 
 //  y: integer; 
 //  getmove(@x,@y); 
-//  if coordpos>=7
-//  then
+//  if coordpos>=7 then
 //  begin 
 //    fprintf(stderr,'subr2: bad poop\n');
 //  end;
@@ -1722,8 +1653,7 @@ savesplines: integer = 1;
 //  ypos:= pop(); 
 //  xpos:= pop(); 
 //  noise:= pop(); 
-//  if coordpos<>7
-//  then
+//  if coordpos<>7 then
 //  begin 
 //    fprintf(stderr,'subr0: bad poop\n');
 //  end;
@@ -1755,8 +1685,7 @@ savesplines: integer = 1;
 //var
 //nverts: integer; 
 //begin
-//  if data=0
-//  then
+//  if data=0 then
 //  exit;
 
 //  while 1
@@ -1791,8 +1720,7 @@ savesplines: integer = 1;
 
 //begin
 //  nverts:=0; 
-//  if data=0
-//  then
+//  if data=0 then
 //  exit;
 
 //  while 1
@@ -1904,8 +1832,7 @@ savesplines: integer = 1;
 //    begin
 //      sub:= pop(); 
 //      subpc:= my_subrs[sub]; 
-//      if {not}0=subpc
-//      then
+//      if {not}0=subpc then
 //      begin 
 //        fprintf(stderr,'\nYUCK no sub addr\n');
 //      end;
@@ -1983,8 +1910,7 @@ savesplines: integer = 1;
 //    end;
 //    SEAC:
 //    begin
-//      if 0
-//      then
+//      if 0 then
 //      begin 
 //        printf('seac: %3d %3d %3d %3d %3d\n',pop(),pop(),pop(),pop(),pop());
 //      end;
@@ -1995,23 +1921,19 @@ savesplines: integer = 1;
 //        cd:= getchardesc(fnt,c1); (* accent *)
 //        (* letter *)
 
-//        if cd<>0{nil} {<= !!!9} 
-//        then
+//        if cd<>0 then
 //        begin 
 //          memcpy(chardata,cd.data,cd.datalen); 
 //          nshorts:= cd.datalen div sizeof(short); 
 //        end;
 //        cd:= getchardesc(fnt,c2); 
-//        if cd)and(cd.data)and(cd.datalen
-//        then
+//        if cd)and(cd.data)and(cd.datalen then
 //        begin 
 //          nlen:= cd.datalen div sizeof(short); 
 //          ndata:= cd.data; 
-//          if nshorts<>0{nil} {<= !!!9} 
-//          then
+//          if nshorts<>0 then
 //          begin 
-//            if savesplines<>0{nil} {<= !!!9} 
-//            then
+//            if savesplines<>0 then
 //            begin 
 //              case chardata[nshorts-1] of
 //                SP_RET:
@@ -2035,8 +1957,7 @@ savesplines: integer = 1;
 //                end;
 //                PO_RETENDLOOP:
 //                begin
-//                  if ndata[0]=PO_BGNLOOP
-//                  then
+//                  if ndata[0]=PO_BGNLOOP then
 //                  begin 
 //                    chardata[nshorts-1]:= PO_ENDBGNLOOP; 
 //                  end;
@@ -2061,8 +1982,7 @@ savesplines: integer = 1;
 
 //          dx1:= floor(fdx1); 
 //          dy1:= floor(fdy1); 
-//          if savesplines<>0{nil} {<= !!!9} 
-//          then
+//          if savesplines<>0 then
 //          begin 
 //            append_spline_offset(dx1,dy1,ndata); 
 //          end;
@@ -2097,16 +2017,13 @@ savesplines: integer = 1;
 //    begin
 //      sub:= pop(); 
 //      n:= pop(); 
-//      if sub=0
-//      then
+//      if sub=0 then
 //      subr0(); 
 //      else
-//      if sub=1
-//      then
+//      if sub=1 then
 //      subr1(); 
 //      else
-//      if sub=2
-//      then
+//      if sub=2 then
 //      subr2(); 
 //      else
 //      begin 
@@ -2133,8 +2050,7 @@ savesplines: integer = 1;
 //    end;
 
 //  end;{case?}
-//  if pc=0)or(cmd=ENDCHAR)or(cmd=WHAT0)or(cmd=SEAC
-//  then
+//  if pc=0)or(cmd=ENDCHAR)or(cmd=WHAT0)or(cmd=SEAC then
 //  begin
 //    result:= 0; 
 //    exit;
@@ -2177,8 +2093,7 @@ savesplines: integer = 1;
 //poly_endchar(); 
 
 //begin 
-//  if nloops=0
-//  then
+//  if nloops=0 then
 //  chardata[nshorts{++} inc(nshorts); ]:= PO_RET; 
 //  else
 //  chardata[nshorts{++} inc(nshorts); ]:= PO_RETENDLOOP; 
@@ -2198,11 +2113,9 @@ savesplines: integer = 1;
 //  applymat(mat,@x,@y); 
 //  ix:= floor(x); 
 //  iy:= floor(y); 
-//  if npnts=0
-//  then
+//  if npnts=0 then
 //  begin 
-//    if nloops=0
-//    then
+//    if nloops=0 then
 //    begin 
 //      chardata[nshorts{++} inc(nshorts); ]:= PO_BGNLOOP; 
 //      nvertpos:= nshorts{++} inc(nshorts); ; 
@@ -2230,8 +2143,7 @@ savesplines: integer = 1;
 //spline_endchar(); 
 
 //begin 
-//  if sp_nloops=0
-//  then
+//  if sp_nloops=0 then
 //  chardata[nshorts{++} inc(nshorts); ]:= SP_RET; 
 //  else
 //  chardata[nshorts{++} inc(nshorts); ]:= SP_RETCLOSEPATH; 
@@ -2249,8 +2161,7 @@ savesplines: integer = 1;
 //  applymat(mat,@x0,@y0); 
 //  applymat(mat,@x1,@y1); 
 
-//  if sp_npnts=0
-//  then
+//  if sp_npnts=0 then
 //  begin 
 //    chardata[nshorts{++} inc(nshorts); ]:= SP_MOVETO; 
 //    chardata[nshorts{++} inc(nshorts); ]:= floor(x0); 
@@ -2271,8 +2182,7 @@ savesplines: integer = 1;
 //  applymat(mat,@x2,@y2); 
 //  applymat(mat,@x3,@y3); 
 
-//  if sp_npnts=0
-//  then
+//  if sp_npnts=0 then
 //  begin 
 //    chardata[nshorts{++} inc(nshorts); ]:= SP_MOVETO; 
 //    chardata[nshorts{++} inc(nshorts); ]:= floor(x0); 
@@ -2324,8 +2234,7 @@ savesplines: integer = 1;
 //rmoveto(intx,inty); 
 
 //begin 
-//  if incusp<>0{nil} {<= !!!9} 
-//  then
+//  if incusp<>0 then
 //  begin 
 //    delx:= x; 
 //    dely:= y; 
@@ -2340,8 +2249,7 @@ savesplines: integer = 1;
 //drawline(floatx0,floaty0,floatx1,floaty1,floatdx0,floatdy0,floatdx1,floatdy1); 
 
 //begin 
-//  if x0<>x1)or(y0<>y1
-//  then
+//  if x0<>x1)or(y0<>y1 then
 //  poly_pnt(x1,y1); 
 //end;
 //rlineto(intx,inty); 
@@ -2353,8 +2261,7 @@ savesplines: integer = 1;
 //  nexty:= cury+y; 
 //  dx:= nextx-curx; 
 //  dy:= nexty-cury; 
-//  if savesplines<>0{nil} {<= !!!9} 
-//  then
+//  if savesplines<>0 then
 //  spline_line(curx,cury,nextx,nexty); 
 //  else
 //  drawline(curx,cury,nextx,nexty,dx,dy,dx,dy); 
@@ -2366,13 +2273,11 @@ savesplines: integer = 1;
 //begin 
 //  dx: float; 
 //  dy: float; 
-//  if started<>0{nil} {<= !!!9} 
-//  then
+//  if started<>0 then
 //  begin 
 //    dx:= startx-curx; 
 //    dy:= starty-cury; 
-//    if savesplines<>0{nil} {<= !!!9} 
-//    then
+//    if savesplines<>0 then
 //    begin 
 //      spline_close(); 
 //    end;
@@ -2417,8 +2322,7 @@ savesplines: integer = 1;
 //  dx:= midx-linx; 
 //  dy:= midy-liny; 
 //  mag:= dx*dx+dy*dy; 
-//  if mag<(beztol*beztol)
-//  then
+//  if mag<(beztol*beztol) then
 //  drawline(x0,y0,x3,y3,x1-x0,y1-y0,x3-x2,y3-y2); 
 //  else
 //  begin 
@@ -2467,8 +2371,7 @@ savesplines: integer = 1;
 //  y2:= cury+dy2; 
 //  x3:= curx+dx3; 
 //  y3:= cury+dy3; 
-//  if savesplines<>0{nil} {<= !!!9} 
-//  then
+//  if savesplines<>0 then
 //  begin 
 //    spline_curveto(x0,y0,x1,y1,x2,y2,x3,y3); 
 //  end;
@@ -2493,8 +2396,7 @@ savesplines: integer = 1;
 //  i: integer; 
 //  j: integer; 
 //  c: integer; 
-//  if savesplines<>0{nil} {<= !!!9} 
-//  then
+//  if savesplines<>0 then
 //  fnt:= newobjfnt(SP_TYPE,32,32+NASCII-1,9840); 
 //  else
 //  fnt:= newobjfnt(PO_TYPE,32,32+NASCII-1,9840); 
@@ -2502,8 +2404,7 @@ savesplines: integer = 1;
 //  do
 //  begin 
 //    c:= i+32; 
-//    if ISOcharlist[i].prog>=0
-//    then
+//    if ISOcharlist[i].prog>=0 then
 //    begin 
 //      (*printf("decoding %s\n", ISOcharlist[i].name);*)
 
@@ -2514,8 +2415,7 @@ savesplines: integer = 1;
 //      sidebearing[c]:= thesidebearing; 
 //    end;
 //    else
-//    if c=' '
-//    then
+//    if c=' ' then
 //    begin 
 //      printf('faking space %d\n',i);
 //      fakechar(fnt,' ',400); 

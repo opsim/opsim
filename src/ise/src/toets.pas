@@ -29,10 +29,6 @@ unit toets;
 
 interface
 
-//{$include "blender.h"}
-//{$include "graphics.h"}
-//{$include "render.h"}
-
 function save_image_filesel_str(str: pchar): integer;
 
 implementation
@@ -70,17 +66,14 @@ uses
 //  perspo:=1; 
 //  ok:=0; 
 
-//  if G.qual and LR_SHIFTKEY
-//  then
+//  if G.qual and LR_SHIFTKEY then
 //  begin 
-//    if event=PAD0
-//    then
+//    if event=PAD0 then
 //    begin 
 //      (* G.vd->persp= 3; *)
 //    end;
 //    else
-//    if event=PAD7
-//    then
+//    if event=PAD7 then
 //    begin 
 //      G.vd.viewquat[0]:= 0.0; 
 //      G.vd.viewquat[1]:= -1.0; 
@@ -89,8 +82,7 @@ uses
 //      G.vd.view:= 7; 
 //    end;
 //    else
-//    if event=PAD1
-//    then
+//    if event=PAD1 then
 //    begin 
 //      G.vd.viewquat[0]:= 0.0; 
 //      G.vd.viewquat[1]:= 0.0; 
@@ -99,8 +91,7 @@ uses
 //      G.vd.view:= 1; 
 //    end;
 //    else
-//    if event=PAD3
-//    then
+//    if event=PAD3 then
 //    begin 
 //      G.vd.viewquat[0]:= 0.5; 
 //      G.vd.viewquat[1]:= -0.5; 
@@ -109,74 +100,60 @@ uses
 //      G.vd.view:= 3; 
 //    end;
 //    else
-//    if event=PADMINUS
-//    then
+//    if event=PADMINUS then
 //    begin 
 //      (* deze min en max staan ook in viewmove() *)
-//      if G.vd.persp=2
-//      then
+//      if G.vd.persp=2 then
 //      begin 
-//        if (G.scene.r.scemode and R_NETWORK)
-//        then
+//        if (G.scene.r.scemode and R_NETWORK) then
 //        begin 
 //          next_camera(-1); 
 //        end;
 //        else
 //        begin 
 //          G.vd.camzoom:= G.vd.camzoom - (10); 
-//          if G.vd.camzoom<-30
-//          then
+//          if G.vd.camzoom<-30 then
 //          G.vd.camzoom:= -30; 
 //        end;
 //      end;
 //      else
-//      if G.vd.dist<10.0*G.vd.clipend
-//      then
+//      if G.vd.dist<10.0*G.vd.clipend then
 //      G.vd.dist:= G.vd.dist * (1.2); 
 //    end;
 //    else
-//    if event=PADPLUSKEY
-//    then
+//    if event=PADPLUSKEY then
 //    begin 
-//      if G.vd.persp=2
-//      then
+//      if G.vd.persp=2 then
 //      begin 
-//        if (G.scene.r.scemode and R_NETWORK)
-//        then
+//        if (G.scene.r.scemode and R_NETWORK) then
 //        begin 
 //          next_camera(0); 
 //        end;
 //        else
 //        begin 
 //          G.vd.camzoom:= G.vd.camzoom + (10); 
-//          if G.vd.camzoom>300
-//          then
+//          if G.vd.camzoom>300 then
 //          G.vd.camzoom:= 300; 
 //        end;
 //      end;
 //      else
-//      if G.vd.dist>0.$1*G.vd.grid
-//      then
+//      if G.vd.dist>0.$1*G.vd.grid then
 //      G.vd.dist:= G.vd.dist * (.83333); 
 //    end;
 //    else
 //    begin 
 
 //      initgrabz(0.0,0.0,0.0); 
-//      if event=PAD6
-//      then
+//      if event=PAD6 then
 //      window_to_3d(vec,-32,0); 
 //      else
-//      if event=PAD4
-//      then
+//      if event=PAD4 then
 //      window_to_3d(vec,32,0); 
 //      else
-//      if event=PAD8
-//      then
+//      if event=PAD8 then
 //      window_to_3d(vec,0,-25); 
 //      else
-//      if event=PAD2
-//      then
+//      if event=PAD2 then
 //      window_to_3d(vec,0,25); 
 //      G.vd.ofs[0]:= G.vd.ofs[0] + (vec[0]); 
 //      G.vd.ofs[1]:= G.vd.ofs[1] + (vec[1]); 
@@ -186,105 +163,85 @@ uses
 //  else
 //  begin 
 
-//    if event=PAD7
-//    then
+//    if event=PAD7 then
 //    begin 
 //      G.vd.viewquat[0]:= 1.0; 
 //      G.vd.viewquat[1]:= 0.0; 
 //      G.vd.viewquat[2]:= 0.0; 
 //      G.vd.viewquat[3]:= 0.0; 
 //      G.vd.view:= 7; 
-//      if G.vd.persp>=2
-//      then
+//      if G.vd.persp>=2 then
 //      G.vd.persp:= perspo; 
 //    end;
 //    else
-//    if event=PAD1
-//    then
+//    if event=PAD1 then
 //    begin 
 //      G.vd.viewquat[0]:= fcos(M_PI div 4.0); 
 //      G.vd.viewquat[1]:= -fsin(M_PI div 4.0); 
 //      G.vd.viewquat[2]:= 0.0; 
 //      G.vd.viewquat[3]:= 0.0; 
 //      G.vd.view:= 1; 
-//      if G.vd.persp>=2
-//      then
+//      if G.vd.persp>=2 then
 //      G.vd.persp:= perspo; 
 //    end;
 //    else
-//    if event=PAD3
-//    then
+//    if event=PAD3 then
 //    begin 
 //      G.vd.viewquat[0]:= 0.5; 
 //      G.vd.viewquat[1]:= -0.5; 
 //      G.vd.viewquat[2]:= -0.5; 
 //      G.vd.viewquat[3]:= -0.5; 
 //      G.vd.view:= 3; 
-//      if G.vd.persp>=2
-//      then
+//      if G.vd.persp>=2 then
 //      G.vd.persp:= perspo; 
 //    end;
 //    else
-//    if event=PADMINUS
-//    then
+//    if event=PADMINUS then
 //    begin 
 //      (* deze min en max staan ook in viewmove() *)
-//      if G.vd.persp=2
-//      then
+//      if G.vd.persp=2 then
 //      begin 
 //        G.vd.camzoom:= G.vd.camzoom - (5); 
-//        if G.vd.camzoom<-30
-//        then
+//        if G.vd.camzoom<-30 then
 //        G.vd.camzoom:= -30; 
 //      end;
 //      else
-//      if G.vd.dist<10.0*G.vd.clipend
-//      then
+//      if G.vd.dist<10.0*G.vd.clipend then
 //      G.vd.dist:= G.vd.dist * (1.2); 
 //    end;
 //    else
-//    if event=PADPLUSKEY
-//    then
+//    if event=PADPLUSKEY then
 //    begin 
-//      if G.vd.persp=2
-//      then
+//      if G.vd.persp=2 then
 //      begin 
 //        G.vd.camzoom:= G.vd.camzoom + (5); 
-//        if G.vd.camzoom>300
-//        then
+//        if G.vd.camzoom>300 then
 //        G.vd.camzoom:= 300; 
 //      end;
 //      else
-//      if G.vd.dist>0.$1*G.vd.grid
-//      then
+//      if G.vd.dist>0.$1*G.vd.grid then
 //      G.vd.dist:= G.vd.dist * (.83333); 
 //    end;
 //    else
-//    if event=PAD5
-//    then
+//    if event=PAD5 then
 //    begin 
-//      if G.vd.persp=1
-//      then
+//      if G.vd.persp=1 then
 //      G.vd.persp:= 0; 
 //      else
 //      G.vd.persp:= 1; 
 //    end;
 //    else
-//    if event=PAD0
-//    then
+//    if event=PAD0 then
 //    begin 
-//      if G.qual and LR_ALTKEY
-//      then
+//      if G.qual and LR_ALTKEY then
 //      begin 
-//        if oldcamera<>0{nil} {<= !!!9} 
-//        then
+//        if oldcamera<>0 then
 //        begin 
 //          base:= FIRSTBASE; 
 //          while base
 //          do
 //          begin 
-//            if base.object=oldcamera
-//            then
+//            if base.object=oldcamera then
 //            begin 
 //              G.vd.camera:= oldcamera; 
 //              break; {<= !!!b possible in "switch" - then remove this line}
@@ -295,46 +252,38 @@ uses
 //        handle_view3d_lock(); 
 //      end;
 //      else
-//      if BASACT<>0{nil} {<= !!!9} 
-//      then
+//      if BASACT<>0 then
 //      begin 
-//        if G.qual and LR_CTRLKEY
-//        then
+//        if G.qual and LR_CTRLKEY then
 //        begin 
-//          if G.vd.camera<>OBACT
-//          then
+//          if G.vd.camera<>OBACT then
 //          begin 
-//            if G.vd.camera)and(G.vd.camera.type=OB_CAMERA
-//            then
+//            if G.vd.camera)and(G.vd.camera.type=OB_CAMERA then
 //            oldcamera:= G.vd.camera; 
 //            G.vd.camera:= OBACT; 
 //            handle_view3d_lock(); 
 //          end;
 //        end;
 //        else
-//        if G.vd.camera=0)and(OBACT.type=OB_CAMERA
-//        then
+//        if G.vd.camera=0)and(OBACT.type=OB_CAMERA then
 //        begin 
 //          G.vd.camera:= OBACT; 
 //          handle_view3d_lock(); 
 //        end;
 //      end;
-//      if G.vd.camera=0
-//      then
+//      if G.vd.camera=0 then
 //      begin 
 //        G.vd.camera:= find_camera(); 
 //        handle_view3d_lock(); 
 //      end;
-//      if G.vd.camera<>0{nil} {<= !!!9} 
-//      then
+//      if G.vd.camera<>0 then
 //      begin 
 //        G.vd.persp:= 2; 
 //        G.vd.view:= 0; 
 //      end;
 //    end;
 //    else
-//    if event=PAD9
-//    then
+//    if event=PAD9 then
 //    begin 
 //      countall(); 
 //      do_all_ipos(); 
@@ -344,16 +293,13 @@ uses
 //    end;
 //    (* editobject.c *)
 //    else
-//    if G.vd.persp<2
-//    then
+//    if G.vd.persp<2 then
 //    begin 
-//      if event=PAD4)or(event=PAD6
-//      then
+//      if event=PAD4)or(event=PAD6 then
 //      begin 
 //        (* z-as *)
 //        phi:= M_PI div 24.0; 
-//        if event=PAD6
-//        then
+//        if event=PAD6 then
 //        phi:= -phi; 
 //        si:= fsin(phi); 
 //        q1[0]:= fcos(phi); 
@@ -362,15 +308,13 @@ uses
 //        QuatMul(G.vd.viewquat,G.vd.viewquat,q1); 
 //        G.vd.view:= 0; 
 //      end;
-//      if event=PAD2)or(event=PAD8
-//      then
+//      if event=PAD2)or(event=PAD8 then
 //      begin 
 //        (* liggende as *)
 //        VECCOPY(q1+1,G.vd.viewinv[0]); 
 //        Normalise(q1+1); 
 //        phi:= M_PI div 24.0; 
-//        if event=PAD2
-//        then
+//        if event=PAD2 then
 //        phi:= -phi; 
 //        si:= fsin(phi); 
 //        q1[0]:= fcos(phi); 
@@ -382,8 +326,7 @@ uses
 //      end;
 //    end;
 
-//    if G.vd.persp<2
-//    then
+//    if G.vd.persp<2 then
 //    perspo:= G.vd.persp; 
 //  end;
 //  addqueue(curarea.win,REDRAW,1); 
@@ -394,12 +337,10 @@ uses
 //var
 //c: pchar; (*   c = strrchr(name, '/'); *)
 //begin
-//  if G.save_over=0)and(U.versions=0
-//  then
+//  if G.save_over=0)and(U.versions=0 then
 //  begin 
 //    c:= last_slash(name); 
-//    if c<>0{nil} {<= !!!9} 
-//    then
+//    if c<>0 then
 //    c[1]:= 0; 
 //    strcat(name,'untitled.blend'); 
 //    begin
@@ -493,32 +434,27 @@ end;
 
 //  textspace:=0; 
 
-//  if val=0
-//  then
+//  if val=0 then
 //  begin
 //    result:= 1; 
 //    exit;
 //  end;
-//  if event=MOUSEY)or(event=MOUSEX
-//  then
+//  if event=MOUSEY)or(event=MOUSEX then
 //  begin
 //    result:= 1; 
 //    exit;
 
 //  end;
-//  if curarea)and(curarea.spacetype=SPACE_TEXT
-//  then
+//  if curarea)and(curarea.spacetype=SPACE_TEXT then
 //  textspace:= 1; 
 //  case event of
 
 //    F1KEY:
 //    begin
-//      if G.qual=0
-//      then
+//      if G.qual=0 then
 //      begin 
 //        (* this exception because of the '?' button *)
-//        if curarea.spacetype=SPACE_INFO
-//        then
+//        if curarea.spacetype=SPACE_INFO then
 //        begin 
 //          sa:= closest_bigger_area(); 
 //          areawinset(sa.win); 
@@ -530,8 +466,7 @@ end;
 //        end;
 //      end;
 //      else
-//      if G.qual and LR_SHIFTKEY
-//      then
+//      if G.qual and LR_SHIFTKEY then
 //      begin 
 //        activate_fileselect(FILE_LOADLIB,'LOAD LIBRARY',G.lib,0); 
 //        begin
@@ -542,8 +477,7 @@ end;
 //    end;
 //    F2KEY:
 //    begin
-//      if G.qual=0
-//      then
+//      if G.qual=0 then
 //      begin 
 //        strcpy(dir,G.sce); 
 //        untitled(dir); 
@@ -554,8 +488,7 @@ end;
 //        end;
 //      end;
 //      else
-//      if G.qual and LR_CTRLKEY
-//      then
+//      if G.qual and LR_CTRLKEY then
 //      begin 
 //        write_vrml_fs(); 
 //        begin
@@ -564,8 +497,7 @@ end;
 //        end;
 //      end;
 //      else
-//      if G.qual and LR_SHIFTKEY
-//      then
+//      if G.qual and LR_SHIFTKEY then
 //      begin 
 //        write_dxf_fs(); 
 //        begin
@@ -576,18 +508,15 @@ end;
 //    end;
 //    F3KEY:
 //    begin
-//      if G.qual=0
-//      then
+//      if G.qual=0 then
 //      begin 
-//        if {not}0=R.rectot
-//        then
+//        if {not}0=R.rectot then
 //        begin 
 //          error('No image rendered'); 
 //        end;
 //        else
 //        begin 
-//          if G.ima[0]=0
-//          then
+//          if G.ima[0]=0 then
 //          begin 
 //            strcpy(dir,G.sce); 
 //            splitdirstring(dir,str); 
@@ -596,8 +525,7 @@ end;
 //          R.r.imtype:= G.scene.r.imtype; 
 //          R.r.quality:= G.scene.r.quality; 
 //          R.r.planes:= G.scene.r.planes; 
-//          if {not}0=save_image_filesel_str(str)
-//          then
+//          if {not}0=save_image_filesel_str(str) then
 //          begin 
 //            error('Select an image type in DisplayButtons(F10)'); 
 //            begin
@@ -613,26 +541,22 @@ end;
 //        end;
 //      end;
 //      else
-//      if G.qual and LR_CTRLKEY
-//      then
+//      if G.qual and LR_CTRLKEY then
 //      begin 
 //        screendump(); 
 //      end;
 //    end;
 //    F4KEY:
 //    begin
-//      if G.qual and LR_SHIFTKEY
-//      then
+//      if G.qual and LR_SHIFTKEY then
 //      begin 
 //        sfile:=curarea.spacedata.first; (* op zoek naar een bestaande dataselect *)
 //        while sfile
 //        do
 //        begin 
-//          if sfile.spacetype=SPACE_FILE
-//          then
+//          if sfile.spacetype=SPACE_FILE then
 //          begin 
-//            if sfile.type=FILE_MAIN
-//            then
+//            if sfile.type=FILE_MAIN then
 //            begin 
 //              newspace(curarea,SPACE_FILE); 
 //              freefilelist(sfile); 
@@ -648,8 +572,7 @@ end;
 //        end;
 //        bzero(str,16); 
 //        ob:= OBACT; 
-//        if ob<>0{nil} {<= !!!9} 
-//        then
+//        if ob<>0 then
 //        strcpy(str,ob.id.name); 
 //        activate_fileselect(FILE_MAIN,'DATA SELECT',str,0); 
 
@@ -663,8 +586,7 @@ end;
 //    end;
 //    F5KEY:
 //    begin
-//      if G.qual and LR_SHIFTKEY
-//      then
+//      if G.qual and LR_SHIFTKEY then
 //      begin 
 //        addqueue(curarea.headwin,REDRAW,1); 
 //        curarea.butspacetype:= SPACE_VIEW3D; 
@@ -679,8 +601,7 @@ end;
 //    end;
 //    F6KEY:
 //    begin
-//      if G.qual and LR_SHIFTKEY
-//      then
+//      if G.qual and LR_SHIFTKEY then
 //      begin 
 //        addqueue(curarea.headwin,REDRAW,1); 
 //        curarea.butspacetype:= SPACE_IPO; 
@@ -695,8 +616,7 @@ end;
 //    end;
 //    F7KEY:
 //    begin
-//      if G.qual and LR_SHIFTKEY
-//      then
+//      if G.qual and LR_SHIFTKEY then
 //      begin 
 //        addqueue(curarea.headwin,REDRAW,1); 
 //        curarea.butspacetype:= SPACE_BUTS; 
@@ -711,8 +631,7 @@ end;
 //    end;
 //    F8KEY:
 //    begin
-//      if G.qual and LR_SHIFTKEY
-//      then
+//      if G.qual and LR_SHIFTKEY then
 //      begin 
 //        addqueue(curarea.headwin,REDRAW,1); 
 //        curarea.butspacetype:= SPACE_SEQ; 
@@ -727,8 +646,7 @@ end;
 //    end;
 //    F9KEY:
 //    begin
-//      if G.qual and LR_SHIFTKEY
-//      then
+//      if G.qual and LR_SHIFTKEY then
 //      begin 
 //        addqueue(curarea.headwin,REDRAW,1); 
 //        curarea.butspacetype:= SPACE_OOPS; 
@@ -743,8 +661,7 @@ end;
 //    end;
 //    F10KEY:
 //    begin
-//      if G.qual and LR_SHIFTKEY
-//      then
+//      if G.qual and LR_SHIFTKEY then
 //      begin 
 //        addqueue(curarea.headwin,REDRAW,1); 
 //        curarea.butspacetype:= SPACE_IMAGE; 
@@ -759,8 +676,7 @@ end;
 //    end;
 //    F11KEY:
 //    begin
-//      if G.qual and LR_SHIFTKEY
-//      then
+//      if G.qual and LR_SHIFTKEY then
 //      begin 
 //        addqueue(curarea.headwin,REDRAW,1); 
 //        curarea.butspacetype:= SPACE_TEXT; 
@@ -779,8 +695,7 @@ end;
 //    end;
 //    F12KEY:
 //    begin
-//      if G.qual and LR_SHIFTKEY
-//      then
+//      if G.qual and LR_SHIFTKEY then
 //      begin 
 //        addqueue(curarea.headwin,REDRAW,1); 
 //        curarea.butspacetype:= SPACE_IMASEL; 
@@ -800,19 +715,15 @@ end;
 //    LEFTARROWKEY,
 //    DOWNARROWKEY:
 //    begin
-//      if textediting=0)and(textspace=0
-//      then
+//      if textediting=0)and(textspace=0 then
 //      begin 
-//        if event=DOWNARROWKEY
-//        then
+//        if event=DOWNARROWKEY then
 //        CFRA:= CFRA - (10); 
 //        else
 //        dec(CFRA); 
-//        if G.qual and 3
-//        then
+//        if G.qual and 3 then
 //        CFRA:= SFRA; 
-//        if CFRA<1
-//        then
+//        if CFRA<1 then
 //        CFRA:= 1; 
 //        do_global_buttons(B_NEWFRAME); 
 //        begin
@@ -825,16 +736,13 @@ end;
 
 //    UPARROWKEY:
 //    begin
-//      if textediting=0)and(textspace=0
-//      then
+//      if textediting=0)and(textspace=0 then
 //      begin 
-//        if event=UPARROWKEY
-//        then
+//        if event=UPARROWKEY then
 //        CFRA:= CFRA + (10); 
 //        else
 //        inc(CFRA); 
-//        if G.qual and 3
-//        then
+//        if G.qual and 3 then
 //        CFRA:= EFRA; 
 //        do_global_buttons(B_NEWFRAME); 
 //      end;
@@ -842,14 +750,12 @@ end;
 //    ESCKEY:
 //    (* event doorgeven aan filesel? *)
 //    begin
-//      if G.curscreen.winakt<>R.win)and(curarea.spacetype=SPACE_FILE
-//      then
+//      if G.curscreen.winakt<>R.win)and(curarea.spacetype=SPACE_FILE then
 //      begin
 //        result:= 1; 
 //        exit;
 //      end;
-//      if R.win)and(R.winpop=0
-//      then
+//      if R.win)and(R.winpop=0 then
 //      begin 
 //        toggle_render_display(); 
 //        begin
@@ -858,20 +764,17 @@ end;
 //        end;
 //      end;
 //      else
-//      if R.rectot<>0{nil} {<= !!!9} 
-//      then
+//      if R.rectot<>0 then
 //      begin 
 //        ok:= 0; 
 //        sa:= G.curscreen.areabase.first; 
 //        while sa
 //        do
 //        begin 
-//          if sa.spacetype=SPACE_VIEW3D
-//          then
+//          if sa.spacetype=SPACE_VIEW3D then
 //          begin 
 //            vd:= sa.spacedata.first; 
-//            if vd.flag and V3D_DISPIMAGE
-//            then
+//            if vd.flag and V3D_DISPIMAGE then
 //            begin 
 //              addqueue(sa.win,REDRAW,1); 
 //              ok:= 1; 
@@ -880,8 +783,7 @@ end;
 //          end;
 //          sa:= sa.next; 
 //        end;
-//        if ok<>0{nil} {<= !!!9} 
-//        then
+//        if ok<>0 then
 //        begin
 //          result:= 0; 
 //          exit;
@@ -890,26 +792,20 @@ end;
 //    end;
 //    TABKEY:
 //    begin
-//      if G.qual=0
-//      then
+//      if G.qual=0 then
 //      begin 
-//        if textspace=0
-//        then
+//        if textspace=0 then
 //        begin 
-//          if curarea.spacetype=SPACE_IPO
-//          then
+//          if curarea.spacetype=SPACE_IPO then
 //          set_editflag_editipo(); 
 //          else
-//          if curarea.spacetype=SPACE_SEQ
-//          then
+//          if curarea.spacetype=SPACE_SEQ then
 //          enter_meta(); 
 //          else
-//          if G.vd<>0{nil} {<= !!!9} 
-//          then
+//          if G.vd<>0 then
 //          begin 
 //            (* ook als Alt-E *)
-//            if G.obedit=0
-//            then
+//            if G.obedit=0 then
 //            enter_editmode(); 
 //            else
 //            exit_editmode(1); 
@@ -921,8 +817,7 @@ end;
 //        end;
 //      end;
 //      else
-//      if G.f and G_DEBUG
-//      then
+//      if G.f and G_DEBUG then
 //      begin 
 //        printf('swap\n');
 //        glutSwapBuffers(); 
@@ -935,14 +830,11 @@ end;
 //    AKEY:
 
 //    begin
-//      if textediting=0)and(textspace=0
-//      then
+//      if textediting=0)and(textspace=0 then
 //      begin 
-//        if G.qual and LR_ALTKEY
-//        then
+//        if G.qual and LR_ALTKEY then
 //        begin 
-//          if G.qual and LR_SHIFTKEY
-//          then
+//          if G.qual and LR_SHIFTKEY then
 //          play_anim(1); 
 //          else
 //          play_anim(0); 
@@ -955,14 +847,11 @@ end;
 //    end;
 //    EKEY:
 //    begin
-//      if G.qual and LR_ALTKEY
-//      then
+//      if G.qual and LR_ALTKEY then
 //      begin 
-//        if G.vd)and(textspace=0
-//        then
+//        if G.vd)and(textspace=0 then
 //        begin 
-//          if G.obedit=0
-//          then
+//          if G.obedit=0 then
 //          enter_editmode(); 
 //          else
 //          exit_editmode(1); 
@@ -975,11 +864,9 @@ end;
 //    end;
 //    IKEY:
 //    begin
-//      if textediting=0)and(textspace=0)and(curarea.spacetype<>SPACE_FILE)and(curarea.spacetype<>SPACE_IMASEL
-//      then
+//      if textediting=0)and(textspace=0)and(curarea.spacetype<>SPACE_FILE)and(curarea.spacetype<>SPACE_IMASEL then
 //      begin 
-//        if G.qual=0
-//        then
+//        if G.qual=0 then
 //        begin 
 //          common_insertkey(); 
 //          begin
@@ -991,22 +878,18 @@ end;
 //    end;
 //    JKEY:
 //    begin
-//      if textediting=0)and(textspace=0
-//      then
+//      if textediting=0)and(textspace=0 then
 //      begin 
-//        if R.rectot)and(G.qual=0
-//        then
+//        if R.rectot)and(G.qual=0 then
 //        begin 
-//          if R.rectspare=0
-//          then
+//          if R.rectspare=0 then
 //          begin 
 //            R.rectspare:= {!!!a type cast? =>} {puint(}callocN(sizeof(int)*R.rectx*R.recty,'rectot'); 
 //            R.sparex:= R.rectx; 
 //            R.sparey:= R.recty; 
 //          end;
 //          else
-//          if R.sparex<>R.rectx)or(R.sparey<>R.recty
-//          then
+//          if R.sparex<>R.rectx)or(R.sparey<>R.recty then
 //          begin 
 //            temp:= {!!!a type cast? =>} {puint(}callocN(sizeof(int)*R.rectx*R.recty,'rectot'); 
 //            scalefastrect(R.rectspare,temp,R.sparex,R.sparey,R.rectx,R.recty); 
@@ -1027,15 +910,12 @@ end;
 //    NKEY:
 
 //    begin
-//      if textediting=0)and(textspace=0
-//      then
+//      if textediting=0)and(textspace=0 then
 //      begin 
-//        if G.qual and LR_CTRLKEY
-//        then
+//        if G.qual and LR_CTRLKEY then
 //        ; 
 //        else
-//        if G.qual=0)or((G.qual and LR_SHIFTKEY)
-//        then
+//        if G.qual=0)or((G.qual and LR_SHIFTKEY) then
 //        begin 
 //          clever_numbuts(); 
 //          begin
@@ -1047,15 +927,12 @@ end;
 //    end;
 //    OKEY:
 //    begin
-//      if textediting=0
-//      then
+//      if textediting=0 then
 //      begin 
-//        if G.qual and LR_CTRLKEY
-//        then
+//        if G.qual and LR_CTRLKEY then
 //        begin 
 //          sprintf(str,'Open file: %s',G.sce); 
-//          if okee(str)
-//          then
+//          if okee(str) then
 //          begin 
 //            strcpy(dir,G.sce); 
 //            read_file(dir); 
@@ -1069,14 +946,11 @@ end;
 //    end;
 //    SKEY:
 //    begin
-//      if G.obedit=0
-//      then
+//      if G.obedit=0 then
 //      begin 
-//        if G.qual and LR_CTRLKEY
-//        then
+//        if G.qual and LR_CTRLKEY then
 //        begin 
-//          if G.qual and LR_SHIFTKEY
-//          then
+//          if G.qual and LR_SHIFTKEY then
 //          ; 
 //          else
 //          begin 
@@ -1093,16 +967,13 @@ end;
 //    end;
 //    TKEY:
 //    begin
-//      if G.qual and LR_ALTKEY
-//      then
+//      if G.qual and LR_ALTKEY then
 //      begin 
-//        if G.qual and LR_CTRLKEY
-//        then
+//        if G.qual and LR_CTRLKEY then
 //        begin 
 
 //          event:= pupmenu('10 Timer%t|draw|draw+swap'); 
-//          if event>0
-//          then
+//          if event>0 then
 //          begin 
 //            printf('start timer\n');
 //            waitcursor(1); 
@@ -1111,16 +982,13 @@ end;
 //            do
 //            begin 
 //              curarea.windraw(); 
-//              if event=2
-//              then
+//              if event=2 then
 //              screen_swapbuffers(); 
 //            end;
 //          end_timer(@time,0); 
-//          if event=1
-//          then
+//          if event=1 then
 //          printf('draw %d\n',time);
-//          if event=2
-//          then
+//          if event=2 then
 //          printf('d+sw %d\n',time);
 //          waitcursor(0); 
 //          begin
@@ -1133,17 +1001,13 @@ end;
 //  end;
 //  UKEY:
 //  begin
-//    if textediting=0
-//    then
+//    if textediting=0 then
 //    begin 
-//      if G.qual and LR_CTRLKEY
-//      then
+//      if G.qual and LR_CTRLKEY then
 //      begin 
-//        if okee('SAVE USER DEFAULTS')
-//        then
+//        if okee('SAVE USER DEFAULTS') then
 //        begin 
-//          if write_homefile()=0
-//          then
+//          if write_homefile()=0 then
 //          error('Can''t write ~/.B.blend'); 
 //        end;
 //        begin
@@ -1155,20 +1019,16 @@ end;
 //  end;
 //  WKEY:
 //  begin
-//    if textediting=0
-//    then
+//    if textediting=0 then
 //    begin 
-//      if G.qual and LR_CTRLKEY
-//      then
+//      if G.qual and LR_CTRLKEY then
 //      begin 
-//        if G.qual and LR_SHIFTKEY
-//        then
+//        if G.qual and LR_SHIFTKEY then
 //        ; 
 //        else
 //        begin 
 //          strcpy(dir,G.sce); 
-//          if untitled(dir)
-//          then
+//          if untitled(dir) then
 //          begin 
 //            activate_fileselect(FILE_BLENDER,'SAVE FILE',dir,write_file); 
 //          end;
@@ -1184,8 +1044,7 @@ end;
 //        end;
 //      end;
 //      else
-//      if G.qual and LR_ALTKEY
-//      then
+//      if G.qual and LR_ALTKEY then
 //      begin 
 //        write_videoscape_fs(); 
 //      end;
@@ -1193,14 +1052,11 @@ end;
 //  end;
 //  XKEY:
 //  begin
-//    if G.qual and LR_CTRLKEY
-//    then
+//    if G.qual and LR_CTRLKEY then
 //    begin 
-//      if okee('ERASE ALL')
-//      then
+//      if okee('ERASE ALL') then
 //      begin 
-//        if read_homefile()=0
-//        then
+//        if read_homefile()=0 then
 //        error('No file ~/.B.blend'); 
 //      end;
 //      begin
@@ -1211,8 +1067,7 @@ end;
 //  end;
 //  ZKEY:
 //  begin
-//    if R.win)and(R.win=G.curscreen.winakt
-//    then
+//    if R.win)and(R.win=G.curscreen.winakt then
 //    begin 
 //      zoomwin(); 
 //      begin

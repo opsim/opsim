@@ -38,12 +38,6 @@ GL, GLut,
 cfuncs,
 blenglob, util, graphics, Button, mywindow, screen, mydevice;
 
-//{$include "blender.h"}
-//{$include "graphics.h"}
-//{$include "edit.h"}
-//{$include "screen.h"}
-//{$include "render.h"}
-
 (*   ********  NOTES  *********** *****************************
  
  - Toolbox items zelf invullen
@@ -1968,13 +1962,11 @@ end;
 //else
 //usleep(2); 
 //tbox_getmouse(mval); 
-//if mval[0]<tbx1-10)or(mval[0]>tbx2+10)or(mval[1]<tby1-10)or(mval[1]>tby2+10
-//then
+//if mval[0]<tbx1-10)or(mval[0]>tbx2+10)or(mval[1]<tby1-10)or(mval[1]>tby2+10 then
 //break; {<= !!!b possible in "switch" - then remove this line}
 //tbox_getactive( and actx, and acty); 
 //(* muisafhandeling en redraw *)
-//if xo<>actx)or(yo<>acty
-//then
+//if xo<>actx)or(yo<>acty then
 //begin 
 //  if actx=0 then
 //  begin 
@@ -3064,8 +3056,7 @@ end;
 //areawinset(curarea.win); 
 //remake_qual(); 
 //(* in Button.c zit geen extern_qread *)
-//if ret=1
-//then
+//if ret=1 then
 //begin 
 //  varstr:= @numbuts[0]; 
 //  while{for} 

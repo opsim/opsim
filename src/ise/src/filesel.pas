@@ -33,14 +33,6 @@ interface
 uses
   blender;
 
-//{$include "blender.h"}
-//{$include "render.h"}
-//{$include "graphics.h"}
-//{$include "file.h"}
-//{$include "imasel.h"}
-
-//{$if defined(WINDOWS) or defined MIPS1 or defined BEOS}
-
 procedure activate_fileselect(_type: integer;  title: pchar;  _file: pchar; func: retfunc);
 
 implementation
@@ -56,20 +48,13 @@ uses
 //    exit;
 //  end;
 //end;
-//{$ifdef MIPS1}
+{$ifdef MIPS1}
 
 //procedure usleep(val: integer); 
 //begin
 //  sginap(val); 
 //end;
-//{$endif}
-//{$else}
-//{$include <fnmatch.h>}
-//{$endif}
-
-//{$ifndef WINDOWS}
-//{$include <sys/param.h>}
-//{$endif}
+{$endif}
 
 //const
 //FILESELHEAD = 60; 
@@ -116,11 +101,9 @@ var
 //function compare_date(entry1: pdirentry;  entry2: pdirentry): integer; 
 //begin(* type is gelijk aan stat.st_mode *)
 
-//  if S_ISDIR(entry1.type)
-//  then
+//  if S_ISDIR(entry1.type) then
 //  begin 
-//    if S_ISDIR(entry2.type)=0
-//    then
+//    if S_ISDIR(entry2.type)=0 then
 //    begin
 //      result:= (-1); 
 //      exit;
@@ -128,18 +111,15 @@ var
 //  end;
 //  else
 //  begin 
-//    if S_ISDIR(entry2.type)
-//    then
+//    if S_ISDIR(entry2.type) then
 //    begin
 //      result:= (1); 
 //      exit;
 //    end;
 //  end;
-//  if S_ISREG(entry1.type)
-//  then
+//  if S_ISREG(entry1.type) then
 //  begin 
-//    if S_ISREG(entry2.type)=0
-//    then
+//    if S_ISREG(entry2.type)=0 then
 //    begin
 //      result:= (-1); 
 //      exit;
@@ -147,21 +127,18 @@ var
 //  end;
 //  else
 //  begin 
-//    if S_ISREG(entry2.type)
-//    then
+//    if S_ISREG(entry2.type) then
 //    begin
 //      result:= (1); 
 //      exit;
 //    end;
 //  end;
-//  if (entry1.type and S_IFMT)<(entry2.type and S_IFMT)
-//  then
+//  if (entry1.type and S_IFMT)<(entry2.type and S_IFMT) then
 //  begin
 //    result:= (-1); 
 //    exit;
 //  end;
-//  if (entry1.type and S_IFMT)>(entry2.type and S_IFMT)
-//  then
+//  if (entry1.type and S_IFMT)>(entry2.type and S_IFMT) then
 //  begin
 //    result:= (1); 
 //    exit;
@@ -171,14 +148,12 @@ var
 //     if ( entry1->s.st_ctime > entry2->s.st_ctime) return -1;
 //    *)
 //  end;
-//  if entry1.s.st_mtime<entry2.s.st_mtime
-//  then
+//  if entry1.s.st_mtime<entry2.s.st_mtime then
 //  begin
 //    result:= 1; 
 //    exit;
 //  end;
-//  if entry1.s.st_mtime>entry2.s.st_mtime
-//  then
+//  if entry1.s.st_mtime>entry2.s.st_mtime then
 //  begin
 //    result:= -1; 
 //    exit;
@@ -193,11 +168,9 @@ var
 //function compare_size(entry1: pdirentry;  entry2: pdirentry): integer; 
 //begin(* type is gelijk aan stat.st_mode *)
 
-//  if S_ISDIR(entry1.type)
-//  then
+//  if S_ISDIR(entry1.type) then
 //  begin 
-//    if S_ISDIR(entry2.type)=0
-//    then
+//    if S_ISDIR(entry2.type)=0 then
 //    begin
 //      result:= (-1); 
 //      exit;
@@ -205,18 +178,15 @@ var
 //  end;
 //  else
 //  begin 
-//    if S_ISDIR(entry2.type)
-//    then
+//    if S_ISDIR(entry2.type) then
 //    begin
 //      result:= (1); 
 //      exit;
 //    end;
 //  end;
-//  if S_ISREG(entry1.type)
-//  then
+//  if S_ISREG(entry1.type) then
 //  begin 
-//    if S_ISREG(entry2.type)=0
-//    then
+//    if S_ISREG(entry2.type)=0 then
 //    begin
 //      result:= (-1); 
 //      exit;
@@ -224,34 +194,29 @@ var
 //  end;
 //  else
 //  begin 
-//    if S_ISREG(entry2.type)
-//    then
+//    if S_ISREG(entry2.type) then
 //    begin
 //      result:= (1); 
 //      exit;
 //    end;
 //  end;
-//  if (entry1.type and S_IFMT)<(entry2.type and S_IFMT)
-//  then
+//  if (entry1.type and S_IFMT)<(entry2.type and S_IFMT) then
 //  begin
 //    result:= (-1); 
 //    exit;
 //  end;
-//  if (entry1.type and S_IFMT)>(entry2.type and S_IFMT)
-//  then
+//  if (entry1.type and S_IFMT)>(entry2.type and S_IFMT) then
 //  begin
 //    result:= (1); 
 //    exit;
 
 //  end;
-//  if entry1.s.st_size<entry2.s.st_size
-//  then
+//  if entry1.s.st_size<entry2.s.st_size then
 //  begin
 //    result:= 1; 
 //    exit;
 //  end;
-//  if entry1.s.st_size>entry2.s.st_size
-//  then
+//  if entry1.s.st_size>entry2.s.st_size then
 //  begin
 //    result:= -1; 
 //    exit;
@@ -277,19 +242,15 @@ var
 //begin
 
 //  len:= lstrlen(name); 
-//  if len=0
-//  then
+//  if len=0 then
 //  exit;
 
-//  if fsmenu<>0{nil} {<= !!!9} 
-//  then
+//  if fsmenu<>0 then
 //  len:= len + (lstrlen(fsmenu)); 
-//  if fsmenu<>0{nil} {<= !!!9} 
-//  then
+//  if fsmenu<>0 then
 //  begin 
 //    (* komtie voor? *)
-//    if strstr(fsmenu,name)
-//    then
+//    if strstr(fsmenu,name) then
 //    exit;
 //    temp:= mallocN(len+2,'fsmenu'); 
 //    strcpy(temp,fsmenu); 
@@ -313,20 +274,17 @@ var
 
 //  {*}totfile^:=*selfile:=0; 
 //  {*}totlen^:=*sellen:=0; 
-//  if sfile^.filelist=0
-//  then
+//  if sfile^.filelist=0 then
 //  exit;
 //  for{while} a:=0 to Pred(sfile^.totfile) { a++}
 //  do
 //  begin 
-//    if (sfile^.filelist[a].type and S_IFDIR)=0
-//    then
+//    if (sfile^.filelist[a].type and S_IFDIR)=0 then
 //    begin 
 //      (*totfile)++; 
 //      len:= sfile^.filelist[a].s.st_size; (*totlen)+=(len div 1048576.0); 
 
-//      if sfile^.filelist[a].flags and ACTIVE
-//      then
+//      if sfile^.filelist[a].flags and ACTIVE then
 //      begin 
 //        (*selfile)++; 
 //        (*sellen)+=(len div 1048576.0); 
@@ -348,13 +306,11 @@ var
 
 //  pipestart:=LongBool(0); 
 
-//  if sfile^.file[0]<>0
-//  then
+//  if sfile^.file[0]<>0 then
 //  begin 
 //    waitcursor(1); 
 //    sprintf(cmd,'%s%s',sfile^.dir,sfile^.file); 
-//    if ispic(cmd)=TGA
-//    then
+//    if ispic(cmd)=TGA then
 //    begin 
 //      (* patch *)
 //      sprintf(cmd,'paint %s%s',sfile^.dir,sfile^.file); 
@@ -366,8 +322,7 @@ var
 //      pipein:= popen(cmd,'r'); 
 //      pipeout:= popen('sh -s ','w'); 
 //      pipestart:= LongBool(0); 
-//      if pipein<>0{nil})and(pipeout<>0
-//      then
+//      if pipein<>0{nil})and(pipeout<>0 then
 //      begin 
 //        fprintf(pipeout,'cd %s\n',sfile^.dir);
 //        fprintf(pipeout,'LEADER=%s/%s\n',sfile^.dir,sfile^.file);
@@ -378,37 +333,31 @@ var
 //        do
 //        begin 
 //          (*fprintf(stderr, "%s\n", cmd);*)
-//          if STARTSWITH('TYPE',cmd)
-//          then
+//          if STARTSWITH('TYPE',cmd) then
 //          begin 
 //            fprintf(pipeout,'LEADERTYPE=%s\n',cmd+5);
 //          end;
 //          else
-//          if STARTSWITH('CMD OPEN',cmd)
-//          then
+//          if STARTSWITH('CMD OPEN',cmd) then
 //          begin 
 //            pipestart:= LongBool(1); 
 //            fprintf(pipeout,'%s\n',cmd+8);
 //          end;
 //          else
-//          if STARTSWITH('CMD',cmd)
-//          then
+//          if STARTSWITH('CMD',cmd) then
 //          begin 
 //            pipestart:= LongBool(0); 
 //          end;
 //          else
-//          if pipestart<>0{nil} {<= !!!9} 
-//          then
+//          if pipestart<>0 then
 //          begin 
 //            fprintf(pipeout,'%s\n',cmd);
 //          end;
 //        end;
 //      end;
-//      if pipein<>0{nil}
-//      then
+//      if pipein<>0{nil} then
 //      pclose(pipein); 
-//      if pipeout<>0{nil}
-//      then
+//      if pipeout<>0{nil} then
 //      pclose(pipeout); 
 //    end;
 //    waitcursor(0); 
@@ -423,8 +372,7 @@ var
 //  while {*}string^<>0
 //  do
 //  begin 
-//    if {*}string^=from
-//    then
+//    if {*}string^=from then
 //    {*}string^:=to; 
 //    inc(string); 
 //  end;
@@ -446,8 +394,7 @@ var
 //  make_file_string(tmp,dir,); 
 //  strcpy(dir,tmp); 
 //  {$ifdef WINDOWS}
-//  if dir[0]='.'
-//  then
+//  if dir[0]='.' then
 //  begin 
 //    (* komt voor, o.a. bij FILE_MAIN *)
 //    dir[0]:= #92; 
@@ -463,8 +410,7 @@ var
 //    while a>0
 //    do
 //    begin 
-//      if dir[a]=#92
-//      then
+//      if dir[a]=#92 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      dec(a); 
 //    end;
@@ -485,8 +431,7 @@ var
 //    strcpy(start,eind); 
 //  end;
 
-//  if a:=lstrlen(dir)
-//  then
+//  if a:=lstrlen(dir) then
 //  begin 
 //    (* eerst alle '\s' weghalen aan het eind *)
 //    while a>0)and(dir[a-1]=#92
@@ -499,8 +444,7 @@ var
 //  strcat(dir,'\'); 
 
 //  {$else}
-//  if dir[0]='.'
-//  then
+//  if dir[0]='.' then
 //  begin 
 //    (* komt voor, o.a. bij FILE_MAIN *)
 //    dir[0]:= '/'; 
@@ -515,8 +459,7 @@ var
 //    while a>0
 //    do
 //    begin 
-//      if dir[a]='/'
-//      then
+//      if dir[a]='/' then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      dec(a); 
 //    end;
@@ -537,8 +480,7 @@ var
 //    strcpy(start,eind); 
 //  end;
 
-//  if a:=lstrlen(dir)
-//  then
+//  if a:=lstrlen(dir) then
 //  begin 
 //    (* eerst alle '/' weghalen aan het eind *)
 //    while dir[a-1]='/'
@@ -546,8 +488,7 @@ var
 //    begin 
 //      dec(a); 
 //      dir[a]:= 0; 
-//      if a<=0
-//      then
+//      if a<=0 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //  end;
@@ -577,39 +518,32 @@ var
 //  begin 
 //    file.flags:= 0; 
 //    file.type:= file.s.st_mode; (* restore het geknoei van hieronder *)
-//    if sfile^.type=FILE_BLENDER)or(sfile^.type=FILE_LOADLIB
-//    then
+//    if sfile^.type=FILE_BLENDER)or(sfile^.type=FILE_LOADLIB then
 //    begin 
-//      if testextensie(file.relname,'.blend')
-//      then
+//      if testextensie(file.relname,'.blend') then
 //      begin 
 //        file.flags:= file.flags or (BLENDERFILE); 
-//        if sfile^.type=FILE_LOADLIB
-//        then
+//        if sfile^.type=FILE_LOADLIB then
 //        begin 
 //          file.type:= file.type and ( not S_IFMT); 
 //          file.type:= file.type or (S_IFDIR); 
 //        end;
 //      end;
 //      else
-//      if testextensie(file.relname,'.psx')
-//      then
+//      if testextensie(file.relname,'.psx') then
 //      begin 
 //        file.flags:= file.flags or (PSXFILE); 
 //      end;
 //    end;
 //    else
-//    if sfile^.type=FILE_SPECIAL
-//    then
+//    if sfile^.type=FILE_SPECIAL then
 //    begin 
-//      if testextensie(file.relname,'.jpg'))or(testextensie(file.relname,'.tga'))or(testextensie(file.relname,'.rgb'))or(testextensie(file.relname,'.sgi')
-//      then
+//      if testextensie(file.relname,'.jpg'))or(testextensie(file.relname,'.tga'))or(testextensie(file.relname,'.rgb'))or(testextensie(file.relname,'.sgi') then
 //      begin 
 //        file.flags:= file.flags or (IMAGEFILE); 
 //      end;
 //      else
-//      if testextensie(file.relname,'.avi'))or(testextensie(file.relname,'.mv')
-//      then
+//      if testextensie(file.relname,'.avi'))or(testextensie(file.relname,'.mv') then
 //      begin 
 //        file.flags:= file.flags or (MOVIEFILE); 
 //      end;
@@ -674,19 +608,16 @@ var
 //  {totnum: integer; }{<= !!!5 external variable}(* storage.c *)
 
 //  sfile^.act:= -1; 
-//  if sfile^.type=FILE_MAIN
-//  then
+//  if sfile^.type=FILE_MAIN then
 //  begin 
 //    main_to_filelist(sfile); 
 //    exit;
 //  end;
 //  else
-//  if sfile^.type=FILE_LOADLIB
-//  then
+//  if sfile^.type=FILE_LOADLIB then
 //  begin 
 //    library_to_filelist(sfile); 
-//    if sfile^.libfiledata<>0{nil} {<= !!!9} 
-//    then
+//    if sfile^.libfiledata<>0 then
 //    exit;
 //  end;
 //  actnum:= totnum:=0; 
@@ -697,22 +628,18 @@ var
 //  getwdN(wdir); 
 //  sfile^.totfile:= getdir(sfile^.dir,@(sfile^.filelist)); 
 //  chdir(wdir); 
-//  if sfile^.sort<>FILE_SORTALPHA
-//  then
+//  if sfile^.sort<>FILE_SORTALPHA then
 //  sort_filelist(sfile); 
 //  sfile^.maxnamelen:= 0; 
 //  for{while} num:=0 to Pred(sfile^.totfile) { num++}
 //  do
 //  begin 
 //    len:= fmgetstrwidth(G.font,sfile^.filelist[num].relname); 
-//    if len>sfile^.maxnamelen
-//    then
+//    if len>sfile^.maxnamelen then
 //    sfile^.maxnamelen:= len; 
-//    if filetoname<>0{nil} {<= !!!9} 
-//    then
+//    if filetoname<>0 then
 //    begin 
-//      if lstrcmp(sfile^.file,sfile^.filelist[num].relname)=0
-//      then
+//      if lstrcmp(sfile^.file,sfile^.filelist[num].relname)=0 then
 //      begin 
 //        sfile^.ofs:= num-(sfile^.collums*(curarea^.winy-FILESELHEAD-20) div (2*FILESEL_DY)); 
 //        filetoname:= 0; 
@@ -729,7 +656,7 @@ num: integer;
 begin
   num:= sfile^.totfile-1;
 
-  if sfile^.filelist=nil  then
+  if sfile^.filelist=nil then
   exit;
 
   while num>=0 do
@@ -766,12 +693,10 @@ end;
 //    do
 //    begin 
 //      dec(a); 
-//      if a<=0
-//      then
+//      if a<=0 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
-//    if a>=0
-//    then
+//    if a>=0 then
 //    dir[a+1]:= 0; 
 //    else
 //    begin 
@@ -788,12 +713,10 @@ end;
 //    do
 //    begin 
 //      dec(a); 
-//      if a<=0
-//      then
+//      if a<=0 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
-//    if a>=0
-//    then
+//    if a>=0 then
 //    dir[a+1]:= 0; 
 //    else
 //    begin 
@@ -812,17 +735,14 @@ end;
 //  dir[0]:= 0; 
 //  file[0]:= 0; 
 //  {$ifdef WINDOWS}
-//  if lstrlen(string)
-//  then
+//  if lstrlen(string) then
 //  begin 
-//    if string[0]='/')or(string[0]=#92
-//    then
+//    if string[0]='/')or(string[0]=#92 then
 //    begin 
 //      strcpy(dir,string); 
 //    end;
 //    else
-//    if string[1]=':')and(string[2]=#92
-//    then
+//    if string[1]=':')and(string[2]=#92 then
 //    begin 
 //      strcpy(dir,string); 
 //    end;
@@ -834,19 +754,15 @@ end;
 //      strcpy(string,dir); 
 //    end;
 //    make_exist(dir); 
-//    if S_ISDIR(exist(dir))
-//    then
+//    if S_ISDIR(exist(dir)) then
 //    begin 
 //      strcpy(file,string+lstrlen(dir)); 
 
-//      if strrchr(file,#92)
-//      then
+//      if strrchr(file,#92) then
 //      strcpy(file,strrchr(file,#92)+1); 
-//      if a:=lstrlen(dir)
-//      then
+//      if a:=lstrlen(dir) then
 //      begin 
-//        if dir[a-1]<>#92
-//        then
+//        if dir[a-1]<>#92 then
 //        strcat(dir,'\'); 
 //      end;
 //    end;
@@ -866,17 +782,14 @@ end;
 //    file[0]:= 0; 
 //  end;
 //  {$else}
-//  if lstrlen(string)
-//  then
+//  if lstrlen(string) then
 //  begin 
-//    if string[0]='/'
-//    then
+//    if string[0]='/' then
 //    begin 
 //      strcpy(dir,string); 
 //    end;
 //    else
-//    if string[1]=':')and(string[2]=#92
-//    then
+//    if string[1]=':')and(string[2]=#92 then
 //    begin 
 //      string:= string + (2); 
 //      strcpy(dir,string); 
@@ -890,19 +803,15 @@ end;
 //    end;
 //    make_exist(dir); 
 
-//    if S_ISDIR(exist(dir))
-//    then
+//    if S_ISDIR(exist(dir)) then
 //    begin 
 //      strcpy(file,string+lstrlen(dir)); 
 
-//      if strrchr(file,'/')
-//      then
+//      if strrchr(file,'/') then
 //      strcpy(file,strrchr(file,'/')+1); 
-//      if a:=lstrlen(dir)
-//      then
+//      if a:=lstrlen(dir) then
 //      begin 
-//        if dir[a-1]<>'/'
-//        then
+//        if dir[a-1]<>'/' then
 //        strcat(dir,'/'); 
 //      end;
 //    end;
@@ -936,11 +845,9 @@ end;
 //  strcpy(string,s1); 
 //  split_dirfile(string,dir,file); 
 
-//  if sfile^.filelist<>0{nil} {<= !!!9} 
-//  then
+//  if sfile^.filelist<>0 then
 //  begin 
-//    if lstrcmp(dir,sfile^.dir)<>0
-//    then
+//    if lstrcmp(dir,sfile^.dir)<>0 then
 //    begin 
 //      freefilelist(sfile); 
 //    end;
@@ -957,14 +864,12 @@ end;
 //dir: pchar; (* als databrowse: geen parent *)
 //begin
 
-//  if sfile^.type=FILE_MAIN)and(sfile^.returnfunc
-//  then
+//  if sfile^.type=FILE_MAIN)and(sfile^.returnfunc then
 //  exit;
 
 //  dir:= sfile^.dir; 
 //  {$ifdef WINDOWS}
-//  if a:=lstrlen(dir)
-//  then
+//  if a:=lstrlen(dir) then
 //  begin 
 //    (* eerst alle '/' weghalen aan het eind *)
 //    while dir[a-1]=#92
@@ -972,13 +877,11 @@ end;
 //    begin 
 //      dec(a); 
 //      dir[a]:= 0; 
-//      if a<=0
-//      then
+//      if a<=0 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //  end;
-//  if a:=lstrlen(dir)
-//  then
+//  if a:=lstrlen(dir) then
 //  begin 
 //    (* daarna alles weghalen tot aan '/' *)
 //    while dir[a-1]<>#92
@@ -986,25 +889,20 @@ end;
 //    begin 
 //      dec(a); 
 //      dir[a]:= 0; 
-//      if a<=0
-//      then
+//      if a<=0 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //  end;
-//  if a:=lstrlen(dir)
-//  then
+//  if a:=lstrlen(dir) then
 //  begin 
-//    if dir[a-1]<>#92
-//    then
+//    if dir[a-1]<>#92 then
 //    strcat(dir,'\'); 
 //  end;
 //  else
-//  if sfile^.type<>FILE_MAIN
-//  then
+//  if sfile^.type<>FILE_MAIN then
 //  strcpy(dir,'\'); 
 //  {$else}
-//  if a:=lstrlen(dir)
-//  then
+//  if a:=lstrlen(dir) then
 //  begin 
 //    (* eerst alle '/' weghalen aan het eind *)
 //    while dir[a-1]='/'
@@ -1012,13 +910,11 @@ end;
 //    begin 
 //      dec(a); 
 //      dir[a]:= 0; 
-//      if a<=0
-//      then
+//      if a<=0 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //  end;
-//  if a:=lstrlen(dir)
-//  then
+//  if a:=lstrlen(dir) then
 //  begin 
 //    (* daarna alles weghalen tot aan '/' *)
 //    while dir[a-1]<>'/'
@@ -1026,21 +922,17 @@ end;
 //    begin 
 //      dec(a); 
 //      dir[a]:= 0; 
-//      if a<=0
-//      then
+//      if a<=0 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //  end;
-//  if a:=lstrlen(dir)
-//  then
+//  if a:=lstrlen(dir) then
 //  begin 
-//    if dir[a-1]<>'/'
-//    then
+//    if dir[a-1]<>'/' then
 //    strcat(dir,'/'); 
 //  end;
 //  else
-//  if sfile^.type<>FILE_MAIN
-//  then
+//  if sfile^.type<>FILE_MAIN then
 //  strcpy(dir,'/'); 
 //  {$endif}
 //  make_exist(sfile^.dir); 
@@ -1072,8 +964,7 @@ end;
 //  inc(file); 
 //  do
 //  begin 
-//    if file.flags and ACTIVE
-//    then
+//    if file.flags and ACTIVE then
 //    begin 
 //      act:= 1; 
 //      break; {<= !!!b possible in "switch" - then remove this line}
@@ -1088,8 +979,7 @@ end;
 //  inc(file); 
 //  do
 //  begin 
-//    if act<>0{nil} {<= !!!9} 
-//    then
+//    if act<>0 then
 //    file.flags:= file.flags and ( not ACTIVE); 
 //    else
 //    file.flags:= file.flags or (ACTIVE); 
@@ -1101,15 +991,12 @@ end;
 //ofs: integer; 
 //begin
 
-//  if y>textrct.ymax
-//  then
+//  if y>textrct.ymax then
 //  y:= textrct.ymax; 
-//  if y<=textrct.ymin
-//  then
+//  if y<=textrct.ymin then
 //  y:= textrct.ymin+1; 
 //  ofs:= (x-textrct.xmin) div collumwidth; 
-//  if ofs<0
-//  then
+//  if ofs<0 then
 //  ofs:= 0; 
 //  ofs:= ofs * ((textrct.ymax-textrct.ymin)); 
 //  begin
@@ -1138,8 +1025,7 @@ end;
 //  textrct.xmax:= curarea^.winx-10; 
 //  textrct.ymin:= scrollrct.ymin; 
 //  textrct.ymax:= scrollrct.ymax; 
-//  if textrct.xmax-textrct.xmin<60
-//  then
+//  if textrct.xmax-textrct.xmin<60 then
 //  textrct.xmax:= textrct.xmin+60; 
 //  len:= (textrct.ymax-textrct.ymin) mod FILESEL_DY; 
 //  textrct.ymin:= textrct.ymin + (len); 
@@ -1147,50 +1033,39 @@ end;
 //  filebuty1:= curarea^.winy-FILESELHEAD; 
 //  filebuty2:= filebuty1+FILESELHEAD div 2-6; 
 //  len:= sfile^.maxnamelen+25; (* aantal kolommen *)
-//  if sfile^.type=FILE_MAIN
-//  then
+//  if sfile^.type=FILE_MAIN then
 //  len:= len + (100); 
 //  else
-//  if sfile^.flag and FILE_SHOWSHORT
-//  then
+//  if sfile^.flag and FILE_SHOWSHORT then
 //  len:= len + (100); 
 //  else
 //  len:= len + (380); 
 //  sfile^.collums:= (textrct.xmax-textrct.xmin) div len; 
-//  if sfile^.collums<1
-//  then
+//  if sfile^.collums<1 then
 //  sfile^.collums:= 1; 
 //  else
-//  if sfile^.collums>8
-//  then
+//  if sfile^.collums>8 then
 //  sfile^.collums:= 8; 
-//  if (U.flag and FSCOLLUM)=0
-//  then
-//  if sfile^.type<>FILE_MAIN
-//  then
+//  if (U.flag and FSCOLLUM)=0 then
+//  if sfile^.type<>FILE_MAIN then
 //  sfile^.collums:= 1; 
 //  collumwidth:= (textrct.xmax-textrct.xmin) div sfile^.collums; 
 //  totfile:= sfile^.totfile+0.5; 
 //  tot:= FILESEL_DY*totfile; 
 
-//  if tot<>0{nil} {<= !!!9} 
-//  then
+//  if tot<>0 then
 //  fac:= ({!!!a type cast? =>} {float(}sfile^.collums*(scrollrct.ymax-scrollrct.ymin)) div ({!!!a type cast? =>} {float(}tot); 
 //  else
 //  fac:= 1.0; 
-//  if sfile^.ofs<0
-//  then
+//  if sfile^.ofs<0 then
 //  sfile^.ofs:= 0; 
-//  if tot<>0{nil} {<= !!!9} 
-//  then
+//  if tot<>0 then
 //  start:= ({!!!a type cast? =>} {float(}sfile^.ofs) div (totfile); 
 //  else
 //  start:= 0.0; 
-//  if fac>1.0
-//  then
+//  if fac>1.0 then
 //  fac:= 1.0; 
-//  if start+fac>1.0
-//  then
+//  if start+fac>1.0 then
 //  begin 
 //    sfile^.ofs:= fceil((1.0-fac)*totfile); 
 //    start:= ({!!!a type cast? =>} {float(}sfile^.ofs) div (totfile); 
@@ -1210,8 +1085,7 @@ end;
 
 //procedure draw_filescroll(sfile: pSpaceFile); 
 //begin
-//  if scrollrct.ymin+10>=scrollrct.ymax
-//  then
+//  if scrollrct.ymin+10>=scrollrct.ymax then
 //  exit;
 //  cpack($707070); 
 //  glRecti(scrollrct.xmin,scrollrct.ymin,scrollrct.xmax,scrollrct.ymax); 
@@ -1253,49 +1127,42 @@ end;
 
 //  end;{case?}
 
-//  if boxcol<>0{nil} {<= !!!9} 
-//  then
+//  if boxcol<>0 then
 //  begin 
 //    regelrect(boxcol,x,y); 
 //  end;
 
-//  if files.flags and BLENDERFILE
-//  then
+//  if files.flags and BLENDERFILE then
 //  begin 
 //    cpack($A0A0); 
 //    glRects(x-14,y,x-8,y+7); 
 //  end;
 //  else
-//  if files.flags and PSXFILE
-//  then
+//  if files.flags and PSXFILE then
 //  begin 
 //    cpack($A060B0); 
 //    glRects(x-14,y,x-8,y+7); 
 //  end;
 //  else
-//  if files.flags and IMAGEFILE
-//  then
+//  if files.flags and IMAGEFILE then
 //  begin 
 //    cpack($F08040); 
 //    glRects(x-14,y,x-8,y+7); 
 //  end;
 //  else
-//  if files.flags and MOVIEFILE
-//  then
+//  if files.flags and MOVIEFILE then
 //  begin 
 //    cpack($70A070); 
 //    glRects(x-14,y,x-8,y+7); 
 //  end;
-//  if S_ISDIR(files.type)
-//  then
+//  if S_ISDIR(files.type) then
 //  cpack($FFFFFF); 
 //  else
 //  cpack($0); 
 //  fmsetfont(G.font); 
 
 //  s:= files.string; 
-//  if s<>0{nil} {<= !!!9} 
-//  then
+//  if s<>0 then
 //  begin 
 //    glRasterPos2i(x,y); 
 //    fmprstr(files.relname); 
@@ -1305,8 +1172,7 @@ end;
 
 //    fmprstr(files.size); 
 
-//    if sfile^.flag and FILE_SHOWSHORT
-//    then
+//    if sfile^.flag and FILE_SHOWSHORT then
 
 //    {$ifndef WINDOWS}
 //    exit;
@@ -1336,8 +1202,7 @@ end;
 //  begin 
 //    glRasterPos2i(x,y); 
 //    fmprstr(files.relname); 
-//    if files.nr<>0{nil} {<= !!!9} 
-//    then
+//    if files.nr<>0 then
 //    begin 
 //      (* extra info *)
 //      x:= x + (sfile^.maxnamelen+20); 
@@ -1360,8 +1225,7 @@ end;
 //  {*}valx^:=coll*collumwidth+textrct.xmin+20; 
 
 //  (* aantal regels in de hoogte *)
-//  if nr<0)or(coll>sfile^.collums
-//  then
+//  if nr<0)or(coll>sfile^.collums then
 //  begin
 //    result:= 0; 
 //    exit;
@@ -1395,8 +1259,7 @@ end;
 //  old:=0; 
 //  new:=0; 
 //  file:= sfile^.filelist; 
-//  if file=0
-//  then
+//  if file=0 then
 //  exit;
 //  while{for} 
 //  num:= 0; 
@@ -1406,25 +1269,20 @@ end;
 //  inc(file); 
 //  do
 //  begin 
-//    if num=act
-//    then
+//    if num=act then
 //    begin 
-//      if selecting)and(num>1
-//      then
+//      if selecting)and(num>1 then
 //      begin 
 //        newflag:= HILITE or (file.flags and  not ACTIVE); 
-//        if selecting=ACTIVATE
-//        then
+//        if selecting=ACTIVATE then
 //        newflag:= newflag or (ACTIVE); 
-//        if file.flags<>newflag
-//        then
+//        if file.flags<>newflag then
 //        redraw:= redraw or (1); 
 //        file.flags:= newflag; 
 //      end;
 //      else
 //      begin 
-//        if file.flags and HILITE
-//        then
+//        if file.flags and HILITE then
 //        ; 
 //        else
 //        begin 
@@ -1436,8 +1294,7 @@ end;
 //    end;
 //    else
 //    begin 
-//      if file.flags and HILITE
-//      then
+//      if file.flags and HILITE then
 //      begin 
 //        file.flags:= file.flags and ( not HILITE); 
 //        redraw:= redraw or (2); 
@@ -1446,28 +1303,24 @@ end;
 //    end;
 //  end;
 //  {$ifdef IRISGL}
-//  if redraw<>0{nil} {<= !!!9} 
-//  then
+//  if redraw<>0 then
 //  begin 
 //    addqueue(curarea^.win,REDRAW,1); 
 //  end;
 //  {$else}
-//  if redraw=2
-//  then
+//  if redraw=2 then
 //  begin 
 
 //    glDrawBuffer(GL_FRONT); 
 //    glScissor(curarea^.winrct.xmin,curarea^.winrct.ymin,curarea^.winx-12,curarea^.winy); 
 
-//    if calc_filesel_regel(sfile,old,@x,@y)
-//    then
+//    if calc_filesel_regel(sfile,old,@x,@y) then
 //    begin 
 //      regelrect($686868,x,y); 
 //      printregel(sfile,sfile^.filelist+old,x,y); 
 //    end;
 //    (* myCopySubBuffer(x+curarea->winrct.xmin-20, y+curarea->winrct.ymin-4, collumwidth, FILESEL_DY+7); *)
-//    if calc_filesel_regel(sfile,new,@x,@y)
-//    then
+//    if calc_filesel_regel(sfile,new,@x,@y) then
 //    begin 
 //      glDrawBuffer(GL_FRONT); 
 //      printregel(sfile,sfile^.filelist+new,x,y); 
@@ -1478,8 +1331,7 @@ end;
 
 //  end;
 //  else
-//  if redraw<>0{nil} {<= !!!9} 
-//  then
+//  if redraw<>0 then
 //  begin 
 //    addqueue(curarea^.win,REDRAW,1); 
 //  end;
@@ -1499,8 +1351,7 @@ end;
 //mval: array [0..Pred(2)] of smallint; 
 //begin
 
-//  if textrct.ymin+10>=textrct.ymax
-//  then
+//  if textrct.ymin+10>=textrct.ymax then
 //  exit;
 
 //  (* kader *)
@@ -1524,13 +1375,11 @@ end;
 //  fmsetfont(G.font); 
 
 //  (* de teksten *)
-//  if sfile^.filelist=0
-//  then
+//  if sfile^.filelist=0 then
 //  exit;
 //  (* test: als muis niet in area staat: de HILITE wissen *)
 //  getmouseco_areawin(mval); 
-//  if mval[0]<0)or(mval[0]>curarea^.winx
-//  then
+//  if mval[0]<0)or(mval[0]>curarea^.winx then
 //  begin 
 //    files:= sfile^.filelist+sfile^.ofs; 
 //    while{for} 
@@ -1551,8 +1400,7 @@ end;
 //  inc(files); 
 //  do
 //  begin 
-//    if calc_filesel_regel(sfile,a,@x,@y)=0
-//    then
+//    if calc_filesel_regel(sfile,a,@x,@y)=0 then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    printregel(sfile,files,x,y); 
 //  end;
@@ -1574,16 +1422,14 @@ end;
 //  glClearColor(.5625,.5625,.5625,0.0); 
 //  glClear(GL_COLOR_BUFFER_BIT); 
 //  sfile:= curarea^.spacedata.first; 
-//  if sfile^.filelist=0
-//  then
+//  if sfile^.filelist=0 then
 //  begin 
 //    read_dir(sfile); 
 //    calc_file_rcts(sfile); 
 //    getmouseco_areawin(mval); 
 //    (* act berekenen *)
 //    act:= find_active_file(sfile,mval[0],mval[1]); 
-//    if act>=0)and(act<sfile^.totfile
-//    then
+//    if act>=0)and(act<sfile^.totfile then
 //    sfile^.filelist[act].flags:= sfile^.filelist[act].flags or (HILITE); 
 //  end;
 //  else
@@ -1598,8 +1444,7 @@ end;
 
 //  DefBut(TEX,2,,textrct.xmin,filebuty2,textrct.xmax-textrct.xmin,21,sfile^.dir,0.0,{!!!a type cast? =>} {float(}FILE_MAXFILE-1,0,0); 
 //  SetButShape(2); 
-//  if fsmenu<>0{nil} {<= !!!9} 
-//  then
+//  if fsmenu<>0 then
 //  DefBut(MENU or SHO,3,fsmenu,scrollrct.xmin,filebuty1,scrollrct.xmax-scrollrct.xmin,21,@sfile^.menu,0,0,0,0); 
 //  DefButt(BUT,4,'P',scrollrct.xmin,filebuty2,scrollrct.xmax-scrollrct.xmin,21,0,0,0,0,0,'Move to the parent directory (PKEY)'); 
 //  draw_filescroll(sfile); 
@@ -1622,8 +1467,7 @@ end;
 //begin
 
 //  tot:= FILESEL_DY*sfile^.totfile; 
-//  if tot<>0{nil} {<= !!!9} 
-//  then
+//  if tot<>0 then
 //  fac:= ({!!!a type cast? =>} {float(}(scrollrct.ymax-scrollrct.ymin)) div ({!!!a type cast? =>} {float(}tot); 
 //  else
 //  fac:= 1.0; 
@@ -1641,16 +1485,13 @@ end;
 //  do
 //  begin 
 //    getmouseco_areawin(mval); 
-//    if yo<>mval[1]
-//    then
+//    if yo<>mval[1] then
 //    begin 
 //      dy:= ffloor(0.5+({!!!a type cast? =>} {float(}(oldy-mval[1]))*pixels_to_ofs); 
-//      if dy<>0{nil} {<= !!!9} 
-//      then
+//      if dy<>0 then
 //      begin 
 //        sfile^.ofs:= sfile^.ofs + (dy); 
-//        if sfile^.ofs<0
-//        then
+//        if sfile^.ofs<0 then
 //        begin 
 //          sfile^.ofs:= 0; 
 //          oldy:= mval[1]; 
@@ -1683,7 +1524,7 @@ temp: array [0..FILE_MAXFILE - 1] of char;
 begin
   if curarea=nil then
   exit;
-  if curarea^.win=0  then
+  if curarea^.win=0 then
   exit;
 
   newspace(curarea,SPACE_FILE);
@@ -1734,7 +1575,7 @@ begin
     //if is_a_library(sfile,temp,group) then
     //begin
     //  (* dit geval is om een reload van library-filelist te veroorzaken *)
-    //  if sfile^.libfiledata=nil  then
+    //  if sfile^.libfiledata=nil then
     //  begin
     //    freefilelist(sfile);
     //  end;
@@ -1742,7 +1583,7 @@ begin
     //else
     //begin
     //  split_sfile(sfile,name);
-    //  if sfile^.libfiledata<>nil      then
+    //  if sfile^.libfiledata<>nil then
     //  freeN(sfile^.libfiledata);
     //  sfile^.libfiledata:= 0;
     //end;
@@ -1753,7 +1594,7 @@ begin
     //split_sfile(sfile,name); (* test ook de filelist *)
 
     //(* vrijgeven: filelist en libfiledata kloppen niet meer *)
-    //if sfile^.libfiledata<>nil  then
+    //if sfile^.libfiledata<>nil then
     //freeN(sfile^.libfiledata);
     //sfile^.libfiledata:= 0;
   end;
@@ -1772,16 +1613,13 @@ end;
 //name: array [0..Pred(FILE_MAXFILE)] of char; 
 //begin
 
-//  if curarea=0
-//  then
+//  if curarea=0 then
 //  exit;
-//  if curarea^.win=0
-//  then
+//  if curarea^.win=0 then
 //  exit;
 //  newspace(curarea,SPACE_IMASEL); 
 //  (* image wegpushen? Niet bij databrowse *)
-//  if R.winpop=0)and(R.win)and(func
-//  then
+//  if R.winpop=0)and(R.win)and(func then
 //  begin 
 //    toggle_render_display(); 
 //  end;
@@ -1794,14 +1632,12 @@ end;
 //  simasel:= curarea^.spacedata.first; 
 //  simasel.returnfunc:= func; 
 
-//  if convertstringcode(name)
-//  then
+//  if convertstringcode(name) then
 //  simasel.mode:= simasel.mode or (IMS_STRINGCODE); 
 //  else
 //  simasel.mode:= simasel.mode and ( not IMS_STRINGCODE); 
 //  split_dirfile(name,dir,simasel.file); 
-//  if lstrcmp(dir,simasel.dir)<>0
-//  then
+//  if lstrcmp(dir,simasel.dir)<>0 then
 //  simasel.fase:= 0; 
 //  strcpy(simasel.dir,dir); 
 //  strncpy(simasel.title,title,23); 
@@ -1818,14 +1654,12 @@ end;
 //str: array [0..Pred(32)] of char; 
 //begin
 
-//  if id=0
-//  then
+//  if id=0 then
 //  begin 
 //    lb:= wich_libbase(G.main,idcode); 
 //    id:= lb.first; 
 //  end;
-//  if id<>0{nil} {<= !!!9} 
-//  then
+//  if id<>0 then
 //  strcpy(str,id.name); 
 //  else
 //  exit;
@@ -1841,8 +1675,7 @@ end;
 //begin
 
 //  sfile:= curarea^.spacedata.first; 
-//  if sfile^.next<>0{nil} {<= !!!9} 
-//  then
+//  if sfile^.next<>0 then
 //  begin 
 //    remlink( and curarea^.spacedata,sfile); 
 //    addtail( and curarea^.spacedata,sfile); 
@@ -1865,8 +1698,7 @@ end;
 //  for{while} a:=0 to Pred(sfile^.totfile) { a++}
 //  do
 //  begin 
-//    if sfile^.filelist[a].flags and ACTIVE
-//    then
+//    if sfile^.filelist[a].flags and ACTIVE then
 //    begin 
 //      inc(count); 
 //    end;
@@ -1889,22 +1721,18 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa<>curarea
-//    then
+//    if sa<>curarea then
 //    begin 
-//      if sa.spacetype=SPACE_FILE
-//      then
+//      if sa.spacetype=SPACE_FILE then
 //      begin 
 //        (* al een gevonden *)
-//        if sfile<>0{nil} {<= !!!9} 
-//        then
+//        if sfile<>0 then
 //        begin
 //          result:= 0; 
 //          exit;
 //        end;
 //        sfile:= sa.spacedata.first; 
-//        if sfile^.type and FILE_UNIX
-//        then
+//        if sfile^.type and FILE_UNIX then
 //        begin 
 //          otherarea:= sa; 
 //          make_file_string(otherdir,sfile^.dir,); 
@@ -1915,8 +1743,7 @@ end;
 //    end;
 //    sa:= sa.next; 
 //  end;
-//  if sfile<>0{nil} {<= !!!9} 
-//  then
+//  if sfile<>0 then
 //  begin
 //    result:= 1; 
 //    exit;
@@ -1952,8 +1779,7 @@ end;
 //  begin 
 //    dec(len); 
 //  end;
-//  if len=0
-//  then
+//  if len=0 then
 //  exit;
 //  sc:= G.main.screen.first; 
 //  while sc
@@ -1967,11 +1793,9 @@ end;
 //      while sfile
 //      do
 //      begin 
-//        if sfile^.spacetype=SPACE_FILE
-//        then
+//        if sfile^.spacetype=SPACE_FILE then
 //        begin 
-//          if lstrcmp(sfile^.dir,str)=0
-//          then
+//          if lstrcmp(sfile^.dir,str)=0 then
 //          freefilelist(sfile); 
 //        end;
 //        sfile:= sfile^.next; 
@@ -1995,54 +1819,42 @@ end;
 
 //  filesel_prevspace(); 
 
-//  if sfile^.type=FILE_LOADLIB
-//  then
+//  if sfile^.type=FILE_LOADLIB then
 //  begin 
 //    library_append(sfile); 
 //    allqueue(REDRAWALL,1); 
 //  end;
 //  else
-//  if sfile^.returnfunc<>0{nil} {<= !!!9} 
-//  then
+//  if sfile^.returnfunc<>0 then
 //  begin 
 //    addfilename_to_fsmenu(sfile^.dir); 
-//    if sfile^.type=FILE_MAIN
-//    then
+//    if sfile^.type=FILE_MAIN then
 //    begin 
-//      if sfile^.retval=B_TEXBROWSE
-//      then
+//      if sfile^.retval=B_TEXBROWSE then
 //      menup:= @G.buts.texnr; 
 //      else
-//      if sfile^.retval=B_WTEXBROWSE
-//      then
+//      if sfile^.retval=B_WTEXBROWSE then
 //      menup:= @G.buts.texnr; 
 //      else
-//      if sfile^.retval=B_LTEXBROWSE
-//      then
+//      if sfile^.retval=B_LTEXBROWSE then
 //      menup:= @G.buts.texnr; 
 //      else
-//      if sfile^.retval=B_IPOBROWSE
-//      then
+//      if sfile^.retval=B_IPOBROWSE then
 //      menup:= @G.sipo.menunr; 
 //      else
-//      if sfile^.retval=B_INFOSCE
-//      then
+//      if sfile^.retval=B_INFOSCE then
 //      menup:= @G.curscreen.scenenr; 
 //      else
-//      if sfile^.retval=B_INFOSCR
-//      then
+//      if sfile^.retval=B_INFOSCR then
 //      menup:= @G.curscreen.screennr; 
 //      else
-//      if sfile^.retval=B_SIMABROWSE
-//      then
+//      if sfile^.retval=B_SIMABROWSE then
 //      menup:= @G.sima.imanr; 
 //      else
 //      menup:= @G.buts.menunr; 
-//      if sfile^.act>=0
-//      then
+//      if sfile^.act>=0 then
 //      begin 
-//        if sfile^.filelist<>0{nil} {<= !!!9} 
-//        then
+//        if sfile^.filelist<>0 then
 //        begin 
 //          files:= sfile^.filelist+sfile^.act; {*}menup^:=files.nr-1; 
 //        end;
@@ -2055,8 +1867,7 @@ end;
 //        for{while} a:=0 to Pred(sfile^.totfile) { a++}
 //        do
 //        begin 
-//          if lstrcmp(sfile^.filelist[a].relname,sfile^.file)=0
-//          then
+//          if lstrcmp(sfile^.filelist[a].relname,sfile^.file)=0 then
 //          begin 
 //            {*}menup^:=a; 
 //            break; {<= !!!b possible in "switch" - then remove this line}
@@ -2067,13 +1878,11 @@ end;
 //    end;
 //    else
 //    begin 
-//      if strncmp(sfile^.title,'SAVE',4)=0
-//      then
+//      if strncmp(sfile^.title,'SAVE',4)=0 then
 //      free_filesel_spec(sfile^.dir); 
 //      strcpy(name,sfile^.dir); 
 //      strcat(name,sfile^.file); 
-//      if sfile^.flag and FILE_STRINGCODE
-//      then
+//      if sfile^.flag and FILE_STRINGCODE then
 //      makestringcode(name); 
 //      sfile^.returnfunc(name); 
 
@@ -2089,57 +1898,46 @@ end;
 
 //begin
 
-//  if event=1
-//  then
+//  if event=1 then
 //  begin 
-//    if strchr(sfile^.file,'*'))or(strchr(sfile^.file,'?'))or(strchr(sfile^.file,'[')
-//    then
+//    if strchr(sfile^.file,'*'))or(strchr(sfile^.file,'?'))or(strchr(sfile^.file,'[') then
 //    begin 
 
 //      match:=LongBool(0); 
 //      for{while} i:=2 to Pred(sfile^.totfile) { i++}
 //      do
 //      begin 
-//        if fnmatch(sfile^.file,sfile^.filelist[i].relname,0)=0
-//        then
+//        if fnmatch(sfile^.file,sfile^.filelist[i].relname,0)=0 then
 //        begin 
 //          sfile^.filelist[i].flags:= sfile^.filelist[i].flags or (ACTIVE); 
 //          match:= LongBool(1); 
 //        end;
 //      end;
-//      if match<>0{nil} {<= !!!9} 
-//      then
+//      if match<>0 then
 //      strcpy(sfile^.file,); 
-//      if sfile^.type=FILE_MAIN
-//      then
+//      if sfile^.type=FILE_MAIN then
 //      filesel_select_objects(sfile); 
 //      addqueue(curarea^.win,REDRAW,1); 
 //    end;
 //  end;
 //  else
-//  if event=2
-//  then
+//  if event=2 then
 //  begin 
 //    (* reuse the butname variable *)
 //    checkdir(sfile^.dir); 
 //    make_file_string(butname,sfile^.dir,); 
 
 //    (* strip the trailing slash if its a real dir *)
-//    if lstrlen(butname)<>1
-//    then
+//    if lstrlen(butname)<>1 then
 //    butname[lstrlen(butname)-1]:= 0; 
-//    if sfile^.type and FILE_UNIX
-//    then
+//    if sfile^.type and FILE_UNIX then
 //    begin 
-//      if {not}0=fop_exists(butname)
-//      then
+//      if {not}0=fop_exists(butname) then
 //      begin 
-//        if okee('Makedir')
-//        then
+//        if okee('Makedir') then
 //        begin 
 //          fop_recurdir(butname); 
-//          if {not}0=fop_exists(butname)
-//          then
+//          if {not}0=fop_exists(butname) then
 //          parent(sfile); 
 //        end;
 //        else
@@ -2151,8 +1949,7 @@ end;
 //    addqueue(curarea^.win,REDRAW,1); 
 //  end;
 //  else
-//  if event=3
-//  then
+//  if event=3 then
 //  begin 
 //    (* welke string *)
 //    getname_menu_but(butname,fsmenu,sfile^.menu); 
@@ -2165,8 +1962,7 @@ end;
 //    sfile^.act:= -1; 
 //  end;
 //  else
-//  if event=4
-//  then
+//  if event=4 then
 //  parent(sfile); 
 //end;
 
@@ -2178,11 +1974,9 @@ end;
 //val: smallint; 
 //begin
 
-//  if qtest()
-//  then
+//  if qtest() then
 //  begin 
-//    if extern_qread(@val)=ESCKEY
-//    then
+//    if extern_qread(@val)=ESCKEY then
 //    begin 
 //      begin
 //        result:= (-1); 
@@ -2233,28 +2027,23 @@ end;
 //str: array [0..Pred(128)] of char; 
 //begin
 
-//  if lstrcmp(sfile^.dir,'Material/')=0
-//  then
+//  if lstrcmp(sfile^.dir,'Material/')=0 then
 //  begin 
-//    if sfile^.act=-1
-//    then
+//    if sfile^.act=-1 then
 //    begin 
 //      error('Select with leftmouse'); 
 //      exit;
 //    end;
 //    new:= {!!!a type cast? =>} {pMaterial(}sfile^.filelist[sfile^.act].poin; 
-//    if new<>0{nil} {<= !!!9} 
-//    then
+//    if new<>0 then
 //    begin 
 //      sprintf(str,'Replace with Material %s',new.id.name+2); 
-//      if okee(str)=0
-//      then
+//      if okee(str)=0 then
 //      exit;
 //      for{while} i:=0 to Pred(sfile^.totfile) { i++}
 //      do
 //      begin 
-//        if sfile^.filelist[i].flags and ACTIVE
-//        then
+//        if sfile^.filelist[i].flags and ACTIVE then
 //        begin 
 //          old:= {!!!a type cast? =>} {pMaterial(}sfile^.filelist[i].poin; 
 //          replace_material(old,new); 
@@ -2273,21 +2062,17 @@ end;
 //a: integer; (* alleen bij F4 DATABROWSE *)
 //begin
 
-//  if sfile^.returnfunc<>0{nil} {<= !!!9} 
-//  then
+//  if sfile^.returnfunc<>0 then
 //  exit;
 //  for{while} a:=0 to Pred(sfile^.totfile) { a++}
 //  do
 //  begin 
-//    if sfile^.filelist[a].flags and ACTIVE
-//    then
+//    if sfile^.filelist[a].flags and ACTIVE then
 //    begin 
 //      id:= {!!!a type cast? =>} {pID(}sfile^.filelist[a].poin; 
-//      if id<>0{nil} {<= !!!9} 
-//      then
+//      if id<>0 then
 //      begin 
-//        if id.flag and LIB_FAKEUSER
-//        then
+//        if id.flag and LIB_FAKEUSER then
 //        begin 
 //          id.flag:= id.flag - (LIB_FAKEUSER); 
 //          dec(id.us); 
@@ -2308,20 +2093,17 @@ end;
 //var
 //lslash: pchar; (* Get the file name, chop everything past the last slash (ie. the filename) *)
 //begin
-//  if {not}0=string)or({not}0=dir)or({not}0=file
-//  then
+//  if {not}0=string)or({not}0=dir)or({not}0=file then
 //  exit;
 //  (* We don't want any NULLs *)
 //  string[0]:= 0; (* ton *)
 
 //  (* Resolve relative references *)
-//  if dir[0]='/')and(dir[1]='/'
-//  then
+//  if dir[0]='/')and(dir[1]='/' then
 //  begin 
 //    strcpy(string,G.sce); 
-//    lslash:= (strrchr(string,'/')>strrchr(string,#92)) {was ?}if  then strrchr(string,'/') {was :}else strrchr(string,#92); 
-//    if lslash<>0{nil} {<= !!!9} 
-//    then
+//    lslash:= (strrchr(string,'/')>strrchr(string,#92)) {was ?}if then strrchr(string,'/') {was :}else strrchr(string,#92); 
+//    if lslash<>0 then
 //    *(lslash+1):=0; 
 //    dir:= dir + (2); 
 
@@ -2330,8 +2112,7 @@ end;
 //  strcat(string,dir); 
 
 //  (* Make sure string ends in one (and only one) slash *)
-//  if string[lstrlen(string)-1]<>'/')and(string[lstrlen(string)-1]<>#92
-//  then
+//  if string[lstrlen(string)-1]<>'/')and(string[lstrlen(string)-1]<>#92 then
 //  strcat(string,'/'); 
 //  while {*}file^)and((*file='/')or(*file=#92)
 //  do
@@ -2377,60 +2158,49 @@ end;
 //  do_draw:=0; 
 
 //  sfile:= curarea^.spacedata.first; 
-//  if sfile=0
-//  then
+//  if sfile=0 then
 //  exit;
-//  if sfile^.filelist=0
-//  then
+//  if sfile^.filelist=0 then
 //  begin 
 //    (* wel buttons doen *)
-//    if val)and(event=LEFTMOUSE
-//    then
+//    if val)and(event=LEFTMOUSE then
 //    begin 
 //      FrontbufferButs(LongBool(1)); 
 //      event:= DoButtons(); 
 //      FrontbufferButs(LongBool(0)); 
-//      if event<>0{nil} {<= !!!9} 
-//      then
+//      if event<>0 then
 //      do_filesel_buttons(event,sfile); 
 //    end;
 //    (*  NIET de headerbuttons! *)
 //    exit;
 //  end;
-//  if curarea^.win=0
-//  then
+//  if curarea^.win=0 then
 //  exit;
 //  calc_file_rcts(sfile); 
 //  getmouseco_areawin(mval); 
 
 //  (* om hangen te voorkomen *)
-//  if selecting)and({not}0=(get_mbut()@R_MOUSE)
-//  then
+//  if selecting)and({not}0=(get_mbut()@R_MOUSE) then
 //  selecting:= 0; 
 
-//  if val<>0{nil} {<= !!!9} 
-//  then
+//  if val<>0 then
 //  begin 
 //    case event of
 //      LEFTMOUSE,
 //      MIDDLEMOUSE:
 //      begin
-//        if mval[0]>scrollrct.xmin)and(mval[0]<scrollrct.xmax)and(mval[1]>scrollrct.ymin)and(mval[1]<scrollrct.ymax
-//        then
+//        if mval[0]>scrollrct.xmin)and(mval[0]<scrollrct.xmax)and(mval[1]>scrollrct.ymin)and(mval[1]<scrollrct.ymax then
 //        begin 
 //          do_filescroll(sfile); 
 //        end;
 //        else
-//        if mval[0]>textrct.xmin)and(mval[0]<textrct.xmax)and(mval[1]>textrct.ymin)and(mval[1]<textrct.ymax
-//        then
+//        if mval[0]>textrct.xmin)and(mval[0]<textrct.xmax)and(mval[1]>textrct.ymin)and(mval[1]<textrct.ymax then
 //        begin 
 //          (* sfile->act wordt gebruikt bij databrowse: dubbelenamen van library objecten *)
 //          sfile^.act:= act:=find_active_file(sfile,mval[0],mval[1]); 
-//          if act>=0)and(act<sfile^.totfile
-//          then
+//          if act>=0)and(act<sfile^.totfile then
 //          begin 
-//            if S_ISDIR(sfile^.filelist[act].type)
-//            then
+//            if S_ISDIR(sfile^.filelist[act].type) then
 //            begin 
 //              strcat(sfile^.dir,sfile^.filelist[act].relname); 
 //              strcat(sfile^.dir,'/'); 
@@ -2441,14 +2211,12 @@ end;
 //            end;
 //            else
 //            begin 
-//              if lstrcmp(sfile^.file,sfile^.filelist[act].relname)
-//              then
+//              if lstrcmp(sfile^.file,sfile^.filelist[act].relname) then
 //              begin 
 //                do_draw:= 1; 
 //                strcpy(sfile^.file,sfile^.filelist[act].relname); 
 //              end;
-//              if event=MIDDLEMOUSE)and(sfile^.type
-//              then
+//              if event=MIDDLEMOUSE)and(sfile^.type then
 //              filesel_execute(sfile); 
 //            end;
 //          end;
@@ -2458,21 +2226,17 @@ end;
 //          FrontbufferButs(LongBool(1)); 
 //          event:= DoButtons(); 
 //          FrontbufferButs(LongBool(0)); 
-//          if event<>0{nil} {<= !!!9} 
-//          then
+//          if event<>0 then
 //          do_filesel_buttons(event,sfile); 
 //        end;
 //        (*  NIET de headerbuttons! *)
 //        {$ifdef __sgi}
-//        if event=LEFTMOUSE)and((sfile^.type and (FILE_UNIX))
-//        then
+//        if event=LEFTMOUSE)and((sfile^.type and (FILE_UNIX)) then
 //        begin 
-//          if mval[0]>textrct.xmin)and(mval[0]<textrct.xmax)and(mval[1]>textrct.ymin)and(mval[1]<textrct.ymax
-//          then
+//          if mval[0]>textrct.xmin)and(mval[0]<textrct.xmax)and(mval[1]>textrct.ymin)and(mval[1]<textrct.ymax then
 //          begin 
 //            newtime:= times(@voidbuf); 
-//            if (newtime-prevtime<=20)
-//            then
+//            if (newtime-prevtime<=20) then
 //            begin 
 //              workspacecommand(sfile); 
 //              newtime:= newtime - (60); 
@@ -2486,12 +2250,10 @@ end;
 //      begin
 //        act:= find_active_file(sfile,mval[0],mval[1]); 
 //        acto:= act; 
-//        if act>=0)and(act<sfile^.totfile
-//        then
+//        if act>=0)and(act<sfile^.totfile then
 //        begin 
 
-//          if sfile^.filelist[act].flags and ACTIVE
-//          then
+//          if sfile^.filelist[act].flags and ACTIVE then
 //          begin 
 //            sfile^.filelist[act].flags:= sfile^.filelist[act].flags and ( not ACTIVE); 
 //            selecting:= INACTIVATE; 
@@ -2499,8 +2261,7 @@ end;
 //          else
 //          begin 
 //            test:= sfile^.filelist[act].relname[0]; 
-//            if act>=2)or(test<>'.'
-//            then
+//            if act>=2)or(test<>'.' then
 //            sfile^.filelist[act].flags:= sfile^.filelist[act].flags or (ACTIVE); 
 //            selecting:= ACTIVATE; 
 //          end;
@@ -2511,29 +2272,23 @@ end;
 //      begin
 //        act:= find_active_file(sfile,mval[0],mval[1]); 
 //        set_active_file(sfile,act); 
-//        if selecting)and(act<>acto
-//        then
+//        if selecting)and(act<>acto then
 //        begin 
 //          while 1
 //          do
 //          begin 
-//            if acto>=2)and(acto<sfile^.totfile
-//            then
+//            if acto>=2)and(acto<sfile^.totfile then
 //            begin 
-//              if selecting=ACTIVATE
-//              then
+//              if selecting=ACTIVATE then
 //              sfile^.filelist[acto].flags:= sfile^.filelist[acto].flags or (ACTIVE); 
 //              else
-//              if selecting=INACTIVATE
-//              then
+//              if selecting=INACTIVATE then
 //              sfile^.filelist[acto].flags:= sfile^.filelist[acto].flags and ( not ACTIVE); 
 //            end;
-//            if acto<act
-//            then
+//            if acto<act then
 //            inc(acto); 
 //            else
-//            if acto>act
-//            then
+//            if acto>act then
 //            dec(acto); 
 //            else
 //            break; {<= !!!b possible in "switch" - then remove this line}
@@ -2565,8 +2320,7 @@ end;
 //      AKEY:
 //      begin
 //        swapselect_file(sfile); 
-//        if sfile^.type=FILE_MAIN
-//        then
+//        if sfile^.type=FILE_MAIN then
 //        filesel_select_objects(sfile); 
 //        do_draw:= 1; 
 //      end;
@@ -2574,8 +2328,7 @@ end;
 //      CKEY,
 //      LKEY:
 //      begin
-//        if event=LKEY)and(sfile^.type=FILE_MAIN)and((G.qual and LR_CTRLKEY)
-//        then
+//        if event=LKEY)and(sfile^.type=FILE_MAIN)and((G.qual and LR_CTRLKEY) then
 //        begin 
 //          databrowse_replace(sfile); 
 //          break; {<= !!!b possible in "switch" - then remove this line}
@@ -2585,73 +2338,58 @@ end;
 //      end;
 //      MKEY:
 //      begin
-//        if sfile^.type=FILE_MAIN
-//        then
+//        if sfile^.type=FILE_MAIN then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 
-//        if {not}0=countselect(sfile)
-//        then
+//        if {not}0=countselect(sfile) then
 //        begin 
 //          error('No files selected'); 
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
-//        if {not}0=getotherdir()
-//        then
+//        if {not}0=getotherdir() then
 //        begin 
 //          error('No second fileselect'); 
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
-//        if {not}0=lstrcmp(sfile^.dir,otherdir)
-//        then
+//        if {not}0=lstrcmp(sfile^.dir,otherdir) then
 //        begin 
 //          error('Same directories'); 
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
 
-//        if event=BKEY
-//        then
+//        if event=BKEY then
 //        sprintf(str,'Backup to %s',otherdir); 
 //        else
-//        if event=CKEY
-//        then
+//        if event=CKEY then
 //        sprintf(str,'Copy to %s',otherdir); 
 //        else
-//        if event=LKEY
-//        then
+//        if event=LKEY then
 //        sprintf(str,'Linked copy to %s',otherdir); 
 //        else
-//        if event=MKEY
-//        then
+//        if event=MKEY then
 //        sprintf(str,'Move to %s',otherdir); 
-//        if {not}0=okee(str)
-//        then
+//        if {not}0=okee(str) then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 
 //        for{while} i:=0 to Pred(sfile^.totfile) { i++}
 //        do
 //        begin 
-//          if sfile^.filelist[i].flags and ACTIVE
-//          then
+//          if sfile^.filelist[i].flags and ACTIVE then
 //          begin 
 //            make_file_string(str,sfile^.dir,sfile^.filelist[i].relname); 
 
-//            if event=BKEY
-//            then
+//            if event=BKEY then
 //            ret:= fop_backup(sfile^.filelist[i].relname,sfile^.dir,otherdir); 
 //            else
-//            if event=CKEY
-//            then
+//            if event=CKEY then
 //            ret:= fop_copy(str,otherdir); 
 //            else
-//            if event=LKEY
-//            then
+//            if event=LKEY then
 //            ret:= fop_link(str,otherdir); 
 //            else
-//            if event=MKEY
-//            then
+//            if event=MKEY then
 //            ret:= fop_move(str,otherdir); 
-//            if ret<>0{nil} {<= !!!9} 
-//            then
+//            if ret<>0 then
 //            begin 
 //              error('Command failed, see console'); 
 //              break; {<= !!!b possible in "switch" - then remove this line}
@@ -2661,15 +2399,13 @@ end;
 //          end;
 //        end;
 //        do_draw:= 1; 
-//        if event=BKEY)or(event=MKEY
-//        then
+//        if event=BKEY)or(event=MKEY then
 //        freefilelist(sfile); 
 //        reread_other_fs(); 
 //      end;
 //      RKEY:
 //      begin
-//        if sfile^.type=FILE_MAIN
-//        then
+//        if sfile^.type=FILE_MAIN then
 //        begin 
 //          databrowse_replace(sfile); 
 //          break; {<= !!!b possible in "switch" - then remove this line}
@@ -2679,55 +2415,44 @@ end;
 //      end;
 //      TKEY:
 //      begin
-//        if sfile^.type=FILE_MAIN
-//        then
+//        if sfile^.type=FILE_MAIN then
 //        break; {<= !!!b possible in "switch" - then remove this line}
-//        if {not}0=countselect(sfile)
-//        then
+//        if {not}0=countselect(sfile) then
 //        begin 
 //          error('No files selected'); 
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
 
-//        if event=TKEY
-//        then
+//        if event=TKEY then
 //        sprintf(str,'Touch'); 
 //        else
-//        if event=RKEY
-//        then
+//        if event=RKEY then
 //        sprintf(str,'Remove from %s',sfile^.dir); 
 //        qual:= G.qual; (* want na okee() heb je de shift losgelaten *)
-//        if {not}0=okee(str)
-//        then
+//        if {not}0=okee(str) then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        for{while} i:=0 to Pred(sfile^.totfile) { i++}
 //        do
 //        begin 
-//          if sfile^.filelist[i].flags and ACTIVE
-//          then
+//          if sfile^.filelist[i].flags and ACTIVE then
 //          begin 
 //            make_file_string(str,sfile^.dir,sfile^.filelist[i].relname); 
 
-//            if event=TKEY
-//            then
+//            if event=TKEY then
 //            ret:= fop_touch(str); 
 //            else
-//            if event=RKEY
-//            then
+//            if event=RKEY then
 //            begin 
-//              if qual and LR_SHIFTKEY
-//              then
+//              if qual and LR_SHIFTKEY then
 //              ret:= fop_delete(str,0,1); 
 //              else
-//              if S_ISDIR(sfile^.filelist[i].type)
-//              then
+//              if S_ISDIR(sfile^.filelist[i].type) then
 //              ret:= fop_delete(str,1,0); 
 //              else
 //              ret:= fop_delete(str,0,0); 
 //            end;
 
-//            if ret<>0{nil} {<= !!!9} 
-//            then
+//            if ret<>0 then
 //            begin 
 //              error('Command failed, see console'); 
 //              break; {<= !!!b possible in "switch" - then remove this line}
@@ -2742,8 +2467,7 @@ end;
 //      PKEY:
 
 //      begin
-//        if G.qual and LR_SHIFTKEY
-//        then
+//        if G.qual and LR_SHIFTKEY then
 //        begin 
 //          {bprogname: array [0..] of char; }{<= !!!5 external variable}(* usiblender.c *)
 //          sprintf(str,'%s -a %s%s',bprogname,sfile^.dir,sfile^.file); 
@@ -2755,24 +2479,21 @@ end;
 //      IKEY:
 
 //      begin
-//        if sfile^.type=FILE_MAIN
-//        then
+//        if sfile^.type=FILE_MAIN then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        sprintf(str,'$IMAGEEDITOR %s%s',sfile^.dir,sfile^.file); 
 //        system(str); 
 //      end;
 //      EKEY:
 //      begin
-//        if sfile^.type=FILE_MAIN
-//        then
+//        if sfile^.type=FILE_MAIN then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        sprintf(str,'$WINEDITOR %s%s',sfile^.dir,sfile^.file); 
 //        system(str); 
 //      end;
 //      FKEY:
 //      begin
-//        if sfile^.type=FILE_MAIN
-//        then
+//        if sfile^.type=FILE_MAIN then
 //        begin 
 //          fs_fake_users(sfile); 
 //        end;
@@ -2780,12 +2501,10 @@ end;
 //      PADPLUSKEY,
 //      EQUALKEY:
 //      begin
-//        if G.qual and LR_CTRLKEY
-//        then
+//        if G.qual and LR_CTRLKEY then
 //        newname(sfile^.file,+100); 
 //        else
-//        if G.qual and LR_SHIFTKEY
-//        then
+//        if G.qual and LR_SHIFTKEY then
 //        newname(sfile^.file,+10); 
 //        else
 //        newname(sfile^.file,+1); 
@@ -2794,12 +2513,10 @@ end;
 //      PADMINUS,
 //      MINUSKEY:
 //      begin
-//        if G.qual and LR_CTRLKEY
-//        then
+//        if G.qual and LR_CTRLKEY then
 //        newname(sfile^.file,-100); 
 //        else
-//        if G.qual and LR_SHIFTKEY
-//        then
+//        if G.qual and LR_SHIFTKEY then
 //        newname(sfile^.file,-10); 
 //        else
 //        newname(sfile^.file,-1); 
@@ -2808,8 +2525,7 @@ end;
 //      BACKSLASHKEY,
 //      SLASHKEY:
 //      begin
-//        if sfile^.type=FILE_MAIN
-//        then
+//        if sfile^.type=FILE_MAIN then
 
 //        {$ifdef WINDOWS}
 //        break; {<= !!!b possible in "switch" - then remove this line}
@@ -2833,33 +2549,27 @@ end;
 //      PADENTER,
 //      RETKEY:
 //      begin
-//        if sfile^.type<>0{nil} {<= !!!9} 
-//        then
+//        if sfile^.type<>0 then
 //        filesel_execute(sfile); 
 //      end;
 
 //    end;{case?}
 //  end;
 //  else
-//  if event=RIGHTMOUSE
-//  then
+//  if event=RIGHTMOUSE then
 //  begin 
 //    selecting:= NOTACTIVE; 
-//    if sfile^.type=FILE_MAIN
-//    then
+//    if sfile^.type=FILE_MAIN then
 //    filesel_select_objects(sfile); 
 //  end;
 //  else
-//  if event=LEFTMOUSE
-//  then
+//  if event=LEFTMOUSE then
 //  begin 
-//    if sfile^.type=FILE_MAIN
-//    then
+//    if sfile^.type=FILE_MAIN then
 //    active_file_object(sfile); 
 //  end;
 
-//  if do_draw<>0{nil} {<= !!!9} 
-//  then
+//  if do_draw<>0 then
 //  addqueue(curarea^.win,REDRAW,1); 
 //end;
 
@@ -2869,116 +2579,97 @@ end;
 
 //function groupname_to_code(group: pchar): integer; 
 //begin
-//  if strncmp(group,'Scene',5)=0
-//  then
+//  if strncmp(group,'Scene',5)=0 then
 //  begin
 //    result:= ID_SCE; 
 //    exit;
 //  end;
-//  if strncmp(group,'Object',6)=0
-//  then
+//  if strncmp(group,'Object',6)=0 then
 //  begin
 //    result:= ID_OB; 
 //    exit;
 //  end;
-//  if strncmp(group,'Mesh',4)=0
-//  then
+//  if strncmp(group,'Mesh',4)=0 then
 //  begin
 //    result:= ID_ME; 
 //    exit;
 //  end;
-//  if strncmp(group,'Curve',5)=0
-//  then
+//  if strncmp(group,'Curve',5)=0 then
 //  begin
 //    result:= ID_CU; 
 //    exit;
 //  end;
-//  if strncmp(group,'Metaball',8)=0
-//  then
+//  if strncmp(group,'Metaball',8)=0 then
 //  begin
 //    result:= ID_MB; 
 //    exit;
 //  end;
-//  if strncmp(group,'Material',8)=0
-//  then
+//  if strncmp(group,'Material',8)=0 then
 //  begin
 //    result:= ID_MA; 
 //    exit;
 //  end;
-//  if strncmp(group,'Texture',7)=0
-//  then
+//  if strncmp(group,'Texture',7)=0 then
 //  begin
 //    result:= ID_TE; 
 //    exit;
 //  end;
-//  if strncmp(group,'Image',5)=0
-//  then
+//  if strncmp(group,'Image',5)=0 then
 //  begin
 //    result:= ID_IM; 
 //    exit;
 //  end;
-//  if strncmp(group,'Ika',3)=0
-//  then
+//  if strncmp(group,'Ika',3)=0 then
 //  begin
 //    result:= ID_IK; 
 //    exit;
 //  end;
-//  if strncmp(group,'Wave',4)=0
-//  then
+//  if strncmp(group,'Wave',4)=0 then
 //  begin
 //    result:= ID_WV; 
 //    exit;
 //  end;
-//  if strncmp(group,'Lattice',7)=0
-//  then
+//  if strncmp(group,'Lattice',7)=0 then
 //  begin
 //    result:= ID_LT; 
 //    exit;
 //  end;
-//  if strncmp(group,'Lamp',4)=0
-//  then
+//  if strncmp(group,'Lamp',4)=0 then
 //  begin
 //    result:= ID_LA; 
 //    exit;
 //  end;
-//  if strncmp(group,'Camera',6)=0
-//  then
+//  if strncmp(group,'Camera',6)=0 then
 //  begin
 //    result:= ID_CA; 
 //    exit;
 //  end;
-//  if strncmp(group,'Key',3)=0
-//  then
+//  if strncmp(group,'Key',3)=0 then
 //  begin
 //    result:= ID_KE; 
 //    exit;
 //  end;
-//  if strncmp(group,'Ipo',3)=0
-//  then
+//  if strncmp(group,'Ipo',3)=0 then
 //  begin
 //    result:= ID_IP; 
 //    exit;
 //  end;
-//  if strncmp(group,'World',5)=0
-//  then
+//  if strncmp(group,'World',5)=0 then
 //  begin
 //    result:= ID_WO; 
 //    exit;
 //  end;
-//  if strncmp(group,'Screen',6)=0
-//  then
+//  if strncmp(group,'Screen',6)=0 then
 //  begin
 //    result:= ID_SCR; 
 //    exit;
 //  end;
-//  if strncmp(group,'VFont',5)=0
-//  then
+//  if strncmp(group,'VFont',5)=0 then
 //  begin
 //    result:= ID_VF; 
 //    exit;
 //  end;
-//  if strncmp(group,'Text',4)=0
-//  then
+//  if strncmp(group,'Text',4)=0 then
 //  begin
 //    result:= ID_TXT; 
 //    exit;
@@ -3037,12 +2728,10 @@ end;
 //  do
 //  begin 
 //    bhead:= {!!!a type cast? =>} {pBHead(}fd; 
-//    if bhead.code=ENDB
-//    then
+//    if bhead.code=ENDB then
 //    afbreek:= 1; 
 //    else
-//    if bhead.code=idcode
-//    then
+//    if bhead.code=idcode then
 //    inc(tot); 
 //    fd:= fd + (bhead.len+sizeof(BHead)); 
 //  end;
@@ -3093,17 +2782,14 @@ end;
 //        for{while} a:=0 to Pred(tot) { a++}
 //        do
 //        begin 
-//          if libdir[a]=bhead.code
-//          then
+//          if libdir[a]=bhead.code then
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
-//        if a=tot
-//        then
+//        if a=tot then
 //        begin 
 //          libdir[tot]:= bhead.code; 
 //          inc(tot); 
-//          if tot>99
-//          then
+//          if tot>99 then
 //          tot:= 99; 
 //        end;
 //      end;
@@ -3126,42 +2812,37 @@ end;
 
 //  strcpy(dir,sfile^.dir); 
 //  len:= lstrlen(dir); 
-//  if len<7
-//  then
+//  if len<7 then
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
-//  if dir[len-1]<>'/')and(dir[len-1]<>#92
-//  then
+//  if dir[len-1]<>'/')and(dir[len-1]<>#92 then
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
 //  group[0]:= 0; 
 //  dir[len-1]:= 0; 
-//  fd:= (strrchr(dir,'/')>strrchr(dir,#92)) {was ?}if  then strrchr(dir,'/') {was :}else strrchr(dir,#92); 
+//  fd:= (strrchr(dir,'/')>strrchr(dir,#92)) {was ?}if then strrchr(dir,'/') {was :}else strrchr(dir,#92); 
 //  (* Find the last slash *)
 
-//  if fd=0
-//  then
+//  if fd=0 then
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
 //  {*}fd^:=0; 
-//  if testextensie(fd+1,'.blend')
-//  then
+//  if testextensie(fd+1,'.blend') then
 //  begin 
 //    {*}fd^:='/'; 
 //  end;
 //  else
 //  begin 
 //    strcpy(group,fd+1); 
-//    fd:= (strrchr(dir,'/')>strrchr(dir,#92)) {was ?}if  then strrchr(dir,'/') {was :}else strrchr(dir,#92); 
+//    fd:= (strrchr(dir,'/')>strrchr(dir,#92)) {was ?}if then strrchr(dir,'/') {was :}else strrchr(dir,#92); 
 //    (* Find the last slash *)
-//    if fd=0)or(testextensie(fd+1,'.blend')=0
-//    then
+//    if fd=0)or(testextensie(fd+1,'.blend')=0 then
 //    begin
 //      result:= 0; 
 //      exit;
@@ -3194,28 +2875,23 @@ end;
 //begin
 
 //  ok:= is_a_library(sfile,dir,group); 
-//  if ok=0
-//  then
+//  if ok=0 then
 //  begin 
 //    (* vrijgeven *)
-//    if sfile^.libfiledata<>0{nil} {<= !!!9} 
-//    then
+//    if sfile^.libfiledata<>0 then
 //    freeN(sfile^.libfiledata); 
 //    sfile^.libfiledata:= 0; 
 //    exit;
 //  end;
 //  (* en daar gaat ie *)
 //  (* voorlopig alleen filedata inlezen als libfiledata==0 *)
-//  if sfile^.libfiledata=0
-//  then
+//  if sfile^.libfiledata=0 then
 //  begin 
 //    sfile^.libfiledata:= openblenderfile(dir, and filelen); 
-//    if sfile^.libfiledata=0
-//    then
+//    if sfile^.libfiledata=0 then
 //    exit;
 //  end;
-//  if group[0]=0
-//  then
+//  if group[0]=0 then
 //  begin 
 //    (* directories maken *)
 //    sfile^.totfile:= count_libdirs(sfile); 
@@ -3226,15 +2902,13 @@ end;
 //    do
 //    begin 
 //      RtlZeroMemory(@(sfile^.filelist[a]),sizeof(structdirentry)); 
-//      if a=0
-//      then
+//      if a=0 then
 //      begin 
 //        sfile^.filelist[a].relname:= strdup('.'); 
 //        sfile^.filelist[a].type:= sfile^.filelist[a].type or (S_IFDIR); 
 //      end;
 //      else
-//      if a=1
-//      then
+//      if a=1 then
 //      begin 
 //        sfile^.filelist[a].relname:= strdup('..'); 
 //        sfile^.filelist[a].type:= sfile^.filelist[a].type or (S_IFDIR); 
@@ -3293,8 +2967,7 @@ end;
 //            group[3]:= 0; 
 //          end;
 //        end;{case?}
-//        if str<>0{nil} {<= !!!9} 
-//        then
+//        if str<>0 then
 //        begin 
 //          sfile^.filelist[actual].relname:= strdup(str); 
 //          sfile^.filelist[actual].type:= sfile^.filelist[actual].type or (S_IFDIR); 
@@ -3325,12 +2998,10 @@ end;
 //    do
 //    begin 
 //      bhead:= {!!!a type cast? =>} {pBHead(}fd; 
-//      if bhead.code=ENDB
-//      then
+//      if bhead.code=ENDB then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      else
-//      if bhead.code=idcode
-//      then
+//      if bhead.code=idcode then
 //      begin 
 //        RtlZeroMemory(@(sfile^.filelist[actual]),sizeof(structdirentry)); 
 //        id:= {!!!a type cast? =>} {pID(}(bhead+1); 
@@ -3348,8 +3019,7 @@ end;
 //  do
 //  begin 
 //    len:= fmgetstrwidth(G.font,sfile^.filelist[a].relname); 
-//    if len>sfile^.maxnamelen
-//    then
+//    if len>sfile^.maxnamelen then
 //    sfile^.maxnamelen:= len; 
 //  end;
 //end;
@@ -3364,21 +3034,17 @@ end;
 //a: integer; (* alleen bij F4 DATABROWSE *)
 //begin
 
-//  if sfile^.returnfunc<>0{nil} {<= !!!9} 
-//  then
+//  if sfile^.returnfunc<>0 then
 //  exit;
-//  if lstrcmp(sfile^.dir,'Object/')=0
-//  then
+//  if lstrcmp(sfile^.dir,'Object/')=0 then
 //  begin 
 //    for{while} a:=0 to Pred(sfile^.totfile) { a++}
 //    do
 //    begin 
 //      ob:= {!!!a type cast? =>} {pObject(}sfile^.filelist[a].poin; 
-//      if ob<>0{nil} {<= !!!9} 
-//      then
+//      if ob<>0 then
 //      begin 
-//        if sfile^.filelist[a].flags and ACTIVE
-//        then
+//        if sfile^.filelist[a].flags and ACTIVE then
 //        ob.flag:= ob.flag or (SELECT); 
 //        else
 //        ob.flag:= ob.flag and ( not SELECT); 
@@ -3395,18 +3061,15 @@ end;
 //    allqueue(REDRAWVIEW3D,0); 
 //  end;
 //  else
-//  if lstrcmp(sfile^.dir,'Scene/')=0
-//  then
+//  if lstrcmp(sfile^.dir,'Scene/')=0 then
 //  begin 
 //    for{while} a:=0 to Pred(sfile^.totfile) { a++}
 //    do
 //    begin 
 //      sce:= {!!!a type cast? =>} {pScene(}sfile^.filelist[a].poin; 
-//      if sce<>0{nil} {<= !!!9} 
-//      then
+//      if sce<>0 then
 //      begin 
-//        if sfile^.filelist[a].flags and ACTIVE
-//        then
+//        if sfile^.filelist[a].flags and ACTIVE then
 //        sce.r.scemode:= sce.r.scemode or (R_BG_RENDER); 
 //        else
 //        sce.r.scemode:= sce.r.scemode and ( not R_BG_RENDER); 
@@ -3425,22 +3088,17 @@ end;
 //a: integer; (* alleen bij F4 DATABROWSE *)
 //begin
 
-//  if sfile^.returnfunc<>0{nil} {<= !!!9} 
-//  then
+//  if sfile^.returnfunc<>0 then
 //  exit;
-//  if lstrcmp(sfile^.dir,'Object/')=0
-//  then
+//  if lstrcmp(sfile^.dir,'Object/')=0 then
 //  begin 
-//    if sfile^.act>=0
-//    then
+//    if sfile^.act>=0 then
 //    begin 
 //      ob:= {!!!a type cast? =>} {pObject(}sfile^.filelist[sfile^.act].poin; 
-//      if ob<>0{nil} {<= !!!9} 
-//      then
+//      if ob<>0 then
 //      begin 
 //        set_active_object(ob); 
-//        if BASACT)and(BASACT.object=ob
-//        then
+//        if BASACT)and(BASACT.object=ob then
 //        begin 
 //          BASACT.flag:= BASACT.flag or (SELECT); 
 //          sfile^.filelist[sfile^.act].flags:= sfile^.filelist[sfile^.act].flags or (ACTIVE); 
@@ -3473,19 +3131,15 @@ end;
 //str: pchar; 
 //begin
 
-//  if sfile^.dir[0]='/'
-//  then
+//  if sfile^.dir[0]='/' then
 //  sfile^.dir[0]:= 0; 
-//  if sfile^.dir[0]<>0{nil} {<= !!!9} 
-//  then
+//  if sfile^.dir[0]<>0 then
 //  begin 
 //    idcode:= groupname_to_code(sfile^.dir); 
-//    if idcode=0
-//    then
+//    if idcode=0 then
 //    sfile^.dir[0]:= 0; 
 //  end;
-//  if sfile^.dir[0]=0
-//  then
+//  if sfile^.dir[0]=0 then
 //  begin 
 //    (* directories maken *)
 //    sfile^.totfile:= 19; 
@@ -3524,32 +3178,27 @@ end;
 //    (* files maken *)
 //    idcode:= groupname_to_code(sfile^.dir); 
 //    lb:= wich_libbase(G.main,idcode); 
-//    if lb=0
-//    then
+//    if lb=0 then
 //    exit;
 //    id:= lb.first; 
 //    sfile^.totfile:= 0; 
 //    while id
 //    do
 //    begin 
-//      if sfile^.returnfunc)and(idcode=ID_IP
-//      then
+//      if sfile^.returnfunc)and(idcode=ID_IP then
 //      begin 
-//        if sfile^.ipotype=({!!!a type cast? =>} {pIpo(}id).blocktype
-//        then
+//        if sfile^.ipotype=({!!!a type cast? =>} {pIpo(}id).blocktype then
 //        inc(sfile^.totfile); 
 //      end;
 //      else
 //      inc(sfile^.totfile); 
 //      id:= id.next; 
 //    end;
-//    if sfile^.returnfunc=0
-//    then
+//    if sfile^.returnfunc=0 then
 //    sfile^.totfile:= sfile^.totfile + (2); 
 //    sfile^.filelist:= (structdirentry* )malloc(sfile^.totfile*sizeof(structdirentry)); 
 //    files:= sfile^.filelist; 
-//    if sfile^.returnfunc=0
-//    then
+//    if sfile^.returnfunc=0 then
 //    begin 
 //      RtlZeroMemory(@(sfile^.filelist[0]),sizeof(structdirentry)); 
 //      sfile^.filelist[0].relname:= strdup('.'); 
@@ -3565,61 +3214,48 @@ end;
 //    do
 //    begin 
 //      ok:= 0; 
-//      if sfile^.returnfunc)and(idcode=ID_IP
-//      then
+//      if sfile^.returnfunc)and(idcode=ID_IP then
 //      begin 
-//        if sfile^.ipotype=({!!!a type cast? =>} {pIpo(}id).blocktype
-//        then
+//        if sfile^.ipotype=({!!!a type cast? =>} {pIpo(}id).blocktype then
 //        ok:= 1; 
 //      end;
 //      else
 //      ok:= 1; 
-//      if ok<>0{nil} {<= !!!9} 
-//      then
+//      if ok<>0 then
 //      begin 
 //        RtlZeroMemory(files,sizeof(structdirentry)); 
 //        files.relname:= strdup(id.name+2); 
-//        if sfile^.returnfunc=0
-//        then
+//        if sfile^.returnfunc=0 then
 //        begin 
 //          (* F4 DATA BROWSE *)
-//          if idcode=ID_OB
-//          then
+//          if idcode=ID_OB then
 //          begin 
-//            if ({!!!a type cast? =>} {pObject(}id).flag and SELECT
-//            then
+//            if ({!!!a type cast? =>} {pObject(}id).flag and SELECT then
 //            files.flags:= files.flags or (ACTIVE); 
 //          end;
 //          else
-//          if idcode=ID_SCE
-//          then
+//          if idcode=ID_SCE then
 //          begin 
-//            if ({!!!a type cast? =>} {pScene(}id).r.scemode and R_BG_RENDER
-//            then
+//            if ({!!!a type cast? =>} {pScene(}id).r.scemode and R_BG_RENDER then
 //            files.flags:= files.flags or (ACTIVE); 
 //          end;
 //        end;
 //        files.nr:= totbl+1; 
 //        files.poin:= id; 
 //        fake:= id.flag and LIB_FAKEUSER; 
-//        if id.lib)and(fake
-//        then
+//        if id.lib)and(fake then
 //        sprintf(files.extra,'LF %d',id.us); 
 //        else
-//        if id.lib<>0{nil} {<= !!!9} 
-//        then
+//        if id.lib<>0 then
 //        sprintf(files.extra,'L    %d',id.us); 
 //        else
-//        if fake<>0{nil} {<= !!!9} 
-//        then
+//        if fake<>0 then
 //        sprintf(files.extra,'F    %d',id.us); 
 //        else
 //        sprintf(files.extra,'      %d',id.us); 
-//        if id.lib<>0{nil} {<= !!!9} 
-//        then
+//        if id.lib<>0 then
 //        begin 
-//          if totlib=0
-//          then
+//          if totlib=0 then
 //          firstlib:= files; 
 //          inc(totlib); 
 //        end;
@@ -3629,8 +3265,7 @@ end;
 //      id:= id.next; 
 //    end;
 //    (* alleen qsort van libraryblokken *)
-//    if totlib>1
-//    then
+//    if totlib>1 then
 //    begin 
 //      qsort(firstlib,totlib,sizeof(structdirentry),{!!!a type cast? =>} {pinteger(}compare); 
 //    end;
@@ -3640,19 +3275,15 @@ end;
 //  do
 //  begin 
 //    len:= fmgetstrwidth(G.font,sfile^.filelist[a].relname); 
-//    if len>sfile^.maxnamelen
-//    then
+//    if len>sfile^.maxnamelen then
 //    sfile^.maxnamelen:= len; 
-//    if filetoname<>0{nil} {<= !!!9} 
-//    then
+//    if filetoname<>0 then
 //    begin 
-//      if lstrcmp(sfile^.file,sfile^.filelist[a].relname)=0
-//      then
+//      if lstrcmp(sfile^.file,sfile^.filelist[a].relname)=0 then
 //      begin 
 //        sfile^.ofs:= a-(sfile^.collums*(curarea^.winy-FILESELHEAD-10) div (2*FILESEL_DY)); 
 //        filetoname:= 0; 
-//        if sfile^.returnfunc<>0{nil} {<= !!!9} 
-//        then
+//        if sfile^.returnfunc<>0 then
 //        sfile^.filelist[a].flags:= sfile^.filelist[a].flags or (ACTIVE); 
 //      end;
 //    end;

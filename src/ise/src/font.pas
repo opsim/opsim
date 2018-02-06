@@ -39,28 +39,23 @@ strings,
 cfuncs,
 blender, blendef, file_, readfile, objfnt, screen, psfont;
 
-//{$include "blender.h"}
-//{$include "objfnt.h"}
-//{$include "datatoc.h"}
-//{$include "file.h"}
-
 //const
 //MAX_VF_CHARS = 256; 
 
-//(* Nieuwe opzet voor vectorfont:
-// *
-// * geen PDrawfont meer, alles meteen naar Nurb en BezTriple
-// *
-// *)
+(* Nieuwe opzet voor vectorfont:
+ *
+ * geen PDrawfont meer, alles meteen naar Nurb en BezTriple
+ *
+ *)
 
-//type
-//chartrans = record
-//xof: float; 
-//yof: float; 
-//rot: float; 
-//linenr: smallint; 
-//charnr: smallint; 
-//end;
+type
+chartrans = record
+  xof: single;
+  yof: single;
+  rot: single;
+  linenr: smallint;
+  charnr: smallint;
+end;
 
 //procedure free_vfont(vf: pVFont); 
 //var
@@ -69,8 +64,7 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //i: integer; 
 //begin
 
-//  if vf=0
-//  then
+//  if vf=0 then
 //  exit;
 
 //  for{while} i:=0 to Pred(MAX_VF_CHARS) { i++}
@@ -80,16 +74,14 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //    do
 //    begin 
 //      bezt:= nu.bezt; 
-//      if bezt<>0{nil} {<= !!!9} 
-//      then
+//      if bezt<>0 then
 //      freeN(bezt); 
 //      remlink(@vf.data.nurbsbase[i],nu); 
 //      freeN(nu); 
 //    end;
 //  end;
 
-//  if vf.data.kern<>0{nil} {<= !!!9} 
-//  then
+//  if vf.data.kern<>0 then
 //  freeN(vf.data.kern); 
 //  freeN(vf.data); 
 //end;
@@ -120,15 +112,13 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 
 //begin
 
-//  if fnt=0
-//  then
+//  if fnt=0 then
 //  begin
 //    result:= (0); 
 //    exit;
 
 //  end;
-//  if fnt.type<>SP_TYPE
-//  then
+//  if fnt.type<>SP_TYPE then
 //  begin 
 //    printf('objfnt is wrong type: need splines\n');
 //    begin
@@ -142,8 +132,7 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //  do
 //  begin 
 //    cd:= getchardesc(fnt,i); 
-//    if cd)and(cd.data)and(cd.datalen
-//    then
+//    if cd)and(cd.data)and(cd.datalen then
 //    begin 
 //      vfd.width[i]:= scale*cd.movex; 
 //      _data:= data:=cd.data; 
@@ -193,21 +182,18 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //        end;
 //        until not {0=}(stop=LongBool(0));
 
-//        if last[0]=first[0])and(last[1]=first[1]
-//        then
+//        if last[0]=first[0])and(last[1]=first[1] then
 //        meet:= 1; 
 //        else
 //        meet:= LongBool(0); 
 //        (* is er meer dan 1 uniek punt ?*)
 
-//        if count-meet>0
-//        then
+//        if count-meet>0 then
 //        begin 
 //          data:= _data; 
 //          nu:= callocstructN(structNurb,1,'objfnt_nurb'); 
 //          bezt:= callocstructN(structBezTriple,count,'objfnt_bezt'); 
-//          if nu<>0)and(bezt<>0
-//          then
+//          if nu<>0)and(bezt<>0 then
 //          begin 
 //            addtail(@vfd.nurbsbase[i],nu); 
 //            nu.type:= CU_BEZIER+CU_2D; 
@@ -268,8 +254,7 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //            end;
 //            until not {0=}(stop=LongBool(0));
 
-//            if meet<>0{nil} {<= !!!9} 
-//            then
+//            if meet<>0 then
 //            begin 
 //              (* kopieer handles *)
 //              nu.bezt.vec[0][0]:= bezt.vec[0][0]; 
@@ -294,23 +279,19 @@ blender, blendef, file_, readfile, objfnt, screen, psfont;
 //            while a{--} dec(a); 
 //            do
 //            begin 
-//              if bezt.h1<>HD_ALIGN)and(bezt.h2=HD_ALIGN
-//              then
+//              if bezt.h1<>HD_ALIGN)and(bezt.h2=HD_ALIGN then
 //              bezt.h2:= 0; 
 //              else
-//              if bezt.h2<>HD_ALIGN)and(bezt.h1=HD_ALIGN
-//              then
+//              if bezt.h2<>HD_ALIGN)and(bezt.h1=HD_ALIGN then
 //              bezt.h1:= 0; 
 //              inc(bezt); 
 //            end;
 //          end;
 //          else
 //          begin 
-//            if nu<>0{nil} {<= !!!9} 
-//            then
+//            if nu<>0 then
 //            freeN(nu); 
-//            if bezt<>0{nil} {<= !!!9} 
-//            then
+//            if bezt<>0 then
 //            freeN(bezt); 
 //          end;
 //        end;
@@ -337,7 +318,7 @@ begin
   waitcursor(1);
 
   //fnt:= loadpostcriptfont(name);
-  //if fnt<>nil  then
+  //if fnt<>nil then
   //begin
   //  strcpy(di,name);
   //  splitdirstring(di,fi);
@@ -399,8 +380,7 @@ end;
 //  function loadpostcriptfont{!!!3 unknown typedef}: pobjfnt; 
 
 //  fnt:= loadpostcriptfont(vfont.name); 
-//  if fnt<>0{nil} {<= !!!9} 
-//  then
+//  if fnt<>0 then
 //  begin 
 //    objfnt_to_vfont(fnt,vfont); 
 //    freeobjfnt(fnt); 
@@ -434,12 +414,10 @@ end;
 //  do
 //  begin 
 //    bezt1:= nu1.bezt; 
-//    if bezt1<>0{nil} {<= !!!9} 
-//    then
+//    if bezt1<>0 then
 //    begin 
 //      nu2:= mallocstructN(structNurb,1,'duplichar_nurb'); 
-//      if nu2=0
-//      then
+//      if nu2=0 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      memcpy(nu2,nu1,sizeof(structNurb)); 
 //      nu2.resolu:= cu.resolu; 
@@ -450,16 +428,14 @@ end;
 //      bezt2:= mallocstructN(structBezTriple,i,'duplichar_bezt2'); (* nu2->trim.first = 0; *)
 //      (* nu2->trim.last = 0; *)
 
-//      if bezt2=0
-//      then
+//      if bezt2=0 then
 //      begin 
 //        freeN(nu2); 
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //      memcpy(bezt2,bezt1,i*sizeof(structBezTriple)); 
 //      nu2.bezt:= bezt2; 
-//      if shear<>0.0
-//      then
+//      if shear<>0.0 then
 //      begin 
 //        bezt2:= nu2.bezt; 
 //        for{while} i:=nu2.pntsu downto Succ(0) { i--}
@@ -471,8 +447,7 @@ end;
 //          inc(bezt2); 
 //        end;
 //      end;
-//      if rot<>0.0
-//      then
+//      if rot<>0.0 then
 //      begin 
 //        bezt2:= nu2.bezt; 
 //        for{while} i:=nu2.pntsu downto Succ(0) { i--}
@@ -561,8 +536,7 @@ end;
 //(* opmerking: berekeningen altijd tot en met de '\0' van de string omdat
 //    de cursor op die plek moet kunnen staan *)
 
-//if ob.type<>OB_FONT
-//then
+//if ob.type<>OB_FONT then
 //begin
 //  result:= 0; 
 //  exit;
@@ -570,14 +544,12 @@ end;
 //end;
 //cu:= ob.data; 
 //vfont:= cu.vfont; 
-//if vfont=0
-//then
+//if vfont=0 then
 //begin
 //  result:= 0; 
 //  exit;
 //end;
-//if cu.str=0
-//then
+//if cu.str=0 then
 //begin
 //  result:= 0; 
 //  exit;
@@ -596,8 +568,7 @@ end;
 //do
 //begin 
 //  ascii:= {*}mem^; 
-//  if ascii='\n')or(ascii='\r'
-//  then
+//  if ascii='\n')or(ascii='\r' then
 //  inc(cu.lines); 
 //end;
 //ct:= chartransdata:=callocstructN(structchartrans,slen+1,'buildtext'); 
@@ -613,18 +584,15 @@ end;
 //do
 //begin 
 //  ascii:= cu.str[i]; 
-//  if ascii='\n')or(ascii='\r')or(ascii=0
-//  then
+//  if ascii='\n')or(ascii='\r')or(ascii=0 then
 //  begin 
 //    ct.xof:= xof; 
 //    ct.yof:= yof; 
 //    ct.linenr:= lnr; 
 //    ct.charnr:= cnr; (* alleen lege regels mogen kleiner dan 1 zijn *)
-//    if linedist<1.0
-//    then
+//    if linedist<1.0 then
 //    begin 
-//      if i<slen)and((cu.str[i+1]='\r')or(cu.str[i+1]='\n')
-//      then
+//      if i<slen)and((cu.str[i+1]='\r')or(cu.str[i+1]='\n') then
 //      yof:= yof - (linedist); 
 //      else
 //      yof:= yof - (1.0); 
@@ -639,8 +607,7 @@ end;
 //    cnr:= 0; 
 //  end;
 //  else
-//  if ascii=9
-//  then
+//  if ascii=9 then
 //  begin 
 //    (* TAB *)
 //    ct.xof:= xof; 
@@ -660,16 +627,14 @@ end;
 //    ct.charnr:= cnr{++} inc(cnr); ; 
 //    xof:= xof + (vfont.data.width[ascii]+xtrax); 
 
-//    if vfont.data.kern<>0{nil} {<= !!!9} 
-//    then
+//    if vfont.data.kern<>0 then
 //    begin 
 //      kern:= vfont.data.kern; 
 //      str:= (ascii shl 8)+cu.str[i+1]; 
 //      for{while} kcount:=vfont.data.kcount downto Succ(0) { kcount--}
 //      do
 //      begin 
-//        if {*}kern^{++} inc(kern); =str
-//        then
+//        if {*}kern^{++} inc(kern); =str then
 //        begin 
 //          xof:= xof + ({*}kern^); 
 //          break; {<= !!!b possible in "switch" - then remove this line}
@@ -682,12 +647,10 @@ end;
 //end;
 
 //(* met alle fontsettings plekken letters berekenen *)
-//if cu.spacemode<>CU_LEFT)and(lnr>1
-//then
+//if cu.spacemode<>CU_LEFT)and(lnr>1 then
 //begin 
 //  ct:= chartransdata; 
-//  if cu.spacemode=CU_RIGHT
-//  then
+//  if cu.spacemode=CU_RIGHT then
 //  begin 
 //    for{while} i:=0 to Pred(lnr) {i++}
 //    do
@@ -700,8 +663,7 @@ end;
 //    end;
 //  end;
 //  else
-//  if cu.spacemode=CU_MIDDLE
-//  then
+//  if cu.spacemode=CU_MIDDLE then
 //  begin 
 //    for{while} i:=0 to Pred(lnr) {i++}
 //    do
@@ -714,13 +676,11 @@ end;
 //    end;
 //  end;
 //  else
-//  if cu.spacemode=CU_FLUSH
-//  then
+//  if cu.spacemode=CU_FLUSH then
 //  begin 
 //    for{while} i:=0 to Pred(lnr) {i++}
 //    do
-//    if linedata2[i]>1
-//    then
+//    if linedata2[i]>1 then
 //    linedata[i]:= (maxlen-linedata[i]) div (linedata2[i]-1); 
 //    for{while} i:=0 to slen { i++}
 //    do
@@ -731,17 +691,14 @@ end;
 //  end;
 //end;
 //(* TEXT ON CURVE *)
-//if cu.textoncurve<>0{nil} {<= !!!9} 
-//then
+//if cu.textoncurve<>0 then
 //begin 
 //  cucu:= cu.textoncurve.data; 
 //  oldflag:= cucu.flag; 
 //  cucu.flag:= cucu.flag or ((CU_PATH+CU_FOLLOW)); 
-//  if cucu.path=0
-//  then
+//  if cucu.path=0 then
 //  calc_curvepath(cu.textoncurve); 
-//  if cucu.path<>0{nil} {<= !!!9} 
-//  then
+//  if cucu.path<>0 then
 //  begin 
 
 //    Mat3CpyMat4(cmat,cu.textoncurve.obmat); 
@@ -757,41 +714,33 @@ end;
 //    inc(ct); 
 //    do
 //    begin 
-//      if minx>ct.xof
-//      then
+//      if minx>ct.xof then
 //      minx:= ct.xof; 
-//      if maxx<ct.xof
-//      then
+//      if maxx<ct.xof then
 //      maxx:= ct.xof; 
-//      if miny>ct.yof
-//      then
+//      if miny>ct.yof then
 //      miny:= ct.yof; 
-//      if maxy<ct.yof
-//      then
+//      if maxy<ct.yof then
 //      maxy:= ct.yof; 
 //    end;
 //    distfac:= sizefac*cucu.path.totdist div (maxx-minx); 
 //    timeofs:= 0.0; (* we zetten de x-coordinaat exact op de curve, de y wordt geroteerd *)
 //    (* de lengte correctie *)
-//    if distfac>1.0
-//    then
+//    if distfac>1.0 then
 //    begin 
 //      (* pad langer dan tekst: spacemode doet mee *)
 //      distfac:= 1.0 div distfac; 
-//      if cu.spacemode=CU_RIGHT
-//      then
+//      if cu.spacemode=CU_RIGHT then
 //      begin 
 //        timeofs:= 1.0-distfac; 
 //      end;
 //      else
-//      if cu.spacemode=CU_MIDDLE
-//      then
+//      if cu.spacemode=CU_MIDDLE then
 //      begin 
 //        timeofs:= (1.0-distfac) div 2.0; 
 //      end;
 //      else
-//      if cu.spacemode=CU_FLUSH
-//      then
+//      if cu.spacemode=CU_FLUSH then
 //      distfac:= 1.0; 
 //    end;
 //    else
@@ -831,23 +780,19 @@ end;
 //  end;
 //end;
 
-//if mode=FO_CURSUP)or(mode=FO_CURSDOWN
-//then
+//if mode=FO_CURSUP)or(mode=FO_CURSDOWN then
 //begin 
 //  (* 2: curs omhoog
 //       3: curs omlaag *)
 //  ct:= chartransdata+cu.pos; 
-//  if mode=FO_CURSUP)and(ct.linenr=0
-//  then
+//  if mode=FO_CURSUP)and(ct.linenr=0 then
 //  ; 
 //  else
-//  if mode=FO_CURSDOWN)and(ct.linenr=lnr
-//  then
+//  if mode=FO_CURSDOWN)and(ct.linenr=lnr then
 //  ; 
 //  else
 //  begin 
-//    if mode=FO_CURSUP
-//    then
+//    if mode=FO_CURSUP then
 //    lnr:= ct.linenr-1; 
 //    else
 //    lnr:= ct.linenr+1; 
@@ -857,19 +802,15 @@ end;
 //    for{while} i:=0 to Pred(slen) { i++}
 //    do
 //    begin 
-//      if ct.linenr=lnr
-//      then
+//      if ct.linenr=lnr then
 //      begin 
-//        if ct.charnr=cnr
-//        then
+//        if ct.charnr=cnr then
 //        break; {<= !!!b possible in "switch" - then remove this line}
-//        if (ct+1).charnr=0
-//        then
+//        if (ct+1).charnr=0 then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //      else
-//      if ct.linenr>lnr
-//      then
+//      if ct.linenr>lnr then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      inc(cu.pos); 
 //      inc(ct); 
@@ -877,8 +818,7 @@ end;
 //  end;
 //end;
 //(* eerst cursor *)
-//if ob=G.obedit
-//then
+//if ob=G.obedit then
 //begin 
 //  ct:= chartransdata+cu.pos; 
 //  si:= fsin(ct.rot); 
@@ -894,8 +834,7 @@ end;
 //  f[7]:= cu.fsize*(0.1*si+0.8*co+ct.yof); 
 //end;
 
-//if mode=0
-//then
+//if mode=0 then
 //begin 
 //  (* nurbdata maken *)
 //  freeNurblist( and cu.nurb); 
@@ -912,8 +851,7 @@ end;
 
 //freeN(linedata2); 
 
-//if mode=FO_DUPLI
-//then
+//if mode=FO_DUPLI then
 //begin 
 //  begin
 //    result:= chartransdata; 
@@ -936,8 +874,7 @@ end;
 //flen: integer; 
 //begin
 
-//  if obar[ch]<>0{nil} {<= !!!9} 
-//  then
+//  if obar[ch]<>0 then
 //  begin
 //    result:= obar[ch]; 
 //    exit;
@@ -947,11 +884,9 @@ end;
 //  while ob
 //  do
 //  begin 
-//    if ob.id.name[flen+2]=ch
-//    then
+//    if ob.id.name[flen+2]=ch then
 //    begin 
-//      if strncmp(ob.id.name+2,family,flen)=0
-//      then
+//      if strncmp(ob.id.name+2,family,flen)=0 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //    ob:= ob.id.next; 
@@ -987,13 +922,11 @@ end;
 
 //  Mat4CpyMat4(pmat,par.obmat); 
 //  lay:= G.scene.lay; 
-//  if G.vd<>0{nil} {<= !!!9} 
-//  then
+//  if G.vd<>0 then
 //  lay:= G.vd.lay; 
 //  chartransdata:= text_to_curve(par,FO_DUPLI); (* in par staat een familienaam, deze gebruiken om objecten te vinden *)
 
-//  if chartransdata=0
-//  then
+//  if chartransdata=0 then
 //  exit;
 //  bzero(obar,256*4); 
 //  cu:= par.data; 
@@ -1013,8 +946,7 @@ end;
 //  do
 //  begin 
 //    ob:= find_family_object(obar,cu.family,cu.str[a]); 
-//    if ob<>0{nil} {<= !!!9} 
-//    then
+//    if ob<>0 then
 //    begin 
 //      makeDispList(ob); 
 //      vec[0]:= fsize*(ct.xof-xof); 

@@ -1401,10 +1401,6 @@ pLibrary = ^_Library;
     //    special2 : smallint;
     //  end;
 
-(* error
-include "exports.h"   *)
-  { BLENDER_H  }
-
 procedure duplicatelist(list1: pListBase;  list2: pListBase);
 procedure initglobals;
 procedure addlisttolist(list1: pListBase;  list2: pListBase);
@@ -1440,10 +1436,10 @@ versionfstr: array [0..23] of char; (* voor files *)
 
 procedure addlisttolist(list1: pListBase;  list2: pListBase);
 begin
-  if list2^.first=nil   then
+  if list2^.first=nil then
   exit;
 
-  if list1^.first=nil  then
+  if list1^.first=nil then
   begin
     list1^.first:= list2^.first;
     list1^.last:= list2^.last;
@@ -1463,13 +1459,13 @@ var
 memh: pMemHead;
 new: pinteger;
 begin
-  if mem=nil  then
+  if mem=nil then
        exit(nil);
 
   memh:= pMemHead(mem);
   dec(memh);
   if memh^.len=0
-  then
+ then
   begin
     printf('error: dupallocN with len==0 %s\n',[memh^.name]);
       exit(nil);
@@ -1536,7 +1532,7 @@ begin
 
   sprintf(versionfstr,'BLENDER  %d',[G.version]);
 
-  if pchar(@G.order + 1)^<>#0  then
+  if pchar(@G.order + 1)^<>#0 then
   begin
     G.order:= B_ENDIAN;
     versionfstr[9]:= 'V';

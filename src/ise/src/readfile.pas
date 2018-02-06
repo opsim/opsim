@@ -133,25 +133,25 @@ begin
     {$else}
     (* Windows *)
       ret:= getenv('HOME');
-  if ret<>nil  then
+  if ret<>nil then
   begin
-    if fop_exists(ret)<>0    then
+    if fop_exists(ret)<>0 then
     exit(ret);
      if (G.f and G_DEBUG)<>0 then
     printf('Unable to find home at: %s\n',[ret]);
   end;
   ret:= getenv('WINDOWS');
-  if ret<>nil  then
+  if ret<>nil then
   begin
-    if fop_exists(ret)<>0    then
+    if fop_exists(ret)<>0 then
       exit(ret);
     if (G.f and G_DEBUG)<>0 then
     printf('Unable to find home at: %s\n',[ret]);
   end;
   ret:= getenv('WINDIR');
-  if ret<>nil  then
+  if ret<>nil then
   begin
-    if fop_exists(ret)<>0    then
+    if fop_exists(ret)<>0 then
     exit(ret);
      if (G.f and G_DEBUG)<>0 then
     printf('Unable to find home at: %s\n',[ret]);
@@ -170,8 +170,7 @@ end;
 
 //  a:= lstrlen(str); 
 //  b:= lstrlen(ext); 
-//  if a=0)or(b=0)or(b>=a
-//  then
+//  if a=0)or(b=0)or(b>=a then
 //  begin
 //    result:= 0; 
 //    exit;
@@ -181,8 +180,7 @@ end;
 //  begin 
 //    dec(a); 
 //    dec(b); 
-//    if str[a]<>ext[b]
-//    then
+//    if str[a]<>ext[b] then
 //    begin
 //      result:= 0; 
 //      exit;
@@ -210,7 +208,7 @@ begin
     slash:= strrchr(temp,'/')
     else
       strrchr(temp,#92);
-    if slash<>#0  then
+    if slash<>#0 then
     begin
       strcpy(slash+1,str+2);
       strcpy(str,temp);
@@ -239,18 +237,15 @@ end;
 //begin
 
 //  strcpy(temp,G.sce); 
-//  slash:= (strrchr(temp,'/')>strrchr(temp,#92)) {was ?}if  then strrchr(temp,'/') {was :}else strrchr(temp,#92); 
+//  slash:= (strrchr(temp,'/')>strrchr(temp,#92)) {was ?}if then strrchr(temp,'/') {was :}else strrchr(temp,#92);
 //  (* Find the last slash *)
-//  if slash<>0{nil} {<= !!!9} 
-//  then
+//  if slash<>0 then
 //  begin 
 //    *(slash+1):=0; 
 //    len:= lstrlen(temp); 
-//    if len<>0{nil} {<= !!!9} 
-//    then
+//    if len<>0 then
 //    begin 
-//      if strncmp(str,temp,len)=0
-//      then
+//      if strncmp(str,temp,len)=0 then
 //      begin 
 //        temp[0]:= '/'; 
 //        temp[1]:= '/'; 
@@ -265,9 +260,8 @@ end;
 //var
 //slash: pchar; (* Find the last slash *)
 //begin
-//  slash:= (strrchr(di,'/')>strrchr(di,#92)) {was ?}if  then strrchr(di,'/') {was :}else strrchr(di,#92); 
-//  if slash<>0{nil} {<= !!!9} 
-//  then
+//  slash:= (strrchr(di,'/')>strrchr(di,#92)) {was ?}if then strrchr(di,'/') {was :}else strrchr(di,#92);
+//  if slash<>0 then
 //  begin 
 //    strcpy(fi,slash+1); 
 //    *(slash+1):=0; 
@@ -297,8 +291,7 @@ end;
 //a: integer; 
 //begin
 
-//  if old=0
-//  then
+//  if old=0 then
 //  begin 
 //    (* ongebruikte vrijgeven *)
 //    temp:= datablocks; 
@@ -310,12 +303,10 @@ end;
 //    inc(temp); 
 //    do
 //    begin 
-//      if temp.nr=0)and(temp.new
-//      then
+//      if temp.nr=0)and(temp.new then
 //      freeN(temp.new); 
 //    end;
-//    if new=0)and(datablocks
-//    then
+//    if new=0)and(datablocks then
 //    begin 
 //      freeN(datablocks); 
 //      datablocks:= 0; 
@@ -325,14 +316,12 @@ end;
 //  end;
 //  else
 //  begin 
-//    if datablocks=0
-//    then
+//    if datablocks=0 then
 //    begin 
 //      datablocks:= mallocN(maxdatacount*sizeof(OldNew),'OldNew'); 
 //    end;
 //    else
-//    if datacount=maxdatacount
-//    then
+//    if datacount=maxdatacount then
 //    begin 
 //      maxdatacount:= maxdatacount * (2); 
 //      temp:= mallocN(maxdatacount*sizeof(OldNew),'OldNew'); 
@@ -365,17 +354,14 @@ end;
 //  *)
 //begin
 //  temp:=0; 
-//  if disable_newlibadr<>0{nil} {<= !!!9} 
-//  then
+//  if disable_newlibadr<>0 then
 //  begin 
 //    disable_newlibadr:= new; 
 //  end;
-//  if old=0
-//  then
+//  if old=0 then
 //  begin 
 //    (* alles vrijgeven *)
-//    if libblocks<>0{nil} {<= !!!9} 
-//    then
+//    if libblocks<>0 then
 //    freeN(libblocks); 
 //    libblocks:= 0; 
 //    maxlibcount:= 1024; 
@@ -383,14 +369,12 @@ end;
 //  end;
 //  else
 //  begin 
-//    if libblocks=0
-//    then
+//    if libblocks=0 then
 //    begin 
 //      libblocks:= mallocN(maxlibcount*sizeof(OldNew),'OldNew'); 
 //    end;
 //    else
-//    if libcount=maxlibcount
-//    then
+//    if libcount=maxlibcount then
 //    begin 
 //      maxlibcount:= maxlibcount * (2); 
 //      temp:= mallocN(maxlibcount*sizeof(OldNew),'OldNew'); 
@@ -416,17 +400,14 @@ end;
 //procedure newadr(adr: pinteger); 
 //begin
 //  lastone:=0; 
-//  if adr<>0{nil} {<= !!!9} 
-//  then
+//  if adr<>0 then
 //  begin 
 //    (* op goed geluk: eerst het volgende blok doen *)
-//    if lastone<datacount-1
-//    then
+//    if lastone<datacount-1 then
 //    begin 
 //      inc(lastone); 
 //      onew:= datablocks+lastone; 
-//      if onew.old=adr
-//      then
+//      if onew.old=adr then
 //      begin 
 //        inc(onew.nr); 
 //        begin
@@ -440,8 +421,7 @@ end;
 //    while lastone<datacount
 //    do
 //    begin 
-//      if onew.old=adr
-//      then
+//      if onew.old=adr then
 //      begin 
 //        inc(onew.nr); 
 //        begin
@@ -472,22 +452,18 @@ end;
 //begin
 //  lastone:=0; 
 
-//  if adr<>0{nil} {<= !!!9} 
-//  then
+//  if adr<>0 then
 //  begin 
 //    (* op goed geluk: eerst het volgende blok doen *)
 //    (* als je dit weglaat gaat newcarou.blend mis *)
-//    if lastone<libcount-1
-//    then
+//    if lastone<libcount-1 then
 //    begin 
 //      inc(lastone); 
 //      onew:= libblocks+lastone; 
-//      if onew.old=adr
-//      then
+//      if onew.old=adr then
 //      begin 
 //        id:= onew.new; 
-//        if id.lib=0)and(lib
-//        then
+//        if id.lib=0)and(lib then
 //        ; 
 //        else
 //        begin 
@@ -504,12 +480,10 @@ end;
 //    while lastone<libcount
 //    do
 //    begin 
-//      if onew.old=adr
-//      then
+//      if onew.old=adr then
 //      begin 
 //        id:= onew.new; 
-//        if id)and(id.lib=0)and(lib
-//        then
+//        if id)and(id.lib=0)and(lib then
 //        ; 
 //        else
 //        begin 
@@ -539,8 +513,7 @@ end;
 //begin
 
 //  id:= newlibadr(lib,adr); 
-//  if id<>0{nil} {<= !!!9} 
-//  then
+//  if id<>0 then
 //  begin 
 //    inc(id.us); 
 //  end;
@@ -563,23 +536,19 @@ end;
 //begin
 //  lastone:=0; 
 
-//  if adr<>0{nil} {<= !!!9} 
-//  then
+//  if adr<>0 then
 //  begin 
 //    (* op goed geluk: eerst het volgende blok doen *)
 //    (* als je dit weglaat gaat newcarou.blend mis *)
 
-//    if lastone<libcount-1
-//    then
+//    if lastone<libcount-1 then
 //    begin 
 //      inc(lastone); 
 //      onew:= libblocks+lastone; 
-//      if onew.old=adr
-//      then
+//      if onew.old=adr then
 //      begin 
 //        id:= onew.new; 
-//        if GS(id.name)=type
-//        then
+//        if GS(id.name)=type then
 //        begin 
 //          inc(id.us); 
 //          inc(onew.nr); 
@@ -595,12 +564,10 @@ end;
 //    while lastone<libcount
 //    do
 //    begin 
-//      if onew.old=adr
-//      then
+//      if onew.old=adr then
 //      begin 
 //        id:= onew.new; 
-//        if GS(id.name)=type
-//        then
+//        if GS(id.name)=type then
 //        begin 
 //          inc(id.us); 
 //          inc(onew.nr); 
@@ -638,11 +605,9 @@ end;
 //  do
 //  begin 
 //    id:= onew.new; 
-//    if id)and(id.lib
-//    then
+//    if id)and(id.lib then
 //    begin 
-//      if onew.new=old
-//      then
+//      if onew.new=old then
 //      begin 
 //        onew.new:= new; 
 //        (* geen return; blijkbaar kunnen er meer zijn? *)
@@ -682,23 +647,19 @@ end;
 
 //begin
 //  temp:=0; 
-//  if bh.len<>0{nil} {<= !!!9} 
-//  then
+//  if bh.len<>0 then
 //  begin 
-//    if bh.SDNAnr)and(switch_endian
-//    then
+//    if bh.SDNAnr)and(switch_endian then
 //    switch_endian_structs(bh); 
 
-//    if compflags[bh.SDNAnr]<>0{nil} {<= !!!9} 
-//    then
+//    if compflags[bh.SDNAnr]<>0 then
 //    begin 
 //      (* flag==0: bestaat niet meer *)
 //      (* dit hele ingewikkelde spul is de naam van de struct, let op: old_sdna! *)
 //      temp:= mallocN(bh.len,old_sdna.types[{*}old_sdna.structs[bh.SDNAnr]^]); 
 //      memcpy(temp,(bh+1),bh.len); 
 //      (* temp= mallocN(bh->len, "read_struct"); *)
-//      if compflags[bh.SDNAnr]=2
-//      then
+//      if compflags[bh.SDNAnr]=2 then
 //      reconstruct(bh.SDNAnr,bh.nr,@temp); 
 //    end;
 //  end;
@@ -712,8 +673,7 @@ end;
 //begin(* rijtje hardcoded uitzonderingen *)
 
 //  sp:= old_sdna.structs[bh.SDNAnr]; 
-//  if lstrcmp('Screen',old_sdna.types[sp[0]])=0
-//  then
+//  if lstrcmp('Screen',old_sdna.types[sp[0]])=0 then
 //  begin 
 //    bh.SDNAnr:= findstruct_nr(@old_sdna,'bScreen'); 
 //  end;
@@ -725,22 +685,18 @@ end;
 
 //begin
 //  temp:=0; 
-//  if bh.len<>0{nil} {<= !!!9} 
-//  then
+//  if bh.len<>0 then
 //  begin 
-//    if switch_endian<>0{nil} {<= !!!9} 
-//    then
+//    if switch_endian<>0 then
 //    switch_endian_structs(bh); 
-//    if compflags[bh.SDNAnr]<>0{nil} {<= !!!9} 
-//    then
+//    if compflags[bh.SDNAnr]<>0 then
 //    begin 
 //      (* flag==0: bestaat niet meer *)
 
 //      temp:= mallocN(bh.len,'read_libstruct'); 
 //      memcpy(temp,(bh+1),bh.len); 
 
-//      if compflags[bh.SDNAnr]=2
-//      then
+//      if compflags[bh.SDNAnr]=2 then
 //      reconstruct(bh.SDNAnr,bh.nr,@temp); 
 //    end;
 //  end;
@@ -757,21 +713,17 @@ end;
 //begin 
 //  (* dubbele pointer ivm reconstruct *)
 
-//  if bh.len<>0{nil} {<= !!!9} 
-//  then
+//  if bh.len<>0 then
 //  begin 
 
-//    if bh.SDNAnr)and(switch_endian
-//    then
+//    if bh.SDNAnr)and(switch_endian then
 //    switch_endian_structs(bh); 
-//    if compflags[bh.SDNAnr]<>0{nil} {<= !!!9} 
-//    then
+//    if compflags[bh.SDNAnr]<>0 then
 //    begin 
 //      (* flag==0: bestaat niet meer *)
 //      {*}data^:=mallocN(bh.len,'read_struct_expl'); 
 //      memcpy({*}data^,(bh+1),bh.len); 
-//      if compflags[bh.SDNAnr]=2
-//      then
+//      if compflags[bh.SDNAnr]=2 then
 //      reconstruct(bh.SDNAnr,bh.nr,data); 
 //    end;
 //  end;
@@ -785,8 +737,7 @@ end;
 //prev: pLink; 
 //begin
 
-//  if lb.first=0
-//  then
+//  if lb.first=0 then
 //  exit;
 
 //  lb.first:= newadr(lb.first); 
@@ -818,20 +769,17 @@ end;
 //begin
 //  {$ifdef WIN32}
 
-//  if {*}mat^
-//  then
+//  if {*}mat^ then
 //  begin 
 //    len:= alloc_len(*mat) div old_sdna.pointerlen; 
-//    if old_sdna.pointerlen=8)and(cur_sdna.pointerlen=4
-//    then
+//    if old_sdna.pointerlen=8)and(cur_sdna.pointerlen=4 then
 //    begin 
 //      ipoin:= imat:=mallocN(len*4,'newmatar'); 
 //      lpoin:= {*}mat^; 
 //      while len{--} dec(len); >0
 //      do
 //      begin 
-//        if switch_endian<>0{nil} {<= !!!9} 
-//        then
+//        if switch_endian<>0 then
 //        SWITCH_LONGINT({*}lpoin^); 
 //        {*}ipoin^:=(*lpoin) shr 3; 
 //        inc(ipoin); 
@@ -840,8 +788,7 @@ end;
 //      freeN({*}mat^); 
 //      {*}mat^:=imat; 
 //    end;
-//    if old_sdna.pointerlen=4)and(cur_sdna.pointerlen=8
-//    then
+//    if old_sdna.pointerlen=4)and(cur_sdna.pointerlen=8 then
 //    begin 
 //      lpoin:= lmat:=mallocN(len*8,'newmatar'); 
 //      ipoin:= {*}mat^; 
@@ -877,8 +824,7 @@ end;
 //begin
 //  slink.scripts:= newadr(slink.scripts); 
 //  slink.flag:= newadr(slink.flag); 
-//  if switch_endian<>0{nil} {<= !!!9} 
-//  then
+//  if switch_endian<>0 then
 //  begin 
 
 //    for{while} a:=0 to Pred(slink.totscript) { a++}
@@ -900,8 +846,7 @@ end;
 //  while me
 //  do
 //  begin 
-//    if me.id.flag and LIB_NEEDLINK
-//    then
+//    if me.id.flag and LIB_NEEDLINK then
 //    begin 
 //      me.id.flag:= me.id.flag - (LIB_NEEDLINK); 
 //    end;
@@ -928,8 +873,7 @@ end;
 //  while ika
 //  do
 //  begin 
-//    if ika.id.flag and LIB_NEEDLINK
-//    then
+//    if ika.id.flag and LIB_NEEDLINK then
 //    begin 
 //      ika.parent:= newlibadr(ika.id.lib,ika.parent); 
 //      a:= ika.totdef; 
@@ -953,8 +897,7 @@ end;
 //  ika.def:= newadr(ika.def); 
 
 //  (* afvangen fout uit V.138 en ouder *)
-//  if ika.def=0
-//  then
+//  if ika.def=0 then
 //  ika.totdef:= 0; 
 //end;
 
@@ -970,8 +913,7 @@ end;
 //  while ca
 //  do
 //  begin 
-//    if ca.id.flag and LIB_NEEDLINK
-//    then
+//    if ca.id.flag and LIB_NEEDLINK then
 //    begin 
 //      ca.ipo:= newlibadr_us(ca.id.lib,ca.ipo); 
 //      lib_link_scriptlink( and ca.id, and ca.scriptlink); 
@@ -999,8 +941,7 @@ end;
 //  while lf
 //  do
 //  begin 
-//    if lf.id.flag and LIB_NEEDLINK
-//    then
+//    if lf.id.flag and LIB_NEEDLINK then
 //    begin 
 //      lf.sector:= newlibadr(lf.id.lib,lf.sector); 
 //      lf.dynamesh:= newlibadr_us(lf.id.lib,lf.dynamesh); 
@@ -1042,8 +983,7 @@ end;
 //  while se
 //  do
 //  begin 
-//    if se.id.flag and LIB_NEEDLINK
-//    then
+//    if se.id.flag and LIB_NEEDLINK then
 //    begin 
 //      se.ob:= newlibadr(se.id.lib,se.ob); 
 //      se.dynamesh:= newlibadr_us(se.id.lib,se.dynamesh); 
@@ -1081,8 +1021,7 @@ end;
 //  while lt
 //  do
 //  begin 
-//    if lt.id.flag and LIB_NEEDLINK
-//    then
+//    if lt.id.flag and LIB_NEEDLINK then
 //    begin 
 //      lt.ipo:= newlibadr_us(lt.id.lib,lt.ipo); 
 //      lt.key:= newlibadr_us(lt.id.lib,lt.key); 
@@ -1112,16 +1051,14 @@ end;
 //  while la
 //  do
 //  begin 
-//    if la.id.flag and LIB_NEEDLINK
-//    then
+//    if la.id.flag and LIB_NEEDLINK then
 //    begin 
 
 //      for{while} a:=0 to Pred(8) { a++}
 //      do
 //      begin 
 //        mtex:= la.mtex[a]; 
-//        if mtex<>0{nil} {<= !!!9} 
-//        then
+//        if mtex<>0 then
 //        begin 
 //          mtex.tex:= newlibadr_us(la.id.lib,mtex.tex); 
 //          mtex.object:= newlibadr(la.id.lib,mtex.object); 
@@ -1158,8 +1095,7 @@ end;
 //  while key
 //  do
 //  begin 
-//    if key.id.flag and LIB_NEEDLINK
-//    then
+//    if key.id.flag and LIB_NEEDLINK then
 //    begin 
 //      key.ipo:= newlibadr_us(key.id.lib,key.ipo); 
 //      key.from:= newlibadr(key.id.lib,key.from); 
@@ -1180,8 +1116,7 @@ end;
 //  do
 //  begin 
 //    kb.data:= newadr(kb.data); 
-//    if switch_endian<>0{nil} {<= !!!9} 
-//    then
+//    if switch_endian<>0 then
 //    switch_endian_keyblock(key,kb); 
 //    kb:= kb.next; 
 //  end;
@@ -1199,8 +1134,7 @@ end;
 //  while mb
 //  do
 //  begin 
-//    if mb.id.flag and LIB_NEEDLINK
-//    then
+//    if mb.id.flag and LIB_NEEDLINK then
 //    begin 
 //      for{while} a:=0 to Pred(mb.totcol) { a++}
 //      do
@@ -1239,16 +1173,14 @@ end;
 //  while wrld
 //  do
 //  begin 
-//    if wrld.id.flag and LIB_NEEDLINK
-//    then
+//    if wrld.id.flag and LIB_NEEDLINK then
 //    begin 
 //      wrld.ipo:= newlibadr_us(wrld.id.lib,wrld.ipo); 
 //      for{while} a:=0 to Pred(8) { a++}
 //      do
 //      begin 
 //        mtex:= wrld.mtex[a]; 
-//        if mtex<>0{nil} {<= !!!9} 
-//        then
+//        if mtex<>0 then
 //        begin 
 //          mtex.tex:= newlibadr_us(wrld.id.lib,mtex.tex); 
 //          mtex.object:= newlibadr(wrld.id.lib,mtex.object); 
@@ -1285,8 +1217,7 @@ end;
 //  while ipo
 //  do
 //  begin 
-//    if ipo.id.flag and LIB_NEEDLINK
-//    then
+//    if ipo.id.flag and LIB_NEEDLINK then
 //    begin 
 //      ipo.id.flag:= ipo.id.flag - (LIB_NEEDLINK); 
 //    end;
@@ -1332,8 +1263,7 @@ end;
 //  while text
 //  do
 //  begin 
-//    if text.id.flag and LIB_NEEDLINK
-//    then
+//    if text.id.flag and LIB_NEEDLINK then
 //    begin 
 //      text.id.flag:= text.id.flag - (LIB_NEEDLINK); 
 //    end;
@@ -1367,16 +1297,14 @@ end;
 //  text.undo_len:= TXT_INIT_UNDO; 
 //  text.undo_buf:= mallocN(text.undo_len,'undo buf'); 
 //  text.compiled:= 0{nil}; 
-//  if text.flags and TXT_ISEXT
-//  then
+//  if text.flags and TXT_ISEXT then
 //  begin 
 //    reopen_text(text); 
 //  end;
 //  else
 //  begin 
 
-//    if text.lines.first=0
-//    then
+//    if text.lines.first=0 then
 //    exit;
 //    link_list(@text.lines); 
 //    text.curl:= newadr(text.curl); 
@@ -1386,8 +1314,7 @@ end;
 //    do
 //    begin 
 //      ln.line:= newadr(ln.line); 
-//      if ln.len<>lstrlen(ln.line)
-//      then
+//      if ln.len<>lstrlen(ln.line) then
 //      begin 
 //        printf('Error loading text, line lengths differ\n');
 //        ln.len:= lstrlen(ln.line); 
@@ -1411,8 +1338,7 @@ end;
 //  while ima
 //  do
 //  begin 
-//    if ima.id.flag and LIB_NEEDLINK
-//    then
+//    if ima.id.flag and LIB_NEEDLINK then
 //    begin 
 //      ima.id.flag:= ima.id.flag - (LIB_NEEDLINK); 
 //    end;
@@ -1446,8 +1372,7 @@ end;
 //  while cu
 //  do
 //  begin 
-//    if cu.id.flag and LIB_NEEDLINK
-//    then
+//    if cu.id.flag and LIB_NEEDLINK then
 //    begin 
 //      for{while} a:=0 to Pred(cu.totcol) { a++}
 //      do
@@ -1471,8 +1396,7 @@ end;
 //  cu.mat:= newadr(cu.mat); 
 //  test_pointer_array((void** ) and cu.mat); 
 //  cu.str:= newadr(cu.str); 
-//  if cu.vfont=0
-//  then
+//  if cu.vfont=0 then
 //  link_list(@(cu.nurb)); 
 //  else
 //  begin 
@@ -1489,8 +1413,7 @@ end;
 //    nu.bp:= newadr(nu.bp); 
 //    nu.knotsu:= newadr(nu.knotsu); 
 //    nu.knotsv:= newadr(nu.knotsv); 
-//    if switch_endian<>0{nil} {<= !!!9} 
-//    then
+//    if switch_endian<>0 then
 //    begin 
 //      switch_endian_knots(nu); 
 //    end;
@@ -1510,13 +1433,11 @@ end;
 //  while tex
 //  do
 //  begin 
-//    if tex.id.flag and LIB_NEEDLINK
-//    then
+//    if tex.id.flag and LIB_NEEDLINK then
 //    begin 
 //      tex.ima:= newlibadr_us(tex.id.lib,tex.ima); 
 //      tex.ipo:= newlibadr_us(tex.id.lib,tex.ipo); 
-//      if tex.env<>0{nil} {<= !!!9} 
-//      then
+//      if tex.env<>0 then
 //      tex.env.object:= newlibadr(tex.id.lib,tex.env.object); 
 //      tex.id.flag:= tex.id.flag - (LIB_NEEDLINK); 
 //    end;
@@ -1528,16 +1449,14 @@ end;
 //tex: pTex; 
 //begin 
 //  tex.plugin:= newadr(tex.plugin); 
-//  if tex.plugin<>0{nil} {<= !!!9} 
-//  then
+//  if tex.plugin<>0 then
 //  begin 
 //    tex.plugin.handle:= 0; 
 //    open_plugin_tex(tex.plugin); 
 //  end;
 //  tex.coba:= newadr(tex.coba); 
 //  tex.env:= newadr(tex.env); 
-//  if tex.env<>0{nil} {<= !!!9} 
-//  then
+//  if tex.env<>0 then
 //  begin 
 //    tex.env.ima:= 0; 
 //    bzero(tex.env.cube,6*sizeof(void* )); 
@@ -1558,16 +1477,14 @@ end;
 //  while ma
 //  do
 //  begin 
-//    if ma.id.flag and LIB_NEEDLINK
-//    then
+//    if ma.id.flag and LIB_NEEDLINK then
 //    begin 
 //      ma.ipo:= newlibadr_us(ma.id.lib,ma.ipo); 
 //      for{while} a:=0 to Pred(8) { a++}
 //      do
 //      begin 
 //        mtex:= ma.mtex[a]; 
-//        if mtex<>0{nil} {<= !!!9} 
-//        then
+//        if mtex<>0 then
 //        begin 
 //          mtex.tex:= newlibadr_us(ma.id.lib,mtex.tex); 
 //          mtex.object:= newlibadr(ma.id.lib,mtex.object); 
@@ -1609,8 +1526,7 @@ end;
 //  while me
 //  do
 //  begin 
-//    if me.id.flag and LIB_NEEDLINK
-//    then
+//    if me.id.flag and LIB_NEEDLINK then
 //    begin 
 //      for{while} a:=0 to Pred(me.totcol) { a++}
 //      do
@@ -1618,8 +1534,7 @@ end;
 //      me.ipo:= newlibadr_us(me.id.lib,me.ipo); 
 //      me.key:= newlibadr_us(me.id.lib,me.key); 
 //      me.texcomesh:= newlibadr_us(me.id.lib,me.texcomesh); 
-//      if me.tface<>0{nil} {<= !!!9} 
-//      then
+//      if me.tface<>0 then
 //      begin 
 //        a:= me.totface; 
 //        tface:= me.tface; 
@@ -1627,17 +1542,14 @@ end;
 //        do
 //        begin 
 //          tface.tpage:= newlibadr(me.id.lib,tface.tpage); 
-//          if tface.tpage<>0{nil} {<= !!!9} 
-//          then
+//          if tface.tpage<>0 then
 //          begin 
 //            ima:= tface.tpage; 
-//            if ima.id.us=0
-//            then
+//            if ima.id.us=0 then
 //            ima.id.us:= 1; 
 //          end;
 //          (* was already swapped in genfile, should be! *)
-//          if switch_endian<>0{nil} {<= !!!9} 
-//          then
+//          if switch_endian<>0 then
 //          begin 
 //            SWITCH_INT(tface.col[0]); 
 //            SWITCH_INT(tface.col[1]); 
@@ -1688,21 +1600,18 @@ end;
 //  while ob
 //  do
 //  begin 
-//    if ob.id.flag and LIB_NEEDLINK
-//    then
+//    if ob.id.flag and LIB_NEEDLINK then
 //    begin 
 //      ob.parent:= newlibadr(ob.id.lib,ob.parent); 
 //      ob.track:= newlibadr(ob.id.lib,ob.track); 
 //      ob.ipo:= newlibadr_us(ob.id.lib,ob.ipo); 
 //      poin:= ob.data; 
 //      ob.data:= newlibadr_us(ob.id.lib,ob.data); 
-//      if ob.data=0)and(poin<>0
-//      then
+//      if ob.data=0)and(poin<>0 then
 //      begin 
 //        ob.type:= OB_EMPTY; 
 //        warn:= 1; 
-//        if ob.id.lib<>0{nil} {<= !!!9} 
-//        then
+//        if ob.id.lib<>0 then
 //        printf('Can''t find obdata of %s lib %s\n',ob.id.name+2,ob.id.lib.name);
 //        else
 //        printf('Object %s lost data. Lib:%x\n',ob.id.name+2,ob.id.lib);
@@ -1725,8 +1634,7 @@ end;
 //    end;
 //    ob:= ob.id.next; 
 //  end;
-//  if warn<>0{nil} {<= !!!9} 
-//  then
+//  if warn<>0 then
 //  error('WARNING IN CONSOLE'); 
 //end;
 
@@ -1745,13 +1653,11 @@ end;
 //  while paf
 //  do
 //  begin 
-//    if paf.type=EFF_PARTICLE
-//    then
+//    if paf.type=EFF_PARTICLE then
 //    begin 
 //      paf.keys:= 0; 
 //    end;
-//    if paf.type=EFF_WAVE
-//    then
+//    if paf.type=EFF_WAVE then
 //    begin 
 //    end;
 //    paf:= paf.next; 
@@ -1778,8 +1684,7 @@ end;
 //  while sce
 //  do
 //  begin 
-//    if sce.id.flag and LIB_NEEDLINK
-//    then
+//    if sce.id.flag and LIB_NEEDLINK then
 //    begin 
 //      sce.id.us:= 1; 
 //      sce.camera:= newlibadr(sce.id.lib,sce.camera); 
@@ -1793,29 +1698,24 @@ end;
 //        next:= base.next; 
 //        base.object:= newlibadr_us_type(ID_OB,base.object); (* base->object= newlibadr_us(sce->id.lib, base->object); *)
 
-//        if base.object=0
-//        then
+//        if base.object=0 then
 //        begin 
 //          printf('LIB ERROR: base removed\n');
 //          remlink(@sce.base,base); 
-//          if base=sce.basact
-//          then
+//          if base=sce.basact then
 //          sce.basact:= 0; 
 //          freeN(base); 
 //        end;
 //        base:= next; 
 //      end;
 //      ed:= sce.ed; 
-//      if ed<>0{nil} {<= !!!9} 
-//      then
+//      if ed<>0 then
 //      begin 
 //        WHILE_SEQ(ed.seqbasep); 
 //        begin 
-//          if seq.ipo<>0{nil} {<= !!!9} 
-//          then
+//          if seq.ipo<>0 then
 //          seq.ipo:= newlibadr_us(sce.id.lib,seq.ipo); 
-//          if seq.scene<>0{nil} {<= !!!9} 
-//          then
+//          if seq.scene<>0 then
 //          seq.scene:= newlibadr(sce.id.lib,seq.scene); 
 //          seq.anim:= 0; 
 //        end;
@@ -1837,8 +1737,7 @@ end;
 //  while seq
 //  do
 //  begin 
-//    if seq.seqbase.first<>0{nil} {<= !!!9} 
-//    then
+//    if seq.seqbase.first<>0 then
 //    link_recurs_seq(@seq.seqbase); 
 //    seq:= seq.next; 
 //  end;
@@ -1857,8 +1756,7 @@ end;
 //  sce.basact:= newadr(sce.basact); 
 //  sce.radio:= newadr(sce.radio); 
 
-//  if sce.ed<>0{nil} {<= !!!9} 
-//  then
+//  if sce.ed<>0 then
 //  begin 
 //    ed:= sce.ed:=newadr(sce.ed); 
 //    ed.metastack.first:= ed.metastack.last:=0; 
@@ -1870,26 +1768,21 @@ end;
 //      seq.seq1:= newadr(seq.seq1); 
 //      seq.seq2:= newadr(seq.seq2); 
 //      seq.seq3:= newadr(seq.seq3); (* eigenlijk een patch: na invoering drie-seq effects *)
-//      if seq.seq3=0
-//      then
+//      if seq.seq3=0 then
 //      seq.seq3:= seq.seq2; 
 //      seq.curelem:= 0; 
 //      seq.plugin:= newadr(seq.plugin); 
-//      if seq.plugin<>0{nil} {<= !!!9} 
-//      then
+//      if seq.plugin<>0 then
 //      open_plugin_seq(seq.plugin,seq.name+2); 
 //      seq.strip:= newadr(seq.strip); 
-//      if seq.strip)and(seq.strip.done=0
-//      then
+//      if seq.strip)and(seq.strip.done=0 then
 //      begin 
 //        seq.strip.done:= 1; (* standaard: strips van effecten/meta's worden niet weggeschreven, wel malloccen *)
-//        if seq.type=SEQ_IMAGE
-//        then
+//        if seq.type=SEQ_IMAGE then
 //        begin 
 //          seq.strip.stripdata:= newadr(seq.strip.stripdata); 
 //          se:= seq.strip.stripdata; 
-//          if se<>0{nil} {<= !!!9} 
-//          then
+//          if se<>0 then
 //          begin 
 //            while{for} 
 //            a:= 0; 
@@ -1905,13 +1798,11 @@ end;
 //          end;
 //        end;
 //        else
-//        if seq.type=SEQ_MOVIE
-//        then
+//        if seq.type=SEQ_MOVIE then
 //        begin 
 //          (* alleen eerste stripelem zit in file *)
 //          se:= newadr(seq.strip.stripdata); 
-//          if se<>0{nil} {<= !!!9} 
-//          then
+//          if se<>0 then
 //          begin 
 //            seq.strip.stripdata:= callocN(seq.len*sizeof(StripElem),'stripelem'); {*}seq.strip.stripdata^:=*se; 
 //            freeN(se); 
@@ -1931,8 +1822,7 @@ end;
 //          end;
 //        end;
 //        else
-//        if seq.len>0
-//        then
+//        if seq.len>0 then
 //        seq.strip.stripdata:= callocN(seq.len*sizeof(StripElem),'stripelem'); 
 
 //      end;
@@ -1968,8 +1858,7 @@ end;
 //  while sc
 //  do
 //  begin 
-//    if sc.id.flag and LIB_NEEDLINK
-//    then
+//    if sc.id.flag and LIB_NEEDLINK then
 //    begin 
 //      sc.id.us:= 1; 
 //      sc.scene:= newlibadr(sc.id.lib,sc.scene); 
@@ -1982,27 +1871,23 @@ end;
 //        while v3d
 //        do
 //        begin 
-//          if v3d.spacetype=SPACE_VIEW3D
-//          then
+//          if v3d.spacetype=SPACE_VIEW3D then
 //          begin 
 
 //            v3d.camera:= newlibadr(sc.id.lib,v3d.camera); 
-//            if v3d.bgpic<>0{nil} {<= !!!9} 
-//            then
+//            if v3d.bgpic<>0 then
 //            begin 
 //              v3d.bgpic.ima:= newlibadr_us(sc.id.lib,v3d.bgpic.ima); 
 //              v3d.bgpic.tex:= newlibadr_us(sc.id.lib,v3d.bgpic.tex); 
 //              v3d.bgpic.rect:= 0; 
 //            end;
-//            if v3d.localvd<>0{nil} {<= !!!9} 
-//            then
+//            if v3d.localvd<>0 then
 //            begin 
 //              v3d.localvd.camera:= newlibadr(sc.id.lib,v3d.localvd.camera); 
 //            end;
 //          end;
 //          else
-//          if v3d.spacetype=SPACE_IPO
-//          then
+//          if v3d.spacetype=SPACE_IPO then
 //          begin 
 //            si:= {!!!a type cast? =>} {pSpaceIpo(}v3d; 
 //            si.editipo:= 0; 
@@ -2011,19 +1896,16 @@ end;
 //            si.ipo:= newlibadr(sc.id.lib,si.ipo); 
 //          end;
 //          else
-//          if v3d.spacetype=SPACE_BUTS
-//          then
+//          if v3d.spacetype=SPACE_BUTS then
 //          begin 
 //            buts:= {!!!a type cast? =>} {pSpaceButs(}v3d; 
 //            buts.rect:= 0; 
 //            buts.lockpoin:= 0; 
-//            if main.versionfile<132
-//            then
+//            if main.versionfile<132 then
 //            set_rects_butspace(buts); 
 //          end;
 //          else
-//          if v3d.spacetype=SPACE_FILE
-//          then
+//          if v3d.spacetype=SPACE_FILE then
 //          begin 
 //            sfile:= {!!!a type cast? =>} {pSpaceFile(}v3d; 
 //            sfile.filelist:= 0; 
@@ -2031,26 +1913,22 @@ end;
 //            sfile.returnfunc:= 0; 
 //          end;
 //          else
-//          if v3d.spacetype=SPACE_IMASEL
-//          then
+//          if v3d.spacetype=SPACE_IMASEL then
 //          begin 
 //            check_imasel_copy({!!!a type cast? =>} {pSpaceImaSel(}v3d); 
 //          end;
 //          else
-//          if v3d.spacetype=SPACE_PAINT
-//          then
+//          if v3d.spacetype=SPACE_PAINT then
 //          begin 
 //          end;
 //          else
-//          if v3d.spacetype=SPACE_IMAGE
-//          then
+//          if v3d.spacetype=SPACE_IMAGE then
 //          begin 
 //            sima:={!!!a type cast? =>} {pSpaceImage(}v3d; 
 //            sima.image:= newlibadr(sc.id.lib,sima.image); 
 //          end;
 //          else
-//          if v3d.spacetype=SPACE_TEXT
-//          then
+//          if v3d.spacetype=SPACE_TEXT then
 //          begin 
 //            st:={!!!a type cast? =>} {pSpaceText(}v3d; 
 //            st.text:= newlibadr(sc.id.lib,st.text); 
@@ -2062,12 +1940,10 @@ end;
 //            st.py_head_button:= 0{nil}; 
 //          end;
 //          else
-//          if v3d.spacetype=SPACE_OOPS
-//          then
+//          if v3d.spacetype=SPACE_OOPS then
 //          begin 
 //            so:={!!!a type cast? =>} {pSpaceOops(}v3d; (* patch als deze in oude files zit *)
-//            if so.v2d.cur.xmin=so.v2d.cur.xmax
-//            then
+//            if so.v2d.cur.xmin=so.v2d.cur.xmax then
 //            begin 
 //              init_v2d_oops(@so.v2d); 
 //            end;
@@ -2111,15 +1987,13 @@ end;
 //  begin 
 //    se.v1:= newadr(se.v1); 
 //    se.v2:= newadr(se.v2); 
-//    if {!!!a type cast? =>} {integer(}se.v1>{!!!a type cast? =>} {integer(}se.v2
-//    then
+//    if {!!!a type cast? =>} {integer(}se.v1>{!!!a type cast? =>} {integer(}se.v2 then
 //    begin 
 //      sv:= se.v1; 
 //      se.v1:= se.v2; 
 //      se.v2:= sv; 
 //    end;
-//    if se.v1=0{nil}
-//    then
+//    if se.v1=0{nil} then
 //    begin 
 //      printf('error reading screen... file corrupt\n');
 //      se.v1:= se.v2; 
@@ -2136,15 +2010,13 @@ end;
 //    while v3d
 //    do
 //    begin 
-//      if v3d.spacetype=SPACE_VIEW3D
-//      then
+//      if v3d.spacetype=SPACE_VIEW3D then
 //      begin 
 //        v3d.bgpic:= newadr(v3d.bgpic); 
 //        v3d.localvd:= newadr(v3d.localvd); 
 //      end;
 //      else
-//      if v3d.spacetype=SPACE_OOPS
-//      then
+//      if v3d.spacetype=SPACE_OOPS then
 //      begin 
 //        soops:= {!!!a type cast? =>} {pSpaceOops(}v3d; 
 //        link_list(@(soops.oops)); 
@@ -2212,8 +2084,7 @@ end;
 //    * alles aan elkaar hangen.
 //    *)
 
-//  if bhead.code=ID_ID
-//  then
+//  if bhead.code=ID_ID then
 //  begin 
 //    id:= {!!!a type cast? =>} {pID(}(bhead+1); 
 //    lb:= wich_libbase(main,GS(id.name)); 
@@ -2224,12 +2095,10 @@ end;
 //    lb:= wich_libbase(main,bhead.code); 
 //  end;
 
-//  if lb=0
-//  then
+//  if lb=0 then
 //  begin 
 //    (* PRINT2(s, d, ((char * )&(bhead->code))+2, bhead->len); *)
-//    if lb=0
-//    then
+//    if lb=0 then
 //    begin
 //      result:= bhead.len+sizeof(BHead); 
 //      exit;
@@ -2241,13 +2110,11 @@ end;
 //  (* libblock inlezen *)
 //  id.flag:= (id.flag and $FF00) or flag or LIB_NEEDLINK; 
 //  id.lib:= main.curlib; (* eerste acht bits wissen *)
-//  if id.flag and LIB_FAKEUSER
-//  then
+//  if id.flag and LIB_FAKEUSER then
 //  id.us:= 1; 
 //  else
 //  id.us:= 0; (* deze mag niet door de direct_link molen: is alleen het ID deel *)
-//  if bhead.code=ID_ID
-//  then
+//  if bhead.code=ID_ID then
 //  begin 
 //    skipdata:= bhead.len+sizeof(BHead); 
 //    begin
@@ -2372,8 +2239,7 @@ end;
 //  strcpy(G.psx,fg.psx); 
 
 //  G.curscreen:= newlibadr(0,fg.curscreen); 
-//  if G.curscreen=0
-//  then
+//  if G.curscreen=0 then
 //  G.curscreen:= G.main.screen.first; 
 //  G.scene:= G.curscreen.scene; 
 //  G.obedit:= 0; 
@@ -2394,8 +2260,7 @@ end;
 //a: integer; 
 //begin
 
-//  if me.totface=0)or(me.mcol=0
-//  then
+//  if me.totface=0)or(me.mcol=0 then
 //  exit;
 //  mcoln:= mcolmain:=mallocN(4*sizeof(int)*me.totface,'mcoln'); 
 //  mcol:= {!!!a type cast? =>} {puint(}me.mcol; 
@@ -2544,8 +2409,7 @@ end;
 //st: pSpaceText; 
 //begin(* PAS OP: pointers van libdata zijn nog niet omgezet *)
 
-//  if main.versionfile=100
-//  then
+//  if main.versionfile=100 then
 //  begin 
 
 //    (* tex->extend en tex->imageflag veranderd: *)
@@ -2553,14 +2417,11 @@ end;
 //    while tex
 //    do
 //    begin 
-//      if tex.id.flag and LIB_NEEDLINK
-//      then
+//      if tex.id.flag and LIB_NEEDLINK then
 //      begin 
-//        if tex.extend=0
-//        then
+//        if tex.extend=0 then
 //        begin 
-//          if tex.xrepeat)or(tex.yrepeat
-//          then
+//          if tex.xrepeat)or(tex.yrepeat then
 //          tex.extend:= TEX_REPEAT; 
 //          else
 //          begin 
@@ -2568,8 +2429,7 @@ end;
 //            tex.xrepeat:= tex.yrepeat:=1; 
 //          end;
 //        end;
-//        if tex.imaflag and TEX_ANIM5
-//        then
+//        if tex.imaflag and TEX_ANIM5 then
 //        begin 
 //          tex.imaflag:= tex.imaflag or (TEX_MORKPATCH); 
 //          tex.imaflag:= tex.imaflag or (TEX_ANTIALI); 
@@ -2578,8 +2438,7 @@ end;
 //      tex:= tex.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=101
-//  then
+//  if main.versionfile<=101 then
 //  begin 
 //    (* frame mapping *)
 //    sce:= main.scene.first; 
@@ -2592,8 +2451,7 @@ end;
 //      sce:= sce.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=102
-//  then
+//  if main.versionfile<=102 then
 //  begin 
 //    (* init halo's op 1.0 *)
 //    ma:= main.mat.first; 
@@ -2604,8 +2462,7 @@ end;
 //      ma:= ma.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=103
-//  then
+//  if main.versionfile<=103 then
 //  begin 
 //    (* nieuwe variabele in object: colbits *)
 //    ob:= main.object.first; 
@@ -2613,30 +2470,26 @@ end;
 //    do
 //    begin 
 //      ob.colbits:= 0; 
-//      if ob.totcol<>0{nil} {<= !!!9} 
-//      then
+//      if ob.totcol<>0 then
 //      begin 
 //        for{while} a:=0 to Pred(ob.totcol) { a++}
 //        do
 //        begin 
-//          if ob.mat[a]<>0{nil} {<= !!!9} 
-//          then
+//          if ob.mat[a]<>0 then
 //          ob.colbits:= ob.colbits or ((1 shl a)); 
 //        end;
 //      end;
 //      ob:= ob.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=104
-//  then
+//  if main.versionfile<=104 then
 //  begin 
 //    (* de timeoffs zit op betere plek *)
 //    ob:= main.object.first; 
 //    while ob
 //    do
 //    begin 
-//      if ob.transflag and 1
-//      then
+//      if ob.transflag and 1 then
 //      begin 
 //        ob.transflag:= ob.transflag - (1); 
 //        ob.ipoflag:= ob.ipoflag or (OB_OFFS_OB); 
@@ -2644,8 +2497,7 @@ end;
 //      ob:= ob.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=105
-//  then
+//  if main.versionfile<=105 then
 //  begin 
 //    ob:= main.object.first; 
 //    while ob
@@ -2658,21 +2510,18 @@ end;
 //      ob:= ob.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=106
-//  then
+//  if main.versionfile<=106 then
 //  begin 
 //    me:= main.mesh.first; 
 //    while me
 //    do
 //    begin 
-//      if me.mcol<>0{nil} {<= !!!9} 
-//      then
+//      if me.mcol<>0 then
 //      vcol_to_fcol(me); 
 //      me:= me.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=107
-//  then
+//  if main.versionfile<=107 then
 //  begin 
 //    (* tot dec 96 ofzo *)
 //    lf:=main.life.first; 
@@ -2694,14 +2543,12 @@ end;
 //    do
 //    begin 
 //      ob.ipoflag:= ob.ipoflag or (OB_OFFS_PARENT); 
-//      if ob.dt=0
-//      then
+//      if ob.dt=0 then
 //      ob.dt:= 3; 
 //      ob:= ob.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=108
-//  then
+//  if main.versionfile<=108 then
 //  begin 
 //    se:=main.sector.first; 
 //    while se
@@ -2711,8 +2558,7 @@ end;
 //      se:= se.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=109
-//  then
+//  if main.versionfile<=109 then
 //  begin 
 
 //    sc:= main.screen.first; 
@@ -2727,11 +2573,9 @@ end;
 //        while vd
 //        do
 //        begin 
-//          if vd.spacetype=SPACE_VIEW3D
-//          then
+//          if vd.spacetype=SPACE_VIEW3D then
 //          begin 
-//            if vd.gridlines=0
-//            then
+//            if vd.gridlines=0 then
 //            vd.gridlines:= 20; 
 //          end;
 //          vd:= vd.next; 
@@ -2757,8 +2601,7 @@ end;
 //      lf:= lf.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=110
-//  then
+//  if main.versionfile<=110 then
 //  begin 
 
 //    lf:= main.life.first; 
@@ -2773,12 +2616,10 @@ end;
 //        sn.totevent:= 1; 
 //        sn.events:= callocN(sizeof(Event),'event'); 
 //        sn.events.event:= sn.event1; 
-//        if sn.event1=19
-//        then
+//        if sn.event1=19 then
 //        begin 
 //          sn.events.event:= 31; (* always *)
-//          if sn.action=SN_PLAY_OBIPO
-//          then
+//          if sn.action=SN_PLAY_OBIPO then
 //          sn.action:= SN_LOOPSTOP_OBIPO; 
 //        end;
 //        sn.totaction:= 1; 
@@ -2792,19 +2633,16 @@ end;
 //      lf:= lf.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=111
-//  then
+//  if main.versionfile<=111 then
 //  begin 
 
 //    cam:= main.camera.first; 
 //    while cam
 //    do
 //    begin 
-//      if cam.netsta=0.0
-//      then
+//      if cam.netsta=0.0 then
 //      cam.netsta:= 1.0; 
-//      if cam.netend=0.0
-//      then
+//      if cam.netend=0.0 then
 //      cam.netend:= 20.0; 
 //      cam:= cam.id.next; 
 //    end;
@@ -2823,8 +2661,7 @@ end;
 //      lf:= lf.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=112
-//  then
+//  if main.versionfile<=112 then
 //  begin 
 //    me:=main.mesh.first; 
 //    while me
@@ -2834,23 +2671,20 @@ end;
 //      me:= me.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=113
-//  then
+//  if main.versionfile<=113 then
 //  begin 
 //    ma:= main.mat.first; 
 //    while ma
 //    do
 //    begin 
-//      if ma.flaresize=0.0
-//      then
+//      if ma.flaresize=0.0 then
 //      ma.flaresize:= 1.0; 
 //      ma.subsize:= 1.0; 
 //      ma.flareboost:= 1.0; 
 //      ma:= ma.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=114
-//  then
+//  if main.versionfile<=114 then
 //  begin 
 //    me:=main.mesh.first; 
 
@@ -2862,8 +2696,7 @@ end;
 //      while a{--} dec(a); 
 //      do
 //      begin 
-//        if mface.edcode and 16
-//        then
+//        if mface.edcode and 16 then
 //        begin 
 //          mface.edcode:= mface.edcode - (16); 
 //          mface.edcode:= mface.edcode or (ME_V3V1); 
@@ -2883,8 +2716,7 @@ end;
 //      me:= me.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=115
-//  then
+//  if main.versionfile<=115 then
 //  begin 
 
 //    lf:= main.life.first; 
@@ -2909,8 +2741,7 @@ end;
 //      lf:= lf.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=116
-//  then
+//  if main.versionfile<=116 then
 //  begin 
 
 //    lf:= main.life.first; 
@@ -2928,20 +2759,17 @@ end;
 //        while b{--} dec(b); 
 //        do
 //        begin 
-//          if ac.action<100
-//          then
+//          if ac.action<100 then
 //          begin 
 //            sethold:= 1; 
 //          end;
 //          else
-//          if ac.action<200
-//          then
+//          if ac.action<200 then
 //          begin 
 //            ac.flag:= ac.flag or (SN_IPOFORCE); 
 //          end;
 //          else
-//          if ac.action=SN_ADDLIFE
-//          then
+//          if ac.action=SN_ADDLIFE then
 //          sethold:= -1; 
 //          inc(ac); 
 //        end;
@@ -2950,14 +2778,12 @@ end;
 //        while b{--} dec(b); 
 //        do
 //        begin 
-//          if sethold=-1
-//          then
+//          if sethold=-1 then
 //          ; 
 //          else
 //          (* niks doen: add life geen hold *)
 //          begin 
-//            if sethold)or((sn.flag and SN_HOLD)
-//            then
+//            if sethold)or((sn.flag and SN_HOLD) then
 //            ev.flag:= SN_HOLD; if{!!!e unknown token}
 //            ev.flag:= SN_HOLD; if{!!!e unknown token}
 //            ev.flag:= SN_HOLD; 
@@ -2970,8 +2796,7 @@ end;
 //      lf:= lf.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=117
-//  then
+//  if main.versionfile<=117 then
 //  begin 
 
 //    lf:= main.life.first; 
@@ -2979,8 +2804,7 @@ end;
 //    do
 //    begin 
 //      (* stond in buttons.c *)
-//      if lf.axsize=0.0
-//      then
+//      if lf.axsize=0.0 then
 //      lf.axsize:= 0.5; 
 //      a:= lf.totsens; 
 //      sn:= lf.sensors; 
@@ -2992,8 +2816,7 @@ end;
 //        while b{--} dec(b); 
 //        do
 //        begin 
-//          if ev.event=SN_NEAR
-//          then
+//          if ev.event=SN_NEAR then
 //          ev.name[0]:= 0; 
 //          inc(ev); 
 //        end;
@@ -3002,8 +2825,7 @@ end;
 //      lf:= lf.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=119
-//  then
+//  if main.versionfile<=119 then
 //  begin 
 //    (* incl 118 *)
 
@@ -3011,8 +2833,7 @@ end;
 //    while lf
 //    do
 //    begin 
-//      if lf.lay=0
-//      then
+//      if lf.lay=0 then
 //      lf.lay:= 1; 
 //      a:= lf.totsens; 
 //      sn:= lf.sensors; (* goto naam wissen *)
@@ -3024,8 +2845,7 @@ end;
 //        while b{--} dec(b); 
 //        do
 //        begin 
-//          if ac.action=SN_GOTO
-//          then
+//          if ac.action=SN_GOTO then
 //          ac.name[0]:= 0; 
 //          inc(ac); 
 //        end;
@@ -3037,56 +2857,48 @@ end;
 //    while ma
 //    do
 //    begin 
-//      if ma.lay=0
-//      then
+//      if ma.lay=0 then
 //      ma.lay:= 1; 
 //      ma:= ma.id.next; 
 //    end;
 //  end;
 
 //  (* eentje overgeslagen voor bug in freeware versie *)
-//  if main.versionfile<=121
-//  then
+//  if main.versionfile<=121 then
 //  begin 
 //    (* O2 versie gemaakt. *)
 //  end;
-//  if main.versionfile<=122
-//  then
+//  if main.versionfile<=122 then
 //  begin 
 //    (* dithering gaat soms af (backbuf, pas sinds 121) *)
 //    (* relatieve paden hersteld *)
 //    (* sequences: endframe van seq wordt op betere plek geprint *)
 //  end;
-//  if main.versionfile<=123
-//  then
+//  if main.versionfile<=123 then
 //  begin 
 //    (* nog een paar O2 foutjes: keylines in ipo window *)
 //    (* vertices halo object (O2) nu ook goed *)
 //    (* zoomwin: ook op O2 *)
 //    (* bug eruit: schaduw render in ortho *)
 //  end;
-//  if main.versionfile<=124
-//  then
+//  if main.versionfile<=124 then
 //  begin 
 //    (* inventor lezer *)
 //    (* key kleur 24 bits beveiligd *)
 //    (* schrijf plaatje: je kun niet naderhand 24bits naar 32 omzetten *)
 //  end;
-//  if main.versionfile<=125
-//  then
+//  if main.versionfile<=125 then
 //  begin 
 //    (* bug vanwege compileer fout (makefile/.h dependency)*)
 //  end;
-//  if main.versionfile<=126
-//  then
+//  if main.versionfile<=126 then
 //  begin 
 //    (* overdraw text beter (clever numbuts) *)
 //    (* bug uit inventor lezer: node ambientColor werd niet herkend *)
 //    (* bugje uit toolbox: clear loc= alt-g *)
 //  end;
 
-//  if main.versionfile<=130
-//  then
+//  if main.versionfile<=130 then
 //  begin 
 //    (* openGL en GLUT *)
 
@@ -3098,16 +2910,14 @@ end;
 //      while sa
 //      do
 //      begin 
-//        if sa.cursor=0
-//        then
+//        if sa.cursor=0 then
 //        sa.cursor:= CURSOR_STD; 
 //        sa:= sa.next; 
 //      end;
 //      sc:= sc.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=131
-//  then
+//  if main.versionfile<=131 then
 //  begin 
 //    (* jpeq quality button *)
 //    (* anim5 and blacksmith demo *)
@@ -3117,23 +2927,20 @@ end;
 //    (* unieke namen: werkte niet *)
 //    (* toolbox menu: ook alt en ctrl keys *)
 //  end;
-//  if main.versionfile<=132
-//  then
+//  if main.versionfile<=132 then
 //  begin 
 //    (* strings in Userdef: eroverheen! *)
 //    (* betere overdraw implementatie (numbuts) *)
 //    (* snapmenu redraw *)
 //    (* warp met 1 vertex *)
 //  end;
-//  if main.versionfile<=133
-//  then
+//  if main.versionfile<=133 then
 //  begin 
 //    (* bug uit 'make edge face' (array overflow *)
 //    (* volledig X getekende menu's *)
 //    (* storage.c terug *)
 //  end;
-//  if main.versionfile<=134
-//  then
+//  if main.versionfile<=134 then
 //  begin 
 //    (* Play (flipbook) restored *)
 //    (* Timecursor restored *)
@@ -3154,8 +2961,7 @@ end;
 //    while tex
 //    do
 //    begin 
-//      if tex.rfac=0.0)and(tex.gfac=0.0)and(tex.bfac=0.0
-//      then
+//      if tex.rfac=0.0)and(tex.gfac=0.0)and(tex.bfac=0.0 then
 //      begin 
 //        tex.rfac:= 1.0; 
 //        tex.gfac:= 1.0; 
@@ -3166,8 +2972,7 @@ end;
 //    end;
 //  end;
 
-//  if main.versionfile<=135
-//  then
+//  if main.versionfile<=135 then
 //  begin 
 //    (* 'Windows' key resistant *)
 //    (* Preview-render: RGB flip (material, lamp, world) *)
@@ -3176,8 +2981,7 @@ end;
 //    (* Metaball display error: because of previous *)
 //    (* CTRL and ALT and SHIFT keys sometimes were locked *)
 //  end;
-//  if main.versionfile<=136
-//  then
+//  if main.versionfile<=136 then
 //  begin 
 //    (* Files incompatibility Colorband PC-SGI solved *)
 //    (* RightMouse selecting was blocked after border-select *)
@@ -3188,12 +2992,10 @@ end;
 //    (* Display type 'DispView' works *)
 //    (* Metaballs convert to Mesh, normals error fixed. *)
 //  end;
-//  if main.versionfile<=137
-//  then
+//  if main.versionfile<=137 then
 //  begin 
 //  end;
-//  if main.versionfile<=138
-//  then
+//  if main.versionfile<=138 then
 //  begin 
 //    (* fixed: z buffer draw and Mesh with no materials: coredump! *)
 //    (* bug removed from calculation 3D Bevel Objects *)
@@ -3205,15 +3007,13 @@ end;
 //    (* Vertex paint bug fixed *)
 //    (* New: ALT+(1, 2, 3...) for layers 11, 12, 13... *)
 //  end;
-//  if main.versionfile<=140
-//  then
+//  if main.versionfile<=140 then
 //  begin 
 //    tex:= main.tex.first; 
 //    while tex
 //    do
 //    begin 
-//      if tex.rfac=0.0)and(tex.gfac=0.0)and(tex.bfac=0.0
-//      then
+//      if tex.rfac=0.0)and(tex.gfac=0.0)and(tex.bfac=0.0 then
 //      begin 
 //        tex.rfac:= 1.0; 
 //        tex.gfac:= 1.0; 
@@ -3223,36 +3023,31 @@ end;
 //      tex:= tex.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=153
-//  then
+//  if main.versionfile<=153 then
 //  begin 
 
 //    sce:= main.scene.first; 
 //    while sce
 //    do
 //    begin 
-//      if sce.r.blurfac=0.0
-//      then
+//      if sce.r.blurfac=0.0 then
 //      sce.r.blurfac:= 1.0; 
 //      sce:= sce.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=163
-//  then
+//  if main.versionfile<=163 then
 //  begin 
 
 //    sce:= main.scene.first; 
 //    while sce
 //    do
 //    begin 
-//      if sce.r.frs_sec=0
-//      then
+//      if sce.r.frs_sec=0 then
 //      sce.r.frs_sec:= 25; 
 //      sce:= sce.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=164
-//  then
+//  if main.versionfile<=164 then
 //  begin 
 //    me:=main.mesh.first; 
 //    while me
@@ -3263,8 +3058,7 @@ end;
 //    end;
 //  end;
 
-//  if main.versionfile<=165
-//  then
+//  if main.versionfile<=165 then
 //  begin 
 //    me:=main.mesh.first; 
 
@@ -3279,11 +3073,9 @@ end;
 //      while nr{--} dec(nr); 
 //      do
 //      begin 
-//        if def.fac=0.0
-//        then
+//        if def.fac=0.0 then
 //        def.fac:= 1.0; 
-//        if def.dist=0.0
-//        then
+//        if def.dist=0.0 then
 //        def.dist:= 1.0+def.vec[0]; 
 //        inc(def); 
 //      end;
@@ -3292,8 +3084,7 @@ end;
 //    while me
 //    do
 //    begin 
-//      if me.tface<>0{nil} {<= !!!9} 
-//      then
+//      if me.tface<>0 then
 //      begin 
 //        nr:= me.totface; 
 //        tface:= me.tface; 
@@ -3301,66 +3092,54 @@ end;
 //        do
 //        begin 
 //          cp:= (char* )@tface.col[0]; 
-//          if cp[1]>126
-//          then
+//          if cp[1]>126 then
 //          cp[1]:= 255; 
 //          else
 //          cp[1]:= cp[1] * (2); 
-//          if cp[2]>126
-//          then
+//          if cp[2]>126 then
 //          cp[2]:= 255; 
 //          else
 //          cp[2]:= cp[2] * (2); 
-//          if cp[3]>126
-//          then
+//          if cp[3]>126 then
 //          cp[3]:= 255; 
 //          else
 //          cp[3]:= cp[3] * (2); 
 //          cp:= (char* )@tface.col[1]; 
-//          if cp[1]>126
-//          then
+//          if cp[1]>126 then
 //          cp[1]:= 255; 
 //          else
 //          cp[1]:= cp[1] * (2); 
-//          if cp[2]>126
-//          then
+//          if cp[2]>126 then
 //          cp[2]:= 255; 
 //          else
 //          cp[2]:= cp[2] * (2); 
-//          if cp[3]>126
-//          then
+//          if cp[3]>126 then
 //          cp[3]:= 255; 
 //          else
 //          cp[3]:= cp[3] * (2); 
 //          cp:= (char* )@tface.col[2]; 
-//          if cp[1]>126
-//          then
+//          if cp[1]>126 then
 //          cp[1]:= 255; 
 //          else
 //          cp[1]:= cp[1] * (2); 
-//          if cp[2]>126
-//          then
+//          if cp[2]>126 then
 //          cp[2]:= 255; 
 //          else
 //          cp[2]:= cp[2] * (2); 
-//          if cp[3]>126
-//          then
+//          if cp[3]>126 then
 //          cp[3]:= 255; 
 //          else
 //          cp[3]:= cp[3] * (2); 
 //          cp:= (char* )@tface.col[3]; 
-//          if cp[1]>126
-//          then
+//          if cp[1]>126 then
 //          cp[1]:= 255; 
 //          else
 //          cp[1]:= cp[1] * (2); 
-//          if cp[2]>126
-//          then
+//          if cp[2]>126 then
 //          cp[2]:= 255; 
 //          else
 //          cp[2]:= cp[2] * (2); 
-//          if cp[3]>126
-//          then
+//          if cp[3]>126 then
 //          cp[3]:= 255; 
 //          else
 //          cp[3]:= cp[3] * (2); 
@@ -3371,21 +3150,18 @@ end;
 //    end;
 //  end;
 
-//  if main.versionfile<=169
-//  then
+//  if main.versionfile<=169 then
 //  begin 
 //    me:=main.mesh.first; 
 //    while me
 //    do
 //    begin 
-//      if me.subdiv=0
-//      then
+//      if me.subdiv=0 then
 //      me.subdiv:= 4; 
 //      me:= me.id.next; 
 //    end;
 //  end;
-//  if main.versionfile<=169
-//  then
+//  if main.versionfile<=169 then
 //  begin 
 //    sc:=main.screen.first; 
 
@@ -3400,8 +3176,7 @@ end;
 //        while sipo
 //        do
 //        begin 
-//          if sipo.spacetype=SPACE_IPO
-//          then
+//          if sipo.spacetype=SPACE_IPO then
 //          begin 
 //            sipo.v2d.max[0]:= 15000.0; 
 //          end;
@@ -3413,27 +3188,23 @@ end;
 //    end;
 //  end;
 
-//  if main.versionfile<=170
-//  then
+//  if main.versionfile<=170 then
 //  begin 
 //    ob:=main.object.first; 
 
 //    while ob
 //    do
 //    begin 
-//      if paf:=give_parteff(ob)
-//      then
+//      if paf:=give_parteff(ob) then
 //      begin 
-//        if paf.staticstep=0
-//        then
+//        if paf.staticstep=0 then
 //        paf.staticstep:= 5; 
 //      end;
 //      ob:= ob.id.next; 
 //    end;
 //  end;
 
-//  if main.versionfile<=171
-//  then
+//  if main.versionfile<=171 then
 //  begin 
 //    sc:=main.screen.first; 
 
@@ -3448,11 +3219,9 @@ end;
 //        while st
 //        do
 //        begin 
-//          if st.spacetype=SPACE_TEXT
-//          then
+//          if st.spacetype=SPACE_TEXT then
 //          begin 
-//            if st.font_id>1
-//            then
+//            if st.font_id>1 then
 //            begin 
 //              st.font_id:= 0; 
 //              st.lheight:= 13; 
@@ -3510,12 +3279,10 @@ end;
 //  do
 //  begin 
 //    bhead:= {!!!a type cast? =>} {pBHead(}fd; 
-//    if bhead.code=ENDB
-//    then
+//    if bhead.code=ENDB then
 //    afbreek:= afbreek + (2); 
 //    else
-//    if bhead.code=DNA1
-//    then
+//    if bhead.code=DNA1 then
 //    begin 
 
 //      old_sdna.data:= mallocN(bhead.len,'sdna'); 
@@ -3526,8 +3293,7 @@ end;
 //    filelen:= filelen - (bhead.len+sizeof(BHead)); 
 //  end;
 
-//  if afbreek=3
-//  then
+//  if afbreek=3 then
 //  begin 
 //    init_structDNA(@old_sdna); 
 //    set_compareflags_structDNA(); 
@@ -3538,8 +3304,7 @@ end;
 //  end;
 //  else
 //  begin 
-//    if old_sdna.data<>0{nil} {<= !!!9} 
-//    then
+//    if old_sdna.data<>0 then
 //    freeN(old_sdna.data); 
 //    old_sdna.data:= 0; 
 //    error('File not complete'); 
@@ -3565,8 +3330,7 @@ end;
 
 //  totbh:=0; 
 
-//  if pointerlen=4
-//  then
+//  if pointerlen=4 then
 //  begin 
 //    (* count bheads *)
 //    len:= {*}filelen^; 
@@ -3576,8 +3340,7 @@ end;
 //    begin 
 //      bhead4:= {!!!a type cast? =>} {pBHead4(}fd; 
 //      inc(totbh); 
-//      if bhead4.code=ENDB
-//      then
+//      if bhead4.code=ENDB then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      fd:= fd + (bhead4.len+sizeof(BHead4)); 
 //      len:= len - (bhead4.len+sizeof(BHead4)); 
@@ -3594,8 +3357,7 @@ end;
 //    begin 
 //      bhead8:= {!!!a type cast? =>} {pBHead8(}fd; 
 //      inc(totbh); 
-//      if bhead8.code=ENDB
-//      then
+//      if bhead8.code=ENDB then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      fd:= fd + (bhead8.len+sizeof(BHead8)); 
 //      len:= len - (bhead8.len+sizeof(BHead8)); 
@@ -3605,8 +3367,7 @@ end;
 //  end;
 //  fdn:= filedatan:=mallocN(filelenn,'filedatan'); 
 //  fd:= {*}filedata^; 
-//  if pointerlen=4
-//  then
+//  if pointerlen=4 then
 //  begin 
 //    len:= {*}filelen^; 
 //    while len>0
@@ -3616,14 +3377,12 @@ end;
 //      bhead8:= {!!!a type cast? =>} {pBHead8(}fdn; 
 //      bhead8.code:= bhead4.code; 
 //      bhead8.len:= bhead4.len; 
-//      if bhead8.code=ENDB
-//      then
+//      if bhead8.code=ENDB then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      bhead8.old:= bhead4.old; 
 //      bhead8.SDNAnr:= bhead4.SDNAnr; 
 //      bhead8.nr:= bhead4.nr; 
-//      if bhead4.len<>0{nil} {<= !!!9} 
-//      then
+//      if bhead4.len<>0 then
 //      memcpy(bhead8+1,bhead4+1,bhead4.len); 
 //      fd:= fd + (bhead4.len+sizeof(BHead4)); 
 //      fdn:= fdn + (bhead8.len+sizeof(BHead8)); 
@@ -3640,19 +3399,16 @@ end;
 //      bhead8:= {!!!a type cast? =>} {pBHead8(}fd; 
 //      bhead4.code:= bhead8.code; 
 //      bhead4.len:= bhead8.len; 
-//      if bhead4.code=ENDB
-//      then
+//      if bhead4.code=ENDB then
 //      break; {<= !!!b possible in "switch" - then remove this line}
-//      if switch_endian<>0{nil} {<= !!!9} 
-//      then
+//      if switch_endian<>0 then
 //      begin 
 //        SWITCH_LONGINT(bhead8.old); 
 //      end;
 //      bhead4.old:= bhead8.old shr 3; 
 //      bhead4.SDNAnr:= bhead8.SDNAnr; 
 //      bhead4.nr:= bhead8.nr; 
-//      if bhead8.len<>0{nil} {<= !!!9} 
-//      then
+//      if bhead8.len<>0 then
 //      memcpy(bhead4+1,bhead8+1,bhead8.len); 
 //      fdn:= fdn + (bhead4.len+sizeof(BHead4)); 
 //      fd:= fd + (bhead8.len+sizeof(BHead8)); 
@@ -3679,11 +3435,9 @@ end;
 //  begin 
 //    bhead:= {!!!a type cast? =>} {pBHead4(}fd; 
 //    (* de ID_.. codes *)
-//    if (bhead.code and $FFFF)=0
-//    then
+//    if (bhead.code and $FFFF)=0 then
 //    bhead.code:= bhead.code shr (16); 
-//    if bhead.code=ENDB
-//    then
+//    if bhead.code=ENDB then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 
 //    SWITCH_INT(bhead.len); 
@@ -3709,11 +3463,9 @@ end;
 //  begin 
 //    bhead:= {!!!a type cast? =>} {pBHead8(}fd; 
 //    (* de ID_.. codes *)
-//    if (bhead.code and $FFFF)=0
-//    then
+//    if (bhead.code and $FFFF)=0 then
 //    bhead.code:= bhead.code shr (16); 
-//    if bhead.code=ENDB
-//    then
+//    if bhead.code=ENDB then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 
 //    SWITCH_INT(bhead.len); 
@@ -3737,25 +3489,21 @@ end;
 //begin
 
 //  len:= lstrlen(name); 
-//  if len<6
-//  then
+//  if len<6 then
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
-//  if name[len-1]='/')or(name[len-1]=#92
-//  then
+//  if name[len-1]='/')or(name[len-1]=#92 then
 //  begin
 //    result:= 0; 
 //    exit;
 
 //  end;
-//  if strstr(name,'.blend')
-//  then
+//  if strstr(name,'.blend') then
 //  begin 
 //    file:= open(name,O_BINARY or O_RDONLY); 
-//    if file<=0
-//    then
+//    if file<=0 then
 //    begin 
 //      errorstr('Can''t find file',name,0); 
 //      begin
@@ -3766,8 +3514,7 @@ end;
 //    {*}filelen^:=filesize(file); 
 //    read(file,str,12); 
 
-//    if strncmp(str,'BLENDER',7)<>0
-//    then
+//    if strncmp(str,'BLENDER',7)<>0 then
 //    begin 
 //      close(file); 
 //      errorstr('Not a Blender file: ',name,0); 
@@ -3777,20 +3524,17 @@ end;
 //      end;
 //    end;
 //    (* long pointer test *)
-//    if str[7]='_'
-//    then
+//    if str[7]='_' then
 //    pointerlen:= 4; 
 //    else
 //    pointerlen:= 8; 
 //    switch_endian:= 0; (* endian test *)
-//    if str[8]='V')and(G.order=L_ENDIAN
-//    then
+//    if str[8]='V')and(G.order=L_ENDIAN then
 //    begin 
 //      switch_endian:= 1; 
 //    end;
 //    else
-//    if str[8]='v')and(G.order=B_ENDIAN
-//    then
+//    if str[8]='v')and(G.order=B_ENDIAN then
 //    begin 
 //      switch_endian:= 1; 
 //    end;
@@ -3802,23 +3546,19 @@ end;
 //    (* + 12: anders errors bij Little endina files. waarom??? *)
 //    close(file); 
 //    (* reconstruct_bheads doet ook de pointer endian switchen *)
-//    if switch_endian<>0{nil} {<= !!!9} 
-//    then
+//    if switch_endian<>0 then
 //    begin 
-//      if pointerlen=4
-//      then
+//      if pointerlen=4 then
 //      switch_endian_bhead4(filedata,*filelen); 
 //      else
 //      switch_endian_bhead8(filedata,*filelen); 
 //    end;
 
-//    if pointerlen<>sizeof(void* )
-//    then
+//    if pointerlen<>sizeof(void* ) then
 //    reconstruct_bheads( and filedata,filelen); 
 
 //    (* op zoek naar SDNA *)
-//    if read_file_dna(filedata,*filelen)
-//    then
+//    if read_file_dna(filedata,*filelen) then
 //    begin 
 //      begin
 //        result:= filedata; 
@@ -3866,8 +3606,7 @@ end;
 
 //  waitcursor(1); 
 //  filedata:= openblenderfile(dir, and filelen); 
-//  if filedata<>0{nil} {<= !!!9} 
-//  then
+//  if filedata<>0 then
 //  begin 
 //    G.save_over:= LongBool(1); 
 //    strcpy(G.sce,dir); 
@@ -3882,8 +3621,7 @@ end;
 //    (* behalve icons *)
 //    G.main.versionfile:= G.versionfile; (* anders oude lampgegevens *)
 //    (* kan per main verschillen *)
-//    if G.obedit<>0{nil} {<= !!!9} 
-//    then
+//    if G.obedit<>0 then
 //    begin 
 //      freeNurblist( and editNurb); 
 //      free_editmesh(); 
@@ -3946,8 +3684,7 @@ end;
 //          skipdata:= read_libblock(G.main,bhead,LIB_LOCAL); 
 //        end;
 //      end;{case?}
-//      if ok<>0{nil} {<= !!!9} 
-//      then
+//      if ok<>0 then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 
 //      fd:= fd + (skipdata); 
@@ -3955,8 +3692,7 @@ end;
 //    end;
 //    freeN(filedata); 
 
-//    if ok=0
-//    then
+//    if ok=0 then
 //    begin 
 //      printf('ERROR: file incomplete\n');
 //      error('Warning: file not complete'); 
@@ -3974,12 +3710,10 @@ end;
 //    add_lib_adr(0,0); 
 //    vf:= G.main.vfont.first; (* VECTORFONTS *)
 //    (* afvangen: .Bfont van ander systeem *)
-//    if vf<>0{nil} {<= !!!9} 
-//    then
+//    if vf<>0 then
 //    begin 
 //      len:= lstrlen(vf.name); 
-//      if len>5)and(lstrcmp(vf.name+len-5,'Bfont')=0
-//      then
+//      if len>5)and(lstrcmp(vf.name+len-5,'Bfont')=0 then
 //      begin 
 //        sprintf(vf.name,'%s/.Bfont',gethome()); 
 //      end;
@@ -3994,29 +3728,24 @@ end;
 //    while ob
 //    do
 //    begin 
-//      if ob.type=OB_FONT
-//      then
+//      if ob.type=OB_FONT then
 //      begin 
 //        cu:= ob.data; 
-//        if cu.nurb.first=0
-//        then
+//        if cu.nurb.first=0 then
 //        text_to_curve(ob,0); 
 //      end;
 //      else
-//      if ob.type=OB_MESH
-//      then
+//      if ob.type=OB_MESH then
 //      begin 
 //        makeDispList(ob); 
-//        if ob.effect.first<>0{nil} {<= !!!9} 
-//        then
+//        if ob.effect.first<>0 then
 //        object_wave(ob); 
 //      end;
 //      ob:= ob.id.next; 
 
 //    end;
 //    freeN(fg); 
-//    if G.background=0
-//    then
+//    if G.background=0 then
 //    begin 
 //      setscreen(G.curscreen); 
 //      countall(); 
@@ -4030,16 +3759,13 @@ end;
 //    do_realtimelight(0,0,0); 
 //  end;
 //  (* re-init *)
-//  if G.background=0
-//  then
+//  if G.background=0 then
 //  waitcursor(0); 
 
-//  if G.f and G_SCENESCRIPT
-//  then
+//  if G.f and G_SCENESCRIPT then
 //  begin 
 //    {ext_load_str: array [0..Pred(256)] of char; }{<= !!!5 external variable}
-//    if ext_load_str[0]<>0{nil} {<= !!!9} 
-//    then
+//    if ext_load_str[0]<>0 then
 //    force_draw_all(); 
 //    do_pyscript(G.scene,SCRIPT_ONLOAD); 
 //  end;
@@ -4053,8 +3779,7 @@ end;
 
 //  make_file_string(fname,gethome(),name); 
 //  fp:= fopen(fname,'wb'); 
-//  if fp=0{nil}
-//  then
+//  if fp=0{nil} then
 //  begin 
 //    printf('Could not install %s\n',fname);
 //    printf('Check permissions on %s.\n',gethome());
@@ -4076,36 +3801,31 @@ end;
 //begin
 
 //  home:= gethome(); 
-//  if home<>0{nil} {<= !!!9} 
-//  then
+//  if home<>0 then
 //  begin 
 //    (* a vectorfont can't be read from memory... so has to be saved in $HOME *)
 //    make_file_string(tstr,home,'.Bfont'); 
 //    file:= open(tstr,O_BINARY or O_RDONLY); 
-//    if file<0
-//    then
+//    if file<0 then
 //    inst_file('.Bfont',datatoc_Bfont,datatoc_Bfont_size); 
 //    else
 //    close(file); 
 //    make_file_string(tstr,home,'.Bfs'); 
 
 //    file:= open(tstr,O_BINARY or O_RDONLY); 
-//    if file<0
-//    then
+//    if file<0 then
 //    inst_file('.Bfs',datatoc_Bfs,datatoc_Bfs_size); 
 //    else
 //    close(file); 
 //    make_file_string(tstr,home,'.B.blend'); 
 
 //    file:= open(tstr,O_BINARY or O_RDONLY); 
-//    if file<0
-//    then
+//    if file<0 then
 //    begin 
 //      inst_file('.B.blend',datatoc_B_blend,datatoc_B_blend_size); 
 //      file:= open(tstr,O_BINARY or O_RDONLY); 
 //    end;
-//    if file>=0
-//    then
+//    if file>=0 then
 //    begin 
 //      (* bestand gevonden *)
 //      close(file); 
@@ -4117,11 +3837,9 @@ end;
 //      disable_capslock(U.flag and NO_CAPSLOCK); 
 //      (* nog wat afhandelen? *)
 //      (* holobutton *)
-//      if lstrcmp(G.scene.r.ftype,'*@&#')=0
-//      then
+//      if lstrcmp(G.scene.r.ftype,'*@&#')=0 then
 //      G.special1:= G_HOLO; 
-//      if U.tempdir[0]='/')and(U.tempdir[1]=0
-//      then
+//      if U.tempdir[0]='/')and(U.tempdir[1]=0 then
 //      begin 
 //        (*     str= getenv("TEMP"); *)
 //        (*     if(str) strcpy(U.tempdir, str); *)
@@ -4174,8 +3892,7 @@ end;
 //  afbreek:=0; 
 
 //  bheadlib:= 0; 
-//  if old=0
-//  then
+//  if old=0 then
 //  begin
 //    result:= 0; 
 //    exit;
@@ -4185,17 +3902,14 @@ end;
 //  do
 //  begin 
 //    bhead:= {!!!a type cast? =>} {pBHead(}fd; 
-//    if bhead.code=ID_LI
-//    then
+//    if bhead.code=ID_LI then
 //    begin 
 //      bheadlib:= bhead; 
 //    end;
-//    if bhead.code=ENDB
-//    then
+//    if bhead.code=ENDB then
 //    afbreek:= 1; 
 //    else
-//    if bhead.old=old
-//    then
+//    if bhead.old=old then
 //    begin
 //      result:= bhead; 
 //      exit;
@@ -4217,15 +3931,13 @@ end;
 
 //  idtest:= {!!!a type cast? =>} {pID(}(bhead+1); 
 //  lb:= wich_libbase(main,GS(idtest.name)); 
-//  if lb<>0{nil} {<= !!!9} 
-//  then
+//  if lb<>0 then
 //  begin 
 //    id:= lb.first; 
 //    while id
 //    do
 //    begin 
-//      if lstrcmp(id.name,idtest.name)=0
-//      then
+//      if lstrcmp(id.name,idtest.name)=0 then
 //      begin
 //        result:= id; 
 //        exit;
@@ -4247,22 +3959,18 @@ end;
 //begin
 
 //  bhead:= find_bhead(old,filedata); 
-//  if bhead<>0{nil} {<= !!!9} 
-//  then
+//  if bhead<>0 then
 //  begin 
 
 //    (* andere library? *)
-//    if bhead.code=ID_ID
-//    then
+//    if bhead.code=ID_ID then
 //    begin 
-//      if bheadlib<>0{nil} {<= !!!9} 
-//      then
+//      if bheadlib<>0 then
 //      begin 
 //        lib:= {!!!a type cast? =>} {pLibrary(}(bheadlib+1); 
 //        main:= find_main(lib.name); 
 //        id:= is_yet_read(main,bhead); 
-//        if id=0
-//        then
+//        if id=0 then
 //        begin 
 //          read_libblock(main,bhead,LIB_READ+LIB_INDIRECT); 
 //          printf('expand: other lib %s\n',lib.name);
@@ -4279,8 +3987,7 @@ end;
 //    else
 //    begin 
 //      id:= is_yet_read(main,bhead); 
-//      if id=0
-//      then
+//      if id=0 then
 //      begin 
 //        id:= {!!!a type cast? =>} {pID(}(bhead+1); 
 //        read_libblock(main,bhead,LIB_TESTIND); 
@@ -4318,8 +4025,7 @@ end;
 //  for{while} a:=0 to Pred(8) { a++}
 //  do
 //  begin 
-//    if ma.mtex[a]<>0{nil} {<= !!!9} 
-//    then
+//    if ma.mtex[a]<>0 then
 //    begin 
 //      expand_doit(main,filedata,ma.mtex[a].tex); 
 //      expand_doit(main,filedata,ma.mtex[a].object); 
@@ -4336,8 +4042,7 @@ end;
 //  for{while} a:=0 to Pred(8) { a++}
 //  do
 //  begin 
-//    if la.mtex[a]<>0{nil} {<= !!!9} 
-//    then
+//    if la.mtex[a]<>0 then
 //    begin 
 //      expand_doit(main,filedata,la.mtex[a].tex); 
 //      expand_doit(main,filedata,la.mtex[a].object); 
@@ -4381,8 +4086,7 @@ end;
 //  for{while} a:=0 to Pred(8) { a++}
 //  do
 //  begin 
-//    if wrld.mtex[a]<>0{nil} {<= !!!9} 
-//    then
+//    if wrld.mtex[a]<>0 then
 //    begin 
 //      expand_doit(main,filedata,wrld.mtex[a].tex); 
 //      expand_doit(main,filedata,wrld.mtex[a].object); 
@@ -4433,16 +4137,14 @@ end;
 //  end;
 //  expand_doit(main,filedata,me.key); 
 //  expand_doit(main,filedata,me.texcomesh); 
-//  if me.tface<>0{nil} {<= !!!9} 
-//  then
+//  if me.tface<>0 then
 //  begin 
 //    tface:= me.tface; 
 //    a:= me.totface; 
 //    while a{--} dec(a); 
 //    do
 //    begin 
-//      if tface.tpage<>0{nil} {<= !!!9} 
-//      then
+//      if tface.tpage<>0 then
 //      expand_doit(main,filedata,tface.tpage); 
 //      inc(tface); 
 //    end;
@@ -4495,8 +4197,7 @@ end;
 //begin
 
 //  doit:=1; 
-//  if filedata=0
-//  then
+//  if filedata=0 then
 //  exit;
 //  while doit
 //  do
@@ -4510,8 +4211,7 @@ end;
 //      while id
 //      do
 //      begin 
-//        if id.flag and LIB_TEST
-//        then
+//        if id.flag and LIB_TEST then
 //        begin 
 //          case GS(id.name) of
 //            ID_OB:
@@ -4595,16 +4295,13 @@ end;
 //  do
 //  begin 
 
-//    if ob.id.us=0
-//    then
+//    if ob.id.us=0 then
 //    begin 
 
-//      if ob.id.flag and LIB_NEEDLINK
-//      then
+//      if ob.id.flag and LIB_NEEDLINK then
 //      begin 
 //        ob.id.flag:= ob.id.flag - (LIB_NEEDLINK); 
-//        if ob.id.flag and LIB_INDIRECT
-//        then
+//        if ob.id.flag and LIB_INDIRECT then
 //        begin 
 //          base:= callocN(sizeof(Base),'add_ext_base'); 
 //          addtail(@(sce.base),base); 
@@ -4639,20 +4336,16 @@ end;
 //  do
 //  begin 
 //    bhead:= {!!!a type cast? =>} {pBHead(}fd; 
-//    if bhead.code=ENDB
-//    then
+//    if bhead.code=ENDB then
 //    afbreek:= 1; 
 //    else
-//    if bhead.code=idcode
-//    then
+//    if bhead.code=idcode then
 //    begin 
 //      id:= {!!!a type cast? =>} {pID(}(bhead+1); 
-//      if lstrcmp(id.name+2,name)=0
-//      then
+//      if lstrcmp(id.name+2,name)=0 then
 //      begin 
 //        id:= is_yet_read(main,bhead); 
-//        if id=0
-//        then
+//        if id=0 then
 //        begin 
 //          read_libblock(main,bhead,LIB_TESTEXT); 
 //        end;
@@ -4660,21 +4353,18 @@ end;
 //        begin 
 //          printf('append: already linked\n');
 //          add_lib_adr(bhead.old,id); 
-//          if id.flag and LIB_INDIRECT
-//          then
+//          if id.flag and LIB_INDIRECT then
 //          begin 
 //            id.flag:= id.flag - (LIB_INDIRECT); 
 //            id.flag:= id.flag or (LIB_EXTERN); 
 //          end;
 //        end;
-//        if idcode=ID_OB
-//        then
+//        if idcode=ID_OB then
 //        begin 
 //          (* los object: base geven *)
 //          base:= callocN(sizeof(Base),'app_nam_part'); 
 //          addtail(@(G.scene.base),base); 
-//          if id=0
-//          then
+//          if id=0 then
 //          ob:= main.object.last; 
 //          else
 //          ob:= {!!!a type cast? =>} {pObject(}id; 
@@ -4705,16 +4395,13 @@ end;
 //  do
 //  begin 
 //    bhead:= {!!!a type cast? =>} {pBHead(}fd; 
-//    if bhead.code=ENDB
-//    then
+//    if bhead.code=ENDB then
 //    afbreek:= 1; 
 //    else
-//    if bhead.code=GS(id.name)
-//    then
+//    if bhead.code=GS(id.name) then
 //    begin 
 //      idread:= {!!!a type cast? =>} {pID(}(bhead+1); 
-//      if lstrcmp(id.name,idread.name)=0
-//      then
+//      if lstrcmp(id.name,idread.name)=0 then
 //      begin 
 //        id.flag:= id.flag - (LIB_READ); 
 //        id.flag:= id.flag or (LIB_TEST); 
@@ -4744,26 +4431,22 @@ end;
 
 //  totsel:=0; 
 
-//  if is_a_library(sfile,dir,group)=0
-//  then
+//  if is_a_library(sfile,dir,group)=0 then
 //  begin 
 //    error('Not a library'); 
 //    exit;
 //  end;
-//  if sfile.libfiledata=0
-//  then
+//  if sfile.libfiledata=0 then
 //  begin 
 //    error('library not loaded'); 
 //    exit;
 //  end;
-//  if group[0]=0
-//  then
+//  if group[0]=0 then
 //  begin 
 //    error('Nothing indicated'); 
 //    exit;
 //  end;
-//  if lstrcmp(G.main.name,dir)=0
-//  then
+//  if lstrcmp(G.main.name,dir)=0 then
 //  begin 
 //    error('Cannot use current file as library'); 
 //    exit;
@@ -4772,28 +4455,23 @@ end;
 //  for{while} a:=0 to Pred(sfile.totfile) { a++}
 //  do
 //  begin 
-//    if sfile.filelist[a].flags and ACTIVE
-//    then
+//    if sfile.filelist[a].flags and ACTIVE then
 //    begin 
 //      inc(totsel); 
 //    end;
 //  end;
-//  if totsel=0
-//  then
+//  if totsel=0 then
 //  begin 
 //    (* is de aangegeven file in de filelist? *)
-//    if sfile.file[0]<>0{nil} {<= !!!9} 
-//    then
+//    if sfile.file[0]<>0 then
 //    begin 
 //      for{while} a:=0 to Pred(sfile.totfile) { a++}
 //      do
 //      begin 
-//        if lstrcmp(sfile.filelist[a].relname,sfile.file)=0
-//        then
+//        if lstrcmp(sfile.filelist[a].relname,sfile.file)=0 then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
-//      if a=sfile.totfile
-//      then
+//      if a=sfile.totfile then
 //      begin 
 //        error('Wrong indicated name'); 
 //        exit;
@@ -4811,8 +4489,7 @@ end;
 //  main:= find_main(dir); 
 //  idcode:= groupname_to_code(group); (* welke moeten wij hebben? *)
 
-//  if totsel=0
-//  then
+//  if totsel=0 then
 //  begin 
 //    append_named_part(sfile,main,sfile.file,idcode); 
 //  end;
@@ -4821,8 +4498,7 @@ end;
 //    for{while} a:=0 to Pred(sfile.totfile) { a++}
 //    do
 //    begin 
-//      if sfile.filelist[a].flags and ACTIVE
-//      then
+//      if sfile.filelist[a].flags and ACTIVE then
 //      begin 
 //        append_named_part(sfile,main,sfile.filelist[a].relname,idcode); 
 //      end;
@@ -4845,8 +4521,7 @@ end;
 //  while vf
 //  do
 //  begin 
-//    if vf.id.lib)and(vf.flag=1
-//    then
+//    if vf.id.lib)and(vf.flag=1 then
 //    reload_vfont(vf); 
 //    vf:= vf.id.next; 
 //  end;
@@ -4856,22 +4531,18 @@ end;
 //  while ob
 //  do
 //  begin 
-//    if ob.id.lib<>0{nil} {<= !!!9} 
-//    then
+//    if ob.id.lib<>0 then
 //    begin 
-//      if ob.type=OB_FONT
-//      then
+//      if ob.type=OB_FONT then
 //      begin 
 //        cu:= ob.data; 
-//        if cu.nurb.first=0
-//        then
+//        if cu.nurb.first=0 then
 //        text_to_curve(ob,0); 
 //      end;
 //      makeDispList(ob); 
 //    end;
 //    else
-//    if ob.type=OB_MESH)and(ob.parent)and(ob.parent.type=OB_LATTICE
-//    then
+//    if ob.type=OB_MESH)and(ob.parent)and(ob.parent.type=OB_LATTICE then
 //    makeDispList(ob); 
 //    ob:= ob.id.next; 
 //  end;
@@ -4882,27 +4553,22 @@ end;
 //  add_lib_adr(0,0); 
 //  strcpy(G.lib,sfile.dir); 
 //  (* in sfile->dir staat de HELE libnaam *)
-//  if TEST_C_KEY<>0{nil} {<= !!!9} 
-//  then
+//  if TEST_C_KEY<>0 then
 //  begin 
-//    if (sfile.flag and FILE_LINK)=0
-//    then
+//    if (sfile.flag and FILE_LINK)=0 then
 //    all_local(); 
 //  end;
 //  else
 //  begin 
-//    if sfile.flag and FILE_LINK
-//    then
+//    if sfile.flag and FILE_LINK then
 //    error('Linking not suported, data is appended'); 
 //    all_local(); 
 //  end;
 
 //  (* voorlopige patch om te voorkomen dat de switch_endian 2x gebeurt *)
-//  if switch_endian<>0{nil} {<= !!!9} 
-//  then
+//  if switch_endian<>0 then
 //  begin 
-//    if sfile.libfiledata<>0{nil} {<= !!!9} 
-//    then
+//    if sfile.libfiledata<>0 then
 //    begin 
 //      freeN(sfile.libfiledata); 
 //      sfile.libfiledata:= 0; 
@@ -4940,19 +4606,16 @@ end;
 
 //      disable_newlibadr:= (void* )1; 
 //      tot:= count_mainblocks_flag(main,LIB_READ); 
-//      if tot<>0{nil} {<= !!!9} 
-//      then
+//      if tot<>0 then
 //      begin 
 //        filedata:= main.curlib.filedata; 
-//        if filedata=0
-//        then
+//        if filedata=0 then
 //        begin 
 //          printf('read lib %s\n',main.curlib.name);
 //          filedata:= openblenderfile(main.curlib.name, and filelen); 
 //          main.curlib.filedata:= filedata; 
 //        end;
-//        if filedata<>0{nil} {<= !!!9} 
-//        then
+//        if filedata<>0 then
 //        begin 
 //          doit:= 1; 
 //          a:= set_listbasepointers(main,lbarray); 
@@ -4964,14 +4627,12 @@ end;
 //            do
 //            begin 
 //              idn:= id.next; 
-//              if id.flag and LIB_READ
-//              then
+//              if id.flag and LIB_READ then
 //              begin 
 //                remlink(lbarray[a],id); 
 //                append_id_part(filedata,main,id); 
 //                (* printf("change adr: %s %x\n", id->name, disable_newlibadr); *)
-//                if disable_newlibadr=(void* )1
-//                then
+//                if disable_newlibadr=(void* )1 then
 //                begin 
 //                  printf('LIB ERROR: can''t find %s\n',id.name);
 //                  change_libadr(id,0); 
@@ -4997,8 +4658,7 @@ end;
 //  while main
 //  do
 //  begin 
-//    if main.curlib.filedata<>0{nil} {<= !!!9} 
-//    then
+//    if main.curlib.filedata<>0 then
 //    freeN(main.curlib.filedata); 
 //    main.curlib.filedata:= 0; 
 //    a:= set_listbasepointers(main,lbarray); (* test of er libblocken niet zijn gelezen *)
@@ -5010,8 +4670,7 @@ end;
 //      do
 //      begin 
 //        idn:= id.next; 
-//        if id.flag and LIB_READ
-//        then
+//        if id.flag and LIB_READ then
 //        begin 
 //          remlink(lbarray[a],id); 
 //          printf('LIB ERROR: can''t find %s\n',id.name);
@@ -5022,8 +4681,7 @@ end;
 //      end;
 //    end;
 //    (* sommige mains moeten nog worden ingelezen, dan is versionfile nog nul! *)
-//    if main.versionfile<>0{nil} {<= !!!9} 
-//    then
+//    if main.versionfile<>0 then
 //    do_versions(main); 
 //    main:= main.next; 
 

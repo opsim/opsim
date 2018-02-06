@@ -38,21 +38,18 @@ uses
 
 //  ffslash:= strchr(string,'/'); 
 //  fbslash:= strchr(string,#92); 
-//  if {not}0=ffslash
-//  then
+//  if {not}0=ffslash then
 //  begin
 //    result:= fbslash; 
 //    exit;
 //  end;
 //  else
-//  if {not}0=fbslash
-//  then
+//  if {not}0=fbslash then
 //  begin
 //    result:= ffslash; 
 //    exit;
 //  end;
-//  if {!!!a type cast? =>} {integer(}ffslash<{!!!a type cast? =>} {integer(}fbslash
-//  then
+//  if {!!!a type cast? =>} {integer(}ffslash<{!!!a type cast? =>} {integer(}fbslash then
 //  begin
 //    result:= ffslash; 
 //    exit;
@@ -72,21 +69,18 @@ uses
 
 //  lfslash:= strrchr(string,'/'); 
 //  lbslash:= strrchr(string,#92); 
-//  if {not}0=lfslash
-//  then
+//  if {not}0=lfslash then
 //  begin
 //    result:= lbslash; 
 //    exit;
 //  end;
 //  else
-//  if {not}0=lbslash
-//  then
+//  if {not}0=lbslash then
 //  begin
 //    result:= lfslash; 
 //    exit;
 //  end;
-//  if {!!!a type cast? =>} {integer(}lfslash<{!!!a type cast? =>} {integer(}lbslash
-//  then
+//  if {!!!a type cast? =>} {integer(}lfslash<{!!!a type cast? =>} {integer(}lbslash then
 //  begin
 //    result:= lbslash; 
 //    exit;
@@ -107,26 +101,22 @@ uses
 //var
 //err: integer; 
 //begin
-//  if recursive<>0{nil} {<= !!!9} 
-//  then
+//  if recursive<>0 then
 //  begin 
 //    error('Recursive delete is unsupported on Windows'); 
 //    err:= 1; 
 //  end;
 //  else
-//  if dir<>0{nil} {<= !!!9} 
-//  then
+//  if dir<>0 then
 //  begin 
 //    err:= {not}0=RemoveDirectory(file); 
-//    if err<>0{nil} {<= !!!9} 
-//    then
+//    if err<>0 then
 //    printf('Unable to remove directory'); 
 //  end;
 //  else
 //  begin 
 //    err:= {not}0=DeleteFile(file); 
-//    if err<>0{nil} {<= !!!9} 
-//    then
+//    if err<>0 then
 //    error('Unable to delete file'); 
 //  end;
 
@@ -150,8 +140,7 @@ uses
 //err: integer; 
 //begin
 //  err:= {not}0=MoveFile(file,to); 
-//  if err<>0{nil} {<= !!!9} 
-//  then
+//  if err<>0 then
 //  error('Unable to move file'); 
 
 //  begin
@@ -165,8 +154,7 @@ uses
 //err: integer; 
 //begin
 //  err:= {not}0=CopyFile(file,to,LongBool(0)); 
-//  if err<>0{nil} {<= !!!9} 
-//  then
+//  if err<>0 then
 //  error('Unable to copy file!'); 
 
 //  begin
@@ -208,37 +196,31 @@ end;
 //err: integer; 
 //begin
 
-//  if fop_exists(dirname)
-//  then
+//  if fop_exists(dirname) then
 //  exit;
 
 //  strcpy(tmp,dirname); 
 //  lslash:= last_slash(tmp); 
-//  if {not}0=lslash
-//  then
+//  if {not}0=lslash then
 //  exit;
 //  (* Split about the last slash and recurse *)
 //  {*}lslash^:=0; 
 //  fop_recurdir(tmp); 
 
-//  if {not}0=CreateDirectory(dirname,0{nil})
-//  then
+//  if {not}0=CreateDirectory(dirname,0{nil}) then
 //  error('Unable to create directory\n');
 //end;
 
 //function fop_rename(from: pchar;  to: pchar): integer; 
 //begin
-//  if {not}0=fop_exists(from)
-//  then
+//  if {not}0=fop_exists(from) then
 //  begin
 //    result:= 0; 
 //    exit;
 
 //  end;
-//  if fop_exists(to)
-//  then
-//  if fop_delete(to,0,0)
-//  then
+//  if fop_exists(to) then
+//  if fop_delete(to,0,0) then
 //  begin
 //    result:= 1; 
 //    exit;
@@ -257,12 +239,10 @@ end;
 
 //function fop_delete(file: pchar;  dir: integer;  recursive: integer): integer; 
 //begin
-//  if recursive<>0{nil} {<= !!!9} 
-//  then
+//  if recursive<>0 then
 //  sprintf(str,'/bin/rm -rf %s',file); 
 //  else
-//  if dir<>0{nil} {<= !!!9} 
-//  then
+//  if dir<>0 then
 //  sprintf(str,'/bin/rmdir "%s"',file); 
 //  else
 //  sprintf(str,'/bin/rm -f "%s"',file); 
@@ -335,14 +315,12 @@ end;
 //tmp: array [0..Pred(MAXPATHLEN)] of char; 
 //begin
 
-//  if fop_exists(dirname)
-//  then
+//  if fop_exists(dirname) then
 //  exit;
 
 //  strcpy(tmp,dirname); 
 //  lslash:= last_slash(tmp); 
-//  if {not}0=lslash
-//  then
+//  if {not}0=lslash then
 //  exit;
 //  (* Split about the last slash and recurse *)
 //  {*}lslash^:=0; 
@@ -353,16 +331,13 @@ end;
 
 //function fop_rename(from: pchar;  to: pchar): integer; 
 //begin
-//  if {not}0=fop_exists(from)
-//  then
+//  if {not}0=fop_exists(from) then
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
-//  if fop_exists(to)
-//  then
-//  if fop_delete(to,0,0)
-//  then
+//  if fop_exists(to) then
+//  if fop_delete(to,0,0) then
 //  begin
 //    result:= 1; 
 //    exit;

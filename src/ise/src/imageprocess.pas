@@ -48,20 +48,17 @@ implementation
 
 //  div:= doel[3]; 
 //  c:= (doel[0] shl 8) div div; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[0]:= 255; 
 //  else
 //  doel[0]:= c; 
 //  c:= (doel[1] shl 8) div div; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[1]:= 255; 
 //  else
 //  doel[1]:= c; 
 //  c:= (doel[2] shl 8) div div; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[2]:= 255; 
 //  else
 //  doel[2]:= c; 
@@ -75,11 +72,9 @@ implementation
 //mul: integer; 
 //begin
 
-//  if doel[3]=255
-// then
+//  if doel[3]=255 then
 //  exit;
-//  if doel[3]=0
-// then
+//  if doel[3]=0 then
 //  begin 
 //    (* is getest, scheelt  *)
 //    *({!!!a type cast? =>} {puint(}doel):=*({!!!a type cast? =>} {puint(}bron); 
@@ -88,26 +83,22 @@ implementation
 //  mul:= 255-doel[3]; 
 //  c:= doel[0]+((mul*bron[0]) div 255); 
 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[0]:= 255; 
 //  else
 //  doel[0]:= c; 
 //  c:= doel[1]+((mul*bron[1]) div 255); 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[1]:= 255; 
 //  else
 //  doel[1]:= c; 
 //  c:= doel[2]+((mul*bron[2]) div 255); 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[2]:= 255; 
 //  else
 //  doel[2]:= c; 
 //  c:= doel[3]+((mul*bron[3]) div 255); 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[3]:= 255; 
 //  else
 //  doel[3]:= c; 
@@ -130,27 +121,23 @@ implementation
 //  doe:= igamtab1[doel[0]]; 
 //  bro:= igamtab1[bron[0]]; 
 //  tot:= (doe+((mul*bro) shr 8)); 
-//  if tot>65535
-// then
+//  if tot>65535 then
 //  tot:= 65535; 
 //  doel[0]:= *((gamtab+tot)) shr 8; 
 //  doe:= igamtab1[doel[1]]; 
 //  bro:= igamtab1[bron[1]]; 
 //  tot:= (doe+((mul*bro) shr 8)); 
-//  if tot>65535
-// then
+//  if tot>65535 then
 //  tot:= 65535; 
 //  doel[1]:= *((gamtab+tot)) shr 8; 
 //  doe:= igamtab1[doel[2]]; 
 //  bro:= igamtab1[bron[2]]; 
 //  tot:= (doe+((mul*bro) shr 8)); 
-//  if tot>65535
-// then
+//  if tot>65535 then
 //  tot:= 65535; 
 //  doel[2]:= *((gamtab+tot)) shr 8; 
 //  c:= doel[3]+((mul*bron[3]) div 255); 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[3]:= 255; 
 //  else
 //  doel[3]:= c; 
@@ -165,11 +152,9 @@ implementation
 //mul: integer; 
 //begin
 
-//  if bron[3]=0
-// then
+//  if bron[3]=0 then
 //  exit;
-//  if bron[3]=255
-// then
+//  if bron[3]=255 then
 //  begin 
 //    (* is getest, scheelt  *)
 //    *({!!!a type cast? =>} {puint(}doel):=*({!!!a type cast? =>} {puint(}bron); 
@@ -178,26 +163,22 @@ implementation
 //  mul:= 255-bron[3]; 
 //  c:= ((mul*doel[0]) div 255)+bron[0]; 
 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[0]:= 255; 
 //  else
 //  doel[0]:= c; 
 //  c:= ((mul*doel[1]) div 255)+bron[1]; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[1]:= 255; 
 //  else
 //  doel[1]:= c; 
 //  c:= ((mul*doel[2]) div 255)+bron[2]; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[2]:= 255; 
 //  else
 //  doel[2]:= c; 
 //  c:= ((mul*doel[3]) div 255)+bron[3]; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[3]:= 255; 
 //  else
 //  doel[3]:= c; 
@@ -211,34 +192,29 @@ implementation
 //mul: integer; 
 //begin
 
-//  if doel[3]=0)or(bron[3]=255
-// then
+//  if doel[3]=0)or(bron[3]=255 then
 //  begin 
 //    (* is getest, scheelt veel *)
 //    *({!!!a type cast? =>} {puint(}doel):=*({!!!a type cast? =>} {puint(}bron); 
 //    exit;
 //  end;
 //  c:= doel[0]+bron[0]; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[0]:= 255; 
 //  else
 //  doel[0]:= c; 
 //  c:= doel[1]+bron[1]; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[1]:= 255; 
 //  else
 //  doel[1]:= c; 
 //  c:= doel[2]+bron[2]; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[2]:= 255; 
 //  else
 //  doel[2]:= c; 
 //  c:= doel[3]+bron[3]; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[3]:= 255; 
 //  else
 //  doel[3]:= c; 
@@ -252,34 +228,29 @@ implementation
 //mul: integer; 
 //begin
 
-//  if doel[3]=0
-// then
+//  if doel[3]=0 then
 //  begin 
 //    *({!!!a type cast? =>} {puint(}doel):=*({!!!a type cast? =>} {puint(}bron); 
 //    *({!!!a type cast? =>} {puint(}(doel+2)):=*({!!!a type cast? =>} {puint(}(bron+2)); 
 //    exit;
 //  end;
 //  c:= doel[0]+bron[0]; 
-//  if c>65535
-// then
+//  if c>65535 then
 //  doel[0]:= 65535; 
 //  else
 //  doel[0]:= c; 
 //  c:= doel[1]+bron[1]; 
-//  if c>65535
-// then
+//  if c>65535 then
 //  doel[1]:= 65535; 
 //  else
 //  doel[1]:= c; 
 //  c:= doel[2]+bron[2]; 
-//  if c>65535
-// then
+//  if c>65535 then
 //  doel[2]:= 65535; 
 //  else
 //  doel[2]:= c; 
 //  c:= doel[3]+bron[3]; 
-//  if c>65535
-// then
+//  if c>65535 then
 //  doel[3]:= 65535; 
 //  else
 //  doel[3]:= c; 
@@ -304,8 +275,7 @@ implementation
 //mul: integer; 
 //begin
 
-//  if doel[3]=0
-// then
+//  if doel[3]=0 then
 //  begin 
 //    *({!!!a type cast? =>} {puint(}doel):=*({!!!a type cast? =>} {puint(}bron); 
 //    exit;
@@ -313,26 +283,22 @@ implementation
 //  mul:= 255-(bron[3]*(255-addfac)) div 255; 
 //  c:= ((mul*doel[0]) div 255)+bron[0]; 
 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[0]:= 255; 
 //  else
 //  doel[0]:= c; 
 //  c:= ((mul*doel[1]) div 255)+bron[1]; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[1]:= 255; 
 //  else
 //  doel[1]:= c; 
 //  c:= ((mul*doel[2]) div 255)+bron[2]; 
-//  if c>255
-// then
+//  if c>255 then
 //  doel[2]:= 255; 
 //  else
 //  doel[2]:= c; 
 //  c:= doel[3]+bron[3]; (* c= ((mul*doel[3])/255)+bron[3]; *)
-//  if c>255
-// then
+//  if c>255 then
 //  doel[3]:= 255; 
 //  else
 //  doel[3]:= c; 
@@ -346,8 +312,7 @@ implementation
 //mul: integer; 
 //begin
 
-//  if doel[3]=0
-// then
+//  if doel[3]=0 then
 //  begin 
 //    *({!!!a type cast? =>} {puint(}doel):=*({!!!a type cast? =>} {puint(}bron); 
 //    *({!!!a type cast? =>} {puint(}(doel+2)):=*({!!!a type cast? =>} {puint(}(bron+2)); 
@@ -355,26 +320,22 @@ implementation
 //  end;
 //  mul:= $FFFF-(bron[0]*(255-addfac)) div 255; 
 //  c:= ((mul*doel[0]) shr 16)+bron[0]; 
-//  if c>=$FFF0
-// then
+//  if c>=$FFF0 then
 //  doel[0]:= $FFF0; 
 //  else
 //  doel[0]:= c; 
 //  c:= ((mul*doel[1]) shr 16)+bron[1]; 
-//  if c>=$FFF0
-// then
+//  if c>=$FFF0 then
 //  doel[1]:= $FFF0; 
 //  else
 //  doel[1]:= c; 
 //  c:= ((mul*doel[2]) shr 16)+bron[2]; 
-//  if c>=$FFF0
-// then
+//  if c>=$FFF0 then
 //  doel[2]:= $FFF0; 
 //  else
 //  doel[2]:= c; 
 //  c:= ((mul*doel[3]) shr 16)+bron[3]; 
-//  if c>=$FFF0
-// then
+//  if c>=$FFF0 then
 //  doel[3]:= $FFF0; 
 //  else
 //  doel[3]:= c; 
@@ -416,12 +377,10 @@ implementation
 //      fx:= ((x+y) mod size)-halfsize; 
 //      fy:= ((1000+y-x) mod size)-halfsize; 
 //      tot:= cp[1]+fsize*((fx*fx+fy*fy))-128; 
-//      if tot<0
-// then
+//      if tot<0 then
 //      tot:= 0; 
 //      else
-//      if tot>255
-// then
+//      if tot>255 then
 //      tot:= 255; 
 //      cp[1]:= cp[2]:=cp[3]:=tot; 
 //    end;
@@ -473,22 +432,19 @@ implementation
 //rt: pchar; 
 //begin
 
-//  if mode='r'
-// then
+//  if mode='r' then
 //  begin 
 //    x:= sbuf.x*sbuf.y; 
 //    rt:= {!!!a type cast? =>} {pchar(}sbuf.rect; 
 //    while x{--} dec(x); 
 //    do
 //    begin 
-//      if rt[0]=0)or(rt[0]=255
-// then
+//      if rt[0]=0)or(rt[0]=255 then
 //      ; 
 //      else
 //      begin 
 //        a:= R.rt+rt[0]+(rand() and $FF); 
-//        if a>128
-// then
+//        if a>128 then
 //        rt[0]:= 255; 
 //        else
 //        *({!!!a type cast? =>} {puint(}rt):=0; 
@@ -497,8 +453,7 @@ implementation
 //    end;
 //  end;
 //  else
-//  if mode='2'
-// then
+//  if mode='2' then
 //  begin 
 //    dit[0]:= $80; 
 //    dit[1]:= $00; 
@@ -508,8 +463,7 @@ implementation
 //    for{while} y:=0 to Pred(sbuf.y) { y++}
 //    do
 //    begin 
-//      if y and 1
-// then
+//      if y and 1 then
 //      dp:= dit; 
 //      else
 //      dp:= dit+2; 
@@ -521,14 +475,12 @@ implementation
 //      rt:= rt + (4); 
 //      do
 //      begin 
-//        if rt[0]=0)or(rt[0]=255
-// then
+//        if rt[0]=0)or(rt[0]=255 then
 //        ; 
 //        else
 //        begin 
 //          a:= rt[0]+dp[x and 1]; 
-//          if a>128
-// then
+//          if a>128 then
 //          rt[0]:= rt[0]:=255; 
 //          else
 //          *({!!!a type cast? =>} {puint(}rt):=0; 
@@ -551,8 +503,7 @@ implementation
 
 //  iso:=0; 
 
-//  if sbuf.x<5)or(sbuf.y<5
-// then
+//  if sbuf.x<5)or(sbuf.y<5 then
 //  exit;
 
 //  rt:= sbuf.rect+sbuf.x; 
@@ -568,20 +519,16 @@ implementation
 //    inc(rt); 
 //    do
 //    begin 
-//      if {*}rt^)and(rt[-1]=0)and(rt[1]=0
-// then
+//      if {*}rt^)and(rt[-1]=0)and(rt[1]=0 then
 //      begin 
 //        rt1:= rt-sbuf.x; 
-//        if rt1[-1]=0)and(rt1[0]=0)and(rt1[1]=0
-// then
+//        if rt1[-1]=0)and(rt1[0]=0)and(rt1[1]=0 then
 //        begin 
 //          rt1:= rt+sbuf.x; 
-//          if rt1[-1]=0)and(rt1[0]=0)and(rt1[1]=0
-// then
+//          if rt1[-1]=0)and(rt1[0]=0)and(rt1[1]=0 then
 //          begin 
 //            cp:= {!!!a type cast? =>} {pchar(}rt; 
-//            if cp[1]<max)and(cp[2]<max)and(cp[3]<max
-// then
+//            if cp[1]<max)and(cp[2]<max)and(cp[3]<max then
 //            begin 
 //              inc(iso); 
 //              rt[0]:= 0; 
@@ -650,50 +597,39 @@ implementation
 //    inc(rt); 
 //    do
 //    begin 
-//      if {*}rt^
-// then
+//      if {*}rt^ then
 //      begin 
-//        if minx>x
-// then
+//        if minx>x then
 //        minx:= x; 
-//        if maxx<x
-// then
+//        if maxx<x then
 //        maxx:= x; 
-//        if miny>y
-// then
+//        if miny>y then
 //        miny:= y; 
-//        if maxy<y
-// then
+//        if maxy<y then
 //        maxy:= y; 
 //        isdone:= 1; 
 //      end;
 //    end;
 //  end;
-//  if isdone=0
-// then
+//  if isdone=0 then
 //  begin 
 //    minx:= maxx:=sbuf.x div 2; 
 //    miny:= maxy:=sbuf.y div 2; 
 //  end;
-//  if minx and 1
-// then
+//  if minx and 1 then
 //  dec(minx); 
-//  if miny and 1
-// then
+//  if miny and 1 then
 //  dec(miny); 
-//  if maxx and 1
-// then
+//  if maxx and 1 then
 //  ; 
 //  else
 //  inc(maxx); 
-//  if maxy and 1
-// then
+//  if maxy and 1 then
 //  ; 
 //  else
 //  inc(maxy); 
 //  file:= open(str,O_BINARY or O_WRONLY+O_CREAT+O_TRUNC,$1B6); (* schrijven *)
-//  if file=-1
-// then
+//  if file=-1 then
 //  begin 
 //    error('Can''t write file');
 //    exit;

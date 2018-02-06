@@ -38,14 +38,6 @@ uses
   cfuncs,
   blender, blendef;
 
-//{$include "blender.h"}
-//{$include "graphics.h"}
-//{$include "edit.h"}
-//{$include "ipo.h"}
-//{$include "sector.h"}
-//{$include "ika.h"}
-//{$include "render.h"}
-
 var
 //originmat: array [0..Pred(3),0..Pred(3)] of float; (* na where_is_object(), kan her en der gebruikt worden *)
 workob: _Object;
@@ -103,32 +95,25 @@ end;
 //b: integer; (* specifieke data loskoppelen *)
 //begin
 
-//  if ob.data<>0{nil} {<= !!!9} 
-//  then
+//  if ob.data<>0 then
 //  begin 
 //    id:= ob.data; 
 //    dec(id.us); 
-//    if id.us=0
-//    then
+//    if id.us=0 then
 //    begin 
-//      if ob.type=OB_MESH
-//      then
+//      if ob.type=OB_MESH then
 //      unlink_mesh(ob.data); 
 //      else
-//      if ob.type=OB_SECTOR
-//      then
+//      if ob.type=OB_SECTOR then
 //      unlink_sector(ob.data); 
 //      else
-//      if ob.type=OB_LIFE
-//      then
+//      if ob.type=OB_LIFE then
 //      unlink_life(ob.data); 
 //      else
-//      if ob.type=OB_CURVE
-//      then
+//      if ob.type=OB_CURVE then
 //      unlink_curve(ob.data); 
 //      else
-//      if ob.type=OB_MBALL
-//      then
+//      if ob.type=OB_MBALL then
 //      unlink_mball(ob.data); 
 //    end;
 //    ob.data:= 0; 
@@ -136,24 +121,19 @@ end;
 //  for{while} a:=0 to Pred(ob.totcol) { a++}
 //  do
 //  begin 
-//    if ob.mat[a]<>0{nil} {<= !!!9} 
-//    then
+//    if ob.mat[a]<>0 then
 //    dec(ob.mat[a].id.us); 
 //  end;
-//  if ob.mat<>0{nil} {<= !!!9} 
-//  then
+//  if ob.mat<>0 then
 //  freeN(ob.mat); 
 //  ob.mat:= 0; 
-//  if ob.bb<>0{nil} {<= !!!9} 
-//  then
+//  if ob.bb<>0 then
 //  freeN(ob.bb); 
 //  ob.bb:= 0; 
-//  if ob.path<>0{nil} {<= !!!9} 
-//  then
+//  if ob.path<>0 then
 //  free_path(ob.path); 
 //  ob.path:= 0; 
-//  if ob.ipo<>0{nil} {<= !!!9} 
-//  then
+//  if ob.ipo<>0 then
 //  dec(ob.ipo.id.us); 
 //  free_effects(@ob.effect); 
 //  freelistN(@ob.network); 
@@ -163,29 +143,23 @@ end;
 //  while temp
 //  do
 //  begin 
-//    if temp<>ob
-//    then
+//    if temp<>ob then
 //    begin 
-//      if temp.parent=ob
-//      then
+//      if temp.parent=ob then
 //      temp.parent:= 0; 
-//      if temp.track=ob
-//      then
+//      if temp.track=ob then
 //      temp.track:= :=0; 
-//      if temp.type=OB_SECTOR
-//      then
+//      if temp.type=OB_SECTOR then
 //      begin 
 //        se:= temp.data; 
-//        if ob.type=OB_SECTOR
-//        then
+//        if ob.type=OB_SECTOR then
 //        begin 
 //          po:= se.portals; 
 //          b:= se.totport; 
 //          while b{--} dec(b); 
 //          do
 //          begin 
-//            if po.sector)and(po.sector.ob=ob
-//            then
+//            if po.sector)and(po.sector.ob=ob then
 //            po.sector:= 0; 
 //            inc(po); 
 //          end;
@@ -201,8 +175,7 @@ end;
 //  while sce
 //  do
 //  begin 
-//    if sce.camera=ob
-//    then
+//    if sce.camera=ob then
 //    sce.camera:= 0; 
 //    sce:= sce.id.next; 
 //  end;
@@ -219,15 +192,12 @@ end;
 //      while vd
 //      do
 //      begin 
-//        if vd.spacetype=SPACE_VIEW3D
-//        then
+//        if vd.spacetype=SPACE_VIEW3D then
 //        begin 
-//          if vd.camera=ob
-//          then
+//          if vd.camera=ob then
 //          begin 
 //            vd.camera:= 0; 
-//            if vd.persp>1
-//            then
+//            if vd.persp>1 then
 //            vd.persp:= 1; 
 //          end;
 //        end;
@@ -265,22 +235,17 @@ end;
 //  while obt
 //  do
 //  begin 
-//    if obt.id.lib=0
-//    then
+//    if obt.id.lib=0 then
 //    begin 
-//      if obt.parent=ob
-//      then
+//      if obt.parent=ob then
 //      begin 
 //        obt.parent:= 0; 
-//        if ob.type=OB_LATTICE
-//        then
+//        if ob.type=OB_LATTICE then
 //        freedisplist(@obt.disp); 
 //      end;
-//      if obt.track=ob
-//      then
+//      if obt.track=ob then
 //      obt.track:= 0; 
-//      if obt.network.first<>0{nil} {<= !!!9} 
-//      then
+//      if obt.network.first<>0 then
 //      begin 
 //        nl:=obt.network.first; 
 
@@ -288,8 +253,7 @@ end;
 //        do
 //        begin 
 //          next:= nl.next; 
-//          if nl.ob=ob
-//          then
+//          if nl.ob=ob then
 //          begin 
 //            remlink(@obt.network,nl); 
 //            freeN(nl); 
@@ -301,27 +265,22 @@ end;
 //      function ELEM{!!!3 unknown typedef}: if; 
 //      begin
 //        cu:= obt.data; 
-//        if cu.bevobj=ob
-//        then
+//        if cu.bevobj=ob then
 //        cu.bevobj:= 0; 
-//        if cu.textoncurve=ob
-//        then
+//        if cu.textoncurve=ob then
 //        cu.textoncurve:= 0; 
 //      end
-//      if obt.type=OB_IKA
-//      then
+//      if obt.type=OB_IKA then
 //      begin 
 //        ika:= obt.data; 
-//        if ika.parent=ob
-//        then
+//        if ika.parent=ob then
 //        ika.parent:= 0; 
 //        a:= ika.totdef; 
 //        def:= ika.def; 
 //        while a{--} dec(a); 
 //        do
 //        begin 
-//          if def.ob=ob
-//          then
+//          if def.ob=ob then
 //          begin 
 //            ika.totdef:= 0; 
 //            freeN(ika.def); 
@@ -341,8 +300,7 @@ end;
 //    for{while} a:=0 to Pred(8) { a++}
 //    do
 //    begin 
-//      if mat.mtex[a])and(ob=mat.mtex[a].object
-//      then
+//      if mat.mtex[a])and(ob=mat.mtex[a].object then
 //      begin 
 //        (* eigenlijk testen op lib *)
 //        mat.mtex[a].object:= 0; 
@@ -355,36 +313,30 @@ end;
 //  while tex
 //  do
 //  begin 
-//    if tex.env<>0{nil} {<= !!!9} 
-//    then
+//    if tex.env<>0 then
 //    begin 
-//      if tex.env.object=ob
-//      then
+//      if tex.env.object=ob then
 //      tex.env.object:= 0; 
 //    end;
 //    tex:= tex.id.next; 
 //  end;
 //  (* mballs *)
-//  if ob.type=OB_MBALL
-//  then
+//  if ob.type=OB_MBALL then
 //  begin 
 //    obt:= find_basis_mball(ob); 
-//    if obt<>0{nil} {<= !!!9} 
-//    then
+//    if obt<>0 then
 //    freedisplist(@obt.disp); 
 //  end;
 //  wrld:= G.main.world.first; (* worlds *)
 //  while wrld
 //  do
 //  begin 
-//    if wrld.id.lib=0
-//    then
+//    if wrld.id.lib=0 then
 //    begin 
 //      for{while} a:=0 to Pred(6) { a++}
 //      do
 //      begin 
-//        if wrld.mtex[a])and(ob=wrld.mtex[a].object
-//        then
+//        if wrld.mtex[a])and(ob=wrld.mtex[a].object then
 //        wrld.mtex[a].object:= :=0; 
 //      end;
 //    end;
@@ -394,11 +346,9 @@ end;
 //  while sce
 //  do
 //  begin 
-//    if sce.id.lib=0
-//    then
+//    if sce.id.lib=0 then
 //    begin 
-//      if sce.camera=ob
-//      then
+//      if sce.camera=ob then
 //      sce.camera:= 0; 
 //    end;
 //    sce:= sce.id.next; 
@@ -408,8 +358,7 @@ end;
 //  while sc
 //  do
 //  begin 
-//    if sc.scene=G.scene
-//    then
+//    if sc.scene=G.scene then
 //    begin 
 //      sa:= sc.areabase.first; 
 //      while sa
@@ -419,23 +368,18 @@ end;
 //        while vd
 //        do
 //        begin 
-//          if vd.spacetype=SPACE_VIEW3D
-//          then
+//          if vd.spacetype=SPACE_VIEW3D then
 //          begin 
-//            if vd.camera=ob
-//            then
+//            if vd.camera=ob then
 //            begin 
 //              vd.camera:= 0; 
-//              if vd.persp>1
-//              then
+//              if vd.persp>1 then
 //              vd.persp:= 1; 
 //            end;
-//            if vd.localvd)and(vd.localvd.camera=ob
-//            then
+//            if vd.localvd)and(vd.localvd.camera=ob then
 //            begin 
 //              vd.localvd.camera:= 0; 
-//              if vd.localvd.persp>1
-//              then
+//              if vd.localvd.persp>1 then
 //              vd.localvd.persp:= 1; 
 //            end;
 //          end;
@@ -457,8 +401,7 @@ end;
 //  while ob
 //  do
 //  begin 
-//    if ob=obtest
-//    then
+//    if ob=obtest then
 //    begin
 //      result:= 1; 
 //      exit;
@@ -523,11 +466,9 @@ end;
 //    * - zijn er alleen locale users: flag zetten
 //    * - mixed: copy
 //    *)
-//  if cam.id.lib=0
-//  then
+//  if cam.id.lib=0 then
 //  exit;
-//  if cam.id.us=1
-//  then
+//  if cam.id.us=1 then
 //  begin 
 //    cam.id.lib:= 0; 
 //    cam.id.flag:= LIB_LOCAL; 
@@ -538,27 +479,23 @@ end;
 //  while ob
 //  do
 //  begin 
-//    if ob.data=cam
-//    then
+//    if ob.data=cam then
 //    begin 
-//      if ob.id.lib<>0{nil} {<= !!!9} 
-//      then
+//      if ob.id.lib<>0 then
 //      lib:= 1; 
 //      else
 //      local:= 1; 
 //    end;
 //    ob:= ob.id.next; 
 //  end;
-//  if local)and(lib=0
-//  then
+//  if local)and(lib=0 then
 //  begin 
 //    cam.id.lib:= 0; 
 //    cam.id.flag:= LIB_LOCAL; 
 //    new_id(0,{!!!a type cast? =>} {pID(}cam,0); 
 //  end;
 //  else
-//  if local)and(lib
-//  then
+//  if local)and(lib then
 //  begin 
 //    camn:= copy_camera(cam); 
 //    camn.id.us:= 0; 
@@ -566,11 +503,9 @@ end;
 //    while ob
 //    do
 //    begin 
-//      if ob.data=cam
-//      then
+//      if ob.data=cam then
 //      begin 
-//        if ob.id.lib=0
-//        then
+//        if ob.id.lib=0 then
 //        begin 
 //          ob.data:= camn; 
 //          inc(camn.id.us); 
@@ -618,8 +553,7 @@ end;
 //  for{while} a:=0 to Pred(8) { a++}
 //  do
 //  begin 
-//    if lan.mtex[a]<>0{nil} {<= !!!9} 
-//    then
+//    if lan.mtex[a]<>0 then
 //    begin 
 //      lan.mtex[a]:= mallocN(sizeof(MTex),'copylamptex'); 
 //      memcpy(lan.mtex[a],la.mtex[a],sizeof(MTex)); 
@@ -653,11 +587,9 @@ end;
 //    * - zijn er alleen locale users: flag zetten
 //    * - mixed: copy
 //    *)
-//  if la.id.lib=0
-//  then
+//  if la.id.lib=0 then
 //  exit;
-//  if la.id.us=1
-//  then
+//  if la.id.us=1 then
 //  begin 
 //    la.id.lib:= 0; 
 //    la.id.flag:= LIB_LOCAL; 
@@ -668,27 +600,23 @@ end;
 //  while ob
 //  do
 //  begin 
-//    if ob.data=la
-//    then
+//    if ob.data=la then
 //    begin 
-//      if ob.id.lib<>0{nil} {<= !!!9} 
-//      then
+//      if ob.id.lib<>0 then
 //      lib:= 1; 
 //      else
 //      local:= 1; 
 //    end;
 //    ob:= ob.id.next; 
 //  end;
-//  if local)and(lib=0
-//  then
+//  if local)and(lib=0 then
 //  begin 
 //    la.id.lib:= 0; 
 //    la.id.flag:= LIB_LOCAL; 
 //    new_id(0,{!!!a type cast? =>} {pID(}la,0); 
 //  end;
 //  else
-//  if local)and(lib
-//  then
+//  if local)and(lib then
 //  begin 
 //    lan:= copy_lamp(la); 
 //    lan.id.us:= 0; 
@@ -696,11 +624,9 @@ end;
 //    while ob
 //    do
 //    begin 
-//      if ob.data=la
-//      then
+//      if ob.data=la then
 //      begin 
-//        if ob.id.lib=0
-//        then
+//        if ob.id.lib=0 then
 //        begin 
 //          ob.data:= lan; 
 //          inc(lan.id.us); 
@@ -729,11 +655,9 @@ end;
 //  do
 //  begin 
 //    mtex:= la.mtex[a]; 
-//    if mtex)and(mtex.tex
-//    then
+//    if mtex)and(mtex.tex then
 //    dec(mtex.tex.id.us); 
-//    if mtex<>0{nil} {<= !!!9} 
-//    then
+//    if mtex<>0 then
 //    freeN(mtex); 
 //  end;
 //  la.ipo:= 0; 
@@ -760,8 +684,7 @@ end;
 
 //procedure set_obact_names(ob: pObject); 
 //begin
-//  if ob=0
-//  then
+//  if ob=0 then
 //  exit;
 
 //  case ob.type of
@@ -818,63 +741,55 @@ end;
 //  G.f:= G.f and ( not (G_VERTEXPAINT+G_FACESELECT)); 
 //  setcursor_space(SPACE_VIEW3D,CURSOR_STD); 
 //  ob:= OBACT; (* de defaultnaam werkt (voorlopig) niet bij mesh, curve en surf (door add_prim) *)
-//  if ob=0
-//  then
+//  if ob=0 then
 //  clear_obact_names(); 
 //  (* veiligheid *)
 //  case type of
 //    OB_MESH:
 //    begin
-//      if n_mesh<>0{nil} {<= !!!9} 
-//      then
+//      if n_mesh<>0 then
 //      strcpy(name,n_mesh); 
 //      else
 //      strcpy(name,'Mesh'); 
 //    end;
 //    OB_CURVE:
 //    begin
-//      if n_curve<>0{nil} {<= !!!9} 
-//      then
+//      if n_curve<>0 then
 //      strcpy(name,n_curve); 
 //      else
 //      strcpy(name,'Curve'); 
 //    end;
 //    OB_SURF:
 //    begin
-//      if n_surf<>0{nil} {<= !!!9} 
-//      then
+//      if n_surf<>0 then
 //      strcpy(name,n_surf); 
 //      else
 //      strcpy(name,'Surf'); 
 //    end;
 //    OB_FONT:
 //    begin
-//      if n_font<>0{nil} {<= !!!9} 
-//      then
+//      if n_font<>0 then
 //      strcpy(name,n_font); 
 //      else
 //      strcpy(name,'Text'); 
 //    end;
 //    OB_MBALL:
 //    begin
-//      if n_mball<>0{nil} {<= !!!9} 
-//      then
+//      if n_mball<>0 then
 //      strcpy(name,n_mball); 
 //      else
 //      strcpy(name,'Mball'); 
 //    end;
 //    OB_CAMERA:
 //    begin
-//      if n_camera<>0{nil} {<= !!!9} 
-//      then
+//      if n_camera<>0 then
 //      strcpy(name,n_camera); 
 //      else
 //      strcpy(name,'Camera'); 
 //    end;
 //    OB_LAMP:
 //    begin
-//      if n_lamp<>0{nil} {<= !!!9} 
-//      then
+//      if n_lamp<>0 then
 //      strcpy(name,n_lamp); 
 //      else
 //      strcpy(name,'Lamp'); 
@@ -920,14 +835,11 @@ end;
 //  ob.size[0]:= ob.size[1]:=ob.size[2]:=1.0; 
 //  Mat4One(ob.parentinv); 
 //  ob.dt:= OB_SHADED; 
-//  if U.flag and MAT_ON_OB
-//  then
+//  if U.flag and MAT_ON_OB then
 //  ob.colbits:= -1; 
-//  if ob.type=OB_LIFE
-//  then
+//  if ob.type=OB_LIFE then
 //  ob.dtx:= OB_AXIS; 
-//  if type=OB_CAMERA)or(type=OB_LAMP
-//  then
+//  if type=OB_CAMERA)or(type=OB_LAMP then
 //  begin 
 //    ob.trackflag:= OB_NEGZ; 
 //    ob.upflag:= OB_POSY; 
@@ -1003,8 +915,7 @@ end;
 //  (* aan de scene hangen *)
 //  base:= callocN(sizeof(Base),'add_base'); 
 //  addhead(@G.scene.base,base); 
-//  if G.vd.localview<>0{nil} {<= !!!9} 
-//  then
+//  if G.vd.localview<>0 then
 //  base.lay:= ob.lay:=G.vd.layact+G.vd.lay; 
 //  else
 //  base.lay:= ob.lay:=G.vd.layact; 
@@ -1041,13 +952,11 @@ end;
 //begin
 
 //  obn:= copy_libblock(ob); 
-//  if ob.totcol<>0{nil} {<= !!!9} 
-//  then
+//  if ob.totcol<>0 then
 //  begin 
 //    obn.mat:= dupallocN(ob.mat); 
 //  end;
-//  if ob.bb<>0{nil} {<= !!!9} 
-//  then
+//  if ob.bb<>0 then
 //  obn.bb:= dupallocN(ob.bb); 
 //  obn.path:= 0; 
 //  obn.effect.first:= obn.effect.last:=0; 
@@ -1100,11 +1009,9 @@ end;
 //    * - zijn er alleen locale users: flag zetten
 //    * - mixed: copy
 //    *)
-//  if ob.id.lib=0
-//  then
+//  if ob.id.lib=0 then
 //  exit;
-//  if ob.id.us=1
-//  then
+//  if ob.id.us=1 then
 //  begin 
 //    ob.id.lib:= 0; 
 //    ob.id.flag:= LIB_LOCAL; 
@@ -1121,11 +1028,9 @@ end;
 //      while base
 //      do
 //      begin 
-//        if base.object=ob
-//        then
+//        if base.object=ob then
 //        begin 
-//          if sce.id.lib<>0{nil} {<= !!!9} 
-//          then
+//          if sce.id.lib<>0 then
 //          inc(lib); 
 //          else
 //          inc(local); 
@@ -1135,16 +1040,14 @@ end;
 //      end;
 //      sce:= sce.id.next; 
 //    end;
-//    if local)and(lib=0
-//    then
+//    if local)and(lib=0 then
 //    begin 
 //      ob.id.lib:= 0; 
 //      ob.id.flag:= LIB_LOCAL; 
 //      new_id(0,{!!!a type cast? =>} {pID(}ob,0); 
 //    end;
 //    else
-//    if local)and(lib
-//    then
+//    if local)and(lib then
 //    begin 
 //      obn:= copy_object(ob); 
 //      obn.id.us:= 0; 
@@ -1152,15 +1055,13 @@ end;
 //      while sce
 //      do
 //      begin 
-//        if sce.id.lib=0
-//        then
+//        if sce.id.lib=0 then
 //        begin 
 //          base:= sce.base.first; 
 //          while base
 //          do
 //          begin 
-//            if base.object=ob
-//            then
+//            if base.object=ob then
 //            begin 
 //              base.object:= obn; 
 //              inc(obn.id.us); 
@@ -1200,16 +1101,12 @@ end;
 //f: float; 
 //begin(* geeft float terug ( zie ook frame_to_float in ipo.c) *)
 
-//  if no_speed_curve=0
-//  then
-//  if ob)and(ob.ipo
-//  then
+//  if no_speed_curve=0 then
+//  if ob)and(ob.ipo then
 //  cfra:= calc_ipo_time(ob.ipo,cfra); (* tweede field *)
-//  if R.flag and R_SEC_FIELD
-//  then
+//  if R.flag and R_SEC_FIELD then
 //  begin 
-//    if R.r.mode and R_FIELDSTILL
-//    then
+//    if R.r.mode and R_FIELDSTILL then
 //    ; 
 //    else
 //    cfra:= cfra + (.5); 
@@ -1220,11 +1117,9 @@ end;
 
 //  (* global time *)
 //  (* ofset frames *)
-//  if ob)and((ob.ipoflag and OB_OFFS_PARENT)
-//  then
+//  if ob)and((ob.ipoflag and OB_OFFS_PARENT) then
 //  begin 
-//    if (ob.partype and PARSLOW)=0
-//    then
+//    if (ob.partype and PARSLOW)=0 then
 //    cfra:= cfra - (ob.sf); 
 //  end;
 //  cfra:= cfra - (ofs); 
@@ -1243,8 +1138,7 @@ end;
 //rmat: array [0..Pred(3),0..Pred(3)] of float; 
 //begin
 
-//  if ob.ipo<>0{nil} {<= !!!9} 
-//  then
+//  if ob.ipo<>0 then
 //  begin 
 //    vec[0]:= ob.rot[0]+ob.drot[0]; 
 //    vec[1]:= ob.rot[1]+ob.drot[1]; 
@@ -1272,8 +1166,7 @@ end;
 //  object_to_mat3(ob,tmat); 
 //  Mat4CpyMat3(mat,tmat); 
 //  VECCOPY(mat[3],ob.loc); 
-//  if ob.ipo<>0{nil} {<= !!!9} 
-//  then
+//  if ob.ipo<>0 then
 //  begin 
 //    mat[3][0]:= mat[3][0] + (ob.dloc[0]); 
 //    mat[3][1]:= mat[3][1] + (ob.dloc[1]); 
@@ -1296,19 +1189,15 @@ end;
 
 //  Mat4One(mat); 
 //  cu:= par.data; 
-//  if cu.path=0)or(cu.path.data=0
-//  then
+//  if cu.path=0)or(cu.path.data=0 then
 //  calc_curvepath(par); 
-//  if cu.path=0
-//  then
+//  if cu.path=0 then
 //  exit;
 //  (* uitzondering afvangen: curve paden die als duplicator worden gebruikt *)
-//  if enable_cu_speed<>0{nil} {<= !!!9} 
-//  then
+//  if enable_cu_speed<>0 then
 //  begin 
 //    ctime:= bsystem_time(ob,par,{!!!a type cast? =>} {float(}CFRA,0.0); 
-//    if calc_ipo_spec(cu.ipo,CU_SPEED, and ctime)=0
-//    then
+//    if calc_ipo_spec(cu.ipo,CU_SPEED, and ctime)=0 then
 //    begin 
 //      ctime:= ctime div (cu.pathlen); 
 //      CLAMP(ctime,0.0,1.0); 
@@ -1321,12 +1210,10 @@ end;
 //    CLAMP(ctime,0.0,1.0); 
 //  end;
 
-//  if where_on_path(par,ctime,vec,dir)
-//  then
+//  if where_on_path(par,ctime,vec,dir) then
 //  begin 
 
-//    if cu.flag and CU_FOLLOW
-//    then
+//    if cu.flag and CU_FOLLOW then
 //    begin 
 //      quat:= vectoquat(dir,ob.trackflag,ob.upflag); 
 //      Normalise(dir); 
@@ -1363,8 +1250,7 @@ end;
 //  do
 //  begin 
 //    ang:= ang + (li.alpha); 
-//    if cur=ob.par1)or(li.next=0
-//    then
+//    if cur=ob.par1)or(li.next=0 then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    inc(cur); 
 //    li:= li.next; 
@@ -1395,22 +1281,18 @@ end;
 //  {editNurb: ListBase; }{<= !!!5 external variable}
 
 //  vec[0]:= vec[1]:=vec[2]:=0.0; 
-//  if par.type=OB_MESH
-//  then
+//  if par.type=OB_MESH then
 //  begin 
-//    if par=G.obedit
-//    then
+//    if par=G.obedit then
 //    begin 
-//      if nr>=G.totvert
-//      then
+//      if nr>=G.totvert then
 //      nr:= 0; 
 //      count:= 0; 
 //      eve:= G.edve.first; 
 //      while eve
 //      do
 //      begin 
-//        if count=nr
-//        then
+//        if count=nr then
 //        begin 
 //          memcpy(vec,eve.co,12); 
 //          break; {<= !!!b possible in "switch" - then remove this line}
@@ -1422,12 +1304,10 @@ end;
 //    else
 //    begin 
 //      me:= par.data; 
-//      if nr>=me.totvert
-//      then
+//      if nr>=me.totvert then
 //      nr:= 0; 
 //      dl:= find_displist(@par.disp,DL_VERTS); (* is er deform *)
-//      if dl<>0{nil} {<= !!!9} 
-//      then
+//      if dl<>0 then
 //      begin 
 //        fp:= dl.verts+3*nr; 
 //        VECCOPY(vec,fp); 
@@ -1445,23 +1325,20 @@ end;
 //  begin
 //    cu:= par.data; 
 //    nu:= cu.nurb.first; 
-//    if par=G.obedit
-//    then
+//    if par=G.obedit then
 //    nu:= editNurb.first; 
 //    count:= 0; 
 //    while nu
 //    do
 //    begin 
-//      if (nu.type and 7)=CU_BEZIER
-//      then
+//      if (nu.type and 7)=CU_BEZIER then
 //      begin 
 //        bezt:= nu.bezt; 
 //        a:= nu.pntsu; 
 //        while a{--} dec(a); 
 //        do
 //        begin 
-//          if count=nr
-//          then
+//          if count=nr then
 //          begin 
 //            VECCOPY(vec,bezt.vec[1]); 
 //            break; {<= !!!b possible in "switch" - then remove this line}
@@ -1477,8 +1354,7 @@ end;
 //        while a{--} dec(a); 
 //        do
 //        begin 
-//          if count=nr
-//          then
+//          if count=nr then
 //          begin 
 //            memcpy(vec,bp.vec,12); 
 //            break; {<= !!!b possible in "switch" - then remove this line}
@@ -1492,21 +1368,18 @@ end;
 //  end;
 
 //  else
-//  if par.type=OB_IKA
-//  then
+//  if par.type=OB_IKA then
 //  begin 
 //    var
 //    ika: pIka = par.data; 
 //    li: pLimb = ika.limbbase.first; 
 //    cur: integer = 1; 
-//    if nr<>0{nil} {<= !!!9} 
-//    then
+//    if nr<>0 then
 //    begin 
 //      while li
 //      do
 //      begin 
-//        if cur=nr)or(li.next=0
-//        then
+//        if cur=nr)or(li.next=0 then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        inc(cur); 
 //        li:= li.next; 
@@ -1544,8 +1417,7 @@ end;
 //    triatoquat(v1,v2,v3,q); 
 //    QuatToMat3(q,cmat); 
 //    Mat4CpyMat3(mat,cmat); 
-//    if ob.type=OB_CURVE
-//    then
+//    if ob.type=OB_CURVE then
 //    begin 
 //      VECCOPY(mat[3],v1); 
 //    end;
@@ -1613,16 +1485,13 @@ end;
 //quat: pfloat; 
 //begin
 
-//  if ob=0
-//  then
+//  if ob=0 then
 //  exit;
 
-//  if ctime<>ob.ctime
-//  then
+//  if ctime<>ob.ctime then
 //  begin 
 //    ob.ctime:= ctime; 
-//    if ob.ipo<>0{nil} {<= !!!9} 
-//    then
+//    if ob.ipo<>0 then
 //    begin 
 //      stime:= bsystem_time(ob,0,ctime,0.0); 
 //      calc_ipo(ob.ipo,stime); 
@@ -1631,25 +1500,20 @@ end;
 //    end;
 //  end;
 
-//  if ob.type=OB_IKA
-//  then
+//  if ob.type=OB_IKA then
 //  begin 
 //    ika:=ob.data; 
-//    if ika.parent<>0{nil} {<= !!!9} 
-//    then
+//    if ika.parent<>0 then
 //    where_is_object_time(ika.parent,ctime); 
 //  end;
 
-//  if ob.parent<>0{nil} {<= !!!9} 
-//  then
+//  if ob.parent<>0 then
 //  begin 
 //    par:= ob.parent; 
-//    if ob.ipoflag and OB_OFFS_PARENT
-//    then
+//    if ob.ipoflag and OB_OFFS_PARENT then
 //    ctime:= ctime - (ob.sf); 
 //    pop:= 0; 
-//    if no_parent_ipo=0)and(ctime<>par.ctime
-//    then
+//    if no_parent_ipo=0)and(ctime<>par.ctime then
 //    begin 
 //      (* alleen voor ipo systemen? *)
 //      pushdata(par,sizeof(Object)); 
@@ -1658,26 +1522,22 @@ end;
 //    end;
 //    object_to_mat4(ob,obmat); 
 
-//    if ob.partype and PARSLOW
-//    then
+//    if ob.partype and PARSLOW then
 //    Mat4CpyMat4(slowmat,ob.obmat); 
 
 //    case ob.partype and PARTYPE of
 //      PAROBJECT:
 //      begin
 //        ok:= 0; 
-//        if par.type=OB_CURVE
-//        then
+//        if par.type=OB_CURVE then
 //        begin 
-//          if ({!!!a type cast? =>} {pCurve(}par.data).flag and CU_PATH
-//          then
+//          if ({!!!a type cast? =>} {pCurve(}par.data).flag and CU_PATH then
 //          begin 
 //            ob_parcurve(ob,par,tmat); 
 //            ok:= 1; 
 //          end;
 //        end;
-//        if ok<>0{nil} {<= !!!9} 
-//        then
+//        if ok<>0 then
 //        Mat4MulSerie(totmat,par.obmat,tmat,0); 
 //        else
 //        Mat4CpyMat4(totmat,par.obmat); 
@@ -1710,8 +1570,7 @@ end;
 //    Mat3CpyMat4(originmat,tmat); 
 //    (* dit is een extern bruikbare originmat *)
 //    (* origin, voor hulplijntje *)
-//    if (ob.partype and 15)=PARSKEL
-//    then
+//    if (ob.partype and 15)=PARSKEL then
 //    begin 
 //      VECCOPY(ob.orig,par.obmat[3]); 
 //    end;
@@ -1719,18 +1578,15 @@ end;
 //    begin 
 //      VECCOPY(ob.orig,totmat[3]); 
 //    end;
-//    if pop<>0{nil} {<= !!!9} 
-//    then
+//    if pop<>0 then
 //    begin 
 //      poplast(par); 
 //    end;
-//    if ob.partype and PARSLOW
-//    then
+//    if ob.partype and PARSLOW then
 //    begin 
 //      (* framerate meetellen *)
 //      fac1:= timefac div (1.0+fabs(ob.sf)); 
-//      if fac1>=1.0
-//      then
+//      if fac1>=1.0 then
 //      exit;
 //      fac2:= 1.0-fac1; 
 //      fp1:= ob.obmat[0]; 
@@ -1752,18 +1608,15 @@ end;
 //  begin 
 //    object_to_mat4(ob,ob.obmat); 
 //  end;
-//  if ob.track<>0{nil} {<= !!!9} 
-//  then
+//  if ob.track<>0 then
 //  begin 
 
-//    if ctime<>ob.track.ctime
-//    then
+//    if ctime<>ob.track.ctime then
 //    where_is_object_time(ob.track,ctime); 
 //    VecSubf(vec,ob.obmat[3],ob.track.obmat[3]); 
 //    quat:= vectoquat(vec,ob.trackflag,ob.upflag); 
 //    QuatToMat3(quat,totmat); 
-//    if ob.parent)and((ob.transflag and OB_POWERTRACK)
-//    then
+//    if ob.parent)and((ob.transflag and OB_POWERTRACK) then
 //    begin 
 //      (* 'tijdelijk' : parent info wissen *)
 //      object_to_mat4(ob,tmat); 
@@ -1780,8 +1633,7 @@ end;
 //    Mat4MulMat34(ob.obmat,totmat,tmat); 
 //  end;
 
-//  if {not}0=during_script())and(ob.scriptlink.totscript
-//  then
+//  if {not}0=during_script())and(ob.scriptlink.totscript then
 //  begin 
 //    do_pyscript(ob,SCRIPT_FRAMECHANGED); 
 //  end;
@@ -1789,8 +1641,7 @@ end;
 
 //procedure where_is_object(ob: pObject); 
 //begin(* deze zijn gememcopied *)
-//  if ob.flag and OB_FROMDUPLI
-//  then
+//  if ob.flag and OB_FROMDUPLI then
 //  exit;
 //  where_is_object_time(ob,F_CFRA); 
 //end;
@@ -1820,32 +1671,27 @@ end;
 
 //  ipo:= ob.ipo; 
 //  ob.ipo:= 0; 
-//  if ob.parent<>0{nil} {<= !!!9} 
-//  then
+//  if ob.parent<>0 then
 //  begin 
 //    par:= ob.parent; 
 //    object_to_mat4(ob,obmat); 
 
-//    if ob.partype and PARSLOW
-//    then
+//    if ob.partype and PARSLOW then
 //    Mat4CpyMat4(slowmat,ob.obmat); 
 
 //    case ob.partype and 15 of
 //      PAROBJECT:
 //      begin
 //        ok:= 0; 
-//        if par.type=OB_CURVE
-//        then
+//        if par.type=OB_CURVE then
 //        begin 
-//          if ({!!!a type cast? =>} {pCurve(}par.data).flag and CU_PATH
-//          then
+//          if ({!!!a type cast? =>} {pCurve(}par.data).flag and CU_PATH then
 //          begin 
 //            ob_parcurve(ob,par,tmat); 
 //            ok:= 1; 
 //          end;
 //        end;
-//        if ok<>0{nil} {<= !!!9} 
-//        then
+//        if ok<>0 then
 //        Mat4MulSerie(totmat,par.obmat,tmat,0); 
 //        else
 //        Mat4CpyMat4(totmat,par.obmat); 
@@ -1874,8 +1720,7 @@ end;
 //    (* totaal *)
 //    Mat4MulSerie(tmat,totmat,ob.parentinv,0); 
 //    Mat4MulSerie(ob.obmat,tmat,obmat,0); 
-//    if ob.partype and PARSLOW
-//    then
+//    if ob.partype and PARSLOW then
 //    begin 
 //      fac1:= 1.0 div (1.0+fabs(ob.sf)); 
 //      fac2:= 1.0-fac1; 
@@ -1898,8 +1743,7 @@ end;
 //  begin 
 //    object_to_mat4(ob,ob.obmat); 
 //  end;
-//  if ob.track<>0{nil} {<= !!!9} 
-//  then
+//  if ob.track<>0 then
 //  begin 
 
 //    VecSubf(vec,ob.obmat[3],ob.track.obmat[3]); 
@@ -1922,8 +1766,7 @@ end;
 
 //  Mat4One(workob.parentinv); 
 //  workob.parent:= par; 
-//  if par<>0{nil} {<= !!!9} 
-//  then
+//  if par<>0 then
 //  workob.track:= par.track; 
 //  workob.partype:= partype; 
 //  workob.par1:= par1; 
@@ -1985,8 +1828,7 @@ end;
 //    OB_SURF:
 //    begin
 //      cu:= ob.data; 
-//      if cu.bb=0
-//      then
+//      if cu.bb=0 then
 //      tex_space_curve(cu); 
 //      bb:= *(cu.bb); 
 //      for{while} a:=0 to Pred(8) { a++}
@@ -2002,11 +1844,9 @@ end;
 //    OB_SECTOR:
 //    begin
 //      me:= get_mesh(ob); 
-//      if me<>0{nil} {<= !!!9} 
-//      then
+//      if me<>0 then
 //      begin 
-//        if me.bb=0
-//        then
+//        if me.bb=0 then
 //        tex_space_mesh(me); 
 //        bb:= *(me.bb); 
 //        for{while} a:=0 to Pred(8) { a++}

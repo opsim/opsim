@@ -31,10 +31,6 @@ interface
 uses
 blender, util;
 
-//{$ifndef IPO_H}
-//{$define IPO_H}  
-//{$include "edit.h"	/* struct TransOb */}
-
   type
     pIpoKey = ^IpoKey;
     IpoKey = record

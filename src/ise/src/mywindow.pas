@@ -70,10 +70,7 @@ uses
   blender, blenglob, blendef,
   cfuncs;
 
-//(*     let op: winid's beginnen met 4, eerste 3 voor GL! *)
-////{$include "blender.h"}
-////{$include "screen.h"}
-////{$include "graphics.h"}
+(*     let op: winid's beginnen met 4, eerste 3 voor GL! *)
 
 var
 swincount: integer = 4;
@@ -85,16 +82,14 @@ mainwindow: bWindow;
 //win: pbWindow; 
 //begin
 
-//  if curswin<4
-// then
+//  if curswin<4 then
 //  begin 
 //    {*}x^:=glutGet(GLUT_WINDOW_WIDTH); 
 //    {*}y^:=glutGet(GLUT_WINDOW_HEIGHT); 
 //    exit;
 //  end;
 //  win:= swinarray[curswin]; 
-//  if win=nil
-// then
+//  if win=nil then
 //  exit;
 //  {*}x^:=win^.xmax-win^.xmin+1; 
 //  {*}y^:=win^.ymax-win^.ymin+1; 
@@ -106,12 +101,10 @@ mainwindow: bWindow;
 //begin
 //  {*}x^:=glutGet(GLUT_WINDOW_X); 
 //  {*}y^:=displaysizey-glutGet(GLUT_WINDOW_HEIGHT)-glutGet(GLUT_WINDOW_Y); 
-//  if curswin>=4
-// then
+//  if curswin>=4 then
 //  begin 
 //    win:= swinarray[curswin]; 
-//    if win<>nil 
-// then
+//    if win<>nil then
 //    begin 
 //      {*}x^+=win^.xmin; 
 //      {*}y^+=win^.ymin; 
@@ -124,16 +117,14 @@ mainwindow: bWindow;
 //win: pbWindow; 
 //begin
 
-//  if curswin=1
-// then
+//  if curswin=1 then
 //  begin 
 //    {*}x^:=*y:=nil; 
 //  end;
 //  else
 //  begin 
 //    win:= swinarray[curswin]; 
-//    if win=nil
-// then
+//    if win=nil then
 //    exit;
 //    {*}x^:=win^.xmin; 
 //    {*}y^:=win^.ymin; 
@@ -148,12 +139,10 @@ mainwindow: bWindow;
 
 //  glLoadMatrixf(mat); 
 //  win:= swinarray[curswin]; 
-//  if win=nil
-// then
+//  if win=nil then
 //  exit;
 //  glGetIntegerv(GL_MATRIX_MODE,@mode); 
-//  if mode=GL_MODELVIEW
-// then
+//  if mode=GL_MODELVIEW then
 //  Mat4CpyMat4(win^.viewmat,mat); 
 //  else
 //  Mat4CpyMat4(win^.winmat,mat); 
@@ -183,12 +172,10 @@ end;
 //begin
 
 //  win:= swinarray[curswin]; 
-//  if win=nil
-// then
+//  if win=nil then
 //  exit;
 //  glGetIntegerv(GL_MATRIX_MODE,@mode); 
-//  if mode=GL_MODELVIEW
-// then
+//  if mode=GL_MODELVIEW then
 //  Mat4CpyMat4(mat,win^.viewmat); 
 //  else
 //  Mat4CpyMat4(mat,win^.winmat); 
@@ -201,8 +188,7 @@ end;
 //begin
 
 //  win:= swinarray[curswin]; 
-//  if win=nil
-// then
+//  if win=nil then
 //  exit;
 //  Mat4MulMat4(tmat,mat,win^.viewmat); 
 //  Mat4CpyMat4(win^.viewmat,tmat); 
@@ -217,8 +203,7 @@ end;
 
 //  glMultMatrixf(mat); 
 //  win:= swinarray[curswin]; 
-//  if win=nil
-// then
+//  if win=nil then
 //  exit;
 //  glGetFloatv(GL_MODELVIEW_MATRIX, {pfloat(}win^.viewmat); 
 //end;
@@ -232,8 +217,7 @@ end;
 //begin
 
 //  win:= swinarray[curswin]; 
-//  if win=nil
-// then
+//  if win=nil then
 //  begin 
 //    glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}matproj); 
 //    glGetFloatv(GL_MODELVIEW_MATRIX, {pfloat(}matview); 
@@ -413,8 +397,7 @@ end;
 //  glLoadIdentity(); 
 //  glOrtho(x1,x2,y1,y2,n,f); 
 //  win:= swinarray[curswin]; 
-//  if win<>nil 
-// then
+//  if win<>nil then
 //  glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}win^.winmat); 
 //  glMatrixMode(GL_MODELVIEW); 
 //end;
@@ -428,8 +411,7 @@ end;
 //  glLoadIdentity(); 
 //  glFrustum(x1,x2,y1,y2,n,f); 
 //  win:= swinarray[curswin]; 
-//  if win<>nil 
-// then
+//  if win<>nil then
 //  glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}win^.winmat); 
 //  glMatrixMode(GL_MODELVIEW); 
 //end;
@@ -525,8 +507,7 @@ end;
 //begin
 
 //  retval:=nil; 
-//  if {not}0=fmtype
-// then
+//  if {not}0=fmtype then
 //  begin
 //    result:=nil; 
 //    exit;
@@ -584,8 +565,7 @@ end;
 
 //procedure setlinestyle(nr: integer); 
 //begin
-//  if nr=nil
-// then
+//  if nr=nil then
 //  begin 
 //    glDisable(GL_LINE_STIPPLE); 
 //  end;
@@ -639,20 +619,15 @@ end;
 //  mval:=glutGetMouseButton(); 
 //  qual:=glutGetQual(); 
 //  ret:=nil; 
-//  if mval and 1
-// then
+//  if mval and 1 then
 //  ret:= ret or (L_MOUSE); 
-//  if mval and 4
-// then
+//  if mval and 4 then
 //  ret:= ret or (M_MOUSE); 
-//  if mval and 2
-// then
+//  if mval and 2 then
 //  ret:= ret or (R_MOUSE); 
-//  if (U.flag and TWOBUTTONMOUSE))and((qual and GLUT_ACTIVE_ALT)
-// then
+//  if (U.flag and TWOBUTTONMOUSE))and((qual and GLUT_ACTIVE_ALT) then
 //  begin 
-//    if ret and L_MOUSE
-// then
+//    if ret and L_MOUSE then
 //    begin 
 //      ret:= ret and ( not L_MOUSE); 
 //      ret:= ret or (M_MOUSE); 
@@ -1488,12 +1463,10 @@ end;
 
 //procedure sdrawXORline(x0: integer;  y0: integer;  x1: integer;  y1: integer); 
 //begin
-//  if x0=x1)and(y0=y1
-// then
+//  if x0=x1)and(y0=y1 then
 //  exit;
 //  (* sdrawXORline expects current blender win coordinates *)
-//  if curswin>3
-// then
+//  if curswin>3 then
 //  begin 
 //    x0:= x0 + (curarea.winrct.xmin); 
 //    x1:= x1 + (curarea.winrct.xmin); 
@@ -1513,33 +1486,26 @@ end;
 
 //  flags:=(0,0,0,0); (* automatische onthoud, max 4 lijnen *)
 //  (* flush *)
-//  if nr=-1
-// then
+//  if nr=-1 then
 //  begin 
-//    if flags[0]<>nil 
-// then
+//    if flags[0]<>nil then
 //    sdrawXORline(old[0][0],old[0][1],old[0][2],old[0][3]); 
 //    flags[0]:=nil; 
-//    if flags[1]<>nil 
-// then
+//    if flags[1]<>nil then
 //    sdrawXORline(old[1][0],old[1][1],old[1][2],old[1][3]); 
 //    flags[1]:=nil; 
-//    if flags[2]<>nil 
-// then
+//    if flags[2]<>nil then
 //    sdrawXORline(old[2][0],old[2][1],old[2][2],old[2][3]); 
 //    flags[2]:=nil; 
-//    if flags[3]<>nil 
-// then
+//    if flags[3]<>nil then
 //    sdrawXORline(old[3][0],old[3][1],old[3][2],old[3][3]); 
 //    flags[3]:=nil; 
 //  end;
 //  else
 //  begin 
-//    if nr>=nil)and(nr<4
-// then
+//    if nr>=nil)and(nr<4 then
 //    begin 
-//      if flags[nr]<>nil 
-// then
+//      if flags[nr]<>nil then
 //      sdrawXORline(old[nr][0],old[nr][1],old[nr][2],old[nr][3]); 
 //      old[nr][0]:= x0; 
 //      old[nr][1]:= y0; 
@@ -1580,8 +1546,7 @@ end;
 //  {$ifdef MESA31}
 //  {$endif}
 //  exit;
-//  if x0=x1)and(y0=y1
-// then
+//  if x0=x1)and(y0=y1 then
 //  {$if defined(__sgi) or defined(__SUN)}
 //  exit;
 //  glDisable(GL_DITHER); 
@@ -1620,33 +1585,26 @@ end;
 //  glEnable(GL_BLEND); 
 //  glLogicOp(GL_INVERT); 
 //  (* flush *)
-//  if nr=-1
-// then
+//  if nr=-1 then
 //  begin 
-//    if flags[0]<>nil 
-// then
+//    if flags[0]<>nil then
 //    sdrawline(old[0][0],old[0][1],old[0][2],old[0][3]); 
 //    flags[0]:=nil; 
-//    if flags[1]<>nil 
-// then
+//    if flags[1]<>nil then
 //    sdrawline(old[1][0],old[1][1],old[1][2],old[1][3]); 
 //    flags[1]:=nil; 
-//    if flags[2]<>nil 
-// then
+//    if flags[2]<>nil then
 //    sdrawline(old[2][0],old[2][1],old[2][2],old[2][3]); 
 //    flags[2]:=nil; 
-//    if flags[3]<>nil 
-// then
+//    if flags[3]<>nil then
 //    sdrawline(old[3][0],old[3][1],old[3][2],old[3][3]); 
 //    flags[3]:=nil; 
 //  end;
 //  else
 //  begin 
-//    if nr>=nil)and(nr<4
-// then
+//    if nr>=nil)and(nr<4 then
 //    begin 
-//      if flags[nr]<>nil 
-// then
+//      if flags[nr]<>nil then
 //      sdrawline(old[nr][0],old[nr][1],old[nr][2],old[nr][3]); 
 //      old[nr][0]:= x0; 
 //      old[nr][1]:= y0; 
@@ -1682,15 +1640,12 @@ end;
 //begin
 
 //  gcvals.font:=nil; 
-//  if xdraw=nil
-// then
+//  if xdraw=nil then
 //  xdraw:= glXGetCurrentDrawable(); 
 //  dep:= glutGet(GLUT_WINDOW_BUFFER_SIZE); 
-//  if dep<12
-// then
+//  if dep<12 then
 //  printf('Error: screen depth (%d) should be at least 15.\n',dep); 
-//  if (G.f and G_DEBUG) <> 0
-// then
+//  if (G.f and G_DEBUG) <> 0 then
 //  begin 
 //    printf('Display: %d %d\n',displaysizex,displaysizey); 
 //    PRINT(d,dep); 
@@ -1698,12 +1653,10 @@ end;
 //  gcvals.foreground:=nil; 
 //  blackGC:= XCreateGC(__glutDisplay,xdraw,GCForeground,@gcvals); 
 //  {$ifdef __sgi}
-//  if dep=15)or(dep=16
-// then
+//  if dep=15)or(dep=16 then
 //  {$else}
 //  begin 
-//    if dep=15
-// then
+//    if dep=15 then
 //    {$endif}
 //    begin 
 //      gcvals.foreground:= (10+(10 shl 5)+(10 shl 10)); 
@@ -1745,14 +1698,11 @@ end;
 
 //    ret:=nil; 
 //    XQueryPointer(__glutDisplay,RootWindow(__glutDisplay,__glutScreen),@root, and child,@root_x,@root_y,@win_x,@win_y,@Xqual); 
-//    if Xqual and ShiftMask
-// then
+//    if Xqual and ShiftMask then
 //    ret:= ret or (LR_SHIFTKEY); 
-//    if Xqual and ControlMask
-// then
+//    if Xqual and ControlMask then
 //    ret:= ret or (LR_CTRLKEY); 
-//    if Xqual and Mod1Mask
-// then
+//    if Xqual and Mod1Mask then
 //    ret:= ret or (LR_ALTKEY); 
 //    begin
 //      result:= ret; 
@@ -1775,20 +1725,15 @@ end;
 
 //    ret:=nil; 
 //    XQueryPointer(__glutDisplay,RootWindow(__glutDisplay,__glutScreen),@root, and child,@root_x,@root_y,@win_x,@win_y,@Xqual); 
-//    if Xqual and Button1Mask
-// then
+//    if Xqual and Button1Mask then
 //    ret:= ret or (L_MOUSE); 
-//    if Xqual and Button2Mask
-// then
+//    if Xqual and Button2Mask then
 //    ret:= ret or (M_MOUSE); 
-//    if Xqual and Button3Mask
-// then
+//    if Xqual and Button3Mask then
 //    ret:= ret or (R_MOUSE); 
-//    if (U.flag and TWOBUTTONMOUSE))and((Xqual and Mod1Mask)
-// then
+//    if (U.flag and TWOBUTTONMOUSE))and((Xqual and Mod1Mask) then
 //    begin 
-//      if ret and L_MOUSE
-// then
+//      if ret and L_MOUSE then
 //      begin 
 //        ret:= ret and ( not L_MOUSE); 
 //        ret:= ret or (M_MOUSE); 
@@ -1821,20 +1766,15 @@ end;
 //  id: smallint; 
 //  begin
 
-//    if xdraw=nil
-// then
+//    if xdraw=nil then
 //    xdraw:= glXGetCurrentDrawable(); (* clip: erg belangrijk: 1 pixel teveel en X knalt eruit *)
-//    if x<0
-// then
+//    if x<0 then
 //    x:=nil; 
-//    if y<0
-// then
+//    if y<0 then
 //    y:=nil; 
-//    if x+sx>=G.curscreen.sizex
-// then
+//    if x+sx>=G.curscreen.sizex then
 //    sx:= G.curscreen.sizex-x-1; 
-//    if y+sy>=G.curscreen.sizey
-// then
+//    if y+sy>=G.curscreen.sizey then
 //    sy:= G.curscreen.sizey-y-1; (* only mesa 3.0 (libc5 for now) will have the swap hack *)
 //    {$ifdef MESA30}
 //    glXCopySubBufferMESA(__glutDisplay,xdraw,x,y,sx,sy); 
@@ -1866,8 +1806,7 @@ end;
 //  gc: GC; 
 //  begin
 
-//    if ximage)and(xdraw
-// then
+//    if ximage)and(xdraw then
 //    begin 
 //      gc:= XCreateGC(__glutDisplay,xdraw,0,0{nil}); 
 //      XSetFunction(__glutDisplay,gc,GXcopy); 
@@ -1886,45 +1825,35 @@ end;
 //  sizey: integer; 
 //  begin
 
-//    if xdraw=nil
-// then
+//    if xdraw=nil then
 //    xdraw:= glXGetCurrentDrawable(); 
-//    if ximage=nil{nil}
-// then
+//    if ximage=nil{nil} then
 //    begin 
 //      (* clip: erg belangrijk: 1 pixel teveel en X knalt eruit *)
 //      (* also: blenderscreen outside 'Display': then prtend the window is smaller! *)
-//      if G.curscreen.startx<0
-// then
+//      if G.curscreen.startx<0 then
 //      startx:= -G.curscreen.startx; 
 //      else
 //      startx:=nil; 
-//      if G.curscreen.starty<0
-// then
+//      if G.curscreen.starty<0 then
 //      starty:= -G.curscreen.starty; 
 //      else
 //      starty:=nil; 
-//      if G.curscreen.sizex+G.curscreen.startx>displaysizex
-// then
+//      if G.curscreen.sizex+G.curscreen.startx>displaysizex then
 //      sizex:= displaysizex-G.curscreen.startx; 
 //      else
 //      sizex:= G.curscreen.sizex; 
-//      if G.curscreen.sizey+G.curscreen.starty>displaysizey
-// then
+//      if G.curscreen.sizey+G.curscreen.starty>displaysizey then
 //      sizey:= displaysizey-G.curscreen.starty; 
 //      else
 //      sizey:= G.curscreen.sizey; (* OK: *)
-//      if x<startx
-// then
+//      if x<startx then
 //      x:= startx; 
-//      if y<starty
-// then
+//      if y<starty then
 //      y:= starty; 
-//      if x+sx>=sizex
-// then
+//      if x+sx>=sizex then
 //      sx:= sizex-x-1; 
-//      if y+sy>=sizey
-// then
+//      if y+sy>=sizey then
 //      sy:= sizey-y-1; 
 //      ov_x:= x; 
 //      ov_y:= (G.curscreen.sizey-y-sy); 

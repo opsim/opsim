@@ -61,20 +61,6 @@ uses
 
 {$endif}
 
-//{$if not defined BEOS and not defined WINDOWS}
-//  { patch voor struct Object  }
-//{$define _XtObject_h}
-//{$include <X11/Xlib.h>}
-//{$include <X11/StringDefs.h>}
-//{$include <X11/keysym.h>  }
-//{$include <GL/glx.h> }
-//{$endif}
-
-{ $include "objfnt.h"}
-{ $include "Button.h"}
-{ $include "screen.h"}
-{ $include "mydevice.h"}
-
   procedure  LINE2S(v1, v2: PGLshort);	//glBegin(GL_LINES); glVertex2sv((short *)(v1)); glVertex2sv((short *)(v2)); glEnd(); }
   procedure  LINE3S(v1, v2: PGLshort);	//glBegin(GL_LINES); glVertex3sv((short *)(v1)); glVertex3sv((short *)(v2)); glEnd(); }
   procedure  LINE2I(v1, v2: PGLint);	//glBegin(GL_LINES); glVertex2iv((int *)(v1)); glVertex2iv((int *)(v2)); glEnd(); }
@@ -86,7 +72,6 @@ uses
     IRIS = 1;
     ELAN = 2;
     ENTRY = 3;
-{$undef VIDEO}
     VIDEO = 4;
     M_O2 = 5;
   { used for glSelect  }

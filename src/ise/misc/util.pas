@@ -480,7 +480,7 @@ end;
     { return type might be wrong }
     function MAKE_ID(a,b,c,d : pchar) : longint;
     begin
-      {$IFDEF ENDIAN_LITTLE}
+      {$ifdef ENDIAN_LITTLE}
       MAKE_ID:=((((longint(a)) shl 24) or ((longint(b)) shl 16)) or (longint(c) shl 8)) or longint(d);
       {$else}
       MAKE_ID:=((((longint(d)) shl 24) or ((longint(c)) shl 16)) or (longint(b) shl 8)) or longint(a);
@@ -636,7 +636,7 @@ end;
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    if isdigit(string[i]) then
 //    begin 
-//      if found<>nil  then
+//      if found<>nil then
 //      begin 
 //        nums:= i; 
 //      end;
@@ -649,34 +649,34 @@ end;
 //    end;
 //    else
 //    begin 
-//      if found<>nil  then
+//      if found<>nil then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //  end;
-//  if found<>nil  then
+//  if found<>nil then
 //  begin 
-//    if staart<>nil  then
+//    if staart<>nil then
 //    strcpy(staart,@string[nume+1]); 
-//    if kop<>nil  then
+//    if kop<>nil then
 //    begin 
 //      strcpy(kop,string); 
 //      kop[nums]:=nil; 
 //    end;
-//    if numlen<>nil  then
+//    if numlen<>nil then
 //    {*}numlen^:=nume-nums+1; 
 //    begin
 //      result:= ( {integer(}atoi(@(string[nums])));
 //      exit;
 //    end;
 //  end;
-//  if staart<>nil  then
+//  if staart<>nil then
 //  strcpy(staart,string+len); 
-//  if kop<>nil  then
+//  if kop<>nil then
 //  begin 
 //    strncpy(kop,string,len); 
 //    kop[len]:=nil; 
 //  end;
-//  if numlen<>nil  then
+//  if numlen<>nil then
 //  {*}numlen^:=nil; 
 //  begin
 //    result:=nil; 
@@ -965,7 +965,7 @@ end;
 //begin
 
 //  count:=nil; 
-//  if listbase<>nil  then
+//  if listbase<>nil then
 //  begin 
 //    link:= listbase^.first; 
 //    while link
@@ -1338,7 +1338,7 @@ begin
 
   if memh=nil then
   begin
-    memory_error('free','attempt to free NULL pointer');
+    memory_error('free','attempt to free nil pointer');
       exit(-1);
    end;
   if sizeof(longint)=8 then
@@ -1599,7 +1599,7 @@ end;
 //  begin 
 //    lseek(file,0,SEEK_SET); 
 //    mem:= mallocN(size,'load_to_mem'); 
-//    if mem<>nil  then
+//    if mem<>nil then
 //    begin 
 //      if read(file,mem,size)<>size then
 //      begin 

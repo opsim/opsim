@@ -450,10 +450,6 @@ GL, util, blendef;
  * de lijst geflushed.
  *)
 
-////{$include "blender.h"}
-////{$include "graphics.h"}
-////{$include "screen.h"}
-
 (* ************ GLOBALS ************* *)
 
 var
@@ -1328,8 +1324,7 @@ end;
 //fdrawline(x1+f,y2-1,x1+f+h,y2-1);
 //cpack($0);
 //fdrawline(x1+f,y1+1,x1+f+h,y1+1);
-//if Bnotext<>0
-//then
+//if Bnotext<>0 then
 //exit;
 //(* tekst rechts *)
 //h:= 12;
@@ -1342,8 +1337,7 @@ end;
 //s:= Bxasp*fmgetstrwidth(BGfont,str1);
 //cpack(bc.back);
 //(* tekst links *)
-//if {*}oud^=0
-//then
+//if {*}oud^=0 then
 //{*}oud^:=s;
 //glRectf(x1-*oud-8,y1-3,x1-8,y1+h-4);
 //{*}oud^:=s;
@@ -1366,12 +1360,10 @@ end;
 //var
 //s: smallint;
 //tbox_embossbox(x1,y1,x2,y2,sel);
-//if str[0]=0
-//then
+//if str[0]=0 then
 //exit;
 //s:= Bxasp*fmgetstrwidth(BGfont,str);
-//if Btextleft<>0
-//then
+//if Btextleft<>0 then
 //x1:= x1+4;
 //else
 //x1:= (x1+x2-s+1) div 2;
@@ -1402,8 +1394,7 @@ end;
 //cp2: pchar;
 //SetButCol(col);
 //bc:=  and BGbutcol[col]; (* background *)
-//if sel<>2
-//then
+//if sel<>2 then
 //begin
 //  if sel<>0 then
 //  cpack(bc.border3);
@@ -1413,20 +1404,17 @@ end;
 //end;
 //EmbossBoxN( {float(}x1, {float(}y1, {float(}x2, {float(}y2,sel);
 //(* after this function, textbutton needs color *)
-//if sel<>0
-//then
+//if sel<>0 then
 //cpack(bc.pen_sel);
 //else
 //cpack($0);
-//if strncmp(str,'ICON',4)=0
-//then
+//if strncmp(str,'ICON',4)=0 then
 //begin
 //  sscanf(str+4,'%d %d %d\n',@iconr,@icox,@icoy);
 //  bDrawIcon(iconr,bc.paper_sel,icox+BGaddicon,icoy,(x1+x2) div 2,(y1+y2) div 2,(y2-y1));
 //end;
 //else
-//if str[0]<>0
-//then
+//if str[0]<>0 then
 //begin
 //  while (s:=Bxasp*fmgetstrwidth(BGfont,str))>x2-x1
 //  do
@@ -1468,28 +1456,24 @@ end;
 //cp2: pchar;
 //SetButCol(col);
 //bc:=  and BGbutcol[col]; (* background *)
-//if sel<>2
-//then
+//if sel<>2 then
 //begin
 //  cpack(bc.paper_sel);
 //  glRects(x1+1,y1+1,x2-1,y2-1);
 //end;
 //EmbossBoxN( {float(}x1, {float(}y1, {float(}x2, {float(}y2,1);
 //(* after this function, textbutton needs color *)
-//if sel<>0
-//then
+//if sel<>0 then
 //cpack(bc.pen_sel);
 //else
 //cpack($0);
-//if strncmp(str,'ICON',4)=0
-//then
+//if strncmp(str,'ICON',4)=0 then
 //begin
 //  sscanf(str+4,'%d %d %d\n',@iconr,@icox,@icoy);
 //  bDrawIcon(iconr,bc.paper_sel,icox+BGaddicon,icoy,(x1+x2) div 2,(y1+y2) div 2,(y2-y1));
 //end;
 //else
-//if str[0]<>0
-//then
+//if str[0]<>0 then
 //begin
 //  while (s:=Bxasp*fmgetstrwidth(BGfont,str))>x2-x1
 //  do
@@ -1899,15 +1883,13 @@ end;
 //  end;
 //endx:= startx+width*columns;
 //endy:= starty+height;
-//if endx>xmax
-//then
+//if endx>xmax then
 //begin
 //  mousemove[0]:= xmax-endx-10;
 //endx:= xmax-10;
 //startx:= endx-width*columns;
 //end;
-//if endy>ymax
-//then
+//if endy>ymax then
 //begin
 //  mousemove[1]:= ymax-endy-10;
 //endy:= ymax-10;
@@ -1999,23 +1981,20 @@ end;
 //end;
 //endpupdraw();
 //freeN(str);
-//if winakt<>0
-//then
+//if winakt<>0 then
 //qenter(INPUTCHANGE,winakt);
 //for{while} val:=0 to Pred(redrawcount) { val++}
 //do
 //qenter(REDRAW,redrawq[val]);
 //warp_pointer(mousemove[0],mousemove[1]);
-//if value=2)and(act>=0)and(act<items
-//then
+//if value=2)and(act>=0)and(act<items then
 //begin
 //  value:= retp[act];
 //  fvalue:=  {float(}value;
 //  SetButVal(but,fvalue,value);
 //end;
 //else
-//if value=3
-//then
+//if value=3 then
 //begin
 //  (* maak er een tekstbut van *)
 
@@ -2579,8 +2558,7 @@ end;
 //a: smallint;
 //s: array [0..119] of char;
 //butname: array [0..119] of char;
-//if type and BUTPOIN
-//then
+//if type and BUTPOIN then
 //begin
 //  (* er is pointer nodig *)
 //  if poin=0 then
@@ -2594,8 +2572,7 @@ end;
 //    end;
 //  end;
 //end;
-//if BGteller>=BGaantal-1
-//then
+//if BGteller>=BGaantal-1 then
 //begin
 //  type
 //  But = record
@@ -2630,8 +2607,7 @@ end;
 //inc(BGteller);
 //b.type:= type;
 //b.nr:= nr; (* ga er van uit dat de font en window goed staan *)
-//if lstrlen(str)>=MAXBUTSTR-1
-//then
+//if lstrlen(str)>=MAXBUTSTR-1 then
 //begin
 //  b.str:= callocN(lstrlen(str)+2,'DefBut');
 //  strcpy(b.str,str);
@@ -2656,8 +2632,7 @@ end;
 //b.col:= BGcol;
 //b.win:= BGwin;
 //b.drawtype:= BGdrawtype; (* pixel-breedte naam: *)
-//if (type and BUTTYPE)=MENU
-//then
+//if (type and BUTTYPE)=MENU then
 //begin
 //  GetButVal(b,@value,@lvalue);
 //  getname_menu_but(butname,b.str,lvalue);
@@ -2674,14 +2649,12 @@ end;
 //  b.rt[0]:= 0;
 //end;
 //(* automatische breedte *)
-//if x2=0
-//then
+//if x2=0 then
 //begin
 //  x2:= b.rt[0]+6;
 //  b.x2:= (x1+x2);
 //end;
-//if (type and BUTTYPE)=NUM
-//then
+//if (type and BUTTYPE)=NUM then
 //begin
 //  (* spatie toevoegen achter naam *)
 //  a:= lstrlen(b.str);
@@ -2721,8 +2694,7 @@ end;
 //But = record
 //end;
 //but:= DefBut(type,nr,str,x1,y1,x2,y2,poin,min,max,a1,a2);
-//if but<>0
-//then
+//if but<>0 then
 //begin
 //  but.tip:= tip;
 //end;

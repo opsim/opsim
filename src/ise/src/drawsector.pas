@@ -30,13 +30,7 @@ unit drawsector;
 
 interface
 
-//{$ifndef FREE}
-
-//{$include "blender.h"}
-//{$include "graphics.h"}
-//{$include "sector.h"}
-
-//{$if defined(GL_EXT_texture_object)}
+{$if defined(GL_EXT_texture_object)}
 
 //function glBindTexture(A: integer; B: integer): integer; {<= !!!6 unknown macro}
 
@@ -46,14 +40,14 @@ interface
 
 //function glPolygonOffset(A: integer; B: integer): integer; {<= !!!6 unknown macro}
 
-//{$else}
+{$else}
 
 //const
 //GL_FUNC_ADD_EXT = GL_FUNC_ADD; 
 //(* #define GL_FUNC_REVERSE_SUBTRACT_EXT GL_FUNC_REVERSE_SUBTRACT *)
 //(* #define GL_POLYGON_OFFSET_EXT   GL_POLYGON_OFFSET *)
 
-//{$endif}
+{$endif}
 
 procedure init_realtime_GL;
 
@@ -103,14 +97,12 @@ uses
 
 //procedure free_realtime_image(ima: pImage); 
 //begin
-//  if ima.bindcode<>0 
-// then
+//  if ima.bindcode<>0 then
 //  begin 
 //    glDeleteTextures(1,@ima.bindcode); 
 //    ima.bindcode:= 0; 
 //  end;
-//  if ima.repbind<>0 
-// then
+//  if ima.repbind<>0 then
 //  begin 
 //    glDeleteTextures(ima.totbind,ima.repbind); 
 //    freeN(ima.repbind); 
@@ -123,20 +115,17 @@ uses
 //a: integer; 
 //begin
 
-//  if ima=0)or(ima.ibuf=0
-// then
+//  if ima=0)or(ima.ibuf=0 then
 //  exit;
 
-//  if ima.repbind<>0 
-// then
+//  if ima.repbind<>0 then
 //  begin 
 //    glDeleteTextures(ima.totbind,ima.repbind); 
 //    freeN(ima.repbind); 
 //    ima.repbind:= 0; 
 //  end;
 //  ima.totbind:= ima.xrep*ima.yrep; 
-//  if ima.totbind>1
-// then
+//  if ima.totbind>1 then
 //  begin 
 //    ima.repbind:= callocN(sizeof(int)*ima.totbind,'repbind'); 
 //  end;
@@ -162,11 +151,9 @@ uses
 //  alphamode:=-1; 
 //  lasttface:=0; 
 
-//  if tface=0
-// then
+//  if tface=0 then
 //  begin 
-//    if lasttface=0
-// then
+//    if lasttface=0 then
 //    begin
 //      result:= 0; 
 //      exit;
@@ -174,8 +161,7 @@ uses
 //    lasttface:= 0; 
 //    curtile:= 0; 
 //    curpage:= 0; 
-//    if curmode<>0
-// then
+//    if curmode<>0 then
 //    begin 
 //      glMatrixMode(GL_TEXTURE); 
 //      glLoadMatrixf(texmat1); 
@@ -191,23 +177,19 @@ uses
 //    end;
 //  end;
 //  lasttface:= tface; 
-//  if alphamode<>tface.transp
-// then
+//  if alphamode<>tface.transp then
 //  begin 
 //    alphamode:= tface.transp; 
-//    if alphamode<>0 
-// then
+//    if alphamode<>0 then
 //    begin 
 //      glEnable(GL_BLEND); 
-//      if alphamode=TF_ADD
-// then
+//      if alphamode=TF_ADD then
 //      begin 
 //        glBlendFunc(GL_ONE,GL_ONE); 
 //      end;
 //      (*  glBlendEquationEXT(GL_FUNC_ADD_EXT); *)
 //      else
-//      if alphamode=TF_ALPHA
-// then
+//      if alphamode=TF_ALPHA then
 //      begin 
 //        glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA); 
 //      end;
@@ -223,19 +205,16 @@ uses
 //  ima:= tface.tpage; 
 //  tilemode:= tface.mode and TF_TILES; 
 
-//  if ima=curpage)and(curtile=tface.tile)and(tilemode=curmode
-// then
+//  if ima=curpage)and(curtile=tface.tile)and(tilemode=curmode then
 //  begin
 //    result:= ima<>0; 
 //    exit;
 
 //  end;
-//  if tilemode<>curmode
-// then
+//  if tilemode<>curmode then
 //  begin 
 //    glMatrixMode(GL_TEXTURE); 
-//    if tilemode<>0 
-// then
+//    if tilemode<>0 then
 //    begin 
 //      glLoadMatrixf(texmat4); 
 //    end;
@@ -245,8 +224,7 @@ uses
 
 //  end;
 
-//  if ima=0)or(ima.ok=0
-// then
+//  if ima=0)or(ima.ok=0 then
 //  begin 
 //    glDisable(GL_TEXTURE_2D); 
 //    curtile:= tface.tile; 
@@ -258,15 +236,13 @@ uses
 //    end;
 //  end;
 
-//  if ima.ibuf=0
-// then
+//  if ima.ibuf=0 then
 //  begin 
 
 //    strcpy(str,ima.name); 
 //    convertstringcode(str); 
 //    ima.ibuf:= loadiffname(str,LI_rect); 
-//    if ima.ibuf=0
-// then
+//    if ima.ibuf=0 then
 //    begin 
 //      ima.ok:= 0; 
 //      curtile:= tface.tile; 
@@ -281,32 +257,25 @@ uses
 //    end;
 //  end;
 
-//  if ima.tpageflag and IMA_TWINANIM
-// then
+//  if ima.tpageflag and IMA_TWINANIM then
 //  curtile:= ima.lastframe; 
 //  else
 //  curtile:= tface.tile; 
-//  if tilemode<>0 
-// then
+//  if tilemode<>0 then
 //  begin 
-//    if ima.repbind=0
-// then
+//    if ima.repbind=0 then
 //    make_repbind(ima); 
-//    if curtile>=ima.totbind
-// then
+//    if curtile>=ima.totbind then
 //    curtile:= 0; (* this happens when you change repeat buttons *)
-//    if ima.repbind<>0 
-// then
+//    if ima.repbind<>0 then
 //    bind:= ima.repbind+curtile; 
 //    else
 //    bind:= @ima.bindcode; 
-//    if {*}bind^=0
-// then
+//    if {*}bind^=0 then
 //    begin 
 //      texwindx:= ima.ibuf.x div ima.xrep; 
 //      texwindy:= ima.ibuf.y div ima.yrep; 
-//      if curtile>=ima.xrep*ima.yrep
-// then
+//      if curtile>=ima.xrep*ima.yrep then
 //      curtile:= ima.xrep*ima.yrep-1; 
 //      texwinsy:= curtile div ima.xrep; 
 //      texwinsx:= curtile-texwinsy*ima.xrep; 
@@ -320,8 +289,7 @@ uses
 //  else
 //  begin 
 //    bind:= @ima.bindcode; 
-//    if {*}bind^=0
-// then
+//    if {*}bind^=0 then
 //    begin 
 //      tpx:= ima.ibuf.x; 
 //      tpy:= ima.ibuf.y; 
@@ -329,12 +297,10 @@ uses
 //    end;
 //  end;
 
-//  if {*}bind^=0
-// then
+//  if {*}bind^=0 then
 //  begin 
 //    glGenTextures(1,bind); 
-//    if (G.f and G_DEBUG) <> 0 
-// then
+//    if (G.f and G_DEBUG) <> 0 then
 //    begin 
 //      PRINT(s,ima.id.name+2); 
 //      PRINT2(d,d,*bind,tpx); 
@@ -342,12 +308,10 @@ uses
 //    end;
 //    glBindTexture(GL_TEXTURE_2D,*bind); 
 
-//    if tilemode<>0 
-// then
+//    if tilemode<>0 then
 //    glPixelStorei(GL_UNPACK_ROW_LENGTH,ima.ibuf.x); 
 //    glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,tpx,tpy,0,GL_RGBA,GL_UNSIGNED_BYTE,rect); 
-//    if tilemode<>0 
-// then
+//    if tilemode<>0 then
 //    glPixelStorei(GL_UNPACK_ROW_LENGTH,0); 
 //    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); 
 //    (* glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); *)
@@ -371,11 +335,9 @@ uses
 //procedure get_co_portal(se: pSector;  type: integer;  ofs: pfloat;  cent: pfloat); 
 //begin
 //  cent[0]:= cent[1]:=cent[2]:=0.0; 
-//  if type=PO_XPOS)or(type=PO_XNEG
-// then
+//  if type=PO_XPOS)or(type=PO_XNEG then
 //  begin 
-//    if type=PO_XPOS
-// then
+//    if type=PO_XPOS then
 //    cent[0]:= 0.98*se.size[0]; 
 //    else
 //    cent[0]:= -0.98*se.size[0]; 
@@ -384,11 +346,9 @@ uses
 
 //  end;
 //  else
-//  if type=PO_YPOS)or(type=PO_YNEG
-// then
+//  if type=PO_YPOS)or(type=PO_YNEG then
 //  begin 
-//    if type=PO_YPOS
-// then
+//    if type=PO_YPOS then
 //    cent[1]:= 0.98*se.size[1]; 
 //    else
 //    cent[1]:= -0.98*se.size[1]; 
@@ -397,11 +357,9 @@ uses
 
 //  end;
 //  else
-//  if type=PO_ZPOS)or(type=PO_ZNEG
-// then
+//  if type=PO_ZPOS)or(type=PO_ZNEG then
 //  begin 
-//    if type=PO_ZPOS
-// then
+//    if type=PO_ZPOS then
 //    cent[2]:= 0.98*se.size[2]; 
 //    else
 //    cent[2]:= -0.98*se.size[2]; 
@@ -423,19 +381,16 @@ uses
 //begin
 
 //  size:= 0.1*MAX3(se.size[0],se.size[1],se.size[2]); 
-//  if size>0.5
-// then
+//  if size>0.5 then
 //  size:= 0.5; 
 //  get_co_portal(se,po.type,po.ofs,cent); 
-//  if po.type=PO_XPOS)or(po.type=PO_XNEG
-// then
+//  if po.type=PO_XPOS)or(po.type=PO_XNEG then
 //  begin 
 //    cox:= 1; 
 //    coy:= 2; 
 //  end;
 //  else
-//  if po.type=PO_YPOS)or(po.type=PO_YNEG
-// then
+//  if po.type=PO_YPOS)or(po.type=PO_YNEG then
 //  begin 
 //    cox:= 0; 
 //    coy:= 2; 
@@ -447,13 +402,11 @@ uses
 //  end;
 //  glGetFloatv(GL_CURRENT_COLOR,col); 
 
-//  if G.f and G_BACKBUFSEL
-// then
+//  if G.f and G_BACKBUFSEL then
 //  ; 
 //  else
 //  begin 
-//    if po.sector<>0 
-// then
+//    if po.sector<>0 then
 //    glColor3ub(0,255,0); 
 //    else
 //    glColor3ub(0,0,0); 
@@ -471,20 +424,16 @@ uses
 //  glVertex3fv(cent); 
 //  cent[cox]:= cent[cox] + (size); 
 //  glEnd(); 
-//  if G.f and G_BACKBUFSEL
-// then
+//  if G.f and G_BACKBUFSEL then
 //  exit;
 
-//  if act<>0 
-// then
+//  if act<>0 then
 //  glColor3ub(255,255,255); 
 //  else
-//  if po.sector<>0 
-// then
+//  if po.sector<>0 then
 //  glColor3ub(225,200,0); 
 //  else
-//  if col[0]<>0.0
-// then
+//  if col[0]<>0.0 then
 //  glColor3ub(150,50,150); 
 //  else
 //  glColor3ub(50,50,50); 
@@ -522,8 +471,7 @@ uses
 //a: integer; 
 //begin
 
-//  if me=0)or(me.tface=0
-// then
+//  if me=0)or(me.tface=0 then
 //  exit;
 
 //  mface:= me.mface; 
@@ -540,21 +488,18 @@ uses
 //  inc(tface); 
 //  do
 //  begin 
-//    if mface.v3=0
-// then
+//    if mface.v3=0 then
 //    begin
 //      {!!!7 possible troubles with "for" =>}
 //      continue
 //    end; 
-//    if (tface.flag and TF_HIDE)
-// then
+//    if (tface.flag and TF_HIDE) then
 //    begin 
 
 //      v1:= (me.mvert+mface.v1).co; 
 //      v2:= (me.mvert+mface.v2).co; 
 //      v3:= (me.mvert+mface.v3).co; 
-//      if mface.v4<>0 
-// then
+//      if mface.v4<>0 then
 //      v4:= (me.mvert+mface.v4).co; 
 //      else
 //      v4:= 0; 
@@ -562,8 +507,7 @@ uses
 //      glVertex3fv(v1); 
 //      glVertex3fv(v2); 
 //      glVertex3fv(v3); 
-//      if mface.v4<>0 
-// then
+//      if mface.v4<>0 then
 //      glVertex3fv(v4); 
 //      glEnd(); 
 //    end;
@@ -582,8 +526,7 @@ uses
 //a: integer; 
 //begin
 
-//  if me=0)or(me.tface=0
-// then
+//  if me=0)or(me.tface=0 then
 //  exit;
 
 //  glDisable(GL_DEPTH_TEST); 
@@ -599,32 +542,27 @@ uses
 //  inc(tface); 
 //  do
 //  begin 
-//    if mface.v3=0
-// then
+//    if mface.v3=0 then
 //    begin
 //      {!!!7 possible troubles with "for" =>}
 //      continue
 //    end; 
-//    if tface.flag and ACTIVE
-// then
+//    if tface.flag and ACTIVE then
 //    begin
 //      {!!!7 possible troubles with "for" =>}
 //      continue
 //    end; 
-//    if tface.flag and TF_HIDE
-// then
+//    if tface.flag and TF_HIDE then
 //    begin
 //      {!!!7 possible troubles with "for" =>}
 //      continue
 //    end; 
-//    if tface.flag and SELECT
-// then
+//    if tface.flag and SELECT then
 //    begin 
 //      v1:= (me.mvert+mface.v1).co; 
 //      v2:= (me.mvert+mface.v2).co; 
 //      v3:= (me.mvert+mface.v3).co; 
-//      if mface.v4<>0 
-// then
+//      if mface.v4<>0 then
 //      v4:= (me.mvert+mface.v4).co; 
 //      else
 //      v4:= 0; 
@@ -633,8 +571,7 @@ uses
 //      glVertex3fv(v1); 
 //      glVertex3fv(v2); 
 //      glVertex3fv(v3); 
-//      if v4<>0 
-// then
+//      if v4<>0 then
 //      glVertex3fv(v4); 
 //      glEnd(); 
 //      cpack($FFFFFF); 
@@ -644,8 +581,7 @@ uses
 //      glVertex3fv(v1); 
 //      glVertex3fv(v2); 
 //      glVertex3fv(v3); 
-//      if v4<>0 
-// then
+//      if v4<>0 then
 //      glVertex3fv(v4); 
 //      glEnd(); 
 //      setlinestyle(0); 
@@ -662,21 +598,18 @@ uses
 //  inc(tface); 
 //  do
 //  begin 
-//    if mface.v3=0
-// then
+//    if mface.v3=0 then
 //    begin
 //      {!!!7 possible troubles with "for" =>}
 //      continue
 //    end; 
-//    if (tface.flag and ACTIVE))and((tface.flag and SELECT)
-// then
+//    if (tface.flag and ACTIVE))and((tface.flag and SELECT) then
 //    begin 
 
 //      v1:= (me.mvert+mface.v1).co; 
 //      v2:= (me.mvert+mface.v2).co; 
 //      v3:= (me.mvert+mface.v3).co; 
-//      if mface.v4<>0 
-// then
+//      if mface.v4<>0 then
 //      v4:= (me.mvert+mface.v4).co; 
 //      else
 //      v4:= 0; 
@@ -684,8 +617,7 @@ uses
 //      (* kleuren: R=x G=y *)
 //      glBegin(GL_LINE_STRIP); 
 //      glVertex3fv(v1); 
-//      if v4<>0 
-// then
+//      if v4<>0 then
 //      glVertex3fv(v4); 
 //      else
 //      glVertex3fv(v3); 
@@ -699,8 +631,7 @@ uses
 //      glBegin(GL_LINE_STRIP); 
 //      glVertex3fv(v2); 
 //      glVertex3fv(v3); 
-//      if v4<>0 
-// then
+//      if v4<>0 then
 //      glVertex3fv(v4); 
 //      glEnd(); 
 //      cpack($FFFFFF); 
@@ -709,8 +640,7 @@ uses
 //      glVertex3fv(v1); 
 //      glVertex3fv(v2); 
 //      glVertex3fv(v3); 
-//      if mface.v4<>0 
-// then
+//      if mface.v4<>0 then
 //      glVertex3fv(v4); 
 //      glEnd(); 
 //      setlinestyle(0); 
@@ -749,19 +679,16 @@ uses
 //  curlamp:=0; 
 //  need_init:=0; 
 
-//  if G.vd=0
-// then
+//  if G.vd=0 then
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
-//  if G.vd.localvd<>0 
-// then
+//  if G.vd.localvd<>0 then
 //  lay:= G.vd.localvd.lay; 
 //  else
 //  lay:= G.vd.lay; 
-//  if ob=0
-// then
+//  if ob=0 then
 //  begin 
 //    need_init:= 1; 
 //    begin
@@ -769,8 +696,7 @@ uses
 //      exit;
 //    end;
 //  end;
-//  if ob)and(need_init
-// then
+//  if ob)and(need_init then
 //  begin 
 //    base:=FIRSTBASE; 
 //    (* lamp array aanlegen *)
@@ -778,20 +704,16 @@ uses
 //    while base
 //    do
 //    begin 
-//      if base.lay and lay
-// then
+//      if base.lay and lay then
 //      begin 
-//        if base.object.type=OB_LAMP
-// then
+//        if base.object.type=OB_LAMP then
 //        begin 
 //          la:= base.object.data; 
-//          if la.type=LA_SUN
-// then
+//          if la.type=LA_SUN then
 //          begin 
 //            lampar[totlamp]:= base.object; 
 //            inc(totlamp); 
-//            if totlamp>=24
-// then
+//            if totlamp>=24 then
 //            break; {<= !!!b possible in "switch" - then remove this line}
 //          end;
 //        end;
@@ -808,28 +730,24 @@ uses
 //    end;
 //    need_init:= 0; 
 //  end;
-//  if totlamp=0
-// then
+//  if totlamp=0 then
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
-//  if G.f and G_VERTEXPAINT
-// then
+//  if G.f and G_VERTEXPAINT then
 //  begin
 //    result:= 0; 
 //    exit;
 //  end;
-//  if tface=0
-// then
+//  if tface=0 then
 //  begin 
 //    (* init matrices *)
 //    curlamp:= 0; 
 //    for{while} a:=0 to Pred(totlamp) { a++}
 //    do
 //    begin 
-//      if lampar[a].lay and ob.lay
-// then
+//      if lampar[a].lay and ob.lay then
 //      begin 
 //        la:= lampar[a].data; 
 //        rvecmat[curlamp][0]:= lampar[a].obmat[2][0]; 
@@ -842,8 +760,7 @@ uses
 //        rcolmat[curlamp][1]:= la.energy*la.g div 32767.0; 
 //        rcolmat[curlamp][2]:= la.energy*la.b div 32767.0; 
 //        inc(curlamp); (* deze schaal wordt terug gecorrigeerd in writeblendpsx *)
-//        if curlamp>=3
-// then
+//        if curlamp>=3 then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //    end;
@@ -852,8 +769,7 @@ uses
 //      exit;
 //    end;
 //  end;
-//  if curlamp=0
-// then
+//  if curlamp=0 then
 //  begin
 //    result:= 0; 
 //    exit;
@@ -862,42 +778,36 @@ uses
 //  bzero(col,48); 
 //  cp:= {!!!a type cast? =>} {pchar(}tface.col; 
 //  a:= curlamp; 
-//  if tface.mode and TF_SHAREDCOL
-// then
+//  if tface.mode and TF_SHAREDCOL then
 //  begin 
 //    while a{--} dec(a); 
 //    do
 //    begin 
 //      inp:= INPR(punopoin[0],rvecmat[a]) div 255.0; 
-//      if inp>0.0
-// then
+//      if inp>0.0 then
 //      begin 
 //        col[0]:= col[0] + (inp*rcolmat[a][0]*cp[3]); 
 //        col[1]:= col[1] + (inp*rcolmat[a][1]*cp[2]); 
 //        col[2]:= col[2] + (inp*rcolmat[a][2]*cp[1]); 
 //      end;
 //      inp:= INPR(punopoin[1],rvecmat[a]) div 255.0; 
-//      if inp>0.0
-// then
+//      if inp>0.0 then
 //      begin 
 //        col[3]:= col[3] + (inp*rcolmat[a][0]*cp[7]); 
 //        col[4]:= col[4] + (inp*rcolmat[a][1]*cp[6]); 
 //        col[5]:= col[5] + (inp*rcolmat[a][2]*cp[5]); 
 //      end;
 //      inp:= INPR(punopoin[2],rvecmat[a]) div 255.0; 
-//      if inp>0.0
-// then
+//      if inp>0.0 then
 //      begin 
 //        col[6]:= col[6] + (inp*rcolmat[a][0]*cp[11]); 
 //        col[7]:= col[7] + (inp*rcolmat[a][1]*cp[10]); 
 //        col[8]:= col[8] + (inp*rcolmat[a][2]*cp[9]); 
 //      end;
-//      if punopoin[3]<>0 
-// then
+//      if punopoin[3]<>0 then
 //      begin 
 //        inp:= INPR(punopoin[3],rvecmat[a]) div 255.0; 
-//        if inp>0.0
-// then
+//        if inp>0.0 then
 //        begin 
 //          col[9]:= col[9] + (inp*rcolmat[a][0]*cp[15]); 
 //          col[10]:= col[10] + (inp*rcolmat[a][1]*cp[14]); 
@@ -913,14 +823,12 @@ uses
 //    do
 //    begin 
 //      inp:= INPR(tface.no,rvecmat[a]) div 255.0; 
-//      if inp>0.0
-// then
+//      if inp>0.0 then
 //      begin 
 //        col[0]:= col[0] + (inp*rcolmat[a][0]*cp[3]); 
 //        col[1]:= col[1] + (inp*rcolmat[a][1]*cp[2]); 
 //        col[2]:= col[2] + (inp*rcolmat[a][2]*cp[1]); 
-//        if tface.mode and TF_GOUR
-// then
+//        if tface.mode and TF_GOUR then
 //        begin 
 //          col[3]:= col[3] + (inp*rcolmat[a][0]*cp[7]); 
 //          col[4]:= col[4] + (inp*rcolmat[a][1]*cp[6]); 
@@ -960,8 +868,7 @@ uses
 
 //procedure add_tra_object(ob: pObject;  me: pMesh;  dt: integer); 
 //begin
-//  if tot_tra_ob>=MAX_TRA_OB
-// then
+//  if tot_tra_ob>=MAX_TRA_OB then
 //  exit;
 //  tra_ob_ar[tot_tra_ob].ob:= ob; 
 //  tra_ob_ar[tot_tra_ob].me:= me; 
@@ -1000,11 +907,9 @@ uses
 
 //  istra:=0; 
 
-//  if me=0
-// then
+//  if me=0 then
 //  exit;
-//  if ob.type=OB_LIFE
-// then
+//  if ob.type=OB_LIFE then
 //  lf:= ob.data; 
 //  else
 //  lf:= 0; 
@@ -1012,21 +917,18 @@ uses
 //  glGetFloatv(GL_CURRENT_COLOR,coli); 
 
 //  (* als meshes uit lib gelezen zijn en alleen mcol hebben: *)
-//  if me.tface=0
-// then
+//  if me.tface=0 then
 //  make_tfaces(me); 
 //  islight:= do_realtimelight(ob,0,0); 
 
 //  (* de ob color *)
-//  if ob.type=OB_SECTOR
-// then
+//  if ob.type=OB_SECTOR then
 //  begin 
 //    se:=ob.data; 
 //    obcol:= rgb_to_mcol(se.r,se.g,se.b); 
 //  end;
 //  else
-//  if ob.type=OB_LIFE
-// then
+//  if ob.type=OB_LIFE then
 //  begin 
 //    lf:=ob.data; 
 //    obcol:= rgb_to_mcol(lf.r,lf.g,lf.b); 
@@ -1034,17 +936,14 @@ uses
 //  glCullFace(GL_BACK); 
 //  (* eerst alle texture polys *)
 //  glEnable(GL_CULL_FACE); 
-//  if G.vd.drawtype=OB_TEXTURE
-// then
+//  if G.vd.drawtype=OB_TEXTURE then
 //  istex:= 1; 
 //  else
 //  istex:= 0; 
 //  (* signal to NOT draw transparant separate *)
-//  if (G.f and G_SIMULATION)=0
-// then
+//  if (G.f and G_SIMULATION)=0 then
 //  istra:= 2; 
-//  if dt>OB_SOLID
-// then
+//  if dt>OB_SOLID then
 //  begin 
 //    mface:= me.mface; 
 //    tface:= me.tface; 
@@ -1057,61 +956,51 @@ uses
 //    inc(tface); 
 //    do
 //    begin 
-//      if mface.v3=0
-// then
+//      if mface.v3=0 then
 //      begin
 //        {!!!7 possible troubles with "for" =>}
 //        continue
 //      end; 
-//      if tface.flag and TF_HIDE
-// then
+//      if tface.flag and TF_HIDE then
 //      begin
 //        {!!!7 possible troubles with "for" =>}
 //        continue
 //      end; 
-//      if istex)and(tface.transp
-// then
+//      if istex)and(tface.transp then
 //      begin 
-//        if istra=0
-// then
+//        if istra=0 then
 //        begin 
 //          add_tra_object(ob,me,dt); 
 //          istra:= 1; 
 //        end;
-//        if istra=1
-// then
+//        if istra=1 then
 //        begin
 //          {!!!7 possible troubles with "for" =>}
 //          continue
 //        end; 
 //      end;
 //      mode:= tface.mode; 
-//      if mode and TF_OBCOL
-// then
+//      if mode and TF_OBCOL then
 //      tface.col[0]:= obcol; 
 //      v1:= (me.mvert+mface.v1).co; 
 //      v2:= (me.mvert+mface.v2).co; 
 //      v3:= (me.mvert+mface.v3).co; 
-//      if mface.v4<>0 
-// then
+//      if mface.v4<>0 then
 //      v4:= (me.mvert+mface.v4).co; 
 //      else
 //      v4:= 0; 
-//      if mode and TF_SHAREDCOL
-// then
+//      if mode and TF_SHAREDCOL then
 //      begin 
 //        punopoin[0]:= {!!!a type cast? =>} {psmallint(}(v1+3); 
 //        punopoin[1]:= {!!!a type cast? =>} {psmallint(}(v2+3); 
 //        punopoin[2]:= {!!!a type cast? =>} {psmallint(}(v3+3); 
-//        if v4<>0 
-// then
+//        if v4<>0 then
 //        punopoin[3]:= {!!!a type cast? =>} {psmallint(}(v4+3); 
 //        else
 //        punopoin[3]:= 0; 
 //      end;
 
-//      if mode and TF_TWOSIDE
-// then
+//      if mode and TF_TWOSIDE then
 //      begin 
 //        glDisable(GL_CULL_FACE); 
 //      end;
@@ -1120,15 +1009,12 @@ uses
 //        glEnable(GL_CULL_FACE); 
 //      end;
 
-//      if istex)and((mode and TF_TEX)
-// then
+//      if istex)and((mode and TF_TEX) then
 //      begin 
 //        (* in set_tpage worden dingen gedaan die niet binnen een bgnpolygon mogen liggen *)
-//        if set_tpage(tface)
-// then
+//        if set_tpage(tface) then
 //        begin 
-//          if islight)and((mode and TF_LIGHT)
-// then
+//          if islight)and((mode and TF_LIGHT) then
 //          begin 
 //            do_realtimelight(ob,tface,col[0]); 
 //            glBegin(GL_POLYGON); 
@@ -1137,21 +1023,17 @@ uses
 
 //            glVertex3fv(v1); 
 //            glTexCoord2sv(tface.uv[1]); 
-//            if mode and TF_GOUR
-// then
+//            if mode and TF_GOUR then
 //            glColor3fv(col[1]); 
 //            glVertex3fv(v2); 
 //            glTexCoord2sv(tface.uv[2]); 
-//            if mode and TF_GOUR
-// then
+//            if mode and TF_GOUR then
 //            glColor3fv(col[2]); 
 //            glVertex3fv(v3); 
-//            if v4<>0 
-// then
+//            if v4<>0 then
 //            begin 
 //              glTexCoord2sv(tface.uv[3]); 
-//              if mode and TF_GOUR
-// then
+//              if mode and TF_GOUR then
 //              glColor3fv(col[3]); 
 //              glVertex3fv(v4); 
 //            end;
@@ -1165,21 +1047,17 @@ uses
 
 //            glVertex3fv(v1); 
 //            glTexCoord2sv(tface.uv[1]); 
-//            if mode and TF_GOUR
-// then
+//            if mode and TF_GOUR then
 //            spack(tface.col[1]); 
 //            glVertex3fv(v2); 
 //            glTexCoord2sv(tface.uv[2]); 
-//            if mode and TF_GOUR
-// then
+//            if mode and TF_GOUR then
 //            spack(tface.col[2]); 
 //            glVertex3fv(v3); 
-//            if v4<>0 
-// then
+//            if v4<>0 then
 //            begin 
 //              glTexCoord2sv(tface.uv[3]); 
-//              if mode and TF_GOUR
-// then
+//              if mode and TF_GOUR then
 //              spack(tface.col[3]); 
 //              glVertex3fv(v4); 
 //            end;
@@ -1195,8 +1073,7 @@ uses
 //          glVertex3fv(v1); 
 //          glVertex3fv(v2); 
 //          glVertex3fv(v3); 
-//          if v4<>0 
-// then
+//          if v4<>0 then
 //          glVertex3fv(v4); 
 //          glEnd(); 
 //        end;
@@ -1205,21 +1082,18 @@ uses
 //      begin 
 //        set_tpage(0); 
 //        glBegin(GL_POLYGON); 
-//        if islight)and((tface.mode and TF_LIGHT)
-// then
+//        if islight)and((tface.mode and TF_LIGHT) then
 //        begin 
 //          do_realtimelight(ob,tface,col[0]); 
 //          glColor3fv(col[0]); 
 //          glVertex3fv(v1); 
-//          if mode and TF_GOUR
-// then
+//          if mode and TF_GOUR then
 //          begin 
 //            glColor3fv(col[1]); 
 //            glVertex3fv(v2); 
 //            glColor3fv(col[2]); 
 //            glVertex3fv(v3); 
-//            if v4<>0 
-// then
+//            if v4<>0 then
 //            begin 
 //              glColor3fv(col[3]); 
 //              glVertex3fv(v4); 
@@ -1229,8 +1103,7 @@ uses
 //          begin 
 //            glVertex3fv(v2); 
 //            glVertex3fv(v3); 
-//            if v4<>0 
-// then
+//            if v4<>0 then
 //            glVertex3fv(v4); 
 //          end;
 //        end;
@@ -1240,15 +1113,13 @@ uses
 //          cp:= (char* )@(tface.col[0]); 
 //          glColor3ub(cp[3],cp[2],cp[1]); 
 //          glVertex3fv(v1); 
-//          if mode and TF_GOUR
-// then
+//          if mode and TF_GOUR then
 //          begin 
 //            glColor3ub(cp[7],cp[6],cp[5]); 
 //            glVertex3fv(v2); 
 //            glColor3ub(cp[11],cp[10],cp[9]); 
 //            glVertex3fv(v3); 
-//            if v4<>0 
-// then
+//            if v4<>0 then
 //            begin 
 //              glColor3ub(cp[15],cp[14],cp[13]); 
 //              glVertex3fv(v4); 
@@ -1258,8 +1129,7 @@ uses
 //          begin 
 //            glVertex3fv(v2); 
 //            glVertex3fv(v3); 
-//            if v4<>0 
-// then
+//            if v4<>0 then
 //            glVertex3fv(v4); 
 //          end;
 //        end;
@@ -1284,21 +1154,18 @@ uses
 //    inc(tface); 
 //    do
 //    begin 
-//      if mface.v3=0
-// then
+//      if mface.v3=0 then
 //      begin
 //        {!!!7 possible troubles with "for" =>}
 //        continue
 //      end; 
-//      if tface.flag and TF_HIDE
-// then
+//      if tface.flag and TF_HIDE then
 //      begin
 //        {!!!7 possible troubles with "for" =>}
 //        continue
 //      end; 
 //      mode:= tface.mode; 
-//      if tface.mode and TF_TWOSIDE
-// then
+//      if tface.mode and TF_TWOSIDE then
 //      begin 
 //        glDisable(GL_CULL_FACE); 
 //      end;
@@ -1307,45 +1174,38 @@ uses
 //        glEnable(GL_CULL_FACE); 
 //      end;
 
-//      if mode and TF_OBCOL
-// then
+//      if mode and TF_OBCOL then
 //      tface.col[0]:= obcol; 
 //      v1:= (me.mvert+mface.v1).co; 
 //      v2:= (me.mvert+mface.v2).co; 
 //      v3:= (me.mvert+mface.v3).co; 
-//      if mface.v4<>0 
-// then
+//      if mface.v4<>0 then
 //      v4:= (me.mvert+mface.v4).co; 
 //      else
 //      v4:= 0; 
-//      if mode and TF_SHAREDCOL
-// then
+//      if mode and TF_SHAREDCOL then
 //      begin 
 //        punopoin[0]:= {!!!a type cast? =>} {psmallint(}(v1+3); 
 //        punopoin[1]:= {!!!a type cast? =>} {psmallint(}(v2+3); 
 //        punopoin[2]:= {!!!a type cast? =>} {psmallint(}(v3+3); 
-//        if v4<>0 
-// then
+//        if v4<>0 then
 //        punopoin[3]:= {!!!a type cast? =>} {psmallint(}(v4+3); 
 //        else
 //        punopoin[3]:= 0; 
 //      end;
 //      glBegin(GL_POLYGON); 
-//      if islight)and((tface.mode and TF_LIGHT)
-// then
+//      if islight)and((tface.mode and TF_LIGHT) then
 //      begin 
 //        do_realtimelight(ob,tface,col[0]); 
 //        glColor3fv(col[0]); 
 //        glVertex3fv(v1); 
-//        if mode and TF_GOUR
-// then
+//        if mode and TF_GOUR then
 //        begin 
 //          glColor3fv(col[1]); 
 //          glVertex3fv(v2); 
 //          glColor3fv(col[2]); 
 //          glVertex3fv(v3); 
-//          if v4<>0 
-// then
+//          if v4<>0 then
 //          begin 
 //            glColor3fv(col[3]); 
 //            glVertex3fv(v4); 
@@ -1355,16 +1215,14 @@ uses
 //        begin 
 //          glVertex3fv(v2); 
 //          glVertex3fv(v3); 
-//          if v4<>0 
-// then
+//          if v4<>0 then
 //          glVertex3fv(v4); 
 //        end;
 //      end;
 //      else
 //      begin 
 //        cp:= (char* )@(tface.col[0]); 
-//        if mode and TF_GOUR
-// then
+//        if mode and TF_GOUR then
 //        begin 
 
 //          glColor3ub(cp[3],cp[2],cp[1]); 
@@ -1373,8 +1231,7 @@ uses
 //          glVertex3fv(v2); 
 //          glColor3ub(cp[11],cp[10],cp[9]); 
 //          glVertex3fv(v3); 
-//          if v4<>0 
-// then
+//          if v4<>0 then
 //          begin 
 //            glColor3ub(cp[15],cp[14],cp[13]); 
 //            glVertex3fv(v4); 
@@ -1387,8 +1244,7 @@ uses
 //          glVertex3fv(v1); 
 //          glVertex3fv(v2); 
 //          glVertex3fv(v3); 
-//          if v4<>0 
-// then
+//          if v4<>0 then
 //          glVertex3fv(v4); 
 //        end;
 //      end;
@@ -1399,8 +1255,7 @@ uses
 //  glDisable(GL_CULL_FACE); 
 //  draw_hide_tfaces(ob,me); 
 
-//  if ob=OBACT)and((G.f and G_FACESELECT)
-// then
+//  if ob=OBACT)and((G.f and G_FACESELECT) then
 //  begin 
 //    draw_tfaces3D(ob,me); 
 //  end;
@@ -1440,8 +1295,7 @@ uses
 //len: single; 
 //begin
 
-//  if G.vd.drawtype<>OB_TEXTURE
-// then
+//  if G.vd.drawtype<>OB_TEXTURE then
 //  exit;
 
 //  glDepthMask(0); 
@@ -1459,31 +1313,26 @@ uses
 //    dt:= tra_ob_ar[t].dt; 
 //    multmatrix(ob.obmat); 
 
-//    if me=0
-// then
+//    if me=0 then
 //    exit;
-//    if ob.type=OB_LIFE
-// then
+//    if ob.type=OB_LIFE then
 //    lf:= ob.data; 
 //    else
 //    lf:= 0; 
 //    islight:= do_realtimelight(ob,0,0); (* de ob color *)
-//    if ob.type=OB_SECTOR
-// then
+//    if ob.type=OB_SECTOR then
 //    begin 
 //      se:=ob.data; 
 //      obcol:= rgb_to_mcol(se.r,se.g,se.b); 
 //    end;
 //    else
-//    if ob.type=OB_LIFE
-// then
+//    if ob.type=OB_LIFE then
 //    begin 
 
 //      lf:=ob.data; 
 //      obcol:= rgb_to_mcol(lf.r,lf.g,lf.b); 
 //    end;
-//    if dt>OB_SOLID
-// then
+//    if dt>OB_SOLID then
 //    begin 
 //      mface:= me.mface; 
 //      tface:= me.tface; 
@@ -1496,20 +1345,17 @@ uses
 //      inc(tface); 
 //      do
 //      begin 
-//        if mface.v3=0
-// then
+//        if mface.v3=0 then
 //        begin
 //          {!!!7 possible troubles with "for" =>}
 //          continue
 //        end; 
-//        if tface.flag and TF_HIDE
-// then
+//        if tface.flag and TF_HIDE then
 //        begin
 //          {!!!7 possible troubles with "for" =>}
 //          continue
 //        end; 
-//        if tface.transp<>0 
-// then
+//        if tface.transp<>0 then
 //        ; 
 //        else
 //        begin
@@ -1517,31 +1363,26 @@ uses
 //          continue
 //        end; 
 //        mode:= tface.mode; 
-//        if mode and TF_OBCOL
-// then
+//        if mode and TF_OBCOL then
 //        tface.col[0]:= obcol; 
 //        v1:= (me.mvert+mface.v1).co; 
 //        v2:= (me.mvert+mface.v2).co; 
 //        v3:= (me.mvert+mface.v3).co; 
-//        if mface.v4<>0 
-// then
+//        if mface.v4<>0 then
 //        v4:= (me.mvert+mface.v4).co; 
 //        else
 //        v4:= 0; 
-//        if mode and TF_SHAREDCOL
-// then
+//        if mode and TF_SHAREDCOL then
 //        begin 
 //          punopoin[0]:= {!!!a type cast? =>} {psmallint(}(v1+3); 
 //          punopoin[1]:= {!!!a type cast? =>} {psmallint(}(v2+3); 
 //          punopoin[2]:= {!!!a type cast? =>} {psmallint(}(v3+3); 
-//          if v4<>0 
-// then
+//          if v4<>0 then
 //          punopoin[3]:= {!!!a type cast? =>} {psmallint(}(v4+3); 
 //          else
 //          punopoin[3]:= 0; 
 //        end;
-//        if mode and TF_TWOSIDE
-// then
+//        if mode and TF_TWOSIDE then
 //        begin 
 //          glDisable(GL_CULL_FACE); 
 //        end;
@@ -1549,18 +1390,14 @@ uses
 //        begin 
 //          glEnable(GL_CULL_FACE); 
 //        end;
-//        if mode and TF_TEX
-// then
+//        if mode and TF_TEX then
 //        begin 
 //          (* in set_tpage worden dingen gedaan die niet binnen een bgnpolygon mogen liggen *)
-//          if set_tpage(tface)
-// then
+//          if set_tpage(tface) then
 //          begin 
-//            if mode and TF_SHADOW
-// then
+//            if mode and TF_SHADOW then
 //            begin 
-//              if lf<>0 
-// then
+//              if lf<>0 then
 //              begin 
 
 //                glBegin(GL_POLYGON); 
@@ -1569,23 +1406,19 @@ uses
 //                VecAddf(vec,v1,lf.floorloc); 
 //                glVertex3fv(vec); 
 //                glTexCoord2sv(tface.uv[1]); 
-//                if mode and TF_GOUR
-// then
+//                if mode and TF_GOUR then
 //                spack(tface.col[1]); 
 //                VecAddf(vec,v2,lf.floorloc); 
 //                glVertex3fv(vec); 
 //                glTexCoord2sv(tface.uv[2]); 
-//                if mode and TF_GOUR
-// then
+//                if mode and TF_GOUR then
 //                spack(tface.col[2]); 
 //                VecAddf(vec,v3,lf.floorloc); 
 //                glVertex3fv(vec); 
-//                if v4<>0 
-// then
+//                if v4<>0 then
 //                begin 
 //                  glTexCoord2sv(tface.uv[3]); 
-//                  if mode and TF_GOUR
-// then
+//                  if mode and TF_GOUR then
 //                  spack(tface.col[3]); 
 //                  VecAddf(vec,v4,lf.floorloc); 
 //                  glVertex3fv(vec); 
@@ -1594,8 +1427,7 @@ uses
 //              end;
 //            end;
 //            else
-//            if islight)and((mode and TF_LIGHT)
-// then
+//            if islight)and((mode and TF_LIGHT) then
 //            begin 
 //              do_realtimelight(ob,tface,col[0]); 
 //              glBegin(GL_POLYGON); 
@@ -1603,29 +1435,24 @@ uses
 //              glColor3fv(col[0]); 
 //              glVertex3fv(v1); 
 //              glTexCoord2sv(tface.uv[1]); 
-//              if mode and TF_GOUR
-// then
+//              if mode and TF_GOUR then
 //              glColor3fv(col[1]); 
 //              glVertex3fv(v2); 
 //              glTexCoord2sv(tface.uv[2]); 
-//              if mode and TF_GOUR
-// then
+//              if mode and TF_GOUR then
 //              glColor3fv(col[2]); 
 //              glVertex3fv(v3); 
-//              if v4<>0 
-// then
+//              if v4<>0 then
 //              begin 
 //                glTexCoord2sv(tface.uv[3]); 
-//                if mode and TF_GOUR
-// then
+//                if mode and TF_GOUR then
 //                glColor3fv(col[3]); 
 //                glVertex3fv(v4); 
 //              end;
 //              glEnd(); 
 //            end;
 //            else
-//            if mode and TF_BILLBOARD
-// then
+//            if mode and TF_BILLBOARD then
 //            begin 
 //              (* actually halo! *)
 
@@ -1645,21 +1472,17 @@ uses
 //              spack(tface.col[0]); 
 //              glVertex3fv(v1); 
 //              glTexCoord2sv(tface.uv[1]); 
-//              if mode and TF_GOUR
-// then
+//              if mode and TF_GOUR then
 //              spack(tface.col[1]); 
 //              glVertex3fv(v2); 
 //              glTexCoord2sv(tface.uv[2]); 
-//              if mode and TF_GOUR
-// then
+//              if mode and TF_GOUR then
 //              spack(tface.col[2]); 
 //              glVertex3fv(v3); 
-//              if v4<>0 
-// then
+//              if v4<>0 then
 //              begin 
 //                glTexCoord2sv(tface.uv[3]); 
-//                if mode and TF_GOUR
-// then
+//                if mode and TF_GOUR then
 //                spack(tface.col[3]); 
 //                glVertex3fv(v4); 
 //              end;
@@ -1673,21 +1496,17 @@ uses
 //              spack(tface.col[0]); 
 //              glVertex3fv(v1); 
 //              glTexCoord2sv(tface.uv[1]); 
-//              if mode and TF_GOUR
-// then
+//              if mode and TF_GOUR then
 //              spack(tface.col[1]); 
 //              glVertex3fv(v2); 
 //              glTexCoord2sv(tface.uv[2]); 
-//              if mode and TF_GOUR
-// then
+//              if mode and TF_GOUR then
 //              spack(tface.col[2]); 
 //              glVertex3fv(v3); 
-//              if v4<>0 
-// then
+//              if v4<>0 then
 //              begin 
 //                glTexCoord2sv(tface.uv[3]); 
-//                if mode and TF_GOUR
-// then
+//                if mode and TF_GOUR then
 //                spack(tface.col[3]); 
 //                glVertex3fv(v4); 
 //              end;
@@ -1721,17 +1540,14 @@ uses
 //begin
 
 //  se:= ob.data; 
-//  if se.flag and SE_GHOST_OTHER
-// then
+//  if se.flag and SE_GHOST_OTHER then
 //  begin 
-//    if (G.f and (G_SIMULATION or G_BACKBUFSEL))=0
-// then
+//    if (G.f and (G_SIMULATION or G_BACKBUFSEL))=0 then
 //    begin 
 //      flag:= se.flag; 
 //      obedit:= G.obedit; 
 //      G.obedit:= 0; 
-//      if se.flag and SE_SHOW_TEXMESH
-// then
+//      if se.flag and SE_SHOW_TEXMESH then
 //      begin 
 //        se.flag:= se.flag and ( not SE_SHOW_TEXMESH); 
 //        setlinestyle(3); 
@@ -1750,29 +1566,23 @@ uses
 //    end;
 //  end;
 
-//  if se.flag and SE_SHOW_TEXMESH
-// then
+//  if se.flag and SE_SHOW_TEXMESH then
 //  begin 
 
-//    if ob=G.obedit
-// then
+//    if ob=G.obedit then
 //    drawmeshwire(ob); 
 //    else
-//    if dt=OB_BOUNDBOX
-// then
+//    if dt=OB_BOUNDBOX then
 //    drawboundbox(ob); 
 //    else
-//    if dt=OB_WIRE
-// then
+//    if dt=OB_WIRE then
 //    drawmeshwire(ob); 
 //    else
 //    begin 
-//      if (G.f and (G_PICKSEL))
-// then
+//      if (G.f and (G_PICKSEL)) then
 //      drawmeshwire(ob); 
 //      else
-//      if (G.f and (G_BACKBUFSEL))
-// then
+//      if (G.f and (G_BACKBUFSEL)) then
 //      drawmeshsolid(ob,0); 
 //      else
 //      draw_tface_mesh(ob,se.texmesh,dt); 
@@ -1781,22 +1591,18 @@ uses
 //  else
 //  begin 
 
-//    if G.f and G_SIMULATION
-// then
+//    if G.f and G_SIMULATION then
 //    ; 
 //    else
-//    if ob<>G.obedit
-// then
+//    if ob<>G.obedit then
 //    begin 
 //      setlinestyle(3); 
 //      drawcube_size(se.size); 
 //      setlinestyle(0); 
-//      if ob.dt>OB_WIRE
-// then
+//      if ob.dt>OB_WIRE then
 //      begin 
 //        po:= se.portals; 
-//        if ob=OBACT
-// then
+//        if ob=OBACT then
 //        begin 
 //          for{while} a:=1 to se.totport { a++}
 //          do
@@ -1818,19 +1624,15 @@ uses
 //      end;
 //    end;
 
-//    if dt>OB_SOLID
-// then
+//    if dt>OB_SOLID then
 //    dt:= OB_SOLID; (* shaded bij dynamesh: werkt niet *)
-//    if ob=G.obedit
-// then
+//    if ob=G.obedit then
 //    drawmeshwire(ob); 
 //    else
-//    if dt=OB_BOUNDBOX
-// then
+//    if dt=OB_BOUNDBOX then
 //    drawboundbox(ob); 
 //    else
-//    if dt=OB_WIRE
-// then
+//    if dt=OB_WIRE then
 //    drawmeshwire(ob); 
 //    else
 //    drawDispList(ob,dt); 
@@ -1867,8 +1669,7 @@ end;
 //begin
 //  cam:=0; 
 
-//  if G.scene.camera=0)or(G.scene.camera.type<>OB_CAMERA
-// then
+//  if G.scene.camera=0)or(G.scene.camera.type<>OB_CAMERA then
 //  begin 
 //    error('no (correct) camera'); 
 //    exit;
@@ -1880,11 +1681,9 @@ end;
 //  G.f:= G.f or (G_SIMULATION); 
 //  G.simulf:= 0; 
 //  cam:= G.scene.camera.data; 
-//  if G.vd.drawtype>OB_WIRE
-// then
+//  if G.vd.drawtype>OB_WIRE then
 //  begin 
-//    if G.scene.world)and((G.scene.world.mode and WO_MIST)
-// then
+//    if G.scene.world)and((G.scene.world.mode and WO_MIST) then
 //    begin 
 //      glFogi(GL_FOG_MODE,GL_LINEAR); 
 //      glFogf(GL_FOG_DENSITY,0.1); 
@@ -1904,14 +1703,11 @@ end;
 //  do
 //  begin 
 //    sector_go(); 
-//    if G.simulf and G_LOADFILE
-// then
+//    if G.simulf and G_LOADFILE then
 //    break; {<= !!!b possible in "switch" - then remove this line}
-//    if G.simulf and G_RESTART
-// then
+//    if G.simulf and G_RESTART then
 //    ; 
-//    if G.simulf and G_QUIT
-// then
+//    if G.simulf and G_QUIT then
 //    begin 
 //      reset_slowparents(); 
 //      break; {<= !!!b possible in "switch" - then remove this line}

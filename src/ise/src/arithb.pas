@@ -95,18 +95,13 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
  MinMaxRGB(c)
  Spec(inpr,spec) 
 *)
+
 (* ************************ FUNKTIES **************************** *)
-////{$include <math.h>}
-////{$include <sys/types.h>}
-//{$if not defined(__sgi) and not defined(WINDOWS)}
-////{$include <sys/time.h>}
-////{$include <unistd.h>}
-//{$endif}
-////{$include "blender.h"}
+
 //const
 //SMALL_NUMBER = 1.e-8; 
-//{$ifdef WINDOWS}
-////{$include <stdlib.h>}
+
+{$ifdef WINDOWS}
 
 //implementation
 
@@ -122,7 +117,7 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //    exit;
 //  end;
 //end;
-//{$endif}
+{$endif}
 
 //function safacos(fac: single): single; 
 //begin

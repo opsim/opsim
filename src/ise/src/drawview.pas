@@ -29,11 +29,6 @@ unit drawview;
 
 interface
 
-//{$include "blender.h"}
-//{$include "graphics.h"}
-//{$include "sector.h"}
-//{$include "render.h"}
-
 procedure init_gl_stuff;
 
 implementation
@@ -105,14 +100,11 @@ uses
 
 //procedure two_sided(val: integer); 
 //begin
-//  if val)and(lmodel[7]=1.0
-// then
+//  if val)and(lmodel[7]=1.0 then
 //  exit;
-//  if val=0)and(lmodel[7]=0.0
-// then
+//  if val=0)and(lmodel[7]=0.0 then
 //  exit;
-//  if val<>0 
-// then
+//  if val<>0 then
 //  lmodel[7]:= 1.0; 
 //  else
 //  lmodel[7]:= 0.0; 
@@ -124,24 +116,21 @@ uses
 
 //procedure set_gl_material(nr: integer); 
 //begin
-//  if nr>maxmat
-// then
+//  if nr>maxmat then
 //  nr:= maxmat; 
 //  lmbind(MATERIAL,nr); 
 //end;
 
 //procedure def_gl_material(matnr: integer;  ma: pMaterial); 
 //begin
-//  if ma=0
-// then
+//  if ma=0 then
 //  begin 
 //    defmatgl[1]:= defmatgl[2]:=defmatgl[3]:=0.1; 
 //    defmatgl[5]:= defmatgl[6]:=defmatgl[7]:=0.9; 
 //  end;
 //  else
 //  begin 
-//    if ma.mode and MA_SHLESS
-// then
+//    if ma.mode and MA_SHLESS then
 //    begin 
 //      defmatgl[5]:= defmatgl[6]:=defmatgl[7]:=0.0; 
 //      defmatgl[1]:= ma.r; 
@@ -161,8 +150,7 @@ uses
 //    end;
 //  end;
 
-//  if matnr=0
-// then
+//  if matnr=0 then
 //  matnr:= 1; 
 //  lmdef(DEFMATERIAL,matnr,0,defmatgl); 
 //end;
@@ -173,8 +161,7 @@ uses
 //a: integer; 
 //begin
 
-//  if ob.totcol=0
-// then
+//  if ob.totcol=0 then
 //  begin 
 //    def_gl_material(0,0); 
 //    maxmat:= 1; 
@@ -247,11 +234,9 @@ uses
 //begin
 
 //  bgpic:= G.vd.bgpic; 
-//  if bgpic=0
-// then
+//  if bgpic=0 then
 //  exit;
-//  if bgpic.tex<>0 
-// then
+//  if bgpic.tex<>0 then
 //  begin 
 //    init_render_texture(bgpic.tex); 
 //    free_unused_animimages(); 
@@ -262,18 +247,14 @@ uses
 //begin 
 //  ima:= bgpic.ima; 
 //end;
-//if ima=0
-//then
+//if ima=0 then
 //exit;
-//if ima.ok=0
-//then
+//if ima.ok=0 then
 //exit;
 //(* plaatje testen *)
-//if ima.ibuf=0
-//then
+//if ima.ibuf=0 then
 //begin 
-//  if bgpic.tex<>0 
-// then
+//  if bgpic.tex<>0 then
 //  begin 
 //    ima_ibuf_is_nul(bgpic.tex); 
 //  end;
@@ -285,20 +266,17 @@ uses
 //    ima.ibuf:= loadiffname(str,LI_rect); 
 //    waitcursor(0); 
 //  end;
-//  if ima.ibuf=0
-// then
+//  if ima.ibuf=0 then
 //  begin 
 //    ima.ok:= 0; 
 //    exit;
 //  end;
-//  if bgpic.rect<>0 
-// then
+//  if bgpic.rect<>0 then
 //  freeN(bgpic.rect); 
 //  bgpic.rect:= 0; 
 //end;
 
-//if G.vd.persp=2
-//then
+//if G.vd.persp=2 then
 //begin 
 //  x1:= G.vd.pr_xmin+curarea.winrct.xmin; 
 //  y1:= G.vd.pr_ymin+curarea.winrct.ymin; 
@@ -325,11 +303,9 @@ uses
 //xim:= x2-x1; 
 //yim:= y2-y1; 
 //zoom:= 1.0; 
-//if xim<4)or(yim<4
-//then
+//if xim<4)or(yim<4 then
 //exit;
-//if xim>ima.ibuf.x
-//then
+//if xim>ima.ibuf.x then
 //begin 
 //  zoom:= xim; 
 //  zoom:= zoom div ({!!!a type cast? =>} {single(}ima.ibuf.x);
@@ -338,11 +314,9 @@ uses
 //  yim:= yim div zoom; 
 //end;
 
-//if bgpic.rect=0)or(zoom<>bgpic.zoom)or(xim<>bgpic.xim)or(yim<>bgpic.yim
-//then
+//if bgpic.rect=0)or(zoom<>bgpic.zoom)or(xim<>bgpic.xim)or(yim<>bgpic.yim then
 //begin 
-//  if bgpic.rect<>0 
-// then
+//  if bgpic.rect<>0 then
 //  freeN(bgpic.rect); 
 //  bgpic.rect:= mallocN(xim*yim*4,'bgpicrect'); 
 //  scalefastrect(ima.ibuf.rect,bgpic.rect,ima.ibuf.x,ima.ibuf.y,xim,yim); 
@@ -357,25 +331,20 @@ uses
 //y2:= y1+zoom*(bgpic.yim-1); (* coordinaten hoe 't op scherm komt *)
 
 //(* volledige clip? *)
-//if x2<curarea.winrct.xmin
-//then
+//if x2<curarea.winrct.xmin then
 //exit;
-//if y2<curarea.winrct.ymin
-//then
+//if y2<curarea.winrct.ymin then
 //exit;
-//if x1>curarea.winrct.xmax
-//then
+//if x1>curarea.winrct.xmax then
 //exit;
-//if y1>curarea.winrct.ymax
-//then
+//if y1>curarea.winrct.ymax then
 //exit;
 //(* rectwrite coordinaten *)
 //xim:= xim-1; 
 //yim:= yim-1; 
 //rect:= bgpic.rect; 
 //(* partiele clip *)
-//if x1<curarea.winrct.xmin
-//then
+//if x1<curarea.winrct.xmin then
 //begin 
 //  cx:= curarea.winrct.xmin-x1; 
 //  cx:= cx div (zoom); 
@@ -384,8 +353,7 @@ uses
 //  rect:= rect + (cx); 
 //  (* zorg ervoor dat de rect pixelnauwkeurig wordt neergezet *)
 //end;
-//if y1<curarea.winrct.ymin
-//then
+//if y1<curarea.winrct.ymin then
 //begin 
 //  cy:= curarea.winrct.ymin-y1; 
 //  cy:= cy div (zoom); 
@@ -393,25 +361,21 @@ uses
 //  rect:= rect + (cy*bgpic.xim); 
 //  yim:= yim - (cy); 
 //end;
-//if x2>curarea.winrct.xmax
-//then
+//if x2>curarea.winrct.xmax then
 //begin 
 //  cx:= x2-curarea.winrct.xmax; 
 //  cx:= cx div (zoom); 
 //  xim:= xim - (cx); 
 //end;
-//if y2>curarea.winrct.ymax
-//then
+//if y2>curarea.winrct.ymax then
 //begin 
 //  cy:= y2-curarea.winrct.ymax; 
 //  cy:= cy div (zoom); 
 //  yim:= yim - (cy); 
 //end;
-//if xim<=0
-//then
+//if xim<=0 then
 //exit;
-//if yim<=0
-//then
+//if yim<=0 then
 //exit;
 
 //rectzoom(zoom,zoom); 
@@ -535,8 +499,7 @@ end;
 //begin
 //  {defmaterial: Material; }{<= !!!5 external variable}
 
-//  if ob.totcol=0
-// then
+//  if ob.totcol=0 then
 //  begin 
 //    matbuf[0][0][0]:= defmaterial.r; 
 //    matbuf[0][0][1]:= defmaterial.g; 
@@ -552,8 +515,7 @@ end;
 //  do
 //  begin 
 //    ma:= give_current_material(ob,a); 
-//    if ma)and(a<MAXMATBUF
-// then
+//    if ma)and(a<MAXMATBUF then
 //    begin 
 //      (* if(ma->mode & MA_SHLESS) { *)
 //      (*  *)
@@ -572,11 +534,9 @@ end;
 
 //procedure set_gl_material(nr: integer); 
 //begin
-//  if nr<MAXMATBUF
-// then
+//  if nr<MAXMATBUF then
 //  begin 
-//    if matbuf[nr][0]<>0 
-// then
+//    if matbuf[nr][0]<>0 then
 //    begin 
 //      glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,matbuf[nr][0]); 
 //      glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,matbuf[nr][1]); 
@@ -607,11 +567,9 @@ end;
 //begin
 
 //  bgpic:= G.vd.bgpic; 
-//  if bgpic=0
-// then
+//  if bgpic=0 then
 //  exit;
-//  if bgpic.tex<>0 
-// then
+//  if bgpic.tex<>0 then
 //  begin 
 //    init_render_texture(bgpic.tex); 
 //    free_unused_animimages(); 
@@ -622,22 +580,17 @@ end;
 //begin 
 //  ima:= bgpic.ima; 
 //end;
-//if ima=0
-//then
+//if ima=0 then
 //exit;
-//if ima.ok=0
-//then
+//if ima.ok=0 then
 //exit;
 //(* plaatje testen *)
-//if ima.ibuf=0
-//then
+//if ima.ibuf=0 then
 //begin 
-//  if bgpic.rect<>0 
-// then
+//  if bgpic.rect<>0 then
 //  freeN(bgpic.rect); 
 //  bgpic.rect:= 0; 
-//  if bgpic.tex<>0 
-// then
+//  if bgpic.tex<>0 then
 //  begin 
 //    ima_ibuf_is_nul(bgpic.tex); 
 //  end;
@@ -649,16 +602,14 @@ end;
 //    ima.ibuf:= loadiffname(str,LI_rect); 
 //    waitcursor(0); 
 //  end;
-//  if ima.ibuf=0
-// then
+//  if ima.ibuf=0 then
 //  begin 
 //    ima.ok:= 0; 
 //    exit;
 //  end;
 //end;
 
-//if bgpic.rect=0
-//then
+//if bgpic.rect=0 then
 //begin 
 //  bgpic.rect:= dupallocN(ima.ibuf.rect); 
 //  bgpic.xim:= ima.ibuf.x; 
@@ -666,8 +617,7 @@ end;
 //  setalpha_bgpic(bgpic); 
 //end;
 
-//if G.vd.persp=2
-//then
+//if G.vd.persp=2 then
 //begin 
 //  x1:= G.vd.pr_xmin; 
 //  y1:= G.vd.pr_ymin; 
@@ -692,17 +642,13 @@ end;
 //  y2:= cy+asp*fac*(bgpic.yof+bgpic.size); 
 //end;
 //(* volledige clip? *)
-//if x2<0
-//then
+//if x2<0 then
 //exit;
-//if y2<0
-//then
+//if y2<0 then
 //exit;
-//if x1>curarea.winx
-//then
+//if x1>curarea.winx then
 //exit;
-//if y1>curarea.winy
-//then
+//if y1>curarea.winy then
 //exit;
 //zoomx:= x2-x1; 
 //zoomx:= zoomx div ({!!!a type cast? =>} {single(}ima.ibuf.x);
@@ -710,8 +656,7 @@ end;
 //zoomy:= zoomy div ({!!!a type cast? =>} {single(}ima.ibuf.y);
 //glEnable(GL_BLEND); 
 
-//if G.zbuf<>0 
-//then
+//if G.zbuf<>0 then
 //glDisable(GL_DEPTH_TEST); 
 //glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA); 
 
@@ -719,8 +664,7 @@ end;
 //glBlendFunc(GL_ONE,GL_ZERO); 
 
 //glDisable(GL_BLEND); 
-//if G.zbuf<>0 
-//then
+//if G.zbuf<>0 then
 //glEnable(GL_DEPTH_TEST); 
 //end;
 
@@ -745,8 +689,7 @@ end;
 //  sec:= ffloor(temp); 
 //  temp:= temp - ({!!!a type cast? =>} {single(}sec);
 //  hun:= ffloor(100*temp); 
-//  if hr<>0 
-// then
+//  if hr<>0 then
 //  sprintf(str,'%.2d:%.2d:%.2d.%.2d',hr,min,sec,hun); 
 //  else
 //  sprintf(str,'%.2d:%.2d.%.2d',min,sec,hun); 
@@ -791,20 +734,16 @@ end;
 //  fz:= vec4[2]; 
 //  fw:= vec4[3]; 
 //  dx:= fabs(x-(wx)*fx div fw); 
-//  if dx=0
-// then
+//  if dx=0 then
 //  dx:= fabs(y-(wy)*fy div fw); 
-//  if dx<6.0
-// then
+//  if dx<6.0 then
 //  begin 
 //    dx:= dx * (10.0); 
 //    setlinestyle(3); 
-//    if dx<6.0
-// then
+//    if dx<6.0 then
 //    begin 
 //      dx:= dx * (10.0); 
-//      if dx<6.0
-// then
+//      if dx<6.0 then
 //      begin 
 //        setlinestyle(0); 
 //        exit;
@@ -835,8 +774,7 @@ end;
 //  end;
 
 //  (* kruis in midden *)
-//  if G.vd.view=3
-// then
+//  if G.vd.view=3 then
 //  cpack($A0D0A0); 
 //  else
 //  (* y-as *)
@@ -844,8 +782,7 @@ end;
 //  fdrawline(0.0,y,{!!!a type cast? =>} {single(}curarea.winx,y);
 //  (* x-as *)
 
-//  if G.vd.view=7
-// then
+//  if G.vd.view=7 then
 //  cpack($A0D0A0); 
 //  else
 //  (* y-as *)
@@ -871,8 +808,7 @@ end;
 //  vd:= curarea.spacedata.first; 
 //  vert[2]:= 0.0; 
 
-//  if vd.gridlines<3
-// then
+//  if vd.gridlines<3 then
 //  exit;
 
 //  gridlines:= vd.gridlines div 2; 
@@ -883,18 +819,15 @@ end;
 //  do
 //  begin 
 
-//    if a=0
-// then
+//    if a=0 then
 //    begin 
-//      if vd.persp=0
-// then
+//      if vd.persp=0 then
 //      cpack($A0D0A0); 
 //      else
 //      cpack($402000); 
 //    end;
 //    else
-//    if a=1
-// then
+//    if a=1 then
 //    begin 
 //      cpack($404040); 
 //    end;
@@ -910,18 +843,15 @@ end;
 //  for{while} a:=-gridlines to gridlines {a++}
 //  do
 //  begin 
-//    if a=0
-// then
+//    if a=0 then
 //    begin 
-//      if vd.persp=0
-// then
+//      if vd.persp=0 then
 //      cpack($A0A0D0); 
 //      else
 //      cpack(0); 
 //    end;
 //    else
-//    if a=1
-// then
+//    if a=1 then
 //    begin 
 //      cpack($404040); 
 //    end;
@@ -937,15 +867,13 @@ end;
 
 //procedure drawcursor; 
 //begin
-//  if G.f and G_PLAYANIM
-// then
+//  if G.f and G_PLAYANIM then
 //  exit;
 //  project_short(give_cursor(),@G.vd.mx); 
 //  G.vd.mxo:= G.vd.mx; 
 //  G.vd.myo:= G.vd.my; 
 
-//  if G.vd.mx<>3200
-// then
+//  if G.vd.mx<>3200 then
 //  begin 
 //    setlinestyle(0); 
 //    cpack($FF); 
@@ -983,11 +911,9 @@ end;
 //  imay:= G.scene.r.ysch; 
 //  fac:= ({!!!a type cast? =>} {single(}imay*G.scene.r.yasp) div ({!!!a type cast? =>} {single(}imax*G.scene.r.xasp);
 //  imay:= fac*imax; (* liggend plaatje *)
-//  if imax>imay
-// then
+//  if imax>imay then
 //  begin 
-//    if wx<wy
-// then
+//    if wx<wy then
 //    width:= wy; 
 //    else
 //    width:= wx; 
@@ -999,8 +925,7 @@ end;
 //  end;
 //  else
 //  begin 
-//    if wx<wy
-// then
+//    if wx<wy then
 //    width:= wy; 
 //    else
 //    width:= wx; 
@@ -1059,8 +984,7 @@ end;
 //  glRectf(x1,y1,x2,y2); 
 
 //  (* border *)
-//  if G.scene.r.mode and R_BORDER
-// then
+//  if G.scene.r.mode and R_BORDER then
 //  begin 
 //    cpack(0); 
 //    x3:= x1+G.scene.r.border.xmin*(x2-x1); 
@@ -1103,8 +1027,7 @@ end;
 //begin
 
 //  tel:=1; 
-//  if G.f and (G_VERTEXPAINT or G_FACESELECT)
-// then
+//  if G.f and (G_VERTEXPAINT or G_FACESELECT) then
 //  ; 
 //  else
 //  begin 
@@ -1113,22 +1036,18 @@ end;
 //  end;
 //  {$endif}
 
-//  if G.vd.flag and V3D_NEEDBACKBUFDRAW
-// then
+//  if G.vd.flag and V3D_NEEDBACKBUFDRAW then
 //  ; 
 //  else
 //  exit;
-//  if G.obedit<>0 
-// then
+//  if G.obedit<>0 then
 //  begin 
 //    G.vd.flag:= G.vd.flag and ( not V3D_NEEDBACKBUFDRAW); 
 //    exit;
 //  end;
-//  if test<>0 
-// then
+//  if test<>0 then
 //  begin 
-//    if qtest()
-// then
+//    if qtest() then
 //    begin 
 //      addafterqueue(curarea.win,BACKBUFDRAW,1); 
 //      exit;
@@ -1139,13 +1058,11 @@ end;
 //  glDisable(GL_DITHER); 
 //  {$endif}
 
-//  if G.vd.drawtype>OB_WIRE
-// then
+//  if G.vd.drawtype>OB_WIRE then
 //  G.zbuf:= LongBool(1); 
 //  curarea.win_swap:= curarea.win_swap and ( not WIN_BACK_OK); 
 //  glClearColor(0.0,0.0,0.0,0.0); 
-//  if G.zbuf<>0 
-// then
+//  if G.zbuf<>0 then
 //  begin 
 //    glEnable(GL_DEPTH_TEST); 
 //    glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT); 
@@ -1156,12 +1073,10 @@ end;
 //    glDisable(GL_DEPTH_TEST); 
 //  end;
 //  G.f:= G.f or (G_BACKBUFSEL); 
-//  if G.f and (G_VERTEXPAINT or G_FACESELECT)
-// then
+//  if G.f and (G_VERTEXPAINT or G_FACESELECT) then
 //  begin 
 //    base:= BASACT; 
-//    if base)and((base.lay)and(G.vd.lay)
-// then
+//    if base)and((base.lay)and(G.vd.lay) then
 //    begin 
 //      draw_object(base); 
 //    end;
@@ -1176,14 +1091,11 @@ end;
 //      (* elke base ivm meerdere windows *)
 //      base.selcol:= $070707 or (((tel and $F00) shl 12)+((tel and $F0) shl 8)+((tel and $F) shl 4)); 
 //      inc(tel); 
-//      if base.lay and G.vd.lay
-// then
+//      if base.lay and G.vd.lay then
 //      begin 
-//        if test<>0 
-// then
+//        if test<>0 then
 //        begin 
-//          if qtest()
-// then
+//          if qtest() then
 //          begin 
 //            addafterqueue(curarea.win,BACKBUFDRAW,1); 
 //            break; {<= !!!b possible in "switch" - then remove this line}
@@ -1195,8 +1107,7 @@ end;
 //      base:= base.next; 
 //    end;
 //  end;
-//  if base=0
-// then
+//  if base=0 then
 //  G.vd.flag:= G.vd.flag and ( not V3D_NEEDBACKBUFDRAW); 
 //  G.f:= G.f and ( not G_BACKBUFSEL); 
 //  G.zbuf:= LongBool(0); 
@@ -1245,13 +1156,11 @@ end;
 //  Mat4Invert(G.vd.persinv,G.vd.persmat); 
 //  Mat4Invert(G.vd.viewinv,G.vd.viewmat); 
 
-//  if G.vd.drawtype>OB_WIRE
-// then
+//  if G.vd.drawtype>OB_WIRE then
 //  begin 
 //    G.zbuf:= LongBool(1); 
 //    glEnable(GL_DEPTH_TEST); 
-//    if G.scene.world<>0 
-// then
+//    if G.scene.world<>0 then
 //    glClearColor(G.scene.world.horr,G.scene.world.horg,G.scene.world.horb,0.0); 
 //    else
 //    glClearColor(0.4375,0.4375,0.4375,0.0); 
@@ -1265,12 +1174,10 @@ end;
 //  loadmatrix(G.vd.viewmat); 
 
 //  (* extern: camera tekenen *)
-//  if G.vd.persp<>2
-// then
+//  if G.vd.persp<>2 then
 //  begin 
 //    ob:= G.scene.camera; 
-//    if ob)and((ob.lay and G.vd.lay)
-// then
+//    if ob)and((ob.lay and G.vd.lay) then
 //    begin 
 //      cpack($0); 
 //      multmatrix(ob.obmat); 
@@ -1289,40 +1196,32 @@ end;
 //    drawsector(ob,MIN2(ob.dt,G.vd.drawtype),0); 
 //    loadmatrix(G.vd.viewmat); 
 //    se:= ob.data; 
-//    if se.lbuf.tot<>0 
-// then
+//    if se.lbuf.tot<>0 then
 //    begin 
 //      (* here was an de->depth test... for psx speedup i presume *)
 //      for{while} b:=0 to Pred(se.lbuf.tot) { b++}
 //      do
 //      begin 
 //        ob:= se.lbuf.ob[b]; 
-//        if ob.lay and G.vd.lay
-// then
+//        if ob.lay and G.vd.lay then
 //        begin 
 //          lf:= ob.data; 
-//          if lf.dflag and LF_DONTDRAW
-// then
+//          if lf.dflag and LF_DONTDRAW then
 //          ; 
 //          else
 //          begin 
 //            multmatrix(ob.obmat); 
 //            col:= 0; 
-//            if ma:=lf.contact
-// then
+//            if ma:=lf.contact then
 //            col:= rgb_to_cpack(ma.r,ma.g,ma.b); 
-//            if lf.flag and LF_DRAWNEAR
-// then
+//            if lf.flag and LF_DRAWNEAR then
 //            col:= ($F0A020); 
 //            drawlife(ob,MIN2(ob.dt,G.vd.drawtype),col); 
-//            if G.vd.drawtype<>OB_TEXTURE
-// then
+//            if G.vd.drawtype<>OB_TEXTURE then
 //            begin 
-//              if ob.dtx and OB_DRAWNAME
-// then
+//              if ob.dtx and OB_DRAWNAME then
 //              drawname(ob); 
-//              if ob.dtx and OB_AXIS
-// then
+//              if ob.dtx and OB_AXIS then
 //              drawaxes(lf.axsize); 
 //            end;
 //            loadmatrix(G.vd.viewmat); 
@@ -1336,32 +1235,25 @@ end;
 //  do
 //  begin 
 //    ob:= G.lifebuf[a]; 
-//    if ob.type=OB_LIFE)and((ob.lay and G.vd.lay)
-// then
+//    if ob.type=OB_LIFE)and((ob.lay and G.vd.lay) then
 //    begin 
 //      lf:= ob.data; 
-//      if lf.dflag and LF_DONTDRAW
-// then
+//      if lf.dflag and LF_DONTDRAW then
 //      ; 
 //      else
 //      begin 
 //        multmatrix(ob.obmat); 
-//        if G.vd.drawtype<>OB_TEXTURE
-// then
+//        if G.vd.drawtype<>OB_TEXTURE then
 //        begin 
 //          col:= 0; 
-//          if ma:=lf.contact
-// then
+//          if ma:=lf.contact then
 //          col:= rgb_to_cpack(ma.r,ma.g,ma.b); 
-//          if lf.flag and LF_DRAWNEAR
-// then
+//          if lf.flag and LF_DRAWNEAR then
 //          col:= ($F0A020); 
 //          drawlife(ob,MIN2(ob.dt,G.vd.drawtype),col); 
-//          if ob.dtx and OB_DRAWNAME
-// then
+//          if ob.dtx and OB_DRAWNAME then
 //          drawname(ob); 
-//          if ob.dtx and OB_AXIS
-// then
+//          if ob.dtx and OB_AXIS then
 //          drawaxes(lf.axsize); 
 //        end;
 //        else
@@ -1369,42 +1261,33 @@ end;
 //        loadmatrix(G.vd.viewmat); 
 //      end;
 
-//      if lf.type=LF_DYNAMIC
-// then
+//      if lf.type=LF_DYNAMIC then
 //      begin 
 //        for{while} b:=0 to Pred(lf.links.tot) { b++}
 //        do
 //        begin 
 //          ob:= lf.links.ob[b]; 
-//          if ob.type=OB_LIFE
-// then
+//          if ob.type=OB_LIFE then
 //          begin 
-//            if ob.lay and G.vd.lay
-// then
+//            if ob.lay and G.vd.lay then
 //            begin 
 //              lfl:= ob.data; 
-//              if lfl.dflag and LF_DONTDRAW
-// then
+//              if lfl.dflag and LF_DONTDRAW then
 //              ; 
 //              else
 //              begin 
 //                multmatrix(ob.obmat); 
-//                if G.vd.drawtype<>OB_TEXTURE
-// then
+//                if G.vd.drawtype<>OB_TEXTURE then
 //                begin 
 //                  col:= 0; 
-//                  if ma:=lfl.contact
-// then
+//                  if ma:=lfl.contact then
 //                  col:= rgb_to_cpack(ma.r,ma.g,ma.b); 
-//                  if lfl.flag and LF_DRAWNEAR
-// then
+//                  if lfl.flag and LF_DRAWNEAR then
 //                  col:= ($F0A020); 
 //                  drawlife(ob,MIN2(ob.dt,G.vd.drawtype),col); 
-//                  if ob.dtx and OB_DRAWNAME
-// then
+//                  if ob.dtx and OB_DRAWNAME then
 //                  drawname(ob); 
-//                  if ob.dtx and OB_AXIS
-// then
+//                  if ob.dtx and OB_AXIS then
 //                  drawaxes(lfl.axsize); 
 //                end;
 //                else
@@ -1419,17 +1302,14 @@ end;
 //  end;
 //  draw_tface_meshes_tra(); 
 
-//  if G.zbuf<>0 
-// then
+//  if G.zbuf<>0 then
 //  begin 
 //    G.zbuf:= LongBool(0); 
 //    glDisable(GL_DEPTH_TEST); 
 //  end;
-//  if G.vd.drawtype<>OB_TEXTURE
-// then
+//  if G.vd.drawtype<>OB_TEXTURE then
 //  begin 
-//    if G.vd.persp>1
-// then
+//    if G.vd.persp>1 then
 //    begin 
 //      (* persp(0); *)
 //      (* drawviewborder(); *)
@@ -1460,13 +1340,11 @@ end;
 //  Mat4Invert(G.vd.persinv,G.vd.persmat); 
 //  Mat4Invert(G.vd.viewinv,G.vd.viewmat); 
 
-//  if G.vd.drawtype>OB_WIRE
-// then
+//  if G.vd.drawtype>OB_WIRE then
 //  begin 
 //    G.zbuf:= LongBool(1); 
 //    glEnable(GL_DEPTH_TEST); 
-//    if G.f and G_SIMULATION
-// then
+//    if G.f and G_SIMULATION then
 //    begin 
 //      glClearColor(0.0,0.0,0.0,0.0); 
 //    end;
@@ -1484,23 +1362,18 @@ end;
 //  end;
 //  loadmatrix(G.vd.viewmat); 
 
-//  if G.vd.view=0)or(G.vd.persp<>0
-// then
+//  if G.vd.view=0)or(G.vd.persp<>0 then
 //  begin 
 //    drawfloor(); 
-//    if G.vd.persp=2
-// then
+//    if G.vd.persp=2 then
 //    begin 
-//      if G.scene.world<>0 
-// then
+//      if G.scene.world<>0 then
 //      begin 
-//        if G.scene.world.mode and WO_STARS
-// then
+//        if G.scene.world.mode and WO_STARS then
 //        make_stars(1); 
 //      end;
 //      calc_viewborder(); 
-//      if G.vd.flag and V3D_DISPBGPIC
-// then
+//      if G.vd.flag and V3D_DISPBGPIC then
 //      draw_bgpic(); 
 //    end;
 //  end;
@@ -1508,15 +1381,13 @@ end;
 //  begin 
 //    drawgrid(); 
 
-//    if G.vd.flag and V3D_DISPBGPIC
-// then
+//    if G.vd.flag and V3D_DISPBGPIC then
 //    begin 
 //      draw_bgpic(); 
 //    end;
 //  end;
 //  (* eerst set tekenen *)
-//  if G.scene.set<>0 
-// then
+//  if G.scene.set<>0 then
 //  begin 
 //    (* patchje: kleur blijft constant *)
 //    G.f:= G.f or (G_PICKSEL); 
@@ -1524,16 +1395,14 @@ end;
 //    while base
 //    do
 //    begin 
-//      if G.vd.lay and base.lay
-// then
+//      if G.vd.lay and base.lay then
 //      begin 
 //        where_is_object(base.object); 
 //        cpack($404040); 
 
 //        draw_object(base); 
 
-//        if base.object.transflag and OB_DUPLI
-// then
+//        if base.object.transflag and OB_DUPLI then
 //        begin 
 //          {duplilist: ListBase; }{<= !!!5 external variable}
 
@@ -1564,13 +1433,11 @@ end;
 //  while base
 //  do
 //  begin 
-//    if G.vd.lay and base.lay
-// then
+//    if G.vd.lay and base.lay then
 //    begin 
 //      where_is_object(base.object); 
 
-//      if LongBool(0))and(base.object.transflag and OB_DUPLI
-// then
+//      if LongBool(0))and(base.object.transflag and OB_DUPLI then
 //      begin 
 //        {duplilist: ListBase; }{<= !!!5 external variable}
 //        draw_object(base); 
@@ -1592,8 +1459,7 @@ end;
 //        G.f:= G.f and ( not G_PICKSEL); 
 //      end;
 //      else
-//      if (base.flag and SELECT)=0
-// then
+//      if (base.flag and SELECT)=0 then
 //      begin 
 //        draw_object(base); 
 //      end;
@@ -1617,11 +1483,9 @@ end;
 //  while base
 //  do
 //  begin 
-//    if G.vd.lay and base.lay
-// then
+//    if G.vd.lay and base.lay then
 //    begin 
-//      if base.object.transflag and OB_DUPLI
-// then
+//      if base.object.transflag and OB_DUPLI then
 //      begin 
 //        {duplilist: ListBase; }{<= !!!5 external variable}
 //        var
@@ -1646,28 +1510,24 @@ end;
 //    base:= base.next; 
 //  end;
 
-//  if G.scene.radio<>0 
-// then
+//  if G.scene.radio<>0 then
 //  rad_drawall(); 
 //  persp(0); 
 //  (* radview.c *)
-//  if G.vd.persp>1
-// then
+//  if G.vd.persp>1 then
 //  drawviewborder(); 
 //  drawcursor(); 
 //  persp(1); 
 //  G.vd.flag:= G.vd.flag and ( not V3D_DISPIMAGE); 
 //  curarea.win_swap:= WIN_BACK_OK; 
-//  if G.zbuf<>0 
-// then
+//  if G.zbuf<>0 then
 //  begin 
 //    G.zbuf:= LongBool(0); 
 //    glDisable(GL_DEPTH_TEST); 
 //  end;
 //  {$if defined(WINDOWS) or defined(MESA31)}
 
-//  if G.f and (G_VERTEXPAINT or G_FACESELECT)
-// then
+//  if G.f and (G_VERTEXPAINT or G_FACESELECT) then
 //  begin 
 //    G.vd.flag:= G.vd.flag or (V3D_NEEDBACKBUFDRAW); 
 //    addafterqueue(curarea.win,BACKBUFDRAW,1); 
@@ -1703,15 +1563,13 @@ end;
 //  Mat4Invert(G.vd.persinv,G.vd.persmat); 
 //  Mat4Invert(G.vd.viewinv,G.vd.viewmat); 
 
-//  if G.vd.drawtype>OB_WIRE
-// then
+//  if G.vd.drawtype>OB_WIRE then
 //  begin 
 //    G.zbuf:= LongBool(1); 
 //    glEnable(GL_DEPTH_TEST); 
 //  end;
 
-//  if G.scene.world<>0 
-// then
+//  if G.scene.world<>0 then
 //  glClearColor(G.scene.world.horr,G.scene.world.horg,G.scene.world.horb,0.0); 
 //  else
 //  glClearColor(0.4375,0.4375,0.4375,0.0); 
@@ -1737,8 +1595,7 @@ end;
 //  end;
 
 //  (* eerst set tekenen *)
-//  if G.scene.set<>0 
-// then
+//  if G.scene.set<>0 then
 //  begin 
 //    (* patchje: kleur blijft constant *)
 //    G.f:= G.f or (G_PICKSEL); 
@@ -1746,8 +1603,7 @@ end;
 //    while base
 //    do
 //    begin 
-//      if G.vd.lay and base.lay
-// then
+//      if G.vd.lay and base.lay then
 //      begin 
 
 //        function ELEM3{!!!3 unknown typedef}: if; 
@@ -1756,8 +1612,7 @@ end;
 //          where_is_object(base.object); 
 //          cpack($404040); 
 //          draw_object(base); 
-//          if base.object.transflag and OB_DUPLI
-// then
+//          if base.object.transflag and OB_DUPLI then
 //          begin 
 //            {duplilist: ListBase; }{<= !!!5 external variable}
 
@@ -1783,16 +1638,14 @@ end;
 //  while base
 //  do
 //  begin 
-//    if G.vd.lay and base.lay
-// then
+//    if G.vd.lay and base.lay then
 //    begin 
 
 //      function ELEM3{!!!3 unknown typedef}: if; 
 //      else
 //      begin 
 //        where_is_object(base.object); 
-//        if base.object.transflag and OB_DUPLI
-// then
+//        if base.object.transflag and OB_DUPLI then
 //        begin 
 //          {duplilist: ListBase; }{<= !!!5 external variable}
 //          draw_object(base); 
@@ -1813,8 +1666,7 @@ end;
 //          G.f:= G.f and ( not G_PICKSEL); 
 //        end;
 //        else
-//        if (base.flag and SELECT)=0
-// then
+//        if (base.flag and SELECT)=0 then
 //        begin 
 //          draw_object(base); 
 //        end;
@@ -1837,12 +1689,10 @@ end;
 //    base:= base.next; 
 //  end;
 
-//  if G.scene.radio<>0 
-// then
+//  if G.scene.radio<>0 then
 //  rad_drawall(); 
 //  (* radview.c *)
-//  if G.zbuf<>0 
-// then
+//  if G.zbuf<>0 then
 //  begin 
 //    G.zbuf:= LongBool(0); 
 //    glDisable(GL_DEPTH_TEST); 
@@ -2071,14 +1921,11 @@ end;
 
 //  event:=0; 
 
-//  if SFRA=0
-// then
+//  if SFRA=0 then
 //  SFRA:= 1; 
-//  if EFRA=0
-// then
+//  if EFRA=0 then
 //  EFRA:= 250; 
-//  if SFRA>EFRA
-// then
+//  if SFRA>EFRA then
 //  begin
 //    result:= 0; 
 //    exit;
@@ -2090,8 +1937,7 @@ end;
 //  (* waitcursor(1); *)
 //  (* in sequence.c en view.c wordt dit afgevangen *)
 
-//  if G.scene.r.scemode and R_NETWORK
-// then
+//  if G.scene.r.scemode and R_NETWORK then
 //  begin 
 //    init_render_camera_network(); 
 //  end;
@@ -2100,8 +1946,7 @@ end;
 //  while LongBool(1)
 //  do
 //  begin 
-//    if tottime>0.0
-// then
+//    if tottime>0.0 then
 //    tottime:= 0.0; 
 //    for{while}  to EFRA { CFRA++}
 //    do
@@ -2117,32 +1962,26 @@ end;
 //      while sa
 //      do
 //      begin 
-//        if sa=oldsa
-// then
+//        if sa=oldsa then
 //        begin 
-//          if sa.win)and(sa.windraw
-// then
+//          if sa.win)and(sa.windraw then
 //          begin 
 //            (* hier winget() gebruiken: anders wordt in header getekend *)
-//            if sa.win<>winget()
-// then
+//            if sa.win<>winget() then
 //            areawinset(sa.win); 
 //            sa.windraw(); 
 //          end;
 //        end;
 //        else
-//        if mode<>0 
-// then
+//        if mode<>0 then
 //        begin 
 
 //          function ELEM{!!!3 unknown typedef}: if; 
 //          begin
-//            if sa.win)and(sa.windraw
-// then
+//            if sa.win)and(sa.windraw then
 //            begin 
 //              (* hier winget() gebruiken: anders wordt in header getekend *)
-//              if sa.win<>winget()
-// then
+//              if sa.win<>winget() then
 //              areawinset(sa.win); 
 //              sa.windraw(); 
 //            end;
@@ -2161,27 +2000,22 @@ end;
 //      do
 //      begin 
 //        event:= extern_qread(@val); 
-//        if event=ESCKEY
-// then
+//        if event=ESCKEY then
 //        break; {<= !!!b possible in "switch" - then remove this line}
-//        if val<>0 
-// then
+//        if val<>0 then
 //        begin 
 //          swaptime:= key_to_swaptime(event); 
 //        end;
 //      end;
-//      if event=ESCKEY)or(event=SPACEKEY
-// then
+//      if event=ESCKEY)or(event=SPACEKEY then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
-//    if event=ESCKEY)or(event=SPACEKEY)or(mode=2
-// then
+//    if event=ESCKEY)or(event=SPACEKEY)or(mode=2 then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    CFRA:= SFRA; 
 //  end;
 
-//  if event=SPACEKEY
-// then
+//  if event=SPACEKEY then
 //  ; 
 //  else
 //  CFRA:= cfraont; 
@@ -2189,15 +2023,13 @@ end;
 //  do_all_keys(); 
 //  do_all_ikas(); 
 
-//  if oldsa<>curarea
-// then
+//  if oldsa<>curarea then
 //  areawinset(oldsa.win); 
 //  sa:= G.curscreen.areabase.first; (* restore all areas *)
 //  while sa
 //  do
 //  begin 
-//    if (mode)and(sa.spacetype=SPACE_VIEW3D))or(sa=curarea
-// then
+//    if (mode)and(sa.spacetype=SPACE_VIEW3D))or(sa=curarea then
 //    addqueue(sa.win,REDRAW,1); 
 //    sa:= sa.next; 
 //  end;
@@ -2206,8 +2038,7 @@ end;
 //  do_global_buttons(B_NEWFRAME); 
 //  (* vooropig *)
 
-//  if G.scene.r.scemode and R_NETWORK
-// then
+//  if G.scene.r.scemode and R_NETWORK then
 //  begin 
 //  end_render_camera_network(); 
 //  allqueue(REDRAWBUTSALL,0); 
@@ -2215,8 +2046,7 @@ end;
 //(* efra *)
 //waitcursor(0); 
 //G.f:= G.f and ( not G_PLAYANIM); 
-//if event=ESCKEY)or(event=SPACEKEY
-//then
+//if event=ESCKEY)or(event=SPACEKEY then
 //begin
 //  result:= 1; 
 //  exit;

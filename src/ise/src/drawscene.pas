@@ -128,8 +128,7 @@ end;
 //  while a{--} dec(a); 
 //  do
 //  begin 
-//    if a and 1
-// then
+//    if a and 1 then
 //    begin 
 //      strout[a]:= (ihash[(ihash[strin[a]]-key3) and 255]) and 255; 
 //      strout[a]:= (ihash[(ihash[strout[a]]-key1) and 255]) and 255; 
@@ -178,8 +177,7 @@ end;
 
 //function testc: integer; 
 //begin
-//  if ((ihash[cdata[2]]-cdata[27]) and 255)=106
-// then
+//  if ((ihash[cdata[2]]-cdata[27]) and 255)=106 then
 //  begin
 //    result:= 1; 
 //    exit;
@@ -192,8 +190,7 @@ end;
 
 //function errorc: integer; 
 //begin
-//  if testc()
-// then
+//  if testc() then
 //  begin
 //    result:= 1; 
 //    exit;
@@ -243,8 +240,7 @@ end;
 //  for{while} a:=0 to Pred(len) { a++}
 //  do
 //  begin 
-//    if name[a]=10)or(name[a]=13
-// then
+//    if name[a]=10)or(name[a]=13 then
 //    ; 
 //    else
 //    begin 
@@ -274,8 +270,7 @@ end;
 //  bzero(bdata,128); 
 //  bzero(cdata,128); 
 //  home:= gethome(); 
-//  if home<>0
-// then
+//  if home<>0 then
 //  begin 
 //    (* inverse hashtab *)
 //    for{while} a:=0 to Pred(256) { a++}
@@ -284,8 +279,7 @@ end;
 //      for{while} b:=0 to Pred(256) { b++}
 //      do
 //      begin 
-//        if a=hash[b]
-// then
+//        if a=hash[b] then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //      ihash[a]:= b; 
@@ -294,34 +288,27 @@ end;
 //    do
 //    ihash[256+a]:= ihash[a]; 
 //    make_file_string(name,home,'.BCkey'); 
-//    if {not}0=fop_exists(name)
-// then
+//    if {not}0=fop_exists(name) then
 //    begin 
-//      if G.f@G_DEBUG
-// then
+//      if G.f@G_DEBUG then
 //      printf('Unable to find key at: %s\n',name);
 //      make_file_string(name,home,'BCkey'); 
 //    end;
-//    if {not}0=fop_exists(name)
-// then
+//    if {not}0=fop_exists(name) then
 //    begin 
-//      if G.f@G_DEBUG
-// then
+//      if G.f@G_DEBUG then
 //      printf('Unable to find key at: %s\n',name);
 //      make_file_string(name,home,'BCkey.txt'); 
 //    end;
 //    file:= open(name,O_BINARY or O_RDONLY); 
-//    if file>0
-// then
+//    if file>0 then
 //    begin 
-//      if G.f@G_DEBUG
-// then
+//      if G.f@G_DEBUG then
 //      printf('Found key at: %s\n',name);
 //      read(file,name,280); 
 //      remove_enters(name,280); 
 //      decode_256(temp,name); 
-//      if mark5(temp)=0
-// then
+//      if mark5(temp)=0 then
 //      begin 
 //        printf('invalid C Key\n');
 //      end;
@@ -335,8 +322,7 @@ end;
 //        memcpy(cdata+100,temp+100,28); 
 //      end;
 //      close(file); 
-//      if TEST_C_KEY=0
-// then
+//      if TEST_C_KEY=0 then
 //      begin 
 //        printf('invalid C Key\n');
 //      end;
@@ -349,8 +335,7 @@ end;
 //    end;
 //    else
 //    begin 
-//      if (G.f and G_DEBUG) <> 0
-// then
+//      if (G.f and G_DEBUG) <> 0 then
 //      printf('can''t open %s\n',name);
 //      for{while} a:=0 to Pred(64) { a++}
 //      do

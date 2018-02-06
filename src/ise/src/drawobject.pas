@@ -133,7 +133,7 @@ end;
 //var
 //  dummy: char = #0;
 //begin
-//  if vec<>0  then
+//  if vec<>0 then
 //  begin 
 //    glRasterPos3f(vec[0],vec[1],vec[2]); 
 //    glBitmap(1,1,0.0,0.0,-2.0,-2.0, and dummy); 
@@ -148,8 +148,7 @@ end;
 
 //begin
 //  dummy:=0; 
-//  if vec<>0{nil} {<= !!!9} 
-//  then
+//  if vec<>0 then
 //  begin 
 //    glRasterPos3f(vec[0],vec[1],vec[2]); 
 //    glBitmap(1,1,0.0,0.0,-1.5,-1.5, and dummy); 
@@ -165,7 +164,7 @@ end;
 //mval1: array [0..1] of smallint;
 //begin
 //  VECCOPY(vecrot,vec);
-//  if G.obedit<>0   then
+//  if G.obedit<>0 then
 //  Mat4MulVecfl(G.obedit.obmat,vecrot); 
 //  getmouseco_areawin(mval); 
 
@@ -495,8 +494,7 @@ end;
 //  la:= ob.data; 
 //  vec[0]:= vec[1]:=vec[2]:=0.0; 
 //  setlinestyle(4); 
-//  if la.type=LA_SPOT
-//  then
+//  if la.type=LA_SPOT then
 //  begin 
 //    lvec[0]:= lvec[1]:=0.0; 
 //    lvec[2]:= 1.0; 
@@ -526,8 +524,7 @@ end;
 //    x:= x * (y); 
 //    glTranslatef(0.0,0.0,x); 
 
-//    if la.mode and LA_SQUARE
-//    then
+//    if la.mode and LA_SQUARE then
 //    begin 
 //      vvec[0]:= fabs(z); 
 //      vvec[1]:= fabs(z); 
@@ -557,8 +554,7 @@ end;
 //  end
 //  else
 //  begin 
-//    if la.mode and LA_SPHERE
-//    then
+//    if la.mode and LA_SPHERE then
 //    begin 
 
 //      var
@@ -579,8 +575,7 @@ end;
 //  glVertex3fv(vec); 
 //  glEnd(); 
 //  setlinestyle(0); 
-//  if la.type=LA_SPOT)and((la.mode and LA_SHAD)
-//  then
+//  if la.type=LA_SPOT)and((la.mode and LA_SHAD) then
 //  begin 
 //    tekenshadbuflimits(la,ob.obmat); 
 //  end;
@@ -627,8 +622,7 @@ end;
 //  glDisable(GL_LIGHTING); 
 //  glDisable(GL_CULL_FACE); 
 //  fac:= cam.drawsize; (* zo is ie altijd te zien *)
-//  if G.vd.persp>=2
-//  then
+//  if G.vd.persp>=2 then
 //  fac:= cam.clipsta+0.1; 
 //  depth:= -fac*cam.lens div 16.0; 
 //  facx:= fac*1.28; 
@@ -669,11 +663,9 @@ end;
 //  glVertex3fv(vec[1]); 
 //  glEnd(); 
 
-//  if G.vd.persp>=2
-//  then
+//  if G.vd.persp>=2 then
 //  exit;
-//  if G.f and G_BACKBUFSEL
-//  then
+//  if G.f and G_BACKBUFSEL then
 //  exit;
 //  (* pijl aan top *)
 //  vec[0][2]:= depth; 
@@ -702,8 +694,7 @@ end;
 //  vec[0][1]:= 1.6*cam.drawsize; 
 //  glVertex3fv(vec[0]); 
 //  glEnd(); 
-//  if cam.flag and (CAM_SHOWLIMITS+CAM_SHOWMIST+CAM_SHOWNETCLIP)
-//  then
+//  if cam.flag and (CAM_SHOWLIMITS+CAM_SHOWMIST+CAM_SHOWNETCLIP) then
 //  begin 
 //    loadmatrix(G.vd.viewmat); 
 //    Mat4CpyMat4(vec,ob.obmat); 
@@ -713,18 +704,14 @@ end;
 
 //    mygetsingmatrix(G.vd.persmat); 
 
-//    if cam.flag and CAM_SHOWLIMITS
-//    then
+//    if cam.flag and CAM_SHOWLIMITS then
 //    draw_limit_line(cam.clipsta,cam.clipend,B_YELLOW); 
 
-//    if cam.flag and CAM_SHOWNETCLIP
-//    then
+//    if cam.flag and CAM_SHOWNETCLIP then
 //    draw_limit_line(cam.netsta,cam.netend,0); 
 //    wrld:= G.scene.world; 
-//    if cam.flag and CAM_SHOWMIST
-//    then
-//    if wrld<>0{nil} {<= !!!9} 
-//    then
+//    if cam.flag and CAM_SHOWMIST then
+//    if wrld<>0 then
 //    draw_limit_line(wrld.miststa,wrld.miststa+wrld.mistdist,$FFFFFF); 
 //    Mat4SwapMat4(G.vd.persmat,tmat); 
 //  end;
@@ -746,8 +733,7 @@ end;
 
 //  glPointSize(3.0); 
 
-//  if sel<>0{nil} {<= !!!9} 
-//  then
+//  if sel<>0 then
 //  cpack(B_YELLOW); 
 //  else
 //  cpack(B_PURPLE); 
@@ -755,22 +741,19 @@ end;
 
 //  bp:= editLatt.def; 
 //  lt:= editLatt; 
-//  if lt.flag and LT_OUTSIDE
-//  then
+//  if lt.flag and LT_OUTSIDE then
 //  begin 
 //    for{while} w:=0 to lt.pntsw - 1 { w++}
 //    do
 //    begin 
-//      if w=0)or(w=lt.pntsw-1
-//      then
+//      if w=0)or(w=lt.pntsw-1 then
 //      wxt:= 1; 
 //      else
 //      wxt:= 0; 
 //      for{while} v:=0 to Pred(lt.pntsv) { v++}
 //      do
 //      begin 
-//        if v=0)or(v=lt.pntsv-1
-//        then
+//        if v=0)or(v=lt.pntsv-1 then
 //        vxt:= 1; 
 //        else
 //        vxt:= 0; 
@@ -782,19 +765,15 @@ end;
 //        inc(bp); 
 //        do
 //        begin 
-//          if u=0)or(u=lt.pntsu-1
-//          then
+//          if u=0)or(u=lt.pntsu-1 then
 //          uxt:= 1; 
 //          else
 //          uxt:= 0; 
-//          if uxt)or(vxt)or(wxt
-//          then
+//          if uxt)or(vxt)or(wxt then
 //          begin 
-//            if bp.hide=0
-//            then
+//            if bp.hide=0 then
 //            begin 
-//              if (bp.f1 and 1)=sel
-//              then
+//              if (bp.f1 and 1)=sel then
 //              glVertex3fv(bp.vec); 
 //            end;
 //          end;
@@ -809,11 +788,9 @@ end;
 //    while a{--} dec(a); 
 //    do
 //    begin 
-//      if bp.hide=0
-//      then
+//      if bp.hide=0 then
 //      begin 
-//        if (bp.f1 and 1)=sel
-//        then
+//        if (bp.f1 and 1)=sel then
 //        glVertex3fv(bp.vec); 
 //      end;
 //      inc(bp); 
@@ -872,8 +849,7 @@ end;
 //begin
 
 //  lt:= ob.data; 
-//  if ob=G.obedit
-//  then
+//  if ob=G.obedit then
 //  begin 
 //    bp:= editLatt.def; 
 //    cpack($004000); 
@@ -884,22 +860,19 @@ end;
 //  end;
 //  dv:= lt.pntsu; 
 //  dw:= dv*lt.pntsv; 
-//  if lt.flag and LT_OUTSIDE
-//  then
+//  if lt.flag and LT_OUTSIDE then
 //  begin 
 //    for{while} w:=0 to lt.pntsw - 1 { w++}
 //    do
 //    begin 
-//      if w=0)or(w=lt.pntsw-1
-//      then
+//      if w=0)or(w=lt.pntsw-1 then
 //      wxt:= 1; 
 //      else
 //      wxt:= 0; 
 //      for{while} v:=0 to Pred(lt.pntsv) { v++}
 //      do
 //      begin 
-//        if v=0)or(v=lt.pntsv-1
-//        then
+//        if v=0)or(v=lt.pntsv-1 then
 //        vxt:= 1; 
 //        else
 //        vxt:= 0; 
@@ -912,16 +885,13 @@ end;
 //        inc(bp); 
 //        do
 //        begin 
-//          if u=0)or(u=lt.pntsu-1
-//          then
+//          if u=0)or(u=lt.pntsu-1 then
 //          uxt:= 1; 
 //          else
 //          uxt:= 0; 
-//          if uxt)or(vxt)or(wxt
-//          then
+//          if uxt)or(vxt)or(wxt then
 //          begin 
-//            if w)and((uxt)or(vxt)
-//            then
+//            if w)and((uxt)or(vxt) then
 //            begin 
 
 //              glBegin(GL_LINE_STRIP); 
@@ -929,8 +899,7 @@ end;
 //              glVertex3fv(bp.vec); 
 //              glEnd(); 
 //            end;
-//            if v)and((uxt)or(wxt)
-//            then
+//            if v)and((uxt)or(wxt) then
 //            begin 
 
 //              glBegin(GL_LINES); 
@@ -938,8 +907,7 @@ end;
 //              glVertex3fv(bp.vec); 
 //              glEnd(); 
 //            end;
-//            if u)and((vxt)or(wxt)
-//            then
+//            if u)and((vxt)or(wxt) then
 //            begin 
 
 //              glBegin(GL_LINES); 
@@ -970,8 +938,7 @@ end;
 //        inc(bp); 
 //        do
 //        begin 
-//          if w<>0{nil} {<= !!!9} 
-//          then
+//          if w<>0 then
 //          begin 
 
 //            glBegin(GL_LINES); 
@@ -979,8 +946,7 @@ end;
 //            glVertex3fv(bp.vec); 
 //            glEnd(); 
 //          end;
-//          if v<>0{nil} {<= !!!9} 
-//          then
+//          if v<>0 then
 //          begin 
 
 //            glBegin(GL_LINES); 
@@ -988,8 +954,7 @@ end;
 //            glVertex3fv(bp.vec); 
 //            glEnd(); 
 //          end;
-//          if u<>0{nil} {<= !!!9} 
-//          then
+//          if u<>0 then
 //          begin 
 
 //            glBegin(GL_LINES); 
@@ -1002,17 +967,14 @@ end;
 //      end;
 //    end;
 //  end;
-//  if ob=G.obedit
-//  then
+//  if ob=G.obedit then
 //  begin 
 //    calc_lattverts(); 
-//    if G.zbuf<>0{nil} {<= !!!9} 
-//    then
+//    if G.zbuf<>0 then
 //    glDisable(GL_DEPTH_TEST); 
 //    tekenvertslatt(0); 
 //    tekenvertslatt(1); 
-//    if G.zbuf<>0{nil} {<= !!!9} 
-//    then
+//    if G.zbuf<>0 then
 //    glEnable(GL_DEPTH_TEST); 
 //  end;
 //end;
@@ -1025,8 +987,7 @@ end;
 //mat: array [0..3,0..3] of single;
 //begin
 
-//  if G.edve.first=0
-//  then
+//  if G.edve.first=0 then
 //  exit;
 //  eve:= G.edve.first; 
 //  Mat4SwapMat4(G.vd.persmat,mat); 
@@ -1036,8 +997,7 @@ end;
 //  while eve
 //  do
 //  begin 
-//    if eve.h=0
-//    then
+//    if eve.h=0 then
 //    begin 
 //      project_short(eve.co,@(eve.xs)); 
 //    end;
@@ -1073,8 +1033,7 @@ end;
 //  while nu
 //  do
 //  begin 
-//    if (nu.type and 7)=1
-//    then
+//    if (nu.type and 7)=1 then
 //    begin 
 //      bezt:= nu.bezt; 
 //      a:= nu.pntsu; 
@@ -1121,8 +1080,7 @@ end;
 //begin
 
 //  glPointSize(2.0); 
-//  if sel<>0{nil} {<= !!!9} 
-//  then
+//  if sel<>0 then
 //  cpack(B_YELLOW); 
 //  else
 //  cpack(B_PURPLE); 
@@ -1131,8 +1089,7 @@ end;
 //  while eve
 //  do
 //  begin 
-//    if eve.h=0)and((eve.f and 1)=sel
-//    then
+//    if eve.h=0)and((eve.f and 1)=sel then
 //    begin 
 //      glVertex3fv(eve.co); 
 //    end;
@@ -1150,14 +1107,12 @@ end;
 //vd: pView3D; 
 //begin
 
-//  if G.f and (G_FACESELECT+G_DRAWFACES)
-//  then
+//  if G.f and (G_FACESELECT+G_DRAWFACES) then
 //  begin 
 //    allqueue(REDRAWVIEW3D,0); 
 //    exit;
 //  end;
-//  if G.zbuf<>0{nil} {<= !!!9} 
-//  then
+//  if G.zbuf<>0 then
 //  glDisable(GL_DEPTH_TEST); 
 //  glDrawBuffer(GL_FRONT); 
 //  tempsa:= curarea; 
@@ -1166,22 +1121,18 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa.spacetype=SPACE_VIEW3D
-//    then
+//    if sa.spacetype=SPACE_VIEW3D then
 //    begin 
 //      vd:= sa.spacedata.first; 
-//      if G.obedit.lay and vd.lay
-//      then
+//      if G.obedit.lay and vd.lay then
 //      begin 
 //        areawinset(sa.win); 
 //        multmatrix(G.obedit.obmat); 
 //        calc_meshverts(); 
 
-//        if mode=0)or(mode=2
-//        then
+//        if mode=0)or(mode=2 then
 //        tekenvertices(0); 
-//        if mode=1)or(mode=2
-//        then
+//        if mode=1)or(mode=2 then
 //        tekenvertices(1); 
 //        sa.win_swap:= WIN_FRONT_OK; 
 //        loadmatrix(G.vd.viewmat); 
@@ -1189,12 +1140,10 @@ end;
 //    end;
 //    sa:= sa.next; 
 //  end;
-//  if curarea<>tempsa
-//  then
+//  if curarea<>tempsa then
 //  areawinset(tempsa.win); 
 //  glDrawBuffer(GL_BACK); 
-//  if G.zbuf<>0{nil} {<= !!!9} 
-//  then
+//  if G.zbuf<>0 then
 //  glEnable(GL_DEPTH_TEST); 
 //end;
 
@@ -1224,8 +1173,7 @@ end;
 //side: single;
 //begin
 
-//  if dlbase=0
-//  then
+//  if dlbase=0 then
 //  exit;
 
 //  dl:= dlbase.first; 
@@ -1275,8 +1223,7 @@ end;
 //        do
 //        begin 
 //          nr:= dl.nr; 
-//          if dl.flag and 1
-//          then
+//          if dl.flag and 1 then
 //          glBegin(GL_LINE_LOOP); 
 //          else
 //          glBegin(GL_LINE_STRIP); 
@@ -1287,8 +1234,7 @@ end;
 //            glVertex3fv(data); 
 //            data:= data + (3); 
 //          end;
-//          if dl.flag and 1
-//          then
+//          if dl.flag and 1 then
 //          glEnd(); 
 //          else
 //          glEnd(); 
@@ -1300,8 +1246,7 @@ end;
 //        begin 
 //          data:= (dl.verts)+3*nr; 
 //          parts:= dl.parts; 
-//          if dl.flag and 2
-//          then
+//          if dl.flag and 2 then
 //          glBegin(GL_LINE_LOOP); 
 //          else
 
@@ -1312,8 +1257,7 @@ end;
 //            glVertex3fv(data); 
 //            data:= data + (ofs); 
 //          end;
-//          if dl.flag and 2
-//          then
+//          if dl.flag and 2 then
 //          glEnd(); 
 //          else
 //          glEnd(); 
@@ -1321,8 +1265,7 @@ end;
 //      end;
 //      DL_INDEX3:
 //      begin
-//        if draw_index_wire<>0{nil} {<= !!!9} 
-//        then
+//        if draw_index_wire<>0 then
 //        begin 
 //          parts:= dl.parts; 
 //          data:= dl.verts; 
@@ -1342,8 +1285,7 @@ end;
 //      end;
 //      DL_INDEX4:
 //      begin
-//        if draw_index_wire<>0{nil} {<= !!!9} 
-//        then
+//        if draw_index_wire<>0 then
 //        begin 
 //          parts:= dl.parts; 
 //          data:= dl.verts; 
@@ -1356,8 +1298,7 @@ end;
 //            glVertex3fv(data+3*index[0]); 
 //            glVertex3fv(data+3*index[1]); 
 //            glVertex3fv(data+3*index[2]); 
-//            if index[3]<>0{nil} {<= !!!9} 
-//            then
+//            if index[3]<>0 then
 //            glVertex3fv(data+3*index[3]); 
 //            glEnd(); 
 //            index:= index + (4); 
@@ -1398,11 +1339,9 @@ end;
 //cp: pchar; 
 //begin
 
-//  if lb=0
-//  then
+//  if lb=0 then
 //  exit;
-//  if (G.f and G_BACKBUFSEL)=0
-//  then
+//  if (G.f and G_BACKBUFSEL)=0 then
 //  begin 
 //    glShadeModel(GL_SMOOTH); 
 //    glEnable(GL_LIGHTING); 
@@ -1416,8 +1355,7 @@ end;
 //    case dl.type of
 //      DL_SURF:
 //      begin
-//        if G.f and G_BACKBUFSEL
-//        then
+//        if G.f and G_BACKBUFSEL then
 //        begin 
 //          for{while} a:=0 to Pred(dl.parts) { a++}
 //          do
@@ -1507,8 +1445,7 @@ end;
 //        data:= dl.verts; 
 //        ndata:= dl.nors; 
 //        index:= dl.index; 
-//        if G.f and G_BACKBUFSEL
-//        then
+//        if G.f and G_BACKBUFSEL then
 //        begin 
 //          while parts{--} dec(parts); 
 //          do
@@ -1527,8 +1464,7 @@ end;
 
 //          set_gl_material(dl.col+1); 
 //          (* voor poly's is er maar 1 normaal nodig *)
-//          if index3_nors_incr=0
-//          then
+//          if index3_nors_incr=0 then
 //          begin 
 //            while parts{--} dec(parts); 
 //            do
@@ -1572,8 +1508,7 @@ end;
 //        data:= dl.verts; 
 //        ndata:= dl.nors; 
 //        index:= dl.index; 
-//        if G.f and G_BACKBUFSEL
-//        then
+//        if G.f and G_BACKBUFSEL then
 //        begin 
 //          while parts{--} dec(parts); 
 //          do
@@ -1583,8 +1518,7 @@ end;
 //            glVertex3fv(data+3*index[0]); 
 //            glVertex3fv(data+3*index[1]); 
 //            glVertex3fv(data+3*index[2]); 
-//            if index[3]<>0{nil} {<= !!!9} 
-//            then
+//            if index[3]<>0 then
 //            glVertex3fv(data+3*index[3]); 
 //            glEnd(); 
 //            index:= index + (4); 
@@ -1607,8 +1541,7 @@ end;
 //            ofs:= 3*index[2]; 
 //            glNormal3fv(ndata+ofs); 
 //            glVertex3fv(data+ofs); 
-//            if index[3]<>0{nil} {<= !!!9} 
-//            then
+//            if index[3]<>0 then
 //            begin 
 //              ofs:= 3*index[3]; 
 //              glNormal3fv(ndata+ofs); 
@@ -1623,8 +1556,7 @@ end;
 //    end;{case?}
 //    dl:= dl.next; 
 //  end;
-//  if G.f and G_BACKBUFSEL
-//  then
+//  if G.f and G_BACKBUFSEL then
 //  ; 
 //  else
 //  begin 
@@ -1666,8 +1598,7 @@ end;
 
 //  extverts:=0; 
 
-//  if lb=0
-//  then
+//  if lb=0 then
 //  exit;
 
 //  glShadeModel(GL_SMOOTH); 
@@ -1678,8 +1609,7 @@ end;
 //  begin 
 //    cdata:= dlob.col1; 
 //    data:= dl.verts; 
-//    if cdata=0
-//    then
+//    if cdata=0 then
 //    break; {<= !!!b possible in "switch" - then remove this line}
 //    case dl.type of
 //      DL_SURF:
@@ -1775,8 +1705,7 @@ end;
 //          glColor3ub(cp[3],cp[2],cp[1]); 
 
 //          glVertex3fv(data+3*index[2]); 
-//          if index[3]<>0{nil} {<= !!!9} 
-//          then
+//          if index[3]<>0 then
 //          begin 
 //            cp:= {!!!a type cast? =>} {pchar(}(cdata+index[3]); 
 //            glColor3ub(cp[3],cp[2],cp[1]); 
@@ -1833,22 +1762,19 @@ end;
 
 //  vertexpaint:= (G.f and (G_VERTEXPAINT+G_FACESELECT)))and((ob=OBACT); 
 //  me:= get_mesh(ob); 
-//  if me=0
-//  then
+//  if me=0 then
 //  exit;
 
 //  glShadeModel(GL_FLAT); 
 
-//  if (G.f and G_BACKBUFSEL)=0
-//  then
+//  if (G.f and G_BACKBUFSEL)=0 then
 //  begin 
 //    glEnable(GL_LIGHTING); 
 //    init_gl_materials(ob); 
 //    two_sided(me.flag and ME_TWOSIDED); 
 //  end;
 //  mface:= me.mface; 
-//  if (G.f and G_FACESELECT))and(ob=OBACT
-//  then
+//  if (G.f and G_FACESELECT))and(ob=OBACT then
 //  tface:= me.tface; 
 //  else
 //  tface:= 0; 
@@ -1858,24 +1784,20 @@ end;
 //  if{!!!e unknown token}
 //  glEnable(GL_CULL_FACE); 
 
-//  if ob=G.obedit)or((G.obedit)and(ob.data=G.obedit.data)
-//  then
+//  if ob=G.obedit)or((G.obedit)and(ob.data=G.obedit.data) then
 //  begin 
 //    evl:= G.edvl.first; 
 //    while evl
 //    do
 //    begin 
-//      if evl.v1.h=0)and(evl.v2.h=0)and(evl.v3.h=0
-//      then
+//      if evl.v1.h=0)and(evl.v2.h=0)and(evl.v3.h=0 then
 //      begin 
-//        if evl.mat_nr<>matnr
-//        then
+//        if evl.mat_nr<>matnr then
 //        begin 
 //          matnr:= evl.mat_nr; 
 //          set_gl_material(matnr+1); 
 //        end;
-//        if evl.v4)and(evl.v4.h=0
-//        then
+//        if evl.v4)and(evl.v4.h=0 then
 //        begin 
 //          glBegin(GL_QUADS); 
 //          glNormal3fv(evl.n); 
@@ -1900,17 +1822,14 @@ end;
 //    end;
 //    glDisable(GL_LIGHTING); 
 //    glShadeModel(GL_FLAT); 
-//    if ob=G.obedit
-//    then
+//    if ob=G.obedit then
 //    begin 
 //      calc_meshverts(); 
-//      if G.zbuf<>0{nil} {<= !!!9} 
-//      then
+//      if G.zbuf<>0 then
 //      glDisable(GL_DEPTH_TEST); 
 //      tekenvertices(0); 
 //      tekenvertices(1); 
-//      if G.zbuf<>0{nil} {<= !!!9} 
-//      then
+//      if G.zbuf<>0 then
 //      glEnable(GL_DEPTH_TEST); 
 //    end;
 //  end;
@@ -1921,12 +1840,10 @@ end;
 //  end:= me.totface; 
 //  set_buildvars(ob,@start, and end); 
 //  mface:= mface + (start); 
-//  if tface<>0{nil} {<= !!!9} 
-//  then
+//  if tface<>0 then
 //  tface:= tface + (start); 
 //  dl:= find_displist(@ob.disp,DL_VERTS); 
-//  if dl<>0{nil} {<= !!!9} 
-//  then
+//  if dl<>0 then
 //  extverts:= dl.verts; 
 //  glBegin(GL_QUADS); 
 //  glmode:= GL_QUADS; 
@@ -1939,21 +1856,17 @@ end;
 //  nors:= nors + (3); 
 //  do
 //  begin 
-//    if mface.v3<>0{nil} {<= !!!9} 
-//    then
+//    if mface.v3<>0 then
 //    begin 
-//      if tface)and((tface.flag and TF_HIDE)
-//      then
+//      if tface)and((tface.flag and TF_HIDE) then
 //      begin 
-//        if (G.f and G_BACKBUFSEL)=0
-//        then
+//        if (G.f and G_BACKBUFSEL)=0 then
 //        begin 
 //          glBegin(GL_LINE_LOOP); 
 //          glVertex3fv((mvert+mface.v1).co); 
 //          glVertex3fv((mvert+mface.v2).co); 
 //          glVertex3fv((mvert+mface.v3).co); 
-//          if mface.v4<>0{nil} {<= !!!9} 
-//          then
+//          if mface.v4<>0 then
 //          glVertex3fv((mvert+mface.v1).co); 
 //          glEnd(); 
 //          inc(tface); 
@@ -1961,14 +1874,12 @@ end;
 //      end;
 //      else
 //      begin 
-//        if extverts<>0{nil} {<= !!!9} 
-//        then
+//        if extverts<>0 then
 //        begin 
 //          v1:= extverts+3*mface.v1; 
 //          v2:= extverts+3*mface.v2; 
 //          v3:= extverts+3*mface.v3; 
-//          if mface.v4<>0{nil} {<= !!!9} 
-//          then
+//          if mface.v4<>0 then
 //          v4:= extverts+3*mface.v4; 
 //          else
 //          v4:= 0; 
@@ -1978,27 +1889,22 @@ end;
 //          v1:= (mvert+mface.v1).co; 
 //          v2:= (mvert+mface.v2).co; 
 //          v3:= (mvert+mface.v3).co; 
-//          if mface.v4<>0{nil} {<= !!!9} 
-//          then
+//          if mface.v4<>0 then
 //          v4:= (mvert+mface.v4).co; 
 //          else
 //          v4:= 0; 
 //        end;
-//        if tface<>0{nil} {<= !!!9} 
-//        then
+//        if tface<>0 then
 //        begin 
-//          if tface.mode and TF_TWOSIDE
-//          then
+//          if tface.mode and TF_TWOSIDE then
 //          glEnable(GL_CULL_FACE); 
 //          else
 //          glDisable(GL_CULL_FACE); 
 //        end;
 //        (* dit GL_QUADS grapje is op snelheid getest: factor 2! *)
-//        if v4<>0{nil} {<= !!!9} 
-//        then
+//        if v4<>0 then
 //        begin 
-//          if glmode=GL_TRIANGLES
-//          then
+//          if glmode=GL_TRIANGLES then
 //          begin 
 //            glmode:= GL_QUADS; 
 //            glEnd(); 
@@ -2007,19 +1913,16 @@ end;
 //        end;
 //        else
 //        begin 
-//          if glmode=GL_QUADS
-//          then
+//          if glmode=GL_QUADS then
 //          begin 
 //            glmode:= GL_TRIANGLES; 
 //            glEnd(); 
 //            glBegin(GL_TRIANGLES); 
 //          end;
 //        end;
-//        if G.f and G_BACKBUFSEL
-//        then
+//        if G.f and G_BACKBUFSEL then
 //        begin 
-//          if vertexpaint<>0{nil} {<= !!!9} 
-//          then
+//          if vertexpaint<>0 then
 //          begin 
 //            i:= a+1; 
 //            i:= ((i and $F00) shl 12)+((i and $F0) shl 8)+((i and $F) shl 4); 
@@ -2029,28 +1932,23 @@ end;
 //          glVertex3fv(v1); 
 //          glVertex3fv(v2); 
 //          glVertex3fv(v3); 
-//          if v4<>0{nil} {<= !!!9} 
-//          then
+//          if v4<>0 then
 //          glVertex3fv(v4); 
 //        end;
 //        else
 //        begin 
-//          if mface.mat_nr<>matnr
-//          then
+//          if mface.mat_nr<>matnr then
 //          begin 
 //            matnr:= mface.mat_nr; 
 //            set_gl_material(matnr+1); 
 //          end;
-//          if (me.flag and ME_AUTOSMOOTH)=0)and((mface.flag and ME_SMOOTH)
-//          then
+//          if (me.flag and ME_AUTOSMOOTH)=0)and((mface.flag and ME_SMOOTH) then
 //          begin 
-//            if setsmooth=0
-//            then
+//            if setsmooth=0 then
 //            begin 
 //              glEnd(); 
 //              glShadeModel(GL_SMOOTH); 
-//              if glmode=GL_TRIANGLES
-//              then
+//              if glmode=GL_TRIANGLES then
 //              glBegin(GL_TRIANGLES); 
 //              else
 //              glBegin(GL_QUADS); 
@@ -2059,11 +1957,9 @@ end;
 //            n1:= (mvert+mface.v1).no; 
 //            n2:= (mvert+mface.v2).no; 
 //            n3:= (mvert+mface.v3).no; 
-//            if v4<>0{nil} {<= !!!9} 
-//            then
+//            if v4<>0 then
 //            n4:= (mvert+mface.v4).no; 
-//            if mface.puno and ME_FLIPV1
-//            then
+//            if mface.puno and ME_FLIPV1 then
 //            begin 
 //              no[0]:= -n1[0]; 
 //              no[1]:= -n1[1]; 
@@ -2073,8 +1969,7 @@ end;
 //            else
 //            glNormal3sv(n1); 
 //            glVertex3fv(v1); 
-//            if mface.puno and ME_FLIPV2
-//            then
+//            if mface.puno and ME_FLIPV2 then
 //            begin 
 //              no[0]:= -n2[0]; 
 //              no[1]:= -n2[1]; 
@@ -2084,8 +1979,7 @@ end;
 //            else
 //            glNormal3sv(n2); 
 //            glVertex3fv(v2); 
-//            if mface.puno and ME_FLIPV3
-//            then
+//            if mface.puno and ME_FLIPV3 then
 //            begin 
 //              no[0]:= -n3[0]; 
 //              no[1]:= -n3[1]; 
@@ -2095,11 +1989,9 @@ end;
 //            else
 //            glNormal3sv(n3); 
 //            glVertex3fv(v3); 
-//            if v4<>0{nil} {<= !!!9} 
-//            then
+//            if v4<>0 then
 //            begin 
-//              if mface.puno and ME_FLIPV4
-//              then
+//              if mface.puno and ME_FLIPV4 then
 //              begin 
 //                no[0]:= -n4[0]; 
 //                no[1]:= -n4[1]; 
@@ -2113,13 +2005,11 @@ end;
 //          end;
 //          else
 //          begin 
-//            if setsmooth=1
-//            then
+//            if setsmooth=1 then
 //            begin 
 //              glEnd(); 
 //              glShadeModel(GL_FLAT); 
-//              if glmode=GL_TRIANGLES
-//              then
+//              if glmode=GL_TRIANGLES then
 //              glBegin(GL_TRIANGLES); 
 //              else
 //              glBegin(GL_QUADS); 
@@ -2129,14 +2019,12 @@ end;
 //            glVertex3fv(v1); 
 //            glVertex3fv(v2); 
 //            glVertex3fv(v3); 
-//            if v4<>0{nil} {<= !!!9} 
-//            then
+//            if v4<>0 then
 //            glVertex3fv(v4); 
 //          end;
 //        end;
 //      end;
-//      if tface<>0{nil} {<= !!!9} 
-//      then
+//      if tface<>0 then
 //      inc(tface); 
 //    end;
 //  end;
@@ -2145,8 +2033,7 @@ end;
 //if{!!!e unknown token}
 //glDisable(GL_CULL_FACE); 
 
-//if G.f and G_BACKBUFSEL
-//then
+//if G.f and G_BACKBUFSEL then
 //begin 
 //  glDisable(GL_CULL_FACE); 
 //end;
@@ -2180,40 +2067,33 @@ end;
 //  glDisable(GL_LIGHTING); 
 //  me:= ob.data; 
 //  mface:= me.mface; (* tekent ie geen hide *)
-//  if (G.f and G_FACESELECT))and(ob=OBACT
-//  then
+//  if (G.f and G_FACESELECT))and(ob=OBACT then
 //  tface:= me.tface; 
 //  else
 //  tface:= 0; 
 //  mvert:= me.mvert; 
 //  a:= me.totface; 
 //  twoside:= me.flag and ME_TWOSIDED; 
-//  if col2=0
-//  then
+//  if col2=0 then
 //  twoside:= 0; 
-//  if twoside<>0{nil} {<= !!!9} 
-//  then
+//  if twoside<>0 then
 //  glEnable(GL_CULL_FACE); 
 //  start:= 0; 
 //end:= me.totface; 
 //set_buildvars(ob,@start, and end); 
 //mface:= mface + (start); 
-//if tface<>0{nil} {<= !!!9} 
-//then
+//if tface<>0 then
 //tface:= tface + (start); 
 //col1:= col1 + (4*start); 
-//if col2<>0{nil} {<= !!!9} 
-//then
+//if col2<>0 then
 //col2:= col2 + (4*start); 
 //dl:= find_displist(@ob.disp,DL_VERTS); 
-//if dl<>0{nil} {<= !!!9} 
-//then
+//if dl<>0 then
 //extverts:= dl.verts; 
 //glBegin(GL_QUADS); 
 
 //cp1:= {!!!a type cast? =>} {pchar(}col1; 
-//if col2<>0{nil} {<= !!!9} 
-//then
+//if col2<>0 then
 //cp2:= {!!!a type cast? =>} {pchar(}col2; 
 //while{for} 
 //a:= start; 
@@ -2224,22 +2104,18 @@ end;
 //cp1:= cp1 + (16); 
 //do
 //begin 
-//  if mface.v3<>0{nil} {<= !!!9} 
-//  then
+//  if mface.v3<>0 then
 //  begin 
-//    if tface)and((tface.flag and TF_HIDE)
-//    then
+//    if tface)and((tface.flag and TF_HIDE) then
 //    inc(tface); 
 //    else
 //    begin 
-//      if extverts<>0{nil} {<= !!!9} 
-//      then
+//      if extverts<>0 then
 //      begin 
 //        v1:= extverts+3*mface.v1; 
 //        v2:= extverts+3*mface.v2; 
 //        v3:= extverts+3*mface.v3; 
-//        if mface.v4<>0{nil} {<= !!!9} 
-//        then
+//        if mface.v4<>0 then
 //        v4:= extverts+3*mface.v4; 
 //        else
 //        v4:= 0; 
@@ -2249,18 +2125,15 @@ end;
 //        v1:= (mvert+mface.v1).co; 
 //        v2:= (mvert+mface.v2).co; 
 //        v3:= (mvert+mface.v3).co; 
-//        if mface.v4<>0{nil} {<= !!!9} 
-//        then
+//        if mface.v4<>0 then
 //        v4:= (mvert+mface.v4).co; 
 //        else
 //        v4:= 0; 
 //      end;
 
-//      if tface<>0{nil} {<= !!!9} 
-//      then
+//      if tface<>0 then
 //      begin 
-//        if tface.mode and TF_TWOSIDE
-//        then
+//        if tface.mode and TF_TWOSIDE then
 //        glEnable(GL_CULL_FACE); 
 //        else
 //        glDisable(GL_CULL_FACE); 
@@ -2272,16 +2145,14 @@ end;
 //      glVertex3fv(v2); 
 //      glColor3ub(cp1[11],cp1[10],cp1[9]); 
 //      glVertex3fv(v3); 
-//      if v4<>0{nil} {<= !!!9} 
-//      then
+//      if v4<>0 then
 //      begin 
 //        glColor3ub(cp1[15],cp1[14],cp1[13]); 
 //        glVertex3fv(v4); 
 //      end;
 //      else
 //      glVertex3fv(v3); 
-//      if twoside<>0{nil} {<= !!!9} 
-//      then
+//      if twoside<>0 then
 //      begin 
 
 //        glColor3ub(cp2[11],cp2[10],cp2[9]); 
@@ -2290,8 +2161,7 @@ end;
 //        glVertex3fv(v2); 
 //        glColor3ub(cp2[3],cp2[2],cp2[1]); 
 //        glVertex3fv(v1); 
-//        if mface.v4<>0{nil} {<= !!!9} 
-//        then
+//        if mface.v4<>0 then
 //        begin 
 //          glColor3ub(cp2[15],cp2[14],cp2[13]); 
 //          glVertex3fv(v4); 
@@ -2301,14 +2171,12 @@ end;
 //      end;
 //    end;
 //  end;
-//  if col2<>0{nil} {<= !!!9} 
-//  then
+//  if col2<>0 then
 //  cp2:= cp2 + (16); 
 //end;
 //glEnd(); 
 //glShadeModel(GL_FLAT); 
-//if twoside<>0{nil} {<= !!!9} 
-//then
+//if twoside<>0 then
 //glDisable(GL_CULL_FACE); 
 //end;
 
@@ -2331,30 +2199,22 @@ end;
 //    OB_LIFE:
 //    begin
 //      me:= get_mesh(ob); 
-//      if me=0
-//      then
+//      if me=0 then
 //      exit;
-//      if me.bb=0
-//      then
+//      if me.bb=0 then
 //      tex_space_mesh(me); 
-//      if me.totface>4
-//      then
-//      if boundbox_clip(ob.obmat,me.bb)=0
-//      then
+//      if me.totface>4 then
+//      if boundbox_clip(ob.obmat,me.bb)=0 then
 //      exit;
-//      if dt=OB_SOLID
-//      then
+//      if dt=OB_SOLID then
 //      begin 
 //        lb:= @me.disp; 
-//        if lb.first=0
-//        then
+//        if lb.first=0 then
 //        addnormalsDispList(ob,lb); 
 //        dl:= lb.first; 
-//        if dl=0
-//        then
+//        if dl=0 then
 //        exit;
-//        if me.flag and ME_SMESH
-//        then
+//        if me.flag and ME_SMESH then
 //        begin 
 //          init_gl_materials(ob); 
 //          two_sided(0); 
@@ -2364,19 +2224,15 @@ end;
 //        drawmeshsolid(ob,dl.nors); 
 //      end;
 //      else
-//      if dt=OB_SHADED
-//      then
+//      if dt=OB_SHADED then
 //      begin 
-//        if G.f and G_VERTEXPAINT
-//        then
+//        if G.f and G_VERTEXPAINT then
 //        begin 
 //          (* in deze volgorde: vertexpaint heeft soms al mcol gemaakt *)
-//          if me.mcol<>0{nil} {<= !!!9} 
-//          then
+//          if me.mcol<>0 then
 //          drawmeshshaded(ob,{!!!a type cast? =>} {puint(}me.mcol,0); 
 //          else
-//          if me.tface<>0{nil} {<= !!!9} 
-//          then
+//          if me.tface<>0 then
 //          begin 
 //            tface_to_mcol(me); 
 //            drawmeshshaded(ob,{!!!a type cast? =>} {puint(}me.mcol,0); 
@@ -2389,25 +2245,21 @@ end;
 //        else
 //        begin 
 //          dl:= ob.disp.first; 
-//          if dl=0)or(dl.col1=0
-//          then
+//          if dl=0)or(dl.col1=0 then
 //          begin 
 //            shadeDispList(ob); 
 //            dl:= ob.disp.first; 
 //          end;
-//          if dl<>0{nil} {<= !!!9} 
-//          then
+//          if dl<>0 then
 //          begin 
-//            if me.flag and ME_SMESH
-//            then
+//            if me.flag and ME_SMESH then
 //            drawDispListshaded(@me.disp,ob); 
 //            else
 //            drawmeshshaded(ob,dl.col1,dl.col2); 
 //          end;
 //        end;
 //      end;
-//      if ob=OBACT)and((G.f and G_FACESELECT)
-//      then
+//      if ob=OBACT)and((G.f and G_FACESELECT) then
 //      begin 
 //        draw_tfaces3D(ob,me); 
 //      end;
@@ -2416,32 +2268,25 @@ end;
 //    OB_CURVE:
 //    begin
 //      lb:= @({!!!a type cast? =>} {pCurve(}ob.data).disp; 
-//      if lb.first=0
-//      then
+//      if lb.first=0 then
 //      makeDispList(ob); 
-//      if solid)and(ob<>G.obedit
-//      then
+//      if solid)and(ob<>G.obedit then
 //      begin 
 //        dl:= lb.first; 
-//        if dl=0
-//        then
+//        if dl=0 then
 //        exit;
 //        (* regel: dl->type INDEX3 altijd vooraan in lijst *)
-//        if dl.type<>DL_INDEX3
-//        then
+//        if dl.type<>DL_INDEX3 then
 //        begin 
 //          curve_to_filledpoly(ob.data,lb); 
 //          dl:= lb.first; 
 //        end;
-//        if dl.nors=0
-//        then
+//        if dl.nors=0 then
 //        addnormalsDispList(ob,lb); 
 //        index3_nors_incr:= 0; 
-//        if dt=OB_SHADED
-//        then
+//        if dt=OB_SHADED then
 //        begin 
-//          if ob.disp.first=0
-//          then
+//          if ob.disp.first=0 then
 //          shadeDispList(ob); 
 //          drawDispListshaded(lb,ob); 
 //        end;
@@ -2463,24 +2308,18 @@ end;
 //    OB_SURF:
 //    begin
 //      lb:= @({!!!a type cast? =>} {pCurve(}ob.data).disp; 
-//      if lb.first=0
-//      then
+//      if lb.first=0 then
 //      makeDispList(ob); 
-//      if solid<>0{nil} {<= !!!9} 
-//      then
+//      if solid<>0 then
 //      begin 
 //        dl:= lb.first; 
-//        if dl=0
-//        then
+//        if dl=0 then
 //        exit;
-//        if dl.nors=0
-//        then
+//        if dl.nors=0 then
 //        addnormalsDispList(ob,lb); 
-//        if dt=OB_SHADED
-//        then
+//        if dt=OB_SHADED then
 //        begin 
-//          if ob.disp.first=0
-//          then
+//          if ob.disp.first=0 then
 //          shadeDispList(ob); 
 //          drawDispListshaded(lb,ob); 
 //        end;
@@ -2500,19 +2339,15 @@ end;
 
 //    begin
 //      lb:= @ob.disp; 
-//      if lb.first=0
-//      then
+//      if lb.first=0 then
 //      makeDispList(ob); 
 
-//      if solid<>0{nil} {<= !!!9} 
-//      then
+//      if solid<>0 then
 //      begin 
-//        if dt=OB_SHADED
-//        then
+//        if dt=OB_SHADED then
 //        begin 
 //          dl:= lb.first; 
-//          if dl)and(dl.col1=0
-//          then
+//          if dl)and(dl.col1=0 then
 //          shadeDispList(ob); 
 //          drawDispListshaded(lb,ob); 
 //        end;
@@ -2543,26 +2378,22 @@ end;
 //begin
 
 //  pa:= paf.keys; 
-//  if pa=0
-//  then
+//  if pa=0 then
 //  begin 
 //    build_particle_system(ob); 
 //    pa:= paf.keys; 
-//    if pa=0
-//    then
+//    if pa=0 then
 //    exit;
 //  end;
 //  loadmatrix(G.vd.viewmat); 
-//  if ob.ipoflag and OB_OFFS_PARTICLE
-//  then
+//  if ob.ipoflag and OB_OFFS_PARTICLE then
 //  ptime:= ob.sf; 
 //  else
 //  ptime:= 0.0; 
 //  ctime:= bsystem_time(ob,0,{!!!a type cast? =>} {single(}CFRA,ptime);
 //  glPointSize(1.0); 
 
-//  if paf.stype<>PAF_VECT
-//  then
+//  if paf.stype<>PAF_VECT then
 //  glBegin(GL_POINTS); 
 
 //  while{for} 
@@ -2573,14 +2404,11 @@ end;
 //  pa:= pa + (paf.totkey); 
 //  do
 //  begin 
-//    if ctime>pa.time
-//    then
+//    if ctime>pa.time then
 //    begin 
-//      if ctime<pa.time+pa.lifetime
-//      then
+//      if ctime<pa.time+pa.lifetime then
 //      begin 
-//        if paf.stype=PAF_VECT
-//        then
+//        if paf.stype=PAF_VECT then
 //        begin 
 //          where_is_particle(paf,pa,ctime,vec); 
 //          where_is_particle(paf,pa,ctime+1.0,vec1); 
@@ -2598,8 +2426,7 @@ end;
 //      end;
 //    end;
 //  end;
-//  if paf.stype<>PAF_VECT
-//  then
+//  if paf.stype<>PAF_VECT then
 //  glEnd(); 
 //end;
 
@@ -2615,18 +2442,15 @@ end;
 //begin
 
 //  pa:= paf.keys; 
-//  if pa=0
-//  then
+//  if pa=0 then
 //  begin 
 //    build_particle_system(ob); 
 //    pa:= paf.keys; 
-//    if pa=0
-//    then
+//    if pa=0 then
 //    exit;
 //  end;
 //  glPointSize(1.0); 
-//  if paf.stype<>PAF_VECT
-//  then
+//  if paf.stype<>PAF_VECT then
 //  glBegin(GL_POINTS); 
 
 //  while{for} 
@@ -2647,11 +2471,9 @@ end;
 //    do
 //    begin 
 //      (* make sure hair grows until the end.. *)
-//      if ctime>pa.time+pa.lifetime
-//      then
+//      if ctime>pa.time+pa.lifetime then
 //      ctime:= pa.time+pa.lifetime; 
-//      if paf.stype=PAF_VECT
-//      then
+//      if paf.stype=PAF_VECT then
 //      begin 
 //        where_is_particle(paf,pa,ctime+1,vec); 
 //        glBegin(GL_LINE_STRIP); 
@@ -2668,8 +2490,7 @@ end;
 //      end;
 //    end;
 //  end;
-//  if paf.stype<>PAF_VECT
-//  then
+//  if paf.stype<>PAF_VECT then
 //  glEnd(); 
 //end;
 
@@ -2711,37 +2532,30 @@ end;
 
 //  colbcol:=0; 
 //  me:= get_mesh(ob); 
-//  if ob=G.obedit)or((G.obedit)and(ob.data=G.obedit.data)
-//  then
+//  if ob=G.obedit)or((G.obedit)and(ob.data=G.obedit.data) then
 //  begin 
-//    if G.zbuf=0)and(me.flag and ME_SMESH
-//    then
+//    if G.zbuf=0)and(me.flag and ME_SMESH then
 //    begin 
 //      cpack($505050); 
 //      drawDispListwire(@me.disp); 
 //    end;
 //    cpack($0); 
-//    if G.obedit=ob
-//    then
+//    if G.obedit=ob then
 //    begin 
 //      cpack(0); 
-//      if ob.type=OB_SECTOR
-//      then
+//      if ob.type=OB_SECTOR then
 //      begin 
 //        se:=ob.data; 
-//        if se.flag and SE_SHOW_TEXMESH
-//        then
+//        if se.flag and SE_SHOW_TEXMESH then
 //        ; 
 //        else
 //        cpack($401000); 
 //      end;
 //      else
-//      if ob.type=OB_LIFE
-//      then
+//      if ob.type=OB_LIFE then
 //      begin 
 //        lf:=ob.data; 
-//        if lf.flag and LF_SHOW_TEXMESH
-//        then
+//        if lf.flag and LF_SHOW_TEXMESH then
 //        ; 
 //        else
 //        cpack($401000); 
@@ -2753,8 +2567,7 @@ end;
 //    while eed
 //    do
 //    begin 
-//      if eed.h=0
-//      then
+//      if eed.h=0 then
 //      begin 
 //        glVertex3fv(eed.v1.co); 
 //        glVertex3fv(eed.v2.co); 
@@ -2762,22 +2575,18 @@ end;
 //      eed:= eed.next; 
 //    end;
 //    glEnd(); 
-//    if ob<>G.obedit
-//    then
+//    if ob<>G.obedit then
 //    exit;
 //    calc_meshverts(); 
 
-//    if G.zbuf<>0{nil} {<= !!!9} 
-//    then
+//    if G.zbuf<>0 then
 //    glDisable(GL_DEPTH_TEST); 
 //    tekenvertices(0); 
 //    tekenvertices(1); 
-//    if G.zbuf<>0{nil} {<= !!!9} 
-//    then
+//    if G.zbuf<>0 then
 //    glEnable(GL_DEPTH_TEST); 
 
-//    if G.f and G_DRAWNORMALS
-//    then
+//    if G.f and G_DRAWNORMALS then
 //    begin 
 //      (* normals *)
 //      cpack($DDDD22); 
@@ -2787,11 +2596,9 @@ end;
 //      while evl
 //      do
 //      begin 
-//        if evl.v1.h=0)and(evl.v2.h=0)and(evl.v3.h=0
-//        then
+//        if evl.v1.h=0)and(evl.v2.h=0)and(evl.v3.h=0 then
 //        begin 
-//          if evl.v4<>0{nil} {<= !!!9} 
-//          then
+//          if evl.v4<>0 then
 //          CalcCent4f(fvec,evl.v1.co,evl.v2.co,evl.v3.co,evl.v4.co); 
 //          else
 //          CalcCent3f(fvec,evl.v1.co,evl.v2.co,evl.v3.co); 
@@ -2805,16 +2612,14 @@ end;
 //        evl:= evl.next; 
 //      end;
 
-//      if me.flag and ME_SMESH
-//      then
+//      if me.flag and ME_SMESH then
 //      begin 
 //        cpack($EE4422); 
 //        eve:= G.edve.first; 
 //        while eve
 //        do
 //        begin 
-//          if eve.h=0
-//          then
+//          if eve.h=0 then
 //          begin 
 //            VECCOPY(fvec,eve.co); 
 //            glVertex3fv(fvec); 
@@ -2828,24 +2633,20 @@ end;
 //      end;
 //      glEnd(); 
 //    end;
-//    if G.f and (G_FACESELECT+G_DRAWFACES)
-//    then
+//    if G.f and (G_FACESELECT+G_DRAWFACES) then
 //    begin 
 //      (* vlakken *)
 //      evl:= G.edvl.first; 
 //      while evl
 //      do
 //      begin 
-//        if evl.v1.h=0)and(evl.v2.h=0)and(evl.v3.h=0
-//        then
+//        if evl.v1.h=0)and(evl.v2.h=0)and(evl.v3.h=0 then
 //        begin 
-//          if vlakselectedAND(evl,1)
-//          then
+//          if vlakselectedAND(evl,1) then
 //          cpack($559999); 
 //          else
 //          cpack($664466); 
-//          if evl.v4)and(evl.v4.h=0
-//          then
+//          if evl.v4)and(evl.v4.h=0 then
 //          begin 
 //            CalcCent4f(cent,evl.v1.co,evl.v2.co,evl.v3.co,evl.v4.co); 
 //            glBegin(GL_LINE_LOOP); 
@@ -2879,19 +2680,14 @@ end;
 //  end;
 //  else
 //  begin 
-//    if me=0
-//    then
+//    if me=0 then
 //    exit;
-//    if me.bb=0
-//    then
+//    if me.bb=0 then
 //    tex_space_mesh(me); 
-//    if me.totface>4
-//    then
-//    if boundbox_clip(ob.obmat,me.bb)=0
-//    then
+//    if me.totface>4 then
+//    if boundbox_clip(ob.obmat,me.bb)=0 then
 //    exit;
-//    if me.flag and ME_SMESH
-//    then
+//    if me.flag and ME_SMESH then
 //    drawDispListwire(@me.disp); 
 //    else
 //    begin 
@@ -2899,30 +2695,25 @@ end;
 //      mface:= me.mface; 
 //      dface:= me.dface; 
 //      ok:= 0; 
-//      if me.totface=0
-//      then
+//      if me.totface=0 then
 //      ok:= 1; 
 //      else
 //      begin 
 //        ma:= give_current_material(ob,1); 
-//        if ma)and((ma.mode and MA_HALO)
-//        then
+//        if ma)and((ma.mode and MA_HALO) then
 //        ok:= 1; 
 //      end;
 //      dl:= find_displist(@ob.disp,DL_VERTS); 
-//      if dl<>0{nil} {<= !!!9} 
-//      then
+//      if dl<>0 then
 //      extverts:= dl.verts; 
-//      if ok<>0{nil} {<= !!!9} 
-//      then
+//      if ok<>0 then
 //      begin 
 //        start:= 0; 
 //      end:= me.totvert; 
 //      set_buildvars(ob,@start, and end); 
 //      glPointSize(1.5); 
 //      glBegin(GL_POINTS); 
-//      if extverts<>0{nil} {<= !!!9} 
-//      then
+//      if extverts<>0 then
 //      begin 
 //        extverts:= extverts + (3*start); 
 //        while{for} 
@@ -2968,23 +2759,19 @@ end;
 //    do
 //    begin 
 //      test:= mface.edcode; 
-//      if dface<>0{nil} {<= !!!9} 
-//      then
+//      if dface<>0 then
 //      begin 
 //        (* test= mface->edcode>>4; *)
-//        if dface.flag and DF_HILITE
-//        then
+//        if dface.flag and DF_HILITE then
 //        cpack($FF00FF); 
 //        else
 //        cpack(0); 
 //        dface.flag:= dface.flag and ( not DF_HILITE); 
 //        inc(dface); 
 //      end;
-//      if test<>0{nil} {<= !!!9} 
-//      then
+//      if test<>0 then
 //      begin 
-//        if extverts<>0{nil} {<= !!!9} 
-//        then
+//        if extverts<>0 then
 //        begin 
 //          f1:= extverts+3*mface.v1; 
 //          f2:= extverts+3*mface.v2; 
@@ -2994,11 +2781,9 @@ end;
 //          f1:= (mvert+mface.v1).co; 
 //          f2:= (mvert+mface.v2).co; 
 //        end;
-//        if mface.v4<>0{nil} {<= !!!9} 
-//        then
+//        if mface.v4<>0 then
 //        begin 
-//          if extverts<>0{nil} {<= !!!9} 
-//          then
+//          if extverts<>0 then
 //          begin 
 //            f3:= extverts+3*mface.v3; 
 //            f4:= extverts+3*mface.v4; 
@@ -3008,8 +2793,7 @@ end;
 //            f3:= (mvert+mface.v3).co; 
 //            f4:= (mvert+mface.v4).co; 
 //          end;
-//          if test=ME_V1V2+ME_V2V3+ME_V3V4+ME_V4V1
-//          then
+//          if test=ME_V1V2+ME_V2V3+ME_V3V4+ME_V4V1 then
 //          begin 
 //            glBegin(GL_LINE_LOOP); 
 //            glVertex3fv(f1); 
@@ -3019,8 +2803,7 @@ end;
 //            glEnd(); 
 //          end;
 //          else
-//          if test=ME_V1V2+ME_V2V3+ME_V3V4
-//          then
+//          if test=ME_V1V2+ME_V2V3+ME_V3V4 then
 //          begin 
 //            glBegin(GL_LINE_STRIP); 
 //            glVertex3fv(f1); 
@@ -3030,8 +2813,7 @@ end;
 //            glEnd(); 
 //          end;
 //          else
-//          if test=ME_V2V3+ME_V3V4+ME_V4V1
-//          then
+//          if test=ME_V2V3+ME_V3V4+ME_V4V1 then
 //          begin 
 //            glBegin(GL_LINE_STRIP); 
 //            glVertex3fv(f2); 
@@ -3041,8 +2823,7 @@ end;
 //            glEnd(); 
 //          end;
 //          else
-//          if test=ME_V3V4+ME_V4V1+ME_V1V2
-//          then
+//          if test=ME_V3V4+ME_V4V1+ME_V1V2 then
 //          begin 
 //            glBegin(GL_LINE_STRIP); 
 //            glVertex3fv(f3); 
@@ -3052,8 +2833,7 @@ end;
 //            glEnd(); 
 //          end;
 //          else
-//          if test=ME_V4V1+ME_V1V2+ME_V2V3
-//          then
+//          if test=ME_V4V1+ME_V1V2+ME_V2V3 then
 //          begin 
 //            glBegin(GL_LINE_STRIP); 
 //            glVertex3fv(f4); 
@@ -3064,32 +2844,28 @@ end;
 //          end;
 //          else
 //          begin 
-//            if test and ME_V1V2
-//            then
+//            if test and ME_V1V2 then
 //            begin 
 //              glBegin(GL_LINE_STRIP); 
 //              glVertex3fv(f1); 
 //              glVertex3fv(f2); 
 //              glEnd(); 
 //            end;
-//            if test and ME_V2V3
-//            then
+//            if test and ME_V2V3 then
 //            begin 
 //              glBegin(GL_LINE_STRIP); 
 //              glVertex3fv(f2); 
 //              glVertex3fv(f3); 
 //              glEnd(); 
 //            end;
-//            if test and ME_V3V4
-//            then
+//            if test and ME_V3V4 then
 //            begin 
 //              glBegin(GL_LINE_STRIP); 
 //              glVertex3fv(f3); 
 //              glVertex3fv(f4); 
 //              glEnd(); 
 //            end;
-//            if test and ME_V4V1
-//            then
+//            if test and ME_V4V1 then
 //            begin 
 //              glBegin(GL_LINE_STRIP); 
 //              glVertex3fv(f4); 
@@ -3099,16 +2875,13 @@ end;
 //          end;
 //        end;
 //        else
-//        if mface.v3<>0{nil} {<= !!!9} 
-//        then
+//        if mface.v3<>0 then
 //        begin 
-//          if extverts<>0{nil} {<= !!!9} 
-//          then
+//          if extverts<>0 then
 //          f3:= extverts+3*mface.v3; 
 //          else
 //          f3:= (mvert+mface.v3).co; 
-//          if test=ME_V1V2+ME_V2V3+ME_V3V1
-//          then
+//          if test=ME_V1V2+ME_V2V3+ME_V3V1 then
 //          begin 
 //            glBegin(GL_LINE_LOOP); 
 //            glVertex3fv(f1); 
@@ -3117,8 +2890,7 @@ end;
 //            glEnd(); 
 //          end;
 //          else
-//          if test=ME_V1V2+ME_V2V3
-//          then
+//          if test=ME_V1V2+ME_V2V3 then
 //          begin 
 //            glBegin(GL_LINE_STRIP); 
 //            glVertex3fv(f1); 
@@ -3127,8 +2899,7 @@ end;
 //            glEnd(); 
 //          end;
 //          else
-//          if test=ME_V2V3+ME_V3V1
-//          then
+//          if test=ME_V2V3+ME_V3V1 then
 //          begin 
 //            glBegin(GL_LINE_STRIP); 
 //            glVertex3fv(f2); 
@@ -3137,8 +2908,7 @@ end;
 //            glEnd(); 
 //          end;
 //          else
-//          if test=ME_V1V2+ME_V3V1
-//          then
+//          if test=ME_V1V2+ME_V3V1 then
 //          begin 
 //            glBegin(GL_LINE_STRIP); 
 //            glVertex3fv(f3); 
@@ -3148,24 +2918,21 @@ end;
 //          end;
 //          else
 //          begin 
-//            if test and ME_V1V2
-//            then
+//            if test and ME_V1V2 then
 //            begin 
 //              glBegin(GL_LINE_STRIP); 
 //              glVertex3fv(f1); 
 //              glVertex3fv(f2); 
 //              glEnd(); 
 //            end;
-//            if test and ME_V2V3
-//            then
+//            if test and ME_V2V3 then
 //            begin 
 //              glBegin(GL_LINE_STRIP); 
 //              glVertex3fv(f2); 
 //              glVertex3fv(f3); 
 //              glEnd(); 
 //            end;
-//            if test and ME_V3V1
-//            then
+//            if test and ME_V3V1 then
 //            begin 
 //              glBegin(GL_LINE_STRIP); 
 //              glVertex3fv(f3); 
@@ -3175,8 +2942,7 @@ end;
 //          end;
 //        end;
 //        else
-//        if test and ME_V1V2
-//        then
+//        if test and ME_V1V2 then
 //        begin 
 //          glBegin(GL_LINE_STRIP); 
 //          glVertex3fv(f1); 
@@ -3199,14 +2965,11 @@ end;
 //  fp: pfloat; 
 //  col: puint; 
 //  a: integer; 
-//  if nu.hide<>0{nil} {<= !!!9} 
-//  then
+//  if nu.hide<>0 then
 //  exit;
-//  if (nu.type and 7)=1
-//  then
+//  if (nu.type and 7)=1 then
 //  begin 
-//    if sel<>0{nil} {<= !!!9} 
-//    then
+//    if sel<>0 then
 //    col:= nurbcol+4; 
 //    else
 //    col:= nurbcol; 
@@ -3215,11 +2978,9 @@ end;
 //    while a{--} dec(a); 
 //    do
 //    begin 
-//      if bezt.hide=0
-//      then
+//      if bezt.hide=0 then
 //      begin 
-//        if (bezt.f2 and 1)=sel
-//        then
+//        if (bezt.f2 and 1)=sel then
 //        begin 
 //          fp:= bezt.vec[0]; 
 //          cpack(col[bezt.h1]); 
@@ -3236,8 +2997,7 @@ end;
 //          glEnd(); 
 //        end;
 //        else
-//        if (bezt.f1 and 1)=sel
-//        then
+//        if (bezt.f1 and 1)=sel then
 //        begin 
 //          fp:= bezt.vec[0]; 
 //          cpack(col[bezt.h1]); 
@@ -3248,8 +3008,7 @@ end;
 //          glEnd(); 
 //        end;
 //        else
-//        if (bezt.f3 and 1)=sel
-//        then
+//        if (bezt.f3 and 1)=sel then
 //        begin 
 //          fp:= bezt.vec[1]; 
 //          cpack(col[bezt.h2]); 
@@ -3273,19 +3032,16 @@ end;
 //  bp: pBPoint; 
 //  rect: puint; 
 //  a: integer; 
-//  if nu.hide<>0{nil} {<= !!!9} 
-//  then
+//  if nu.hide<>0 then
 //  exit;
 
-//  if sel<>0{nil} {<= !!!9} 
-//  then
+//  if sel<>0 then
 //  cpack(B_YELLOW); 
 //  else
 //  cpack(B_PURPLE); 
 //  glPointSize(3.0); 
 //  glBegin(GL_POINTS); 
-//  if (nu.type and 7)=1
-//  then
+//  if (nu.type and 7)=1 then
 //  begin 
 
 //    bezt:= nu.bezt; 
@@ -3293,17 +3049,13 @@ end;
 //    while a{--} dec(a); 
 //    do
 //    begin 
-//      if bezt.hide=0
-//      then
+//      if bezt.hide=0 then
 //      begin 
-//        if (bezt.f1 and 1)=sel
-//        then
+//        if (bezt.f1 and 1)=sel then
 //        glVertex3fv(bezt.vec[0]); 
-//        if (bezt.f2 and 1)=sel
-//        then
+//        if (bezt.f2 and 1)=sel then
 //        glVertex3fv(bezt.vec[1]); 
-//        if (bezt.f3 and 1)=sel
-//        then
+//        if (bezt.f3 and 1)=sel then
 //        glVertex3fv(bezt.vec[2]); 
 //      end;
 //      inc(bezt); 
@@ -3316,11 +3068,9 @@ end;
 //    while a{--} dec(a); 
 //    do
 //    begin 
-//      if bp.hide=0
-//      then
+//      if bp.hide=0 then
 //      begin 
-//        if (bp.f1 and 1)=sel
-//        then
+//        if (bp.f1 and 1)=sel then
 //        glVertex3fv(bp.vec); 
 //      end;
 //      inc(bp); 
@@ -3344,8 +3094,7 @@ end;
 //  while nu
 //  do
 //  begin 
-//    if nu.hide=0
-//    then
+//    if nu.hide=0 then
 //    begin 
 //      case nu.type and 7 of
 //        CU_POLY:
@@ -3355,8 +3104,7 @@ end;
 //          for{while} b:=0 to Pred(nu.pntsv) { b++}
 //          do
 //          begin 
-//            if nu.flagu and 1
-//            then
+//            if nu.flagu and 1 then
 //            glBegin(GL_LINE_LOOP); 
 //            else
 
@@ -3373,8 +3121,7 @@ end;
 //              glVertex3fv(bp.vec); 
 //            end;
 
-//            if nu.flagu and 1
-//            then
+//            if nu.flagu and 1 then
 //            glEnd(); 
 //            else
 //            glEnd(); 
@@ -3397,14 +3144,11 @@ end;
 //            inc(bp); 
 //            do
 //            begin 
-//              if bp.hide=0)and(bp1.hide=0
-//              then
+//              if bp.hide=0)and(bp1.hide=0 then
 //              begin 
-//                if sel<>0{nil} {<= !!!9} 
-//                then
+//                if sel<>0 then
 //                begin 
-//                  if (bp.f1 and 1))and((bp1.f1 and 1)
-//                  then
+//                  if (bp.f1 and 1))and((bp1.f1 and 1) then
 //                  begin 
 //                    cpack(nurbcol[5]); 
 //                    glBegin(GL_LINE_STRIP); 
@@ -3415,8 +3159,7 @@ end;
 //                end;
 //                else
 //                begin 
-//                  if (bp.f1 and 1))and((bp1.f1 and 1)
-//                  then
+//                  if (bp.f1 and 1))and((bp1.f1 and 1) then
 //                  ; 
 //                  else
 //                  begin 
@@ -3431,8 +3174,7 @@ end;
 //              bp1:= bp; 
 //            end;
 //          end;
-//          if nu.pntsv>1
-//          then
+//          if nu.pntsv>1 then
 //          begin 
 //            (* surface *)
 
@@ -3450,14 +3192,11 @@ end;
 //              bp:= bp + (ofs); 
 //              do
 //              begin 
-//                if bp.hide=0)and(bp1.hide=0
-//                then
+//                if bp.hide=0)and(bp1.hide=0 then
 //                begin 
-//                  if sel<>0{nil} {<= !!!9} 
-//                  then
+//                  if sel<>0 then
 //                  begin 
-//                    if (bp.f1 and 1))and((bp1.f1 and 1)
-//                    then
+//                    if (bp.f1 and 1))and((bp1.f1 and 1) then
 //                    begin 
 //                      cpack(nurbcol[7]); 
 //                      glBegin(GL_LINE_STRIP); 
@@ -3468,8 +3207,7 @@ end;
 //                  end;
 //                  else
 //                  begin 
-//                    if (bp.f1 and 1))and((bp1.f1 and 1)
-//                    then
+//                    if (bp.f1 and 1))and((bp1.f1 and 1) then
 //                    ; 
 //                    else
 //                    begin 
@@ -3520,8 +3258,7 @@ end;
 //  while nu
 //  do
 //  begin 
-//    if (nu.type and 7)=CU_BEZIER
-//    then
+//    if (nu.type and 7)=CU_BEZIER then
 //    begin 
 //      tekenhandlesN(nu,0); 
 //    end;
@@ -3535,11 +3272,9 @@ end;
 
 //  draw_editnurb(ob,nurb,1); 
 
-//  if cu.flag and CU_3D
-//  then
+//  if cu.flag and CU_3D then
 //  begin 
-//    if cu.bev.first=0
-//    then
+//    if cu.bev.first=0 then
 //    makeBevelList(ob); 
 //    cpack($0); 
 //    bl:= cu.bev.first; 
@@ -3580,15 +3315,13 @@ end;
 //  end;
 //  calc_Nurbverts(nurb); 
 
-//  if G.zbuf<>0{nil} {<= !!!9} 
-//  then
+//  if G.zbuf<>0 then
 //  glDisable(GL_DEPTH_TEST); 
 //  nu:= nurb; 
 //  while nu
 //  do
 //  begin 
-//    if (nu.type and 7)=1
-//    then
+//    if (nu.type and 7)=1 then
 //    tekenhandlesN(nu,1); 
 //    tekenvertsN(nu,0); 
 //    nu:= nu.next; 
@@ -3600,8 +3333,7 @@ end;
 //    tekenvertsN(nu,1); 
 //    nu:= nu.next; 
 //  end;
-//  if G.zbuf<>0{nil} {<= !!!9} 
-//  then
+//  if G.zbuf<>0 then
 //  glEnable(GL_DEPTH_TEST); 
 //end;
 
@@ -3669,12 +3401,10 @@ end;
 
 //  code:=1; 
 //  mb:= ob.data; 
-//  if ob=G.obedit
-//  then
+//  if ob=G.obedit then
 //  begin 
 //    cpack($0); 
-//    if (G.f and G_PICKSEL)=0
-//    then
+//    if (G.f and G_PICKSEL)=0 then
 //    drawDispList(ob,dt); 
 //    ml:= editelems.first; 
 //  end;
@@ -3691,16 +3421,13 @@ end;
 //  while ml
 //  do
 //  begin 
-//    if ob=G.obedit
-//    then
+//    if ob=G.obedit then
 //    begin 
-//      if ml.flag and SELECT
-//      then
+//      if ml.flag and SELECT then
 //      cpack($A0A0F0); 
 //      else
 //      cpack($3030A0); 
-//      if G.f and G_PICKSEL
-//      then
+//      if G.f and G_PICKSEL then
 //      begin 
 //        ml.selcol:= code; 
 //        glLoadName(code{++} inc(code); ); 
@@ -3721,12 +3448,10 @@ end;
 
 //  bb:=0; 
 
-//  if ob.type=OB_MESH
-//  then
+//  if ob.type=OB_MESH then
 //  begin 
 //    bb:= ({!!!a type cast? =>} {pMesh(}ob.data).bb; 
-//    if bb=0
-//    then
+//    if bb=0 then
 //    begin 
 //      tex_space_mesh(ob.data); 
 //      bb:= ({!!!a type cast? =>} {pMesh(}ob.data).bb; 
@@ -3737,20 +3462,17 @@ end;
 //  function ELEM3{!!!3 unknown typedef}: if; 
 //  begin
 //    bb:= ({!!!a type cast? =>} {pCurve(}ob.data).bb; 
-//    if bb=0
-//    then
+//    if bb=0 then
 //    begin 
 //      makeDispList(ob); 
 //      bb:= ({!!!a type cast? =>} {pCurve(}ob.data).bb; 
 //    end;
 //  end
 //  else
-//  if ob.type=OB_MBALL
-//  then
+//  if ob.type=OB_MBALL then
 //  begin 
 //    bb:= ob.bb; 
-//    if bb=0
-//    then
+//    if bb=0 then
 //    begin 
 //      makeDispList(ob); 
 //      bb:= ob.bb; 
@@ -3761,8 +3483,7 @@ end;
 //  function ELEM{!!!3 unknown typedef}: if; 
 //  begin
 //    me:= get_mesh(ob); 
-//    if me<>0{nil} {<= !!!9} 
-//    then
+//    if me<>0 then
 //    bb:= me.bb; 
 //  end;
 //  else
@@ -3770,8 +3491,7 @@ end;
 //    drawcube(); 
 //    exit;
 //  end;
-//  if bb=0
-//  then
+//  if bb=0 then
 //  exit;
 //  vec:= bb.vec[0]; 
 //  glBegin(GL_LINE_STRIP); 
@@ -3815,8 +3535,7 @@ end;
 //size: pfloat; 
 //begin
 
-//  if ob.type=OB_MESH
-//  then
+//  if ob.type=OB_MESH then
 //  begin 
 //    me:= ob.data; 
 //    size:= me.size; 
@@ -3831,8 +3550,7 @@ end;
 //    loc:= cu.loc; 
 //  end
 //  else
-//  if ob.type=OB_MBALL
-//  then
+//  if ob.type=OB_MBALL then
 //  begin 
 //    mb:= ob.data; 
 //    size:= mb.size; 
@@ -3928,22 +3646,18 @@ end;
 
 //  ob:= base.object; 
 //  (* keys tekenen? *)
-//  if base=BASACT)or((base.flag and (SELECT+BA_WASSEL))
-//  then
+//  if base=BASACT)or((base.flag and (SELECT+BA_WASSEL)) then
 //  begin 
-//    if warning_recursive=0)and(ob<>G.obedit
-//    then
+//    if warning_recursive=0)and(ob<>G.obedit then
 //    begin 
-//      if ob.ipo)and(ob.ipo.showkey)and((ob.ipoflag and OB_DRAWKEY)
-//      then
+//      if ob.ipo)and(ob.ipo.showkey)and((ob.ipoflag and OB_DRAWKEY) then
 //      begin 
 //        warning_recursive:= 1; 
 //        elems.first:= elems.last:=0; 
 //        make_cfra_list(ob.ipo, and elems); 
 //        cfraont:= CFRA; 
 //        drawtype:= G.vd.drawtype; 
-//        if drawtype>OB_WIRE
-//        then
+//        if drawtype>OB_WIRE then
 //        G.vd.drawtype:= OB_WIRE; 
 //        sel:= base.flag; 
 //        memcpy(temp,@ob.loc,7*3*sizeof(single));
@@ -3952,15 +3666,13 @@ end;
 //        set_no_parent_ipo(1); 
 //        disable_speed_curve(1); 
 
-//        if (ob.ipoflag and OB_DRAWKEYSEL)=0
-//        then
+//        if (ob.ipoflag and OB_DRAWKEYSEL)=0 then
 //        begin 
 //          ce:= elems.first; 
 //          while ce
 //          do
 //          begin 
-//            if {not}0=ce.sel
-//            then
+//            if {not}0=ce.sel then
 //            begin 
 //              CFRA:= ce.cfra div G.scene.r.framelen; 
 //              base.flag:= 0; 
@@ -3974,8 +3686,7 @@ end;
 //        while ce
 //        do
 //        begin 
-//          if ce.sel<>0{nil} {<= !!!9} 
-//          then
+//          if ce.sel<>0 then
 //          begin 
 //            CFRA:= ce.cfra div G.scene.r.framelen; 
 //            base.flag:= SELECT; 
@@ -4005,43 +3716,34 @@ end;
 //  (* if( ((int)ob->ctime) != F_CFRA) where_is_object(ob); *)
 
 //  (* welke wire kleur *)
-//  if (G.f and (G_BACKBUFSEL+G_PICKSEL))=0
-//  then
+//  if (G.f and (G_BACKBUFSEL+G_PICKSEL))=0 then
 //  begin 
 //    project_short(ob.obmat[3], and base.sx); 
-//    if G.moving=1)and((base.flag and (SELECT+BA_PARSEL))
-//    then
+//    if G.moving=1)and((base.flag and (SELECT+BA_PARSEL)) then
 //    colindex:= 9; 
 //    else
 //    begin 
-//      if BASACT=base
-//      then
+//      if BASACT=base then
 //      begin 
-//        if base.flag and (SELECT+BA_WASSEL)
-//        then
+//        if base.flag and (SELECT+BA_WASSEL) then
 //        colindex:= 2; 
 //      end;
 //      else
 //      begin 
-//        if base.flag and (SELECT+BA_WASSEL)
-//        then
+//        if base.flag and (SELECT+BA_WASSEL) then
 //        colindex:= 1; 
 //      end;
-//      if ob.id.lib<>0{nil} {<= !!!9} 
-//      then
+//      if ob.id.lib<>0 then
 //      colindex:= colindex + (3); 
 //      else
-//      if warning_recursive=1
-//      then
+//      if warning_recursive=1 then
 //      colindex:= colindex + (6); 
 //    end;
 //    (* ZR ADDED THIS *)
 //    {$ifdef BADZR252}
-//    if colindex=0
-//    then
+//    if colindex=0 then
 //    begin 
-//      if give_current_material(ob,ob.actcol)
-//      then
+//      if give_current_material(ob,ob.actcol) then
 //      begin 
 //        ma:=give_current_material(ob,ob.actcol); 
 //        glColor3f(ma.r,ma.g,ma.b); 
@@ -4059,18 +3761,14 @@ end;
 //  end;
 //  (* END BAD ZR *)
 //  dt:= MIN2(G.vd.drawtype,ob.dt); (* maximum drawtype *)
-//  if G.zbuf=0)and(dt>OB_WIRE
-//  then
+//  if G.zbuf=0)and(dt>OB_WIRE then
 //  dt:= OB_WIRE; 
 //  dtx:= 0; (* faceselect uitzondering: ook solid tekenen als dt==wire *)
-//  if ob=OBACT)and((G.f and (G_FACESELECT+G_VERTEXPAINT))
-//  then
+//  if ob=OBACT)and((G.f and (G_FACESELECT+G_VERTEXPAINT)) then
 //  begin 
-//    if ob.type=OB_MESH
-//    then
+//    if ob.type=OB_MESH then
 //    begin 
-//      if G.f and G_BACKBUFSEL
-//      then
+//      if G.f and G_BACKBUFSEL then
 //      dt:= OB_SOLID; 
 //      else
 //      dt:= OB_SHADED; 
@@ -4081,8 +3779,7 @@ end;
 //    end;
 //    else
 //    begin 
-//      if dt<OB_SOLID
-//      then
+//      if dt<OB_SOLID then
 //      begin 
 //        dt:= OB_SOLID; 
 //        glClearDepth(1.); 
@@ -4093,36 +3790,28 @@ end;
 //    end;
 //  end;
 //  else
-//  if dt>=OB_WIRE
-//  then
+//  if dt>=OB_WIRE then
 //  begin 
 
-//    if dt>OB_SOLID
-//    then
-//    if G.f and G_BACKBUFSEL
-//    then
+//    if dt>OB_SOLID then
+//    if G.f and G_BACKBUFSEL then
 //    dt:= OB_SOLID; 
 //    dtx:= ob.dtx; 
-//    if G.obedit=ob
-//    then
+//    if G.obedit=ob then
 //    begin 
-//      if dtx and OB_TEXSPACE
-//      then
+//      if dtx and OB_TEXSPACE then
 //      dtx:= OB_TEXSPACE; 
 //      else
 //      dtx:= 0; 
 //    end;
-//    if G.f and G_DRAW_EXT
-//    then
+//    if G.f and G_DRAW_EXT then
 //    begin 
-//      if ob.type=OB_EMPTY)or(ob.type=OB_CAMERA)or(ob.type=OB_LAMP
-//      then
+//      if ob.type=OB_EMPTY)or(ob.type=OB_CAMERA)or(ob.type=OB_LAMP then
 //      dt:= OB_WIRE; 
 //    end;
 //  end;
 
-//  if (G.f and G_DRAW_EXT))and(dt>OB_WIRE
-//  then
+//  if (G.f and G_DRAW_EXT))and(dt>OB_WIRE then
 //  begin 
 //    case ob.type of
 //      OB_MBALL:
@@ -4139,20 +3828,16 @@ end;
 //      OB_MESH:
 //      begin
 //        me:= ob.data; 
-//        if base.flag and OB_RADIO
-//        then
+//        if base.flag and OB_RADIO then
 //        ; 
 //        else
-//        if ob=G.obedit)or((G.obedit)and(ob.data=G.obedit.data)
-//        then
+//        if ob=G.obedit)or((G.obedit)and(ob.data=G.obedit.data) then
 //        begin 
-//          if dt<=OB_WIRE
-//          then
+//          if dt<=OB_WIRE then
 //          drawmeshwire(ob); 
 //          else
 //          begin 
-//            if me.flag and ME_SMESH
-//            then
+//            if me.flag and ME_SMESH then
 //            begin 
 //              init_gl_materials(ob); 
 //              two_sided(0); 
@@ -4162,30 +3847,24 @@ end;
 //            else
 //            drawmeshsolid(ob,0); 
 //          end;
-//          if ob=G.obedit)and((G.f and G_PROPORTIONAL)
-//          then
+//          if ob=G.obedit)and((G.f and G_PROPORTIONAL) then
 //          DRAW_PROP_CIRCLE(); 
 //        end;
 //        else
 //        begin 
 //          ma:=give_current_material(ob,1); 
-//          if dt=OB_BOUNDBOX
-//          then
+//          if dt=OB_BOUNDBOX then
 //          drawboundbox(ob); 
 //          else
-//          if dt=OB_WIRE
-//          then
+//          if dt=OB_WIRE then
 //          drawmeshwire(ob); 
 //          else
-//          if ma)and((ma.mode and MA_HALO)
-//          then
+//          if ma)and((ma.mode and MA_HALO) then
 //          drawmeshwire(ob); 
 //          else
-//          if ({!!!a type cast? =>} {pMesh(}ob.data).tface
-//          then
+//          if ({!!!a type cast? =>} {pMesh(}ob.data).tface then
 //          begin 
-//            if (G.f and (G_BACKBUFSEL))
-//            then
+//            if (G.f and (G_BACKBUFSEL)) then
 //            drawmeshsolid(ob,0); 
 //            else
 //            draw_tface_mesh(ob,ob.data,dt); 
@@ -4193,18 +3872,14 @@ end;
 //          else
 //          drawDispList(ob,dt); 
 //        end;
-//        if ob<>G.obedit)and((G.f and (G_BACKBUFSEL+G_PICKSEL))=0
-//        then
+//        if ob<>G.obedit)and((G.f and (G_BACKBUFSEL+G_PICKSEL))=0 then
 //        begin 
-//          if paf:=give_parteff(ob)
-//          then
+//          if paf:=give_parteff(ob) then
 //          begin 
-//            if col<>0{nil} {<= !!!9} 
-//            then
+//            if col<>0 then
 //            cpack($FFFFFF); 
 //            (* zichtbaarheid *)
-//            if paf.flag and PAF_STATIC
-//            then
+//            if paf.flag and PAF_STATIC then
 //            draw_static_particle_system(ob,paf); 
 //            else
 //            draw_particle_system(ob,paf); 
@@ -4215,20 +3890,17 @@ end;
 //      OB_FONT:
 //      begin
 //        cu:= ob.data; 
-//        if ob=G.obedit
-//        then
+//        if ob=G.obedit then
 //        begin 
 //          tekentextcurs(); 
 //          cpack($FFFF90); 
 //          drawDispList(ob,OB_WIRE); 
 //        end;
 //        else
-//        if dt=OB_BOUNDBOX
-//        then
+//        if dt=OB_BOUNDBOX then
 //        drawboundbox(ob); 
 //        else
-//        if boundbox_clip(ob.obmat,cu.bb)
-//        then
+//        if boundbox_clip(ob.obmat,cu.bb) then
 //        drawDispList(ob,dt); 
 //      end;
 //      OB_CURVE,
@@ -4236,31 +3908,25 @@ end;
 //      begin
 //        cu:= ob.data; (* een pad niet solid tekenen: wel dus!!! *)
 //        (* if(cu->flag & CU_PATH) if(dt>OB_WIRE) dt= OB_WIRE; *)
-//        if ob=G.obedit
-//        then
+//        if ob=G.obedit then
 //        begin 
 //          drawnurb(ob,editNurb.first,dt); 
-//          if (G.f and G_PROPORTIONAL)
-//          then
+//          if (G.f and G_PROPORTIONAL) then
 //          DRAW_PROP_CIRCLE(); 
 //        end;
 //        else
-//        if dt=OB_BOUNDBOX
-//        then
+//        if dt=OB_BOUNDBOX then
 //        drawboundbox(ob); 
 //        else
-//        if boundbox_clip(ob.obmat,cu.bb)
-//        then
+//        if boundbox_clip(ob.obmat,cu.bb) then
 //        drawDispList(ob,dt); 
 //      end;
 //      OB_MBALL:
 //      begin
-//        if ob=G.obedit
-//        then
+//        if ob=G.obedit then
 //        drawmball(ob,dt); 
 //        else
-//        if dt=OB_BOUNDBOX
-//        then
+//        if dt=OB_BOUNDBOX then
 //        drawboundbox(ob); 
 //        else
 //        drawmball(ob,dt); 
@@ -4281,8 +3947,7 @@ end;
 //      OB_LATTICE:
 //      begin
 //        drawlattice(ob); 
-//        if ob=G.obedit)and((G.f and G_PROPORTIONAL)
-//        then
+//        if ob=G.obedit)and((G.f and G_PROPORTIONAL) then
 //        DRAW_PROP_CIRCLE(); 
 //      end;
 //      OB_SECTOR:
@@ -4305,35 +3970,27 @@ end;
 //  end;
 
 //  (* draw extra: na gewone draw ivm makeDispList *)
-//  if dtx<>0{nil} {<= !!!9} 
-//  then
+//  if dtx<>0 then
 //  begin 
-//    if G.f and G_SIMULATION
-//    then
+//    if G.f and G_SIMULATION then
 //    ; 
 //    else
-//    if dtx and OB_AXIS
-//    then
+//    if dtx and OB_AXIS then
 //    begin 
-//      if ob.type=OB_LIFE
-//      then
+//      if ob.type=OB_LIFE then
 //      begin 
 //        lf:= ob.data; 
 //        axsize:= lf.axsize; 
 //      end;
 //      drawaxes(axsize); 
 //    end;
-//    if dtx and OB_BOUNDBOX
-//    then
+//    if dtx and OB_BOUNDBOX then
 //    drawboundbox(ob); 
-//    if dtx and OB_TEXSPACE
-//    then
+//    if dtx and OB_TEXSPACE then
 //    drawtexspace(ob); 
-//    if dtx and OB_DRAWNAME
-//    then
+//    if dtx and OB_DRAWNAME then
 //    begin 
-//      if ob.type=OB_LAMP
-//      then
+//      if ob.type=OB_LAMP then
 //      glRasterPos3fv(ob.obmat[3]); 
 //      else
 //      glRasterPos3f(0.0,0.0,0.0); 
@@ -4343,70 +4000,55 @@ end;
 //      fmprstr(str); 
 //      fmprstr(ob.id.name+2); 
 //    end;
-//    if dtx and OB_DRAWIMAGE
-//    then
+//    if dtx and OB_DRAWIMAGE then
 //    drawDispListwire(@ob.disp); 
 //  end;
 //  loadmatrix(G.vd.viewmat); 
 
-//  if zbufoff<>0{nil} {<= !!!9} 
-//  then
+//  if zbufoff<>0 then
 //  glDisable(GL_DEPTH_TEST); 
 
-//  if warning_recursive<>0{nil} {<= !!!9} 
-//  then
+//  if warning_recursive<>0 then
 //  exit;
-//  if base.flag and OB_FROMDUPLI
-//  then
+//  if base.flag and OB_FROMDUPLI then
 //  exit;
-//  if base.flag and OB_RADIO
-//  then
+//  if base.flag and OB_RADIO then
 //  exit;
-//  if G.f and G_SIMULATION
-//  then
+//  if G.f and G_SIMULATION then
 //  exit;
 
-//  if (G.f and (G_BACKBUFSEL+G_PICKSEL))=0
-//  then
+//  if (G.f and (G_BACKBUFSEL+G_PICKSEL))=0 then
 //  begin 
 //    (* hulplijnen e.d. *)
-//    if ob.parent)and((ob.parent.lay and G.vd.lay)
-//    then
+//    if ob.parent)and((ob.parent.lay and G.vd.lay) then
 //    begin 
 //      setlinestyle(3); 
 //      LINE3F(ob.obmat[3],ob.orig); 
 //      setlinestyle(0); 
 //    end;
 //    (* object centers *)
-//    if G.zbuf<>0{nil} {<= !!!9} 
-//    then
+//    if G.zbuf<>0 then
 //    glDisable(GL_DEPTH_TEST); 
-//    if ob.type=OB_LAMP
-//    then
+//    if ob.type=OB_LAMP then
 //    begin 
-//      if ob.id.lib<>0{nil} {<= !!!9} 
-//      then
+//      if ob.id.lib<>0 then
 //      begin 
-//        if base.flag and SELECT
-//        then
+//        if base.flag and SELECT then
 //        rect:= rectllib_sel; 
 //        else
 //        rect:= rectllib_desel; 
 //      end;
 //      else
-//      if ob.id.us>1
-//      then
+//      if ob.id.us>1 then
 //      begin 
-//        if base.flag and SELECT
-//        then
+//        if base.flag and SELECT then
 //        rect:= rectlus_sel; 
 //        else
 //        rect:= rectlus_desel; 
 //      end;
 //      else
 //      begin 
-//        if base.flag and SELECT
-//        then
+//        if base.flag and SELECT then
 //        rect:= rectl_sel; 
 //        else
 //        rect:= rectl_desel; 
@@ -4415,30 +4057,25 @@ end;
 //    end;
 //    else
 //    begin 
-//      if ob.id.lib)or(ob.id.us>1
-//      then
+//      if ob.id.lib)or(ob.id.us>1 then
 //      begin 
-//        if base.flag and SELECT
-//        then
+//        if base.flag and SELECT then
 //        rect:= rectu_sel; 
 //        else
 //        rect:= rectu_desel; 
 //      end;
 //      else
 //      begin 
-//        if base.flag and SELECT
-//        then
+//        if base.flag and SELECT then
 //        rect:= rect_sel; 
 //        else
 //        rect:= rect_desel; 
 //      end;
 //      tekenrect4(ob.obmat[3],rect); 
 //    end;
-//    if G.zbuf<>0{nil} {<= !!!9} 
-//    then
+//    if G.zbuf<>0 then
 //    glEnable(GL_DEPTH_TEST); 
-//    if ob.network.first<>0{nil} {<= !!!9} 
-//    then
+//    if ob.network.first<>0 then
 //    begin 
 //      nl:=ob.network.first; 
 //      setlinestyle(3); 
@@ -4452,8 +4089,7 @@ end;
 //    end;
 //  end;
 //  else
-//  if (G.f and (G_VERTEXPAINT or G_FACESELECT))=0
-//  then
+//  if (G.f and (G_VERTEXPAINT or G_FACESELECT))=0 then
 //  begin 
 //    glBegin(GL_POINTS); 
 //    glVertex3fv(ob.obmat[3]); 
@@ -4468,11 +4104,9 @@ end;
 //vd: pView3D; 
 //begin
 
-//  if G.vd=0
-//  then
+//  if G.vd=0 then
 //  exit;
-//  if G.vd.drawtype>OB_WIRE
-//  then
+//  if G.vd.drawtype>OB_WIRE then
 //  begin 
 //    G.zbuf:= 1; 
 //    glEnable(GL_DEPTH_TEST); 
@@ -4485,13 +4119,11 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa.spacetype=SPACE_VIEW3D
-//    then
+//    if sa.spacetype=SPACE_VIEW3D then
 //    begin 
 //      (* er wordt beperkt in beide buffers getekend: selectbuffer! *)
 //      vd:= sa.spacedata.first; 
-//      if base.lay and vd.lay
-//      then
+//      if base.lay and vd.lay then
 //      begin 
 
 //        areawinset(sa.win); 
@@ -4503,8 +4135,7 @@ end;
 //        sa.win_swap:= WIN_FRONT_OK; 
 //        {$else}
 
-//        if sa.win_swap=WIN_EQUAL
-//        then
+//        if sa.win_swap=WIN_EQUAL then
 //        glDrawBuffer(GL_FRONT_AND_BACK); 
 //        else
 //        begin 
@@ -4517,14 +4148,12 @@ end;
 //    end;
 //    sa:= sa.next; 
 //  end;
-//  if curarea<>tempsa
-//  then
+//  if curarea<>tempsa then
 //  areawinset(tempsa.win); 
 //  G.f:= G.f and ( not G_DRAW_EXT); 
 //  glDrawBuffer(GL_BACK); 
 
-//  if G.zbuf<>0{nil} {<= !!!9} 
-//  then
+//  if G.zbuf<>0 then
 //  begin 
 //    G.zbuf:= 0; 
 //    glDisable(GL_DEPTH_TEST); 

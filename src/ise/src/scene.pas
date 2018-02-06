@@ -33,9 +33,6 @@ interface
 uses
   blender, rct;
 
-//{$include "blender.h"}
-//{$include "ika.h"}
-
 function add_scene(name: pchar): pScene;
 procedure set_scene_bg(sce: pScene);
 
@@ -142,14 +139,12 @@ end;
 //  do
 //  begin 
 //    inc(base^._object^.id.us); 
-//    if obase=sce^.basact
-// then
+//    if obase=sce^.basact then
 //    scen.basact:= base; 
 //    obase:= obase.next; 
 //    base:= base.next; 
 //  end;
-//  if level=0
-// then
+//  if level=0 then
 //  begin
 //    result:= scen; 
 //    exit;
@@ -161,11 +156,9 @@ end;
 
 //  (*  camera *)
 //  (* level 2 *)
-//  if level>=2
-// then
+//  if level>=2 then
 //  begin 
-//    if scen.world<>0
-// then
+//    if scen.world<>0 then
 //    begin 
 //      dec(scen.world.id.us); 
 //      scen.world:= copy_world(scen.world); 
@@ -193,8 +186,7 @@ end;
 //  while base
 //  do
 //  begin 
-//    if base^._object^=ob
-// then
+//    if base^._object^=ob then
 //    begin
 //      result:= 1; 
 //      exit;
@@ -330,8 +322,7 @@ end;
 //  while sce
 //  do
 //  begin 
-//    if lstrcmp(name,sce^.id.name+2)=0
-// then
+//    if lstrcmp(name,sce^.id.name+2)=0 then
 //    begin 
 //      set_scene_bg(sce); 
 //      exit;
@@ -357,8 +348,7 @@ end;
 //  {duplilist: ListBase; }{<= !!!5 external variable}
 
 //  run_again:=1; (* init *)
-//  if val=0
-// then
+//  if val=0 then
 //  begin 
 //    fase:= F_START; 
 //    dupob:= 0; 
@@ -370,12 +360,10 @@ end;
 //    do
 //    begin 
 //      run_again:= 0; (* de eerste base *)
-//      if fase=F_START
-// then
+//      if fase=F_START then
 //      begin 
 //        {*}base^:=FIRSTBASE; 
-//        if {*}base^
-// then
+//        if {*}base^ then
 //        begin 
 //          {*}ob^:=(*base).object; 
 //          fase:= F_SCENE; 
@@ -383,8 +371,7 @@ end;
 //        else
 //        begin 
 //          (* uitzondering: een lege scene *)
-//          if G.scene.set)and(G.scene.set.base.first
-// then
+//          if G.scene.set)and(G.scene.set.base.first then
 //          begin 
 //            {*}base^:=G.scene.set.base.first; 
 //            {*}ob^:=(*base).object; 
@@ -394,21 +381,17 @@ end;
 //      end;
 //      else
 //      begin 
-//        if {*}base^)and(fase<>F_DUPLI
-// then
+//        if {*}base^)and(fase<>F_DUPLI then
 //        begin 
 //          {*}base^:=(*base).next; 
-//          if {*}base^
-// then
+//          if {*}base^ then
 //          {*}ob^:=(*base).object; 
 //          else
 //          begin 
-//            if fase=F_SCENE
-// then
+//            if fase=F_SCENE then
 //            begin 
 //              (* de scene is klaar, we gaan door met de set *)
-//              if G.scene.set)and(G.scene.set.base.first
-// then
+//              if G.scene.set)and(G.scene.set.base.first then
 //              begin 
 //                {*}base^:=G.scene.set.base.first; 
 //                {*}ob^:=(*base).object; 
@@ -418,32 +401,27 @@ end;
 //          end;
 //        end;
 //      end;
-//      if {*}base^=0
-// then
+//      if {*}base^=0 then
 //      fase:= F_START; 
 //      else
 //      begin 
-//        if fase<>F_DUPLI
-// then
+//        if fase<>F_DUPLI then
 //        begin 
-//          if (*base).object.transflag and OB_DUPLI
-// then
+//          if (*base).object.transflag and OB_DUPLI then
 //          begin 
 //            make_duplilist(G.scene,(*base).object); 
 //            dupob:= duplilist.first; 
 //          end;
 //        end;
 //        (* dupli's afhandelen *)
-//        if dupob<>0
-// then
+//        if dupob<>0 then
 //        begin 
 //          {*}ob^:=dupob; 
 //          fase:= F_DUPLI; 
 //          dupob:= dupob.id.next; 
 //        end;
 //        else
-//        if fase=F_DUPLI
-// then
+//        if fase=F_DUPLI then
 //        begin 
 //          fase:= F_SCENE; 
 //          free_duplilist(); 

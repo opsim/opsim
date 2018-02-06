@@ -28,27 +28,7 @@
 unit file_;
 interface
 
-//{$ifndef FILE_H}
-//{$define FILE_H}  
-//  { flags voor wegschrijven/lezen scene  }
-//{$include <fcntl.h>}
-//{$include "blender.h"}
-//{$include "storage.h"}
-//{$ifndef WINDOWS}
-//{$ifdef FREEBSD}
-//{$include <sys/param.h>}
-//{$include <sys/stat.h>}
-//{$include <sys/mount.h>}
-//{$else}
-//{$if defined(LINUX)}
-//{$include <sys/vfs.h>}
-//{$else}
-//{$ifndef BEOS}
-//{$include <sys/statfs.h>  }
-//{$endif}
-//{$endif}
-//{$endif}
-//{$endif}
+  { flags voor wegschrijven/lezen scene  }
 
   { INTEGER CODES  }
 

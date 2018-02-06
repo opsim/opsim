@@ -48,7 +48,7 @@ interface
     TIME_INTERVAL = 100.0;
 {$endif}
 {$ifdef ZRS_DEFINES}
-  {#define freeN(x) freeN(x); x=NULL; }
+  {#define freeN(x) freeN(x); x=nil; }
 {$endif}
 {$ifndef MAXFLOAT}
 
@@ -56,13 +56,13 @@ interface
   function MAXFLOAT : single;
 
 {$endif}
+
   { blendef.h	alle defines voor blenderstructuur
    *
    * jan 95 maart 95
    *
     }
-{ $include <single.h>	/* deze moet een keer naar de blender.h */}
-{ $include "code.h"}
+
   { **************** ALGEMEEN *********************  }
   { #define COREDUMP(n)			static int times=0; if(times++ == n) abort(); }
   { #define VECCOPY(v1,v2) 		*(v1)= *(v2); *(v1+1)= *(v2+1); *(v1+2)= *(v2+2); }
@@ -1266,10 +1266,8 @@ ID_SCR = $5352; //MAKE_ID2('S', 'R') }
     BCOMP = 2;
     ACOMP = 3;
 {$endif}
-{ $ifdef GS}
-{ $undef GS}
-{ $endif}
-  function GS(a: pchar): integer; {#define GS(a)	(*((short *)(a))) }
+
+function GS(a: pchar): integer; {#define GS(a)	(*((short *)(a))) }
 { $endif}
 
 implementation
@@ -1351,7 +1349,7 @@ uses
 //  result:= Sleep(x)
 //end;
 
-//{freeN(x) {freeN(x); x=NULL;}}
+//{freeN(x) {freeN(x); x=nil;}}
 //function freeN(x: integer): integer; 
 //begin
 //  result:= (freeN(x);x:=0{nil};)

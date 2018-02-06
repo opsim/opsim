@@ -31,11 +31,6 @@ interface
 uses
 util;
 
-//{$include "blender.h"}
-//{$include "graphics.h"}
-//{$include "edit.h"}
-//{$include "sector.h"}
-
 (* ************************************************ *)
 (* pushpop faciliteit: om tijdelijk data te bewaren *)
 
@@ -75,8 +70,7 @@ uses
 //begin
 
 //  pp:= ppmain.first; 
-//  if pp<>0{nil} {<= !!!9} 
-//  then
+//  if pp<>0 then
 //  begin 
 //    memcpy(data,pp.data,pp.len); 
 //    remlink(@ppmain,pp); 
@@ -93,8 +87,7 @@ uses
 //begin
 
 //  pp:= ppmain.last; 
-//  if pp<>0{nil} {<= !!!9} 
-//  then
+//  if pp<>0 then
 //  begin 
 //    memcpy(data,pp.data,pp.len); 
 //    remlink(@ppmain,pp); 
@@ -121,8 +114,7 @@ uses
 
 //procedure pushpop_test; 
 //begin
-//  if ppmain.first<>0{nil} {<= !!!9} 
-//  then
+//  if ppmain.first<>0 then
 //  printf('pushpop not empty\n');
 //  free_pushpop(); 
 //end;
@@ -169,8 +161,7 @@ uses
 //  do
 //  begin 
 //    getmouseco_areawin(mval); 
-//    if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1])or(qtest()
-//    then
+//    if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1])or(qtest() then
 //    begin 
 //      color(0); 
 //      sboxs(0,mvalo[1],curarea.winx,mvalo[1]); 
@@ -181,33 +172,27 @@ uses
 //      mvalo[0]:= mval[0]; 
 //      mvalo[1]:= mval[1]; 
 //      event:= extern_qread(@val); 
-//      if val<>0{nil} {<= !!!9} 
-//      then
+//      if val<>0 then
 //      begin 
-//        if event=ESCKEY
-//        then
+//        if event=ESCKEY then
 //        begin 
 //          retval:= 0; 
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
 //        else
-//        if event=BKEY
-//        then
+//        if event=BKEY then
 //        begin 
 //          retval:= 0; 
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
 //        else
-//        if event=LEFTMOUSE
-//        then
+//        if event=LEFTMOUSE then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        else
-//        if event=MIDDLEMOUSE
-//        then
+//        if event=MIDDLEMOUSE then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        else
-//        if event=RIGHTMOUSE
-//        then
+//        if event=RIGHTMOUSE then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //    end;
@@ -218,8 +203,7 @@ uses
 //  sboxs(0,mvalo[1],curarea.winx,mvalo[1]); 
 //  sboxs(mvalo[0],0,mvalo[0],curarea.winy); 
 
-//  if retval<>0{nil} {<= !!!9} 
-//  then
+//  if retval<>0 then
 //  begin 
 //    x1:= mval[0]; 
 //    y1:= mval[1]; 
@@ -230,8 +214,7 @@ uses
 //    do
 //    begin 
 //      getmouseco_areawin(mval); 
-//      if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1])or(qtest()
-//      then
+//      if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1])or(qtest() then
 //      begin 
 //        color(0); 
 //        sboxs(x1,y1,mvalo[0],mvalo[1]); 
@@ -241,33 +224,26 @@ uses
 //        mvalo[0]:= mval[0]; 
 //        mvalo[1]:= mval[1]; 
 //        event:= extern_qread(@val); 
-//        if val=0
-//        then
+//        if val=0 then
 //        begin 
-//          if event=ESCKEY
-//          then
+//          if event=ESCKEY then
 //          begin 
 //            retval:= 0; 
 //            break; {<= !!!b possible in "switch" - then remove this line}
 //          end;
 //          else
-//          if event=LEFTMOUSE
-//          then
+//          if event=LEFTMOUSE then
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //          else
-//          if event=MIDDLEMOUSE
-//          then
+//          if event=MIDDLEMOUSE then
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //          else
-//          if event=RIGHTMOUSE
-//          then
+//          if event=RIGHTMOUSE then
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
-//        if curarea.spacetype=SPACE_VIEW3D
-//        then
+//        if curarea.spacetype=SPACE_VIEW3D then
 //        begin 
-//          if G.vd.persp=0
-//          then
+//          if G.vd.persp=0 then
 //          begin 
 //            window_to_3d(dvec,mvalo[0]-x1,mvalo[1]-y1); 
 //            glRasterPos2i(10,10); 
@@ -275,8 +251,7 @@ uses
 //            charstr(str); 
 //          end;
 //          else
-//          if G.vd.persp=2
-//          then
+//          if G.vd.persp=2 then
 //          begin 
 //            fac1:= (mvalo[0]-x1) div ({!!!a type cast? =>} {float(}(G.vd.pr_xmax-G.vd.pr_xmin)); 
 //            fac1:= fac1 * (0.$1*G.scene.r.size*G.scene.r.xsch); 
@@ -288,8 +263,7 @@ uses
 //          end;
 //        end;
 //        else
-//        if curarea.spacetype=SPACE_IPO
-//        then
+//        if curarea.spacetype=SPACE_IPO then
 //        begin 
 //          mvalo[2]:= x1; 
 //          mvalo[3]:= y1; 
@@ -305,25 +279,20 @@ uses
 //    end;
 //    color(0); 
 //    clear(); 
-//    if retval<>0{nil} {<= !!!9} 
-//    then
+//    if retval<>0 then
 //    begin 
 //      rect.xmin:= x1; 
 //      rect.ymin:= y1; 
 //      rect.xmax:= mval[0]; 
 //      rect.ymax:= mval[1]; 
 //      retval:= event; (* normaliseren *)
-//      if rect.xmin>rect.xmax
-//      then
+//      if rect.xmin>rect.xmax then
 //      SWAP(int,rect.xmin,rect.xmax); 
-//      if rect.ymin>rect.ymax
-//      then
+//      if rect.ymin>rect.ymax then
 //      SWAP(int,rect.ymin,rect.ymax); 
-//      if rect.xmin=rect.xmax
-//      then
+//      if rect.xmin=rect.xmax then
 //      retval:= 0; 
-//      if rect.ymin=rect.ymax
-//      then
+//      if rect.ymin=rect.ymax then
 //      retval:= 0; 
 //    end;
 //  end;
@@ -335,8 +304,7 @@ uses
 //  mmode(MPROJECTION); 
 //  loadmatrix(winmat); 
 //  mmode(MVIEWING); 
-//  if event=BKEY)and(G.obedit)and(curarea.spacetype=SPACE_VIEW3D
-//  then
+//  if event=BKEY)and(G.obedit)and(curarea.spacetype=SPACE_VIEW3D then
 //  circle_select(); 
 //  begin
 //    result:= retval; 
@@ -377,8 +345,7 @@ uses
 //  (* pietsje groter, 1 pixel aan de rand *)
 //  glDrawBuffer(GL_FRONT); 
 
-//  if curarea.spacetype=SPACE_IPO
-//  then
+//  if curarea.spacetype=SPACE_IPO then
 //  my_get_frontbuffer_image(20+curarea.winrct.xmin,30+curarea.winrct.ymin,300,22); 
 //  else
 //  my_get_frontbuffer_image(0+curarea.winrct.xmin,10+curarea.winrct.ymin,300,22); 
@@ -399,8 +366,7 @@ uses
 //    winset(curarea.win); 
 //    persp(0); 
 //    getmouseco_areawin(mval); 
-//    if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1]
-//    then
+//    if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1] then
 //    begin 
 
 //      sdrawXORline4(0,0,mval[1],curarea.winx,mval[1]); 
@@ -409,33 +375,27 @@ uses
 //      mvalo[1]:= mval[1]; 
 //    end;
 //    event:= extern_qread(@val); 
-//    if event)and(val
-//    then
+//    if event)and(val then
 //    begin 
-//      if event=ESCKEY
-//      then
+//      if event=ESCKEY then
 //      begin 
 //        retval:= 0; 
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //      else
-//      if event=BKEY
-//      then
+//      if event=BKEY then
 //      begin 
 //        retval:= 0; 
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //      else
-//      if event=LEFTMOUSE
-//      then
+//      if event=LEFTMOUSE then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      else
-//      if event=MIDDLEMOUSE
-//      then
+//      if event=MIDDLEMOUSE then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      else
-//      if event=RIGHTMOUSE
-//      then
+//      if event=RIGHTMOUSE then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //    else
@@ -443,8 +403,7 @@ uses
 //  end;
 //  sdrawXORline4(-1,0,0,0,0); 
 //  fmsetfont(G.fonts); 
-//  if retval<>0{nil} {<= !!!9} 
-//  then
+//  if retval<>0 then
 //  begin 
 //    x1:= mval[0]; 
 //    y1:= mval[1]; 
@@ -458,8 +417,7 @@ uses
 //    do
 //    begin 
 //      getmouseco_areawin(mval); 
-//      if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1]
-//      then
+//      if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1] then
 //      begin 
 
 //        sdrawXORline4(0,x1,y1,x1,mval[1]); 
@@ -475,40 +433,32 @@ uses
 //      (* still because of the renderwindow... *)
 //      winset(curarea.win); 
 //      persp(0); 
-//      if val=0
-//      then
+//      if val=0 then
 //      begin 
-//        if event=ESCKEY
-//        then
+//        if event=ESCKEY then
 //        begin 
 //          retval:= 0; 
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
 //        else
-//        if event=LEFTMOUSE
-//        then
+//        if event=LEFTMOUSE then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        else
-//        if event=MIDDLEMOUSE
-//        then
+//        if event=MIDDLEMOUSE then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //        else
-//        if event=RIGHTMOUSE
-//        then
+//        if event=RIGHTMOUSE then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
-//      if event=0
-//      then
+//      if event=0 then
 //      usleep(2); 
-//      if curarea.spacetype=SPACE_VIEW3D
-//      then
+//      if curarea.spacetype=SPACE_VIEW3D then
 //      begin 
 //        glColor3f(0.4375,0.4375,0.4375); 
 //        glRecti(0,10,250,20); 
 //        glColor3f(0.0,0.0,0.0); 
 
-//        if G.vd.persp=0
-//        then
+//        if G.vd.persp=0 then
 //        begin 
 //          window_to_3d(dvec,mvalo[0]-x1,mvalo[1]-y1); 
 //          glRasterPos2i(10,10); 
@@ -517,8 +467,7 @@ uses
 //          fmprstr(str); 
 //        end;
 //        else
-//        if G.vd.persp=2
-//        then
+//        if G.vd.persp=2 then
 //        begin 
 //          fac1:= (mvalo[0]-x1) div ({!!!a type cast? =>} {float(}(G.vd.pr_xmax-G.vd.pr_xmin)); 
 //          fac1:= fac1 * (0.$1*G.scene.r.size*G.scene.r.xsch); 
@@ -530,8 +479,7 @@ uses
 //        end;
 //      end;
 //      else
-//      if curarea.spacetype=SPACE_IPO
-//      then
+//      if curarea.spacetype=SPACE_IPO then
 //      begin 
 //        glColor3f(.40625,.40625,.40625); 
 //        glRecti(20,30,170,40); 
@@ -547,8 +495,7 @@ uses
 //      end;
 //    end;
 //    sdrawXORline4(-1,0,0,0,0); 
-//    if retval<>0{nil} {<= !!!9} 
-//    then
+//    if retval<>0 then
 //    begin 
 //      rect.xmin:= x1; 
 //      rect.ymin:= y1; 
@@ -556,24 +503,19 @@ uses
 //      rect.ymax:= mval[1]; 
 //      retval:= event; 
 //      (* normaliseren *)
-//      if rect.xmin>rect.xmax
-//      then
+//      if rect.xmin>rect.xmax then
 //      SWAP(int,rect.xmin,rect.xmax); 
-//      if rect.ymin>rect.ymax
-//      then
+//      if rect.ymin>rect.ymax then
 //      SWAP(int,rect.ymin,rect.ymax); 
-//      if rect.xmin=rect.xmax
-//      then
+//      if rect.xmin=rect.xmax then
 //      retval:= 0; 
-//      if rect.ymin=rect.ymax
-//      then
+//      if rect.ymin=rect.ymax then
 //      retval:= 0; 
 //    end;
 //  end;
 
 //  (* wissen *)
-//  if event<>BKEY
-//  then
+//  if event<>BKEY then
 //  begin 
 
 //    function ELEM{!!!3 unknown typedef}: if; 
@@ -584,8 +526,7 @@ uses
 //  glDrawBuffer(GL_BACK); 
 //  persp(1); 
 
-//  if event=BKEY)and(G.obedit)and(curarea.spacetype=SPACE_VIEW3D
-//  then
+//  if event=BKEY)and(G.obedit)and(curarea.spacetype=SPACE_VIEW3D then
 //  circle_select(); 
 //  begin
 //    result:= retval; 
@@ -615,13 +556,11 @@ uses
 //    begin
 //      inc(G.totmesh); 
 //      me:= get_mesh(ob); 
-//      if me<>0{nil} {<= !!!9} 
-//      then
+//      if me<>0 then
 //      begin 
 //        G.totvert:= G.totvert + (me.totvert); 
 //        G.totface:= G.totface + (me.totface); 
-//        if sel<>0{nil} {<= !!!9} 
-//        then
+//        if sel<>0 then
 //        begin 
 //          G.totvertsel:= G.totvertsel + (me.totvert); 
 //          G.totfacesel:= G.totfacesel + (me.totface); 
@@ -639,14 +578,12 @@ uses
 //      inc(G.totcurve); 
 //      tot:= totf:=0; 
 //      cu:= ob.data; 
-//      if cu.disp.first=0
-//      then
+//      if cu.disp.first=0 then
 //      makeDispList(ob); 
 //      count_displist( and cu.disp,@tot,@totf); 
 //      G.totvert:= G.totvert + (tot); 
 //      G.totface:= G.totface + (totf); 
-//      if sel<>0{nil} {<= !!!9} 
-//      then
+//      if sel<>0 then
 //      begin 
 //        G.totvertsel:= G.totvertsel + (tot); 
 //        G.totfacesel:= G.totfacesel + (totf); 
@@ -657,8 +594,7 @@ uses
 //      count_displist(@ob.disp,@tot,@totf); 
 //      G.totvert:= G.totvert + (tot); 
 //      G.totface:= G.totface + (totf); 
-//      if sel<>0{nil} {<= !!!9} 
-//      then
+//      if sel<>0 then
 //      begin 
 //        G.totvertsel:= G.totvertsel + (tot); 
 //        G.totfacesel:= G.totfacesel + (totf); 
@@ -699,7 +635,7 @@ begin
   G.totcurve:=0;
   G.totobjsel:=0;
 
-  if G.obedit<>nil  then
+  if G.obedit<>nil then
   begin
 
     if ELEM3(G.obedit^._type, OB_MESH, OB_SECTOR, OB_LIFE)then
@@ -708,7 +644,7 @@ begin
       //while eve  do
       //begin
       //  inc(G.totvert);
-      //  if (eve.f and 1)<>0     then
+      //  if (eve.f and 1)<>0 then
       //  inc(G.totvertsel);
       //  eve:= eve.next;
       //end;
@@ -716,15 +652,15 @@ begin
       //while evl <>nil       do
       //begin
       //  inc(G.totface);
-      //  if (evl.v1.f and 1)<>0        then
+      //  if (evl.v1.f and 1)<>0 then
       //  begin
-      //    if (evl.v2.f and 1)<>0         then
+      //    if (evl.v2.f and 1)<>0 then
       //    begin
-      //      if (evl.v3.f and 1) <> 0  then
+      //      if (evl.v3.f and 1) <> 0 then
       //      begin
-      //        if evl.v4<>0             then
+      //        if evl.v4<>0 then
       //        begin
-      //          if (evl.v4.f and 1)<>0                then
+      //          if (evl.v4.f and 1)<>0 then
       //          inc(G.totfacesel);
       //        end
       //        else
@@ -744,18 +680,18 @@ begin
       //nu:= editNurb.first;
       //while nu<>nil      do
       //begin
-      //  if (nu.type and 7)=CU_BEZIER         then
+      //  if (nu.type and 7)=CU_BEZIER then
       //  begin
       //    bezt:= nu.bezt;
       //    a:= nu.pntsu;
       //    while a<>0          do
       //    begin
       //      G.totvert:= G.totvert + (3);
-      //      if bezt.f1<>0            then
+      //      if bezt.f1<>0 then
       //      inc(G.totvertsel);
-      //      if bezt.f2<>0            then
+      //      if bezt.f2<>0 then
       //      inc(G.totvertsel);
-      //      if bezt.f3<>0            then
+      //      if bezt.f3<>0 then
       //      inc(G.totvertsel);
       //      inc(bezt);
 
@@ -769,8 +705,7 @@ begin
       //    while a <> 0         do
       //    begin
       //      inc(G.totvert);
-      //      if bp.f1 and 1
-      //      then
+      //      if bp.f1 and 1 then
       //      inc(G.totvertsel);
       //      inc(bp);
 
@@ -781,26 +716,26 @@ begin
       //end;
     end
     else
-    if G.obedit^._type=OB_MBALL    then
+    if G.obedit^._type=OB_MBALL then
     begin
       //ml:= editelems.first;
       //while ml <> nil      do
       //begin
       //  inc(G.totvert);
-      //  if (ml.flag and SELECT) <> 0         then
+      //  if (ml.flag and SELECT) <> 0 then
       //  inc(G.totvertsel);
       //  ml:= ml.next;
       //end;
     end
     else
-    if G.obedit^._type=OB_LATTICE     then
+    if G.obedit^._type=OB_LATTICE then
     begin
       //bp:= editLatt.def;
       //a:= editLatt.pntsu*editLatt.pntsv*editLatt.pntsw;
       //while a<>0     do
       //begin
       //  inc(G.totvert);
-      //  if (bp.f1 and 1) <> 0        then
+      //  if (bp.f1 and 1) <> 0 then
       //  inc(G.totvertsel);
       //  inc(bp);
 
@@ -813,10 +748,10 @@ begin
     exit;
   end
   else
-  if (G.f and (G_FACESELECT+G_VERTEXPAINT)) <> 0  then
+  if (G.f and (G_FACESELECT+G_VERTEXPAINT)) <> 0 then
   begin
     //me:= get_mesh(OBACT);
-    //if me<>nil    then
+    //if me<>nil then
     //begin
     //  G.totface:= me.totface;
     //  G.totvert:= me.totvert;
@@ -834,13 +769,13 @@ begin
   //base:= FIRSTBASE;
   //while base <> 0  do
   //begin
-  //  if (G.vd.lay<>0) and (base.lay<>0)    then
+  //  if (G.vd.lay<>0) and (base.lay<>0) then
   //  begin
   //    inc(G.totobj);
-  //    if (base.flag and SELECT) <> 0       then
+  //    if (base.flag and SELECT) <> 0 then
   //    inc(G.totobjsel);
   //    count_object(base.object,base.flag and SELECT);
-  //    if( base.object.transflag and OB_DUPLI) <> 0      then
+  //    if( base.object.transflag and OB_DUPLI) <> 0 then
   //    begin
   //      {duplilist: ListBase; }{<= !!!5 external variable}
   //      make_duplilist(G.scene,base.object);
@@ -883,18 +818,15 @@ end;
 //  event:= pupmenu('SNAP %t|Sel -> Grid%x1|Sel -> Curs%x2|Curs-> Grid%x3|Curs-> Sel%x4'); 
 //  gridf:= G.vd.grid; 
 //  curs:= give_cursor(); 
-//  if event=1)or(event=2
-//  then
+//  if event=1)or(event=2 then
 //  begin 
 //    (* sel->grid  sel->curs  *)
 
-//    if G.obedit<>0{nil} {<= !!!9} 
-//    then
+//    if G.obedit<>0 then
 //    begin 
 //      if{!!!e unknown token}
 //      make_trans_verts(bmat[0],bmat[1],0); 
-//      if tottrans=0
-//      then
+//      if tottrans=0 then
 //      exit;
 //      Mat3CpyMat4(bmat,G.obedit.obmat); 
 //      Mat3Inv(imat,bmat); 
@@ -907,8 +839,7 @@ end;
 //      inc(tv); 
 //      do
 //      begin 
-//        if event=2
-//        then
+//        if event=2 then
 //        begin 
 //          vec[0]:= curs[0]-G.obedit.obmat[3][0]; 
 //          vec[1]:= curs[1]-G.obedit.obmat[3][1]; 
@@ -938,12 +869,10 @@ end;
 //    while base
 //    do
 //    begin 
-//      if TESTBASELIB(base)
-//      then
+//      if TESTBASELIB(base) then
 //      begin 
 //        ob:= base.object; 
-//        if event=2
-//        then
+//        if event=2 then
 //        begin 
 //          vec[0]:= -ob.obmat[3][0]+curs[0]; 
 //          vec[1]:= -ob.obmat[3][1]+curs[1]; 
@@ -955,8 +884,7 @@ end;
 //          vec[1]:= -ob.obmat[3][1]+G.vd.grid*ffloor(.5+ob.obmat[3][1] div gridf); 
 //          vec[2]:= -ob.obmat[3][2]+G.vd.grid*ffloor(.5+ob.obmat[3][2] div gridf); 
 //        end;
-//        if ob.parent<>0{nil} {<= !!!9} 
-//        then
+//        if ob.parent<>0 then
 //        begin 
 //          where_is_object(ob); 
 //          Mat3Inv(imat,originmat); 
@@ -977,8 +905,7 @@ end;
 //    allqueue(REDRAWVIEW3D,0); 
 //  end;
 //  else
-//  if event=3
-//  then
+//  if event=3 then
 //  begin 
 //    (* curs to grid *)
 //    curs[0]:= G.vd.grid*ffloor(.5+curs[0] div gridf); 
@@ -987,20 +914,17 @@ end;
 //    allqueue(REDRAWVIEW3D,0); 
 //  end;
 //  else
-//  if event=4
-//  then
+//  if event=4 then
 //  begin 
 //    (* curs to sel *)
 //    count:= 0; 
 //    INIT_MINMAX(min,max); 
 //    centroid[0]:= centroid[1]:=centroid[2]:=0.0; 
-//    if G.obedit<>0{nil} {<= !!!9} 
-//    then
+//    if G.obedit<>0 then
 //    begin 
 //      if{!!!e unknown token}
 //      make_trans_verts(bmat[0],bmat[1],0); 
-//      if tottrans=0
-//      then
+//      if tottrans=0 then
 //      exit;
 //      Mat3CpyMat4(bmat,G.obedit.obmat); 
 //      tv:= transvmain; 
@@ -1018,8 +942,7 @@ end;
 //        VecAddf(centroid,centroid,vec); 
 //        DO_MINMAX(vec,min,max); 
 //      end;
-//      if G.vd.around=V3D_CENTROID
-//      then
+//      if G.vd.around=V3D_CENTROID then
 //      begin 
 //        VecMulf(centroid,1.0 div {!!!a type cast? =>} {float(}tottrans); 
 //        VECCOPY(curs,centroid); 
@@ -1040,8 +963,7 @@ end;
 //      while base
 //      do
 //      begin 
-//        if TESTBASE(base)
-//        then
+//        if TESTBASE(base) then
 //        begin 
 //          VECCOPY(vec,base.object.obmat[3]); 
 //          VecAddf(centroid,centroid,vec); 
@@ -1050,11 +972,9 @@ end;
 //        end;
 //        base:= base.next; 
 //      end;
-//      if count<>0{nil} {<= !!!9} 
-//      then
+//      if count<>0 then
 //      begin 
-//        if G.vd.around=V3D_CENTROID
-//        then
+//        if G.vd.around=V3D_CENTROID then
 //        begin 
 //          VecMulf(centroid,1.0 div {!!!a type cast? =>} {float(}count); 
 //          VECCOPY(curs,centroid); 

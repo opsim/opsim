@@ -601,22 +601,16 @@ begin
 { You must implement this function }
 end;
 
-////{$include "graphics.h"}
-////{$include "render.h"}
-//{$ifdef __sgi}
-////{$include <sys/syssgi.h>}
-//{$endif}
-//(* #ifndef FREE *)
-//(* #include "/usr/people/ton/code.h" *)
-//(* #endif *)
-//(* TIPS:
-// * 
-// * - LET OP DE EDGES,  VERTICES ERVAN MOETEN IN VOLGORDE
-//  (laagste pointer eerst). Anders onvoorspelbare effecten!
-// * - probleem: flags zijn nog niet echt netjes. Altijd na gebruik
-//  op nul zetten.
-///* ************************* *)
-//(* ********* Globals *********** *)
+(* TIPS:
+ *
+ * - LET OP DE EDGES,  VERTICES ERVAN MOETEN IN VOLGORDE
+  (laagste pointer eerst). Anders onvoorspelbare effecten!
+ * - probleem: flags zijn nog niet echt netjes. Altijd na gebruik
+  op nul zetten.
+/* ************************* *)
+
+(* ********* Globals *********** *)
+
 //{swinarray: array [0..] of pbWindow; }{<= !!!5 external variable}(* mywindow.c *)
 var
 //curarea: pScrArea = nil;
@@ -731,19 +725,15 @@ end;
 //sa: pScrArea;
 //begin
 
-//  if G.curscreen=nil
-// then
+//  if G.curscreen=nil then
 //  exit;
-//  if curs<>CURSOR_STD
-// then
+//  if curs<>CURSOR_STD then
 //  glutSetCursor(curs); 
 //  else
-//  if G.curscreen^.winakt<>nil 
-// then
+//  if G.curscreen^.winakt<>nil then
 //  begin 
 //    sa:= areawinar[G.curscreen^.winakt]; 
-//    if sa^.win=G.curscreen^.winakt
-// then
+//    if sa^.win=G.curscreen^.winakt then
 //    glutSetCursor(sa^.cursor); 
 //    else
 //    glutSetCursor(CURSOR_STD); 
@@ -785,16 +775,13 @@ end;
 //    while sa
 //    do
 //    begin 
-//      if sa^.spacetype=spacetype
-// then
+//      if sa^.spacetype=spacetype then
 //      begin 
 //        sa^.cursor:= cur; 
-//        if cur=nil
-// then
+//        if cur=nil then
 //        wich_cursor(sa); 
 //        (* extra test, bv nodig bij verlaten editmode in vertexpaint *)
-//        if sc=G.curscreen)and(sc^.winakt=sa^.win
-// then
+//        if sc=G.curscreen)and(sc^.winakt=sa^.win then
 //        glutSetCursor(sa^.cursor); 
 //      end;
 //      sa:= sa^.next; 
@@ -821,8 +808,7 @@ end;
 //  {hash: array [0..Pred(512)] of char; }{<= !!!5 external variable}
 
 //  file:= open('/.Bcode',O_BINARY or O_RDONLY); 
-//  if file=-1
-// then
+//  if file=-1 then
 //  exit(0); 
 //  read(file,keycode,200); 
 //  close(file); 
@@ -834,8 +820,7 @@ end;
 //    for{while} b:=nil to Pred(256) {b++}
 //    do
 //    begin 
-//      if a=hash[b]
-// then
+//      if a=hash[b] then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //    ihash[a]:= b; 
@@ -875,8 +860,7 @@ end;
 //procedure getmouseco_areawin(mval: psmallint); 
 //begin
 //  getmouseco_sc(mval); 
-//  if curarea^.win<>nil 
-// then
+//  if curarea^.win<>nil then
 //  begin 
 //    mval[0]:= mval[0] - (curarea^.winrct.xmin); 
 //    mval[1]:= mval[1] - (curarea^.winrct.ymin); 
@@ -887,8 +871,7 @@ end;
 //procedure getmouseco_headwin(mval: psmallint); 
 //begin
 //  getmouseco_sc(mval); 
-//  if curarea^.headwin<>nil 
-// then
+//  if curarea^.headwin<>nil then
 //  begin 
 //    mval[0]:= mval[0] - (curarea^.headrct.xmin); 
 //    mval[1]:= mval[1] - (curarea^.headrct.ymin); 
@@ -1029,8 +1012,7 @@ end;
 //  vec1[0]:= mx; 
 //  vec1[1]:= my; 
 //  curedge:=nil; (* als de edge element is van curarea: extra voordeel. Dit voor juiste split en join  *)
-//  if curarea<>nil 
-// then
+//  if curarea<>nil then
 //  begin 
 //    se1:= findscredge(curarea^.v1,curarea^.v2); 
 //    se2:= findscredge(curarea^.v2,curarea^.v3); 
@@ -1046,23 +1028,19 @@ end;
 //    vec3[0]:= se^.v2^.vec.x; 
 //    vec3[1]:= se^.v2^.vec.y; 
 //    dist:= PdistVL2Dfl(vec1,vec2,vec3); 
-//    if se=se1)or(se=se2)or(se=se3)or(se=se4
-// then
+//    if se=se1)or(se=se2)or(se=se3)or(se=se4 then
 //    dist:= dist - (5.0); 
-//    if dist<mindist
-// then
+//    if dist<mindist then
 //    begin 
 //      mindist:= dist; 
 //      curedge:= se; 
 //    end;
 //    se:= se^.next; 
 //  end;
-//  if curedge=nil
-// then
+//  if curedge=nil then
 //  exit;
 //  cursonedge:= 1; 
-//  if curedge^.v1^.vec.x=curedge^.v2^.vec.x
-// then
+//  if curedge^.v1^.vec.x=curedge^.v2^.vec.x then
 //  glutSetCursor(GLUT_CURSOR_LEFT_RIGHT); 
 //  else
 //  glutSetCursor(GLUT_CURSOR_UP_DOWN); 
@@ -1249,16 +1227,14 @@ end;
 //ofs: single;
 //begin
 
-//  if curarea^.headchange<>nil 
-// then
+//  if curarea^.headchange<>nil then
 //  begin 
 //    curarea^.headchange(); 
 //  end;
 //  else
 //  begin 
 //    ofs:= curarea^.headbutofs; 
-//    if curarea^.headertype=HEADERDOWN
-// then
+//    if curarea^.headertype=HEADERDOWN then
 //    ortho2(-0.5+ofs,curarea^.headrct.xmax-curarea^.headrct.xmin-0.5+ofs,+0.6,curarea^.headrct.ymax-curarea^.headrct.ymin+0.6); 
 //    else
 //    ortho2(-0.5+ofs,curarea^.headrct.xmax-curarea^.headrct.xmin-0.5+ofs,-0.5,curarea^.headrct.ymax-curarea^.headrct.ymin-0.5); 
@@ -1289,21 +1265,17 @@ end;
 //fac: single;
 //begin
 
-//  if curarea^.full<>nil 
-// then
+//  if curarea^.full<>nil then
 //  begin 
 //    confirm(,'Full window'); 
 //    exit;
 //  end;
-//  if okee('Switch header')
-// then
+//  if okee('Switch header') then
 //  begin 
-//    if sa^.headertype=1
-// then
+//    if sa^.headertype=1 then
 //    sa^.headertype:= 2; 
 //    else
-//    if sa^.headertype=2
-// then
+//    if sa^.headertype=2 then
 //    sa^.headertype:= 1; 
 //    testareas(); 
 //  end;
@@ -1424,8 +1396,7 @@ end;
 
 //function winqtest(sa: pScrArea): word;
 //begin
-//  if sa^.wq<>sa^.winqueue
-// then
+//  if sa^.wq<>sa^.winqueue then
 //  begin
 //    result:=  {word(}sa^.wq[-2];
 //    exit;
@@ -1438,15 +1409,13 @@ end;
 
 //procedure winqdelete(sa: pScrArea);
 //begin
-//  if sa^.wq<>sa^.winqueue
-// then
+//  if sa^.wq<>sa^.winqueue then
 //  sa^.wq:= sa^.wq - (2); 
 //end;
 
 //procedure winqclear(sa: pScrArea);
 //begin
-//  if sa^.wq:=sa^.winqueue
-// then
+//  if sa^.wq:=sa^.winqueue then
 //  ; 
 //end;
 
@@ -1520,7 +1489,7 @@ begin
       begin
         size:= PtrUint(sa^.hq)-PtrUint(sa^.headqueue);
 
-        if size<>0  then
+        if size<>0 then
         memmove(sa^.headqueue+2,sa^.headqueue,size);
         pword(sa^.headqueue)^:=event;
         sa^.headqueue[1]:= val;
@@ -1555,8 +1524,7 @@ afterq: psmallint = @afterqueue;
 
 //  poin:=  {integer(}afterqueue;
 //  poin:= poin + (6*(MAXQUEUE-1)); 
-//  if  {integer(}afterq<poin
-// then
+//  if  {integer(}afterq<poin then
 //  begin 
 //    afterq[0]:= win; ( {pushort(}afterq)[1]:=event;
 //    afterq[2]:= val; 
@@ -1881,16 +1849,13 @@ end;
 //  in_ext_qread:= 1; 
 //  event:= screen_qread(val); 
 //  in_ext_qread:=nil; (* niet zo net, wel zo handig (zie screen_qread) *)
-//  if event=REDRAW
-// then
+//  if event=REDRAW then
 //  ext_redraw:= {*}val^; 
 //  else
-//  if event=INPUTCHANGE
-// then
+//  if event=INPUTCHANGE then
 //  ext_inputchange:= {*}val^; 
 //  else
-//  if event=MOUSEY)or(event=MOUSEX
-// then
+//  if event=MOUSEY)or(event=MOUSEX then
 //  begin 
 //    ext_mousemove:= 1; 
 //    event:=nil; 
@@ -1922,7 +1887,7 @@ begin
   in_ext_qread:= 1;  (* niet zo net, wel zo handig (zie screen_qread) *)
 
   event:= screen_qread(val);
-  if event=REDRAW  then
+  if event=REDRAW then
   ext_redraw:= val^
   else
   if event=INPUTCHANGE then
@@ -2061,31 +2026,25 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa^.win_swap=WIN_BACK_OK
-// then
+//    if sa^.win_swap=WIN_BACK_OK then
 //    doswap:= 1; 
-//    if sa^.head_swap=WIN_BACK_OK
-// then
+//    if sa^.head_swap=WIN_BACK_OK then
 //    headswap:= 1; 
 //    sa:= sa^.next; 
 //  end;
-//  if doswap=nil)and(headswap=nil
-// then
+//  if doswap=nil)and(headswap=nil then
 //  exit;
 //  oldwin:= winget(); 
 //  mywinset(G.curscreen^.mainwin); 
-//  if doswap<>nil 
-// then
+//  if doswap<>nil then
 //  begin 
 //    sa:= G.curscreen^.areabase.first; 
 //    while sa
 //    do
 //    begin 
-//      if sa^.win_swap=WIN_FRONT_OK
-// then
+//      if sa^.win_swap=WIN_FRONT_OK then
 //      window_front_to_back_ogl(sa); 
-//      if sa^.head_swap=WIN_FRONT_OK
-// then
+//      if sa^.head_swap=WIN_FRONT_OK then
 //      header_front_to_back_ogl(sa); 
 //      sa:= sa^.next; 
 //    end;
@@ -2096,21 +2055,18 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa^.head_swap=WIN_FRONT_OK
-// then
+//    if sa^.head_swap=WIN_FRONT_OK then
 //    begin 
 //      header_front_to_back_ogl(sa); 
 //    end;
 //    else
-//    if sa^.head_swap=WIN_BACK_OK
-// then
+//    if sa^.head_swap=WIN_BACK_OK then
 //    begin 
 //      header_back_to_front_ogl(sa); 
 //    end;
 //    sa:= sa^.next; 
 //  end;
-//  if oldwin<>nil 
-// then
+//  if oldwin<>nil then
 //  areawinset(oldwin); 
 //end;
 
@@ -2130,31 +2086,25 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa^.win_swap=WIN_BACK_OK
-// then
+//    if sa^.win_swap=WIN_BACK_OK then
 //    doswap:= 1; 
-//    if sa^.head_swap=WIN_BACK_OK
-// then
+//    if sa^.head_swap=WIN_BACK_OK then
 //    headswap:= 1; 
 //    sa:= sa^.next; 
 //  end;
-//  if doswap=nil)and(headswap=nil
-// then
+//  if doswap=nil)and(headswap=nil then
 //  exit;
 //  oldwin:= winget(); 
 //  mywinset(G.curscreen^.mainwin); 
-//  if doswap<>nil 
-// then
+//  if doswap<>nil then
 //  begin 
 //    sa:= G.curscreen^.areabase.first; 
 //    while sa
 //    do
 //    begin 
-//      if sa^.win_swap=WIN_FRONT_OK
-// then
+//      if sa^.win_swap=WIN_FRONT_OK then
 //      window_front_to_back_glut(sa); 
-//      if sa^.head_swap=WIN_FRONT_OK
-// then
+//      if sa^.head_swap=WIN_FRONT_OK then
 //      header_front_to_back_glut(sa); 
 //      sa:= sa^.next; 
 //    end;
@@ -2165,21 +2115,18 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa^.head_swap=WIN_FRONT_OK
-// then
+//    if sa^.head_swap=WIN_FRONT_OK then
 //    begin 
 //      header_front_to_back_glut(sa); 
 //    end;
 //    else
-//    if sa^.head_swap=WIN_BACK_OK
-// then
+//    if sa^.head_swap=WIN_BACK_OK then
 //    begin 
 //      header_back_to_front_glut(sa); 
 //    end;
 //    sa:= sa^.next; 
 //  end;
-//  if oldwin<>nil 
-// then
+//  if oldwin<>nil then
 //  areawinset(oldwin); 
 //end;
 
@@ -2266,14 +2213,12 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa^.win_swap=WIN_BACK_OK
-// then
+//    if sa^.win_swap=WIN_BACK_OK then
 //    begin 
 //      myCopySubBuffer(sa^.winrct.xmin,sa^.winrct.ymin-1,sa^.winx,sa^.winy); 
 //      sa^.win_swap:= WIN_EQUAL; 
 //    end;
-//    if sa^.head_swap=WIN_BACK_OK
-// then
+//    if sa^.head_swap=WIN_BACK_OK then
 //    begin 
 //      myCopySubBuffer(sa^.headrct.xmin,sa^.headrct.ymin-1,sa^.winx,HEADERY); 
 //      sa^.head_swap:= WIN_EQUAL; 
@@ -2313,29 +2258,24 @@ end;
 //begin(* niet als curscreen is full
 //    * niet als obedit and old->scene!=new->scene
 //    *)
-//  if new=nil
-// then
+//  if new=nil then
 //  begin
 //    result:=nil; 
 //    exit;
 //  end;
-//  if G.curscreen^.full<>nil 
-// then
+//  if G.curscreen^.full<>nil then
 //  begin
 //    result:=nil; 
 //    exit;
 //  end;
-//  if curarea^.full<>nil 
-// then
+//  if curarea^.full<>nil then
 //  begin
 //    result:=nil; 
 //    exit;
 //  end;
-//  if G.obedit<>nil 
-// then
+//  if G.obedit<>nil then
 //  begin 
-//    if G.curscreen^.scene<>new.scene
-// then
+//    if G.curscreen^.scene<>new.scene then
 //    begin
 //      result:=nil; 
 //      exit;
@@ -2426,8 +2366,7 @@ begin
     //  ;
     //  else
     //  begin
-    //    if val<>nil
-    // then
+    //    if val<>nil then
     //    toolbox();
     //    towin:=nil;
     //  end;
@@ -2505,8 +2444,7 @@ begin
     //  if val)and((G.qual and LR_CTRLKEY) then
     //  begin
     //    sc:= G.curscreen^.id.next;
-    //    if is_allowed_to_change_screen(sc)
-    // then
+    //    if is_allowed_to_change_screen(sc) then
     //    setscreen(sc);
     //    towin:=nil;
     //  end;
@@ -2517,8 +2455,7 @@ begin
     //  if val)and((G.qual and LR_CTRLKEY) then
     //  begin
     //    sc:= G.curscreen^.id.prev;
-    //    if is_allowed_to_change_screen(sc)
-    // then
+    //    if is_allowed_to_change_screen(sc) then
     //    setscreen(sc);
     //    towin:=nil;
     //  end;
@@ -2540,8 +2477,7 @@ begin
     //if towin<>nil then
     //begin
     //  towin:= blenderqread(event,val);
-    //  if towin)and(G.curscreen^.winakt
-    // then
+    //  if towin)and(G.curscreen^.winakt then
     //  addqueue(G.curscreen^.winakt,event,val);
     //end;
 
@@ -2664,11 +2600,9 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa^.v1^.vec.x<=mval[0])and(sa^.v3^.vec.x>=mval[0]
-// then
+//    if sa^.v1^.vec.x<=mval[0])and(sa^.v3^.vec.x>=mval[0] then
 //    begin 
-//      if sa^.v1^.vec.y<=mval[1])and(sa^.v2^.vec.y>=mval[1]
-// then
+//      if sa^.v1^.vec.y<=mval[1])and(sa^.v2^.vec.y>=mval[1] then
 //      begin 
 //        begin
 //          result:= sa; 
@@ -2852,8 +2786,7 @@ end;
 //  do
 //  begin 
 //    svn:= sv^.next; 
-//    if sv^.flag=nil
-// then
+//    if sv^.flag=nil then
 //    begin 
 //      remlink(@G.curscreen^.vertbase,sv); 
 //      freeN(sv); 
@@ -3200,31 +3133,27 @@ end;
 //  se2:=nil; 
 //  se3:=nil; 
 //  se4:=nil; 
-//  if sa<>nil 
-// then
+//  if sa<>nil then
 //  begin 
 //    se1:= findscredge(sa^.v1,sa^.v2); 
 //    se2:= findscredge(sa^.v2,sa^.v3); 
 //    se3:= findscredge(sa^.v3,sa^.v4); 
 //    se4:= findscredge(sa^.v4,sa^.v1); 
 //  end;
-//  if se1<>se)and(se2<>se)and(se3<>se)and(se4<>se
-// then
+//  if se1<>se)and(se2<>se)and(se3<>se)and(se4<>se then
 //  begin 
 //    sa:= G.curscreen^.areabase.first; 
 //    while sa
 //    do
 //    begin 
 //      (* een beetje optimaliseren? *)
-//      if se^.v1=sa^.v1)or(se^.v1=sa^.v2)or(se^.v1=sa^.v3)or(se^.v1=sa^.v4
-// then
+//      if se^.v1=sa^.v1)or(se^.v1=sa^.v2)or(se^.v1=sa^.v3)or(se^.v1=sa^.v4 then
 //      begin 
 //        se1:= findscredge(sa^.v1,sa^.v2); 
 //        se2:= findscredge(sa^.v2,sa^.v3); 
 //        se3:= findscredge(sa^.v3,sa^.v4); 
 //        se4:= findscredge(sa^.v4,sa^.v1); 
-//        if se1=se)or(se2=se)or(se3=se)or(se4=se
-// then
+//        if se1=se)or(se2=se)or(se3=se)or(se4=se then
 //        begin
 //          result:= sa; 
 //          exit;
@@ -3268,11 +3197,9 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa<>curarea
-// then
+//    if sa<>curarea then
 //    begin 
-//      if sa^.winy>=curarea^.winy
-// then
+//      if sa^.winy>=curarea^.winy then
 //      begin 
 //        (* mimimum van vier hoekpunten *)
 //        vec[0]:= sa^.v1^.vec.x; 
@@ -3293,8 +3220,7 @@ end;
 //        len:= len + (0.5*VecLenf(vec,cent)); 
 //        len:= len - (sa^.winy+sa^.winx); (* plus centrum *)
 //        (* min afmeting *)
-//        if len<dist
-// then
+//        if len<dist then
 //        begin 
 //          dist:= len; 
 //          big:= sa; 
@@ -3303,8 +3229,7 @@ end;
 //    end;
 //    sa:= sa^.next; 
 //  end;
-//  if big<>nil 
-// then
+//  if big<>nil then
 //  begin
 //    result:= big; 
 //    exit;
@@ -3770,14 +3695,12 @@ end;
 //  do
 //  begin 
 //    del_area(sa); 
-//    if sa=curarea
-// then
+//    if sa=curarea then
 //    curarea:=nil; 
 //    sa:= sa^.next; 
 //  end;
 //  freelistN(@sc^.areabase);
-//  if G.curscreen=sc
-// then
+//  if G.curscreen=sc then
 //  begin 
 //    G.curscreen:=nil; 
 //    winqueue_break:= 1; 
@@ -3880,8 +3803,7 @@ end;
 //old: pScrArea;
 //begin(* deze funktie toggelt: als area full is wordt de parent weer zichtbaar *)
 
-//  if curarea^.full<>nil 
-// then
+//  if curarea^.full<>nil then
 //  begin 
 //    sc:= curarea^.full; 
 //    sc^.full:=nil;
@@ -3890,13 +3812,11 @@ end;
 //    while old
 //    do
 //    begin 
-//      if old.full<>nil 
-// then
+//      if old.full<>nil then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //      old:= old.next; 
 //    end;
-//    if old=nil
-// then
+//    if old=nil then
 //    begin 
 //      error('something wrong in areafullscreen'); 
 //      exit;
@@ -3909,11 +3829,9 @@ end;
 //  else
 //  begin 
 //    (* is er maar 1 area? *)
-//    if G.curscreen^.areabase.first=G.curscreen^.areabase.last
-// then
+//    if G.curscreen^.areabase.first=G.curscreen^.areabase.last then
 //    exit;
-//    if curarea^.spacetype=SPACE_INFO
-// then
+//    if curarea^.spacetype=SPACE_INFO then
 //    exit;
 //    G.curscreen^.full:= 1; 
 //    old:= curarea; 
@@ -3997,8 +3915,7 @@ end;
 //oldscreen: pbScreen; 
 //begin
 
-//  if G.curscreen^.full<>nil 
-// then
+//  if G.curscreen^.full<>nil then
 //  exit;
 //  (* nieuw screen maken: *)
 //  oldscreen:= G.curscreen; 
@@ -4036,13 +3953,11 @@ end;
 //  left:=nil; 
 
 //  val:=nil; 
-//  if curedge=nil
-// then
+//  if curedge=nil then
 //  exit;
 //  (* zit edge in area? of anders: welke area *)
 //  sa:= test_edge_area(sa,curedge); 
-//  if sa=nil
-// then
+//  if sa=nil then
 //  exit;
 //  (* welke edges kunnen ermee? *)
 //  (* vind richtingen met zelfde edge *)
@@ -4050,74 +3965,56 @@ end;
 //  while sa2
 //  do
 //  begin 
-//    if sa2<>sa
-// then
+//    if sa2<>sa then
 //    begin 
 //      setest:= findscredge(sa2.v1,sa2.v2); 
-//      if curedge=setest
-// then
+//      if curedge=setest then
 //      right:= sa2; 
 //      setest:= findscredge(sa2.v2,sa2.v3); 
-//      if curedge=setest
-// then
+//      if curedge=setest then
 //      down:= sa2; 
 //      setest:= findscredge(sa2.v3,sa2.v4); 
-//      if curedge=setest
-// then
+//      if curedge=setest then
 //      left:= sa2; 
 //      setest:= findscredge(sa2.v4,sa2.v1); 
-//      if curedge=setest
-// then
+//      if curedge=setest then
 //      up:= sa2; 
 //    end;
 //    sa2:= sa2.next; 
 //  end;
 //  sa2:=nil; 
 //  setest:=nil; 
-//  if left<>nil 
-// then
+//  if left<>nil then
 //  inc(val); 
-//  if up<>nil 
-// then
+//  if up<>nil then
 //  inc(val); 
-//  if right<>nil 
-// then
+//  if right<>nil then
 //  inc(val); 
-//  if down<>nil 
-// then
+//  if down<>nil then
 //  inc(val); 
-//  if val=nil
-// then
+//  if val=nil then
 //  exit;
 //  else
-//  if val=1
-// then
+//  if val=1 then
 //  begin 
-//    if left<>nil 
-// then
+//    if left<>nil then
 //    sa2:= left; 
 //    else
-//    if up<>nil 
-// then
+//    if up<>nil then
 //    sa2:= up; 
 //    else
-//    if right<>nil 
-// then
+//    if right<>nil then
 //    sa2:= right; 
 //    else
-//    if down<>nil 
-// then
+//    if down<>nil then
 //    sa2:= down; 
 //  end;
-//  if okee('Join')
-// then
+//  if okee('Join') then
 //  begin 
-//    if sa2<>nil 
-// then
+//    if sa2<>nil then
 //    begin 
 //      (* nieuwe area is oude sa *)
-//      if sa2=left
-// then
+//      if sa2=left then
 //      begin 
 //        sa^.v1:= sa2.v1; 
 //        sa^.v2:= sa2.v2; 
@@ -4125,8 +4022,7 @@ end;
 //        addscredge(@G.curscreen^.edgebase,sa^.v1,sa^.v4); 
 //      end;
 //      else
-//      if sa2=up
-// then
+//      if sa2=up then
 //      begin 
 //        sa^.v2:= sa2.v2; 
 //        sa^.v3:= sa2.v3; 
@@ -4134,8 +4030,7 @@ end;
 //        addscredge(@G.curscreen^.edgebase,sa^.v3,sa^.v4); 
 //      end;
 //      else
-//      if sa2=right
-// then
+//      if sa2=right then
 //      begin 
 //        sa^.v3:= sa2.v3; 
 //        sa^.v4:= sa2.v4; 
@@ -4143,8 +4038,7 @@ end;
 //        addscredge(@G.curscreen^.edgebase,sa^.v1,sa^.v4); 
 //      end;
 //      else
-//      if sa2=down
-// then
+//      if sa2=down then
 //      begin 
 //        sa^.v1:= sa2.v1; 
 //        sa^.v4:= sa2.v4; 
@@ -4156,8 +4050,7 @@ end;
 //      (* remlink(&G.curscreen->edgebase, setest); *)
 //      (* freeN(setest); *)
 //      remlink(@G.curscreen^.areabase,sa2); 
-//      if curarea=sa2
-// then
+//      if curarea=sa2 then
 //      curarea:=nil; 
 //      freeN(sa2); 
 //      removedouble_scredges(); 
@@ -4310,23 +4203,17 @@ end;
 //  mvalo:=(-1010,-1010); 
 
 //  sa:= test_edge_area(curarea,curedge); 
-//  if sa=nil
-// then
+//  if sa=nil then
 //  exit;
-//  if sa^.win=nil
-// then
+//  if sa^.win=nil then
 //  exit;
-//  if sa^.full<>nil 
-// then
+//  if sa^.full<>nil then
 //  exit;
-//  if curedge=nil
-// then
+//  if curedge=nil then
 //  exit;
-//  if okee('Split')=nil
-// then
+//  if okee('Split')=nil then
 //  exit;
-//  if curedge^.v1^.vec.x=curedge^.v2^.vec.x
-// then
+//  if curedge^.v1^.vec.x=curedge^.v2^.vec.x then
 //  dir:= 'h'; 
 //  else
 //  dir:= 'v'; 
@@ -4338,13 +4225,11 @@ end;
 //  do
 //  begin 
 //    getmouseco_sc(mval); 
-//    if mval[0]<>mvalo[0])or(mval[1]<>mvalo[1]
-// then
+//    if mval[0]<>mvalo[0])or(mval[1]<>mvalo[1] then
 //    begin 
 //      mvalo[0]:= mval[0]; 
 //      mvalo[1]:= mval[1]; 
-//      if dir='h'
-// then
+//      if dir='h' then
 //      begin 
 //        fac:= mval[1]-(sa^.v1^.vec.y); 
 //        fac:= fac div (sa^.v2^.vec.y-sa^.v1^.vec.y); 
@@ -4355,15 +4240,13 @@ end;
 //        fac:= fac div (sa^.v4^.vec.x-sa^.v1^.vec.x); 
 //      end;
 //      split:= testsplitpoint(sa,dir,fac); 
-//      if split=nil
-// then
+//      if split=nil then
 //      begin 
 //        ok:= -1; 
 //      end;
 //      else
 //      begin 
-//        if dir='h'
-// then
+//        if dir='h' then
 //        begin 
 //          sdrawXORline4(0,sa^.totrct.xmin,split,sa^.totrct.xmax,split); 
 //          sdrawXORline4(1,sa^.totrct.xmin,-1+split,sa^.totrct.xmax,-1+split); 
@@ -4376,11 +4259,9 @@ end;
 //      end;
 //    end;
 //    event:= extern_qread(@val); 
-//    if val)and(event=LEFTMOUSE
-// then
+//    if val)and(event=LEFTMOUSE then
 //    begin 
-//      if dir='h'
-// then
+//      if dir='h' then
 //      begin 
 //        fac:= split-(sa^.v1^.vec.y); 
 //        fac:= fac div (sa^.v2^.vec.y-sa^.v1^.vec.y); 
@@ -4392,15 +4273,13 @@ end;
 //      end;
 //      ok:= 1; 
 //    end;
-//    if val)and(event=ESCKEY
-// then
+//    if val)and(event=ESCKEY then
 //    begin 
 //      ok:= -1; 
 //    end;
 //  end;
 //  sdrawXORline4(-1,0,0,0,0); 
-//  if ok=1
-// then
+//  if ok=1 then
 //  begin 
 //    splitarea(sa,dir,fac); 
 //    qenter(DRAWEDGES,1); 
@@ -4496,14 +4375,11 @@ end;
 //  mindist:=1 shl 30; 
 //  event:=nil; 
 
-//  if curarea^.full<>nil 
-// then
+//  if curarea^.full<>nil then
 //  exit;
-//  if curedge=nil)or(curedge^.border
-// then
+//  if curedge=nil)or(curedge^.border then
 //  exit;
-//  if curedge^.v1^.vec.x=curedge^.v2^.vec.x
-// then
+//  if curedge^.v1^.vec.x=curedge^.v2^.vec.x then
 //  dir:= 'v'; 
 //  else
 //  dir:= 'h'; 
@@ -4514,56 +4390,45 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if dir='h'
-// then
+//    if dir='h' then
 //    begin 
 //      (* als top of down edge select, test hoogte *)
-//      if sa^.v1^.flag)and(sa^.v4^.flag
-// then
+//      if sa^.v1^.flag)and(sa^.v4^.flag then
 //      begin 
-//        if sa^.v2^.vec.y=G.curscreen^.sizey-1
-// then
+//        if sa^.v2^.vec.y=G.curscreen^.sizey-1 then
 //        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-HEADERY-EDGEWIDTH2; 
 //        else
 //        (* bovenste edge *)
 //        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-AREAMINY; 
-//        if y1<bigger
-// then
+//        if y1<bigger then
 //        bigger:= y1; 
 //      end;
 //      else
-//      if sa^.v2^.flag)and(sa^.v3^.flag
-// then
+//      if sa^.v2^.flag)and(sa^.v3^.flag then
 //      begin 
-//        if sa^.v1^.vec.y=nil
-// then
+//        if sa^.v1^.vec.y=nil then
 //        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-HEADERY; 
 //        else
 //        (* onderste edge *)
 //        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-AREAMINY; 
-//        if y1<smaller
-// then
+//        if y1<smaller then
 //        smaller:= y1; 
 //      end;
 //    end;
 //    else
 //    begin 
 //      (* als left of right edge select, test breedte *)
-//      if sa^.v1^.flag)and(sa^.v2^.flag
-// then
+//      if sa^.v1^.flag)and(sa^.v2^.flag then
 //      begin 
 //        x1:= sa^.v4^.vec.x-sa^.v1^.vec.x-AREAMINX; 
-//        if x1<bigger
-// then
+//        if x1<bigger then
 //        bigger:= x1; 
 //      end;
 //      else
-//      if sa^.v3^.flag)and(sa^.v4^.flag
-// then
+//      if sa^.v3^.flag)and(sa^.v4^.flag then
 //      begin 
 //        x1:= sa^.v4^.vec.x-sa^.v1^.vec.x-AREAMINX; 
-//        if x1<smaller
-// then
+//        if x1<smaller then
 //        smaller:= x1; 
 //      end;
 //    end;
@@ -4578,28 +4443,22 @@ end;
 //  do
 //  begin 
 //    getmouseco_sc(mval); 
-//    if mval[0]<>mvalo[0])or(mval[1]<>mvalo[1]
-// then
+//    if mval[0]<>mvalo[0])or(mval[1]<>mvalo[1] then
 //    begin 
-//      if dir='h'
-// then
+//      if dir='h' then
 //      begin 
 //        addvec.y:= addvec.y + (mval[1]-mvalo[1]); 
-//        if addvec.y>bigger
-// then
+//        if addvec.y>bigger then
 //        addvec.y:= bigger; 
-//        if addvec.y<-smaller
-// then
+//        if addvec.y<-smaller then
 //        addvec.y:= -smaller; 
 //      end;
 //      else
 //      begin 
 //        addvec.x:= addvec.x + (mval[0]-mvalo[0]); 
-//        if addvec.x>bigger
-// then
+//        if addvec.x>bigger then
 //        addvec.x:= bigger; 
-//        if addvec.x<-smaller
-// then
+//        if addvec.x<-smaller then
 //        addvec.x:= -smaller; 
 //      end;
 //      mvalo[0]:= mval[0]; 
@@ -4609,8 +4468,7 @@ end;
 //      while se
 //      do
 //      begin 
-//        if se^.v1^.flag)and(se^.v2^.flag
-// then
+//        if se^.v1^.flag)and(se^.v2^.flag then
 //        begin 
 //          (* met areagrid even behelpen, verderop is OK! *)
 //          x1:= se^.v1^.vec.x+addvec.x-(addvec.x mod AREAGRID); 
@@ -4627,17 +4485,13 @@ end;
 //    else
 //    usleep(2); 
 //    event:= extern_qread(@val); 
-//    if val<>nil 
-// then
+//    if val<>nil then
 //    begin 
-//      if event=ESCKEY
-// then
+//      if event=ESCKEY then
 //      break; {<= !!!b possible in "switch" - then remove this line}
-//      if event=LEFTMOUSE
-// then
+//      if event=LEFTMOUSE then
 //      break; {<= !!!b possible in "switch" - then remove this line}
-//      if event=SPACEKEY
-// then
+//      if event=SPACEKEY then
 //      break; {<= !!!b possible in "switch" - then remove this line}
 //    end;
 //  end;
@@ -4647,20 +4501,16 @@ end;
 //  while v1
 //  do
 //  begin 
-//    if v1^.flag)and(event<>ESCKEY
-// then
+//    if v1^.flag)and(event<>ESCKEY then
 //    begin 
 //      (* zo is AREAGRID netjes *)
-//      if addvec.x)and(v1^.vec.x>0)and(v1^.vec.x<G.curscreen^.sizex-1
-// then
+//      if addvec.x)and(v1^.vec.x>0)and(v1^.vec.x<G.curscreen^.sizex-1 then
 //      begin 
 //        v1^.vec.x:= v1^.vec.x + (addvec.x); 
-//        if addvec.x<>bigger)and(addvec.x<>-smaller
-// then
+//        if addvec.x<>bigger)and(addvec.x<>-smaller then
 //        v1^.vec.x:= v1^.vec.x - ((v1^.vec.x mod AREAGRID)); 
 //      end;
-//      if addvec.y)and(v1^.vec.y>0)and(v1^.vec.y<G.curscreen^.sizey-1
-// then
+//      if addvec.y)and(v1^.vec.y>0)and(v1^.vec.y<G.curscreen^.sizey-1 then
 //      begin 
 //        v1^.vec.y:= v1^.vec.y + (addvec.y); 
 //        v1^.vec.y:= v1^.vec.y + (AREAGRID-1); 
@@ -4673,8 +4523,7 @@ end;
 //    v1^.flag:=nil; 
 //    v1:= v1^.next; 
 //  end;
-//  if event<>ESCKEY
-// then
+//  if event<>ESCKEY then
 //  begin 
 //    removedouble_scrverts(); 
 //    removedouble_scredges(); 
@@ -4690,14 +4539,12 @@ end;
 //mvalo: array [0..1] of smallint;
 //begin
 
-//  if curarea^.headbutlen<curarea^.winx
-// then
+//  if curarea^.headbutlen<curarea^.winx then
 //  begin 
 //    curarea^.headbutofs:=nil; 
 //  end;
 //  else
-//  if curarea^.headbutofs+curarea^.winx>curarea^.headbutlen
-// then
+//  if curarea^.headbutofs+curarea^.winx>curarea^.headbutlen then
 //  begin 
 //    curarea^.headbutofs:= curarea^.headbutlen-curarea^.winx; 
 //  end;
@@ -4706,19 +4553,15 @@ end;
 //  do
 //  begin 
 //    getmouseco_sc(mval); 
-//    if mval[0]<>mvalo[0]
-// then
+//    if mval[0]<>mvalo[0] then
 //    begin 
 //      curarea^.headbutofs:= curarea^.headbutofs - ((mval[0]-mvalo[0])); 
-//      if curarea^.headbutlen-curarea^.winx<curarea^.headbutofs
-// then
+//      if curarea^.headbutlen-curarea^.winx<curarea^.headbutofs then
 //      curarea^.headbutofs:= curarea^.headbutlen-curarea^.winx; 
-//      if curarea^.headbutofs<0
-// then
+//      if curarea^.headbutofs<0 then
 //      curarea^.headbutofs:=nil; 
 //      defheadchange(); 
-//      if curarea^.headdraw<>nil 
-// then
+//      if curarea^.headdraw<>nil then
 //      curarea^.headdraw(); 
 //      screen_swapbuffers(); 
 //      mvalo[0]:= mval[0]; 
@@ -4748,16 +4591,14 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa^.spacetype=spacetype
-// then
+//    if sa^.spacetype=spacetype then
 //    begin 
 //      sact:= sa; 
 //      inc(tot); 
 //    end;
 //    sa:= sa^.next; 
 //  end;
-//  if tot=nil
-// then
+//  if tot=nil then
 //  begin 
 //    error('Can't do this! Open correct window');
 //    begin
@@ -4765,11 +4606,9 @@ end;
 //      exit;
 //    end;
 //  end;
-//  if tot=1
-// then
+//  if tot=1 then
 //  begin 
-//    if curarea<>sact
-// then
+//    if curarea<>sact then
 //    areawinset(sact.win); 
 //    begin
 //      result:= 1; 
@@ -4777,25 +4616,20 @@ end;
 //    end;
 //  end;
 //  else
-//  if tot>1
-// then
+//  if tot>1 then
 //  begin 
 //    tempcursor(GLUT_CURSOR_HELP); 
 //    while 1
 //    do
 //    begin 
 //      event:= extern_qread(@val); 
-//      if val<>nil 
-// then
+//      if val<>nil then
 //      begin 
-//        if event=ESCKEY
-// then
+//        if event=ESCKEY then
 //        break; {<= !!!b possible in "switch" - then remove this line}
-//        if event=LEFTMOUSE
-// then
+//        if event=LEFTMOUSE then
 //        break; {<= !!!b possible in "switch" - then remove this line}
-//        if event=SPACEKEY
-// then
+//        if event=SPACEKEY then
 //        break; {<= !!!b possible in "switch" - then remove this line}
 //      end;
 //    end;
@@ -4807,11 +4641,9 @@ end;
 //    while win
 //    do
 //    begin 
-//      if mval[0]>=win.xmin-1)and(mval[0]<=win.xmax+2
-// then
+//      if mval[0]>=win.xmin-1)and(mval[0]<=win.xmax+2 then
 //      begin 
-//        if mval[1]>=win.ymin-1)and(mval[1]<=win.ymax+2
-// then
+//        if mval[1]>=win.ymin-1)and(mval[1]<=win.ymax+2 then
 //        begin 
 //          G.curscreen^.winakt:= win.id; 
 //          break; {<= !!!b possible in "switch" - then remove this line}
@@ -4819,12 +4651,10 @@ end;
 //      end;
 //      win:= win.next; 
 //    end;
-//    if event=LEFTMOUSE
-// then
+//    if event=LEFTMOUSE then
 //    begin 
 //      sa:= areawinar[G.curscreen^.winakt]; 
-//      if sa^.spacetype=spacetype
-// then
+//      if sa^.spacetype=spacetype then
 //      areawinset(G.curscreen^.winakt); 
 //      else
 //      begin 
@@ -4836,8 +4666,7 @@ end;
 //      end;
 //    end;
 //  end;
-//  if event=LEFTMOUSE
-// then
+//  if event=LEFTMOUSE then
 //  begin
 //    result:= 1; 
 //    exit;
@@ -5074,22 +4903,19 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa^.spacetype=nil
-// then
+//    if sa^.spacetype=nil then
 //    begin 
 //      newspace(sa,SPACE_VIEW3D); 
 //      vd:= sa^.spacedata.first; 
 //      vd.persp:=nil; 
-//      if tel=1
-// then
+//      if tel=1 then
 //      begin 
 //        vd.view:= 1; 
 //        vd.viewquat[0]:= fcos(M_PI div 4.0); 
 //        vd.viewquat[1]:= -fsin(M_PI div 4.0); 
 //      end;
 //      else
-//      if tel=2
-// then
+//      if tel=2 then
 //      begin 
 //        vd.view:= 3; 
 //        vd.viewquat[0]:=nil.5; 
@@ -5098,8 +4924,7 @@ end;
 //        vd.viewquat[3]:= -0.5; 
 //      end;
 //      else
-//      if tel=3
-// then
+//      if tel=3 then
 //      begin 
 //        vd.view:= 7; 
 //      end;
