@@ -608,23 +608,23 @@ end;
 //Bwinmat: array [0..3,0..3] of single;
 //getsizex: integer;
 //getsizey: integer; void{!!!e unknown token}(* voor rectwrite b.v. *)
-//x: pfloat;
-//y: pfloat;
+//x: psingle;
+//y: psingle;
 //begin
 //  gx: single;
 //  gy: single;
 //  sx: integer;
 //  sy: integer;
-//  gx:= {*}x^;
-//  gy:= {*}y^; {*}x^:=getsizex*(0.5+0.5*(gx*Bwinmat[0][0]+gy*Bwinmat[1][0]+Bwinmat[3][0]));
-//  {*}y^:=getsizey*(0.5+0.5*(gx*Bwinmat[0][1]+gy*Bwinmat[1][1]+Bwinmat[3][1]));
+//  gx:= x^;
+//  gy:= y^; x^:=getsizex*(0.5+0.5*(gx*Bwinmat[0][0]+gy*Bwinmat[1][0]+Bwinmat[3][0]));
+//  y^:=getsizey*(0.5+0.5*(gx*Bwinmat[0][1]+gy*Bwinmat[1][1]+Bwinmat[3][1]));
 //  mygetsuborigin(@sx,@sy);
-//  {*}x^+=sx;
-//  {*}y^+=sy;
+//  x^+=sx;
+//  y^+=sy;
 //end;
 //void{!!!e unknown token}(* voor muiscursor b.v. *)
-//x: pfloat;
-//y: pfloat;
+//x: psingle;
+//y: psingle;
 //begin
 //  a: single;
 //  b: single;
@@ -640,9 +640,9 @@ end;
 //  d:= .5*getsizey*Bwinmat[0][1];
 //  e:= .5*getsizey*Bwinmat[1][1];
 //  f:= .5*getsizey*(1.0+Bwinmat[3][1]);
-//  px:= {*}x^;
-//  py:= {*}y^; {*}y^:=(a*(py-f)+d*(c-px)) div (a*e-d*b);
-//  {*}x^:=(px-b*(*y)-c) div a;
+//  px:= x^;
+//  py:= y^; y^:=(a*(py-f)+d*(c-px)) div (a*e-d*b);
+//  x^:=(px-b*(*y)-c) div a;
 //end;
 //var {was static}
 //xmax: integer;
@@ -757,7 +757,7 @@ end;
 //  sizea:= BGicon[nr].xofs-5;
 //  sizeb:= BGicon[nr].yofs-5; (* eerste pixels zijn zwart: grid, en daarbij rand: 3 pixels totaal offset*)
 //  (* en natuurlijk de andere rand eraf: *)
-//  if {*}rii^ then
+//  if rii^ then
 //  begin
 //    col:= (char* )@paper;
 //    ri:=  {pchar(}rii; (* ABGR *)
@@ -957,7 +957,7 @@ end;
 //  end;
 //end;
 
-//function GetButVal(but: pBut;  fvalue: pfloat;  lvalue: pinteger): smallint;
+//function GetButVal(but: pBut;  fvalue: psingle;  lvalue: pinteger): smallint;
 //var
 //type: smallint;
 //format: smallint;
@@ -966,7 +966,7 @@ end;
 //h: single;
 //s: single;
 //v: single;
-//fp: pfloat;
+//fp: psingle;
 
 //begin
 
@@ -977,54 +977,54 @@ end;
 //  if (but.type and BUTTYPE)=HSVSLI then
 //  begin
 
-//    fp:= {pfloat(}poin;
+//    fp:= {psingle(}poin;
 //    rgb_to_hsv(fp[0],fp[1],fp[2],@h,@s,@v);
 //    case but.str[0] of
 //      'H':
 //      begin
-//        {*}fvalue^:=h;
+//        fvalue^:=h;
 //      end;
 //      'S':
 //      begin
-//        {*}fvalue^:=s;
+//        fvalue^:=s;
 //      end;
 //      'V':
 //      begin
-//        {*}fvalue^:=v;
+//        fvalue^:=v;
 //      end;
 
-//    end;{case?}
+//    end;
 //    format:= 2;
 //  end;
 //  else
 //  if type=CHA then
 //  begin
-//    {*}lvalue^:=* {pchar(}poin;
+//    lvalue^:=* {pchar(}poin;
 //    format:= 1;
 //  end;
 //  else
 //  if type=SHO then
 //  begin
-//    {*}lvalue^:=* {psmallint(}poin;
+//    lvalue^:=* {psmallint(}poin;
 //    format:= 1;
 //  end;
 //  else
 //  if type=INT then
 //  begin
-//    {*}lvalue^:=* {pinteger(}poin;
+//    lvalue^:=* {pinteger(}poin;
 //    format:= 1;
 //  end;
 //  else
 //  if type=FLO then
 //  begin
-//    {*}fvalue^:=* {pfloat(}poin;
+//    fvalue^:=* {psingle(}poin;
 //    format:= 2;
 //  end;
 //  if format=1 then
-//  {*}fvalue^:=(float)*lvalue;
+//  fvalue^:=(float)*lvalue;
 //  else
 //  if format=2 then
-//  {*}lvalue^:=(int)*fvalue;
+//  lvalue^:=(int)*fvalue;
 //  begin
 //    result:= format;
 //    exit;
@@ -1038,7 +1038,7 @@ end;
 //h: single;
 //s: single;
 //v: single;
-//fp: pfloat;
+//fp: psingle;
 
 //begin
 
@@ -1047,7 +1047,7 @@ end;
 //  if (but.type and BUTTYPE)=HSVSLI then
 //  begin
 
-//    fp:= {pfloat(}but.poin;
+//    fp:= {psingle(}but.poin;
 //    rgb_to_hsv(fp[0],fp[1],fp[2],@h,@s,@v);
 //    case but.str[0] of
 //      'H':
@@ -1063,7 +1063,7 @@ end;
 //        v:= fvalue;
 //      end;
 
-//    end;{case?}
+//    end;
 //    hsv_to_rgb(h,s,v,fp,fp+1,fp+2);
 //  end;
 //  else
@@ -1077,7 +1077,7 @@ end;
 //  *( {pinteger(}poin):=lvalue;
 //  else
 //  if type=FLO then
-//  *( {pfloat(}poin):=fvalue;
+//  *( {psingle(}poin):=fvalue;
 //end;
 
 //procedure SetButFont(font: pinteger);
@@ -1173,10 +1173,7 @@ end;
 //  true:=1;
 //  a:= GetButVal(b,@value,@lvalue);
 //  if a=0 then
-//  begin
-//    result:= 0;
-//    exit;
-//  end;
+//  exit(0);
 //  if (b.type and BUTTYPE)=TOGN then
 //  true:= 0;
 //  if (b.type and BIT) then
@@ -1213,7 +1210,7 @@ end;
 //      push:= 1;
 //    end;
 
-//  end;{case?}
+//  end;
 //  begin
 //    result:= push;
 //    exit;
@@ -1337,10 +1334,10 @@ end;
 //s:= Bxasp*fmgetstrwidth(BGfont,str1);
 //cpack(bc.back);
 //(* tekst links *)
-//if {*}oud^=0 then
-//{*}oud^:=s;
+//if oud^=0 then
+//oud^:=s;
 //glRectf(x1-*oud-8,y1-3,x1-8,y1+h-4);
-//{*}oud^:=s;
+//oud^:=s;
 //cpack(bc.pen_sel);
 //glRasterPos2i(x1-s-8,y1-2);
 //fmprstr(str1);
@@ -1527,7 +1524,7 @@ end;
 
 //  h:= (b.y1+b.y2-12 div 2-2) div 2;
 //  s1[0]:= 0;
-//  if {*}pos^=-1 then
+//  if pos^=-1 then
 //  begin
 //    (* niet aktieve tekstbut *)
 //    ButDrawFunc(s1,b.x1,b.y1,b.x2,b.y2,0,b.col);
@@ -1547,12 +1544,12 @@ end;
 //    ButDrawFunc(s1,b.x1,b.y1,b.x2,b.y2,1,b.col);
 //    strcpy(s1,b.str);
 //    strcat(s1,s);
-//    if {*}pos^<lstrlen(b.str) then
-//    {*}pos^:=lstrlen(b.str);
-//    if {*}pos^>lstrlen(s1) then
-//    {*}pos^:=lstrlen(s1);
-//    ch:= s1[{*}pos^];
-//    s1[{*}pos^]:= 0;
+//    if pos^<lstrlen(b.str) then
+//    pos^:=lstrlen(b.str);
+//    if pos^>lstrlen(s1) then
+//    pos^:=lstrlen(s1);
+//    ch:= s1[pos^];
+//    s1[pos^]:= 0;
 //    ofs:= 0;
 //    while Bxasp*fmgetstrwidth(BGfont,s1+ofs)>(b.x2-b.x1-10)
 //    do
@@ -1570,7 +1567,7 @@ end;
 //    end;
 //    if ofs=0 then
 //    begin
-//      s1[{*}pos^]:= ch;
+//      s1[pos^]:= ch;
 //      temp:= 0;
 //      while Bxasp*fmgetstrwidth(BGfont,s1+temp)>(b.x2-b.x1-10)
 //      do
@@ -1604,7 +1601,7 @@ end;
 //width: integer;
 //height: integer;
 //items: integer;
-//title: pchar; char{!!!e unknown token}{*}spoin^;
+//title: pchar; char{!!!e unknown token}spoin^;
 //rows: integer;
 //columns: integer;
 //begin
@@ -1643,10 +1640,10 @@ end;
 //  perc:=0;
 
 //  bstr:= butname;
-//  while {*}str^
+//  while str^
 //  do
 //  begin
-//    case {*}str^ of
+//    case str^ of
 //      '%':
 //      begin
 //        if str[1]='t' then
@@ -1676,10 +1673,10 @@ end;
 //      end;
 //      else
 //      begin
-//        {*}bstr^:=*str;
+//        bstr^:=*str;
 //        inc(bstr);
 //      end;
-//    end;{case?}
+//    end;
 //    inc(str);
 //  end;
 //  if itemcount<>item then
@@ -1748,7 +1745,7 @@ end;
 //  redrawcount:=0;
 
 //  title:=0;
-//  char{!!!e unknown token}{*}spp^;
+//  char{!!!e unknown token}spp^;
 //  columns:=1;
 //  rows:=0;
 
@@ -1760,20 +1757,20 @@ end;
 //  spoin[0]:= astr;
 //  items:= 0;
 //  retval[0]:= 0; (* eerst string uitelkaar pulken, tellen hoeveel elementen, return values *)
-//  while {*}astr^
+//  while astr^
 //  do
 //  begin
-//    case {*}astr^ of
+//    case astr^ of
 //      '%':
 //      begin
 //        if astr[1]='x' then
 //        begin
-//          retval[items]:= atoi(astr+2); {*}astr^:=0;
+//          retval[items]:= atoi(astr+2); astr^:=0;
 //        end;
 //        else
 //        if astr[1]='t' then
 //        begin
-//          title:= spoin[0]; {*}astr^:=0;
+//          title:= spoin[0]; astr^:=0;
 //        end;
 //      end;
 //      '|':
@@ -1787,10 +1784,10 @@ end;
 //          else
 //          retval[items]:= items;
 //        end;
-//        {*}astr^:=0;
+//        astr^:=0;
 //      end;
 
-//    end;{case?}
+//    end;
 //    inc(astr);
 //  end;
 //  inc(items); (* het begon bij 0 te tellen *)
@@ -1854,8 +1851,8 @@ end;
 //  height:= rows*TBOXH;
 //  if title<>0 then
 //  height:= height + (TBOXH);
-//  xmax:= G.curscreen.sizex;
-//  ymax:= G.curscreen.sizey;
+//  xmax:= G.curscreen^.sizex;
+//  ymax:= G.curscreen^.sizey;
 //  getmouseco_sc(mval);
 //  GetButVal(but, and fvalue,@value);
 //  for{while} a:=0 to Pred(items) { a++}
@@ -1940,7 +1937,7 @@ end;
 //          inc(redrawcount);
 //        end;
 //      end;
-//    end;{case?}
+//    end;
 //  end;
 //  else
 //  usleep(2);
@@ -2019,14 +2016,8 @@ end;
 //  (* test butname en verander zonodig poin *)
 //end;
 //else
-//begin
-//  result:= 0;
-//  exit;
-//end;
-//begin
-//  result:= 1;
-//  exit;
-//end;
+//exit(0);
+//  exit(1);
 //end;
 //(* *********** END MENUBUT ********************** *)
 
@@ -2067,7 +2058,7 @@ end;
 //id: pID;
 //f: single;
 //value: single;
-//fp: pfloat;
+//fp: psingle;
 //tempcol: uint;
 //x1: integer;
 //y1: integer;
@@ -2322,7 +2313,7 @@ end;
 //      ButDrawFunc(but.str,but.x1,but.y1,but.x2,but.y2,2,but.col);
 //      if (but.type and BUTPOIN)=FLO then
 //      begin
-//        fp:=  {pfloat(}but.poin;
+//        fp:=  {psingle(}but.poin;
 //        colr:= ffloor(255.0*fp[0]+0.5);
 //        colg:= ffloor(255.0*fp[1]+0.5);
 //        colb:= ffloor(255.0*fp[2]+0.5);
@@ -2338,7 +2329,7 @@ end;
 //      glRects(but.x1+2,but.y1+2,but.x2-2,but.y2-2);
 //    end;
 
-//  end;{case?}
+//  end;
 //  BGaddicon:= 0;
 //end;
 
@@ -2566,10 +2557,7 @@ end;
 //    (* als pointer nul is wordt button gewist en niet gedefinieerd *)
 //    cpack(BGbutcol[BGcol].back);
 //    glRects(x1,y1,x1+x2,y1+y2);
-//    begin
-//      result:= 0;
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //end;
 //if BGteller>=BGaantal-1 then
@@ -2682,14 +2670,14 @@ end;
 //    SetButVal(b,value,lvalue);
 //  end;
 
-//end;{case?}
+//end;
 //push:= IsButSel(b);
 //DrawBut(b,push);
 //begin
 //  result:= b;
 //  exit;
 //end;
-//end;{case?}
+//end;
 //type
 //But = record
 //end;
@@ -2702,7 +2690,7 @@ end;
 //  result:= but;
 //  exit;
 //end;
-//end;{case?}
+//end;
 //But = record
 //end;
 
@@ -2931,7 +2919,7 @@ end;
 //            end;
 //          end;
 //        end;
-//      end;{case?}
+//      end;
 //    end;
 //    else
 //    if val<>0 then
@@ -3219,11 +3207,8 @@ end;
 //      bb:= bb.next;
 //    end;
 //    if b=0 then
-//    begin
-//      result:= 0;
-//      exit;
+//      exit(0);
 //      (*  geen actieve window *)
-//    end;
 //    ButtonsGetmouse(0);
 //    ButtonsGetmouse(mval);
 //    while{for}
@@ -3257,10 +3242,7 @@ end;
 //    end;
 //    bb:= bb.next;
 //  end;
-//  begin
-//    result:= 0;
-//    exit;
-//  end;
+//    exit(0);
 //end;
 //type
 //But = record
@@ -3307,11 +3289,11 @@ end;
 //s: array [0..Pred(150)] of char; (* aktieve window *)
 //begin
 
-//  void({*}func^);
+//  void(func^);
 //  ();
-//  ID{!!!e unknown token}{*}idpp^;
+//  ID{!!!e unknown token}idpp^;
 //  ,
-//  {*}id^;
+//  id^;
 
 //  nr:=0;
 
@@ -3324,10 +3306,7 @@ end;
 
 //  winakt:= winget();
 //  if winakt=0 then
-//  begin
-//    result:= 0;
-//    exit;
-//  end;
+//    exit(0);
 //  bb:= BGfirstbutblock;
 //  while bb
 //  do
@@ -3345,11 +3324,8 @@ end;
 //      bb:= bb.next;
 //    end;
 //    if b=0 then
-//    begin
-//      result:= 0;
-//      exit;
+//      exit(0);
 //      (*  geen actieve window *)
-//    end;
 //    ButtonsGetmouse(0);
 //    ButtonsGetmouse(mval);
 //    for{while} nr:=0 to Pred(totbut) { nr++}
@@ -3378,10 +3354,7 @@ end;
 //              if b.poin=0 then
 //              begin
 //                printf('DoButton pointer error: %s\n',b.str);
-//                begin
-//                  result:= 0;
-//                  exit;
-//                end;
+//                  exit(0);
 //              end;
 //            end;
 //            {$ifndef FREE}
@@ -3389,10 +3362,7 @@ end;
 //            begin
 //              EditBut(b);
 //              SetupFile(bb);
-//              begin
-//                result:= 0;
-//                exit;
-//              end;
+//                exit(0);
 //            end;
 //            {$endif}
 //            case b.type and BUTTYPE of
@@ -3439,10 +3409,7 @@ end;
 //                end;
 //                DrawBut(b,0);
 //                if push=0 then
-//                begin
-//                  result:= 0;
-//                  exit;
-//                end;
+//                  exit(0);
 //              end;
 //              TOG,
 //              ICONTOG,
@@ -3757,7 +3724,7 @@ end;
 //              IDPOIN:
 //              begin
 //                idpp:= (ID** )b.poin;
-//                id:= {*}idpp^;
+//                id:= idpp^;
 //                if id<>0 then
 //                strcpy(s,id.name+2);
 //                else
@@ -3776,7 +3743,7 @@ end;
 //                DrawBut(b,0);
 //              end;
 
-//            end;{case?}
+//            end;
 //            if retval<>0 then
 //            begin
 //              result:= b.nr;
@@ -3795,10 +3762,8 @@ end;
 //    bb:= bb.next;
 //  end;
 //end;
-//(* ******************START VAN BUTGROUP FUNCTIES****************** *)
-//type
-//Link = record
-//end;
+
+(* ******************START VAN BUTGROUP FUNCTIES****************** *)
 
 //procedure BGflush;
 //begin
@@ -3911,7 +3876,7 @@ end;
 //    begin
 //      printf('ButGroup: direction '%c' ignored\n',dir);
 //    end;
-//  end;{case?}
+//  end;
 //end;
 //type
 //Bgrp = record

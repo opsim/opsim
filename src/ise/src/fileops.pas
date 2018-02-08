@@ -129,10 +129,7 @@ uses
 //function fop_touch(file: pchar): integer; 
 //begin
 //  error('Touching files is unsupported on Windows'); 
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //end;
 
 //function fop_move(file: pchar;  to: pchar): integer; 
@@ -166,19 +163,13 @@ uses
 //function fop_link(file: pchar;  to: pchar): integer; 
 //begin
 //  error('Linking files is unsupported on Windows'); 
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //end;
 
 //function fop_backup(file: pchar;  from: pchar;  to: pchar): integer; 
 //begin
 //  error('Backing up files is unsupported on Windows'); 
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //end;
 
 function fop_exists(_file: pchar): integer;
@@ -204,7 +195,7 @@ end;
 //  if {not}0=lslash then
 //  exit;
 //  (* Split about the last slash and recurse *)
-//  {*}lslash^:=0; 
+//  lslash^:=0; 
 //  fop_recurdir(tmp); 
 
 //  if {not}0=CreateDirectory(dirname,0{nil}) then
@@ -214,17 +205,10 @@ end;
 //function fop_rename(from: pchar;  to: pchar): integer; 
 //begin
 //  if {not}0=fop_exists(from) then
-//  begin
-//    result:= 0; 
-//    exit;
-
-//  end;
+//    exit(0);
 //  if fop_exists(to) then
 //  if fop_delete(to,0,0) then
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //  begin
 //    result:= rename(from,to); 
 //    exit;
@@ -323,7 +307,7 @@ end;
 //  if {not}0=lslash then
 //  exit;
 //  (* Split about the last slash and recurse *)
-//  {*}lslash^:=0; 
+//  lslash^:=0; 
 //  fop_recurdir(tmp); 
 
 //  mkdir(dirname,$1FF); 
@@ -332,16 +316,10 @@ end;
 //function fop_rename(from: pchar;  to: pchar): integer; 
 //begin
 //  if {not}0=fop_exists(from) then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  if fop_exists(to) then
 //  if fop_delete(to,0,0) then
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //  begin
 //    result:= rename(from,to); 
 //    exit;

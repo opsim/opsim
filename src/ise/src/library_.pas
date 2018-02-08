@@ -34,13 +34,14 @@ uses
 util;
 
 function alloc_libblock(lb: pListBase;  type_: smallint;  name: pchar): pointer;
+procedure free_libblock(lb: pListBase;  idv: pointer);
 
 implementation
 
 uses
 blender, blenglob,
 blendef,
-screen,
+screen, space,
 cfuncs;
 
 const
@@ -76,50 +77,28 @@ const
 function wich_libbase(main: pMain;  type_: smallint): pListBase;
 begin
   case type_ of
-//    ID_SCE:
-//        exit(@main^.scene);
-//    ID_LI:
-//        exit(@main^.library);
-//    ID_OB:
-//        exit(@main^.object);
-//    ID_ME:
-//        exit(@main^.mesh);
-//    ID_CU:
-//        exit(@main^.curve);
-//    ID_MB:
-//        exit(@main^.mball);
-//    ID_MA:
-//        exit(@main^.mat);
-//    ID_TE:
-//        exit(@main^.tex);
-//    ID_IM:
-//        exit(@main^.image);
-//    ID_IK:
-//        exit(@main^.ika);
-//    ID_WV:
-//        exit(@main^.wave);
-//    ID_LT:
-//        exit(@main^.latt);
-//    ID_SE:
-//        exit(@main^.sector);
-//    ID_LF:
-//        exit(@main^.life);
-//    ID_LA:
-//        exit(@main^.lamp);
-//    ID_CA:
-//        exit(@main^.camera);
-//    ID_IP:
-//        exit(@main^.ipo);
-//    ID_KE:
-//        exit(@main^.key);
-//    ID_WO:
-//        exit(@main^.world);
-    ID_SCR:
-        exit( @main^.screen);
-//    ID_VF:
-//        exit(@main^.vfont);
-//    ID_TXT:
-//        exit(@main^.text);
+    //ID_SCE: exit(@main^.scene);
+    //ID_LI: exit(@main^.library);
+    //ID_OB: exit(@main^.object);
+    //ID_ME: exit(@main^.mesh);
+    //ID_CU: exit(@main^.curve);
+    //ID_MB: exit(@main^.mball);
+    //ID_MA: exit(@main^.mat);
+    //ID_TE: exit(@main^.tex);
+    //ID_IM: exit(@main^.image);
+    //ID_IK: exit(@main^.ika);
+    //ID_WV: exit(@main^.wave);
+    //ID_LT: exit(@main^.latt);
+    //ID_SE: exit(@main^.sector);
+    //ID_LF: exit(@main^.life);
+    //ID_LA: exit(@main^.lamp);
+    //ID_CA: exit(@main^.camera);
+    //ID_IP: exit(@main^.ipo);
+    //ID_KE: exit(@main^.key);
+    //ID_WO: exit(@main^.world);
+    ID_SCR: exit(@main^.screen);
+    //ID_VF: exit(@main^.vfont);
+    //ID_TXT: exit(@main^.text);
   end;
 
     exit(nil);
@@ -272,109 +251,64 @@ end;
 //begin
 //end;
 
-//procedure free_libblock(lb: pListBase;  idv: pinteger); 
-//var
-//id: pID;
-
-//begin
-//  id:=idv; 
-//  case GS(id.name) of
-//    (* GetShort uit util.h *)
+procedure free_libblock(lb: pListBase;  idv: pointer);
+var
+id: pID;
+begin
+  id:=idv;
+  case GS(id^.name) of    (* GetShort uit util.h *)
 //    ID_SCE:
-//    begin
 //      free_scene( {pScene(}id);
-//    end;
 //    ID_LI:
-//    begin
 //      free_library( {pLibrary(}id);
-//    end;
 //    ID_OB:
-//    begin
 //      free_object( {pObject(}id);
-//    end;
 //    ID_ME:
-//    begin
 //      free_mesh( {pMesh(}id);
-//    end;
 //    ID_CU:
-//    begin
 //      free_curve( {pCurve(}id);
-//    end;
 //    ID_MB:
-//    begin
 //      free_mball( {pMetaBall(}id);
-//    end;
 //    ID_MA:
-//    begin
 //      free_material( {pMaterial(}id);
-//    end;
 //    ID_TE:
-//    begin
 //      free_texture( {pTex(}id);
-//    end;
 //    ID_IM:
-//    begin
 //      free_image( {pImage(}id);
-//    end;
 //    ID_IK:
-//    begin
 //      free_ika( {pIka(}id);
-//    end;
 //    ID_WV:
 //    (* free_wave(id); *)
 //    begin
 //    end;
 //    ID_LT:
-//    begin
 //      free_lattice( {pLattice(}id);
-//    end;
 //    ID_SE:
-//    begin
 //      free_sector( {pSector(}id);
-//    end;
 //    ID_LF:
-//    begin
 //      free_life( {pLife(}id);
-//    end;
 //    ID_LA:
-//    begin
 //      free_lamp( {pLamp(}id);
-//    end;
 //    ID_CA:
-//    begin
-//      free_camera(id); 
-//    end;
+//      free_camera(id);
 //    ID_IP:
-//    begin
 //      free_ipo( {pIpo(}id);
-//    end;
 //    ID_KE:
-//    begin
 //      free_key( {pKey(}id);
-//    end;
 //    ID_WO:
-//    begin
 //      free_world( {pWorld(}id);
-//    end;
-//    ID_SCR:
-//    begin
-//      free_screen( {pbScreen(}id);
-//    end;
+    ID_SCR:
+      free_screen(pbScreen(id));
 //    ID_VF:
-//    begin
 //      free_vfont( {pVFont(}id);
-//    end;
 //    ID_TXT:
-//    begin
 //      free_text( {pText(}id);
-//    end;
-
-//  end;{case?}
-//  remlink(lb,id); 
-//  freeN(id); 
-//  allspace(OOPS_TEST,0); 
-//end;
-//(* test users *)
+  end;
+  remlink(lb,id);
+  freeN(id);
+  allspace(OOPS_TEST,0);
+end;
+(* test users *)
 
 //procedure free_libblock_us(lb: pListBase;  idv: pinteger); 
 //var
@@ -478,7 +412,7 @@ end;
 //nmain: pMain; 
 //begin
 
-//  main:= G.main.next; 
+//  main:= G.main^.next;
 //  while main
 //  do
 //  begin 
@@ -539,7 +473,7 @@ end;
 //    printf('error split main\n'); 
 //    exit;
 //  end;
-//  lib:= G.main.library.first; 
+//  lib:= G.main^.library.first;
 //  if lib<>nil then
 //  begin 
 //    while lib
@@ -550,7 +484,7 @@ end;
 //      main.curlib:= lib; 
 //      lib:= lib.id.next; 
 //    end;
-//    next:= G.main.next; 
+//    next:= G.main^.next;
 //    a:= set_listbasepointers(G.main,lbarray); 
 //    while a{--} dec(a); 
 //    do
@@ -646,10 +580,7 @@ end;
 //    end;
 //    id:= id.next; 
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //procedure IDnames_to_pupstring_nr{!!!3 unknown typedef}; 
@@ -825,33 +756,18 @@ end;
 //  name:= id.name+2; 
 //  len:= lstrlen(name); 
 //  if len<2 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  if name[len-1]='.' then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  while dec(len); {--}len
 //  do
 //  begin 
 //    if name[len]='.' then
-//    begin
-//      result:= 1; 
-//      exit;
-//    end;
+//      exit(1);
 //    if isdigit(name[len])=0 then
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 procedure splitIDname(name: pchar;  left: pchar;  nr: pinteger);
@@ -1013,10 +929,7 @@ begin
     sprintf(id^.name+2,'%s.%0.3d',[left,nr]);
   end;
   sort_alpha_id(lb,id);
-  begin
-    result:= 1;
-    exit;
-  end;
+    exit(1);
 end;
 
 //procedure clear_id_newpoins; 

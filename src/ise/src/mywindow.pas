@@ -49,6 +49,7 @@ procedure mywinclose(winid: integer);
 procedure myswapbuffers;
 procedure myContextSetup;
 procedure getmouse(mval: psmallint);
+function get_mbut: smallint;
 
 procedure my_put_frontbuffer_image;
 procedure my_get_frontbuffer_image(x: integer;  y: integer;  sx: integer;  sy: integer);
@@ -58,6 +59,8 @@ function get_qual: smallint;
 procedure fmsetfont(_type: pinteger);
 procedure fmprstr(str: pchar);
 function fmgetstrwidth(handle: pinteger;  str: pchar): integer;
+
+procedure sdrawXORline4(nr: integer;  x0: integer;  y0: integer;  x1: integer;  y1: integer);
 
 var
 swinarray: array [0..MAXWIN-1] of pbWindow;
@@ -84,30 +87,30 @@ mainwindow: bWindow;
 
 //  if curswin<4 then
 //  begin 
-//    {*}x^:=glutGet(GLUT_WINDOW_WIDTH); 
-//    {*}y^:=glutGet(GLUT_WINDOW_HEIGHT); 
+//    x^:=glutGet(GLUT_WINDOW_WIDTH);
+//    y^:=glutGet(GLUT_WINDOW_HEIGHT);
 //    exit;
 //  end;
 //  win:= swinarray[curswin]; 
 //  if win=nil then
 //  exit;
-//  {*}x^:=win^.xmax-win^.xmin+1; 
-//  {*}y^:=win^.ymax-win^.ymin+1; 
+//  x^:=win^.xmax-win^.xmin+1;
+//  y^:=win^.ymax-win^.ymin+1;
 //end;
 
 //procedure mygetorigin(x: pinteger;  y: pinteger); 
 //var
 //win: pbWindow; 
 //begin
-//  {*}x^:=glutGet(GLUT_WINDOW_X); 
-//  {*}y^:=displaysizey-glutGet(GLUT_WINDOW_HEIGHT)-glutGet(GLUT_WINDOW_Y); 
+//  x^:=glutGet(GLUT_WINDOW_X);
+//  y^:=displaysizey-glutGet(GLUT_WINDOW_HEIGHT)-glutGet(GLUT_WINDOW_Y);
 //  if curswin>=4 then
 //  begin 
 //    win:= swinarray[curswin]; 
 //    if win<>nil then
 //    begin 
-//      {*}x^+=win^.xmin; 
-//      {*}y^+=win^.ymin; 
+//      x^+=win^.xmin;
+//      y^+=win^.ymin;
 //    end;
 //  end;
 //end;
@@ -119,15 +122,15 @@ mainwindow: bWindow;
 
 //  if curswin=1 then
 //  begin 
-//    {*}x^:=*y:=nil; 
+//    x^:=*y:=nil;
 //  end;
 //  else
 //  begin 
 //    win:= swinarray[curswin]; 
 //    if win=nil then
 //    exit;
-//    {*}x^:=win^.xmin; 
-//    {*}y^:=win^.ymin; 
+//    x^:=win^.xmin;
+//    y^:=win^.ymin;
 //  end;
 //end;
 
@@ -205,7 +208,7 @@ end;
 //  win:= swinarray[curswin]; 
 //  if win=nil then
 //  exit;
-//  glGetFloatv(GL_MODELVIEW_MATRIX, {pfloat(}win^.viewmat); 
+//  glGetFloatv(GL_MODELVIEW_MATRIX, {psingle(}win^.viewmat);
 //end;
 
 //procedure mygetsingmatrix(mat: array [0..,0..3] of float);
@@ -219,8 +222,8 @@ end;
 //  win:= swinarray[curswin]; 
 //  if win=nil then
 //  begin 
-//    glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}matproj); 
-//    glGetFloatv(GL_MODELVIEW_MATRIX, {pfloat(}matview); 
+//    glGetFloatv(GL_PROJECTION_MATRIX, {psingle(}matproj);
+//    glGetFloatv(GL_MODELVIEW_MATRIX, {psingle(}matview);
 //    Mat4MulMat4(mat,matview,matproj); 
 //  end;
 //  else
@@ -398,7 +401,7 @@ end;
 //  glOrtho(x1,x2,y1,y2,n,f); 
 //  win:= swinarray[curswin]; 
 //  if win<>nil then
-//  glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}win^.winmat); 
+//  glGetFloatv(GL_PROJECTION_MATRIX, {psingle(}win^.winmat);
 //  glMatrixMode(GL_MODELVIEW); 
 //end;
 
@@ -412,7 +415,7 @@ end;
 //  glFrustum(x1,x2,y1,y2,n,f); 
 //  win:= swinarray[curswin]; 
 //  if win<>nil then
-//  glGetFloatv(GL_PROJECTION_MATRIX, {pfloat(}win^.winmat); 
+//  glGetFloatv(GL_PROJECTION_MATRIX, {psingle(}win^.winmat);
 //  glMatrixMode(GL_MODELVIEW); 
 //end;
 
@@ -426,9 +429,9 @@ endx: integer;
 endy: integer;
 begin
   glEnable(GL_SCISSOR_TEST);
-  //{$if not defined(BEOS) and not defined(WINDOWS)}
-  //glutSetWindow(win);
-  //{$endif}
+  {$if not defined(BEOS) and not defined(WINDOWS)}
+  glutSetWindow(win);
+  {$endif}
   sizex:= glutGet(GLUT_WINDOW_WIDTH);
   sizey:= glutGet(GLUT_WINDOW_HEIGHT);
   orx:= glutGet(GLUT_WINDOW_X);
@@ -508,10 +511,7 @@ end;
 
 //  retval:=nil; 
 //  if {not}0=fmtype then
-//  begin
-//    result:=nil; 
-//    exit;
-//  end;
+//    exit(nil);
 //  len:= lstrlen(str); 
 //  for{while} i:=nil to Pred(len) { i++}
 //  do
@@ -544,23 +544,18 @@ end;
 
 //function fmfindfont(name: pchar): pinteger; 
 //begin
-//  begin
-//    result:=nil; 
-//    exit;
-//  end;
+//    exit(nil);
 //end;
 
 //function fmscalefont: pinteger; 
 //begin
-//  begin
-//    result:=nil; 
-//    exit;
-//  end;
+//    exit(nil);
 //end;
 
 //procedure fmrotatepagematrix(degrees: float); 
 //begin
 //end;
+
 //(* *********************** PATTERNS ENZO ***************** *)
 
 //procedure setlinestyle(nr: integer); 
@@ -607,41 +602,37 @@ begin
   exit(retval);
 end;
 
-//function get_mbut: smallint; 
-//var
-//mval: integer;
+function get_mbut: smallint;
+var
+mval: integer;
+qual: integer;
+ret: smallint=0;
+begin
+  //todo: uncomment mval:=glutGetMouseButton();
+  qual:=glutGetModifiers();
 
-//qual: integer;
+  if (mval and 1)<>0 then
+  ret:= ret or (L_MOUSE);
+  if (mval and 4)<>0 then
+  ret:= ret or (M_MOUSE);
+  if (mval and 2)<>0 then
+  ret:= ret or (R_MOUSE);
 
-//ret: smallint;
+  if ((U.flag and TWOBUTTONMOUSE)<>0)and((qual and GLUT_ACTIVE_ALT)<>0) then
+  begin
+    if (ret and L_MOUSE)<>0 then
+    begin
+      ret:= ret and ( not L_MOUSE);
+      ret:= ret or (M_MOUSE);
+    end;
+  end;
 
-//begin
-//  mval:=glutGetMouseButton(); 
-//  qual:=glutGetQual(); 
-//  ret:=nil; 
-//  if mval and 1 then
-//  ret:= ret or (L_MOUSE); 
-//  if mval and 4 then
-//  ret:= ret or (M_MOUSE); 
-//  if mval and 2 then
-//  ret:= ret or (R_MOUSE); 
-//  if (U.flag and TWOBUTTONMOUSE))and((qual and GLUT_ACTIVE_ALT) then
-//  begin 
-//    if ret and L_MOUSE then
-//    begin 
-//      ret:= ret and ( not L_MOUSE); 
-//      ret:= ret or (M_MOUSE); 
-//    end;
-//  end;
-//  begin
-//    result:= ret; 
-//    exit;
-//  end;
-//end;
+  exit(ret);
+end;
 
 procedure getmouse(mval: psmallint);
 begin
-  //glutGetMouse(mval);      (* returns windowcos *)
+  //todo: uncomment glutGetMouse(mval);      (* returns windowcos *)
   mval[0]:= mval[0] + (G.curscreen^.startx);
   mval[1]:= G.curscreen^.starty+G.curscreen^.sizey-mval[1];
 end;
@@ -1452,70 +1443,69 @@ end;
 //    end;
 //    else
 //    begin
-//      begin
-//        result:=nil; 
-//        exit;
-//      end;
+//        exit(nil);
 //    end;
-//  end;{case?}
+//  end;
 //end;
 {$endif}
 
-//procedure sdrawXORline(x0: integer;  y0: integer;  x1: integer;  y1: integer); 
-//begin
-//  if x0=x1)and(y0=y1 then
-//  exit;
-//  (* sdrawXORline expects current blender win coordinates *)
-//  if curswin>3 then
-//  begin 
-//    x0:= x0 + (curarea.winrct.xmin); 
-//    x1:= x1 + (curarea.winrct.xmin); 
-//    y0:= y0 + (curarea.winrct.ymin); 
-//    y1:= y1 + (curarea.winrct.ymin); 
-//  end;
-//  glutInvertLine(x0,y0,x1,y1); 
-//end;
-//var {was static}
-//old: array [0..3,0..3] of smallint;
-//flags: array [0..3] of char;
-// (* automatische onthoud, max 4 lijnen *)
-//(* flush *)
+procedure sdrawXORline(x0: integer;  y0: integer;  x1: integer;  y1: integer);
+begin
+  if (x0=x1)and(y0=y1) then
+  exit;
 
-//procedure sdrawXORline4(nr: integer;  x0: integer;  y0: integer;  x1: integer;  y1: integer); 
-//begin
+  (* sdrawXORline expects current blender win coordinates *)
+  if curswin>3 then
+  begin
+    x0:= x0 + (curarea^.winrct.xmin);
+    x1:= x1 + (curarea^.winrct.xmin);
+    y0:= y0 + (curarea^.winrct.ymin);
+    y1:= y1 + (curarea^.winrct.ymin);
+  end;
 
-//  flags:=(0,0,0,0); (* automatische onthoud, max 4 lijnen *)
-//  (* flush *)
-//  if nr=-1 then
-//  begin 
-//    if flags[0]<>nil then
-//    sdrawXORline(old[0][0],old[0][1],old[0][2],old[0][3]); 
-//    flags[0]:=nil; 
-//    if flags[1]<>nil then
-//    sdrawXORline(old[1][0],old[1][1],old[1][2],old[1][3]); 
-//    flags[1]:=nil; 
-//    if flags[2]<>nil then
-//    sdrawXORline(old[2][0],old[2][1],old[2][2],old[2][3]); 
-//    flags[2]:=nil; 
-//    if flags[3]<>nil then
-//    sdrawXORline(old[3][0],old[3][1],old[3][2],old[3][3]); 
-//    flags[3]:=nil; 
-//  end;
-//  else
-//  begin 
-//    if nr>=nil)and(nr<4 then
-//    begin 
-//      if flags[nr]<>nil then
-//      sdrawXORline(old[nr][0],old[nr][1],old[nr][2],old[nr][3]); 
-//      old[nr][0]:= x0; 
-//      old[nr][1]:= y0; 
-//      old[nr][2]:= x1; 
-//      old[nr][3]:= y1; 
-//      flags[nr]:= 1; 
-//    end;
-//    sdrawXORline(x0,y0,x1,y1); 
-//  end;
-//end;
+  //TODO: uncomment
+  //glutInvertLine(x0,y0,x1,y1);
+end;
+
+var
+old: array [0..3,0..3] of smallint;
+flags: array [0..3] of byte=(0,0,0,0);
+
+procedure sdrawXORline4(nr: integer;  x0: integer;  y0: integer;  x1: integer;  y1: integer);
+begin
+  (* automatische onthoud, max 4 lijnen *)
+
+  (* flush *)
+  if nr=-1 then
+  begin
+    if flags[0]<>0 then
+    sdrawXORline(old[0][0],old[0][1],old[0][2],old[0][3]);
+    flags[0]:=0;
+    if flags[1]<>0 then
+    sdrawXORline(old[1][0],old[1][1],old[1][2],old[1][3]);
+    flags[1]:=0;
+    if flags[2]<>0 then
+    sdrawXORline(old[2][0],old[2][1],old[2][2],old[2][3]);
+    flags[2]:=0;
+    if flags[3]<>0 then
+    sdrawXORline(old[3][0],old[3][1],old[3][2],old[3][3]);
+    flags[3]:=0;
+  end
+  else
+  begin
+    if (nr>=0)and(nr<4) then
+    begin
+      if flags[nr]<>0 then
+      sdrawXORline(old[nr][0],old[nr][1],old[nr][2],old[nr][3]);
+      old[nr][0]:= x0;
+      old[nr][1]:= y0;
+      old[nr][2]:= x1;
+      old[nr][3]:= y1;
+      flags[nr]:= 1;
+    end;
+    sdrawXORline(x0,y0,x1,y1);
+  end;
+end;
 
 (* end of #if defined(BEOS ) or defined(WINDOWS) *)
 (* ******************************************* *)
@@ -1772,15 +1762,15 @@ end;
 //    x:=nil; 
 //    if y<0 then
 //    y:=nil; 
-//    if x+sx>=G.curscreen.sizex then
-//    sx:= G.curscreen.sizex-x-1; 
-//    if y+sy>=G.curscreen.sizey then
-//    sy:= G.curscreen.sizey-y-1; (* only mesa 3.0 (libc5 for now) will have the swap hack *)
+//    if x+sx>=G.curscreen^.sizex then
+//    sx:= G.curscreen^.sizex-x-1;
+//    if y+sy>=G.curscreen^.sizey then
+//    sy:= G.curscreen^.sizey-y-1; (* only mesa 3.0 (libc5 for now) will have the swap hack *)
 //    {$ifdef MESA30}
 //    glXCopySubBufferMESA(__glutDisplay,xdraw,x,y,sx,sy); 
 //    {$else}
 //    id:= curswin; 
-//    mywinset(G.curscreen.mainwin); 
+//    mywinset(G.curscreen^.mainwin);
 //    glDrawBuffer(GL_FRONT); 
 //    (* op schermco's zetten *)
 //    glRasterPos2i(x,y); 
@@ -1831,22 +1821,22 @@ end;
 //    begin 
 //      (* clip: erg belangrijk: 1 pixel teveel en X knalt eruit *)
 //      (* also: blenderscreen outside 'Display': then prtend the window is smaller! *)
-//      if G.curscreen.startx<0 then
-//      startx:= -G.curscreen.startx; 
+//      if G.curscreen^.startx<0 then
+//      startx:= -G.curscreen^.startx;
 //      else
 //      startx:=nil; 
-//      if G.curscreen.starty<0 then
-//      starty:= -G.curscreen.starty; 
+//      if G.curscreen^.starty<0 then
+//      starty:= -G.curscreen^.starty;
 //      else
 //      starty:=nil; 
-//      if G.curscreen.sizex+G.curscreen.startx>displaysizex then
-//      sizex:= displaysizex-G.curscreen.startx; 
+//      if G.curscreen^.sizex+G.curscreen^.startx>displaysizex then
+//      sizex:= displaysizex-G.curscreen^.startx;
 //      else
-//      sizex:= G.curscreen.sizex; 
-//      if G.curscreen.sizey+G.curscreen.starty>displaysizey then
-//      sizey:= displaysizey-G.curscreen.starty; 
+//      sizex:= G.curscreen^.sizex;
+//      if G.curscreen^.sizey+G.curscreen^.starty>displaysizey then
+//      sizey:= displaysizey-G.curscreen^.starty;
 //      else
-//      sizey:= G.curscreen.sizey; (* OK: *)
+//      sizey:= G.curscreen^.sizey; (* OK: *)
 //      if x<startx then
 //      x:= startx; 
 //      if y<starty then
@@ -1856,7 +1846,7 @@ end;
 //      if y+sy>=sizey then
 //      sy:= sizey-y-1; 
 //      ov_x:= x; 
-//      ov_y:= (G.curscreen.sizey-y-sy); 
+//      ov_y:= (G.curscreen^.sizey-y-sy);
 //      ov_sx:= sx; 
 //      ov_sy:= sy; 
 //      ximage:= XGetImage(__glutDisplay,xdraw,ov_x,ov_y,ov_sx,ov_sy,AllPlanes,ZPixmap); 
@@ -1891,7 +1881,7 @@ end;
     {$if defined(WINDOWS) or defined (BEOS)}
     y^:=ov_y;
     {$else}
-    y^:=(G.curscreen.sizey-ov_y)-ov_sy;
+    y^:=(G.curscreen^.sizey-ov_y)-ov_sy;
     {$endif}
   end;
 

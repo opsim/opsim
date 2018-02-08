@@ -663,7 +663,7 @@ end;
 //      kop[nums]:=nil; 
 //    end;
 //    if numlen<>nil then
-//    {*}numlen^:=nume-nums+1; 
+//    numlen^:=nume-nums+1;
 //    begin
 //      result:= ( {integer(}atoi(@(string[nums])));
 //      exit;
@@ -677,11 +677,8 @@ end;
 //    kop[len]:=nil; 
 //  end;
 //  if numlen<>nil then
-//  {*}numlen^:=nil; 
-//  begin
-//    result:=nil; 
-//    exit;
-//  end;
+//  numlen^:=nil;
+//    exit(nil);
 //end;
 
 //procedure stringenc(string: pchar;  kop: pchar;  staart: pchar;  numlen: word;  pic: integer); 
@@ -993,8 +990,7 @@ end;
 
 //  if pipe(fspipe) then
 //  begin
-//    result:= (0); 
-//    exit;
+//    exit(0);
 //    (*sprintf(buf,"fs '%s' '%d' '%s'",dir,fspipe[1],title);*)
 //  end;
 //  sprintf(buf,'fs -d '%s' -p '%d' -t '%s'',dir,fspipe[1],title);
@@ -1030,10 +1026,7 @@ end;
 //begin
 
 //  if pipe(fspipe) then
-//  begin
-//    result:= (0); 
-//    exit;
-//  end;
+//    exit(0);
 //  sprintf(buf,'fs -f '%s' -s -p '%d' -t '%s'',file,fspipe[1],title);
 //  len:= ok:=nil; 
 //  if system(buf)=nil then
@@ -1505,7 +1498,7 @@ end;
 //    begin
 //      tcode:= tcode + (val[j{++} inc(j); ]); 
 //    end;
-//  end;{case?}
+//  end;
 //  begin
 //    result:= (tcode); 
 //    exit;
@@ -1522,15 +1515,9 @@ end;
 //  i:=nil; 
 
 //  if s1=nil then
-//  begin
-//    result:= (0); 
-//    exit;
-//  end;
+//    exit(0);
 //  if s2=nil then
-//  begin
-//    result:= (0); 
-//    exit;
-//  end;
+//    exit(0);
 //  repeat
 //  begin 
 //    c1:= toupper(s1[i]); 
@@ -1558,16 +1545,10 @@ end;
 //begin
 
 //  if name=nil then
-//  begin
-//    result:= (0); 
-//    exit;
-//  end;
+//    exit(0);
 //  file:= open(name,O_RDONLY); 
 //  if file=-1 then
-//  begin
-//    result:= (0); 
-//    exit;
-//  end;
+//    exit(0);
 //  size:= filesize(file); 
 //  close(file); 
 //  begin
@@ -1584,16 +1565,10 @@ end;
 //begin
 
 //  if name=nil then
-//  begin
-//    result:= (0); 
-//    exit;
-//  end;
+//    exit(0);
 //  file:= open(name,O_RDONLY); 
 //  if file=-1 then
-//  begin
-//    result:= (0); 
-//    exit;
-//  end;
+//    exit(0);
 //  size:= lseek(file,0,SEEK_END); 
 //  if size>0 then
 //  begin 

@@ -71,7 +71,7 @@ begin
   //copy_view3d_lock(0);  (* space.c *)
 
   //(* zijn er camera's in de views die niet in de scene zitten? *)
-  //sc:= G.main.screen.first;
+  //sc:= G.main^.screen.first;
   //while sc <>nil  do
   //begin
   //  if ((U.flag and SCENEGLOBAL)<>0)or(sc=G.curscreen) then
@@ -178,28 +178,16 @@ end;
 //function testc: integer; 
 //begin
 //  if ((ihash[cdata[2]]-cdata[27]) and 255)=106 then
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(1);
+//    exit(0);
 //end;
 
 //function errorc: integer; 
 //begin
 //  if testc() then
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //  error(warnc); 
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //procedure init_fp; 

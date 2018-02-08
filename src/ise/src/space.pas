@@ -35,6 +35,7 @@ procedure freespacelist(lb: pListBase);
 procedure duplicatespacelist(lb1, lb2: pListBase);
 procedure newspace(sa: pScrArea;  type_: integer);
 procedure allqueue(event: word;  val: smallint);
+procedure allspace(event: word;  val: smallint);
 
 implementation
 
@@ -2739,59 +2740,52 @@ begin
   end;
 end;
 
-//procedure allspace(event: word;  val: smallint);
-//var
-//sc: pbScreen; 
-//sa: pScrArea;
-//v3d: pView3D; 
-//buts: pSpaceButs; 
-//si: pSpaceIpo;
-
-//so: pSpaceOops;
-
-//begin
-
-//  sc:= G.main.screen.first; 
-//  while sc
-//  do
-//  begin 
-//    sa:= sc^.areabase.first;
-//    while sa
-//    do
-//    begin 
-//      v3d:= sa^.spacedata.first; 
-//      while v3d
-//      do
-//      begin 
-//        case event of
-//          REMAKEIPO:
-//          begin
-//            if v3d^.spacetype=SPACE_IPO then
-//            begin 
-//              si:= {pSpaceIpo(}v3d; 
-//              if si^.editipo<>nil then
-//              freeN(si^.editipo);
-//              si^.editipo:= 0;
-//              free_ipokey(@si^.ipokey);
-//            end;
-//          end;
-//          OOPS_TEST:
-//          begin
-//            if v3d^.spacetype=SPACE_OOPS then
-//            begin 
-//              so:= {pSpaceOops(}v3d; 
-//              so.flag:= so.flag or (SO_TESTBLOCKS); 
-//            end;
-//          end;
-
-//        end;{case?}
-//        v3d:= v3d^.next; 
-//      end;
-//      sa:= sa^.next; 
-//    end;
-//    sc:= sc^.id.next;
-//  end;
-//end;
+procedure allspace(event: word;  val: smallint);
+var
+sc: pbScreen;
+sa: pScrArea;
+v3d: pView3D;
+buts: pSpaceButs;
+si: pSpaceIpo;
+so: pSpaceOops;
+begin
+  sc:= G.main^.screen.first;
+  while sc <>nil  do
+  begin
+    sa:= sc^.areabase.first;
+    while sa<>nil    do
+    begin
+      v3d:= sa^.spacedata.first;
+      while v3d <>nil      do
+      begin
+        case event of
+          REMAKEIPO:
+          begin
+            if v3d^.spacetype=SPACE_IPO then
+            begin
+              si:= pSpaceIpo(v3d);
+              if si^.editipo<>nil then
+              freeN(si^.editipo);
+              si^.editipo:= nil;
+              free_ipokey(@si^.ipokey);
+            end;
+          end;
+          OOPS_TEST:
+          begin
+            if v3d^.spacetype=SPACE_OOPS then
+            begin
+              so:= pSpaceOops(v3d);
+              so^.flag:= so^.flag or (SO_TESTBLOCKS);
+            end;
+          end;
+        end;
+        v3d:= v3d^.next;
+      end;
+      sa:= sa^.next;
+    end;
+    sc:= sc^.id.next;
+  end;
+end;
 
 //procedure force_draw; 
 //var

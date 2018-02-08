@@ -143,7 +143,7 @@ uses
 
 //  retval:=1; 
 
-//  areawinset(curarea.win); 
+//  areawinset(curarea^.win); 
 //  drawmode(PUPDRAW); 
 //  initgrabz(0.0,0.0,0.0); 
 //  getmatrix(viewmat); 
@@ -154,8 +154,8 @@ uses
 //  defwinmat(); 
 //  getmouseco_areawin(mvalo); 
 //  color(col); 
-//  sboxs(0,mvalo[1],curarea.winx,mvalo[1]); 
-//  sboxs(mvalo[0],0,mvalo[0],curarea.winy); 
+//  sboxs(0,mvalo[1],curarea^.winx,mvalo[1]); 
+//  sboxs(mvalo[0],0,mvalo[0],curarea^.winy); 
 
 //  while LongBool(1)
 //  do
@@ -164,11 +164,11 @@ uses
 //    if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1])or(qtest() then
 //    begin 
 //      color(0); 
-//      sboxs(0,mvalo[1],curarea.winx,mvalo[1]); 
-//      sboxs(mvalo[0],0,mvalo[0],curarea.winy); 
+//      sboxs(0,mvalo[1],curarea^.winx,mvalo[1]); 
+//      sboxs(mvalo[0],0,mvalo[0],curarea^.winy); 
 //      color(col); 
-//      sboxs(0,mval[1],curarea.winx,mval[1]); 
-//      sboxs(mval[0],0,mval[0],curarea.winy); 
+//      sboxs(0,mval[1],curarea^.winx,mval[1]); 
+//      sboxs(mval[0],0,mval[0],curarea^.winy); 
 //      mvalo[0]:= mval[0]; 
 //      mvalo[1]:= mval[1]; 
 //      event:= extern_qread(@val); 
@@ -200,8 +200,8 @@ uses
 //    usleep(2); 
 //  end;
 //  color(0); 
-//  sboxs(0,mvalo[1],curarea.winx,mvalo[1]); 
-//  sboxs(mvalo[0],0,mvalo[0],curarea.winy); 
+//  sboxs(0,mvalo[1],curarea^.winx,mvalo[1]); 
+//  sboxs(mvalo[0],0,mvalo[0],curarea^.winy); 
 
 //  if retval<>0 then
 //  begin 
@@ -241,7 +241,7 @@ uses
 //          if event=RIGHTMOUSE then
 //          break; {<= !!!b possible in "switch" - then remove this line}
 //        end;
-//        if curarea.spacetype=SPACE_VIEW3D then
+//        if curarea^.spacetype=SPACE_VIEW3D then
 //        begin 
 //          if G.vd.persp=0 then
 //          begin 
@@ -263,7 +263,7 @@ uses
 //          end;
 //        end;
 //        else
-//        if curarea.spacetype=SPACE_IPO then
+//        if curarea^.spacetype=SPACE_IPO then
 //        begin 
 //          mvalo[2]:= x1; 
 //          mvalo[3]:= y1; 
@@ -304,7 +304,7 @@ uses
 //  mmode(MPROJECTION); 
 //  loadmatrix(winmat); 
 //  mmode(MVIEWING); 
-//  if event=BKEY)and(G.obedit)and(curarea.spacetype=SPACE_VIEW3D then
+//  if event=BKEY)and(G.obedit)and(curarea^.spacetype=SPACE_VIEW3D then
 //  circle_select(); 
 //  begin
 //    result:= retval; 
@@ -339,38 +339,38 @@ uses
 //  my_get_frontbuffer_image(0,0,1,1); 
 //  my_put_frontbuffer_image(); 
 //  {$endif}
-//  winset(G.curscreen.mainwin); 
+//  winset(G.curscreen^.mainwin); 
 
 //  glReadBuffer(GL_FRONT); 
 //  (* pietsje groter, 1 pixel aan de rand *)
 //  glDrawBuffer(GL_FRONT); 
 
-//  if curarea.spacetype=SPACE_IPO then
-//  my_get_frontbuffer_image(20+curarea.winrct.xmin,30+curarea.winrct.ymin,300,22); 
+//  if curarea^.spacetype=SPACE_IPO then
+//  my_get_frontbuffer_image(20+curarea^.winrct.xmin,30+curarea^.winrct.ymin,300,22); 
 //  else
-//  my_get_frontbuffer_image(0+curarea.winrct.xmin,10+curarea.winrct.ymin,300,22); 
-//  winset(curarea.win); 
+//  my_get_frontbuffer_image(0+curarea^.winrct.xmin,10+curarea^.winrct.ymin,300,22); 
+//  winset(curarea^.win); 
 //  glDrawBuffer(GL_FRONT); 
 //  persp(0); 
 //  initgrabz(0.0,0.0,0.0); 
 //  getmouseco_areawin(mvalo); 
-//  sdrawXORline4(0,0,mvalo[1],curarea.winx,mvalo[1]); 
+//  sdrawXORline4(0,0,mvalo[1],curarea^.winx,mvalo[1]); 
 
-//  sdrawXORline4(1,mvalo[0],0,mvalo[0],curarea.winy); 
+//  sdrawXORline4(1,mvalo[0],0,mvalo[0],curarea^.winy); 
 
 //  while LongBool(1)
 //  do
 //  begin 
 //    (* als een renderwinodow open is en de muis gaat erin *)
 //    persp(1); 
-//    winset(curarea.win); 
+//    winset(curarea^.win); 
 //    persp(0); 
 //    getmouseco_areawin(mval); 
 //    if mvalo[0]<>mval[0])or(mvalo[1]<>mval[1] then
 //    begin 
 
-//      sdrawXORline4(0,0,mval[1],curarea.winx,mval[1]); 
-//      sdrawXORline4(1,mval[0],0,mval[0],curarea.winy); 
+//      sdrawXORline4(0,0,mval[1],curarea^.winx,mval[1]); 
+//      sdrawXORline4(1,mval[0],0,mval[0],curarea^.winy); 
 //      mvalo[0]:= mval[0]; 
 //      mvalo[1]:= mval[1]; 
 //    end;
@@ -431,7 +431,7 @@ uses
 //      event:= extern_qread(@val); 
 //      persp(1); 
 //      (* still because of the renderwindow... *)
-//      winset(curarea.win); 
+//      winset(curarea^.win); 
 //      persp(0); 
 //      if val=0 then
 //      begin 
@@ -452,7 +452,7 @@ uses
 //      end;
 //      if event=0 then
 //      usleep(2); 
-//      if curarea.spacetype=SPACE_VIEW3D then
+//      if curarea^.spacetype=SPACE_VIEW3D then
 //      begin 
 //        glColor3f(0.4375,0.4375,0.4375); 
 //        glRecti(0,10,250,20); 
@@ -479,7 +479,7 @@ uses
 //        end;
 //      end;
 //      else
-//      if curarea.spacetype=SPACE_IPO then
+//      if curarea^.spacetype=SPACE_IPO then
 //      begin 
 //        glColor3f(.40625,.40625,.40625); 
 //        glRecti(20,30,170,40); 
@@ -526,13 +526,13 @@ uses
 //  glDrawBuffer(GL_BACK); 
 //  persp(1); 
 
-//  if event=BKEY)and(G.obedit)and(curarea.spacetype=SPACE_VIEW3D then
+//  if event=BKEY)and(G.obedit)and(curarea^.spacetype=SPACE_VIEW3D then
 //  circle_select(); 
 //  begin
 //    result:= retval; 
 //    exit;
 //  end;
-//end;
+//end;
 
 //{$endif}
 
@@ -601,7 +601,7 @@ uses
 //      end;
 //    end;
 
-//  end;{case?}
+//  end;
 //end;
 
 {editLatt: pLattice; }{<= !!!5 external variable}
@@ -800,7 +800,7 @@ end;
 //base: pBase; 
 //ob: pObject; 
 //gridf: float; 
-//curs: pfloat; 
+//curs: psingle; 
 //imat: array [0..2,0..2] of float;
 //bmat: array [0..2,0..2] of float;
 //vec: array [0..2] of float;

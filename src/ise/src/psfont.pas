@@ -430,7 +430,7 @@ savesplines: integer = 1;
 //        while 1
 //        do
 //        begin 
-//          case {*}sptr^{++} inc(sptr);  of
+//          case sptr^{++} inc(sptr);  of
 //            TM_BGNTMESH,
 //            TM_SWAPTMESH,
 //            TM_ENDBGNTMESH:
@@ -441,8 +441,8 @@ savesplines: integer = 1;
 //            begin
 //              exit;
 //            end;
-//          end;{case?}
-//          nverts:= {*}sptr^{++} inc(sptr); ; 
+//          end;
+//          nverts:= sptr^{++} inc(sptr); ; 
 //          while nverts{--} dec(nverts); 
 //          do
 //          begin 
@@ -456,7 +456,7 @@ savesplines: integer = 1;
 //        while 1
 //        do
 //        begin 
-//          case {*}sptr^{++} inc(sptr);  of
+//          case sptr^{++} inc(sptr);  of
 //            PO_BGNLOOP,
 //            PO_ENDBGNLOOP:
 //            begin
@@ -467,8 +467,8 @@ savesplines: integer = 1;
 //              exit;
 //            end;
 
-//          end;{case?}
-//          nverts:= {*}sptr^{++} inc(sptr); ; 
+//          end;
+//          nverts:= sptr^{++} inc(sptr); ; 
 //          while nverts{--} dec(nverts); 
 //          do
 //          begin 
@@ -482,7 +482,7 @@ savesplines: integer = 1;
 //        while 1
 //        do
 //        begin 
-//          case {*}sptr^{++} inc(sptr);  of
+//          case sptr^{++} inc(sptr);  of
 //            SP_MOVETO:
 //            begin
 //              {!!!a type cast? =>} {func(}(sptr); 
@@ -512,14 +512,14 @@ savesplines: integer = 1;
 //              exit;
 //            end;
 
-//          end;{case?}
+//          end;
 //        end;
 //      end;
 //      else
 //      begin
 //        fprintf(stderr,'applytocharverts: bad obj font type\n');
 //      end;
-//    end;{case?}
+//    end;
 //  end;
 //end;
 
@@ -528,15 +528,9 @@ savesplines: integer = 1;
 //function chartoindex(fnt: pobjfnt;  c: integer): integer; 
 //begin
 //  if c<fnt.charmin then
-//  begin
-//    result:= -1; 
-//    exit;
-//  end;
+//    exit(-1);
 //  if c>fnt.charmax then
-//  begin
-//    result:= -1; 
-//    exit;
-//  end;
+//    exit(-1);
 //  begin
 //    result:= c-fnt.charmin; 
 //    exit;
@@ -549,10 +543,7 @@ savesplines: integer = 1;
 //begin
 //  index:= chartoindex(fnt,c); 
 //  if index<0 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  begin
 //    result:= fnt.my_chars+index; 
 //    exit;
@@ -694,19 +685,13 @@ savesplines: integer = 1;
 //  if (ret:=fseek(f,0,2))<0 then
 //  begin 
 //    fprintf(stderr,'sizeoffile: seek error\n');
-//    begin
-//      result:= (0); 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //  ret:= ftell(f); 
 //  if fseek(f,pos,0)<0 then
 //  begin 
 //    fprintf(stderr,'sizeoffile: seek error\n');
-//    begin
-//      result:= (0); 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //  begin
 //    result:= ret; 
@@ -724,10 +709,7 @@ savesplines: integer = 1;
 //  if {not}0=of then
 //  begin 
 //    fprintf(stderr,'writeobjfnt: can''t open output file %s\n',name);
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //  magic:= OFMAGIC; 
 //  fwrite(@magic,sizeof(int),1,of); 
@@ -785,11 +767,8 @@ savesplines: integer = 1;
 //    if c=EOF then
 //    begin 
 //      if read=0 then
-//      begin
-//        result:= (0); 
-//        exit;
-//      end;
-//      {*}p^:=0; 
+//        exit(0);
+//      p^:=0; 
 //      begin
 //        result:= (s); 
 //        exit;
@@ -797,15 +776,15 @@ savesplines: integer = 1;
 //    end;
 //    if c=10)or(c=13 then
 //    begin 
-//      {*}p^:=0; 
+//      p^:=0; 
 //      begin
 //        result:= (s); 
 //        exit;
 //      end;
 //    end;
-//    {*}p^{++} inc(p); :=c; 
+//    p^{++} inc(p); :=c; 
 //  end;
-//  {*}p^:=0; 
+//  p^:=0; 
 //  begin
 //    result:= (s); 
 //    exit;
@@ -871,10 +850,7 @@ savesplines: integer = 1;
 //  mat[1][0]:= 1000.0*b; 
 //  mat[0][1]:= 1000.0*c; 
 //  mat[1][1]:= 1000.0*d; 
-//  begin
-//    result:= (0); 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //(*
@@ -899,7 +875,7 @@ savesplines: integer = 1;
 //  while n{--} dec(n); 
 //  do
 //  begin 
-//    {*}cptr^:=mdecrypt(*cptr); 
+//    cptr^:=mdecrypt(*cptr); 
 //    inc(cptr); 
 //  end;
 //end;
@@ -1006,11 +982,11 @@ savesplines: integer = 1;
 //    do
 //    begin 
 //      hptr:= (unsignedchar* )oneline; 
-//      while {*}hptr^
+//      while hptr^
 //      do
 //      begin 
-//        if hextab[{*}hptr^]<>NOTHEX then
-//        hexdat[hexbytes{++} inc(hexbytes); ]:= {*}hptr^; 
+//        if hextab[hptr^]<>NOTHEX then
+//        hexdat[hexbytes{++} inc(hexbytes); ]:= hptr^; 
 //        inc(hptr); 
 //      end;
 //    end;
@@ -1027,7 +1003,7 @@ savesplines: integer = 1;
 //    while c{--} dec(c); 
 //    do
 //    begin 
-//      {*}bptr^{++} inc(bptr); :=(hextab[hptr[0]] shl 4)+hextab[hptr[1]]; 
+//      bptr^{++} inc(bptr); :=(hextab[hptr[0]] shl 4)+hextab[hptr[1]]; 
 //      hptr:= hptr + (2); 
 //    end;
 //    decryptdata(bindat,datbytes); 
@@ -1098,27 +1074,27 @@ savesplines: integer = 1;
 //  start: pchar; 
 //  start:= {!!!a type cast? =>} {pchar(}str; 
 //  cptr:= bindat+fakepos; 
-//  c:= {*}cptr^{++} inc(cptr); ; 
+//  c:= cptr^{++} inc(cptr); ; 
 //  inc(fakepos); 
 //  if c<>'\n' then
 //  begin 
 //    while isspace(c)
 //    do
 //    begin 
-//      c:= {*}cptr^{++} inc(cptr); ; 
+//      c:= cptr^{++} inc(cptr); ; 
 //      inc(fakepos); 
 //    end;
 //    while fakepos<fakemax)and({not}0=isspace(c)
 //    do
 //    begin 
-//      {*}str^{++} inc(str); :=c; 
-//      c:= {*}cptr^{++} inc(cptr); ; 
+//      str^{++} inc(str); :=c; 
+//      c:= cptr^{++} inc(cptr); ; 
 //      inc(fakepos); 
 //    end;
 //    if c='\n' then
 //    dec(fakepos); 
 //  end;
-//  {*}str^:=0; 
+//  str^:=0; 
 //  if fakepos>fakemax then
 //  begin 
 //    fprintf(stderr,'fromtype1: unexpected eof\n');
@@ -1133,24 +1109,15 @@ savesplines: integer = 1;
 //  while max{--} dec(max); 
 //  do
 //  begin 
-//    {*}buf^{++} inc(buf); :=*cptr; 
+//    buf^{++} inc(buf); :=*cptr; 
 //    inc(fakepos); 
-//    if {*}cptr^=10)or(*cptr=13 then
-//    begin
-//      result:= 1; 
-//      exit;
-//    end;
+//    if cptr^=10)or(*cptr=13 then
+//      exit(1);
 //    inc(cptr); 
 //    if fakepos>fakemax then
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //function fakefread(n: integer): pchar; 
@@ -1168,8 +1135,8 @@ savesplines: integer = 1;
 //  tx: float; 
 //  ty: float; 
 //  tx:= ((*x)*mat[0][0])+((*y)*mat[0][1]); 
-//  ty:= ((*x)*mat[1][0])+((*y)*mat[1][1]); {*}x^:=tx; 
-//  {*}y^:=ty; 
+//  ty:= ((*x)*mat[1][0])+((*y)*mat[1][1]); x^:=tx; 
+//  y^:=ty; 
 //end;
 
 //function loadpostcriptfont(filename: pchar): pobjfnt; 
@@ -1188,13 +1155,10 @@ savesplines: integer = 1;
 //  fnt:= 0; 
 //  bindat:= 0; (* read the font matrix from the font *)
 //  if readfontmatrix(filename,mat) then
-//  begin
-//    result:= (0); 
-//    exit;
+//    exit(0);
 
 //    (* decode the font data *)
-//  end;
-//  decodetype1(filename,'/usr/tmp/type1.dec'); 
+//  decodetype1(filename,'/usr/tmp/type1.dec');
 //  fakefopen(); 
 
 //  (* open the input file *)
@@ -1464,10 +1428,7 @@ savesplines: integer = 1;
 //  begin 
 //    fprintf(stderr,'\nYUCK: pc stack under flow\n');
 //    pcsp:= 0; 
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //  begin
 //    result:= pcstack[pcsp]; 
@@ -1500,10 +1461,7 @@ savesplines: integer = 1;
 //  begin 
 //    fprintf(stderr,'\nYUCK: stack under flow\n');
 //    sp:= 0; 
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //  begin
 //    result:= stack[sp]; 
@@ -1535,10 +1493,7 @@ savesplines: integer = 1;
 //  begin 
 //    fprintf(stderr,'\nYUCK: ret stack under flow\n');
 //    retsp:= 0; 
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //  begin
 //    result:= retstack[retsp]; 
@@ -1560,12 +1515,12 @@ savesplines: integer = 1;
 //  while 1
 //  do
 //  begin 
-//    v:= {*}pc^{++} inc(pc); ; 
+//    v:= pc^{++} inc(pc); ; 
 //    if v>=0)and(v<=31 then
 //    begin 
 //      if v=12 then
 //      begin 
-//        w:= {*}pc^{++} inc(pc); ; 
+//        w:= pc^{++} inc(pc); ; 
 //        cmd:= 256+w; 
 //      end;
 //      else
@@ -1584,27 +1539,27 @@ savesplines: integer = 1;
 //    else
 //    if v>=247)and(v<=250 then
 //    begin 
-//      w:= {*}pc^{++} inc(pc); ; 
+//      w:= pc^{++} inc(pc); ; 
 //      num:= (v-247)*256+w+108; 
 //      push(num); 
 //    end;
 //    else
 //    if v>=251)and(v<=254 then
 //    begin 
-//      w:= {*}pc^{++} inc(pc); ; 
+//      w:= pc^{++} inc(pc); ; 
 //      num:= -(v-251)*256-w-108; 
 //      push(num); 
 //    end;
 //    else
 //    if v=255 then
 //    begin 
-//      num:= {*}pc^{++} inc(pc); ; 
+//      num:= pc^{++} inc(pc); ; 
 //      num:= num shl (8); 
-//      num:= num or ({*}pc^{++} inc(pc); ); 
+//      num:= num or (pc^{++} inc(pc); ); 
 //      num:= num shl (8); 
-//      num:= num or ({*}pc^{++} inc(pc); ); 
+//      num:= num or (pc^{++} inc(pc); ); 
 //      num:= num shl (8); 
-//      num:= num or ({*}pc^{++} inc(pc); ); 
+//      num:= num or (pc^{++} inc(pc); ); 
 //      push(num); 
 //    end;
 //  end;
@@ -1703,7 +1658,7 @@ savesplines: integer = 1;
 //        exit;
 //      end;
 
-//    end;{case?}
+//    end;
 //    nverts:= chardata[nshorts{++} inc(nshorts); ]:=*data{++} inc(data); ; 
 //    while nverts{--} dec(nverts); 
 //    do
@@ -1742,7 +1697,7 @@ savesplines: integer = 1;
 //        exit;
 //      end;
 
-//    end;{case?}
+//    end;
 
 //    for{while}  downto Succ(0) { nverts--}
 //    do
@@ -1945,7 +1900,7 @@ savesplines: integer = 1;
 //                  chardata[nshorts-1]:= SP_CLOSEPATH; 
 //                end;
 
-//              end;{case?}
+//              end;
 //            end;
 //            else
 //            begin 
@@ -1967,7 +1922,7 @@ savesplines: integer = 1;
 //                  end;
 //                end;
 
-//              end;{case?}
+//              end;
 //            end;
 //          end;
 //          dy1:= pop(); 
@@ -2049,17 +2004,11 @@ savesplines: integer = 1;
 //    begin
 //    end;
 
-//  end;{case?}
+//  end;
 //  if pc=0)or(cmd=ENDCHAR)or(cmd=WHAT0)or(cmd=SEAC then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  else
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //end;
 
 //(* 
@@ -2201,15 +2150,15 @@ savesplines: integer = 1;
 //getmove(int*x,int*y); 
 
 //begin 
-//  {*}x^:=delx; 
-//  {*}y^:=dely; 
+//  x^:=delx; 
+//  y^:=dely; 
 //end;
 //(*  printf("ingetmove\n"); *)
 //getpos(int*x,int*y); 
 
 //begin 
-//  {*}x^:=curx; 
-//  {*}y^:=cury; 
+//  x^:=curx; 
+//  y^:=cury; 
 //end;
 //savestart(intx,inty); 
 

@@ -85,11 +85,13 @@ interface
 function convertstringcode(str: pchar): integer;
 function gethome: pchar;
 
+procedure read_file(dir: pchar);
+
 implementation
 
 uses
 cfuncs,
-blender, blendef, blenglob, fileops;
+blender, blendef, blenglob, fileops, file_;
 
 //type
 //OldNew = record
@@ -171,25 +173,16 @@ end;
 //  a:= lstrlen(str); 
 //  b:= lstrlen(ext); 
 //  if a=0)or(b=0)or(b>=a then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  while b>0
 //  do
 //  begin 
 //    dec(a); 
 //    dec(b); 
 //    if str[a]<>ext[b] then
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //end;
 
 function convertstringcode(str: pchar): integer;
@@ -433,10 +426,7 @@ end;
 //      inc(lastone); 
 //    end;
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //(* alleen Lib datablokken *)
@@ -499,10 +489,7 @@ end;
 //    end;
 //  end;
 
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //(* hoogt usernummer op *)
@@ -582,10 +569,7 @@ end;
 //    end;
 //  end;
 
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //type
@@ -2240,8 +2224,8 @@ end;
 
 //  G.curscreen:= newlibadr(0,fg.curscreen); 
 //  if G.curscreen=0 then
-//  G.curscreen:= G.main.screen.first; 
-//  G.scene:= G.curscreen.scene; 
+//  G.curscreen:= G.main^.screen.first;
+//  G.scene:= G.curscreen^.scene; 
 //  G.obedit:= 0; 
 //  G.buts:= 0; 
 //  G.v2d:= 0; 
@@ -3297,10 +3281,7 @@ end;
 //  begin 
 //    init_structDNA(@old_sdna); 
 //    set_compareflags_structDNA(); 
-//    begin
-//      result:= 1; 
-//      exit;
-//    end;
+//      exit(1);
 //  end;
 //  else
 //  begin 
@@ -3308,10 +3289,7 @@ end;
 //    freeN(old_sdna.data); 
 //    old_sdna.data:= 0; 
 //    error('File not complete'); 
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //end;
 
@@ -3490,26 +3468,16 @@ end;
 
 //  len:= lstrlen(name); 
 //  if len<6 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);;
 //  if name[len-1]='/')or(name[len-1]=#92 then
-//  begin
-//    result:= 0; 
-//    exit;
-
-//  end;
+//    exit(0);
 //  if strstr(name,'.blend') then
 //  begin 
 //    file:= open(name,O_BINARY or O_RDONLY); 
 //    if file<=0 then
 //    begin 
 //      errorstr('Can''t find file',name,0); 
-//      begin
-//        result:= 0; 
-//        exit;
-//      end;
+//        exit(0);
 //    end;
 //    {*}filelen^:=filesize(file); 
 //    read(file,str,12); 
@@ -3518,10 +3486,7 @@ end;
 //    begin 
 //      close(file); 
 //      errorstr('Not a Blender file: ',name,0); 
-//      begin
-//        result:= 0; 
-//        exit;
-//      end;
+//        exit(0);
 //    end;
 //    (* long pointer test *)
 //    if str[7]='_' then
@@ -3568,208 +3533,201 @@ end;
 //    else
 //    begin 
 //      freeN(filedata); 
-//      begin
-//        result:= 0; 
-//        exit;
-//      end;
+//        exit(0);
 //    end;
 //  end;
 //  else
 //  begin 
 //    read_exotic(name); 
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
-//procedure read_file(dir: pchar); 
+procedure read_file(dir: pchar);
 //var
-//bhead: pBHead; 
-//main: pMain; 
-//ob: pObject; 
-//cu: pCurve; 
-//fg: pFileGlobal; 
-//user: pUserDef; 
-//vf: pVFont; 
-//ok: integer; 
-//len: integer; 
-//filelen: integer; 
-//skipdata: integer; 
-//temp: integer; 
-//temp1: integer; 
-//version: integer; 
-//filedata: pchar; 
-//fd: pchar; 
-//begin
-
-//  waitcursor(1); 
-//  filedata:= openblenderfile(dir, and filelen); 
-//  if filedata<>0 then
-//  begin 
-//    G.save_over:= LongBool(1); 
-//    strcpy(G.sce,dir); 
-//    strcpy(G.main.name,dir); 
-//    freeAllRad(); 
-//    (* is gegarandeerd current file *)
-//    (* er is maar 1 Main, dus alleen inhoud vrijgeven *)
-//    free_main(0,G.main); 
-//    G.curscreen:= 0; 
-//    FreeButs('i'); 
-//    freefastshade(); 
-//    (* behalve icons *)
-//    G.main.versionfile:= G.versionfile; (* anders oude lampgegevens *)
-//    (* kan per main verschillen *)
-//    if G.obedit<>0 then
-//    begin 
-//      freeNurblist( and editNurb); 
-//      free_editmesh(); 
-//      free_editText(); 
-//    end;
-//    G.f:= G.f and ( not (G_VERTEXPAINT+G_FACESELECT)); 
-//    fd:= filedata; 
-//    ok:= 0; 
-//    main:= G.main; 
-//    (* alle data inlezen: *)
-//    while filelen>0
-//    do
-//    begin 
-//      bhead:= {!!!a type cast? =>} {pBHead(}fd; 
-//      case bhead.code of
-//        GLOB:
-//        begin
-//          read_struct_expl(bhead, and fg); 
-//          skipdata:= bhead.len+sizeof(BHead); 
-//        end;
-//        DATA:
-//        begin
-//          skipdata:= bhead.len+sizeof(BHead); 
-//        end;
-//        DNA1:
-//        begin
-//          skipdata:= bhead.len+sizeof(BHead); 
-//        end;
-//        USER:
-//        begin
-//          read_struct_expl(bhead,@user); 
-//          U:= {*}user^; 
-//          freeN(user); 
-//          skipdata:= bhead.len+sizeof(BHead); 
-//        end;
-//        TEST:
-//        begin
-//          skipdata:= bhead.len+sizeof(BHead); 
-//        end;
-//        REND:
-//        begin
-//          skipdata:= bhead.len+sizeof(BHead); 
-//        end;
-//        ENDB:
-//        begin
-//          ok:= 1; 
-//          skipdata:= 8; 
-//        end;
-//        ID_LI:
-//        begin
-//          skipdata:= read_libblock(G.main,bhead,LIB_LOCAL); 
-//          main:= G.mainbase.last; 
-//        end;
-//        ID_ID:
-//        begin
-//          skipdata:= read_libblock(main,bhead,LIB_READ+LIB_EXTERN); 
-//        end;
-//        else
-//        begin
-//          skipdata:= read_libblock(G.main,bhead,LIB_LOCAL); 
-//        end;
-//      end;{case?}
-//      if ok<>0 then
-//      break; {<= !!!b possible in "switch" - then remove this line}
-
-//      fd:= fd + (skipdata); 
-//      filelen:= filelen - (skipdata); 
-//    end;
-//    freeN(filedata); 
-
-//    if ok=0 then
-//    begin 
-//      printf('ERROR: file incomplete\n');
-//      error('Warning: file not complete'); 
-//    end;
-//    do_versions(G.main); 
-//    read_libraries(); 
-//    (* voor read_libraries *)
-//    lib_link_all(G.main); 
-//    (* LibData linken *)
-//    link_global(fg); 
-//    add_data_adr(0,0); 
-//    (* als laatste *)
-
-//    (* losslingerende blokken vrijgeven *)
-//    add_lib_adr(0,0); 
-//    vf:= G.main.vfont.first; (* VECTORFONTS *)
-//    (* afvangen: .Bfont van ander systeem *)
-//    if vf<>0 then
-//    begin 
-//      len:= lstrlen(vf.name); 
-//      if len>5)and(lstrcmp(vf.name+len-5,'Bfont')=0 then
-//      begin 
-//        sprintf(vf.name,'%s/.Bfont',gethome()); 
-//      end;
-//    end;
-//    while vf
-//    do
-//    begin 
-//      reload_vfont(vf); 
-//      vf:= vf.id.next; 
-//    end;
-//    ob:= G.main.object.first; (* weinig DispListen, wel text_to_curve *)
-//    while ob
-//    do
-//    begin 
-//      if ob.type=OB_FONT then
-//      begin 
-//        cu:= ob.data; 
-//        if cu.nurb.first=0 then
-//        text_to_curve(ob,0); 
-//      end;
-//      else
-//      if ob.type=OB_MESH then
-//      begin 
-//        makeDispList(ob); 
-//        if ob.effect.first<>0 then
-//        object_wave(ob); 
-//      end;
-//      ob:= ob.id.next; 
-
-//    end;
-//    freeN(fg); 
-//    if G.background=0 then
-//    begin 
-//      setscreen(G.curscreen); 
-//      countall(); 
-//    end;
-//    set_scene_bg(G.scene); 
-//    reset_autosave(); 
-//    (* baseflags *)
-//    clear_obact_names(); 
-//    set_obact_names(OBACT); 
-//    (* voor add object *)
-//    do_realtimelight(0,0,0); 
-//  end;
-//  (* re-init *)
-//  if G.background=0 then
-//  waitcursor(0); 
-
-//  if G.f and G_SCENESCRIPT then
-//  begin 
-//    {ext_load_str: array [0..Pred(256)] of char; }{<= !!!5 external variable}
-//    if ext_load_str[0]<>0 then
-//    force_draw_all(); 
-//    do_pyscript(G.scene,SCRIPT_ONLOAD); 
-//  end;
-//end;
+//bhead: pBHead;
+//main: pMain;
+//ob: pObject;
+//cu: pCurve;
+//fg: pFileGlobal;
+//user: pUserDef;
+//vf: pVFont;
+//ok: integer;
+//len: integer;
+//filelen: integer;
+//skipdata: integer;
+//temp: integer;
+//temp1: integer;
+//version: integer;
+//filedata: pchar;
+//fd: pchar;
+begin
+  //waitcursor(1);
+  //filedata:= openblenderfile(dir, and filelen);
+  //if filedata<>0 then
+  //begin
+  //  G.save_over:= LongBool(1);
+  //  strcpy(G.sce,dir);
+  //  strcpy(G.main^.name,dir);
+  //  freeAllRad();
+  //  (* is gegarandeerd current file *)
+  //  (* er is maar 1 Main, dus alleen inhoud vrijgeven *)
+  //  free_main(0,G.main);
+  //  G.curscreen:= 0;
+  //  FreeButs('i');
+  //  freefastshade();
+  //  (* behalve icons *)
+  //  G.main^.versionfile:= G.versionfile; (* anders oude lampgegevens *)
+  //  (* kan per main verschillen *)
+  //  if G.obedit<>0 then
+  //  begin
+  //    freeNurblist( and editNurb);
+  //    free_editmesh();
+  //    free_editText();
+  //  end;
+  //  G.f:= G.f and ( not (G_VERTEXPAINT+G_FACESELECT));
+  //  fd:= filedata;
+  //  ok:= 0;
+  //  main:= G.main;
+  //  (* alle data inlezen: *)
+  //  while filelen>0
+  //  do
+  //  begin
+  //    bhead:= {!!!a type cast? =>} {pBHead(}fd;
+  //    case bhead.code of
+  //      GLOB:
+  //      begin
+  //        read_struct_expl(bhead, and fg);
+  //        skipdata:= bhead.len+sizeof(BHead);
+  //      end;
+  //      DATA:
+  //      begin
+  //        skipdata:= bhead.len+sizeof(BHead);
+  //      end;
+  //      DNA1:
+  //      begin
+  //        skipdata:= bhead.len+sizeof(BHead);
+  //      end;
+  //      USER:
+  //      begin
+  //        read_struct_expl(bhead,@user);
+  //        U:= {*}user^;
+  //        freeN(user);
+  //        skipdata:= bhead.len+sizeof(BHead);
+  //      end;
+  //      TEST:
+  //      begin
+  //        skipdata:= bhead.len+sizeof(BHead);
+  //      end;
+  //      REND:
+  //      begin
+  //        skipdata:= bhead.len+sizeof(BHead);
+  //      end;
+  //      ENDB:
+  //      begin
+  //        ok:= 1;
+  //        skipdata:= 8;
+  //      end;
+  //      ID_LI:
+  //      begin
+  //        skipdata:= read_libblock(G.main,bhead,LIB_LOCAL);
+  //        main:= G.mainbase.last;
+  //      end;
+  //      ID_ID:
+  //      begin
+  //        skipdata:= read_libblock(main,bhead,LIB_READ+LIB_EXTERN);
+  //      end;
+  //      else
+  //      begin
+  //        skipdata:= read_libblock(G.main,bhead,LIB_LOCAL);
+  //      end;
+  //    end;{case?}
+  //    if ok<>0 then
+  //    break; {<= !!!b possible in "switch" - then remove this line}
+  //
+  //    fd:= fd + (skipdata);
+  //    filelen:= filelen - (skipdata);
+  //  end;
+  //  freeN(filedata);
+  //
+  //  if ok=0 then
+  //  begin
+  //    printf('ERROR: file incomplete\n');
+  //    error('Warning: file not complete');
+  //  end;
+  //  do_versions(G.main);
+  //  read_libraries();
+  //  (* voor read_libraries *)
+  //  lib_link_all(G.main);
+  //  (* LibData linken *)
+  //  link_global(fg);
+  //  add_data_adr(0,0);
+  //  (* als laatste *)
+  //
+  //  (* losslingerende blokken vrijgeven *)
+  //  add_lib_adr(0,0);
+  //  vf:= G.main^.vfont.first; (* VECTORFONTS *)
+  //  (* afvangen: .Bfont van ander systeem *)
+  //  if vf<>0 then
+  //  begin
+  //    len:= lstrlen(vf.name);
+  //    if len>5)and(lstrcmp(vf.name+len-5,'Bfont')=0 then
+  //    begin
+  //      sprintf(vf.name,'%s/.Bfont',gethome());
+  //    end;
+  //  end;
+  //  while vf
+  //  do
+  //  begin
+  //    reload_vfont(vf);
+  //    vf:= vf.id.next;
+  //  end;
+  //  ob:= G.main^.object.first; (* weinig DispListen, wel text_to_curve *)
+  //  while ob
+  //  do
+  //  begin
+  //    if ob.type=OB_FONT then
+  //    begin
+  //      cu:= ob.data;
+  //      if cu.nurb.first=0 then
+  //      text_to_curve(ob,0);
+  //    end;
+  //    else
+  //    if ob.type=OB_MESH then
+  //    begin
+  //      makeDispList(ob);
+  //      if ob.effect.first<>0 then
+  //      object_wave(ob);
+  //    end;
+  //    ob:= ob.id.next;
+  //
+  //  end;
+  //  freeN(fg);
+  //  if G.background=0 then
+  //  begin
+  //    setscreen(G.curscreen);
+  //    countall();
+  //  end;
+  //  set_scene_bg(G.scene);
+  //  reset_autosave();
+  //  (* baseflags *)
+  //  clear_obact_names();
+  //  set_obact_names(OBACT);
+  //  (* voor add object *)
+  //  do_realtimelight(0,0,0);
+  //end;
+  //(* re-init *)
+  //if G.background=0 then
+  //waitcursor(0);
+  //
+  //if G.f and G_SCENESCRIPT then
+  //begin
+  //  {ext_load_str: array [0..Pred(256)] of char; }{<= !!!5 external variable}
+  //  if ext_load_str[0]<>0 then
+  //  force_draw_all();
+  //  do_pyscript(G.scene,SCRIPT_ONLOAD);
+  //end;
+end;
 
 //procedure inst_file(name: pchar;  data: pchar;  size: integer); 
 //var
@@ -3845,16 +3803,10 @@ end;
 //        (*     if(str) strcpy(U.tempdir, str); *)
 //        (*     else strcpy(U.tempdir, "/tmp/"); *)
 //      end;
-//      begin
-//        result:= 1; 
-//        exit;
-//      end;
+//        exit(1);
 //    end;
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //procedure read_autosavefile; 
@@ -3893,10 +3845,7 @@ end;
 
 //  bheadlib:= 0; 
 //  if old=0 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  fd:= filedata; 
 //  while afbreek=0
 //  do
@@ -3916,10 +3865,7 @@ end;
 //    end;
 //    fd:= fd + (bhead.len+sizeof(BHead)); 
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //function is_yet_read(main: pMain;  bhead: pBHead): pID; 
@@ -3945,10 +3891,7 @@ end;
 //      id:= id.next; 
 //    end;
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //procedure expand_doit(main: pMain;  filedata: pchar;  old: pinteger); 
@@ -4446,7 +4389,7 @@ end;
 //    error('Nothing indicated'); 
 //    exit;
 //  end;
-//  if lstrcmp(G.main.name,dir)=0 then
+//  if lstrcmp(G.main^.name,dir)=0 then
 //  begin 
 //    error('Cannot use current file as library'); 
 //    exit;
@@ -4509,7 +4452,7 @@ end;
 //  read_libraries(); 
 //  (* als expand nog andere libs gevonden heeft: *)
 //  lib_link_all(G.main); 
-//  vf:= G.main.vfont.first; 
+//  vf:= G.main^.vfont.first;
 //  (* losse objects aan G.scene hangen deze hebben nog een linkflag
 //      moet na lib_link ivm gelinkte scenes (ob->us==0) *)
 
@@ -4525,7 +4468,7 @@ end;
 //    reload_vfont(vf); 
 //    vf:= vf.id.next; 
 //  end;
-//  ob:= G.main.object.first; 
+//  ob:= G.main^.object.first;
 //  set_displist_onlyzero(1); 
 //  (* DISPLISTEN *)
 //  while ob
@@ -4599,7 +4542,7 @@ end;
 //  do
 //  begin 
 //    doit:= 0; 
-//    main:= G.main.next; (* test 1: inlezen libdata *)
+//    main:= G.main^.next; (* test 1: inlezen libdata *)
 //    while main
 //    do
 //    begin 
@@ -4654,7 +4597,7 @@ end;
 //      main:= main.next; 
 //    end;
 //  end;
-//  main:= G.main.next; 
+//  main:= G.main^.next;
 //  while main
 //  do
 //  begin 

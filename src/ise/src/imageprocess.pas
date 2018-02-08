@@ -30,9 +30,9 @@ unit imageprocess;
 interface
 
 (* uit render.c *)
-{igamtab1: pushort; }{<= !!!5 external variable}
-{igamtab2: pushort; }{<= !!!5 external variable}
-{gamtab: pushort; }{<= !!!5 external variable}
+{igamtab1: pword; }{<= !!!5 external variable}
+{igamtab2: pword; }{<= !!!5 external variable}
+{gamtab: pword; }{<= !!!5 external variable}
 
 procedure convert_rgba_to_abgr(size: integer;  rect: pcardinal);
 
@@ -222,7 +222,7 @@ implementation
 
 //(* telt bron bij doel *)
 
-//procedure addalphaAddshort(doel: pushort;  bron: pushort); 
+//procedure addalphaAddshort(doel: pword;  bron: pword); 
 //var
 //c: integer; 
 //mul: integer; 
@@ -306,7 +306,7 @@ implementation
 
 //(* doel= bron over doel  *)
 
-//procedure addalphaAddfacshort(doel: pushort;  bron: pushort;  addfac: smallint); 
+//procedure addalphaAddfacshort(doel: pword;  bron: pword;  addfac: smallint); 
 //var
 //c: integer; 
 //mul: integer; 
@@ -413,7 +413,7 @@ implementation
 //    for{while} x:=newx downto Succ(0) { x--}
 //    do
 //    begin 
-//      {*}newrect^{++} inc(newrect); :=rect[ofsx shr 16]; 
+//      newrect^{++} inc(newrect); :=rect[ofsx shr 16]; 
 //      ofsx:= ofsx + (stepx); 
 //    end;
 //  end;
@@ -519,7 +519,7 @@ implementation
 //    inc(rt); 
 //    do
 //    begin 
-//      if {*}rt^)and(rt[-1]=0)and(rt[1]=0 then
+//      if rt^)and(rt[-1]=0)and(rt[1]=0 then
 //      begin 
 //        rt1:= rt-sbuf.x; 
 //        if rt1[-1]=0)and(rt1[0]=0)and(rt1[1]=0 then
@@ -577,7 +577,7 @@ implementation
 //  while x{--} dec(x); 
 //  do
 //  begin 
-//    {*}rt^:=(char)*lp; 
+//    rt^:=(char)*lp; 
 //    inc(rt); 
 //    inc(lp); 
 //  end;
@@ -597,7 +597,7 @@ implementation
 //    inc(rt); 
 //    do
 //    begin 
-//      if {*}rt^ then
+//      if rt^ then
 //      begin 
 //        if minx>x then
 //        minx:= x; 

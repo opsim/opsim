@@ -32,9 +32,6 @@ screen, blender, util, blenglob, cfuncs, blendef, graphics,
 drawobject, drawview, mywindow, Button, scene, drawscene,
 mydevice, toolbox, font;
 
-//{fullscreen: word; }{<= !!!5 external variable}
-//{borderless: word; }{<= !!!5 external variable}
-
 var
 bprogname: array [0..127] of char;
 //U: UserDef;  moved to blender
@@ -51,12 +48,12 @@ begin
 //freeAllRad(); 
 //if G.obedit<>nil then
 //begin 
-//  if G.obedit.type=OB_FONT then
+//  if G.obedit^._type=OB_FONT then
 //  begin 
 //    free_editText(); 
 //  end
 //  else
-//  if G.obedit.type=OB_MBALL then
+//  if G.obedit^._type=OB_MBALL then
 //  freelistN( and editelems); 
 //  free_editmesh(); 
 //end;
@@ -504,7 +501,7 @@ begin
         {$ifdef __sgi}
           if G.scene<>nil then
           begin
-            G.renderd:= LongBool(1);
+            G.renderd:= 1;
             G.real_sfra:= SFRA;
             G.real_efra:= EFRA;
             printf('blender: reading stdin\n');

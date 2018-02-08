@@ -1484,10 +1484,7 @@ end;
 //begin
 
 //  if mem=0 then
-//  begin
-//    result:= 0;
-//    exit;
-//  end;
+//    exit(0);
 //  memh:=  {pMemHead(}mem;
 //  dec(memh);
 //  begin
@@ -1495,10 +1492,8 @@ end;
 //    exit;
 //  end;
 //end;
-//(* kopie van 2 naar 1 *)
-//type
-//Link = record
-//end;
+
+(* kopie van 2 naar 1 *)
 
 procedure duplicatelist(list1: pListBase;  list2: pListBase);
 var

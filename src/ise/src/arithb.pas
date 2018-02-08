@@ -33,6 +33,8 @@ procedure Mat4One(var m: Mat4);
 procedure Mat4CpyMat4(m1, m2: pcfloat);
 procedure Mat4MulFloat3(m: psingle;  f: single);
 
+function VecLenf(v1: psingle;  v2: psingle): single;
+
 implementation
 
 (*
@@ -152,7 +154,7 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  end;
 //end;
 
-//function Normalise(n: pfloat): single; 
+//function Normalise(n: psingle): single;
 //var
 //d: single; 
 //begin
@@ -176,14 +178,14 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  end;
 //end;
 
-//procedure Crossf(c: pfloat;  a: pfloat;  b: pfloat); 
+//procedure Crossf(c: psingle;  a: psingle;  b: psingle);
 //begin
 //  c[0]:= a[1]*b[2]-a[2]*b[1]; 
 //  c[1]:= a[2]*b[0]-a[0]*b[2]; 
 //  c[2]:= a[0]*b[1]-a[1]*b[0]; 
 //end;
 
-//function Inpf(v1: pfloat;  v2: pfloat): single; 
+//function Inpf(v1: psingle;  v2: psingle): single;
 //begin
 //  begin
 //    result:= v1[0]*v2[0]+v1[1]*v2[1]+v1[2]*v2[2]; 
@@ -228,14 +230,16 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  mat[2][3]:= mat[3][2]; 
 //  mat[3][2]:= t; 
 //end;
-//(*
-// * invertmat - 
-// *   computes the inverse of mat and puts it in inverse.  Returns 
-// * TRUE on success (i.e. can always find a pivot) and FALSE on failure.
-// *  Uses Gaussian Elimination with partial (maximal column) pivoting.
-// *
-// *     Mark Segal - 1992
-// *)
+
+(*
+ * invertmat -
+ *   computes the inverse of mat and puts it in inverse.  Returns
+ * TRUE on success (i.e. can always find a pivot) and FALSE on failure.
+ *  Uses Gaussian Elimination with partial (maximal column) pivoting.
+ *
+ *     Mark Segal - 1992
+ *)
+
 //int{!!!e unknown token}
 //inverse: array [0..,0..3] of single;
 //mat: array [0..,0..3] of single;
@@ -287,11 +291,8 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //    end;
 //    temp:= tempmat[i][i]; 
 //    if temp=0 then
-//    begin
-//      result:= 0; 
-//      exit;
+//    exit(0);
 //      (* No non-zero pivot *)
-//    end;
 //    for{while} k:=0 to 3 { k++}
 //    do
 //    begin 
@@ -313,10 +314,7 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //      end;
 //    end;
 //  end;
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //end;
 //void{!!!e unknown token}
 //inverse: array [0..,0..3] of single;
@@ -554,9 +552,9 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  m1[2][2]:= m[0][0]*m[1][1]-m[0][1]*m[1][0]; 
 //end;
 //void{!!!e unknown token}
-//m1: pfloat; 
-//m2: pfloat; 
-//m3: pfloat; 
+//m1: psingle;
+//m2: psingle;
+//m3: psingle;
 //begin 
 //  m1[0]:= m2[0]*m3[0]+m2[1]*m3[4]+m2[2]*m3[8]+m2[3]*m3[12]; 
 //  m1[1]:= m2[0]*m3[1]+m2[1]*m3[5]+m2[2]*m3[9]+m2[3]*m3[13]; 
@@ -582,9 +580,9 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  m1[3]:= m2[0]*m3[3]+m2[1]*m3[7]+m2[2]*m3[11]+m2[3]*m3[15]; 
 //end;
 //void{!!!e unknown token}
-//m1: pfloat; 
-//m2: pfloat; 
-//m3: pfloat; 
+//m1: psingle;
+//m2: psingle;
+//m3: psingle;
 //begin 
 //  m1[0]:= m2[0]*m3[0]+m2[1]*m3[4]+m2[2]*m3[8]; 
 //  m1[1]:= m2[0]*m3[1]+m2[1]*m3[5]+m2[2]*m3[9]; 
@@ -604,9 +602,9 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  m1[3]:= m2[0]*m3[3]+m2[1]*m3[7]+m2[2]*m3[11]+m2[3]; 
 //end;
 //void{!!!e unknown token}
-//m1: pfloat; 
-//m2: pfloat; 
-//m3: pfloat; 
+//m1: psingle;
+//m2: psingle;
+//m3: psingle;
 //begin 
 //  m1[0]:= m2[0]*m3[0]+m2[1]*m3[3]+m2[2]*m3[6]; 
 //  m1[1]:= m2[0]*m3[1]+m2[1]*m3[4]+m2[2]*m3[7]; 
@@ -623,9 +621,9 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  m1[2]:= m2[0]*m3[2]+m2[1]*m3[5]+m2[2]*m3[8]; 
 //end;
 //void{!!!e unknown token}(* m1 en m3 zijn mat4, m2 is mat3 *)
-//m1: pfloat; 
-//m2: pfloat; 
-//m3: pfloat; 
+//m1: psingle;
+//m2: psingle;
+//m3: psingle;
 //begin 
 //  m1[0]:= m2[0]*m3[0]+m2[1]*m3[4]+m2[2]*m3[8]; 
 //  m1[1]:= m2[0]*m3[1]+m2[1]*m3[5]+m2[2]*m3[9]; 
@@ -642,9 +640,9 @@ single AreaPoly3Dfl(nr, verts, normal)     (met trapezium regel)
 //  m1[2]:= m2[0]*m3[2]+m2[1]*m3[6]+m2[2]*m3[10]; 
 //end;
 //void{!!!e unknown token}(* m1 en m2 zijn mat4, m3 is mat3 *)
-//m1: pfloat; 
-//m2: pfloat; 
-//m3: pfloat; 
+//m1: psingle;
+//m2: psingle;
+//m3: psingle;
 //begin 
 //  m1[0]:= m2[0]*m3[0]+m2[1]*m3[3]+m2[2]*m3[6]; 
 //  m1[1]:= m2[0]*m3[1]+m2[1]*m3[4]+m2[2]*m3[7]; 
@@ -667,8 +665,8 @@ begin
 end;
 
 //void{!!!e unknown token}
-//m1: pfloat; 
-//m2: pfloat; 
+//m1: psingle;
+//m2: psingle;
 //begin 
 //  t: single; 
 //  i: integer; 
@@ -686,8 +684,8 @@ end;
 //Mat4Row = array [0..3] of single;
 //void{!!!e unknown token}
 //var
-//m1p: pfloat; 
-//m2p: pfloat; 
+//m1p: psingle;
+//m2p: psingle;
 //begin 
 //  m1: pMat3Row =  {pMat3Row(}m1p; 
 //  m2: pMat4Row =  {pMat4Row(}m2p; 
@@ -734,21 +732,21 @@ end;
 //  m1[2][2]:= m2[2][2]; 
 //end;
 //void{!!!e unknown token}
-//m1: pfloat; 
-//m2: pfloat; 
+//m1: psingle;
+//m2: psingle;
 //begin 
 //  bcopy(m2,m1,9*sizeof(single)); 
 //end;
 //void{!!!e unknown token}
-//answ: pfloat; 
-//m1: pfloat; 
-//m2: pfloat; 
-//m3: pfloat; 
-//m4: pfloat; 
-//m5: pfloat; 
-//m6: pfloat; 
-//m7: pfloat; 
-//m8: pfloat; 
+//answ: psingle;
+//m1: psingle;
+//m2: psingle;
+//m3: psingle;
+//m4: psingle;
+//m5: psingle;
+//m6: psingle;
+//m7: psingle;
+//m8: psingle;
 //begin 
 //  temp: array [0..2,0..2] of single;
 //  if m1=0)or(m2=0 then
@@ -786,15 +784,15 @@ end;
 //  end;
 //end;
 //void{!!!e unknown token}
-//answ: pfloat; 
-//m1: pfloat; 
-//m2: pfloat; 
-//m3: pfloat; 
-//m4: pfloat; 
-//m5: pfloat; 
-//m6: pfloat; 
-//m7: pfloat; 
-//m8: pfloat; 
+//answ: psingle;
+//m1: psingle;
+//m2: psingle;
+//m3: psingle;
+//m4: psingle;
+//m5: psingle;
+//m6: psingle;
+//m7: psingle;
+//m8: psingle;
 //begin 
 //  temp: array [0..3,0..3] of single;
 //  if m1=0)or(m2=0 then
@@ -832,12 +830,12 @@ end;
 //  end;
 //end;
 //void{!!!e unknown token}
-//m: pfloat; 
+//m: psingle;
 //begin 
 //  bzero(m,64); 
 //end;
 //void{!!!e unknown token}
-//m: pfloat; 
+//m: psingle;
 //begin 
 //  bzero(m,36); 
 //end;
@@ -878,7 +876,7 @@ end;
 //end;
 //void{!!!e unknown token}
 //mat: array [0..,0..3] of single;
-//vec: pfloat; 
+//vec: psingle;
 //begin 
 //  x: single; 
 //  y: single; 
@@ -889,9 +887,9 @@ end;
 //  vec[2]:= x*mat[0][2]+y*mat[1][2]+mat[2][2]*vec[2]+mat[3][2]; 
 //end;
 //void{!!!e unknown token}
-//in: pfloat; 
+//in: psingle;
 //mat: array [0..,0..3] of single;
-//vec: pfloat; 
+//vec: psingle;
 //begin 
 //  x: single; 
 //  y: single; 
@@ -903,7 +901,7 @@ end;
 //end;
 //void{!!!e unknown token}
 //mat: array [0..,0..3] of single;
-//vec: pfloat; 
+//vec: psingle;
 //begin 
 //  x: single; 
 //  y: single; 
@@ -915,7 +913,7 @@ end;
 //end;
 //void{!!!e unknown token}
 //mat: array [0..,0..3] of single;
-//vec: pfloat; 
+//vec: psingle;
 //begin 
 //  x: single; 
 //  y: single; 
@@ -942,7 +940,7 @@ end;
 //end;
 //void{!!!e unknown token}
 //mat: array [0..,0..2] of single;
-//vec: pfloat; 
+//vec: psingle;
 //begin 
 //  x: single; 
 //  y: single; 
@@ -966,7 +964,7 @@ end;
 //end;
 //void{!!!e unknown token}
 //mat: array [0..,0..2] of single;
-//vec: pfloat; 
+//vec: psingle;
 //begin 
 //  x: single; 
 //  y: single; 
@@ -977,7 +975,7 @@ end;
 //  vec[2]:= x*mat[2][0]+y*mat[2][1]+mat[2][2]*vec[2]; 
 //end;
 
-//procedure Mat3MulFloat(m: pfloat;  f: single); 
+//procedure Mat3MulFloat(m: psingle;  f: single);
 //var
 //i: integer; 
 //begin
@@ -987,7 +985,7 @@ end;
 //  m[i]:= m[i] * (f); 
 //end;
 
-//procedure Mat4MulFloat(m: pfloat;  f: single); 
+//procedure Mat4MulFloat(m: psingle;  f: single);
 //var
 //i: integer; 
 //begin
@@ -1011,7 +1009,7 @@ end;
 
 //void{!!!e unknown token}
 //mat: array [0..,0..2] of single;
-//vec: pfloat; 
+//vec: psingle;
 //begin 
 //  mat[0][0]:= mat[1][1]:=mat[2][2]:=0.0; 
 //  mat[0][1]:= -vec[2]; 
@@ -1027,33 +1025,21 @@ end;
 //  if mat[0][0]=1.0)and(mat[0][1]=0.0)and(mat[0][2]=0.0 then
 //  if mat[1][0]=0.0)and(mat[1][1]=1.0)and(mat[1][2]=0.0 then
 //  if mat[2][0]=0.0)and(mat[2][1]=0.0)and(mat[2][2]=1.0 then
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(1);
+//    exit(0);
 //end;
 
-//function FloatCompare(v1: pfloat;  v2: pfloat;  limit: single): integer; 
+//function FloatCompare(v1: psingle;  v2: psingle;  limit: single): integer;
 //begin
 //  if fabs(v1[0]-v2[0])<limit then
 //  begin 
 //    if fabs(v1[1]-v2[1])<limit then
 //    begin 
 //      if fabs(v1[2]-v2[2])<limit then
-//      begin
-//        result:= 1; 
-//        exit;
-//      end;
+//        exit(1);
 //    end;
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 //void{!!!e unknown token}
 //var
@@ -1077,11 +1063,13 @@ end;
 //  printf('%f %f %f\n',m[2][0],m[2][1],m[2][2]); 
 //  printf('\n'); 
 //end;
-//(* **************** QUATERNIONS ********** *)
+
+(* **************** QUATERNIONS ********** *)
+
 //void{!!!e unknown token}
-//q: pfloat; 
-//q1: pfloat; 
-//q2: pfloat; 
+//q: psingle;
+//q1: psingle;
+//q2: psingle;
 //begin 
 //  t0: single; 
 //  t1: single; 
@@ -1095,8 +1083,8 @@ end;
 //  q[2]:= t2; 
 //end;
 //void{!!!e unknown token}
-//q: pfloat; 
-//m: pfloat; 
+//q: psingle;
+//m: psingle;
 //begin 
 //  q0: single; 
 //  q1: single; 
@@ -1135,8 +1123,8 @@ end;
 //  m[8]:= 1.0-qaa-qbb; 
 //end;
 //void{!!!e unknown token}
-//q: pfloat; 
-//m: pfloat; 
+//q: psingle;
+//m: psingle;
 //begin 
 //  q0: single; 
 //  q1: single; 
@@ -1180,7 +1168,7 @@ end;
 //end;
 //void{!!!e unknown token}(* uit Sig.Proc.85 pag 253 *)
 //wmat: array [0..,0..2] of single;
-//q: pfloat; 
+//q: psingle;
 //begin 
 
 //  procedure Mat3Ortho; 
@@ -1233,7 +1221,7 @@ end;
 //end;
 //void{!!!e unknown token}
 //wmat: array [0..,0..2] of single;
-//q: pfloat; 
+//q: psingle;
 //begin 
 
 //  procedure Mat3Ortho; 
@@ -1278,15 +1266,15 @@ end;
 //  (* en zet de x-asssen gelijk *)
 //end;
 //void{!!!e unknown token}
-//m: pfloat; 
-//q: pfloat; 
+//m: psingle;
+//q: psingle;
 //begin 
 //  mat: array [0..2,0..2] of single;
 //  Mat3CpyMat4(mat[0],m); 
 //  Mat3ToQuat(mat,q); 
 //end;
 //void{!!!e unknown token}
-//q: pfloat; 
+//q: psingle;
 //begin 
 //  len: single; 
 //  len:= fsqrt(q[0]*q[0]+q[1]*q[1]+q[2]*q[2]+q[3]*q[3]); 
@@ -1306,12 +1294,12 @@ end;
 //var {was static}
 //q1: array [0..3] of single;
 
-//function vectoquat(vec: pfloat;  axis: smallint;  upflag: smallint): pfloat; 
+//function vectoquat(vec: psingle;  axis: smallint;  upflag: smallint): psingle;
 //var
 //up: array [0..2] of single;
 //q2: array [0..3] of single;
 //nor: array [0..2] of single;
-//fp: pfloat; 
+//fp: psingle;
 //mat: array [0..2,0..2] of single;
 //hoek: single; 
 //si: single; 
@@ -1431,7 +1419,7 @@ end;
 //  end;
 //end;
 
-//procedure VecUpMat3old(vec: pfloat;  mat: array [0..,0..2] of single;  axis: smallint);
+//procedure VecUpMat3old(vec: psingle;  mat: array [0..,0..2] of single;  axis: smallint);
 //var
 //inp: single; 
 //up: array [0..2] of single;
@@ -1489,16 +1477,16 @@ end;
 //  mat[coz][0]:= vec[0]; 
 //  mat[coz][1]:= vec[1]; 
 //  mat[coz][2]:= vec[2]; 
-//  Normalise( {pfloat(}mat[coz]); 
+//  Normalise( {psingle(}mat[coz]);
 //  inp:= mat[coz][0]*up[0]+mat[coz][1]*up[1]+mat[coz][2]*up[2]; 
 //  mat[coy][0]:= up[0]-inp*mat[coz][0]; 
 //  mat[coy][1]:= up[1]-inp*mat[coz][1]; 
 //  mat[coy][2]:= up[2]-inp*mat[coz][2]; 
-//  Normalise( {pfloat(}mat[coy]); 
+//  Normalise( {psingle(}mat[coy]);
 //  Crossf(mat[cox],mat[coy],mat[coz]); 
 //end;
 
-//procedure VecUpMat3(vec: pfloat;  mat: array [0..,0..2] of single;  axis: smallint);
+//procedure VecUpMat3(vec: psingle;  mat: array [0..,0..2] of single;  axis: smallint);
 //var
 //inp: single; 
 //cox: smallint; 
@@ -1553,15 +1541,17 @@ end;
 //  mat[coz][0]:= vec[0]; 
 //  mat[coz][1]:= vec[1]; 
 //  mat[coz][2]:= vec[2]; 
-//  Normalise( {pfloat(}mat[coz]); 
+//  Normalise( {psingle(}mat[coz]);
 //  inp:= mat[coz][2]; 
 //  mat[coy][0]:= -inp*mat[coz][0]; 
 //  mat[coy][1]:= -inp*mat[coz][1]; 
 //  mat[coy][2]:= 1.0-inp*mat[coz][2]; 
-//  Normalise( {pfloat(}mat[coy]); 
+//  Normalise( {psingle(}mat[coy]);
 //  Crossf(mat[cox],mat[coy],mat[coz]); 
 //end;
-//(* **************** VIEW / PROJEKTIE ********************************  *)
+
+(* **************** VIEW / PROJEKTIE ********************************  *)
+
 //void{!!!e unknown token}
 //left: single; 
 //right: single; 
@@ -1773,7 +1763,8 @@ end;
 //  i_translate(-vx,-vy,-vz,mat); 
 //end;(* translate viewpoint to origin *)
 
-//(* ************************************************  *)
+(* ************************************************  *)
+
 //void{!!!e unknown token}
 //mat: array [0..,0..2] of single;
 //begin 
@@ -1796,8 +1787,8 @@ end;
 //  mat[2][3]:= mat[2][3] div (len); 
 //end;
 //void{!!!e unknown token}
-//v1: pfloat; 
-//v2: pfloat; 
+//v1: psingle;
+//v2: psingle;
 //begin 
 //  v1[0]:= v2[0]; 
 //  v1[1]:= v2[1]; 
@@ -1819,50 +1810,47 @@ end;
 //  end;
 //end;
 
-//function VecLenf(v1: pfloat;  v2: pfloat): single; 
-//var
-//x: single; 
-//y: single; 
-//z: single; 
-//begin
+function VecLenf(v1: psingle;  v2: psingle): single;
+var
+x: single;
+y: single;
+z: single;
+begin
+  x:= v1[0]-v2[0];
+  y:= v1[1]-v2[1];
+  z:= v1[2]-v2[2];
+  exit(fsqrt(x*x+y*y+z*z));
+end;
 
-//  x:= v1[0]-v2[0]; 
-//  y:= v1[1]-v2[1]; 
-//  z:= v1[2]-v2[2]; 
-//  begin
-//    result:= fsqrt(x*x+y*y+z*z); 
-//    exit;
-//  end;
-//end;
 //void{!!!e unknown token}
-//v: pfloat; 
-//v1: pfloat; 
-//v2: pfloat; 
+//v: psingle;
+//v1: psingle;
+//v2: psingle;
 //begin 
 //  v[0]:= v1[0]+v2[0]; 
 //  v[1]:= v1[1]+v2[1]; 
 //  v[2]:= v1[2]+v2[2]; 
 //end;
 //void{!!!e unknown token}
-//v: pfloat; 
-//v1: pfloat; 
-//v2: pfloat; 
+//v: psingle;
+//v1: psingle;
+//v2: psingle;
 //begin 
 //  v[0]:= v1[0]-v2[0]; 
 //  v[1]:= v1[1]-v2[1]; 
 //  v[2]:= v1[2]-v2[2]; 
 //end;
 //void{!!!e unknown token}
-//v: pfloat; 
-//v1: pfloat; 
-//v2: pfloat; 
+//v: psingle;
+//v1: psingle;
+//v2: psingle;
 //begin 
 //  v[0]:= 0.5*(v1[0]+v2[0]); 
 //  v[1]:= 0.5*(v1[1]+v2[1]); 
 //  v[2]:= 0.5*(v1[2]+v2[2]); 
 //end;
 
-//procedure VecMulf(v1: pfloat;  f: single); 
+//procedure VecMulf(v1: psingle;  f: single);
 //begin
 //  v1[0]:= v1[0] * (f); 
 //  v1[1]:= v1[1] * (f); 
@@ -1873,7 +1861,7 @@ end;
 //v1: psmallint; 
 //v2: psmallint; 
 //v3: psmallint; 
-//n: pfloat; 
+//n: psingle;
 //begin 
 //  n1: array [0..2] of single;
 //  n2: array [0..2] of single;
@@ -1892,7 +1880,7 @@ end;
 //v1: pinteger; 
 //v2: pinteger; 
 //v3: pinteger; 
-//n: pfloat; 
+//n: psingle;
 //begin 
 //  n1: array [0..2] of single;
 //  n2: array [0..2] of single;
@@ -1908,7 +1896,7 @@ end;
 //  Normalise(n); 
 //end;
 
-//function CalcNormFloat(v1: pfloat;  v2: pfloat;  v3: pfloat;  n: pfloat): single; 
+//function CalcNormFloat(v1: psingle;  v2: psingle;  v3: psingle;  n: psingle): single;
 //var
 //n1: array [0..2] of single;
 //n2: array [0..2] of single;
@@ -1929,7 +1917,7 @@ end;
 //  end;
 //end;
 
-//function CalcNormFloat4(v1: pfloat;  v2: pfloat;  v3: pfloat;  v4: pfloat;  n: pfloat): single; 
+//function CalcNormFloat4(v1: psingle;  v2: psingle;  v3: psingle;  v4: psingle;  n: psingle): single;
 //var
 //n1: array [0..2] of single;
 //n2: array [0..2] of single;
@@ -1950,14 +1938,14 @@ end;
 //  end;
 //end;
 
-//procedure CalcCent3f(cent: pfloat;  v1: pfloat;  v2: pfloat;  v3: pfloat); 
+//procedure CalcCent3f(cent: psingle;  v1: psingle;  v2: psingle;  v3: psingle);
 //begin
 //  cent[0]:= 0.33333*(v1[0]+v2[0]+v3[0]); 
 //  cent[1]:= 0.33333*(v1[1]+v2[1]+v3[1]); 
 //  cent[2]:= 0.33333*(v1[2]+v2[2]+v3[2]); 
 //end;
 
-//procedure CalcCent4f(cent: pfloat;  v1: pfloat;  v2: pfloat;  v3: pfloat;  v4: pfloat); 
+//procedure CalcCent4f(cent: psingle;  v1: psingle;  v2: psingle;  v3: psingle;  v4: psingle);
 //begin
 //  cent[0]:= 0.25*(v1[0]+v2[0]+v3[0]+v4[0]); 
 //  cent[1]:= 0.25*(v1[1]+v2[1]+v3[1]+v4[1]); 
@@ -1967,10 +1955,7 @@ end;
 //function Sqrt3f(f: single): single; 
 //begin
 //  if f=0.0 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  if f<0 then
 //  begin
 //    result:= -fexp(flog(-f) div 3); 
@@ -1986,10 +1971,7 @@ end;
 //function Sqrt3d(d: double): double; 
 //begin
 //  if d=0.0 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  if d<0 then
 //  begin
 //    result:= -exp(log(-d) div 3); 
@@ -2001,10 +1983,11 @@ end;
 //    exit;
 //  end;
 //end;
-//(* afstand v1 tot lijn v2-v3 *)
-//(* met formule van Hesse :GEEN LIJNSTUK! *)
 
-//function DistVL2Dfl(v1: pfloat;  v2: pfloat;  v3: pfloat): single; 
+(* afstand v1 tot lijn v2-v3 *)
+(* met formule van Hesse :GEEN LIJNSTUK! *)
+
+//function DistVL2Dfl(v1: psingle;  v2: psingle;  v3: psingle): single;
 //var
 //a: array [0..1] of single;
 //deler: single; 
@@ -2014,18 +1997,16 @@ end;
 //  a[1]:= v3[0]-v2[0]; 
 //  deler:= fsqrt(a[0]*a[0]+a[1]*a[1]); 
 //  if deler=0.0 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  begin
 //    result:= fabs((v1[0]-v2[0])*a[0]+(v1[1]-v2[1])*a[1]) div deler; 
 //    exit;
 //  end;
 //end;
-//(* PointDist: WEL LIJNSTUK *)
 
-//function PdistVL2Dfl(v1: pfloat;  v2: pfloat;  v3: pfloat): single; 
+(* PointDist: WEL LIJNSTUK *)
+
+//function PdistVL2Dfl(v1: psingle;  v2: psingle;  v3: psingle): single;
 //var
 //labda: single; 
 //rc: array [0..1] of single;
@@ -2070,16 +2051,17 @@ end;
 //  end;
 //end;
 
-//function AreaF2Dfl(v1: pfloat;  v2: pfloat;  v3: pfloat): single; 
+//function AreaF2Dfl(v1: psingle;  v2: psingle;  v3: psingle): single;
 //begin
 //  begin
 //    result:= .5*fabs((v1[0]-v2[0])*(v2[1]-v3[1])+(v1[1]-v2[1])*(v3[0]-v2[0])); 
 //    exit;
 //  end;
 //end;
-//(* only convex Quadrilaterals *)
 
-//function AreaQ3Dfl(v1: pfloat;  v2: pfloat;  v3: pfloat;  v4: pfloat): single; 
+(* only convex Quadrilaterals *)
+
+//function AreaQ3Dfl(v1: psingle;  v2: psingle;  v3: psingle;  v4: psingle): single;
 //var
 //len: single; 
 //vec1: array [0..2] of single;
@@ -2100,9 +2082,10 @@ end;
 //    exit;
 //  end;
 //end;
-//(* Triangles *)
 
-//function AreaT3Dfl(v1: pfloat;  v2: pfloat;  v3: pfloat): single; 
+(* Triangles *)
+
+//function AreaT3Dfl(v1: psingle;  v2: psingle;  v3: psingle): single;
 //var
 //len: single; 
 //vec1: array [0..2] of single;
@@ -2124,15 +2107,15 @@ end;
 
 //function MAX3(x: integer; y: integer; z: integer): integer; {<= !!!6 unknown macro}
 
-//function AreaPoly3Dfl(nr: integer;  verts: pfloat;  normal: pfloat): single; 
+//function AreaPoly3Dfl(nr: integer;  verts: psingle;  normal: psingle): single;
 //var
 //x: single; 
 //y: single; 
 //z: single; 
 //area: single; 
 //max: single; 
-//cur: pfloat; 
-//prev: pfloat; 
+//cur: psingle;
+//prev: psingle;
 //a: integer; 
 //px: integer;
 
@@ -2170,9 +2153,9 @@ end;
 //  end;
 //end;
 //void{!!!e unknown token}
-//min: pfloat; 
-//max: pfloat; 
-//vec: pfloat; 
+//min: psingle;
+//max: psingle;
+//vec: psingle;
 //begin 
 //  if min[0]>vec[0] then
 //  min[0]:= vec[0]; 
@@ -2187,9 +2170,11 @@ end;
 //  if max[2]<vec[2] then
 //  max[2]:= vec[2]; 
 //end;
-//(* ************ EULER *************** *)
+
+(* ************ EULER *************** *)
+
 //void{!!!e unknown token}
-//eul: pfloat; 
+//eul: psingle;
 //mat: array [0..,0..2] of single;
 //begin 
 //  ci: single; 
@@ -2223,7 +2208,7 @@ end;
 //  mat[2][2]:= cj*ci; 
 //end;
 //void{!!!e unknown token}
-//eul: pfloat; 
+//eul: psingle;
 //mat: array [0..,0..3] of single;
 //begin 
 //  ci: single; 
@@ -2260,7 +2245,7 @@ end;
 //end;
 //void{!!!e unknown token}
 //tmat: array [0..,0..2] of single;
-//eul: pfloat; 
+//eul: psingle;
 //begin 
 //  cy: single; 
 //  quat: array [0..3] of single;
@@ -2285,7 +2270,7 @@ end;
 //end;
 //void{!!!e unknown token}
 //tmat: array [0..,0..2] of single;
-//eul: pfloat; 
+//eul: psingle;
 //begin 
 //  sin1: single; 
 //  cos1: single; 
@@ -2315,7 +2300,7 @@ end;
 //  PRINT3(f,f,f,eul[0],eul[1],eul[2]); 
 //end;
 
-//procedure QuatToEul(quat: pfloat;  eul: pfloat); 
+//procedure QuatToEul(quat: psingle;  eul: psingle);
 //var
 //mat: array [0..2,0..2] of single;
 //begin
@@ -2324,7 +2309,7 @@ end;
 //  Mat3ToEul(mat,eul); 
 //end;
 
-//procedure EulToQuat(eul: pfloat;  quat: pfloat); 
+//procedure EulToQuat(eul: psingle;  quat: psingle);
 //var
 //ti: single; 
 //tj: single; 
@@ -2360,7 +2345,7 @@ end;
 //  quat[3]:= cj*cs-sj*sc; 
 //end;
 
-//procedure VecRotToMat3(vec: pfloat;  phi: single;  mat: array [0..,0..2] of single);
+//procedure VecRotToMat3(vec: psingle;  phi: single;  mat: array [0..,0..2] of single);
 //var
 //vx: single; 
 //vx2: single; 
@@ -2391,7 +2376,7 @@ end;
 //  mat[2][2]:= vz2+co*(1.0-vz2); 
 //end;
 
-//procedure euler_rot(beul: pfloat;  ang: single;  axis: char); 
+//procedure euler_rot(beul: psingle;  ang: single;  axis: char);
 //var
 //eul: array [0..2] of single;
 //mat1: array [0..2,0..2] of single;
@@ -2413,7 +2398,7 @@ end;
 //  Mat3ToEul(totmat,beul); 
 //end;
 //void{!!!e unknown token}
-//size: pfloat; 
+//size: psingle;
 //mat: array [0..,0..2] of single;
 //begin 
 //  mat[0][0]:= size[0]; 
@@ -2428,7 +2413,7 @@ end;
 //end;
 //void{!!!e unknown token}
 //mat: array [0..,0..2] of single;
-//size: pfloat; 
+//size: psingle;
 //begin 
 //  vec: array [0..2] of single;
 //  VecCopyf(vec,mat[0]); 
@@ -2440,7 +2425,7 @@ end;
 //end;
 //void{!!!e unknown token}
 //mat: array [0..,0..3] of single;
-//size: pfloat; 
+//size: psingle;
 //begin 
 //  vec: array [0..2] of single;
 //  VecCopyf(vec,mat[0]); 
@@ -2450,12 +2435,14 @@ end;
 //  VecCopyf(vec,mat[2]); 
 //  size[2]:= Normalise(vec); 
 //end;
-//(* ************* SPECIALS ******************* *)
+
+(* ************* SPECIALS ******************* *)
+
 //void{!!!e unknown token}
-//v1: pfloat; 
-//v2: pfloat; 
-//v3: pfloat; 
-//quat: pfloat; 
+//v1: psingle;
+//v2: psingle;
+//v3: psingle;
+//quat: psingle;
 //begin 
 //  (* denkbeeldige x-as, y-as driehoek wordt geroteerd *)
 //  vec: array [0..2] of single;
@@ -2518,7 +2505,7 @@ end;
 //  c[2]:= 0; 
 //end;
 
-//procedure hsv_to_rgb(h: single;  s: single;  v: single;  r: pfloat;  g: pfloat;  b: pfloat); 
+//procedure hsv_to_rgb(h: single;  s: single;  v: single;  r: psingle;  g: psingle;  b: psingle);
 //var
 //i: integer; 
 //f: single; 
@@ -2586,7 +2573,7 @@ end;
 //  end;
 //end;
 
-//procedure rgb_to_hsv(r: single;  g: single;  b: single;  lh: pfloat;  ls: pfloat;  lv: pfloat); 
+//procedure rgb_to_hsv(r: single;  g: single;  b: single;  lh: psingle;  ls: psingle;  lv: psingle);
 //var
 //h: single; 
 //s: single; 
@@ -2638,9 +2625,10 @@ end;
 //  {*}lh^:=0.0; 
 //  {*}lv^:=v; 
 //end;
-//(* Bij afspraak is cpack een getal dat als 0xFFaa66 of zo kan worden uitgedrukt. Is dus gevoelig voor endian. 
-// * Met deze define wordt het altijd goed afgebeeld
-// *)
+
+(* Bij afspraak is cpack een getal dat als 0xFFaa66 of zo kan worden uitgedrukt. Is dus gevoelig voor endian.
+ * Met deze define wordt het altijd goed afgebeeld
+ *)
 
 //function hsv_to_cpack(h: single;  s: single;  v: single): uint; 
 //var
@@ -2695,7 +2683,7 @@ end;
 //  end;
 //end;
 
-//procedure cpack_to_rgb(col: uint;  r: pfloat;  g: pfloat;  b: pfloat); 
+//procedure cpack_to_rgb(col: uint;  r: psingle;  g: psingle;  b: psingle);
 //begin{*}r^:=((col) and $FF); 
 //  {*}r^ div =255.0; 
 //  {*}g^:=(((col) shr 8) and $FF); 
@@ -2704,8 +2692,10 @@ end;
 //  {*}b^ div =255.0; 
 //end;
 //int({*}vergfunc^); 
-//(* ************ NIEUWE QSORT ********************** *)
-//(); 
+
+(* ************ NIEUWE QSORT ********************** *)
+
+//();
 //var
 //vergsize: integer; 
 //temppivot: array [0..Pred(40)] of integer; int{!!!e unknown token}
@@ -2866,7 +2856,8 @@ end;
 //  end;
 //  qsortNN(poin,n); 
 //end;
-//(* ********** PREFAB QSORT: qsortN2(int *data, int nr) , sorteert setjes van 2 ints (bv. edges) ********* *)
+
+(* ********** PREFAB QSORT: qsortN2(int *data, int nr) , sorteert setjes van 2 ints (bv. edges) ********* *)
 
 //function VERGLONG2(e1: integer; e2: integer): integer; {<= !!!6 unknown macro}
 //int{!!!e unknown token}

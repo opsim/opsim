@@ -116,7 +116,7 @@ begin
   end;
 end;
 
-//procedure tekenrect9(vec: pfloat;  rect: puint); 
+//procedure tekenrect9(vec: psingle;  rect: puint);
 //var
 //dummy: char = #0;
 //begin
@@ -129,7 +129,7 @@ end;
 //  end;
 //end;
 
-//procedure tekenrect4(vec: pfloat;  rect: puint); 
+//procedure tekenrect4(vec: psingle;  rect: puint);
 //var
 //  dummy: char = #0;
 //begin
@@ -142,7 +142,7 @@ end;
 //  end;
 //end;
 
-//procedure tekenrect3(vec: pfloat;  rect: puint); 
+//procedure tekenrect3(vec: psingle;  rect: puint);
 //var
 //dummy: char;
 
@@ -157,7 +157,7 @@ end;
 //  end;
 //end;
 
-//procedure helpline(vec: pfloat); 
+//procedure helpline(vec: psingle);
 //var
 //vecrot: array [0..2] of single;
 //mval: array [0..1] of smallint;
@@ -333,7 +333,7 @@ end;
 //  glEnd(); 
 //end;
 
-//procedure drawcube_size(size: pfloat); 
+//procedure drawcube_size(size: psingle);
 //begin
 //  glPushMatrix(); 
 
@@ -403,8 +403,8 @@ end;
 //end;
 
 //void{!!!e unknown token}
-//lvec: pfloat; 
-//vvec: pfloat; 
+//lvec: psingle;
+//vvec: psingle;
 //inp: single;
 //begin 
 //  (* camera staat op 0,0,0 *)
@@ -418,7 +418,7 @@ end;
 //  co: single;
 //  si: single;
 //  hoek: single;
-//  rt: pfloat; 
+//  rt: psingle;
 //  Normalise(lvec); 
 //  Normalise(vvec); 
 //  Crossf(temp,vvec,lvec); 
@@ -579,7 +579,7 @@ end;
 //  begin 
 //    tekenshadbuflimits(la,ob.obmat); 
 //  end;
-//end;
+//end;
 
 //procedure draw_limit_line(sta: single;  end: single;  col: cardinal);
 //var
@@ -826,7 +826,7 @@ end;
 
 //procedure calc_lattverts_ext; 
 //begin
-//  areawinset(curarea.win); 
+//  areawinset(curarea^.win);
 
 //  multmatrix(G.obedit.obmat); 
 //  calc_lattverts(); 
@@ -1008,7 +1008,7 @@ end;
 
 //procedure calc_meshverts_ext; 
 //begin
-//  areawinset(curarea.win); 
+//  areawinset(curarea^.win);
 
 //  multmatrix(G.obedit.obmat); 
 //  calc_meshverts(); 
@@ -1065,7 +1065,7 @@ end;
 
 //procedure calc_nurbverts_ext; 
 //begin
-//  areawinset(curarea.win); 
+//  areawinset(curarea^.win);
 
 //  multmatrix(G.obedit.obmat); 
 //  calc_Nurbverts(editNurb.first); 
@@ -1121,12 +1121,12 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa.spacetype=SPACE_VIEW3D then
+//    if sa^.spacetype=SPACE_VIEW3D then
 //    begin 
-//      vd:= sa.spacedata.first; 
+//      vd:= sa^.spacedata.first;
 //      if G.obedit.lay and vd.lay then
 //      begin 
-//        areawinset(sa.win); 
+//        areawinset(sa^.win);
 //        multmatrix(G.obedit.obmat); 
 //        calc_meshverts(); 
 
@@ -1134,14 +1134,14 @@ end;
 //        tekenvertices(0); 
 //        if mode=1)or(mode=2 then
 //        tekenvertices(1); 
-//        sa.win_swap:= WIN_FRONT_OK; 
+//        sa^.win_swap:= WIN_FRONT_OK;
 //        loadmatrix(G.vd.viewmat); 
 //      end;
 //    end;
-//    sa:= sa.next; 
+//    sa:= sa^.next;
 //  end;
 //  if curarea<>tempsa then
-//  areawinset(tempsa.win); 
+//  areawinset(tempsa^.win);
 //  glDrawBuffer(GL_BACK); 
 //  if G.zbuf<>0 then
 //  glEnable(GL_DEPTH_TEST); 
@@ -1165,11 +1165,11 @@ end;
 //a: integer; 
 //b: integer; 
 //index: pinteger; 
-//data: pfloat; 
-//v1: pfloat; 
-//v2: pfloat; 
-//v3: pfloat; 
-//v4: pfloat; 
+//data: psingle;
+//v1: psingle;
+//v2: psingle;
+//v3: psingle;
+//v4: psingle;
 //side: single;
 //begin
 
@@ -1324,17 +1324,17 @@ end;
 //a: integer; 
 //b: integer; 
 //index: pinteger; 
-//data: pfloat; 
-//v1: pfloat; 
-//v2: pfloat; 
-//v3: pfloat; 
-//v4: pfloat; 
+//data: psingle;
+//v1: psingle;
+//v2: psingle;
+//v3: psingle;
+//v4: psingle;
 //side: single;
-//ndata: pfloat; 
-//n1: pfloat; 
-//n2: pfloat; 
-//n3: pfloat; 
-//n4: pfloat; 
+//ndata: psingle;
+//n1: psingle;
+//n2: psingle;
+//n3: psingle;
+//n4: psingle;
 //col: array [0..2] of smallint;
 //cp: pchar; 
 //begin
@@ -1579,13 +1579,13 @@ end;
 //a: integer; 
 //b: integer; 
 //index: pinteger; 
-//data: pfloat; 
-//v1: pfloat; 
-//v2: pfloat; 
-//v3: pfloat; 
-//v4: pfloat; 
+//data: psingle;
+//v1: psingle;
+//v2: psingle;
+//v3: psingle;
+//v4: psingle;
 //side: single;
-//extverts: pfloat;
+//extverts: psingle;
 
 //cdata: puint; 
 //c1: puint; 
@@ -1723,7 +1723,7 @@ end;
 //  glShadeModel(GL_FLAT); 
 //end;
 
-//procedure drawmeshsolid(ob: pObject;  nors: pfloat); 
+//procedure drawmeshsolid(ob: pObject;  nors: psingle);
 //var
 //me: pMesh; 
 //dl: pDispList; 
@@ -1731,12 +1731,12 @@ end;
 //tface: pTFace; 
 //mface: pMFace; 
 //evl: pEditVlak; 
-//extverts: pfloat;
+//extverts: psingle;
 
-//v1: pfloat; 
-//v2: pfloat; 
-//v3: pfloat; 
-//v4: pfloat; 
+//v1: psingle;
+//v2: psingle;
+//v3: psingle;
+//v4: psingle;
 //glmode: integer; 
 //setsmooth: integer;
 
@@ -2047,12 +2047,12 @@ end;
 //mface: pMFace; 
 //tface: pTFace; 
 //dl: pDispList; 
-//extverts: pfloat;
+//extverts: psingle;
 
-//v1: pfloat; 
-//v2: pfloat; 
-//v3: pfloat; 
-//v4: pfloat; 
+//v1: psingle;
+//v2: psingle;
+//v3: psingle;
+//v4: psingle;
 //a: integer; 
 //start: integer; 
 //end: integer; 
@@ -2508,11 +2508,11 @@ end;
 //evl: pEditVlak; 
 //fvec: array [0..2] of single;
 //cent: array [0..2] of single;
-//f1: pfloat; 
-//f2: pfloat; 
-//f3: pfloat; 
-//f4: pfloat; 
-//extverts: pfloat;
+//f1: psingle;
+//f2: psingle;
+//f3: psingle;
+//f4: psingle;
+//extverts: psingle;
 
 //a: integer; 
 //start: integer; 
@@ -2962,7 +2962,7 @@ end;
 //sel: smallint; 
 //begin 
 //  bezt: pBezTriple; 
-//  fp: pfloat; 
+//  fp: psingle;
 //  col: puint; 
 //  a: integer; 
 //  if nu.hide<>0 then
@@ -3243,8 +3243,8 @@ end;
 //bl: pBevList; 
 //vec: array [0..2] of single;
 //seg: array [0..Pred(12)] of single;
-//fp: pfloat; 
-//data: pfloat; 
+//fp: psingle;
+//data: psingle;
 //a: integer; 
 //b: integer; 
 //ofs: integer; 
@@ -3349,7 +3349,7 @@ end;
 //  glEnd(); 
 //end;
 
-//procedure drawcircball(cent: pfloat;  rad: single;  tmat: array [0..,0..3] of single);
+//procedure drawcircball(cent: psingle;  rad: single;  tmat: array [0..,0..3] of single);
 //var
 //si: single;
 //co: single;
@@ -3443,7 +3443,7 @@ end;
 //me: pMesh; 
 //bb: pBoundBox;
 
-//vec: pfloat; 
+//vec: psingle;
 //begin
 
 //  bb:=0; 
@@ -3522,7 +3522,7 @@ end;
 //  glVertex3fv(vec+9); 
 //  glVertex3fv(vec+21); 
 //  glEnd(); 
-//end;
+//end;
 
 //procedure drawtexspace(ob: pObject); 
 //var
@@ -3530,9 +3530,9 @@ end;
 //mb: pMetaBall; 
 //cu: pCurve; 
 //bb: BoundBox; 
-//vec: pfloat; 
-//loc: pfloat; 
-//size: pfloat; 
+//vec: psingle;
+//loc: psingle;
+//size: psingle;
 //begin
 
 //  if ob.type=OB_MESH then
@@ -3596,7 +3596,7 @@ end;
 //  glVertex3fv(vec+21); 
 //  glEnd(); 
 //  setlinestyle(0); 
-//end;
+//end;
 
 //var {was static}
 //warning_recursive: integer;
@@ -4119,37 +4119,37 @@ end;
 //  while sa
 //  do
 //  begin 
-//    if sa.spacetype=SPACE_VIEW3D then
+//    if sa^.spacetype=SPACE_VIEW3D then
 //    begin 
 //      (* er wordt beperkt in beide buffers getekend: selectbuffer! *)
-//      vd:= sa.spacedata.first; 
+//      vd:= sa^.spacedata.first;
 //      if base.lay and vd.lay then
 //      begin 
 
-//        areawinset(sa.win); 
+//        areawinset(sa^.win);
 
 //        {$if defined(BEOS) or defined(WINDOWS) or defined(PPC) or defined(MESA31)}
 //        glDrawBuffer(GL_FRONT); 
 
 //        draw_object(base); 
-//        sa.win_swap:= WIN_FRONT_OK; 
+//        sa^.win_swap:= WIN_FRONT_OK;
 //        {$else}
 
-//        if sa.win_swap=WIN_EQUAL then
+//        if sa^.win_swap=WIN_EQUAL then
 //        glDrawBuffer(GL_FRONT_AND_BACK); 
 //        else
 //        begin 
 //          glDrawBuffer(GL_FRONT); 
-//          sa.win_swap:= WIN_FRONT_OK; 
+//          sa^.win_swap:= WIN_FRONT_OK;
 //        end;
 //        draw_object(base); 
 //        {$endif}
 //      end;
 //    end;
-//    sa:= sa.next; 
+//    sa:= sa^.next;
 //  end;
 //  if curarea<>tempsa then
-//  areawinset(tempsa.win); 
+//  areawinset(tempsa^.win);
 //  G.f:= G.f and ( not G_DRAW_EXT); 
 //  glDrawBuffer(GL_BACK); 
 

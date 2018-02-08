@@ -138,7 +138,7 @@ end;
 //  free_effects(@ob.effect); 
 //  freelistN(@ob.network); 
 //  freedisplist(@ob.disp); 
-//  temp:= G.main.object.first; (* alle objecten aflopen: parentflags *)
+//  temp:= G.main^.object.first; (* alle objecten aflopen: parentflags *)
 //  (* tevens portals *)
 //  while temp
 //  do
@@ -171,7 +171,7 @@ end;
 //  free_scriptlink(@ob.scriptlink); 
 //  (* materialen *)
 //  (* bevels *)
-//  sce:= G.main.scene.first; (* camera's *)
+//  sce:= G.main^.scene.first; (* camera's *)
 //  while sce
 //  do
 //  begin 
@@ -179,7 +179,7 @@ end;
 //    sce.camera:= 0; 
 //    sce:= sce.id.next; 
 //  end;
-//  sc:= G.main.screen.first; (* keys *)
+//  sc:= G.main^.screen.first; (* keys *)
 //  (* screens *)
 //  while sc
 //  do
@@ -188,7 +188,7 @@ end;
 //    while sa
 //    do
 //    begin 
-//      vd:= sa.spacedata.first; 
+//      vd:= sa^.spacedata.first; 
 //      while vd
 //      do
 //      begin 
@@ -203,7 +203,7 @@ end;
 //        end;
 //        vd:= vd.next; 
 //      end;
-//      sa:= sa.next; 
+//      sa:= sa^.next; 
 //    end;
 //    sc:= sc.id.next; 
 //  end;
@@ -231,7 +231,7 @@ end;
 //next: pNetLink; 
 //begin
 
-//  obt:= G.main.object.first; 
+//  obt:= G.main^.object.first;
 //  while obt
 //  do
 //  begin 
@@ -293,7 +293,7 @@ end;
 //    end;
 //    obt:= obt.id.next; 
 //  end;
-//  mat:= G.main.mat.first; (* materialen *)
+//  mat:= G.main^.mat.first; (* materialen *)
 //  while mat
 //  do
 //  begin 
@@ -309,7 +309,7 @@ end;
 //    mat:= mat.id.next; 
 
 //  end;
-//  tex:= G.main.tex.first; (* textures *)
+//  tex:= G.main^.tex.first; (* textures *)
 //  while tex
 //  do
 //  begin 
@@ -327,7 +327,7 @@ end;
 //    if obt<>0 then
 //    freedisplist(@obt.disp); 
 //  end;
-//  wrld:= G.main.world.first; (* worlds *)
+//  wrld:= G.main^.world.first; (* worlds *)
 //  while wrld
 //  do
 //  begin 
@@ -342,7 +342,7 @@ end;
 //    end;
 //    wrld:= wrld.id.next; 
 //  end;
-//  sce:= G.main.scene.first; (* scene's *)
+//  sce:= G.main^.scene.first; (* scene's *)
 //  while sce
 //  do
 //  begin 
@@ -353,7 +353,7 @@ end;
 //    end;
 //    sce:= sce.id.next; 
 //  end;
-//  sc:= G.main.screen.first; (* keys *)
+//  sc:= G.main^.screen.first; (* keys *)
 //  (* screens *)
 //  while sc
 //  do
@@ -364,7 +364,7 @@ end;
 //      while sa
 //      do
 //      begin 
-//        vd:= sa.spacedata.first; 
+//        vd:= sa^.spacedata.first; 
 //        while vd
 //        do
 //        begin 
@@ -385,33 +385,27 @@ end;
 //          end;
 //          vd:= vd.next; 
 //        end;
-//        sa:= sa.next; 
+//        sa:= sa^.next; 
 //      end;
 //    end;
 //    sc:= sc.id.next; 
 //  end;
-//end;
+//end;
 
 //function exist_object(obtest: pObject): integer; 
 //var
 //ob: pObject; 
 //begin
 
-//  ob:= G.main.object.first; 
+//  ob:= G.main^.object.first;
 //  while ob
 //  do
 //  begin 
 //    if ob=obtest then
-//    begin
-//      result:= 1; 
-//      exit;
-//    end;
+//      exit(1);
 //    ob:= ob.id.next; 
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //procedure add_camera; 
@@ -419,7 +413,7 @@ end;
 //cam: pCamera; 
 //begin
 
-//  cam:= alloc_libblock(@G.main.camera,ID_CA,'Camera'); 
+//  cam:= alloc_libblock(@G.main^.camera,ID_CA,'Camera');
 //  cam.lens:= 35.0; 
 //  cam.clipsta:= 0.1; 
 //  cam.clipend:= 100.0; 
@@ -475,7 +469,7 @@ end;
 //    new_id(0,{!!!a type cast? =>} {pID(}cam,0); 
 //    exit;
 //  end;
-//  ob:= G.main.object.first; 
+//  ob:= G.main^.object.first;
 //  while ob
 //  do
 //  begin 
@@ -499,7 +493,7 @@ end;
 //  begin 
 //    camn:= copy_camera(cam); 
 //    camn.id.us:= 0; 
-//    ob:= G.main.object.first; 
+//    ob:= G.main^.object.first;
 //    while ob
 //    do
 //    begin 
@@ -522,7 +516,7 @@ end;
 //la: pLamp; 
 //begin
 
-//  la:= alloc_libblock(@G.main.lamp,ID_LA,'Lamp'); 
+//  la:= alloc_libblock(@G.main^.lamp,ID_LA,'Lamp');
 //  la.r:= la.g:=la.b:=1.0; 
 //  la.haint:= la.energy:=1.0; 
 //  la.dist:= 20.0*G.vd.grid; 
@@ -596,7 +590,7 @@ end;
 //    new_id(0,{!!!a type cast? =>} {pID(}la,0); 
 //    exit;
 //  end;
-//  ob:= G.main.object.first; 
+//  ob:= G.main^.object.first;
 //  while ob
 //  do
 //  begin 
@@ -620,7 +614,7 @@ end;
 //  begin 
 //    lan:= copy_lamp(la); 
 //    lan.id.us:= 0; 
-//    ob:= G.main.object.first; 
+//    ob:= G.main^.object.first;
 //    while ob
 //    do
 //    begin 
@@ -665,10 +659,7 @@ end;
 
 //procedure add_wave; 
 //begin
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //(* **************** VOORKEUR NAMEN ************** *)
@@ -717,7 +708,7 @@ end;
 //      n_camera:= ob.id.name+2; 
 //    end;
 
-//  end;{case?}
+//  end;
 //end;
 
 //procedure clear_obact_names; 
@@ -734,7 +725,7 @@ end;
 //var
 //ob: pObject; 
 //base: pBase; 
-//curs: pfloat; 
+//curs: psingle;
 //name: array [0..Pred(32)] of char; 
 //begin
 
@@ -818,8 +809,8 @@ end;
 //    begin
 //      strcpy(name,'Empty'); 
 //    end;
-//  end;{case?}
-//  ob:= alloc_libblock(@G.main.object,ID_OB,name); 
+//  end;
+//  ob:= alloc_libblock(@G.main^.object,ID_OB,name);
 //  ob.type:= type; 
 //  curs:= give_cursor(); 
 //  VECCOPY(ob.loc,curs); 
@@ -911,7 +902,7 @@ end;
 //      ob.data:= add_wave(); 
 //    end;
 
-//  end;{case?}
+//  end;
 //  (* aan de scene hangen *)
 //  base:= callocN(sizeof(Base),'add_base'); 
 //  addhead(@G.scene.base,base); 
@@ -1020,7 +1011,7 @@ end;
 
 //  else
 //  begin 
-//    sce:= G.main.scene.first; 
+//    sce:= G.main^.scene.first;
 //    while sce
 //    do
 //    begin 
@@ -1051,7 +1042,7 @@ end;
 //    begin 
 //      obn:= copy_object(ob); 
 //      obn.id.us:= 0; 
-//      sce:= G.main.scene.first; 
+//      sce:= G.main^.scene.first;
 //      while sce
 //      do
 //      begin 
@@ -1182,7 +1173,7 @@ end;
 //q: array [0..Pred(4)] of float; 
 //vec: array [0..Pred(4)] of float; 
 //dir: array [0..Pred(3)] of float; 
-//quat: pfloat; 
+//quat: psingle;
 //x1: float; 
 //ctime: float; 
 //begin
@@ -1263,7 +1254,7 @@ end;
 //  mat[3][1]:= li.eff[1]; 
 //end;
 
-//procedure give_parvert(par: pObject;  nr: integer;  vec: pfloat); 
+//procedure give_parvert(par: pObject;  nr: integer;  vec: psingle);
 //var
 //me: pMesh; 
 //mvert: pMVert; 
@@ -1273,7 +1264,7 @@ end;
 //bp: pBPoint; 
 //dl: pDispList; 
 //bezt: pBezTriple; 
-//fp: pfloat; 
+//fp: psingle;
 //a: integer; 
 //count: integer; 
 //begin
@@ -1390,7 +1381,7 @@ end;
 //  end;
 //  else
 //  exit;
-//end;
+//end;
 
 //procedure ob_parvert3(ob: pObject;  par: pObject;  mat: array [0..,0..Pred(4)] of float); 
 //var
@@ -1428,7 +1419,7 @@ end;
 //      VecMulf(mat[3],0.3333333); 
 //    end;
 //  end
-//end;
+//end;
 
 //var
 //no_parent_ipo: integer = 0; 
@@ -1465,8 +1456,8 @@ end;
 //procedure where_is_object_time(ob: pObject;  ctime: float); 
 //var
 //par: pObject; 
-//fp1: pfloat; 
-//fp2: pfloat; 
+//fp1: psingle;
+//fp2: psingle;
 //tmat: array [0..Pred(4),0..Pred(4)] of float; 
 //obmat: array [0..Pred(4),0..Pred(4)] of float; 
 //totmat: array [0..Pred(4),0..Pred(4)] of float; 
@@ -1482,7 +1473,7 @@ end;
 //(* hij is sneller, maar moet wel de timeoffs in de gaten houden *)
 //ika: pIka;
 
-//quat: pfloat; 
+//quat: psingle;
 //begin
 
 //  if ob=0 then
@@ -1563,7 +1554,7 @@ end;
 //        Mat4One(totmat); 
 //      end;
 
-//    end;{case?}
+//    end;
 //    (* totaal *)
 //    Mat4MulSerie(tmat,totmat,ob.parentinv,0); 
 //    Mat4MulSerie(ob.obmat,tmat,obmat,0); 
@@ -1650,8 +1641,8 @@ end;
 //var
 //par: pObject; 
 //ipo: pIpo; 
-//fp1: pfloat; 
-//fp2: pfloat; 
+//fp1: psingle;
+//fp2: psingle;
 //tmat: array [0..Pred(4),0..Pred(4)] of float; 
 //obmat: array [0..Pred(4),0..Pred(4)] of float; 
 //totmat: array [0..Pred(4),0..Pred(4)] of float; 
@@ -1716,7 +1707,7 @@ end;
 //        Mat4One(totmat); 
 //      end;
 
-//    end;{case?}
+//    end;
 //    (* totaal *)
 //    Mat4MulSerie(tmat,totmat,ob.parentinv,0); 
 //    Mat4MulSerie(ob.obmat,tmat,obmat,0); 
@@ -1813,7 +1804,7 @@ end;
 //  end;
 //end;
 
-//procedure minmax_object(ob: pObject;  min: pfloat;  max: pfloat); 
+//procedure minmax_object(ob: pObject;  min: psingle;  max: psingle);
 //var
 //bb: BoundBox; 
 //me: pMesh; 
@@ -1873,7 +1864,7 @@ end;
 //      DO_MINMAX(vec,min,max); 
 //    end;
 
-//  end;{case?}
+//  end;
 //end;
 
 end.

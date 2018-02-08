@@ -154,10 +154,7 @@ uses
 //  if tface=0 then
 //  begin 
 //    if lasttface=0 then
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //    lasttface:= 0; 
 //    curtile:= 0; 
 //    curpage:= 0; 
@@ -171,10 +168,7 @@ uses
 //    alphamode:= -1; 
 //    glDisable(GL_BLEND); 
 //    glDisable(GL_TEXTURE_2D); 
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //  lasttface:= tface; 
 //  if alphamode<>tface.transp then
@@ -230,10 +224,7 @@ uses
 //    curtile:= tface.tile; 
 //    curpage:= 0; 
 //    curmode:= tilemode; 
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 
 //  if ima.ibuf=0 then
@@ -250,10 +241,7 @@ uses
 //      curmode:= tilemode; 
 //      glDisable(GL_TEXTURE_2D); 
 
-//      begin
-//        result:= 0; 
-//        exit;
-//      end;
+//        exit(0);
 //    end;
 //  end;
 
@@ -271,7 +259,7 @@ uses
 //    bind:= ima.repbind+curtile; 
 //    else
 //    bind:= @ima.bindcode; 
-//    if {*}bind^=0 then
+//    if bind^=0 then
 //    begin 
 //      texwindx:= ima.ibuf.x div ima.xrep; 
 //      texwindy:= ima.ibuf.y div ima.yrep; 
@@ -289,7 +277,7 @@ uses
 //  else
 //  begin 
 //    bind:= @ima.bindcode; 
-//    if {*}bind^=0 then
+//    if bind^=0 then
 //    begin 
 //      tpx:= ima.ibuf.x; 
 //      tpy:= ima.ibuf.y; 
@@ -297,7 +285,7 @@ uses
 //    end;
 //  end;
 
-//  if {*}bind^=0 then
+//  if bind^=0 then
 //  begin 
 //    glGenTextures(1,bind); 
 //    if (G.f and G_DEBUG) <> 0 then
@@ -326,13 +314,10 @@ uses
 //  curpage:= ima; 
 //  curmode:= tilemode; 
 
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //end;
 
-//procedure get_co_portal(se: pSector;  type: integer;  ofs: pfloat;  cent: pfloat); 
+//procedure get_co_portal(se: pSector;  type: integer;  ofs: psingle;  cent: psingle);
 //begin
 //  cent[0]:= cent[1]:=cent[2]:=0.0; 
 //  if type=PO_XPOS)or(type=PO_XNEG then
@@ -464,10 +449,10 @@ uses
 //var
 //tface: pTFace; 
 //mface: pMFace; 
-//v1: pfloat; 
-//v2: pfloat; 
-//v3: pfloat; 
-//v4: pfloat; 
+//v1: psingle;
+//v2: psingle;
+//v3: psingle;
+//v4: psingle;
 //a: integer; 
 //begin
 
@@ -519,10 +504,10 @@ uses
 //var
 //mface: pMFace; 
 //tface: pTFace; 
-//v1: pfloat; 
-//v2: pfloat; 
-//v3: pfloat; 
-//v4: pfloat; 
+//v1: psingle;
+//v2: psingle;
+//v3: psingle;
+//v4: psingle;
 //a: integer; 
 //begin
 
@@ -662,7 +647,7 @@ uses
 
 //need_init: integer;
 
-//function do_realtimelight(ob: pObject;  tface: pTFace;  col: pfloat): integer; 
+//function do_realtimelight(ob: pObject;  tface: pTFace;  col: psingle): integer;
 //var
 //la: pLamp; 
 //lf: pLife; 
@@ -680,10 +665,7 @@ uses
 //  need_init:=0; 
 
 //  if G.vd=0 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  if G.vd.localvd<>0 then
 //  lay:= G.vd.localvd.lay; 
 //  else
@@ -691,10 +673,7 @@ uses
 //  if ob=0 then
 //  begin 
 //    need_init:= 1; 
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //  if ob)and(need_init then
 //  begin 
@@ -731,15 +710,9 @@ uses
 //    need_init:= 0; 
 //  end;
 //  if totlamp=0 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  if G.f and G_VERTEXPAINT then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  if tface=0 then
 //  begin 
 //    (* init matrices *)
@@ -770,11 +743,8 @@ uses
 //    end;
 //  end;
 //  if curlamp=0 then
-//  begin
-//    result:= 0; 
-//    exit;
+//    exit(0);;
 //    (* voorlopig (even) alleen solid *)
-//  end;
 //  bzero(col,48); 
 //  cp:= {!!!a type cast? =>} {pchar(}tface.col; 
 //  a:= curlamp; 
@@ -843,11 +813,8 @@ uses
 //      end;
 //    end;
 //  end;
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
-//end;
+//    exit(1);
+//end;
 
 //type
 //tra_ob = record
@@ -885,10 +852,10 @@ uses
 //mface: pMFace; 
 //mvert: pMVert; 
 //ima: pImage; 
-//v1: pfloat; 
-//v2: pfloat; 
-//v3: pfloat; 
-//v4: pfloat; 
+//v1: psingle;
+//v2: psingle;
+//v3: psingle;
+//v4: psingle;
 //col: array [0..3,0..2] of single; 
 //coli: array [0..3] of single; 
 //obcol: uint; 
@@ -1271,10 +1238,10 @@ uses
 //mface: pMFace; 
 //mvert: pMVert; 
 //ima: pImage; 
-//v1: pfloat; 
-//v2: pfloat; 
-//v3: pfloat; 
-//v4: pfloat; 
+//v1: psingle;
+//v2: psingle;
+//v3: psingle;
+//v4: psingle;
 //col: array [0..3,0..2] of single; 
 //coli: array [0..3] of single; 
 //obcol: uint; 

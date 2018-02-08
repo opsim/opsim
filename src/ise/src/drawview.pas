@@ -1537,7 +1537,7 @@ end;
 //  G.vd.flag:= G.vd.flag or (V3D_NEEDBACKBUFDRAW); 
 //  addafterqueue(curarea.win,BACKBUFDRAW,1); 
 //  {$endif}
-//end;
+//end;
 
 //procedure drawview3d_render; 
 //var
@@ -1585,7 +1585,7 @@ end;
 //  do_all_keys(); 
 //  do_all_ikas(); 
 //  test_all_displists(); 
-//  ob:= G.main.object.first; 
+//  ob:= G.main^.object.first;
 //  (* niet erg nette calc_ipo en where_is forceer *)
 //  while ob
 //  do
@@ -1701,7 +1701,7 @@ end;
 //  glReadPixels(0,0,R.rectx,R.recty,GL_RGBA,GL_UNSIGNED_BYTE,R.rectot); 
 //  ortho2(-0.5,{!!!a type cast? =>} {single(}R.winx-0.5,-0.5,{!!!a type cast? =>} {single(}R.winy-0.5);
 //  glLoadIdentity(); 
-//end;
+//end;
 
 //var
 //tottime: double = 0.0; 
@@ -1926,10 +1926,7 @@ end;
 //  if EFRA=0 then
 //  EFRA:= 250; 
 //  if SFRA>EFRA then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  update_time(); 
 //  tottime:= 0.0; 
 //  swaptime:= speed_to_swaptime(G.animspeed); 
@@ -2047,15 +2044,9 @@ end;
 //waitcursor(0); 
 //G.f:= G.f and ( not G_PLAYANIM); 
 //if event=ESCKEY)or(event=SPACEKEY then
-//begin
-//  result:= 1; 
-//  exit;
-//end;
+//  exit(1);
 //else
-//begin
-//  result:= 0; 
-//  exit;
-//end;
+//  exit(0);
 //end;
 
 end.

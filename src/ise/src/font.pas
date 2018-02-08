@@ -113,18 +113,11 @@ end;
 //begin
 
 //  if fnt=0 then
-//  begin
-//    result:= (0); 
-//    exit;
-
-//  end;
+//    exit(0);
 //  if fnt.type<>SP_TYPE then
 //  begin 
 //    printf('objfnt is wrong type: need splines\n');
-//    begin
-//      result:= (0); 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //  scale:= 10.0 div {!!!a type cast? =>} {float(}fnt.scale; 
 //  vfd:= vfont.data; (* na IRIX 6.2, schaal klopte niet meer *)
@@ -323,7 +316,7 @@ begin
   //  strcpy(di,name);
   //  splitdirstring(di,fi);
 
-  //  vfont:= alloc_libblock(@G.main.vfont,ID_VF,fi);
+  //  vfont:= alloc_libblock(@G.main^.vfont,ID_VF,fi);
   //  vfont.data:= callocN(sizeof(VFontData),'Vfontdata');
 
   //  ok:= objfnt_to_vfont(fnt,vfont);
@@ -336,7 +329,7 @@ begin
   //  end
   //  else
   //  begin
-  //    free_libblock_us(@G.main.vfont,vfont);
+  //    free_libblock_us(@G.main^.vfont,vfont);
   //  end;
   //end;
   waitcursor(0);
@@ -395,7 +388,7 @@ end;
 //bezt2: pBezTriple; 
 //nu1: pNurb; 
 //nu2: pNurb; 
-//fp: pfloat; 
+//fp: psingle;
 //fsize: float; 
 //shear: float; 
 //x: float; 
@@ -513,15 +506,15 @@ end;
 //si: float; 
 //co: float; 
 //sizefac: float; 
-//f: pfloat; 
+//f: psingle;
 //maxlen: float = 0; 
 //xof: float; 
 //yof: float; 
 //xtrax: float; 
 //linedist: float; 
-//ld: pfloat; 
-//linedata: pfloat; 
-//linedata2: pfloat; 
+//ld: psingle;
+//linedata: psingle;
+//linedata2: psingle;
 //len: integer; 
 //i: integer; 
 //slen: integer; 
@@ -537,26 +530,15 @@ end;
 //    de cursor op die plek moet kunnen staan *)
 
 //if ob.type<>OB_FONT then
-//begin
-//  result:= 0; 
-//  exit;
-
-//end;
+//  exit(0);
 //cu:= ob.data; 
 //vfont:= cu.vfont; 
 //if vfont=0 then
-//begin
-//  result:= 0; 
-//  exit;
-//end;
+//  exit(0);
 //if cu.str=0 then
-//begin
-//  result:= 0; 
-//  exit;
-
+//  exit(0);
 //  (* aantal regels tellen *)
-//end;
-//mem:= cu.str; 
+//mem:= cu.str;
 //slen:= lstrlen(mem); 
 //cu.lines:= 1; 
 //while{for} 
@@ -860,10 +842,7 @@ end;
 //end;
 //freeN(chartransdata); 
 
-//begin
-//  result:= 0; 
-//  exit;
-//end;
+//  exit(0);
 //end;{case?}
 
 //(* ***************** DUPLI  ***************** *)
@@ -880,7 +859,7 @@ end;
 //    exit;
 //  end;
 //  flen:= lstrlen(family); 
-//  ob:= G.main.object.first; 
+//  ob:= G.main^.object.first;
 //  while ob
 //  do
 //  begin 
@@ -913,7 +892,7 @@ end;
 //fsize: float; 
 //xof: float; 
 //yof: float; 
-//q2: pfloat; 
+//q2: psingle;
 //lay: integer; 
 //slen: integer; 
 //a: integer; 

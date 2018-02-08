@@ -43,10 +43,7 @@ uses
 
 //function fnmatch: integer;
 //begin
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 {$ifdef MIPS1}
 
@@ -149,15 +146,9 @@ var
 //    *)
 //  end;
 //  if entry1.s.st_mtime<entry2.s.st_mtime then
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //  if entry1.s.st_mtime>entry2.s.st_mtime then
-//  begin
-//    result:= -1; 
-//    exit;
-//  end;
+//    exit(-1);
 //  else
 //  begin
 //    result:= strcasecmp(entry1.relname,entry2.relname); 
@@ -212,15 +203,9 @@ var
 
 //  end;
 //  if entry1.s.st_size<entry2.s.st_size then
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //  if entry1.s.st_size>entry2.s.st_size then
-//  begin
-//    result:= -1; 
-//    exit;
-//  end;
+//    exit(-1);
 //  else
 //  begin
 //    result:= strcasecmp(entry1.relname,entry2.relname); 
@@ -266,14 +251,14 @@ var
 //  end;
 //end;
 
-//procedure filesel_statistics(sfile: pSpaceFile;  totfile: pinteger;  selfile: pinteger;  totlen: pfloat;  sellen: pfloat); 
+//procedure filesel_statistics(sfile: pSpaceFile;  totfile: pinteger;  selfile: pinteger;  totlen: psingle;  sellen: psingle);
 //var
 //a: integer; 
 //len: integer; 
 //begin
 
-//  {*}totfile^:=*selfile:=0; 
-//  {*}totlen^:=*sellen:=0; 
+//  totfile^:=*selfile:=0;
+//  totlen^:=*sellen:=0;
 //  if sfile^.filelist=0 then
 //  exit;
 //  for{while} a:=0 to Pred(sfile^.totfile) { a++}
@@ -369,11 +354,11 @@ var
 
 //procedure char_switch(string: pchar;  from: char;  to: char); 
 //begin
-//  while {*}string^<>0
+//  while string^<>0
 //  do
 //  begin 
-//    if {*}string^=from then
-//    {*}string^:=to; 
+//    if string^=from then
+//    string^:=to;
 //    inc(string); 
 //  end;
 //end;
@@ -581,7 +566,7 @@ var
 //      qsort(sfile^.filelist,sfile^.totfile,sizeof(structdirentry),{!!!a type cast? =>} {pinteger(}compare); 
 //    end;
 
-//  end;{case?}
+//  end;
 //  sfile^.act:= -1; 
 //  file:= sfile^.filelist; 
 //  while{for} 
@@ -1125,7 +1110,7 @@ end;
 //      boxcol:= ($C07070); 
 //    end;
 
-//  end;{case?}
+//  end;
 
 //  if boxcol<>0 then
 //  begin 
@@ -1221,19 +1206,14 @@ end;
 //  nr:= nr - (sfile^.ofs); 
 //  val:= (textrct.ymax-textrct.ymin) div FILESEL_DY; 
 //  coll:= nr div val; 
-//  nr:= nr - (coll*val); {*}valy^:=textrct.ymax-FILESEL_DY+3-nr*FILESEL_DY; 
-//  {*}valx^:=coll*collumwidth+textrct.xmin+20; 
+//  nr:= nr - (coll*val); valy^:=textrct.ymax-FILESEL_DY+3-nr*FILESEL_DY;
+//  valx^:=coll*collumwidth+textrct.xmin+20;
 
 //  (* aantal regels in de hoogte *)
 //  if nr<0)or(coll>sfile^.collums then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(0);
+
+//    exit(1);
 //end;
 
 //type
@@ -1717,21 +1697,18 @@ end;
 //begin
 
 //  sfile:=0; 
-//  sa:= G.curscreen.areabase.first; 
+//  sa:= G.curscreen^.areabase.first;
 //  while sa
 //  do
 //  begin 
 //    if sa<>curarea then
 //    begin 
-//      if sa.spacetype=SPACE_FILE then
+//      if sa^.spacetype=SPACE_FILE then
 //      begin 
 //        (* al een gevonden *)
 //        if sfile<>0 then
-//        begin
-//          result:= 0; 
-//          exit;
-//        end;
-//        sfile:= sa.spacedata.first; 
+//          exit(0);
+//        sfile:= sa^.spacedata.first;
 //        if sfile^.type and FILE_UNIX then
 //        begin 
 //          otherarea:= sa; 
@@ -1741,17 +1718,12 @@ end;
 //        sfile:= 0; 
 //      end;
 //    end;
-//    sa:= sa.next; 
+//    sa:= sa^.next;
 //  end;
 //  if sfile<>0 then
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(1);
+
+//    exit(0);
 //end;
 
 //procedure reread_other_fs; 
@@ -1781,7 +1753,7 @@ end;
 //  end;
 //  if len=0 then
 //  exit;
-//  sc:= G.main.screen.first; 
+//  sc:= G.main^.screen.first;
 //  while sc
 //  do
 //  begin 
@@ -1789,7 +1761,7 @@ end;
 //    while sa
 //    do
 //    begin 
-//      sfile:= sa.spacedata.first; 
+//      sfile:= sa^.spacedata.first;
 //      while sfile
 //      do
 //      begin 
@@ -1800,7 +1772,7 @@ end;
 //        end;
 //        sfile:= sfile^.next; 
 //      end;
-//      sa:= sa.next; 
+//      sa:= sa^.next;
 //    end;
 //    sc:= sc.id.next; 
 //  end;
@@ -1843,10 +1815,10 @@ end;
 //      menup:= @G.sipo.menunr; 
 //      else
 //      if sfile^.retval=B_INFOSCE then
-//      menup:= @G.curscreen.scenenr; 
+//      menup:= @G.curscreen^.scenenr;
 //      else
 //      if sfile^.retval=B_INFOSCR then
-//      menup:= @G.curscreen.screennr; 
+//      menup:= @G.curscreen^.screennr;
 //      else
 //      if sfile^.retval=B_SIMABROWSE then
 //      menup:= @G.sima.imanr; 
@@ -1856,20 +1828,20 @@ end;
 //      begin 
 //        if sfile^.filelist<>0 then
 //        begin 
-//          files:= sfile^.filelist+sfile^.act; {*}menup^:=files.nr-1; 
+//          files:= sfile^.filelist+sfile^.act; menup^:=files.nr-1;
 //        end;
 //        else
-//        {*}menup^:=sfile^.act; 
+//        menup^:=sfile^.act;
 //      end;
 //      else
 //      begin 
-//        {*}menup^:=-1; 
+//        menup^:=-1;
 //        for{while} a:=0 to Pred(sfile^.totfile) { a++}
 //        do
 //        begin 
 //          if lstrcmp(sfile^.filelist[a].relname,sfile^.file)=0 then
 //          begin 
-//            {*}menup^:=a; 
+//            menup^:=a;
 //            break; {<= !!!b possible in "switch" - then remove this line}
 //          end;
 //        end;
@@ -2114,7 +2086,7 @@ end;
 //  (* Make sure string ends in one (and only one) slash *)
 //  if string[lstrlen(string)-1]<>'/')and(string[lstrlen(string)-1]<>#92 then
 //  strcat(string,'/'); 
-//  while {*}file^)and((*file='/')or(*file=#92)
+//  while file^)and((*file='/')or(*file=#92)
 //  do
 //  inc(file); 
 //  strcat(string,file); 
@@ -2135,7 +2107,7 @@ end;
 
 //prevtime: integer;
 
-//procedure winqreadfilespace(event: ushort;  val: smallint); 
+//procedure winqreadfilespace(event: word;  val: smallint);
 //var
 //sfile: pSpaceFile; 
 //act: integer; 
@@ -2147,7 +2119,7 @@ end;
 //ret: integer; 
 //qual: smallint; 
 //mval: array [0..Pred(2)] of smallint; 
-//numlen: ushort; 
+//numlen: word;
 //head: array [0..Pred(FILE_MAXDIR)] of char; 
 //tail: array [0..Pred(FILE_MAXFILE)] of char; 
 //str: array [0..Pred(FILE_MAXDIR+FILE_MAXFILE+12)] of char; 
@@ -2553,7 +2525,7 @@ end;
 //        filesel_execute(sfile); 
 //      end;
 
-//    end;{case?}
+//    end;
 //  end;
 //  else
 //  if event=RIGHTMOUSE then
@@ -2674,10 +2646,7 @@ end;
 //    result:= ID_TXT; 
 //    exit;
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 function code_to_groupname(code: integer): pchar;
@@ -2793,7 +2762,7 @@ end;
 //          tot:= 99; 
 //        end;
 //      end;
-//    end;{case?}
+//    end;
 //    fd:= fd + (bhead.len+sizeof(BHead)); 
 //  end;
 //  begin
@@ -2813,29 +2782,20 @@ end;
 //  strcpy(dir,sfile^.dir); 
 //  len:= lstrlen(dir); 
 //  if len<7 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  if dir[len-1]<>'/')and(dir[len-1]<>#92 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  group[0]:= 0; 
 //  dir[len-1]:= 0; 
 //  fd:= (strrchr(dir,'/')>strrchr(dir,#92)) {was ?}if then strrchr(dir,'/') {was :}else strrchr(dir,#92); 
 //  (* Find the last slash *)
 
 //  if fd=0 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
-//  {*}fd^:=0; 
+//    exit(0);
+//  fd^:=0;
 //  if testextensie(fd+1,'.blend') then
 //  begin 
-//    {*}fd^:='/'; 
+//    fd^:='/';
 //  end;
 //  else
 //  begin 
@@ -2843,15 +2803,9 @@ end;
 //    fd:= (strrchr(dir,'/')>strrchr(dir,#92)) {was ?}if then strrchr(dir,'/') {was :}else strrchr(dir,#92); 
 //    (* Find the last slash *)
 //    if fd=0)or(testextensie(fd+1,'.blend')=0 then
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //end;
 
 //procedure library_to_filelist(sfile: pSpaceFile); 
@@ -2966,7 +2920,7 @@ end;
 //            dec(actual); *({!!!a type cast? =>} {psmallint(}group):=libdir[a-2]; 
 //            group[3]:= 0; 
 //          end;
-//        end;{case?}
+//        end;
 //        if str<>0 then
 //        begin 
 //          sfile^.filelist[actual].relname:= strdup(str); 

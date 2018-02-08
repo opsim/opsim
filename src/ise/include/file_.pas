@@ -103,6 +103,7 @@ interface
   {# }
   {# }
 
+  pBHead = ^BHead;
     BHead = record
         code : longint;
         len : longint;
@@ -149,149 +150,149 @@ interface
       end;
   { genfile.c  }
 
-  //procedure make_structDNA;cdecl;
+  //procedure make_structDNA;
 
-  //function findstruct_name(sdna:PSDNA; str:Pchar):psmallint;cdecl;
+  //function findstruct_name(sdna:PSDNA; str:Pchar):psmallint;
 
-  //function findstruct_nr(sdna:PSDNA; str:Pchar):longint;cdecl;
+  //function findstruct_nr(sdna:PSDNA; str:Pchar):longint;
 
-  //function struct_compare(stype:Pchar; one:pointer; two:pointer):longint;cdecl;
+  //function struct_compare(stype:Pchar; one:pointer; two:pointer):longint;
 
   //  var
   //    cur_sdna : SDNA;cvar;external;
 
-  //function text_to_curve(ob:PObject; mode:longint):^chartrans;cdecl;
+  //function text_to_curve(ob:PObject; mode:longint):^chartrans;
 
-  //procedure freestructDNA(sdna:PSDNA);cdecl;
+  //procedure freestructDNA(sdna:PSDNA);
 
-  //procedure freestructDNA_all;cdecl;
+  //procedure freestructDNA_all;
 
-  //procedure init_structDNA(sdna:PSDNA);cdecl;
+  //procedure init_structDNA(sdna:PSDNA);
 
-  //procedure reconstruct(oldSDNAnr:longint; blocks:longint; data:Ppointer);cdecl;
+  //procedure reconstruct(oldSDNAnr:longint; blocks:longint; data:Ppointer);
 
-  //procedure switch_endian_struct(oldSDNAnr:longint; data:Pchar);cdecl;
+  //procedure switch_endian_struct(oldSDNAnr:longint; data:Pchar);
 
   //{ readfile.c  }
-  //function gethome:^char;cdecl;
+  //function gethome:^char;
 
-  //procedure add_data_adr(old:pointer; _new:pointer);cdecl;
+  //procedure add_data_adr(old:pointer; _new:pointer);
 
-  //procedure add_lib_adr(old:pointer; _new:pointer);cdecl;
+  //procedure add_lib_adr(old:pointer; _new:pointer);
 
-  //procedure append_id_part(filedata:Pchar; main:PMain; id:PID);cdecl;
+  //procedure append_id_part(filedata:Pchar; main:PMain; id:PID);
 
-  //procedure append_named_part(sfile:PSpaceFile; main:PMain; name:Pchar; idcode:longint);cdecl;
+  //procedure append_named_part(sfile:PSpaceFile; main:PMain; name:Pchar; idcode:longint);
 
-  //procedure change_libadr(old:pointer; _new:pointer);cdecl;
+  //procedure change_libadr(old:pointer; _new:pointer);
 
-  //function convertstringcode(str:Pchar):longint;cdecl;
+  //function convertstringcode(str:Pchar):longint;
 
-  //procedure do_versions(main:PMain);cdecl;
+  //procedure do_versions(main:PMain);
 
-  //function find_bhead(old:pointer; filedata:Pchar):^BHead;cdecl;
+  //function find_bhead(old:pointer; filedata:Pchar):^BHead;
 
-  //procedure give_base_to_objects(sce:PScene; lb:PListBase);cdecl;
+  //procedure give_base_to_objects(sce:PScene; lb:PListBase);
 
-  //procedure inst_file(filename:Pchar; data:Pchar; size:longint);cdecl;
+  //procedure inst_file(filename:Pchar; data:Pchar; size:longint);
 
-  //function is_yet_read(main:PMain; bhead:PBHead):^ID;cdecl;
+  //function is_yet_read(main:PMain; bhead:PBHead):^ID;
 
-  //procedure library_append(sfile:PSpaceFile);cdecl;
+  //procedure library_append(sfile:PSpaceFile);
 
   //{ append aan G
   //extern    void link_global(FileGlobal *fg);
   //extern    void link_list(ListBase *lb);		/* alleen direkte data  }
-  //procedure link_recurs_seq(lb:PListBase);cdecl;
+  //procedure link_recurs_seq(lb:PListBase);
 
-  //procedure makestringcode(str:Pchar);cdecl;
+  //procedure makestringcode(str:Pchar);
 
-  //function mallocNN(len:longint; str:Pchar):pointer;cdecl;
+  //function mallocNN(len:longint; str:Pchar):pointer;
 
-  //function newadr(adr:pointer):pointer;cdecl;
+  //function newadr(adr:pointer):pointer;
 
   //{ alleen direkte datablokken  }
-  //function newlibadr(lib:pointer; adr:pointer):pointer;cdecl;
+  //function newlibadr(lib:pointer; adr:pointer):pointer;
 
   //{ alleen Lib datablokken  }
-  //function newlibadr_us(lib:pointer; adr:pointer):pointer;cdecl;
+  //function newlibadr_us(lib:pointer; adr:pointer):pointer;
 
   //{ hoogt usernummer op  }
-  //function newlibadr_us_type(_type:smallint; adr:pointer):pointer;cdecl;
+  //function newlibadr_us_type(_type:smallint; adr:pointer):pointer;
 
   //{ alleen Lib datablokken  }
-  //procedure newstructname(bh:PBHead);cdecl;
+  //procedure newstructname(bh:PBHead);
 
-  //function openblenderfile(name:Pchar; filelen:Plongint):^char;cdecl;
+  //function openblenderfile(name:Pchar; filelen:Plongint):^char;
 
-  //procedure read_autosavefile;cdecl;
+  //procedure read_autosavefile;
 
-  //procedure read_file(dir:Pchar);cdecl;
+  //procedure read_file(dir:Pchar);
 
-  //function read_file_dna(filedata:Pchar; filelen:longint):longint;cdecl;
+  //function read_file_dna(filedata:Pchar; filelen:longint):longint;
 
-  //function read_homefile:longint;cdecl;
+  //function read_homefile:longint;
 
-  //function read_libblock(main:PMain; bhead:PBHead; flag:longint):longint;cdecl;
+  //function read_libblock(main:PMain; bhead:PBHead; flag:longint):longint;
 
-  //procedure read_libraries;cdecl;
+  //procedure read_libraries;
 
-  //function read_libstruct(bh:PBHead):pointer;cdecl;
+  //function read_libstruct(bh:PBHead):pointer;
 
-  //procedure read_struct(bh:PBHead);cdecl;
+  //procedure read_struct(bh:PBHead);
 
-  //procedure splitdirstring(di:Pchar; fi:Pchar);cdecl;
+  //procedure splitdirstring(di:Pchar; fi:Pchar);
 
-  //procedure switch_endian_bheads(filedata:Pchar; filelen:longint);cdecl;
+  //procedure switch_endian_bheads(filedata:Pchar; filelen:longint);
 
-  //procedure switch_endian_structs(bhead:PBHead);cdecl;
+  //procedure switch_endian_structs(bhead:PBHead);
 
-  //function testextensie(str:Pchar; ext:Pchar):longint;cdecl;
+  //function testextensie(str:Pchar; ext:Pchar):longint;
 
-  //procedure vcol_to_fcol(me:PMesh);cdecl;
+  //procedure vcol_to_fcol(me:PMesh);
 
   //{ ******* writefile.c  }
-  //procedure add_cam_info(mode:smallint);cdecl;
+  //procedure add_cam_info(mode:smallint);
 
   //{ alleen current camera  }
-  //procedure add_network_info(mode:smallint);cdecl;
+  //procedure add_network_info(mode:smallint);
 
   //{ alleen met CFRA  }
-  //function add_scal_info(ob:PObject; mode:smallint):longint;cdecl;
+  //function add_scal_info(ob:PObject; mode:smallint):longint;
 
   //{ return OK  }
-  //procedure delete_autosave;cdecl;
+  //procedure delete_autosave;
 
-  //procedure do_history(name:Pchar);cdecl;
+  //procedure do_history(name:Pchar);
 
-  //procedure bgnwrite(file:longint);cdecl;
+  //procedure bgnwrite(file:longint);
 
-  //procedure endwrite;cdecl;
+  //procedure endwrite;
 
-  //procedure flushwrite;cdecl;
+  //procedure flushwrite;
 
-  //procedure initrender_infofiles;cdecl;
+  //procedure initrender_infofiles;
 
-  //procedure make_mdec_movies;cdecl;
+  //procedure make_mdec_movies;
 
-  //procedure mdec_to_pupstring(str:PPchar);cdecl;
+  //procedure mdec_to_pupstring(str:PPchar);
 
-  //procedure readBlog;cdecl;
+  //procedure readBlog;
 
-  //procedure remove_mdec_chunks(id:longint);cdecl;
+  //procedure remove_mdec_chunks(id:longint);
 
-  //procedure test_Mdec_movie(name:Pchar);cdecl;
+  //procedure test_Mdec_movie(name:Pchar);
 
-  //procedure writeBlog;cdecl;
+  //procedure writeBlog;
 
-  //procedure write_file(dir:Pchar);cdecl;
+  //procedure write_file(dir:Pchar);
 
-  //function write_homefile:longint;cdecl;
+  //function write_homefile:longint;
 
-  //procedure writedata(filecode:longint; len:longint; adr:pointer);cdecl;
+  //procedure writedata(filecode:longint; len:longint; adr:pointer);
 
   //{ geen struct  }
-  //procedure writestruct(filecode:longint; structname:Pchar; nr:longint; adr:pointer);cdecl;
+  //procedure writestruct(filecode:longint; structname:Pchar; nr:longint; adr:pointer);
 
 //{$endif}
   { FILE_H  }

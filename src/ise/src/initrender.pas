@@ -110,7 +110,7 @@ uses
 
 //(* ****************** JITTER *********************** *)
 
-//procedure jitterate1(jit1: pfloat;  jit2: pfloat;  num: integer;  rad1: float); 
+//procedure jitterate1(jit1: psingle;  jit2: psingle;  num: integer;  rad1: float);
 //var
 //i: integer; 
 //j: integer; 
@@ -196,7 +196,7 @@ uses
 //  memcpy(jit1,jit2,2*num*sizeof(float)); 
 //end;
 
-//procedure jitterate2(jit1: pfloat;  jit2: pfloat;  num: integer;  rad2: float); 
+//procedure jitterate2(jit1: psingle;  jit2: psingle;  num: integer;  rad2: float);
 //var
 //i: integer; 
 //j: integer; 
@@ -259,9 +259,9 @@ uses
 //  memcpy(jit1,jit2,2*num*sizeof(float)); 
 //end;
 
-//procedure initjit(jit: pfloat;  num: integer); 
+//procedure initjit(jit: psingle;  num: integer);
 //var
-//jit2: pfloat; 
+//jit2: psingle;
 //x: float; 
 //rad1: float; 
 //rad2: float; 
@@ -319,7 +319,7 @@ uses
 //end;
 //(* ****************** GAMMA, MASKERS en LUTS **************** *)
 
-//function calc_weight(weight: pfloat;  i: integer;  j: integer): float; 
+//function calc_weight(weight: psingle;  i: integer;  j: integer): float;
 //var
 //x: float; 
 //y: float; 
@@ -372,10 +372,10 @@ uses
 //weight: array [0..Pred(32)] of float; 
 //totw: float; 
 //val: float; 
-//fpx1: pfloat; 
-//fpx2: pfloat; 
-//fpy1: pfloat; 
-//fpy2: pfloat; 
+//fpx1: psingle;
+//fpx2: psingle;
+//fpy1: psingle;
+//fpy2: psingle;
 //i: integer; 
 //j: integer; 
 //a: integer; 
@@ -712,7 +712,7 @@ uses
 //  strcat(string,num); 
 //end;
 
-//function panotestclip(v: pfloat): integer; 
+//function panotestclip(v: psingle): integer;
 //var
 //abs4: float; 
 //c: smallint;
@@ -750,7 +750,7 @@ uses
 //  end;
 //end;
 
-//function info_calc_schermco(vec: pfloat;  sco: pfloat): integer; 
+//function info_calc_schermco(vec: psingle;  sco: psingle): integer;
 //var
 //si: float; 
 //co: float; 
@@ -810,13 +810,10 @@ uses
 //    end;
 //  end;
 
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //end;
 
-//procedure info_calc_drot(ob: pObject;  co: pfloat); 
+//procedure info_calc_drot(ob: pObject;  co: psingle);
 //var
 //vec1: array [0..Pred(3)] of float; 
 //vec2: array [0..Pred(3)] of float; 
@@ -1006,7 +1003,7 @@ uses
 //  end;
 //end;
 
-//function inithalo(ma: pMaterial;  vec: pfloat;  vec1: pfloat;  orco: pfloat;  hasize: float;  vectsize: float): pHaloRen; 
+//function inithalo(ma: pMaterial;  vec: psingle;  vec1: psingle;  orco: psingle;  hasize: float;  vectsize: float): pHaloRen;
 //var
 //har: pHaloRen; 
 //mtex: pMTex; 
@@ -1025,25 +1022,15 @@ uses
 //  {Tb: float; }{<= !!!5 external variable}
 
 //  if hasize=0 then
-//  begin
-//    result:= 0; 
-//    exit;
-
-//  end;
+//    exit(0);
 //  projectverto(vec,hoco); 
 //  if hoco[3]=0.0 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  if vec1<>0 then
 //  begin 
 //    projectverto(vec1,hoco1); 
 //    if hoco1[3]=0.0 then
-//    begin
-//      result:= 0; 
-//      exit;
-//    end;
+//      exit(0);
 //  end;
 //  har:= addhalo(R.tothalo{++} inc(R.tothalo); ); 
 //  VECCOPY(har.co,vec); 
@@ -1151,7 +1138,7 @@ uses
 //  end;
 //end;
 
-//function initstar(vec: pfloat;  hasize: float): pHaloRen; 
+//function initstar(vec: psingle;  hasize: float): pHaloRen;
 //var
 //har: pHaloRen; 
 //zn: float; 
@@ -1173,10 +1160,7 @@ uses
 //      exit;
 //    end;
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //procedure add_render_lamp(ob: pObject;  doshadbuf: integer); 
@@ -1352,7 +1336,7 @@ uses
 //  begin 
 //    v2:= addvert(R.totvert{++} inc(R.totvert); ); 
 //    v1:= addvert(v{++} inc(v); ); {*}v2^:=*v1; 
-//    v1.sticky:= {!!!a type cast? =>} {pfloat(}v2; 
+//    v1.sticky:= {!!!a type cast? =>} {psingle(}v2;
 //  end;
 //  v:= startvlak+plek*(usize-1+cyclu); 
 //  (* loop betreffende vlakken af en vervang pointers *)
@@ -1469,9 +1453,9 @@ uses
 //v4: pVertRen; 
 //vlr: pVlakRen; 
 //matar: array [0..Pred(32)] of pMaterial; 
-//data: pfloat; 
-//fp: pfloat; 
-//orco: pfloat; 
+//data: psingle;
+//fp: psingle;
+//orco: psingle;
 //n1: array [0..Pred(3)] of float; 
 //n2: array [0..Pred(3)] of float; 
 //flen: float; 
@@ -1705,9 +1689,9 @@ uses
 //bevp: pBevPoint; 
 //matar: array [0..Pred(32)] of pMaterial; 
 //len: float; 
-//data: pfloat; 
-//fp: pfloat; 
-//fp1: pfloat; 
+//data: psingle;
+//fp: psingle;
+//fp1: psingle;
 //fac: float; 
 //n: array [0..Pred(3)] of float; 
 //vec: array [0..Pred(3)] of float; 
@@ -2441,7 +2425,7 @@ uses
 //  end;
 //end;
 
-//procedure make_render_halos(ob: pObject;  me: pMesh;  ma: pMaterial;  extverts: pfloat); 
+//procedure make_render_halos(ob: pObject;  me: pMesh;  ma: pMaterial;  extverts: psingle);
 //var
 //har: pHaloRen; 
 //mvert: pMVert; 
@@ -2451,11 +2435,11 @@ uses
 //zn: float; 
 //nor: array [0..Pred(3)] of float; 
 //view: array [0..Pred(3)] of float; 
-//orco: pfloat; 
+//orco: psingle;
 //tinc: float; 
 //vec: array [0..Pred(3)] of float; 
 //hasize: float; 
-//fp: pfloat; 
+//fp: psingle;
 //mat: array [0..Pred(4),0..Pred(4)] of float; 
 //imat: array [0..Pred(3),0..Pred(3)] of float; 
 //start: integer; 
@@ -2536,20 +2520,15 @@ uses
 
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
 
-//function contrpuntnormr(n: pfloat;  puno: pfloat): integer; 
+//function contrpuntnormr(n: psingle;  puno: psingle): integer;
 //var
 //inp: float; 
 //begin
 //  inp:= n[0]*puno[0]+n[1]*puno[1]+n[2]*puno[2]; 
 //  if inp<0.0 then
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(1);
+
+//    exit(0);
 //end;
 
 //procedure normalenrender(startvert: integer;  startvlak: integer); 
@@ -2565,12 +2544,12 @@ uses
 //n2: array [0..Pred(3)] of float; 
 //n3: array [0..Pred(3)] of float; 
 //n4: array [0..Pred(3)] of float; 
-//adrco: pfloat; 
-//adrno: pfloat; 
-//tfl: pfloat; 
+//adrco: psingle;
+//adrno: psingle;
+//tfl: psingle;
 //fac: float; 
-//f1: pfloat; 
-//temp: pfloat; 
+//f1: psingle;
+//temp: psingle;
 //a: integer; 
 //x: smallint; 
 //y: smallint; 
@@ -2585,7 +2564,7 @@ uses
 //  if startvert=R.totvert)or(startvlak=R.totvlak then
 //  exit;
 
-//  adrco:= {!!!a type cast? =>} {pfloat(}callocN(12+4*sizeof(float)*(R.totvlak-startvlak),'normalen1'); 
+//  adrco:= {!!!a type cast? =>} {psingle(}callocN(12+4*sizeof(float)*(R.totvlak-startvlak),'normalen1');
 //  tfl:= adrco; 
 //  (* berekenen cos hoeken en puntmassa's *)
 //  for{while} a:=startvlak to Pred(R.totvlak) { a++}
@@ -2803,10 +2782,7 @@ uses
 //begin(* return 1: vertex needs a copy *)
 
 //  if vlr=0 then
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //  asf:= asv.faces.first; 
 //  while asf
 //  do
@@ -2818,18 +2794,12 @@ uses
 //      begin 
 //        inp:= fabs(vlr.n[0]*asf.vlr[a].n[0]+vlr.n[1]*asf.vlr[a].n[1]+vlr.n[2]*asf.vlr[a].n[2]); 
 //        if inp<thresh then
-//        begin
-//          result:= 1; 
-//          exit;
-//        end;
+//          exit(1);
 //      end;
 //    end;
 //    asf:= asf.next; 
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 //function as_findvertex(vlr: pVlakRen;  ver: pVertRen;  asv: pASvert;  thresh: float): pVertRen; 
@@ -2964,7 +2934,7 @@ uses
 //lbo: ListBase; 
 //lb: ListBase; 
 //dl: pDispList; 
-//fp: pfloat; 
+//fp: psingle;
 //a: integer; 
 //tot: integer; 
 //begin
@@ -3039,9 +3009,9 @@ uses
 //zn: float; 
 //mat: array [0..Pred(4),0..Pred(4)] of float; 
 //imat: array [0..Pred(3),0..Pred(3)] of float; 
-//data: pfloat; 
-//nors: pfloat; 
-//orco: pfloat;
+//data: psingle;
+//nors: psingle;
+//orco: psingle;
 
 //n1: array [0..Pred(3)] of float; 
 //flen: float; 
@@ -3197,12 +3167,12 @@ uses
 //nor: array [0..Pred(3)] of float; 
 //imat: array [0..Pred(3),0..Pred(3)] of float; 
 //mat: array [0..Pred(4),0..Pred(4)] of float; 
-//extverts: pfloat;
+//extverts: psingle;
 
-//orco: pfloat; 
-//v1: pfloat; 
-//v2: pfloat; 
-//v3: pfloat; 
+//orco: psingle;
+//v1: psingle;
+//v2: psingle;
+//v3: psingle;
 //vec: array [0..Pred(3)] of float; 
 //a: integer; 
 //a1: integer; 
@@ -3345,7 +3315,7 @@ uses
 //      end;
 //      if ms<>0 then
 //      begin 
-//        ver.sticky:= {!!!a type cast? =>} {pfloat(}ms; 
+//        ver.sticky:= {!!!a type cast? =>} {psingle(}ms;
 //        inc(ms); 
 //      end;
 //    end;
@@ -3559,8 +3529,8 @@ uses
 //vlr: pVlakRen; 
 //vlr1: pVlakRen; 
 //ma: pMaterial; 
-//data: pfloat; 
-//nors: pfloat; 
+//data: psingle;
+//nors: psingle;
 //mat: array [0..Pred(4),0..Pred(4)] of float; 
 //imat: array [0..Pred(3),0..Pred(3)] of float; 
 //vec: array [0..Pred(3)] of float; 
@@ -3837,20 +3807,12 @@ uses
 //function verghalo(x1: phalosort;  x2: phalosort): integer; 
 //begin
 //  if x1.z<x2.z then
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //  else
 //  if x1.z>x2.z then
-//  begin
-//    result:= -1; 
-//    exit;
-//  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(-1);
+
+//    exit(0);
 //end;
 
 //type
@@ -4090,7 +4052,7 @@ uses
 //  begin 
 //    G.afbreek:= 1; 
 //  end;
-//end;
+//end;
 
 //procedure write_image(name: pchar); 
 //var
@@ -4358,21 +4320,14 @@ uses
 //begin
 
 //  if allparts[nr][0]=-1 then
-//  begin
-//    result:= 0; 
-//    exit;
-
-//  end;
+//    exit(0);
 //  R.xstart:= allparts[nr][0]-R.afmx; 
 //  R.ystart:= allparts[nr][1]-R.afmy; 
 //  R.xend:= allparts[nr][2]-R.afmx; 
 //  R.yend:= allparts[nr][3]-R.afmy; 
 //  R.rectx:= R.xend-R.xstart; 
 //  R.recty:= R.yend-R.ystart; 
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //end;
 
 //(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
@@ -4479,7 +4434,7 @@ uses
 //  (* layers: in foreground current 3D window renderen *)
 //  if G.vd<>0 then
 //  lay:= G.vd.lay; 
-//  ob:= G.main.object.first; 
+//  ob:= G.main^.object.first;
 //  (* orco vrijgeven. ALle ob's aflopen ivm dupli's en sets *)
 //  while ob
 //  do
@@ -4522,7 +4477,7 @@ uses
 //end_render_materials(); 
 //R.totvlak:= R.totvert:=R.totlamp:=R.tothalo:=0; 
 
-//end;
+//end;
 
 //{hash: array [0..Pred(512)] of char; }{<= !!!5 external variable}
 //(* - er moet een 'vast' aantal sterren gegenereerd worden tussen  en .
@@ -4888,7 +4843,7 @@ uses
 //  do_all_keys(); 
 //  do_all_ikas(); 
 //  test_all_displists(); 
-//  ob:= G.main.object.first; 
+//  ob:= G.main^.object.first;
 //  (* niet erg nette calc_ipo en where_is forceer *)
 //  while ob
 //  do
@@ -4924,7 +4879,7 @@ uses
 //  R.viewmat[3][2]:= R.viewmat[3][2] * (100.0); 
 //  setwindowclip(1,-1); 
 
-//  ob:= G.main.object.first; (*  geen jit:(-1) *)
+//  ob:= G.main^.object.first; (*  geen jit:(-1) *)
 
 //  (* imatflags wissen *)
 //  while ob
@@ -4938,7 +4893,7 @@ uses
 //  init_render_textures(); 
 //  (* moet eerst ivm ambient *)
 //  init_render_materials(); 
-//  ob:= G.main.object.first; 
+//  ob:= G.main^.object.first;
 //  (* MAAK RENDERDATA *)
 
 //  (* elk object maar 1 x renderen *)
@@ -5038,7 +4993,7 @@ uses
 //  end;
 //  info_file(0); 
 //  (* infofile sluiten *)
-//  ob:= G.main.object.first; 
+//  ob:= G.main^.object.first;
 //  (* imat objecten *)
 //  while ob
 //  do
@@ -5064,7 +5019,7 @@ uses
 
 //  (* if(R.totlamp==0) defaultlamp(); *)
 //  set_normalflags(); 
-//end;
+//end;
 
 //(* cmapcode handleiding:
 // * 
@@ -5566,7 +5521,7 @@ uses
 
 //(* ~~~~~~~~~~~~~~~~ timer ~~~~~~~~~~~~~~~~~~~~~~ *)
 
-//{$if not defined(BEOS) and not defined(WINDOWS)}
+{$if not defined(BEOS) and not defined(WINDOWS)}
 
 //type
 //rusage = record
@@ -5614,9 +5569,9 @@ uses
 //  {$endif}
 //end;
 
-//{$else}
+{$else}
 
-//{$ifdef WINDOWS}
+{$ifdef WINDOWS}
 //var {was static}
 //old_time: integer; 
 //type
@@ -5638,8 +5593,10 @@ uses
 //  if cpu<>0 then
 //  {*}cpu^:=*real; 
 //end;
-//{$else}
-//(* BeOS *)
+
+{$else}
+
+(* BeOS *)
 //var {was static}
 //old_time: integer; 
 
@@ -5653,10 +5610,11 @@ uses
 //  if cpu<>0 then
 //  {*}cpu^:=*real; 
 //end;
-//{$endif}
-//{$endif}
 
-//(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
+{$endif}
+{$endif}
+
+(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
 
 //procedure initrender; 
 //var

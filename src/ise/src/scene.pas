@@ -187,16 +187,10 @@ end;
 //  do
 //  begin 
 //    if base^._object^=ob then
-//    begin
-//      result:= 1; 
-//      exit;
-//    end;
+//      exit(1);
 //    base:= base.next; 
 //  end;
-//  begin
-//    result:= 0; 
-//    exit;
-//  end;
+//    exit(0);
 //end;
 
 procedure sort_baselist(sce: pScene);
@@ -318,7 +312,7 @@ end;
 //str: array [0..Pred(128)] of char; 
 //begin
 
-//  sce:= G.main.scene.first; 
+//  sce:= G.main^.scene.first;
 //  while sce
 //  do
 //  begin 

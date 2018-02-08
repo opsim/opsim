@@ -131,8 +131,8 @@ pScrEdge = ^ScrEdge;
 
 pScrArea = ^ScrArea;
   ScrArea = record
-      next : ^ScrArea;
-      prev : ^ScrArea;
+      next : pScrArea;
+      prev : pScrArea;
       v1 : ^ScrVert;
       v2 : ^ScrVert;
       v3 : ^ScrVert;
@@ -210,7 +210,7 @@ var
 { uit mywindow.c  }
 { ********** END MYWINDOW *******  }
 { GLOBALS   (uit screen.c)  }
-    //curarea : ^ScrArea;cvar;external;
+    //curarea : pScrArea;cvar;external;
     //displaysizex : longint;cvar;external;
 { mywindow.c  }
 
@@ -329,8 +329,8 @@ procedure addqueue(win:smallint; event:word; val:smallint);
 
 //procedure area_fullscreen;
 
-//{ met curarea  }
-//procedure areawinset(win:smallint);
+{ met curarea  }
+procedure areawinset(win:smallint);
 
 //procedure calc_arearcts(sa:pScrArea);
 
@@ -338,7 +338,7 @@ procedure addqueue(win:smallint; event:word; val:smallint);
 
 //procedure closeheadwin(sa:pScrArea);
 
-//function closest_bigger_area:^ScrArea;
+function closest_bigger_area:pScrArea;
 
 //procedure copy_areadata(sa1:pScrArea; sa2:pScrArea);
 
@@ -383,11 +383,11 @@ procedure defheaddraw;
 //{ extern      word special_qread(short *val);  }
 function extern_qread(val: psmallint): word;
 
-//function findcurarea:^ScrArea;
+//function findcurarea:pScrArea;
 
 //function findscredge(v1:PScrVert; v2:PScrVert):^ScrEdge;
 
-//procedure free_screen(sc:PbScreen);
+procedure free_screen(sc:PbScreen);
 
 procedure getdisplaysize;
 
@@ -494,7 +494,7 @@ procedure start_autosave(val:longint); cdecl;
 
 //procedure tempcursor(curs:longint);
 
-//function test_edge_area(sa:pScrArea; se:PScrEdge):^ScrArea;
+//function test_edge_area(sa:pScrArea; se:PScrEdge):pScrArea;
 
 //procedure test_scale_screen(sc:PbScreen);
 
@@ -585,7 +585,7 @@ implementation
 uses
   GL, GLU, GLUT,
   blenglob, library_, blendef, mywindow, graphics, mydevice,
-  edit, initrender,
+  edit, initrender, toolbox,toets,
   space, Button;
 
 { was #define dname(params) para_def_expr }
@@ -623,11 +623,9 @@ scrmousex: smallint;
 scrmousey: smallint; (* worden gezet door mousecallback *)
 mainwin: smallint =0;
 winqueue_break: smallint =0;
-//cursonedge: smallint =0;
-//keycode: array [0..Pred(100)] of smallint; 
-//var {was static}
+cursonedge: smallint =0;
+keycode: array [0..99] of smallint;
 mainqueue: array [0..Pred(MAXQUEUE)] of smallint;
-//var
 areawinar: array [0..Pred(MAXWIN)] of pScrArea;
 
 (* uint edcol[EDGEWIDTH]= {0x0, 0x303030, 0x606060, 0x808080, 0x909090, 0xF0F0F0, 0x0}; *)
@@ -651,21 +649,21 @@ procedure drawscreen; forward;
 
 //procedure initscreen; 
 
-//procedure moveareas; 
+procedure moveareas; forward;
 
 //procedure scrollheader; 
 
 //procedure testareas; 
 
-//procedure area_fullscreen; 
+procedure area_fullscreen;forward;
 
 //procedure addqueue(win: smallint;  event: word;  val: smallint);
 
-//procedure editsplitpoint; 
+procedure editsplitpoint; forward;
 
-//procedure splitarea(sa: pScrArea;  dir: char;  fac: single);
+procedure splitarea(sa: pScrArea;  dir: char;  fac: single);forward;
 
-//procedure joinarea(sa: pScrArea);
+procedure joinarea(sa: pScrArea); forward;
 
 procedure select_connected_scredge(sc: pbScreen;  edge: pScrEdge); forward;
 
@@ -767,7 +765,7 @@ end;
 //oldwin: integer; 
 //begin
 
-//  sc:= G.main.screen.first; 
+//  sc:= G.main^.screen.first; 
 //  while sc
 //  do
 //  begin 
@@ -1401,10 +1399,7 @@ end;
 //    result:=  {word(}sa^.wq[-2];
 //    exit;
 //  end;
-//  begin
-//    result:=nil; 
-//    exit;
-//  end;
+//    exit(nil);
 //end;
 
 //procedure winqdelete(sa: pScrArea);
@@ -1517,30 +1512,30 @@ var
 afterqueue: array [0..Pred(3*MAXQUEUE)] of smallint;
 afterq: psmallint = @afterqueue;
 
-//procedure addafterqueue(win: smallint;  event: word;  val: smallint);
-//var
-//poin: integer; 
-//begin
+procedure addafterqueue(win: smallint;  event: word;  val: smallint);
+var
+poin: integer;
+begin
 
-//  poin:=  {integer(}afterqueue;
-//  poin:= poin + (6*(MAXQUEUE-1)); 
-//  if  {integer(}afterq<poin then
-//  begin 
-//    afterq[0]:= win; ( {pushort(}afterq)[1]:=event;
-//    afterq[2]:= val; 
-//    afterq:= afterq + (3); 
-//  end;
-//end;
+  poin:=  afterqueue[0];
+  poin:= poin + (6*(MAXQUEUE-1));
+  if  integer(afterq^)<poin then
+  begin
+    afterq[0]:= win;
+    afterq[1]:=event;
+    afterq[2]:= val;
+    afterq:= afterq + 3;
+  end;
+end;
 
-//procedure append_afterqueue; 
-//begin
-//  while afterqueue<>afterq
-//  do
-//  begin 
-//    afterq:= afterq - (3); 
-//    addqueue(afterq[0],afterq[1],afterq[2]); 
-//  end;
-//end;
+procedure append_afterqueue;
+begin
+  while @afterqueue<>afterq do
+  begin
+    afterq:= afterq - (3);
+    addqueue(afterq[0],afterq[1],afterq[2]);
+  end;
+end;
 
 function afterqtest: integer;
 begin
@@ -1702,16 +1697,13 @@ begin
           *)
 
       if (wx=nil)or(wy=nil) then
-      begin
-        result:=nil;
-        exit;
-      end;
+        exit(nil);
 
       prefstax:= orx;
       prefstay:= ory;
       prefsizx:= wx;
       prefsizy:= wy;
-      sc:= G.main.screen.first;
+      sc:= G.main^.screen.first;
       while sc <> nil do
       begin
         test_scale_screen(sc);
@@ -1814,7 +1806,7 @@ begin
     //  begin
     //    if (newwin<>oldwin)or(G.curscreen^.winakt=nil) then
     //    begin
-    //      event:= INPUTCHANGE; {*}val^:=newwin;
+    //      event:= INPUTCHANGE; val^:=newwin;
     //    end;
     //  end;
     //  oldwin:= newwin;
@@ -1850,10 +1842,10 @@ end;
 //  event:= screen_qread(val); 
 //  in_ext_qread:=nil; (* niet zo net, wel zo handig (zie screen_qread) *)
 //  if event=REDRAW then
-//  ext_redraw:= {*}val^; 
+//  ext_redraw:= val^;
 //  else
 //  if event=INPUTCHANGE then
-//  ext_inputchange:= {*}val^; 
+//  ext_inputchange:= val^;
 //  else
 //  if event=MOUSEY)or(event=MOUSEX then
 //  begin 
@@ -1949,7 +1941,8 @@ begin
     sa:= sa^.next;
   end;
 end;
-//(* BePatch! glutGetFrontbuffer is defined by glDrawBuffer! In fact the name is wrong... *)
+
+(* BePatch! glutGetFrontbuffer is defined by glDrawBuffer! In fact the name is wrong... *)
 
 //procedure header_front_to_back_glut(sa: pScrArea);
 //begin
@@ -2254,38 +2247,25 @@ begin
   {$endif}
 end;
 
-//function is_allowed_to_change_screen(new: pbScreen): integer; 
-//begin(* niet als curscreen is full
-//    * niet als obedit and old->scene!=new->scene
-//    *)
-//  if new=nil then
-//  begin
-//    result:=nil; 
-//    exit;
-//  end;
-//  if G.curscreen^.full<>nil then
-//  begin
-//    result:=nil; 
-//    exit;
-//  end;
-//  if curarea^.full<>nil then
-//  begin
-//    result:=nil; 
-//    exit;
-//  end;
-//  if G.obedit<>nil then
-//  begin 
-//    if G.curscreen^.scene<>new.scene then
-//    begin
-//      result:=nil; 
-//      exit;
-//    end;
-//  end;
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
-//end;
+function is_allowed_to_change_screen(new: pbScreen): integer;
+begin
+  (* niet als curscreen is full
+    * niet als obedit and old^.scene<>new^.scene
+    *)
+
+  if new=nil then
+    exit(0);
+  if G.curscreen^.full<>0 then
+    exit(0);
+  if curarea^.full<>nil then
+    exit(0);
+  if G.obedit<>nil then
+  begin
+    if G.curscreen^.scene<>new^.scene then
+      exit(0);
+  end;
+    exit(1);
+end;
 
 procedure screenmain; cdecl;
 var
@@ -2306,8 +2286,6 @@ dodrawscreen: smallint=0;
 inqueue: smallint;
 debugval: smallint=0;
 begin
-//  {Xqual: integer; }{<= !!!5 external variable}
-
    (* keert terug naar de glut! *)
 
   while (qtest<>0) or (afterqtest<>0) do
@@ -2321,100 +2299,104 @@ begin
       debugval:= 1;
     end;
 
-    //if event=LEFTMOUSE then
-    //begin
-    //  if val)and(cursonedge then
-    //  begin
-    //    moveareas();
-    //    towin:=nil;
-    //  end;
-    //end;
-    //else
-    //if event=MIDDLEMOUSE then
-    //begin
-    //  if val)and(cursonedge then
-    //  begin
-    //    editsplitpoint();
-    //    towin:=nil;
-    //  end;
-    //end;
-    //else
-    //if event=RIGHTMOUSE then
-    //begin
-    //  if val)and(cursonedge then
-    //  begin
-    //    joinarea(curarea);
-    //    towin:=nil;
-    //  end;
-    //end;
-    //else
-    //if event=QKEY then
-    //begin
-    //  if (G.obedit)and(G.obedit.type=OB_FONT)and(curarea^.spacetype=SPACE_VIEW3D))or(curarea^.spacetype=SPACE_TEXT then
-    //  ;
-    //  else
-    //  begin
-    //    if okee('QUIT BLENDER') then
-    //    exit_usiblender();
-    //    towin:=nil;
-    //  end;
-    //end;
-    //else
-    //if event=SPACEKEY then
-    //begin
-    //  if (G.obedit)and(G.obedit.type=OB_FONT)and(curarea^.spacetype=SPACE_VIEW3D))or(curarea^.spacetype=SPACE_TEXT then
-    //  ;
-    //  else
-    //  begin
-    //    if val<>nil then
-    //    toolbox();
-    //    towin:=nil;
-    //  end;
-    //end;
-    //else
-    //if event=INPUTCHANGE then
-    //begin
-    //  (* welke headers moeten redraw? *)
-    //  if val>3 then
-    //  begin
-    //    (* eerste drie nummers voor GL *)
-    //    if G.curscreen^.winakt<>val then
-    //    begin
-    //      (* de oude en nieuwe area *)
-    //      sa1:= areawinar[G.curscreen^.winakt];
-    //      sa2:= areawinar[val];
-    //      if sa1=sa2 then
-    //      ;
-    //      else
-    //      begin
-    //        if sa1<>nil then
-    //        addqueue(sa1.headwin,REDRAW,1);
-    //        if sa2<>nil then
-    //        addqueue(sa2.headwin,REDRAW,1);
-    //      end;
-    //    end;
-    //    (* testen of window nog bestaat (oude event bij join b.v.) *)
-    //    if areawinar[val]<>nil then
-    //    begin
-    //      (* als winakt==R.win mag alleen een GL-INPUTCHANGE winakt zetten *)
-    //      if R.win=nil)or(G.curscreen^.winakt<>R.win then
-    //      G.curscreen^.winakt:= val;
-    //      clear_global_filesel_vars();
-    //    end;
-    //    else
-    //    begin
-    //      G.curscreen^.winakt:=nil;
-    //    end;
-    //  end;
-    //  towin:=nil;
-    //end;
-    //else
-    //if event=DRAWEDGES then
-    //begin
-    //  towin:=nil;
-    //  dodrawscreen:= 1;
-    //end;
-    //else
+    if event=LEFTMOUSE then
+    begin
+      if (val<>0)and(cursonedge<>0) then
+      begin
+        moveareas();
+        towin:=0;
+      end;
+    end
+    else
+    if event=MIDDLEMOUSE then
+    begin
+      if (val<>0) and (cursonedge<>0) then
+      begin
+        editsplitpoint();
+        towin:=0;
+      end;
+    end
+    else
+    if event=RIGHTMOUSE then
+    begin
+      if (val<>0) and (cursonedge<>0) then
+      begin
+        joinarea(curarea);
+        towin:=0;
+      end;
+    end
+    else
+    if event=ord(QKEY) then
+    begin
+      if ((G.obedit<>nil)and(G.obedit^._type=OB_FONT)and(curarea^.spacetype=SPACE_VIEW3D)or(curarea^.spacetype=SPACE_TEXT)) then
+      begin
+      end
+      else
+      begin
+        if okee('QUIT BLENDER')<>0 then
+        halt; //TODO uncomment this line... exit_usiblender();
+        towin:=0;
+      end;
+    end
+    else
+    if event=SPACEKEY then
+    begin
+      if ((G.obedit<>nil)and(G.obedit^._type=OB_FONT)and(curarea^.spacetype=SPACE_VIEW3D)or(curarea^.spacetype=SPACE_TEXT)) then
+      begin
+      end
+      else
+      begin
+        if val<>0 then
+        toolbox.toolbox();
+        towin:=0;
+      end;
+    end
+    else
+    if event=INPUTCHANGE then
+    begin
+      (* welke headers moeten redraw? *)
+      if val>3 then
+      begin
+        (* eerste drie nummers voor GL *)
+        if G.curscreen^.winakt<>val then
+        begin
+          (* de oude en nieuwe area *)
+          sa1:= areawinar[G.curscreen^.winakt];
+          sa2:= areawinar[val];
+          if sa1=sa2 then
+          begin
+          end
+          else
+          begin
+            if sa1<>nil then
+            addqueue(sa1^.headwin,REDRAW,1);
+            if sa2<>nil then
+            addqueue(sa2^.headwin,REDRAW,1);
+          end;
+        end;
+        (* testen of window nog bestaat (oude event bij join b.v.) *)
+        if areawinar[val]<>nil then
+        begin
+          (* als winakt==R.win mag alleen een GL-INPUTCHANGE winakt zetten *)
+          //todo: uncomment
+          //if (R.win=nil)or(G.curscreen^.winakt<>R.win) then
+          //G.curscreen^.winakt:= val;
+          //clear_global_filesel_vars();
+        end
+        else
+        begin
+          G.curscreen^.winakt:=0;
+        end;
+      end;
+      towin:=0;
+    end
+    else
+    if event=DRAWEDGES then
+    begin
+      towin:=0;
+      dodrawscreen:= 1;
+    end
+    else
     if event=REDRAW then
     begin
       towin:=0;
@@ -2437,49 +2419,49 @@ begin
     //    R.winyof:= ory;
     //    redraw_render_win(val);
     //  end;
+    end
+    else
+    if event=RIGHTARROWKEY then
+    begin
+      if (val<>0)and((G.qual and LR_CTRLKEY)<>0) then
+      begin
+        sc:= G.curscreen^.id.next;
+        if is_allowed_to_change_screen(sc)<>0 then
+        setscreen(sc);
+        towin:=0;
+      end;
+    end
+    else
+    if event=LEFTARROWKEY then
+    begin
+      if (val<>0)and((G.qual and LR_CTRLKEY)<>0) then
+      begin
+        sc:= G.curscreen^.id.prev;
+        if is_allowed_to_change_screen(sc)<>0 then
+        setscreen(sc);
+        towin:=0;
+      end;
+    end
+    else
+    if (event=UPARROWKEY)or(event=DOWNARROWKEY) then
+    begin
+      if (val<>0)and((G.qual and LR_CTRLKEY)<>0) then
+      begin
+        area_fullscreen();
+        towin:=0;
+      end;
+    end
+    else
+    if event=blendef.AFTERQUEUE then
+    begin
+      append_afterqueue();
     end;
-    //else
-    //if event=RIGHTARROWKEY then
-    //begin
-    //  if val)and((G.qual and LR_CTRLKEY) then
-    //  begin
-    //    sc:= G.curscreen^.id.next;
-    //    if is_allowed_to_change_screen(sc) then
-    //    setscreen(sc);
-    //    towin:=nil;
-    //  end;
-    //end;
-    //else
-    //if event=LEFTARROWKEY then
-    //begin
-    //  if val)and((G.qual and LR_CTRLKEY) then
-    //  begin
-    //    sc:= G.curscreen^.id.prev;
-    //    if is_allowed_to_change_screen(sc) then
-    //    setscreen(sc);
-    //    towin:=nil;
-    //  end;
-    //end;
-    //else
-    //if event=UPARROWKEY)or(event=DOWNARROWKEY then
-    //begin
-    //  if val)and((G.qual and LR_CTRLKEY) then
-    //  begin
-    //    area_fullscreen();
-    //    towin:=nil;
-    //  end;
-    //end;
-    //else
-    //if event=AFTERQUEUE then
-    //begin
-    //  append_afterqueue();
-    //end;
-    //if towin<>nil then
-    //begin
-    //  towin:= blenderqread(event,val);
-    //  if towin)and(G.curscreen^.winakt then
-    //  addqueue(G.curscreen^.winakt,event,val);
-    //end;
+    if towin<>0 then
+    begin
+      towin:= blenderqread(event,val);
+      if (towin<>0)and(G.curscreen^.winakt<>0) then
+      addqueue(G.curscreen^.winakt,event,val);
+    end;
 
     event:= ext_qtest(); (* window queues en swapbuffers *)
 
@@ -2612,10 +2594,7 @@ end;
 //    end;
 //    sa:= sa^.next; 
 //  end;
-//  begin
-//    result:=nil; 
-//    exit;
-//  end;
+//    exit(nil);
 //end;
 
 function addscrvert(lb: pListBase;  x: smallint;  y: smallint): pScrVert;
@@ -2765,37 +2744,37 @@ begin
   end;
 end;
 
-//procedure removenotused_scrverts; 
-//var
-//sv: pScrVert; 
-//svn: pScrVert; 
-//se: pScrEdge; 
-//sa: pScrArea; (* ga ervan uit dat de edges goed zijn *)
-//begin
+procedure removenotused_scrverts;
+var
+sv: pScrVert;
+svn: pScrVert;
+se: pScrEdge;
+sa: pScrArea;
+begin
+  (* ga ervan uit dat de edges goed zijn *)
 
-//  se:= G.curscreen^.edgebase.first; 
-//  while se
-//  do
-//  begin 
-//    se^.v1^.flag:= 1; 
-//    se^.v2^.flag:= 1; 
-//    se:= se^.next; 
-//  end;
-//  sv:= G.curscreen^.vertbase^.first; 
-//  while sv
-//  do
-//  begin 
-//    svn:= sv^.next; 
-//    if sv^.flag=nil then
-//    begin 
-//      remlink(@G.curscreen^.vertbase,sv); 
-//      freeN(sv); 
-//    end;
-//    else
-//    sv^.flag:=nil; 
-//    sv:= svn; 
-//  end;
-//end;
+  se:= G.curscreen^.edgebase.first;
+  while se <> nil do
+  begin
+    se^.v1^.flag:= 1;
+    se^.v2^.flag:= 1;
+    se:= se^.next;
+  end;
+
+  sv:= G.curscreen^.vertbase.first;
+  while sv <> nil do
+  begin
+    svn:= sv^.next;
+    if sv^.flag=0 then
+    begin
+      remlink(@G.curscreen^.vertbase,sv);
+      freeN(sv);
+    end
+    else
+    sv^.flag:=0;
+    sv:= svn;
+  end;
+end;
 
 procedure removedouble_scredges;
 var
@@ -3117,129 +3096,111 @@ begin
   G.curscreen^.winakt:=0;
 end;
 
-//function test_edge_area(sa: pScrArea;  se: pScrEdge): pScrArea;
-//var
-//se1: pScrEdge;
+function test_edge_area(sa: pScrArea;  se: pScrEdge): pScrArea;
+var
+se1: pScrEdge=nil;
+se2: pScrEdge=nil;
+se3: pScrEdge=nil;
+se4: pScrEdge=nil;
+begin
+  (* test of edge in area ligt, zo niet,
+      vind een area die 'm wel heeft *)
 
-//se2: pScrEdge;
+  if sa<>nil then
+  begin
+    se1:= findscredge(sa^.v1,sa^.v2);
+    se2:= findscredge(sa^.v2,sa^.v3);
+    se3:= findscredge(sa^.v3,sa^.v4);
+    se4:= findscredge(sa^.v4,sa^.v1);
+  end;
+  if (se1<>se)and(se2<>se)and(se3<>se)and(se4<>se) then
+  begin
+    sa:= G.curscreen^.areabase.first;
+    while sa<>nil do
+    begin
+      (* een beetje optimaliseren? *)
+      if (se^.v1=sa^.v1)or(se^.v1=sa^.v2)or(se^.v1=sa^.v3)or(se^.v1=sa^.v4) then
+      begin
+        se1:= findscredge(sa^.v1,sa^.v2);
+        se2:= findscredge(sa^.v2,sa^.v3);
+        se3:= findscredge(sa^.v3,sa^.v4);
+        se4:= findscredge(sa^.v4,sa^.v1);
+        if (se1=se)or(se2=se)or(se3=se)or(se4=se) then
+        exit(sa);
+      end;
+      sa:= sa^.next;
+    end;
+  end;
+    exit(sa);   (* is keurig 0 als niet gevonden *)
+end;
 
-//se3: pScrEdge;
+function closest_bigger_area: pScrArea;
+var
+sa: pScrArea;
+big: pScrArea=nil;
+cent: array [0..2] of single;
+vec: array [0..2] of single;
+len: single;
+len1: single;
+len2: single;
+len3: single;
+dist: single=1000;
+mval: array [0..1] of smallint;
+begin
+  getmouseco_sc(mval);
 
-//se4: pScrEdge;
+  cent[0]:= mval[0];
+  cent[1]:= mval[1];
+  cent[2]:=0;
+  vec[2]:=0;
 
-//begin(* test of edge in area ligt, zo niet, 
-//      vind een area die 'm wel heeft *)
-//  se1:=nil; 
-//  se2:=nil; 
-//  se3:=nil; 
-//  se4:=nil; 
-//  if sa<>nil then
-//  begin 
-//    se1:= findscredge(sa^.v1,sa^.v2); 
-//    se2:= findscredge(sa^.v2,sa^.v3); 
-//    se3:= findscredge(sa^.v3,sa^.v4); 
-//    se4:= findscredge(sa^.v4,sa^.v1); 
-//  end;
-//  if se1<>se)and(se2<>se)and(se3<>se)and(se4<>se then
-//  begin 
-//    sa:= G.curscreen^.areabase.first; 
-//    while sa
-//    do
-//    begin 
-//      (* een beetje optimaliseren? *)
-//      if se^.v1=sa^.v1)or(se^.v1=sa^.v2)or(se^.v1=sa^.v3)or(se^.v1=sa^.v4 then
-//      begin 
-//        se1:= findscredge(sa^.v1,sa^.v2); 
-//        se2:= findscredge(sa^.v2,sa^.v3); 
-//        se3:= findscredge(sa^.v3,sa^.v4); 
-//        se4:= findscredge(sa^.v4,sa^.v1); 
-//        if se1=se)or(se2=se)or(se3=se)or(se4=se then
-//        begin
-//          result:= sa; 
-//          exit;
-//        end;
-//      end;
-//      sa:= sa^.next; 
-//    end;
-//  end;
-//  begin
-//    result:= sa; 
-//    exit;
-//    (* is keurig 0 als niet gevonden *)
-//  end;
-//end;
+  sa:= G.curscreen^.areabase.first;
+  while sa <> nil do
+  begin
+    if sa<>curarea then
+    begin
+      if sa^.winy>=curarea^.winy then
+      begin
+        (* mimimum van vier hoekpunten *)
+        vec[0]:= sa^.v1^.vec.x;
+        vec[1]:= sa^.v1^.vec.y;
+        len:= VecLenf(vec,cent);
+        vec[0]:= sa^.v2^.vec.x;
+        vec[1]:= sa^.v2^.vec.y;
+        len1:= VecLenf(vec,cent);
+        vec[0]:= sa^.v3^.vec.x;
+        vec[1]:= sa^.v3^.vec.y;
+        len2:= VecLenf(vec,cent);
+        vec[0]:= sa^.v4^.vec.x;
+        vec[1]:= sa^.v4^.vec.y;
+        len3:= VecLenf(vec,cent);
 
-//function closest_bigger_area: pScrArea;
-//var
-//sa: pScrArea;
-//big: pScrArea;
+        len:= MIN4(len,len1,len2,len3);
 
-//cent: array [0..2] of single;
-//vec: array [0..2] of single;
-//len: single;
-//len1: single;
-//len2: single;
-//len3: single;
-//dist: single;
+        (* plus centrum *)
+        vec[0]:= (sa^.v2^.vec.x+sa^.v3^.vec.x) div 2;
+        vec[1]:= (sa^.v1^.vec.y+sa^.v2^.vec.y) div 2;
 
-//mval: array [0..1] of smallint;
-//begin
+        len:= len + (0.5*VecLenf(vec,cent));
 
-//  big:=nil; 
+        (* min afmeting *)
+        len:= len - (sa^.winy+sa^.winx);
 
-//  dist:=1000; 
+        if len<dist then
+        begin
+          dist:= len;
+          big:= sa;
+        end;
+      end;
+    end;
+    sa:= sa^.next;
+  end;
 
-//  getmouseco_sc(mval); 
-//  cent[0]:= mval[0]; 
-//  cent[1]:= mval[1]; 
-//  cent[2]:= vec[2]:=nil; 
-//  sa:= G.curscreen^.areabase.first; 
-//  while sa
-//  do
-//  begin 
-//    if sa<>curarea then
-//    begin 
-//      if sa^.winy>=curarea^.winy then
-//      begin 
-//        (* mimimum van vier hoekpunten *)
-//        vec[0]:= sa^.v1^.vec.x; 
-//        vec[1]:= sa^.v1^.vec.y; 
-//        len:= VecLenf(vec,cent); 
-//        vec[0]:= sa^.v2^.vec.x; 
-//        vec[1]:= sa^.v2^.vec.y; 
-//        len1:= VecLenf(vec,cent); 
-//        vec[0]:= sa^.v3^.vec.x; 
-//        vec[1]:= sa^.v3^.vec.y; 
-//        len2:= VecLenf(vec,cent); 
-//        vec[0]:= sa^.v4^.vec.x; 
-//        vec[1]:= sa^.v4^.vec.y; 
-//        len3:= VecLenf(vec,cent); 
-//        len:= MIN4(len,len1,len2,len3); 
-//        vec[0]:= (sa^.v2^.vec.x+sa^.v3^.vec.x) div 2; 
-//        vec[1]:= (sa^.v1^.vec.y+sa^.v2^.vec.y) div 2; 
-//        len:= len + (0.5*VecLenf(vec,cent)); 
-//        len:= len - (sa^.winy+sa^.winx); (* plus centrum *)
-//        (* min afmeting *)
-//        if len<dist then
-//        begin 
-//          dist:= len; 
-//          big:= sa; 
-//        end;
-//      end;
-//    end;
-//    sa:= sa^.next; 
-//  end;
-//  if big<>nil then
-//  begin
-//    result:= big; 
-//    exit;
-//  end;
-//  else
-//  begin
-//    result:= curarea; 
-//    exit;
-//  end;
-//end;
+  if big<>nil then
+  exit(big)
+  else
+  exit(curarea);
+end;
 
 (* ************ SCREENBEHEER ************** *)
 
@@ -3682,31 +3643,28 @@ end;
 
 (* niet screen zelf vrijgeven *)
 
-//procedure free_screen(sc: pbScreen); 
-//var
-//sa: pScrArea;
+procedure free_screen(sc: pbScreen);
+var
+sa: pScrArea=nil;
+begin
+  freelistN(@sc^.vertbase);
+  freelistN(@sc^.edgebase);
 
-//begin
-//  sa:=nil; 
-//  freelistN(@sc^.vertbase);
-//  freelistN(@sc^.edgebase);
-//  sa:= sc^.areabase.first;
-//  while sa
-//  do
-//  begin 
-//    del_area(sa); 
-//    if sa=curarea then
-//    curarea:=nil; 
-//    sa:= sa^.next; 
-//  end;
-//  freelistN(@sc^.areabase);
-//  if G.curscreen=sc then
-//  begin 
-//    G.curscreen:=nil; 
-//    winqueue_break:= 1; 
-//    (* overal uit queue's gaan *)
-//  end;
-//end;
+  sa:= sc^.areabase.first;
+  while sa<>nil do
+  begin
+    del_area(sa);
+    if sa=curarea then
+    curarea:=nil;
+    sa:= sa^.next;
+  end;
+  freelistN(@sc^.areabase);
+  if G.curscreen=sc then
+  begin
+    G.curscreen:=nil;
+    winqueue_break:= 1;  (* overal uit queue's gaan *)
+  end;
+end;
 
 procedure setscreen(sc: pbScreen);
 var
@@ -3795,64 +3753,72 @@ begin
   curedge:=nil;           (* global voor move en join *)
 end;
 
-//procedure area_fullscreen; (* met curarea *)
-//var
-//sc: pbScreen; 
-//oldscreen: pbScreen; 
-//new: pScrArea;
-//old: pScrArea;
-//begin(* deze funktie toggelt: als area full is wordt de parent weer zichtbaar *)
+procedure area_fullscreen; (* met curarea *)
+var
+sc: pbScreen;
+oldscreen: pbScreen;
+new: pScrArea;
+old: pScrArea;
+begin
+  (* deze funktie toggelt: als area full is wordt de parent weer zichtbaar *)
 
-//  if curarea^.full<>nil then
-//  begin 
-//    sc:= curarea^.full; 
-//    sc^.full:=nil;
-//    old:= sc^.areabase.first; (* de oude screen *)
-//    (* vind oude area *)
-//    while old
-//    do
-//    begin 
-//      if old.full<>nil then
-//      break; {<= !!!b possible in "switch" - then remove this line}
-//      old:= old.next; 
-//    end;
-//    if old=nil then
-//    begin 
-//      error('something wrong in areafullscreen'); 
-//      exit;
-//    end;
-//    copy_areadata(old,curarea); 
-//    old.full:=nil; 
-//    free_libblock(@G.main.screen,G.curscreen); 
-//    setscreen(sc); 
-//  end;
-//  else
-//  begin 
-//    (* is er maar 1 area? *)
-//    if G.curscreen^.areabase.first=G.curscreen^.areabase.last then
-//    exit;
-//    if curarea^.spacetype=SPACE_INFO then
-//    exit;
-//    G.curscreen^.full:= 1; 
-//    old:= curarea; 
-//    oldscreen:= G.curscreen; 
-//    sc:= addscreen('temp'); 
-//    splitarea( {pScrArea(}sc^.areabase.first,'h',0.99);
-//    (* deze zet G.curscreen *)
-//    new:= sc^.areabase.first;
-//    newspace(new.next,SPACE_INFO); 
-//    curarea:= old; 
-//    G.curscreen:= oldscreen; 
-//    copy_areadata(new,curarea); 
-//    (* moet voor setscreen *)
-//    (* area kopieeren *)
-//    curarea^.full:= oldscreen; 
-//    new.full:= oldscreen; 
-//    new.next.full:= oldscreen; 
-//    setscreen(sc); 
-//    wich_cursor(new); 
-//  end;
-//end;
+  if curarea^.full<>nil then
+  begin
+    sc:= curarea^.full;    (* de oude screen *)
+    sc^.full:=0;
+
+    (* vind oude area *)
+    old:= sc^.areabase.first;
+    while old <>nil do
+    begin
+      if old^.full<>nil then
+      break;
+      old:= old^.next;
+    end;
+    if old=nil then
+    begin
+      error('something wrong in areafullscreen');
+      exit;
+    end;
+
+    copy_areadata(old,curarea);
+    old^.full:=nil;
+
+    free_libblock(@G.main^.screen,G.curscreen);
+    setscreen(sc);
+  end
+  else
+  begin
+    (* is er maar 1 area? *)
+    if G.curscreen^.areabase.first=G.curscreen^.areabase.last then
+    exit;
+    if curarea^.spacetype=SPACE_INFO then
+    exit;
+
+    G.curscreen^.full:= 1;
+
+    old:= curarea;
+    oldscreen:= G.curscreen;
+    sc:= addscreen('temp');     (* deze zet G.curscreen *)
+
+    splitarea(sc^.areabase.first,'h',0.99);
+    new:= sc^.areabase.first;
+    newspace(new^.next,SPACE_INFO);
+
+    curarea:= old;
+    G.curscreen:= oldscreen;  (* moet voor setscreen *)
+
+    (* area kopieeren *)
+    copy_areadata(new,curarea);
+
+    curarea^.full:= oldscreen;
+    new^.full:= oldscreen;
+    new^.next^.full:= oldscreen;
+
+    setscreen(sc);
+    wich_cursor(new);
+  end;
+end;
 
 //procedure copy_screen(to: pbScreen;  from: pbScreen); 
 //var
@@ -3929,141 +3895,137 @@ end;
 (* ************ END SCREENBEHEER ************** *)
 (* ************  JOIN/SPLIT/MOVE ************** *)
 
-//procedure joinarea(sa: pScrArea);
-//var
-//sa2: pScrArea;
-//san: pScrArea;
-//up: pScrArea;
+procedure joinarea(sa: pScrArea);
+var
+sa2: pScrArea;
+san: pScrArea;
+up: pScrArea=nil;
+down: pScrArea=nil;
+right: pScrArea=nil;
+left: pScrArea=nil;
+setest: pScrEdge;
+val: smallint=0;
+str: array [0..Pred(64)] of char;
+begin
+  (* welke edge? *)
+  if curedge=nil then
+  exit;
 
-//down: pScrArea;
+  (* zit edge in area? of anders: welke area *)
+  sa:= test_edge_area(sa,curedge);
+  if sa=nil then
+  exit;
 
-//right: pScrArea;
+  (* welke edges kunnen ermee? *)
+  (* vind richtingen met zelfde edge *)
+  sa2:= G.curscreen^.areabase.first;
+  while sa2<>nil do
+  begin
+    if sa2<>sa then
+    begin
+      setest:= findscredge(sa2^.v1,sa2^.v2);
+      if curedge=setest then
+      right:= sa2;
+      setest:= findscredge(sa2^.v2,sa2^.v3);
+      if curedge=setest then
+      down:= sa2;
+      setest:= findscredge(sa2^.v3,sa2^.v4);
+      if curedge=setest then
+      left:= sa2;
+      setest:= findscredge(sa2^.v4,sa2^.v1);
+      if curedge=setest then
+      up:= sa2;
+    end;
+    sa2:= sa2^.next;
+  end;
 
-//left: pScrArea;
+  sa2:=nil;
+  setest:=nil;
 
-//setest: pScrEdge; 
-//val: smallint;
+  if left<>nil then
+  inc(val);
+  if up<>nil then
+  inc(val);
+  if right<>nil then
+  inc(val);
+  if down<>nil then
+  inc(val);
 
-//str: array [0..Pred(64)] of char; (* welke edge? *)
-//begin
+  if val=0 then
+  exit
+  else
+  if val=1 then
+  begin
+    if left<>nil then
+    sa2:= left
+    else
+    if up<>nil then
+    sa2:= up
+    else
+    if right<>nil then
+    sa2:= right
+    else
+    if down<>nil then
+    sa2:= down;
+  end;
 
-//  up:=nil; 
-//  down:=nil; 
-//  right:=nil; 
-//  left:=nil; 
+  if okee('Join')<>0 then
+  begin
+    if sa2<>nil then
+    begin
+      (* nieuwe area is oude sa *)
+      if sa2=left then
+      begin
+        sa^.v1:= sa2^.v1;
+        sa^.v2:= sa2^.v2;
+        addscredge(@G.curscreen^.edgebase,sa^.v2,sa^.v3);
+        addscredge(@G.curscreen^.edgebase,sa^.v1,sa^.v4);
+      end
+      else
+      if sa2=up then
+      begin
+        sa^.v2:= sa2^.v2;
+        sa^.v3:= sa2^.v3;
+        addscredge(@G.curscreen^.edgebase,sa^.v1,sa^.v2);
+        addscredge(@G.curscreen^.edgebase,sa^.v3,sa^.v4);
+      end
+      else
+      if sa2=right then
+      begin
+        sa^.v3:= sa2^.v3;
+        sa^.v4:= sa2^.v4;
+        addscredge(@G.curscreen^.edgebase,sa^.v2,sa^.v3);
+        addscredge(@G.curscreen^.edgebase,sa^.v1,sa^.v4);
+      end
+      else
+      if sa2=down then
+      begin
+        sa^.v1:= sa2^.v1;
+        sa^.v4:= sa2^.v4;
+        addscredge(@G.curscreen^.edgebase,sa^.v1,sa^.v2);
+        addscredge(@G.curscreen^.edgebase,sa^.v3,sa^.v4);
+      end;
 
-//  val:=nil; 
-//  if curedge=nil then
-//  exit;
-//  (* zit edge in area? of anders: welke area *)
-//  sa:= test_edge_area(sa,curedge); 
-//  if sa=nil then
-//  exit;
-//  (* welke edges kunnen ermee? *)
-//  (* vind richtingen met zelfde edge *)
-//  sa2:= G.curscreen^.areabase.first; 
-//  while sa2
-//  do
-//  begin 
-//    if sa2<>sa then
-//    begin 
-//      setest:= findscredge(sa2.v1,sa2.v2); 
-//      if curedge=setest then
-//      right:= sa2; 
-//      setest:= findscredge(sa2.v2,sa2.v3); 
-//      if curedge=setest then
-//      down:= sa2; 
-//      setest:= findscredge(sa2.v3,sa2.v4); 
-//      if curedge=setest then
-//      left:= sa2; 
-//      setest:= findscredge(sa2.v4,sa2.v1); 
-//      if curedge=setest then
-//      up:= sa2; 
-//    end;
-//    sa2:= sa2.next; 
-//  end;
-//  sa2:=nil; 
-//  setest:=nil; 
-//  if left<>nil then
-//  inc(val); 
-//  if up<>nil then
-//  inc(val); 
-//  if right<>nil then
-//  inc(val); 
-//  if down<>nil then
-//  inc(val); 
-//  if val=nil then
-//  exit;
-//  else
-//  if val=1 then
-//  begin 
-//    if left<>nil then
-//    sa2:= left; 
-//    else
-//    if up<>nil then
-//    sa2:= up; 
-//    else
-//    if right<>nil then
-//    sa2:= right; 
-//    else
-//    if down<>nil then
-//    sa2:= down; 
-//  end;
-//  if okee('Join') then
-//  begin 
-//    if sa2<>nil then
-//    begin 
-//      (* nieuwe area is oude sa *)
-//      if sa2=left then
-//      begin 
-//        sa^.v1:= sa2.v1; 
-//        sa^.v2:= sa2.v2; 
-//        addscredge(@G.curscreen^.edgebase,sa^.v2,sa^.v3); 
-//        addscredge(@G.curscreen^.edgebase,sa^.v1,sa^.v4); 
-//      end;
-//      else
-//      if sa2=up then
-//      begin 
-//        sa^.v2:= sa2.v2; 
-//        sa^.v3:= sa2.v3; 
-//        addscredge(@G.curscreen^.edgebase,sa^.v1,sa^.v2); 
-//        addscredge(@G.curscreen^.edgebase,sa^.v3,sa^.v4); 
-//      end;
-//      else
-//      if sa2=right then
-//      begin 
-//        sa^.v3:= sa2.v3; 
-//        sa^.v4:= sa2.v4; 
-//        addscredge(@G.curscreen^.edgebase,sa^.v2,sa^.v3); 
-//        addscredge(@G.curscreen^.edgebase,sa^.v1,sa^.v4); 
-//      end;
-//      else
-//      if sa2=down then
-//      begin 
-//        sa^.v1:= sa2.v1; 
-//        sa^.v4:= sa2.v4; 
-//        addscredge(@G.curscreen^.edgebase,sa^.v1,sa^.v2); 
-//        addscredge(@G.curscreen^.edgebase,sa^.v3,sa^.v4); 
-//      end;
-//      del_area(sa2); 
-//      (* edge en area weg *)
-//      (* remlink(&G.curscreen->edgebase, setest); *)
-//      (* freeN(setest); *)
-//      remlink(@G.curscreen^.areabase,sa2); 
-//      if curarea=sa2 then
-//      curarea:=nil; 
-//      freeN(sa2); 
-//      removedouble_scredges(); 
-//      removenotused_scredges(); 
-//      removenotused_scrverts(); 
-//      testareas(); 
-//      (* moet als laatste *)
-//      qenter(DRAWEDGES,1); 
-//      qenter(MOUSEY,-1); 
-//      (* test cursor en inputwindow *)
-//    end;
-//  end;
-//end;
+      (* edge en area weg *)
+      (* remlink(&G.curscreen->edgebase, setest); *)
+      (* freeN(setest); *)
+      del_area(sa2);
+      remlink(@G.curscreen^.areabase,sa2);
+      if curarea=sa2 then
+      curarea:=nil;
+      freeN(sa2);
+
+      removedouble_scredges();
+      removenotused_scredges();
+      removenotused_scrverts();   (* moet als laatste *)
+
+      testareas();
+      qenter(DRAWEDGES,1);
+      (* test cursor en inputwindow *)
+      qenter(MOUSEY,-1);
+    end;
+  end;
+end;
 
 (* return 0: geen split mogelijk *)
 (* else return (integer) screencoordinaat splitpunt *)
@@ -4182,110 +4144,108 @@ begin
   testareas();
 end;
 
-//procedure editsplitpoint; 
-//var
-//sa: pScrArea;
-//fac: single;
-//event: word;
-//ok: smallint;
+procedure editsplitpoint;
+var
+sa: pScrArea;
+fac: single;
+event: word;
+ok: smallint=0;
+val: smallint;
+split: smallint;
+mval: array [0..1] of smallint;
+mvalo: array [0..1] of smallint=(-1010,-1010);
+col: array [0..2] of smallint;
+dir: char;
+begin
+  sa:= test_edge_area(curarea,curedge);
+  if sa=nil then
+  exit;
 
-//val: smallint; 
-//split: smallint; 
-//mval: array [0..1] of smallint;
-//mvalo: array [0..1] of smallint;
+  if sa^.win=0 then
+  exit;
+  if sa^.full<>nil then
+  exit;
+  if curedge=nil then
+  exit;
+  if okee('Split')=0 then
+  exit;
 
-//col: array [0..2] of smallint;
-//dir: char; 
-//begin
+  if curedge^.v1^.vec.x=curedge^.v2^.vec.x then
+  dir:= 'h'
+  else
+  dir:= 'v';
 
-//  ok:=nil; 
+  mywinset(G.curscreen^.mainwin);
+  glDrawBuffer(GL_FRONT);
+  (* hoort al goede matrix te hebben *)
 
-//  mvalo:=(-1010,-1010); 
+  (* rekening houden met grid en minsize *)
+  while ok=0 do
+  begin
+    getmouseco_sc(mval);
 
-//  sa:= test_edge_area(curarea,curedge); 
-//  if sa=nil then
-//  exit;
-//  if sa^.win=nil then
-//  exit;
-//  if sa^.full<>nil then
-//  exit;
-//  if curedge=nil then
-//  exit;
-//  if okee('Split')=nil then
-//  exit;
-//  if curedge^.v1^.vec.x=curedge^.v2^.vec.x then
-//  dir:= 'h'; 
-//  else
-//  dir:= 'v'; 
-//  mywinset(G.curscreen^.mainwin); 
-//  glDrawBuffer(GL_FRONT); 
-//  (* hoort al goede matrix te hebben *)
-//  (* rekening houden met grid en minsize *)
-//  while ok=nil
-//  do
-//  begin 
-//    getmouseco_sc(mval); 
-//    if mval[0]<>mvalo[0])or(mval[1]<>mvalo[1] then
-//    begin 
-//      mvalo[0]:= mval[0]; 
-//      mvalo[1]:= mval[1]; 
-//      if dir='h' then
-//      begin 
-//        fac:= mval[1]-(sa^.v1^.vec.y); 
-//        fac:= fac div (sa^.v2^.vec.y-sa^.v1^.vec.y); 
-//      end;
-//      else
-//      begin 
-//        fac:= mval[0]-sa^.v1^.vec.x; 
-//        fac:= fac div (sa^.v4^.vec.x-sa^.v1^.vec.x); 
-//      end;
-//      split:= testsplitpoint(sa,dir,fac); 
-//      if split=nil then
-//      begin 
-//        ok:= -1; 
-//      end;
-//      else
-//      begin 
-//        if dir='h' then
-//        begin 
-//          sdrawXORline4(0,sa^.totrct.xmin,split,sa^.totrct.xmax,split); 
-//          sdrawXORline4(1,sa^.totrct.xmin,-1+split,sa^.totrct.xmax,-1+split); 
-//        end;
-//        else
-//        begin 
-//          sdrawXORline4(0,split,sa^.totrct.ymin,split,sa^.totrct.ymax); 
-//          sdrawXORline4(1,-1+split,sa^.totrct.ymin,-1+split,sa^.totrct.ymax); 
-//        end;
-//      end;
-//    end;
-//    event:= extern_qread(@val); 
-//    if val)and(event=LEFTMOUSE then
-//    begin 
-//      if dir='h' then
-//      begin 
-//        fac:= split-(sa^.v1^.vec.y); 
-//        fac:= fac div (sa^.v2^.vec.y-sa^.v1^.vec.y); 
-//      end;
-//      else
-//      begin 
-//        fac:= split-sa^.v1^.vec.x; 
-//        fac:= fac div (sa^.v4^.vec.x-sa^.v1^.vec.x); 
-//      end;
-//      ok:= 1; 
-//    end;
-//    if val)and(event=ESCKEY then
-//    begin 
-//      ok:= -1; 
-//    end;
-//  end;
-//  sdrawXORline4(-1,0,0,0,0); 
-//  if ok=1 then
-//  begin 
-//    splitarea(sa,dir,fac); 
-//    qenter(DRAWEDGES,1); 
-//  end;
-//  glDrawBuffer(GL_BACK); 
-//end;
+    if (mval[0]<>mvalo[0])or(mval[1]<>mvalo[1]) then
+    begin
+      mvalo[0]:= mval[0];
+      mvalo[1]:= mval[1];
+
+      if dir='h' then
+      begin
+        fac:= mval[1]-(sa^.v1^.vec.y);
+        fac:= fac / (sa^.v2^.vec.y-sa^.v1^.vec.y);
+      end
+      else
+      begin
+        fac:= mval[0]-sa^.v1^.vec.x;
+        fac:= fac / (sa^.v4^.vec.x-sa^.v1^.vec.x);
+      end;
+
+      split:= testsplitpoint(sa,dir,fac);
+      if split=0 then
+        ok:= -1
+      else
+      begin
+        if dir='h' then
+        begin
+          sdrawXORline4(0,sa^.totrct.xmin,split,sa^.totrct.xmax,split);
+          sdrawXORline4(1,sa^.totrct.xmin,-1+split,sa^.totrct.xmax,-1+split);
+        end
+        else
+        begin
+          sdrawXORline4(0,split,sa^.totrct.ymin,split,sa^.totrct.ymax);
+          sdrawXORline4(1,-1+split,sa^.totrct.ymin,-1+split,sa^.totrct.ymax);
+        end;
+      end;
+    end;
+
+    event:= extern_qread(@val);
+    if (val<>0)and(event=LEFTMOUSE) then
+    begin
+      if dir='h' then
+      begin
+        fac:= split-(sa^.v1^.vec.y);
+        fac:= fac / (sa^.v2^.vec.y-sa^.v1^.vec.y);
+      end
+      else
+      begin
+        fac:= split-sa^.v1^.vec.x;
+        fac:= fac / (sa^.v4^.vec.x-sa^.v1^.vec.x);
+      end;
+      ok:= 1;
+    end;
+    if (val<>0)and(event=ESCKEY) then
+      ok:= -1;
+  end;
+
+  sdrawXORline4(-1,0,0,0,0);
+
+  if ok=1 then
+  begin
+    splitarea(sa,dir,fac);
+    qenter(DRAWEDGES,1);
+  end;
+  glDrawBuffer(GL_BACK);
+end;
 
 procedure select_connected_scredge(sc: pbScreen;  edge: pScrEdge);
 var
@@ -4341,197 +4301,204 @@ begin
   end;
 end;
 
-//procedure moveareas; 
-//var
-//se: pScrEdge; 
-//v1: pScrVert; 
-//sa: pScrArea;
-//addvec: vec2s; 
-//vec1: array [0..1] of single;
-//vec2: array [0..1] of single;
-//vec3: array [0..1] of single;
-//dist: integer; 
-//mindist: integer;
+procedure moveareas;
+var
+se: pScrEdge;
+v1: pScrVert;
+sa: pScrArea;
+addvec: vec2s;
+PdistVL2Dfl: function:single;
+vec1: array [0..1] of single;
+vec2: array [0..1] of single;
+vec3: array [0..1] of single;
+dist: integer;
+mindist: integer=1 shl 30;
+event: word=0;
+val: smallint;
+split: smallint;
+mval: array [0..1] of smallint;
+mvalo: array [0..1] of smallint;
+tel: smallint;
+x1: smallint;
+x2: smallint;
+y1: smallint;
+y2: smallint;
+bigger: smallint;
+smaller: smallint;
+col: array [0..2] of smallint;
+dir: char;
+begin
+  if curarea^.full<>nil then
+  exit;
 
-//event: word;
+  if (curedge=nil)or(curedge^.border<>0) then
+  exit;
 
-//val: smallint; 
-//split: smallint; 
-//mval: array [0..1] of smallint;
-//mvalo: array [0..1] of smallint;
-//tel: smallint; 
-//x1: smallint; 
-//x2: smallint; 
-//y1: smallint; 
-//y2: smallint; 
-//bigger: smallint; 
-//smaller: smallint; 
-//col: array [0..2] of smallint;
-//dir: char; 
-//begin
+  if curedge^.v1^.vec.x=curedge^.v2^.vec.x then
+  dir:= 'v'
+  else
+  dir:= 'h';
 
-//  function PdistVL2Dfl: single;
+  select_connected_scredge(G.curscreen,curedge);
 
-//  mindist:=1 shl 30; 
-//  event:=nil; 
+  (* nu zijn alle vertices met 'flag==1' degene die verplaatst kunnen worden. *)
+  (* we lopen de areas af en testen vrije ruimte met MINSIZE *)
+  bigger:= 10000;
+  smaller:=10000;
+  sa:= G.curscreen^.areabase.first;
+  while sa<>nil  do
+  begin
+    if dir='h' then   (* als top of down edge select, test hoogte *)
+    begin
+      if (sa^.v1^.flag<>0)and(sa^.v4^.flag<>0) then
+      begin
+        if sa^.v2^.vec.y=G.curscreen^.sizey-1 then   (* bovenste edge *)
+        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-HEADERY-EDGEWIDTH2
+        else
+        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-AREAMINY;
+        if y1<bigger then
+        bigger:= y1;
+      end
+      else
+      if (sa^.v2^.flag<>0)and(sa^.v3^.flag<>0) then (* onderste edge *)
+      begin
+        if sa^.v1^.vec.y=0 then
+        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-HEADERY
+        else
+        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-AREAMINY;
+        if y1<smaller then
+        smaller:= y1;
+      end;
+    end
+    else
+    begin
+      (* als left of right edge select, test breedte *)
+      if (sa^.v1^.flag<>0)and(sa^.v2^.flag<>0) then
+      begin
+        x1:= sa^.v4^.vec.x-sa^.v1^.vec.x-AREAMINX;
+        if x1<bigger then
+        bigger:= x1;
+      end
+      else
+      if (sa^.v3^.flag<>0)and(sa^.v4^.flag<>0) then
+      begin
+        x1:= sa^.v4^.vec.x-sa^.v1^.vec.x-AREAMINX;
+        if x1<smaller then
+        smaller:= x1;
+      end;
+    end;
+    sa:= sa^.next;
+  end;
 
-//  if curarea^.full<>nil then
-//  exit;
-//  if curedge=nil)or(curedge^.border then
-//  exit;
-//  if curedge^.v1^.vec.x=curedge^.v2^.vec.x then
-//  dir:= 'v'; 
-//  else
-//  dir:= 'h'; 
-//  select_connected_scredge(G.curscreen,curedge); 
-//  bigger:= smaller:=10000; 
-//  sa:= G.curscreen^.areabase.first; (* nu zijn alle vertices met 'flag==1' degene die verplaatst kunnen worden. *)
-//  (* we lopen de areas af en testen vrije ruimte met MINSIZE *)
-//  while sa
-//  do
-//  begin 
-//    if dir='h' then
-//    begin 
-//      (* als top of down edge select, test hoogte *)
-//      if sa^.v1^.flag)and(sa^.v4^.flag then
-//      begin 
-//        if sa^.v2^.vec.y=G.curscreen^.sizey-1 then
-//        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-HEADERY-EDGEWIDTH2; 
-//        else
-//        (* bovenste edge *)
-//        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-AREAMINY; 
-//        if y1<bigger then
-//        bigger:= y1; 
-//      end;
-//      else
-//      if sa^.v2^.flag)and(sa^.v3^.flag then
-//      begin 
-//        if sa^.v1^.vec.y=nil then
-//        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-HEADERY; 
-//        else
-//        (* onderste edge *)
-//        y1:= sa^.v2^.vec.y-sa^.v1^.vec.y-AREAMINY; 
-//        if y1<smaller then
-//        smaller:= y1; 
-//      end;
-//    end;
-//    else
-//    begin 
-//      (* als left of right edge select, test breedte *)
-//      if sa^.v1^.flag)and(sa^.v2^.flag then
-//      begin 
-//        x1:= sa^.v4^.vec.x-sa^.v1^.vec.x-AREAMINX; 
-//        if x1<bigger then
-//        bigger:= x1; 
-//      end;
-//      else
-//      if sa^.v3^.flag)and(sa^.v4^.flag then
-//      begin 
-//        x1:= sa^.v4^.vec.x-sa^.v1^.vec.x-AREAMINX; 
-//        if x1<smaller then
-//        smaller:= x1; 
-//      end;
-//    end;
-//    sa:= sa^.next; 
-//  end;
-//  mywinset(G.curscreen^.mainwin); 
-//  glDrawBuffer(GL_FRONT); 
-//  getmouseco_sc(mvalo); 
-//  addvec.x:=nil; 
-//  addvec.y:=nil; 
-//  while get_mbut()@L_MOUSE
-//  do
-//  begin 
-//    getmouseco_sc(mval); 
-//    if mval[0]<>mvalo[0])or(mval[1]<>mvalo[1] then
-//    begin 
-//      if dir='h' then
-//      begin 
-//        addvec.y:= addvec.y + (mval[1]-mvalo[1]); 
-//        if addvec.y>bigger then
-//        addvec.y:= bigger; 
-//        if addvec.y<-smaller then
-//        addvec.y:= -smaller; 
-//      end;
-//      else
-//      begin 
-//        addvec.x:= addvec.x + (mval[0]-mvalo[0]); 
-//        if addvec.x>bigger then
-//        addvec.x:= bigger; 
-//        if addvec.x<-smaller then
-//        addvec.x:= -smaller; 
-//      end;
-//      mvalo[0]:= mval[0]; 
-//      mvalo[1]:= mval[1]; 
-//      tel:=nil; 
-//      se:= G.curscreen^.edgebase.first; 
-//      while se
-//      do
-//      begin 
-//        if se^.v1^.flag)and(se^.v2^.flag then
-//        begin 
-//          (* met areagrid even behelpen, verderop is OK! *)
-//          x1:= se^.v1^.vec.x+addvec.x-(addvec.x mod AREAGRID); 
-//          x2:= se^.v2^.vec.x+addvec.x-(addvec.x mod AREAGRID); 
-//          y1:= se^.v1^.vec.y+addvec.y-(addvec.y mod AREAGRID); 
-//          y2:= se^.v2^.vec.y+addvec.y-(addvec.y mod AREAGRID); 
-//          sdrawXORline4(tel{++} inc(tel); ,x1,y1,x2,y2); 
-//          sdrawXORline4(tel{++} inc(tel); ,x1+1,y1+1,x2+1,y2+1); 
-//          tel:= tel and (3); 
-//        end;
-//        se:= se^.next; 
-//      end;
-//    end;
-//    else
-//    usleep(2); 
-//    event:= extern_qread(@val); 
-//    if val<>nil then
-//    begin 
-//      if event=ESCKEY then
-//      break; {<= !!!b possible in "switch" - then remove this line}
-//      if event=LEFTMOUSE then
-//      break; {<= !!!b possible in "switch" - then remove this line}
-//      if event=SPACEKEY then
-//      break; {<= !!!b possible in "switch" - then remove this line}
-//    end;
-//  end;
-//  sdrawXORline4(-1,0,0,0,0); 
-//  (* wissen *)
-//  v1:= G.curscreen^.vertbase^.first; 
-//  while v1
-//  do
-//  begin 
-//    if v1^.flag)and(event<>ESCKEY then
-//    begin 
-//      (* zo is AREAGRID netjes *)
-//      if addvec.x)and(v1^.vec.x>0)and(v1^.vec.x<G.curscreen^.sizex-1 then
-//      begin 
-//        v1^.vec.x:= v1^.vec.x + (addvec.x); 
-//        if addvec.x<>bigger)and(addvec.x<>-smaller then
-//        v1^.vec.x:= v1^.vec.x - ((v1^.vec.x mod AREAGRID)); 
-//      end;
-//      if addvec.y)and(v1^.vec.y>0)and(v1^.vec.y<G.curscreen^.sizey-1 then
-//      begin 
-//        v1^.vec.y:= v1^.vec.y + (addvec.y); 
-//        v1^.vec.y:= v1^.vec.y + (AREAGRID-1); 
-//        v1^.vec.y:= v1^.vec.y - ((v1^.vec.y mod AREAGRID)); 
-//        (* with these lines commented out you can pull the top bar exact to the screen border. *)
-//        (* if(addvec.y != bigger and addvec.y != -smaller) { *)
-//        (* } *)
-//      end;
-//    end;
-//    v1^.flag:=nil; 
-//    v1:= v1^.next; 
-//  end;
-//  if event<>ESCKEY then
-//  begin 
-//    removedouble_scrverts(); 
-//    removedouble_scredges(); 
-//    testareas(); 
-//  end;
-//  glDrawBuffer(GL_BACK); 
-//  qenter(DRAWEDGES,1); 
-//end;
+  mywinset(G.curscreen^.mainwin);
+  glDrawBuffer(GL_FRONT);
+
+  getmouseco_sc(mvalo);
+  addvec.x:=0;
+  addvec.y:=0;
+
+  while (get_mbut and L_MOUSE)<>0  do
+  begin
+    getmouseco_sc(mval);
+
+    if (mval[0]<>mvalo[0])or(mval[1]<>mvalo[1]) then
+    begin
+      if dir='h' then
+      begin
+        addvec.y:= addvec.y + (mval[1]-mvalo[1]);
+        if addvec.y>bigger then
+        addvec.y:= bigger;
+        if addvec.y<-smaller then
+        addvec.y:= -smaller;
+      end
+      else
+      begin
+        addvec.x:= addvec.x + (mval[0]-mvalo[0]);
+        if addvec.x>bigger then
+        addvec.x:= bigger;
+        if addvec.x<-smaller then
+        addvec.x:= -smaller;
+      end;
+      mvalo[0]:= mval[0];
+      mvalo[1]:= mval[1];
+      tel:=0;
+
+      se:= G.curscreen^.edgebase.first;
+      while se <>nil      do
+      begin
+        if (se^.v1^.flag<>0)and(se^.v2^.flag<>0) then
+        begin
+          (* met areagrid even behelpen, verderop is OK! *)
+          x1:= se^.v1^.vec.x+addvec.x-(addvec.x mod AREAGRID);
+          x2:= se^.v2^.vec.x+addvec.x-(addvec.x mod AREAGRID);
+          y1:= se^.v1^.vec.y+addvec.y-(addvec.y mod AREAGRID);
+          y2:= se^.v2^.vec.y+addvec.y-(addvec.y mod AREAGRID);
+
+          sdrawXORline4(tel,x1,y1,x2,y2);
+          inc(tel);
+          sdrawXORline4(tel,x1+1,y1+1,x2+1,y2+1);
+          inc(tel);
+          tel:= tel and (3);
+        end;
+        se:= se^.next;
+      end;
+    end
+    else
+    usleep(2);
+
+    event:= extern_qread(@val);
+    if val<>0 then
+    begin
+      if event=ESCKEY then
+      break;
+      if event=LEFTMOUSE then
+      break;
+      if event=SPACEKEY then
+      break;
+    end;
+  end;
+
+  (* wissen *)
+  sdrawXORline4(-1,0,0,0,0);
+
+  v1:= G.curscreen^.vertbase.first;
+  while v1<>nil  do
+  begin
+    if (v1^.flag<>0)and(event<>ESCKEY) then
+    begin
+      (* zo is AREAGRID netjes *)
+      if (addvec.x<>0)and(v1^.vec.x>0)and(v1^.vec.x<G.curscreen^.sizex-1) then
+      begin
+        v1^.vec.x:= v1^.vec.x + (addvec.x);
+        if (addvec.x<>bigger)and(addvec.x<>-smaller) then
+        v1^.vec.x:= v1^.vec.x - ((v1^.vec.x mod AREAGRID));
+      end;
+      if (addvec.y<>0)and(v1^.vec.y>0)and(v1^.vec.y<G.curscreen^.sizey-1) then
+      begin
+        v1^.vec.y:= v1^.vec.y + (addvec.y);
+
+        (* with these lines commented out you can pull the top bar exact to the screen border. *)
+        (* if(addvec.y <> bigger) and (addvec.y <> -smaller) then
+           begin *)
+        v1^.vec.y:= v1^.vec.y + (AREAGRID-1);
+        v1^.vec.y:= v1^.vec.y - ((v1^.vec.y mod AREAGRID));
+        (* end; *)
+      end;
+    end;
+    v1^.flag:=0;
+    v1:= v1^.next;
+  end;
+
+  if event<>ESCKEY then
+  begin
+    removedouble_scrverts();
+    removedouble_scredges();
+    testareas();
+  end;
+
+  glDrawBuffer(GL_BACK);
+  qenter(DRAWEDGES,1);
+end;
 
 //procedure scrollheader; 
 //var
@@ -4601,19 +4568,13 @@ end;
 //  if tot=nil then
 //  begin 
 //    error('Can't do this! Open correct window');
-//    begin
-//      result:=nil; 
-//      exit;
-//    end;
+//      exit(nil);
 //  end;
 //  if tot=1 then
 //  begin 
 //    if curarea<>sact then
 //    areawinset(sact.win); 
-//    begin
-//      result:= 1; 
-//      exit;
-//    end;
+//      exit(1);
 //  end;
 //  else
 //  if tot>1 then
@@ -4659,23 +4620,14 @@ end;
 //      else
 //      begin 
 //        error('wrong window'); 
-//        begin
-//          result:=nil; 
-//          exit;
-//        end;
+//          exit(nil);
 //      end;
 //    end;
 //  end;
 //  if event=LEFTMOUSE then
-//  begin
-//    result:= 1; 
-//    exit;
-//  end;
+//    exit(1);
 //  else
-//  begin
-//    result:=nil; 
-//    exit;
-//  end;
+//    exit(nil);
 //end;
 
 (* ************  END JOIN/SPLIT/MOVE ************** *)
@@ -4844,9 +4796,9 @@ begin
   ortho2(-0.5, {single(}G.curscreen^.sizex-0.5,-0.5, {single(}G.curscreen^.sizey-0.5);
 
   (* edges in mainwin *)
-  //{$if not defined(BEOS ) and not defined(WINDOWS) and not defined(PPC) and not defined(MESA31)}
-  //glDrawBuffer(GL_FRONT_AND_BACK);
-  //{$endif}
+  {$if not defined(BEOS ) and not defined(WINDOWS) and not defined(PPC) and not defined(MESA31)}
+  glDrawBuffer(GL_FRONT_AND_BACK);
+  {$endif}
 
   se:= G.curscreen^.edgebase.first;
   while se <>nil  do

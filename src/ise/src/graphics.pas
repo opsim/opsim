@@ -142,7 +142,7 @@ uses
     TBOXEL = 14;
   { TBOXH: hoogte van 1 element  }
     TBOXH = 20;
-  {#define TBOXY	TBOXH*TBOXEL }
+    TBOXY = TBOXH*TBOXEL;
     TBOXBLACK = 1;
     TBOXDGREY = 2;
     TBOXWHITE = 3;
@@ -290,13 +290,13 @@ end;
 //{glMultMatrixf(x)  glMultMatrixf( (single * )(x))}
 //function glMultMatrixf(x: integer): integer; 
 //begin
-//  result:= glMultMatrixf( {pfloat(}(x))
+//  result:= glMultMatrixf( {psingle(}(x))
 //end;
 
 //{glLoadMatrixf(x)  glLoadMatrixf( (single * )(x))}
 //function glLoadMatrixf(x: integer): integer; 
 //begin
-//  result:= glLoadMatrixf( {pfloat(}(x))
+//  result:= glLoadMatrixf( {psingle(}(x))
 //end;
 
 //{lrectwrite(a, b, c, d, rect) {glRasterPos2i(a,  b);glDrawPixels((c)-(a)+1, (d)-(b)+1, GL_RGBA, GL_UNSIGNED_BYTE,  rect);}}
