@@ -2,7 +2,7 @@
 [![license](https://img.shields.io/badge/license-%20GPL--2-blue.svg)](../master/LICENSE)
 [![Build Status](https://travis-ci.org/daar/opsim.svg?branch=master)](https://travis-ci.org/daar/opsim)
 
-<img src="https://github.com/daar/opsim/blob/master/images/logo/logo.png" alt="OpSim logo"/>
+<img src="./release/images/logo/logo.png" alt="OpSim logo"/>
 
 OpSim is an open source Chemical Engineering Process Simulator with a user friendly drag-and-drop graphical user interface and an underlying high performance simulation engine. OpSim is cross-platform and runs equally well on Linux, Windows and Macintosh computers.
 
