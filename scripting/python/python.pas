@@ -289,6 +289,7 @@ type
   PPySliceObject = ^PySliceObject;
 
   AtExitProc = procedure;
+  init_func = function(): pPyObject; cdecl;
   PyCFunction = function(self, args: PPyObject): PPyObject; cdecl;
   PyCFunctionWithKW = function(self, args, keywords: PPyObject): PPyObject; cdecl;
 
@@ -1242,6 +1243,7 @@ var
   //_PySys_ProfileFunc: PPPPyObject;
 
   PyImport_FrozenModules: PP_frozen;
+  PyImport_AppendInittab: function(const name: pchar; initfunc: init_func): integer; cdecl;
 
   Py_None: PPyObject;
   Py_Ellipsis: PPyObject;
@@ -2028,6 +2030,7 @@ initialization
   Py_NotImplemented := ImportPyFunc('_Py_NotImplementedStruct');
 
   PyImport_FrozenModules := ImportPyFunc('PyImport_FrozenModules');
+  PyImport_AppendInittab := ImportPyFunc('PyImport_AppendInittab');
 
   PyExc_AttributeError := ImportPyFunc('PyExc_AttributeError');
   PyExc_EOFError := ImportPyFunc('PyExc_EOFError');
