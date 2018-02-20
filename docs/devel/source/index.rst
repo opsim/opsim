@@ -26,6 +26,7 @@ Contents
    architecture/index
    installing_dev_environment
    coding_standard
+   data_types
    committing_code
    specifications
    pp_library
