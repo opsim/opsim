@@ -1,7 +1,5 @@
 unit ANT_types;
 
-{$mode objfpc}{$H-}
-
 interface
 
 uses

@@ -1,7 +1,5 @@
 unit ANT_messages;
 
-{$mode objfpc}{$H-}
-
 interface
 
 uses 
@@ -116,7 +114,7 @@ procedure antPostMessage(Window: pANTwindow; MsgCode: integer; Params: ANT_Messa
 var
   msg: pANT_MessageRec;
 begin
-  msg := callocN(sizeof(ANT_MessageRec));
+  msg := callocN(sizeof(ANT_MessageRec), 'ANT_Message');
 
   msg^.mcode := MsgCode;
   move(Params, msg^.params, sizeof(ANT_MessageParams));

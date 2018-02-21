@@ -1,7 +1,5 @@
 unit ANT_gdi;
 
-{$mode objfpc}{$H-}
-
 interface
 
 uses
@@ -66,7 +64,7 @@ var
   WindowRect: TRect;
   win: pANTwindow = nil;
 begin
-  win := callocN(sizeof(ANTWindow));
+  win := callocN(sizeof(ANTWindow), 'ANTWindow');
 
   WindowRect.Left := 0;
   WindowRect.Top := 0;
