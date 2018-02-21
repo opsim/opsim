@@ -1066,8 +1066,7 @@ begin
       end;
       SPACE_IPO:
       begin
-        if G.sipo<>curarea^.spacedata.first
- then
+        if G.sipo<>curarea^.spacedata.first then
         allqueue(REDRAWBUTSANIM,0);
         G.sipo:= curarea^.spacedata.first;
         G.v2d:= @G.sipo^.v2d;
@@ -1106,7 +1105,6 @@ begin
       begin
         G.stext:= curarea^.spacedata.first;
       end;
-
     end;
   end;
   if win<>0 then
@@ -1155,53 +1153,18 @@ begin
 
   (* buttons, functies in window.c *)
   case curarea^.spacetype of
-    SPACE_EMPTY:
-    begin
-    end;
-//    SPACE_FILE:
-//    begin
-//      file_buttons(); 
-//    end;
-//    SPACE_INFO:
-//    begin
-//      info_buttons(); 
-//    end;
-//    SPACE_VIEW3D:
-//    begin
-//      view3d_buttons(); 
-//    end;
-//    SPACE_IPO:
-//    begin
-//      ipo_buttons(); 
-//    end;
-//    SPACE_BUTS:
-//    begin
-//      buts_buttons(); 
-//    end;
-//    SPACE_SEQ:
-//    begin
-//      seq_buttons(); 
-//    end;
-//    SPACE_IMAGE:
-//    begin
-//      image_buttons(); 
-//    end;
-//    SPACE_IMASEL:
-//    begin
-//      imasel_buttons(); 
-//    end;
-//    SPACE_OOPS:
-//    begin
-//      oops_buttons(); 
-//    end;
-//    SPACE_PAINT:
-//    begin
-//    end;
-//    SPACE_TEXT:
-//    begin
-//      text_buttons(); 
-//    end;
-
+    SPACE_EMPTY: ;
+//    SPACE_FILE: file_buttons();
+//    SPACE_INFO: info_buttons();
+//    SPACE_VIEW3D: view3d_buttons();
+//    SPACE_IPO: ipo_buttons();
+//    SPACE_BUTS: buts_buttons();
+//    SPACE_SEQ: seq_buttons();
+//    SPACE_IMAGE: image_buttons();
+//    SPACE_IMASEL: imasel_buttons();
+//    SPACE_OOPS: oops_buttons();
+//    SPACE_PAINT: ;
+//    SPACE_TEXT: text_buttons();
   end;
   curarea^.head_swap:= WIN_BACK_OK;
 end;
@@ -1289,107 +1252,109 @@ do_redraw: smallint = 0;
 do_change: smallint = 0;
 str: pchar;
 begin
-  //areawinset(sa^.headwin);
+  areawinset(sa^.headwin);
 
-  //while sa^.hq<>sa^.headqueue do
-  //begin
-  //  sa^.hq:= sa^.hq - (2);
+  while sa^.hq<>sa^.headqueue do
+  begin
+    sa^.hq:= sa^.hq - (2);
 
-  //  event:=  sa^.hq[0];
-  //  val:= sa^.hq[1];
+    event:=  sa^.hq[0];
+    val:= sa^.hq[1];
 
-  //  if val<>0 then
-  //  begin
-  //    if (sa^.spacetype=SPACE_TEXT)and(sa^.headqread=do_py_head_event) then
-  //    begin
-  //      (* exception for a running python script *)
-  //      sa^.headqread(event,val);
-  //    end
-  //    else
-  //    if event=LEFTMOUSE then
-  //    begin
-  //      FrontbufferButs(1);
-  //      event:= DoButtons();
-  //      FrontbufferButs(0);
+    if val<>0 then
+    begin
+      //if (sa^.spacetype=SPACE_TEXT)and(sa^.headqread=do_py_head_event) then
+      //begin
+      //  (* exception for a running python script *)
+      //  sa^.headqread(event,val);
+      //end
+      //else
+      //if event=LEFTMOUSE then
+      //begin
+      //  FrontbufferButs(1);
+      //  event:= DoButtons();
+      //  FrontbufferButs(0);
+      //
+      //  if event<>0 then
+      //  begin
+      //    if event<1000 then
+      //    do_headerbuttons(event);
+      //  end
+      //  (* er is waarschijnlijk in frontbuf getekend *)
+      //  (* sa->win_swap= WIN_FRONT_OK; *)
+      //  else
+      //  begin
+      //    mywinset(G.curscreen^.mainwin);
+      //    if G.qual and LR_CTRLKEY then
+      //    glutPushWindow()
+      //    else
+      //    begin
+      //      glutPopWindow();
+      //      glutDoWorkList();
+      //      R.winpop:= 1;
+      //      (* flag: need pop *)
+      //    end;
+      //    areawinset(sa^.headwin);
+      //  end;
+      //end
+      //else
+      //if event=MOUSEY then
+      //begin
+      //  if (U.flag and TOOLTIPS) <> 0 then
+      //  begin
+      //    str:= GetButTip();
+      //    if str<>nil then
+      //    begin
+      //      set_info_text(str);
+      //      allqueue(REDRAWINFO,1);
+      //    end;
+      //  end;
+      //end
+      //else
+      //if event=MIDDLEMOUSE then
+      //begin
+      //  scrollheader();
+      //  break; {<= !!!b possible in "switch" - then remove this line}
+      //end
+      //else
+      //if event=RIGHTMOUSE then
+      //begin
+      //  headmenu(sa);
+      //end
+      //else
+      //if event=REDRAW then
+      //begin
+      //  do_redraw:= 1;
+      //end
+      //else
+      //if event=CHANGED then
+      //begin
+      //  sa^.head_swap:=0;
+      //  do_change:= 1;
+      //  do_redraw:= 1;
+      //end
+      //else
+      //if sa^.headqread<>nil then
+      //begin
+      //  sa^.headqread(event,val);
+      //end;
+      //if winqueue_break<>0 then
+      //exit;
+    end;
+  end;
 
-  //      if event<>nil then
-  //      begin
-  //        if event<1000 then
-  //        do_headerbuttons(event);
-  //      end
-  //      (* er is waarschijnlijk in frontbuf getekend *)
-  //      (* sa->win_swap= WIN_FRONT_OK; *)
-  //      else
-  //      begin
-  //        mywinset(G.curscreen^.mainwin);
-  //        if G.qual and LR_CTRLKEY then
-  //        glutPushWindow()
-  //        else
-  //        begin
-  //          glutPopWindow();
-  //          glutDoWorkList();
-  //          R.winpop:= 1;
-  //          (* flag: need pop *)
-  //        end;
-  //        areawinset(sa^.headwin);
-  //      end;
-  //    end
-  //    else
-  //    if event=MOUSEY then
-  //    begin
-  //      if U.flag and TOOLTIPS then
-  //      begin
-  //        str:= GetButTip();
-  //        if str<>nil then
-  //        begin
-  //          set_info_text(str);
-  //          allqueue(REDRAWINFO,1);
-  //        end;
-  //      end;
-  //    end
-  //    else
-  //    if event=MIDDLEMOUSE then
-  //    begin
-  //      scrollheader();
-  //      break; {<= !!!b possible in "switch" - then remove this line}
-  //    end
-  //    else
-  //    if event=RIGHTMOUSE then
-  //    begin
-  //      headmenu(sa);
-  //    end
-  //    else
-  //    if event=REDRAW then
-  //    begin
-  //      do_redraw:= 1;
-  //    end
-  //    else
-  //    if event=CHANGED then
-  //    begin
-  //      sa^.head_swap:=0;
-  //      do_change:= 1;
-  //      do_redraw:= 1;
-  //    end
-  //    else
-  //    if sa^.headqread<>nil then
-  //    begin
-  //      sa^.headqread(event,val);
-  //    end;
-  //    if winqueue_break<>0 then
-  //    exit;
-  //  end;
-  //end;
-  //tempsa:= areawinar[sa^.headwin]; (* test: bestaat window nog *)
-  //if tempsa=nil then
-  //exit;
-  //(* dit onderscheid loopt niet lekker... *)
-  //if (do_change<>0)or(do_redraw<>0) then
-  //begin
-  //  areawinset(sa^.headwin);
-  //  defheadchange();
-  //  if sa^.headdraw<>nil then
-  //  sa^.headdraw();
-  //end;
+  tempsa:= areawinar[sa^.headwin]; (* test: bestaat window nog *)
+  if tempsa=nil then
+  exit;
+
+  (* dit onderscheid loopt niet lekker... *)
+  if (do_change<>0)or(do_redraw<>0) then
+  begin
+    //areawinset(sa^.headwin);
+    //defheadchange();
+    //if sa^.headdraw<>nil then
+    //sa^.headdraw();
+  end;
 end;
 
 //function winqtest(sa: pScrArea): word;
@@ -2505,6 +2470,7 @@ begin
 
           sa:= sa^.next;
         end;
+        screen_swapbuffers();
       end;
 
       screen_swapbuffers();
