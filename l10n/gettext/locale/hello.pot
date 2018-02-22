@@ -1,0 +1,8 @@
+#: hello:rshelloworld
+msgid "Hello World"
+msgstr ""
+
+#: hello:rshelloagain
+msgid "Hello Again"
+msgstr ""
+
