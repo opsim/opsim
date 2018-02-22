@@ -1,0 +1,1 @@
+add_library('opsim_guardedalloc', ['MEM_guardedalloc.pas']);

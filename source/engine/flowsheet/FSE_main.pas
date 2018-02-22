@@ -6,7 +6,7 @@ interface
 
 uses
   GL,
-  linkedlist;
+  MEM_guardedalloc;
 
 const
   FSE_PORT_INPUT = $01;
@@ -100,7 +100,7 @@ function FSE_object_new(lb: pListBase): pFSEobj;
 var
   ob: pFSEobj;
 begin
-  ob := callocN(sizeof(FSEobj));
+  ob := callocN(sizeof(FSEobj), 'FSE object');
   ob^.name := newname(lb, 'FSE_object');
 
   addtail(lb, ob);
@@ -138,7 +138,7 @@ function FSE_primitive_arc_new(ob: pFSEobj; x, y, radius, angle_start, angle: ca
 var
   pa: pFSEParc;
 begin
-  pa := callocN(sizeof(FSEParc));
+  pa := callocN(sizeof(FSEParc), 'FSE arc object');
 
   pa^.type_ := FSE_PRIM_ARC;
   pa^.x := x;
@@ -156,7 +156,7 @@ function FSE_primitive_line_new(ob: pFSEobj; x, y, w, h: cardinal): pFSEPline;
 var
   pl: pFSEPline;
 begin
-  pl := callocN(sizeof(FSEPline));
+  pl := callocN(sizeof(FSEPline), 'FSE line object');
 
   pl^.type_ := FSE_PRIM_LINE;
   pl^.x1 := x;
@@ -173,7 +173,7 @@ function FSE_primitive_text_new(ob: pFSEobj; text: string; x, y: cardinal): pFSE
 var
   pt: pFSEPtext;
 begin
-  pt := callocN(sizeof(FSEPtext));
+  pt := callocN(sizeof(FSEPtext), 'FSE text object');
 
   pt^.type_ := FSE_PRIM_TEXT;
   pt^.x := x;
@@ -189,7 +189,7 @@ function FSE_port_new(ob: pFSEobj; name: string; x, y: cardinal; type_: byte): p
 var
   po: pFSEport;
 begin
-  po := callocN(sizeof(pFSEport));
+  po := callocN(sizeof(pFSEport), 'FSE port object');
 
   po^.type_ := type_;
   po^.x := x;

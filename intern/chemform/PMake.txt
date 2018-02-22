@@ -1,0 +1,6 @@
+message(WARNING, 'compile the lexer script from the build system');
+//once implemented the compile.bat file can be removed
+
+include_directories('opsim_chemform', ['$(PMAKE_CURRENT_SOURCE_DIR)']);
+
+add_library('opsim_chemform', ['chemformparser.pas', 'CHF_tokenizer.pas', 'lexlib.pas'], ['opsim_guardedalloc']);

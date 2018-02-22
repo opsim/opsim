@@ -1,1 +1,1 @@
-add_library('opsim_FSE', ['FSE_main.pas'], ['opsim_core']);
+add_library('opsim_FSE', ['FSE_main.pas'], ['opsim_guardedalloc']);

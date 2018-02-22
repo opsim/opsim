@@ -1,1 +1,0 @@
-add_executable('opsim_unit_conv_test', 'unit_conv_test', 'unit_conv_test.pp', ['opsim_core', 'opsim_unit_conv']);

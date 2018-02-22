@@ -1,2 +1,0 @@
-add_executable('opsim_ant_test', 'simple', 'simple.pp', ['opsim_core', 'opsim_ant']);
-add_executable('opsim_ant_test', 'gears', 'gears.pp', ['opsim_core', 'opsim_ant']);

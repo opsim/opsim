@@ -1,11 +1,9 @@
 program FSE_test;
 
-{$mode objfpc}{$H-}
-
 uses
   SysUtils,
   GL,
-  linkedlist,
+  MEM_guardedalloc,
   ANT_main,
   ANT_types,
   ANT_messages,
