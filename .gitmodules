@@ -1,0 +1,3 @@
+[submodule "extern/pmake"]
+	path = extern/pmake
+	url = https://github.com/daar/pmake
