@@ -1,0 +1,64 @@
+{
+  "chemical formula" : "CO2",
+  "component" : "carbon dioxide",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        3.0410000000000002E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        7.3750000000000000E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        4.6800000000000003E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.9562600000000003E+000,
+        1.1969500000000000E+000,
+        -3.1261399999999999E+000,
+        4.8593900000000003E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "degC",
+        217,
+        3.0410000000000002E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "molar heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.7437000000000001E+001,
+        4.2314999999999998E-002,
+        -1.9555000000000002E-005,
+        3.9968000000000001E-009,
+        -2.9872000000000001E-013
+      ],
+      "date" : "2016-8-19",
+      "method" : "Polynomial",
+      "range" : [
+        "K",
+        50,
+        5000
+      ],
+      "ref" : "Chemical Properties Handbook - Carl L Yaws (McGraw-Hill, 1999)",
+      "result unit" : "J/mol.K"
+    }
+  ]
+}

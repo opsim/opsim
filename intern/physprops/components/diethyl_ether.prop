@@ -1,0 +1,64 @@
+{
+  "chemical formula" : "C4H10O",
+  "component" : "diethyl ether",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        4.6669999999999999E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        3.6439999999999998E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.6400000000000001E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -7.2991599999999996E+000,
+        1.2482800000000001E+000,
+        -2.9193099999999998E+000,
+        -3.5390000000000001E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "degC",
+        250,
+        4.6669999999999999E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "molar heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        3.5978999999999999E+001,
+        2.8444000000000003E-001,
+        -1.2672999999999999E-006,
+        -1.0128000000000000E-007,
+        3.4529000000000000E-011
+      ],
+      "date" : "2016-8-19",
+      "method" : "Polynomial",
+      "range" : [
+        "K",
+        200,
+        1500
+      ],
+      "ref" : "Chemical Properties Handbook - Carl L Yaws (McGraw-Hill, 1999)",
+      "result unit" : "J/mol.K"
+    }
+  ]
+}

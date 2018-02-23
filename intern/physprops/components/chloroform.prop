@@ -1,0 +1,64 @@
+{
+  "chemical formula" : "CHCl3",
+  "component" : "chloroform",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        5.3639999999999998E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        5.4700000000000003E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        5.0000000000000000E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.5041900000000004E+000,
+        1.0116999999999999E-002,
+        -3.7358999999999998E-001,
+        -2.2322000000000002E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "degC",
+        215,
+        5.3639999999999998E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "molar heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        2.2486999999999998E+001,
+        1.9822999999999999E-001,
+        -2.1676000000000000E-004,
+        1.1636000000000000E-007,
+        -2.4554999999999999E-011
+      ],
+      "date" : "2016-8-19",
+      "method" : "Polynomial",
+      "range" : [
+        "K",
+        100,
+        1500
+      ],
+      "ref" : "Chemical Properties Handbook - Carl L Yaws (McGraw-Hill, 1999)",
+      "result unit" : "J/mol.K"
+    }
+  ]
+}

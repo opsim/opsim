@@ -1,0 +1,64 @@
+{
+  "chemical formula" : "C2H2",
+  "component" : "acetylene",
+  "critical constants" : [
+    {
+      "author" : "Darius Blaszyk",
+      "date" : "2016-4-27",
+      "critical temperature" : [
+        "K",
+        3.0832999999999998E+002
+      ],
+      "critical pressure" : [
+        "bar",
+        6.1390000000000001E+001
+      ],
+      "critical density" : [
+        "g/cm3",
+        2.3100000000000001E-001
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Critical_Constants.html"
+    }
+  ],
+  "vapor pressure" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        -6.9012799999999999E+000,
+        1.2687299999999999E+000,
+        -2.0911300000000002E+000,
+        -2.7560099999999998E+000
+      ],
+      "date" : "2016-4-27",
+      "method" : "Wagner",
+      "range" : [
+        "degC",
+        192,
+        3.0832999999999998E+002
+      ],
+      "ref" : "http://www.echeguru.com/html_data_files/Wagner_Constants.html",
+      "result unit" : "bar"
+    }
+  ],
+  "molar heat capacity gas" : [
+    {
+      "author" : "Darius Blaszyk",
+      "coeff" : [
+        1.9359999999999999E+001,
+        1.1519000000000000E-001,
+        -1.2374000000000000E-004,
+        7.2370000000000005E-008,
+        -1.6590000000000001E-011
+      ],
+      "date" : "2016-8-19",
+      "method" : "Polynomial",
+      "range" : [
+        "K",
+        200,
+        1500
+      ],
+      "ref" : "Chemical Properties Handbook - Carl L Yaws (McGraw-Hill, 1999)",
+      "result unit" : "J/mol.K"
+    }
+  ]
+}
