@@ -1,2 +1,5 @@
 compiler_minimum_required(3,0,4);
-project('OpSim');
+project('OpSim', 0, 0, 2);
+
+add_subdirectory('intern');
+add_subdirectory('source');

@@ -8,3 +8,5 @@ add_library('opsim_ant',
 {$IFDEF LINUX} 'ANT_X11.pas'{$ENDIF}
 {$IFDEF DARWIN} 'ANT_Cocoa.pas'{$ENDIF}
 ], ['opsim_guardedalloc']);
+
+add_subdirectory('test');
