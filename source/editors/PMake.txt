@@ -1,0 +1,13 @@
+add_subdirectory('interface');
+add_subdirectory('screen');
+add_subdirectory('space_api');
+add_subdirectory('space_buttons');
+add_subdirectory('space_console');
+add_subdirectory('space_file');
+add_subdirectory('space_flowsheet');
+add_subdirectory('space_graph');
+add_subdirectory('space_info');
+add_subdirectory('space_physprops');
+add_subdirectory('space_script');
+add_subdirectory('space_text');
+add_subdirectory('space_userpref');

@@ -1,3 +1,7 @@
+add_subdirectory('editors');
+add_subdirectory('ise');
+add_subdirectory('tools');
+
 include_directories('opsim_src', ['$(PMAKE_BINARY_DIR)']);
 
 execute_process('$(PMAKE_SOURCE_DIR)', 'git', ['log', '--pretty=format:"''%h''"', '-n', '1'], '$(GIT_HASH)');

@@ -1,0 +1,1 @@
+add_executable('opsim_ise', 'opsim', 'iseopsim.pp', ['opsim_guardedalloc', 'opsim_ant']);

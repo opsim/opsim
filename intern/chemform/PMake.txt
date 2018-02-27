@@ -1,3 +1,6 @@
+//generate CHF_lexer.inc
+//execute_process('$(PMAKE_SOURCE_DIR)', 'plex', ['CHF_lexer.l', 'CHF_lexer.inc'], '');
+
 message(WARNING, 'compile the lexer script from the build system');
 //once implemented the compile.bat file can be removed
 
