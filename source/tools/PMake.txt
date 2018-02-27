@@ -1,2 +1,3 @@
 add_subdirectory('autodoc');
+add_subdirectory('licenseheader');
 add_subdirectory('ppjson');
