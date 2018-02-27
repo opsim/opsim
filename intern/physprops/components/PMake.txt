@@ -1,0 +1,1 @@
+install('$(PMAKE_CURRENT_SOURCE_DIR)', '$(PMAKE_PACKAGE_DIR)/components/', '*.prop', 'opsim_physprops');
