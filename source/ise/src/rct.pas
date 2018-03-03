@@ -95,10 +95,10 @@ xmax: single;
 ymin: single; 
 ymax: single; 
 begin
-  xmin:= MAX2(src1^.xmin,src2^.xmin);
-  xmax:= MIN2(src1^.xmax,src2^.xmax); 
-  ymin:= MAX2(src1^.ymin,src2^.ymin); 
-  ymax:= MIN2(src1^.ymax,src2^.ymax);
+  //xmin:= MAX2(src1^.xmin,src2^.xmin);
+  //xmax:= MIN2(src1^.xmax,src2^.xmax); 
+  //ymin:= MAX2(src1^.ymin,src2^.ymin); 
+  //ymax:= MIN2(src1^.ymax,src2^.ymax);
 
   if (xmax>=xmin)and(ymax>=ymin) then
   begin 

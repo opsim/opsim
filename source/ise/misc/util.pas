@@ -64,7 +64,7 @@ interface
   function MEMTAG3 : longint;
 
   function MEMFREE : longint;
-  function MEMNEXT(x : longint) : pMemHead;
+  function MEMNEXT(x : pointer) : pMemHead;
 
   procedure addhead(listbase:pListBase; vlink:pointer);
   procedure addtail(listbase:pListBase; vlink:pointer);

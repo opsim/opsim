@@ -2260,7 +2260,7 @@ begin
 
     if ((G.f and G_DEBUG)<>0)and(event<>0)and(event<>MOUSEY) then
     begin
-      PRINT3('d','d','d',event,val,G.qual);
+      //PRINT3('d','d','d',event,val,G.qual);
       debugval:= 1;
     end;
 
@@ -3127,36 +3127,36 @@ begin
     begin
       if sa^.winy>=curarea^.winy then
       begin
-        (* mimimum van vier hoekpunten *)
-        vec[0]:= sa^.v1^.vec.x;
-        vec[1]:= sa^.v1^.vec.y;
-        len:= VecLenf(vec,cent);
-        vec[0]:= sa^.v2^.vec.x;
-        vec[1]:= sa^.v2^.vec.y;
-        len1:= VecLenf(vec,cent);
-        vec[0]:= sa^.v3^.vec.x;
-        vec[1]:= sa^.v3^.vec.y;
-        len2:= VecLenf(vec,cent);
-        vec[0]:= sa^.v4^.vec.x;
-        vec[1]:= sa^.v4^.vec.y;
-        len3:= VecLenf(vec,cent);
-
-        len:= MIN4(len,len1,len2,len3);
-
-        (* plus centrum *)
-        vec[0]:= (sa^.v2^.vec.x+sa^.v3^.vec.x) div 2;
-        vec[1]:= (sa^.v1^.vec.y+sa^.v2^.vec.y) div 2;
-
-        len:= len + (0.5*VecLenf(vec,cent));
-
-        (* min afmeting *)
-        len:= len - (sa^.winy+sa^.winx);
-
-        if len<dist then
-        begin
-          dist:= len;
-          big:= sa;
-        end;
+        //(* mimimum van vier hoekpunten *)
+        //vec[0]:= sa^.v1^.vec.x;
+        //vec[1]:= sa^.v1^.vec.y;
+        //len:= VecLenf(vec,cent);
+        //vec[0]:= sa^.v2^.vec.x;
+        //vec[1]:= sa^.v2^.vec.y;
+        //len1:= VecLenf(vec,cent);
+        //vec[0]:= sa^.v3^.vec.x;
+        //vec[1]:= sa^.v3^.vec.y;
+        //len2:= VecLenf(vec,cent);
+        //vec[0]:= sa^.v4^.vec.x;
+        //vec[1]:= sa^.v4^.vec.y;
+        //len3:= VecLenf(vec,cent);
+        //
+        //len:= MIN4(len,len1,len2,len3);
+        //
+        //(* plus centrum *)
+        //vec[0]:= (sa^.v2^.vec.x+sa^.v3^.vec.x) div 2;
+        //vec[1]:= (sa^.v1^.vec.y+sa^.v2^.vec.y) div 2;
+        //
+        //len:= len + (0.5*VecLenf(vec,cent));
+        //
+        //(* min afmeting *)
+        //len:= len - (sa^.winy+sa^.winx);
+        //
+        //if len<dist then
+        //begin
+        //  dist:= len;
+        //  big:= sa;
+        //end;
       end;
     end;
     sa:= sa^.next;
@@ -3199,10 +3199,10 @@ begin
   max[1]:= sc^.sizey;
   while sv <>nil  do
   begin
-    min[0]:= MIN2(min[0],sv^.vec.x);
-    min[1]:= MIN2(min[1],sv^.vec.y);
-    max[0]:= MAX2(max[0],sv^.vec.x);
-    max[1]:= MAX2(max[1],sv^.vec.y);
+    //min[0]:= MIN2(min[0],sv^.vec.x);
+    //min[1]:= MIN2(min[1],sv^.vec.y);
+    //max[0]:= MAX2(max[0],sv^.vec.x);
+    //max[1]:= MAX2(max[1],sv^.vec.y);
     sv:= sv^.next;
   end;
 
@@ -3452,8 +3452,8 @@ begin
   end;
   {$endif}
 
-  if (G.f and G_DEBUG) <> 0 then
-  PRINT3('x','d','d',key,val,y);
+  //if (G.f and G_DEBUG) <> 0 then
+  //PRINT3('x','d','d',key,val,y);
 
   qenter(key,val);
 end;

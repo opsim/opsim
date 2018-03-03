@@ -2649,11 +2649,11 @@ begin
           begin
             buts:= sa^.spacedata.first;
 
-            if ELEM(buts^.mainb, BUTS_GAME, BUTS_FPAINT) then
-            begin
-              addqueue(sa^.win,REDRAW,1);
-              addqueue(sa^.headwin,REDRAW,1);
-            end
+            //if ELEM(buts^.mainb, BUTS_GAME, BUTS_FPAINT) then
+            //begin
+            //  addqueue(sa^.win,REDRAW,1);
+            //  addqueue(sa^.headwin,REDRAW,1);
+            //end
           end;
         end;
         REDRAWBUTSRADIO:

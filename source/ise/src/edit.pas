@@ -638,110 +638,110 @@ begin
   if G.obedit<>nil then
   begin
 
-    if ELEM3(G.obedit^._type, OB_MESH, OB_SECTOR, OB_LIFE)then
-    begin
-      //eve:= G.edve.first;
-      //while eve  do
-      //begin
-      //  inc(G.totvert);
-      //  if (eve.f and 1)<>0 then
-      //  inc(G.totvertsel);
-      //  eve:= eve.next;
-      //end;
-      //evl:= G.edvl.first;
-      //while evl <>nil       do
-      //begin
-      //  inc(G.totface);
-      //  if (evl.v1.f and 1)<>0 then
-      //  begin
-      //    if (evl.v2.f and 1)<>0 then
-      //    begin
-      //      if (evl.v3.f and 1) <> 0 then
-      //      begin
-      //        if evl.v4<>0 then
-      //        begin
-      //          if (evl.v4.f and 1)<>0 then
-      //          inc(G.totfacesel);
-      //        end
-      //        else
-      //        begin
-      //          inc(G.totfacesel);
-      //        end;
-      //      end;
-      //    end;
-      //  end;
-      //  evl:= evl.next;
-      //end;
-    end
-    else
-
-    if ELEM3(G.obedit^._type, OB_CURVE, OB_SURF, OB_FONT) then
-    begin
-      //nu:= editNurb.first;
-      //while nu<>nil      do
-      //begin
-      //  if (nu.type and 7)=CU_BEZIER then
-      //  begin
-      //    bezt:= nu.bezt;
-      //    a:= nu.pntsu;
-      //    while a<>0          do
-      //    begin
-      //      G.totvert:= G.totvert + (3);
-      //      if bezt.f1<>0 then
-      //      inc(G.totvertsel);
-      //      if bezt.f2<>0 then
-      //      inc(G.totvertsel);
-      //      if bezt.f3<>0 then
-      //      inc(G.totvertsel);
-      //      inc(bezt);
-
-      //      dec(a);
-      //    end;
-      //  end;
-      //  else
-      //  begin
-      //    bp:= nu.bp;
-      //    a:= nu.pntsu*nu.pntsv;
-      //    while a <> 0         do
-      //    begin
-      //      inc(G.totvert);
-      //      if bp.f1 and 1 then
-      //      inc(G.totvertsel);
-      //      inc(bp);
-
-      //      dec(a);
-      //    end;
-      //  end;
-      //  nu:= nu.next;
-      //end;
-    end
-    else
-    if G.obedit^._type=OB_MBALL then
-    begin
-      //ml:= editelems.first;
-      //while ml <> nil      do
-      //begin
-      //  inc(G.totvert);
-      //  if (ml.flag and SELECT) <> 0 then
-      //  inc(G.totvertsel);
-      //  ml:= ml.next;
-      //end;
-    end
-    else
-    if G.obedit^._type=OB_LATTICE then
-    begin
-      //bp:= editLatt.def;
-      //a:= editLatt.pntsu*editLatt.pntsv*editLatt.pntsw;
-      //while a<>0     do
-      //begin
-      //  inc(G.totvert);
-      //  if (bp.f1 and 1) <> 0 then
-      //  inc(G.totvertsel);
-      //  inc(bp);
-
-      //  dec(a);
-      //end;
-    end;
+    //if ELEM3(G.obedit^._type, OB_MESH, OB_SECTOR, OB_LIFE)then
+    //begin
+    //  eve:= G.edve.first;
+    //  while eve  do
+    //  begin
+    //    inc(G.totvert);
+    //    if (eve.f and 1)<>0 then
+    //    inc(G.totvertsel);
+    //    eve:= eve.next;
+    //  end;
+    //  evl:= G.edvl.first;
+    //  while evl <>nil       do
+    //  begin
+    //    inc(G.totface);
+    //    if (evl.v1.f and 1)<>0 then
+    //    begin
+    //      if (evl.v2.f and 1)<>0 then
+    //      begin
+    //        if (evl.v3.f and 1) <> 0 then
+    //        begin
+    //          if evl.v4<>0 then
+    //          begin
+    //            if (evl.v4.f and 1)<>0 then
+    //            inc(G.totfacesel);
+    //          end
+    //          else
+    //          begin
+    //            inc(G.totfacesel);
+    //          end;
+    //        end;
+    //      end;
+    //    end;
+    //    evl:= evl.next;
+    //  end;
+    //end
+    //else
+    //
+    //if ELEM3(G.obedit^._type, OB_CURVE, OB_SURF, OB_FONT) then
+    //begin
+    //  nu:= editNurb.first;
+    //  while nu<>nil      do
+    //  begin
+    //    if (nu.type and 7)=CU_BEZIER then
+    //    begin
+    //      bezt:= nu.bezt;
+    //      a:= nu.pntsu;
+    //      while a<>0          do
+    //      begin
+    //        G.totvert:= G.totvert + (3);
+    //        if bezt.f1<>0 then
+    //        inc(G.totvertsel);
+    //        if bezt.f2<>0 then
+    //        inc(G.totvertsel);
+    //        if bezt.f3<>0 then
+    //        inc(G.totvertsel);
+    //        inc(bezt);
+    //
+    //        dec(a);
+    //      end;
+    //    end;
+    //    else
+    //    begin
+    //      bp:= nu.bp;
+    //      a:= nu.pntsu*nu.pntsv;
+    //      while a <> 0         do
+    //      begin
+    //        inc(G.totvert);
+    //        if bp.f1 and 1 then
+    //        inc(G.totvertsel);
+    //        inc(bp);
+    //
+    //        dec(a);
+    //      end;
+    //    end;
+    //    nu:= nu.next;
+    //  end;
+    //end
+    //else
+    //if G.obedit^._type=OB_MBALL then
+    //begin
+    //  ml:= editelems.first;
+    //  while ml <> nil      do
+    //  begin
+    //    inc(G.totvert);
+    //    if (ml.flag and SELECT) <> 0 then
+    //    inc(G.totvertsel);
+    //    ml:= ml.next;
+    //  end;
+    //end
+    //else
+    //if G.obedit^._type=OB_LATTICE then
+    //begin
+    //  bp:= editLatt.def;
+    //  a:= editLatt.pntsu*editLatt.pntsv*editLatt.pntsw;
+    //  while a<>0     do
+    //  begin
+    //    inc(G.totvert);
+    //    if (bp.f1 and 1) <> 0 then
+    //    inc(G.totvertsel);
+    //    inc(bp);
+    //
+    //    dec(a);
+    //  end;
+    //end;
     allqueue(REDRAWINFO,1);
 
     (* 1, want header->win==0! *)
