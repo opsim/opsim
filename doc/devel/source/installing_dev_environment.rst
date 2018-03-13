@@ -27,7 +27,14 @@ The FreePascal_ compiler is a 32, 64 and 16 bit professional Pascal compiler. It
 
 .. _FreePascal: http://www.freepascal.org
 
+
+MS-Windows
+^^^^^^^^^^
+
 For MS-Windows one can download and install an installer from the website. This is a normal installation program, which offers the usual options of selecting a directory, and which parts of the distribution you want to install. It will, optionally, associate the .pp or .pas extensions with the text mode IDE. It is not recommended to install the compiler in a directory which has spaces in it’s path name. Some of the external tools do not support filenames with spaces in them, and you will have problems creating programs.
+
+Linux
+^^^^^
 
 The Linux distribution of Free Pascal comes in three forms:
 
@@ -37,7 +44,19 @@ The Linux distribution of Free Pascal comes in three forms:
 
 Additionally operating systems like Ubuntu provide FPC in their apps directory, however before installing, please check if the correct FPC version will be installed.
 
+For Ubuntu use: ``sudo apt-get install fpc``
+
+
+MacOS
+^^^^^
+
 FreePascal also provides binary installers for MacOS. Download and install as per instructions on the FreePascal website.
+
+```
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
+
+brew install fpc
+```
 
 PMake
 -----
