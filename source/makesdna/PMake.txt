@@ -1,0 +1,10 @@
+//for later care, adding the makesdna tool
+//add_subdirectory('intern');
+
+add_library('opsim_makesdna', 
+[
+  'DNA_listbase.pas',
+  'DNA_userdef_types.pas'
+]);
+
+

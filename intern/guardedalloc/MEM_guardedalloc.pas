@@ -23,24 +23,12 @@ unit MEM_guardedalloc;
 
 interface
 
+uses
+  DNA_listbase;
+
 function MAKE_ID(a, b, c, d: pchar): longint;
 
 type
-  pLink = ^Link;
-
-  Link = record
-    next: ^Link;
-    prev: ^Link;
-  end;
-
-  { never change the size of this! genfile.c detects pointerlen with it  }
-  pListBase = ^ListBase;
-
-  ListBase = record
-    first: pointer;
-    last: pointer;
-  end;
-
   { 8 byte alignment!  }
 
   pMemHead = ^MemHead;

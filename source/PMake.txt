@@ -1,5 +1,6 @@
 add_subdirectory('editors');
 add_subdirectory('ise');
+add_subdirectory('makesdna');
 add_subdirectory('tools');
 
 include_directories('opsim_src', ['$(PMAKE_BINARY_DIR)']);
