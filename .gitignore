@@ -1,0 +1,11 @@
+# MacOS
+.DS_Store
+
+# Linux
+
+# MS-Windows
+Thumbs.db
+
+# local patches
+/*.patch
+/*.diff
