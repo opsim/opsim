@@ -18,7 +18,11 @@ install:
     fi
   
 script:
-  - fpc ./src/engine/core/linkedlist.pas
+  - mkdir build
+  - cd build
+  - fpc ../extern/pmake/pmake/pmake.pp -Fu../extern/pmake/pmake/ -FU. -o./pmake
+  - ./pmake ..
+  - ./make
 
 notifications:
   email:
