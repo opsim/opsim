@@ -1,6 +1,0 @@
-@shorttitle(Overview)
-@title(OpSim code documentation v0.02)
-
-This is the code documentation of the OpSim sources, intended for OpSim developers. The developers handbook, where additional information can be found on the internals of OpSim is located at http://docs.opsim.cc/devel.
-
-A users reference manual is available at http://docs.opsim.cc/manual. In this manual the functions and features of OpSim are described. Once scripting is implemented an API reference manual will be available at http://docs.opsim.cc/api.
