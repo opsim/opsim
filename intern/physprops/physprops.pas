@@ -5,6 +5,7 @@ unit PhysProps;
 interface
 
 uses
+  DNA_listbase,
   MEM_guardedalloc, unit_conv, PP_components;
 
 type

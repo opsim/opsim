@@ -1,0 +1,9 @@
+add_library('opsim_equation_parser', 
+[
+  'REALTYPE.PAS',
+  'PARS7GLB.PAS',
+  'BUILDER.PAS',
+  'PARS7.PAS'
+]);
+
+add_subdirectory('test');

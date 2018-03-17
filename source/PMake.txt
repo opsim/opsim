@@ -1,4 +1,5 @@
 add_subdirectory('editors');
+add_subdirectory('font');
 add_subdirectory('ise');
 add_subdirectory('makesdna');
 add_subdirectory('tools');

@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+ <head>
+  <title>
+   Sparse Solver for Delphi and Borland-like Pascals
+  </title>
+  <link rel="StyleSheet" href="spartext_files/cops1.css" type="text/css">
+ </head>
+ <body>
+  <h1>
+   Sparse Solver for Delphi and Borland-like Pascals
+  </h1>
+  <p>
+   <a href="#INTRODUCTION">Introduction</a>
+   <br>
+   <a href="#Using">Using the Unit</a>
+   <br>
+   <a href="#Portability">Portability</a>
+   <br>
+   <a href="#Updates">Updates for November 1999/September 2002/August 2005/January
+   2007</a>
+   <br>
+   <a href="#Author">The Author</a>
+  </p>
+  <p>
+   Download the unit <a href=
+   "http://www.monash.edu.au/policy/ftp/gpextra/sparsolv.zip">sparsolv.zip (320k)</a>
+   <br>
+   Includes source, test programs, and all the instructions on this page.
+  </p>
+  <p>
+   <a name="INTRODUCTION"></a>
+  </p>
+  <h2>
+   1 INTRODUCTION
+  </h2>
+  <p>
+   Unit SparSolv is designed to solve sparse linear systems. These are equation systems
+   of the form:
+   <br>
+   A.X = R
+  </p>
+  <p>
+   where A is the LHS matrix of coefficients size NxN, R is the RHS vector of constants
+   size N, and X is a vector of variables size N.
+  </p>
+  <p>
+   It is designed to save time and space where A is fairly large but contains few
+   non-zero elements. A typical example would be the need to solve 1000 simultaneous
+   linear equations involving 1000 variables, where each equation used, on average, only
+   6 variables. To solve this system using conventional, non-sparse, methods, one would
+   need to allocate a 1000x1000 matrix using 8 MB of RAM (it is advisable to use double
+   precision for larger linear systems). Even if the RAM was available, it would take a
+   long time to solve such a large matrix.
+  </p>
+  <p>
+   Sparse methods save space and time by only storing information about non-zero
+   elements. SparSolv maintains an individual linked list for each equation. Each node in
+   such a list contains an element value (Double: 8 bytes), a column number (Integer: 4
+   bytes) and a pointer (4 bytes) to the next node. Each node uses 16 bytes, which is
+   twice the memory used to store one number in a conventional matrix. So, pursuing the
+   example above, the 6000 (6 x 1000) non-zero elements would require only 96 kB of
+   memory. For SparSolv, the RHS and various work vectors raise this to 140 kB.
+  </p>
+  <p>
+   SparSolv solves the linear system by reducing the LHS matrix to triangular form, using
+   Gaussian elimination. It chooses the order of pivot rows and columns in such a way as
+   to minimize the creation of new non-zero LHS elements. Nevertheless, such creation is
+   unavoidable, and so more memory is continually required as the solution proceeds. The
+   program TEST1 (see below), which solves the 1000x1000 0.6% density matrix mentioned
+   above eventually required 1.2 MB of RAM, nearly 9 times the initial requirement -
+   although much less than would be needed by non-sparse methods.
+  </p>
+  <p>
+   The speed and memory requirements of the algorithm depend not only on the size and
+   density of the LHS, but also on its structure: the way the non-zero elements are
+   arranged. Real-world problems often have a structure which the algorithm is able to
+   exploit. As in some other computer problems (eg, sorting), no one algorithm will be
+   best for all problems. I recommend SparSolv for systems of up to 12000 equations with
+   up to 200000 non-zeros and up to 5% density. Your mileage will vary !
+  </p>
+  <p>
+   The core code of SparSolv has been used by me and colleagues for a number of years to
+   solve systems of non-linear equations for economic models. These may be represented as
+   a matrix equation F(n,x) = 0, where n is a vector of N endogenous (model-deterimined)
+   variables, x is a vector of exogenous (user-determined) variables and there are N
+   equations. By drawing on contemporary economic data, we usually have one set of values
+   for n and x which satisfy F. We wish to find new values for n corresponding to some
+   other vector of exogenous (policy) variables y. We apply the Newton-Raphson
+   recurrence:
+  </p>
+  <p>
+   J(n,y).dn - = - F(n,y).
+  </p>
+  <p>
+   Here J is the Jacobian of F with respect to n, and dn is the vector of changes to n
+   which we hope will cause the RHS to go to zero. So J is our LHS, -F the RHS and we
+   seek to find dn using SparSolv.
+  </p>
+  <h3>
+   1.1 Further References
+  </h3>
+  <p>
+   To get the best from SparSolv, you have to understand a little linear algebra. See:
+  </p>
+  <ul>
+   <li>Introductory:
+    <br>
+    Numerical Recipes (Press, Teukolsky, Vetterling and Flannery) ISBN 0 521 43108 5
+   </li>
+   <li>Advanced:
+    <br>
+    Matrix Computations (Golub and Van Loan) ISBN 0 8018 3772 3
+   </li>
+   <li>Sparse:
+    <br>
+    Direct Methods for Sparse Matrices (Duff, Erisman and Reid) ISBN 0 521 43108 5
+   </li>
+  </ul>
+  <p>
+   If you want to solve really big systems, you need professional quality routines such
+   as can be found on NetLib (though see update below). But these are available in
+   Fortran or C rather than Pascal. I have had good results creating a Fortran DLL using
+   the Harwell routines (authors same as last book above) which was called by my Delphi
+   2.0 program. This route is really only practical if you are using 32-bit Pascal such
+   as Delphi 2.0 or later.
+  </p>
+  <p>
+   <a name="Using"></a>
+  </p>
+  <h2>
+   2 USING THE UNIT
+  </h2>
+  <p>
+   The simplest way to learn how to use the unit may be to study and run the two example
+   programs:
+  </p>
+  <ul>
+   <li>Test1.dpr: Example of using routines with N = 500.
+   </li>
+   <li>Test2.dpr: Example of using routines with N = 4, showing some of the errors that
+   could occur.
+   </li>
+   <li>TestMTX.dpr: Windows program which solves matrices stored on disk in MTX format.
+   </li>
+  </ul>
+  <p>
+   The method of storing sparse matrices on disk, or in the non-SparSolv parts of your
+   program, is up to you. The supplied SparSolv routines create and populate sparse
+   matrices in a special structure, which you do not need to understand (but if you want
+   to study how it is done, the source is there). The TestMTX example shows ONE way of
+   storing data on disk, but you could devise another.
+  </p>
+  <p>
+   If run through Delphi 1, Test1 and Test2 will appear as WinCrt [console] text windows.
+   For Delphi 2 and above, they run as console apps. Non-Delphi users should rename the
+   files to Test1.pas and Test2.pas, and compile from the DOS command line.
+  </p>
+  <p>
+   Unit SparSolv makes available 5 Boolean Functions and 3 procedures, listed below. Each
+   function returns True if operation was successfully completed - otherwise False. If
+   False is returned, call the procedure GetErrorMessage to find the reason. It IS
+   important that you check the function return values.
+  </p>
+  <p>
+   The first step is to call InitStruc to initialize the sparse matrix storage structure.
+   Then, call AddLHS and AddRHS a number of times to set the values for the LHS and RHS.
+   Then call Solve1 to solve the system. Then GetAnswer once for each variable. Finally
+   call ReleaseStruc to free the memory that has been used.
+  </p>
+  <ul>
+   <li>function InitStruc(NumEq : Word) : Boolean;
+    <br>
+    Creates and initializes sparse matrix structure - call this first. NumEq is number of
+    equations/variables.
+   </li>
+   <li>function AddLHS(ThisEqu, ThisVar : Word; ThisVal : Double) : Boolean;
+    <br>
+    Add an element to sparse matrix for equation ThisEqu and variable ThisVar; if such an
+    entry already exists, ThisVal will be added to existing value.
+   </li>
+   <li>function AddRHS(ThisEqu : Word; ThisVal : Double) : Boolean;
+    <br>
+    Set RHS for equation ThisEqu; if RHS has already been set, ThisVal will be added to
+    existing value. YOU MUST SET THE RHS FOR EACH EQUATION, even if you set it to zero.
+   </li>
+   <li>function Solve1 : Boolean;
+    <br>
+    Calculate solutions; sparse matrix is destroyed.
+   </li>
+   <li>function GetAnswer(ThisVar : Word; var ThisVal : Double) : Boolean;
+    <br>
+    Read solution for variable ThisVar - probably called for each variable in turn.
+   </li>
+   <li>procedure ReleaseStruc;
+    <br>
+    Releases remaining memory used by sparse matrix structure - call this last.
+   </li>
+   <li>procedure GetErrorMsg(var S : String; var N1, N2, N3 : Word);
+    <br>
+    N1: error number; S: Error Description; N2, N3 : other possibly useful numbers.
+   </li>
+   <li>procedure ShowMat;
+    <br>
+    Displays small sparse matrix.
+   </li>
+  </ul>
+  <p>
+   Unit SparSolv also makes available 3 LongInt variables to assist in monitoring and
+   controlling memory use:
+  </p>
+  <ul>
+   <li>read SparMemUsed to find no of bytes of heap currently used by routines.
+   </li>
+   <li>read MaxMemUsed to find max no of bytes used so far.
+   </li>
+   <li>set MaxMemToUse: max no of bytes routines are allowed to use: -1 means no limit:
+   default is 4MB (16-Bit) or 2GB (32-Bit)
+   </li>
+  </ul>
+  <h3>
+   2.1 Error Messages
+  </h3>
+  <p>
+   If any of the functions listed above returns false, use GetErrorMessage to find what
+   the problem was. Each error number is called from a unique line of code, so you can
+   search to find where the error was caused. The errors will fall into four categories:
+  </p>
+  <p>
+   1: You forgot to call the routines in the right order:
+   <br>
+   Initstruc, AddLHS and AddRHS, Solve1, GetAnswer, ReleaseStruc.
+  </p>
+  <p>
+   2: You passed out-of-range equation and variable numbers to AddLHS, AddRHS or
+   GetAnswer.
+  </p>
+  <p>
+   3: You ran out of memory.
+  </p>
+  <p>
+   4: Your matrix was singular. This means that your equation system does not uniquely
+   determine all the variables. A matrix is singular if:
+   <br>
+   (a) any row or any column is empty or consists only of zeros.
+   <br>
+   (b) any row can be expressed as a linear combination of some other rows. In that case
+   Gaussian elimination will lead to an empty row.
+   <br>
+   (c) Like (b) but for columns.
+  </p>
+  <p>
+   The supplied program Test2 demonstrates various types of singular matrix error.
+  </p>
+  <p>
+   For sparse matrices, we distinguish between structural singularity (row or col has no
+   elements) and numerical singularity (vital elements are zero).
+  </p>
+  <p>
+   In its checking phase Solve1 may fail with 'Empty Row', 'Row without Variables' or
+   'Empty Col' messages. These indicate that rows/cols had no elements at all. While
+   scaling the LHS, Solve1 may report 'All- Zero Row' or 'All-Zero Column'. This means
+   that rows/cols had elements, but they were all set to 0.0. Next Solve1 tries to save
+   time by identifying variables which occur only once. If there are 2 or more of these
+   in the same equation, it fails with the 'Two Singles' message.
+  </p>
+  <p>
+   Finally, during the main Gaussian elimination phase, Solve1 again fails if the pivot
+   row has no elements or only zero elements, with messages 'Structurally Singular' or
+   'Numerically Singular' respectively.
+  </p>
+  <p>
+   Very many singular matrix errors arise from either poor input data or a poorly
+   conceived equation system. If you suspect that SparSolv is wrongly reporting a matrix
+   to be singular, please solve the matrix using a different routine before complaining
+   to me!
+  </p>
+  <h3>
+   2.2 Limitations of SparSolv:
+  </h3>
+  <ul>
+   <li>It only allows one Right Hand Side (RHS) column. Furthermore, unlike LU routines,
+   you cannot solve once, then backsolve several times for different RHS. This also rules
+   out iterative improvement.
+   </li>
+   <li>You cannot save and reuse the pivot sequence - this feature could be added.
+   </li>
+   <li>It only allows one sparse structure at a time: You must call ReleaseStruc before
+   calling InitStruc a second time.
+   </li>
+   <li>It will not solve singular matrices, even if <b>some</b> (but not all) variables
+   are uniquely determined !
+   </li>
+  </ul><a name="Portability"></a>
+  <h2>
+   3 PORTABILITY
+  </h2>
+  <p>
+   As supplied the code will run on any 32-bit Delphi up to and including BDS2006 and
+   Turbo Professional. To port to other dialects, you may need to modify various defines
+   {$IFDEF xxxx} near the top of some files. The code worked with Free Pascal Compiler
+   version 2.0.0 (2005). Now mainly of historical interest, SparSolv has been tested with
+   the following 16-bit Pascal versions:
+  </p>
+  <ul>
+   <li>16-bit real mode Turbo Pascal 7.0 {$VER70}
+    <br>
+    tpc -b test1.dpr
+   </li>
+   <li>16-bit protected mode Borland Pascal 7.0 {$VER70} {$DPMI}
+    <br>
+    bpc -cp -b test1.dpr
+   </li>
+   <li>16-bit protected mode Borland Pascal for Windows {$VER70} {$WINDOWS}
+    <br>
+    bpc -cw -b test1.dpr
+   </li>
+   <li>16-bit Windows Delphi 1.0 {$VER80} {$WINDOWS}
+    <br>
+    dcc -b test1.dpr
+   </li>
+  </ul>
+  <p>
+   An old-fashioned programming style has been used - no classes, objects, or modern
+   syntactical conveniences like BREAK or CONTINUE. The reason is that when the code was
+   created (early 90's), Borland did not supply a 32-bit Pascal which ran on the DOS and
+   Win3.11 machines which most people used. To enjoy the 32-bit advantage, we had to use
+   Borland-like Pascals, which were generally a few years behind Borland's development of
+   the Pascal language. The SparSolv code was often run on Frontier Software 32-bit
+   Pascal (TP5.0 compatible). There are/were a number of similar products (FPK, TMT, GNU,
+   VP/OS2, StoneyBrook, etc).
+  </p>
+  <p>
+   <a name="Updates"></a>
+  </p>
+  <h2>
+   Updates for November 1999/September 2002/August 2005/January 2007
+  </h2>
+  <p>
+   For November 1999,a problem with a missing "Timer" unit has been fixed. A new,
+   Windows, program TESTMTX has been added which reads in and solves matrices in the
+   'MatrixMarket' MTX format. Three MTX files are supplied. TESTMTX allows you to compare
+   SparSolv with a similar unit, SparLin, obtainable from:
+   <br>
+   http://www-rab.larc.nasa.gov/nmp/fNMPhome.htm
+   <br>
+   Sparlin comes with several more MTX files not included with SparSolv.
+  </p>
+  <p>
+   Although considerably less sophisticated, SparSolv compares quite well with SparLin
+   (which is a port of a NetLib C routine). The following table compares the times and
+   fillins (non-zeroes added) of the two routines for several MTX files:
+  </p>
+  <pre>
+matrix     size  elements   sparlin       sparlin       sparsolv
+                                         diag option
+                          secs  fills    secs  fills   secs  fills
+mahindas   1258    7687    0.6  (2292)    9.0(118815)   0.1  (3933)
+1138_bus   1138    4059    0.3  (1489)    0.0  (1548)   0.0     (0)
+memplus   17758  126155   98.0 (25474)    4.2 (29259)  60.1 (19944)
+sherman2   1080   23099   31.2(207920)   46.9(326717)   3.8(137530)
+test1      2500   19992  222.5(700848)  263.8(950317)  45.0(746263)
+Notes: Times are on a PIII 350mhz (in 2007, using 3.2 GHz Pentium 4, times were 1/5 of above)
+       SparLin has a "use diagonal" option which sometimes helps.
+</pre>
+  <p>
+   On the whole SparSolv seems faster: I like to think this is because it was developed
+   in Pascal, while Sparlin was originally in C, a language that slows thinking. However,
+   what we should really learn from comparisons such as this, is that no one sparse
+   algorithm is best for all matrices. Sparlin seems to perform very well on diagonally
+   dominant matrices (like Memplus), less well on more random matrices (like test1).
+  </p>
+  <p>
+   <b>September 2002:</b> minor revisions to accept compiler directives suitable for
+   Delphi 6. SparSolv seems to run fine in Delphis 3-6, either as part of a Windows
+   program or in a console program {$APPTYPE console}.
+   <br>
+   A third MTX example matrix is now included in the package.
+   <br>
+   Added example program ASOLVER.DPR contributed by Alex Jakushev, showing how to add
+   exception handling.
+  </p>
+  <p>
+   <b>August 2005:</b> minor revisions to accommodate Free Pascal Compiler version 2.0.0
+   [2005/05/08].
+  </p>
+  <p>
+   <b>January 2007:</b> compiler directives simplified -- they now assume that you are
+   using some 32-bit Delphi; if you are not, some hand editing will be needed.
+   [2007/19/01].
+  </p>
+  <p>
+   <a name="Author"></a>
+  </p>
+  <h3>
+   The Author
+  </h3>
+  <p>
+   Complaints and suggestions to <a href=
+   "http://www.monash.edu.au/policy/jmh.htm">Mark.Horridge</a>
+  </p>
+  <p>
+   email: Mark.Horridge@BusEco.monash.edu.au
+  </p>
+  <p>
+   This page courtesy of my work-place: <a href=
+   "http://www.monash.edu.au/policy/index.htm">Centre of Policy Studies</a> at <a href=
+   "http://www.monash.edu.au/">Monash University</a>
+  </p>
+  <p>
+   Last updated 19 Jan 2007.
+  </p>
+ </body>
+</html>

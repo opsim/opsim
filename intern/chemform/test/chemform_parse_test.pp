@@ -4,6 +4,7 @@ program ChemForm_parse_test;
 
 uses
   Classes,
+  DNA_listbase,
   MEM_guardedalloc,
   ChemFormParser;
 

@@ -3,6 +3,7 @@ program test_physprops;
 {$mode objfpc}
 
 uses
+  DNA_listbase,
   MEM_guardedalloc,
   unit_conv,
   PP_models,

@@ -1,0 +1,2 @@
+add_executable('opsim_sparsolv_test', 'test1', 'test1.dpr', ['opsim_sparsolv']);
+add_executable('opsim_sparsolv_test', 'test2', 'test2.dpr', ['opsim_sparsolv']);

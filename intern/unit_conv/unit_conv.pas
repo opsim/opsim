@@ -5,6 +5,7 @@ unit unit_conv;
 interface
 
 uses
+  DNA_listbase,
   MEM_guardedalloc;
 
 const

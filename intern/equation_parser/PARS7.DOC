@@ -1,0 +1,251 @@
+                             PARS7
+                            -------
+Author:
+Renate Schaaf
+1253N 400E #3
+Logan, UT 84321
+CompuServe: 71031,2774
+E-mail: schaaf@math.usu.edu
+
+Contents of the package:
+Pars7.doc    (This file)
+Pars7.pas    (Unit to translate a string given to a program at run time
+               into a tree of operations in memory which subsequently can
+               be called as a function, or rather a procedure that returns
+               a variable evaluating the string, that's a little faster.)
+Builder.pas   (Unit used by Pars7 to build the function.)
+Pars7Glb.pas  (Unit with things used both by builder and Pars7. I separated
+               the builder from the parser so the builder can be overlaid.)
+Realtype.pas  (Small unit defining the type "float". Change if you want to
+               compile in N- mode.)
+P7demo.pas   (Demonstrates capabilities and limitations of parsed functions.)
+d3FGraf.pas  (Demo, graphing functions of 2 variables.)
+Grafpack.pas (Unit with graphics things to do 3-d. Redirection of output
+              to the graphics screen is based on the same in Turbo Graphix.)
+
+Feel free to distribute this, as long as you keep the original package
+intact. The only things I have used to write this are Borland Pascal 7.0
+and TurboGraphix, so I guess it's all mine.
+The package is an updated version of a previous one, uploaded under the
+name pars6.
+Changes: Adjusted so usable for DOS protected mode.
+         A little more forgiving in syntax (extra ()).
+         Builds faster, runs slightly faster.
+         Supports use of 5 parameters that can be changed
+         without the function to have to be built again.
+         Has a really working complete destructor.
+         Supports some more functions, mainly to make
+         it easier to implement complex functions.
+All things compile and run in real and protected mode, that is, unless
+your application digs up another one of my sloppy pointers. It should
+not be happening, if it does, let me know, please.
+
+******************  What is does: ****************************************
+
+Suppose you want to display the graph of a function, say f(x) = sin(x)/x.
+So you write a program with "function f(x:real):real;" etc. and some
+graphics to display it. If you want to display the next function you
+change the string under "function...", recompile, and there you are.
+That's not very handy, especially if you maybe want to give this
+routine to a user that does (and should) not care about programming, like
+a student in a math class. Professional packages like Eureka, Mathematica,
+Mathcad etc. let you enter a function string at run time and then display
+the graph.
+You can use Pars7 to write applications that do similar things. You can
+incorporate functions into your program whose definition is not known at
+compile time and that only get built up at run time when initialized by
+a string entered by the user. Of course, it's not a good idea to parse
+the string each time it's supposed to get evaluated, so this is done only
+once in the beginning. Pars7 translates a string into the appropriate
+sequence of operations in memory, and only this tree is being run through
+each time the program calls the corresponding function.
+
+The resulting function takes more time for evaluation than if it had been
+compiled. The exact amount seems to differ a lot with the hardware.
+On my crummy 286 at home it takes a little more than twice the time, on
+my 486 at work it only takes about 30% more. Still, this is faster than
+any parser I have seen in the public domain and been able to try.
+
+I've written this tool for use in math programs that have a handy user
+interface, so the students can concentrate on the exploring side and
+don't have to spend weeks to learn a command language. I've looked
+around on CompuServe whether anything like this parser is available, but
+it does not seem so. This is why I upload the program so maybe others
+with similar applications in mind can use it.
+
+
+________________________________________________________________________
+| I'm happy about any comments, suggestions, bug reports etc. that you |
+| might have. Especially, if you professionals could tell me, how to   |
+|_get this thing faster._______________________________________________|
+
+
+I'm now just giving away the source code, what the hack, with all those
+TPU-TPP-types around it's a little cumbersome otherwise.
+
+************************* Syntax of Strings: ********************************
+Basicly, the syntax is the same as in Pascal.
+
+Function strings denoting real valued functions of up to three real
+variables are supported, the variables have to be
+                     __________________
+                    |                  |
+                    |  'x' 'y' 't'     |
+                    |__________________|
+
+(That's because I've written it for use with an ODE-package.)
+
+Examples: 'exp(x*(y-1)) - t*ln(1+x^2)'  'arctan(x+y)'  'sin(x)/x'.
+
+All names of real valued functions in the system unit can be used.
+You can incorporate up to 5 parameters if you call them 'A','B','C',
+'D','E'. Use setparams of OParse to assign values to them.
+Differences:
+1) Use only lower case (except for parameters and the number 'Pi'):
+    'Sin(x)*exP(x)' causes an error, 'sin(A*x)*exp(x)' is good, even
+    '(((sin( A*x )))) * exp ( x )'. It needs the '*'.
+
+2) Powers can be denoted by '^':
+    '(x^2 + y^2)^(-0.3)'   'y^(x^2)'
+   If in doubt, rather use those extra brackets.
+
+3) Some more functions are supported:
+   a) min(x,y) :  the minimum of x and y.
+   b) max(x,y) :  the maximum of x and y.
+   c) heav(x)  :  the heaviside jump function:
+                  heav(x) is =1 for x>0 and =0 for x<=0.
+   d) cosh(x),sinh(x): hyperbolic functions.
+   e) arg(x,y):   angle of (x,y) with the x-axis (between -pi
+                  and pi).
+   f) r(x,y):     distance of (x,y) from (0,0).
+There's also 2 kinds of random functions built in, whose use is a little
+hard to explain. rndm(A,B) creates N(A,B)-distributed white noise, e.g..
+Maybe you can figure out things by yourself.
+
+ ********************* How to use Pars7: ***********************************
+
+ Here's the interface of the unit:
+ ___________________________________________________________________________
+unit pars7;
+{$O+,F+}
+interface
+
+uses builder,pars7glb,realtype;
+
+type
+
+PParse = ^OParse;
+
+OParse = object
+  fstring:string;
+  px,py,pt,pa,pb,pc,pd,pe: rpointer;
+  numop:integer;
+  fop:operationpointer;
+  constructor init(s:string; showprogress: boolean; var error:boolean);
+  procedure setparams(a,b,c,d,e:float);
+  procedure f(x,y,t:float;var r:float);
+  destructor done;
+end;
+____________________________________________________________________________
+
+Description of OParse:
+
+  fstring:  the string that defines the function to be parsed.
+  px,py,pt: pointers to the fields in memory where the values
+            of x,y,t go when the function gets evaluated.
+  pa,pb,pc,pd,pe: same for the locations where the parameter values
+            go.
+  fop:      pointer to the first operation to be carried out when the
+            function is called.
+  px, py, pt, fop,... get to point to the right things in memory
+  after OParse.init has been called. fop^.next then points to the
+  next operation and so on.
+  init:     allocates memory on the heap for px,py,pt,... and builds
+            up a sequence of operations starting with fop^ to evaluate
+            the expression given by s. If s is not a valid string, error
+            is true and the function OParse.f cannot be used.
+            If showprogress is true then the builder puts dots on the
+            screen to show that it's doing things.
+  f:        This is the function the application program can call after
+            a successful call to init in order to evaluate fstring.
+            Actually, it's a procedure rather than a function in
+            order to speed things up a little.
+  setparams:  procedure that assigns the values a,b,c,d,e to the
+              parameters. Call each time you want to change parameter
+              values.
+              (Actually you can fake a function of 8 variables this
+               way)
+  done:     Destructs everything that init has thrown on the heap.
+
+
+
+
+Here is the implementation of OParse.f:
+
+type rpointer=^float;        {In Pars7glb}
+     onestep=procedure;
+     operationpointer=^operation;
+     operation=record
+             arg1,arg2:rpointer;
+             dest:rpointer;
+             next:operationpointer;
+             op:onestep;
+             opnum:word;
+            end;
+
+procedure OParse.f(x,y,t:float;var r:float);
+begin
+    px^:=x; py^:=y; pt^:=t;
+    lastop:=fop;
+    while lastop^.next<>nil do
+    begin
+      lastop^.op;
+      lastop:=lastop^.next;
+    end;
+    lastop^.op;
+    r:=lastop^.dest;
+end;
+
+lastop is a "semiglobal" variable of type operationpointer that
+gets used by the instances of lastop^.op (funny, but it works).
+Actually, I've found out that here "while" is a little faster than
+"repeat".
+
+Here's an example application program that should explain everything:
+
+program example;
+{$M 35000,0,655360}    {It's safe to increase the stack size, the builder}
+uses pars7,realtype;   {uses a bit of it, though not for these examples}
+var Myfunc:PParse;
+    error:boolean;
+begin
+  Myfunc:=New(PParse,init('x*y*t-A',true,error));
+  if not error then
+  begin
+    Myfunc^.setparams(1,0,0,0,0);
+    Myfunc^.f(2,1,3,r);
+    writeln(r:5:2);
+    dispose(Myfunc,done);{Always dispose of a function you don't need}
+                         {anymore. Never dispose of   }
+                         {a function whose init failed.}
+  end;
+  Myfunc:=New(PParse,init('x*exp(x-1)',true,error));
+  if not error then
+  begin
+    Myfunc^.f(1,0,0,r);  {f is only a function of 1 variable really
+                                    but has to be called with 3 arguments.}
+    writeln(r:5:2);
+    dispose(Myfunc,done);
+  end;
+end.
+
+
+Output:
+
+.......5.00
+........1.00
+
+(init puts the dots on the screen to indicate its progress when
+showprogress is true.)
+
+Easy, ain't it?

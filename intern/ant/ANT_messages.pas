@@ -5,6 +5,7 @@ interface
 uses 
   Classes,
   SysUtils,
+  DNA_listbase,
   ANT_types,
   MEM_guardedalloc;
 

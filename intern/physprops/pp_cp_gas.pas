@@ -6,6 +6,7 @@ interface
 
 uses
   fpjson, jsonparser,
+  DNA_listbase,
   MEM_guardedalloc, PhysProps;
 
 {

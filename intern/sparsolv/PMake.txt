@@ -1,0 +1,7 @@
+add_library('opsim_sparsolv', 
+[
+  'sparsolv.pas',
+  'sparxcpt.pas'
+]);
+
+add_subdirectory('test');

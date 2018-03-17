@@ -1,6 +1,7 @@
 program chemform;
 
 uses
+  DNA_listbase,
   MEM_guardedalloc,
   CHF_tokenizer;
 

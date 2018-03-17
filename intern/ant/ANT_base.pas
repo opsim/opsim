@@ -5,6 +5,7 @@ unit ANT_base;
 interface
 
 uses
+  DNA_listbase,
   ANT_types,
   MEM_guardedalloc;
 

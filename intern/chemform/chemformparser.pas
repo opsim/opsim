@@ -5,6 +5,7 @@ unit ChemFormParser;
 interface
 
 uses
+  DNA_listbase,
   MEM_guardedalloc, CHF_tokenizer;
 
 type

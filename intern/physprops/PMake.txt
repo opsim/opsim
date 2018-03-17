@@ -7,7 +7,7 @@ add_library('opsim_physprops',
   'pp_cp_gas.pas',
   'pp_vapor_pressure.pas'
 
-], ['opsim_guardedalloc', 'opsim_unit_conv']);
+], ['opsim_guardedalloc', 'opsim_unit_conv', 'opsim_makesdna']);
 
 add_subdirectory('components');
 add_subdirectory('test');

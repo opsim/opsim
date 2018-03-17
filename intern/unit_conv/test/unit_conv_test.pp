@@ -3,6 +3,7 @@ program unit_conv_test;
 {$mode objfpc}
 
 uses
+  DNA_listbase,
   MEM_guardedalloc, unit_conv;
 
 var
