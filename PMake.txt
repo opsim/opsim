@@ -1,8 +1,8 @@
 compiler_minimum_required(3,0,4);
-project('OpSim', 0, 2);
+project('OpSim', '0.02');
 
 add_subdirectory('intern');
 add_subdirectory('source');
 
 //create the package
-create_package('$(PMAKE_PROJECT_NAME)-0.02-$(PMAKE_HOST_SYSTEM_PROCESSOR)-$(PMAKE_HOST_SYSTEM_NAME)', '$(PMAKE_SOURCE_DIR)..\build\');
+create_package('$(PMAKE_PROJECT_NAME)-$(PROJECT_VERSION)-$(PMAKE_HOST_SYSTEM_PROCESSOR)-$(PMAKE_HOST_SYSTEM_NAME)', 'package');
