@@ -10,6 +10,7 @@ install:
   - echo $TRAVIS_OS_NAME
   
   - if [ ${TRAVIS_OS_NAME} == "linux" ]; then 
+        sudo add-apt-repository ppa:ok2cqr/lazarus -y;
         sudo apt-get update -qq;
         sudo apt-get install -qq -y fpc; 
     else
