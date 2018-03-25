@@ -10,4 +10,4 @@ add_library('opsim_physprops',
 ], ['opsim_guardedalloc', 'opsim_unit_conv', 'opsim_makesdna']);
 
 add_subdirectory('components');
-add_subdirectory('test');
+add_subdirectory('examples');

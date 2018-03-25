@@ -1,4 +1,4 @@
 include_directories('opsim_unit_conv', ['$(PMAKE_CURRENT_SOURCE_DIR)']);
 add_library('opsim_unit_conv', ['unit_conv.pas'], ['opsim_guardedalloc', 'opsim_makesdna']);
 
-add_subdirectory('test');
+add_subdirectory('examples');

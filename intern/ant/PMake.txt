@@ -9,4 +9,4 @@ add_library('opsim_ant',
 {$IFDEF DARWIN} 'ANT_Cocoa.pas'{$ENDIF}
 ], ['opsim_guardedalloc', 'opsim_makesdna']);
 
-add_subdirectory('test');
+add_subdirectory('examples');

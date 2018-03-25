@@ -4,4 +4,4 @@ add_library('opsim_sparsolv',
   'sparxcpt.pas'
 ]);
 
-add_subdirectory('test');
+add_subdirectory('examples');

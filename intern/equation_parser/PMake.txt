@@ -6,4 +6,4 @@ add_library('opsim_equation_parser',
   'PARS7.PAS'
 ]);
 
-add_subdirectory('test');
+add_subdirectory('examples');
