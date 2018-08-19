@@ -4,19 +4,27 @@
 import os
 import subprocess
 import sys
+import shutil
 
 def run(cmd):
     print("   ", " ".join(cmd))
     subprocess.check_call(cmd)
 
-BASEDIR = os.path.abspath(os.path.dirname(__file__))
-
-inkscape_bin = "inkscape"
+# set the inkscape executable path
+inkscape_bin = shutil.which("inkscape")
 
 if sys.platform == 'darwin':
     inkscape_app_path = '/Applications/Inkscape.app/Contents/Resources/script'
     if os.path.exists(inkscape_app_path):
         inkscape_bin = inkscape_app_path
+
+#inkscape not found from path, try to add a default one
+if inkscape_bin == None:
+    if sys.platform == 'win32':
+        inkscape_bin = 'C:\Program Files\Inkscape\inkscape.exe'
+
+
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
 cmd = (
     inkscape_bin,
@@ -82,8 +90,7 @@ run(cmd)
 cmd = (
     inkscape_bin,
     os.path.join(BASEDIR, "logo.svg"),
-    "--export-width=201",
-    "--export-height=61",
+    "--export-width=4000",
     "--without-gui",
     "--export-png=" + os.path.join(BASEDIR, "logo.png"),
 )
