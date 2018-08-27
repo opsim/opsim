@@ -32,14 +32,16 @@ const
    @return True is successfull otherwise False
 }
 function ANT_Init: boolean;
+
 {
    Terminates the ANT library
 }
-procedure ANT_Terminate;
+function ANT_Terminate: boolean;
 
 function ANT_WindowShouldClose(win: pANTwindow): boolean;
 
 procedure ANT_SetWindowShouldClose(win: pANTwindow; value: boolean);
+
 {
    Creates a window and its associated context.
    @param Width: the width of the window
@@ -47,17 +49,22 @@ procedure ANT_SetWindowShouldClose(win: pANTwindow; value: boolean);
    @param title: the title of the window
    @return a reference to the created window
 }
-function ANT_CreateWindow(width, height: integer; title: PChar): pANTwindow;
+function ANT_CreateWindow(posx, posy, sizex, sizey: integer; title: PChar): pANTwindow;
+
 {
    Destroys a window and its associated context.
    @param win: the reference to the window being destroyed
 }
 procedure ANT_DestroyWindow(win: pANTwindow);
+
+function ANT_MakeCurrent(var win: pANTwindow): boolean;
+
 {
    Swaps the front and back buffers of the specified window.
    @param win: the reference to the window
 }
 procedure ANT_SwapBuffers(win: pANTwindow);
+
 {
    Retrieves the size of the framebuffer of the specified window.
    @param win: the reference to the window
@@ -71,17 +78,17 @@ procedure ANT_GetFrameBufferSize(win: pANTwindow; out width, height: integer);
    @param pointer to error callback:
 }
 procedure ANT_SetErrorCallback(errorCallback: ANT_ErrorCallback);
-{
-   Sets the event callback procedure
-   @param pointer to event callback:
-}
-procedure ANT_SetEventCallback(eventCallback: ANT_EventCallback);
+
 {
    This is the procedure will poll for any pending events and put them in 
    the eventlist. Next the eventlist is checked and if needed the event 
    callback function is called.
 }
 procedure ANT_PollEvents;
+
+procedure ANT_SetCursor(cursor: byte);
+
+procedure ANT_GetDisplayCoords(var dr: ANTRect);
 
 implementation
 
@@ -99,10 +106,10 @@ uses
 
 function ANT_Init: boolean;
 begin
-  exit(True);
+  exit(gdi_Init);
 end;
 
-procedure ANT_Terminate;
+function ANT_Terminate: boolean;
 var
   win: pANTwindow;
 begin
@@ -115,6 +122,8 @@ begin
 
     win := win^.next;
   end;
+
+  exit(gdi_Terminate);
 end;
 
 function ANT_WindowShouldClose(win: pANTwindow): boolean;
@@ -127,14 +136,27 @@ begin
   win^.shouldClose := value;
 end;
 
-function ANT_CreateWindow(width, height: integer; title: PChar): pANTwindow;
+function ANT_CreateWindow(posx, posy, sizex, sizey: integer; title: PChar): pANTwindow;
+var
+  win: pANTwindow = nil;
+  res: boolean = False;
 begin
+  win := callocN(sizeof(ANTWindow), 'ANTWindow');
+
 {$IFDEF MSWINDOWS}
-  exit(gdi_CreateWindow(width, height, title));
+  res := gdi_CreateWindow(win ,posx, posy, sizex, sizey, title);
 {$ENDIF}
 {$IFDEF LINUX}
-  exit(X11_CreateWindow(width, height, title));
+  res := X11_CreateWindow(win, posx, posy, sizex, sizey, title);
 {$ENDIF}
+
+  if res then
+    exit(win)
+  else
+  begin
+    freeN(win);
+    exit(nil);
+  end;
 end;
 
 procedure ANT_DestroyWindow(win: pANTwindow);
@@ -149,6 +171,11 @@ begin
   //remove and free window object
   remlink(@windowlist, win);
   freeN(win);
+end;
+
+function ANT_MakeCurrent(var win: pANTwindow): boolean;
+begin
+  exit(gdi_MakeCurrent(win));
 end;
 
 procedure ANT_SwapBuffers(win: pANTwindow);
@@ -176,14 +203,10 @@ begin
   errfunc := errorCallback;
 end;
 
-procedure ANT_SetEventCallback(eventCallback: ANT_EventCallback);
-begin
-  eventfunc := eventCallback;
-end;
-
 procedure ANT_PollEvents;
 var
   event: pANT_MessageRec;
+  win: pANTwindow;
 begin
 {$IFDEF MSWINDOWS}
   gdi_PollEvents;
@@ -192,17 +215,32 @@ begin
   X11_PollEvents;
 {$ENDIF}
 
-  if eventfunc <> nil then
+  event := antReadFirstMessage;
+
+  if event <> nil then
     begin
-      event := antReadLastMessage;
+      win := event^.win;
+      if win > nil then
+        if win^.event_callback <> nil then
+          win^.event_callback(event);
 
-      if event <> nil then
-        begin
-          eventfunc(event);
-
-          antDeleteMessage(event);
-        end;
+      antDeleteMessage(event);
     end;
+end;
+
+procedure ANT_SetCursor(cursor: byte);
+begin
+  {$note implement this}
+end;
+
+procedure ANT_GetDisplayCoords(var dr: ANTRect);
+begin
+{$IFDEF MSWINDOWS}
+  gdi_GetDisplayCoords(dr);
+{$ENDIF}
+{$IFDEF LINUX}
+  x11_GetDisplayCoords(dr);
+{$ENDIF}
 end;
 
 end.

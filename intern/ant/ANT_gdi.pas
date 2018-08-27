@@ -10,6 +10,9 @@ uses
   MEM_guardedalloc,
   ANT_base, ANT_types;
 
+function gdi_Init: boolean;
+function gdi_Terminate: boolean;
+
 {
    Creates a GDI window and its associated context.
    @param Width: the width of the window
@@ -17,12 +20,15 @@ uses
    @param title: the title of the window
    @return a reference to the created window
 }
-function gdi_CreateWindow(Width, Height: integer; title: PChar): pANTwindow;
+function gdi_CreateWindow(win: pANTwindow; posx, posy, sizex, sizey: integer; title: PChar): boolean;
 {
    Destroys a GDI window and its associated context.
    @param win: the reference to the window being destroyed
 }
 procedure gdi_DestroyWindow(var win: pANTwindow);
+
+function gdi_MakeCurrent(win: pANTwindow): boolean;
+
 {
    Swaps the front and back buffers of the specified window.
    @param win: the reference to the window
@@ -43,37 +49,25 @@ procedure gdi_GetFrameBufferSize(win: pANTwindow; out width, height: integer);
 }
 procedure gdi_PollEvents;
 
+procedure gdi_GetDisplayCoords(var dr: ANTRect);
+
 implementation
 
 uses
   SysUtils,
   ANT_main, ANT_messages;
 
+var
+  wc: TWndclass;
+  h_Instance: HINST;
+
 function gdi_WindowFromHWND(hWnd: Windows.HWND): pANTwindow; forward;
 function gdi_GetKeyboardShiftState: TShiftState; forward;
 function WndProc(hWnd: Windows.HWND; message: UINT; wParam: WPARAM; lParam: LPARAM): LRESULT; stdcall; forward;
 
-function gdi_CreateWindow(Width, Height: integer; title: PChar): pANTwindow;
-const
-  bits = 16;
-var
-  Pixelformat: GLuint;
-  wc: TWndclass;
-  dwExStyle: dword;
-  dwStyle: dword;
-  pfd: pixelformatdescriptor;
-  dmScreenSettings: Devmode;
-  WindowRect: TRect;
-  win: pANTwindow = nil;
+function gdi_Init: boolean;
 begin
-  win := callocN(sizeof(ANTWindow), 'ANTWindow');
-
-  WindowRect.Left := 0;
-  WindowRect.Top := 0;
-  WindowRect.Right := Width;
-  WindowRect.Bottom := Height;
-
-  win^.h_Instance := GetModuleHandle(nil);
+  h_Instance := GetModuleHandle(nil);
 
   with wc do
     begin
@@ -81,19 +75,59 @@ begin
       lpfnWndProc := @WndProc;
       cbClsExtra := 0;
       cbWndExtra := 0;
-      hInstance := win^.h_Instance;
+      hInstance := h_Instance;
       hIcon := LoadIcon(0, IDI_WINLOGO);
       hCursor := LoadCursor(0, IDC_ARROW);
       hbrBackground := 0;
       lpszMenuName := nil;
-      lpszClassName := 'ANT';
+      lpszClassName := 'ANT class';
     end;
 
   if RegisterClass(wc) = 0 then
     begin
-      antError(ANT_PLATFORM_ERROR, 'ANT error: failed to register the window class', []);
-      exit(nil);
+      case GetLastError of
+        ERROR_CLASS_ALREADY_EXISTS:
+          antError(ANT_PLATFORM_ERROR, 'ANT error: class already exists', []);
+        ERROR_CLASS_DOES_NOT_EXIST:
+          antError(ANT_PLATFORM_ERROR, 'ANT error: class does not exists', []);
+        ERROR_CLASS_HAS_WINDOWS:
+          antError(ANT_PLATFORM_ERROR, 'ANT error: class has windows', []);
+      else
+        antError(ANT_PLATFORM_ERROR, 'ANT error: unknown class error', []);
+      end;
+
+      exit(False);
     end;
+
+  exit(True);
+end;
+
+function gdi_Terminate: boolean;
+begin
+  if (not UnregisterClass('ANT class', h_Instance)) then
+    begin
+      antError(ANT_PLATFORM_ERROR, 'ANT error: could not unregister class', []);
+      exit(False);
+    end;
+
+  exit(True);
+end;
+
+function gdi_CreateWindow(win: pANTwindow; posx, posy, sizex, sizey: integer; title: PChar): boolean;
+const
+  bits = 16;
+var
+  Pixelformat: GLuint;
+  dwExStyle: dword;
+  dwStyle: dword;
+  pfd: pixelformatdescriptor;
+  dmScreenSettings: Devmode;
+  WindowRect: TRect;
+begin
+  WindowRect.Left := posx;
+  WindowRect.Top := posy;
+  WindowRect.Right := sizex;
+  WindowRect.Bottom := sizey;
 
   if win^.fscreen then
     begin
@@ -129,7 +163,7 @@ begin
   AdjustWindowRectEx(WindowRect, dwStyle, False, dwExStyle);
 
   win^.h_Wnd := CreateWindowEx(dwExStyle,
-                'ANT',
+                'ANT class',
                 Title,
                 dwStyle,
                 0, 0,
@@ -143,7 +177,7 @@ begin
     begin
       gdi_DestroyWindow(win);
       antError(ANT_PLATFORM_ERROR, 'ANT error: window creation error', []);
-      exit(nil);
+      exit(False);
     end;
 
   with pfd do
@@ -180,7 +214,7 @@ begin
     begin
       gdi_DestroyWindow(win);
       antError(ANT_PLATFORM_ERROR, 'ANT error: can''t create a GL device context', []);
-      exit(nil);
+      exit(False);
     end;
 
   PixelFormat := ChoosePixelFormat(win^.h_DC, @pfd);
@@ -188,14 +222,14 @@ begin
     begin
       gdi_DestroyWindow(win);
       antError(ANT_PLATFORM_ERROR, 'ANT error: can''t find a suitable PixelFormat', []);
-      exit(nil);
+      exit(False);
     end;
 
   if not SetPixelFormat(win^.h_DC, PixelFormat, @pfd) then
     begin
       gdi_DestroyWindow(win);
       antError(ANT_PLATFORM_ERROR, 'ANT error: can''t set PixelFormat', []);
-      exit(nil);
+      exit(False);
     end;
 
   win^.h_RC := wglCreateContext(win^.h_DC);
@@ -203,14 +237,14 @@ begin
     begin
       gdi_DestroyWindow(win);
       antError(ANT_PLATFORM_ERROR, 'ANT error: can''t create a GL rendering context', []);
-      exit(nil);
+      exit(False);
     end;
 
   if not wglMakeCurrent(win^.h_DC, win^.h_RC) then
     begin
       gdi_DestroyWindow(win);
       antError(ANT_PLATFORM_ERROR, 'ANT error: can''t activate the GL rendering context', []);
-      exit(nil);
+      exit(False);
     end;
 
   ShowWindow(win^.h_Wnd, SW_SHOW);
@@ -218,7 +252,7 @@ begin
   SetFocus(win^.h_Wnd);
 
   addtail(@windowlist, win);
-  exit(win);
+  exit(True);
 end;
 
 procedure gdi_DestroyWindow(var win: pANTwindow);
@@ -253,11 +287,11 @@ begin
       antError(ANT_PLATFORM_ERROR, 'ANT error: could not release hWnd', []);
       win^.h_Wnd := 0;
     end;
+end;
 
-  if (not UnregisterClass('ANT', win^.h_Instance)) then
-    begin
-      antError(ANT_PLATFORM_ERROR, 'ANT error: could not unregister class', []);
-    end;
+function gdi_MakeCurrent(win: pANTwindow): boolean;
+begin
+  exit(wglMakeCurrent(win^.h_DC, win^.h_RC));
 end;
 
 procedure gdi_SwapBuffers(win: pANTwindow);
@@ -287,6 +321,17 @@ begin
     end;
 end;
 
+procedure gdi_GetDisplayCoords(var dr: ANTRect);
+begin
+  if not SystemParametersInfo(SPI_GETWORKAREA, 0, @dr, 0) then
+  begin
+    dr.right := 0;
+    dr.left := 0;
+    dr.bottom := 0;
+    dr.top := 0;
+  end;
+end;
+
 function gdi_WindowFromHWND(hWnd: Windows.HWND): pANTwindow;
 var
   wi: pANTwindow;
@@ -300,6 +345,8 @@ begin
 
       wi := wi^.next;
     end;
+
+  exit(nil);
 end;
 
 function gdi_GetKeyboardShiftState: TShiftState;
@@ -409,10 +456,14 @@ begin
 
                antPostMessage(win, ANT_MESSAGE_RESIZE, params);
              end;
-
+    //WM_PAINT:
+    //          antPostMessage(win, ANT_MESSAGE_PAINT, params);
     else
       begin
         //writeln(message);
+
+        if message = WM_PAINT then
+          antPostMessage(win, ANT_MESSAGE_PAINT, params);
 
         exit(DefWindowProc(hWnd, message, wParam, lParam));
       end;

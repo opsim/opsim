@@ -91,35 +91,38 @@ type
    @param MsgCode: message code
    @param Params: event data
 }
-procedure antPostMessage(Window: pANTwindow; MsgCode: integer; Params: ANT_MessageParams);
+procedure antPostMessage(win: pANTwindow; MsgCode: integer; Params: ANT_MessageParams);
 {
    Reads the last mesage from the queue
    @return The last message from the queue, otherwise nil.
 }
 function antReadLastMessage: pANT_MessageRec;
 {
+   Reads the first mesage from the queue
+   @return The first message from the queue, otherwise nil.
+}
+function antReadFirstMessage: pANT_MessageRec;
+{
    Deletes message from the queue
    @param msg: message to be deleted
 }
 procedure antDeleteMessage(msg: pANT_MessageRec);
-
-var
-  eventfunc: ANT_EventCallback = nil;
 
 implementation
 
 var 
   msglist: ListBase;
 
-procedure antPostMessage(Window: pANTwindow; MsgCode: integer; Params: ANT_MessageParams);
+procedure antPostMessage(win: pANTwindow; MsgCode: integer; Params: ANT_MessageParams);
 var
   msg: pANT_MessageRec;
 begin
   msg := callocN(sizeof(ANT_MessageRec), 'ANT_Message');
 
+  msg^.win := win;
+
   msg^.mcode := MsgCode;
   move(Params, msg^.params, sizeof(ANT_MessageParams));
-  msg^.win := Window;
 
   addtail(@msglist, msg);
 end;
@@ -129,10 +132,15 @@ begin
   exit(msglist.last);
 end;
 
+function antReadFirstMessage: pANT_MessageRec;
+begin
+  exit(msglist.first);
+end;
+
 procedure antDeleteMessage(msg: pANT_MessageRec);
 begin
   remlink(@msglist, msg);
-   freeN(msg);
+  freeN(msg);
 end;
 
 end.

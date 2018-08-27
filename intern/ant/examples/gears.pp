@@ -301,12 +301,13 @@ begin
   end;
 
   ANT_SetErrorCallback(@error_callback);
-  ANT_SetEventCallback(@event_callback);
 
   if not ANT_Init then
     halt(-1);
 
-  win := ANT_CreateWindow(640, 480, 'Gears');
+  win := ANT_CreateWindow(0, 0, 640, 480, 'Gears');
+
+  win^.event_callback := @event_callback;
 
   init;
 

@@ -1,5 +1,4 @@
-
-program simple;
+program two_windows;
 
 uses
   SysUtils,
@@ -8,7 +7,7 @@ uses
   ANT_main, ANT_types, ANT_messages;
 
 var 
-  window: pANTWindow;
+  win1, win2: pANTWindow;
   ratio: double;
   width: integer = 640;
   height: integer = 480;
@@ -63,14 +62,52 @@ begin
   end;
 end;
 
+procedure draw(win: pANTWindow);
+begin
+  ANT_MakeCurrent(win);
+
+  glViewport(0, 0, width, height);
+  glClear(GL_COLOR_BUFFER_BIT);
+
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity;
+  glOrtho(-ratio, ratio, -1, 1, 1, -1);
+  glMatrixMode(GL_MODELVIEW);
+
+  glLoadIdentity;
+  rotate := Now * 24 * 3600 * 60;
+  rotate := rotate - int(rotate / 360) * 360;
+
+  glRotatef(rotate, 0, 0, 1);
+
+  glBegin(GL_TRIANGLES);
+    glColor3f(1, 0, 0);
+    glVertex3f(-0.6, -0.4, 0);
+    glColor3f(0, 1, 0);
+    glVertex3f(0.6, -0.4, 0);
+    glColor3f(0, 0, 1);
+    glVertex3f(0, 0.6, 0);
+  glEnd;
+
+  ANT_SwapBuffers(win);
+end;
+
 begin
   ANT_SetErrorCallback(@error_callback);
 
   if not ANT_Init then
     halt(-1);
 
-  window := ANT_CreateWindow(0, 0, width, height, 'Simple example');
-  if window = nil then
+  //main window
+  win1 := ANT_CreateWindow(0, 0, width, height, 'Simple example 1');
+  if win1 = nil then
+    begin
+      ANT_Terminate;
+      halt(-1);
+    end;
+
+  win2 := ANT_CreateWindow(0, 0, width, height, 'Simple example 2');
+  if win2 = nil then
     begin
       ANT_Terminate;
       halt(-1);
@@ -78,41 +115,21 @@ begin
 
   ratio := width / height;
 
-  window^.event_callback := @event_callback;
+  win1^.event_callback := @event_callback;
 
   writeln('OpenGL version: ', glGetString(GL_VERSION));
 
-  while not ANT_WindowShouldClose(window) do
+  while not ANT_WindowShouldClose(win1) do
     begin
       setWindowFPS;
 
-      glViewport(0, 0, width, height);
-      glClear(GL_COLOR_BUFFER_BIT);
+      draw(win1);
+      draw(win2);
 
-      glMatrixMode(GL_PROJECTION);
-      glLoadIdentity;
-      glOrtho(-ratio, ratio, -1, 1, 1, -1);
-      glMatrixMode(GL_MODELVIEW);
-
-      glLoadIdentity;
-      rotate := (Now * 24 * 3600 * 50);
-      rotate := rotate - int(rotate / 360) * 360;
-      glRotatef(rotate, 0, 0, 1);
-
-      glBegin(GL_TRIANGLES);
-      glColor3f(1, 0, 0);
-      glVertex3f(-0.6, -0.4, 0);
-      glColor3f(0, 1, 0);
-      glVertex3f(0.6, -0.4, 0);
-      glColor3f(0, 0, 1);
-      glVertex3f(0, 0.6, 0);
-      glEnd;
-
-      ANT_SwapBuffers(window);
       ANT_PollEvents;
     end;
 
-  ANT_DestroyWindow(window);
+  ANT_DestroyWindow(win1);
 
   ANT_Terminate;
 end.

@@ -215,6 +215,13 @@ type
   ANT_EventCallback = procedure(msg: pointer);
   ANT_ErrorCallback = procedure(error: integer; const description: string);
 
+  ANTRect = record
+    left: longint;
+    top: longint;
+    right: longint;
+    bottom: longint;
+  end;
+
   pANTwindow = ^ANTwindow;
 
   ANTWindow = record
@@ -226,12 +233,13 @@ type
     fscreen: boolean;        //< Flag that indictes if the window is fullscreen or not
     shouldClose: boolean;    //< Flag indicating if the window should close
 
+    //callback functions
+    event_callback: ANT_EventCallback;   //< event callback function for this window
+
 {$IFDEF MSWINDOWS}           
-    wc: TWndclass;           //< GDI window class
     h_Wnd: Windows.HWND;     //< GDI window handle
     h_DC: Windows.HDC;       //< GDI device context
     h_RC: HGLRC;             //< GDI rendering context
-    h_Instance: HINST;       //< GDI application instance
 {$ENDIF}                     
 {$IFDEF LINUX}               
    dpy: pDisplay;            //< X11 display
