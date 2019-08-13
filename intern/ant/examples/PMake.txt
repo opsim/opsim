@@ -1,2 +1,0 @@
-add_executable('opsim_ant_test', 'simple', 'simple.pp', ['opsim_guardedalloc', 'opsim_ant', 'opsim_makesdna']);
-add_executable('opsim_ant_test', 'gears', 'gears.pp', ['opsim_guardedalloc', 'opsim_ant', 'opsim_makesdna']);

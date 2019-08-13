@@ -1,4 +1,4 @@
 add_library('opsim_font', 
 [
-  'FNT_freetype.pas'
+  'fnt_freetype.pas'
 ]);

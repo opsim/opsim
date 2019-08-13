@@ -1,2 +1,5 @@
-add_executable('opsim_equation_parser_test', 'P7DEMO', 'P7DEMO.PAS', ['opsim_equation_parser']);
-add_executable('opsim_equation_parser_test', 'P7test', 'P7test.pp', ['opsim_equation_parser']);
+if valb('WITH_EXAMPLES') then
+begin
+  add_executable('opsim_equation_parser_test', 'P7DEMO', 'P7DEMO.PAS', ['opsim_equation_parser']);
+  add_executable('opsim_equation_parser_test', 'P7test', 'P7test.pp', ['opsim_equation_parser']);
+end;

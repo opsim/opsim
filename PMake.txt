@@ -1,8 +1,22 @@
 compiler_minimum_required(3,0,0);
 project('OpSim', '0.02');
 
+//options
+option('WITH_DEBUG',    'Enable debug info for OpSim', _ON_);
+option('WITH_EXAMPLES', 'Enable building of examples for OpSim', _OFF_);
+option('WITH_DOC',      'Enable documentation builder for OpSim', _OFF_);
+
+//compiler options
+if valb('WITH_DEBUG') then
+begin
+  add_compile_option('-gl');
+end;
+
+add_subdirectory('extern');
 add_subdirectory('intern');
 add_subdirectory('source');
 
-//create the package
-create_package('$(PMAKE_PROJECT_NAME)-$(PROJECT_VERSION)-$(PMAKE_HOST_SYSTEM_PROCESSOR)-$(PMAKE_HOST_SYSTEM_NAME)', 'package');
+// create the package
+create_package(
+  '$(PMAKE_PROJECT_NAME)-$(PROJECT_VERSION)-$(PMAKE_HOST_SYSTEM_PROCESSOR)-$(PMAKE_HOST_SYSTEM_NAME)'
+);

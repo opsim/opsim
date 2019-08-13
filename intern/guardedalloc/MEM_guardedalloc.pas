@@ -121,7 +121,7 @@ begin
   MEMNEXT := pMemHead((pchar(x)) - (pchar(@((pMemHead(0))^.next))));
 end;
 
-function malloc(size: size_t): pointer;
+function malloc(size: PtrUint): pointer;
 var
   p: pointer;
 begin
@@ -130,7 +130,7 @@ begin
   exit(p);
 end;
 
-function calloc(num, size: size_t): pointer;
+function calloc(num, size: PtrUint): pointer;
 var
   p: Pointer;
 begin

@@ -4,11 +4,11 @@ uses
   SysUtils,
   GL,
   DNA_listbase,
-  ANT_main, ANT_types, ANT_messages,
+  GLPT,
   MEM_guardedalloc;
 
 var
-  window: pANTWindow;
+  window: pGLPTWindow;
   ratio: double;
   width: integer = 640;
   height: integer = 480;
@@ -36,53 +36,49 @@ begin
     end;
 end;
 
-procedure error_callback(error             : integer;
-                         const description : string);
+procedure error_callback(const error: integer; const description: string);
 begin
   writeln(stderr, description);
 end;
 
-procedure event_callback(msg: pointer);
-var
-  event: pANT_MessageRec;
+procedure event_callback(event: pGLPT_MessageRec);
 begin
-  event := msg;
-
   case event^.mcode of
-    ANT_MESSAGE_KEYPRESS:
-                          begin
-                            writeln(event^.params.keyboard.keychar);
 
-                            if event^.params.keyboard.keychar = ANT_KEY_ESCAPE then
-                              ANT_SetWindowShouldClose(event^.win, True);
-                          end;
-    ANT_MESSAGE_MOUSEDOWN:
-                           begin
-                             writeln(event^.params.mouse.buttons);
-                           end;
+    GLPT_MESSAGE_KEYPRESS:
+    begin
+      writeln(event^.params.keyboard.keycode);
+
+      if event^.params.keyboard.keycode = GLPT_KEY_ESCAPE then
+        GLPT_SetWindowShouldClose(event^.win, True);
+    end;
+
+    GLPT_MESSAGE_MOUSEDOWN:
+      writeln(event^.params.mouse.buttons);
   end;
 end;
 
 begin
-  ANT_SetErrorCallback(@error_callback);
+  //GLPT_SetErrorCallback(@error_callback);
 
-  if not ANT_Init then
+  if not GLPT_Init then
     halt(-1);
 
-  window := ANT_CreateWindow(width, height, 'Simple example');
+  window := GLPT_CreateWindow(GLPT_WINDOW_POS_CENTER, GLPT_WINDOW_POS_CENTER, width, height, 'OpSim', GLPT_GetDefaultContext);
   if window = nil then
-    begin
-      ANT_Terminate;
-      halt(-1);
-    end;
+  begin
+    GLPT_Terminate;
+    halt(-1);
+  end;
 
   ratio := width / height;
 
-  ANT_SetEventCallback(@event_callback);
+  window^.event_callback := @event_callback;
 
+  writeln('GLPT version: ', GLPT_GetVersionString);
   writeln('OpenGL version: ', glGetString(GL_VERSION));
 
-  while not ANT_WindowShouldClose(window) do
+  while not GLPT_WindowShouldClose(window) do
     begin
       setWindowFPS;
 
@@ -108,11 +104,11 @@ begin
         glVertex3f(0, 0.6, 0);
       glEnd;
 
-      ANT_SwapBuffers(window);
-      ANT_PollEvents;
+      GLPT_SwapBuffers(window);
+      GLPT_PollEvents;
     end;
 
-  ANT_DestroyWindow(window);
+  GLPT_DestroyWindow(window);
 
-  ANT_Terminate;
+  GLPT_Terminate;
 end.

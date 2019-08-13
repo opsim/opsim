@@ -1,4 +1,4 @@
-add_executable('opsim_ise', 'opsim', 'iseopsim.pp', ['opsim_guardedalloc', 'opsim_ant', 'opsim_makesdna']);
+add_executable('opsim_ise', 'opsim', 'iseopsim.pp', ['opsim_guardedalloc', 'opsim_makesdna', 'lib_GLPT']);
 
 //install the opsim executable
 install('$(BINOUTPUTDIR)', '$(PMAKE_PACKAGE_DIR)', 'opsim$(EXE)', 'opsim_ise');

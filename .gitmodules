@@ -1,3 +1,6 @@
 [submodule "extern/pmake"]
 	path = extern/pmake
 	url = https://github.com/daar/pmake
+[submodule "extern/GLPT"]
+	path = extern/GLPT
+	url = https://github.com/daar/GLPT
